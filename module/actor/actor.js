@@ -3,7 +3,6 @@
  * @extends {Actor}
  */
 export class alienrpgActor extends Actor {
-
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -27,11 +26,18 @@ export class alienrpgActor extends Actor {
 
     // Make modifications to data here. For example:
 
+    //   // Loop through ability scores, and add their modifiers to our sheet output.
+    //   for (let [key, ability] of Object.entries(data.abilities)) {
+    //     // Calculate the modifier using d20 rules.
+    //     ability.mod = Math.floor((ability.value - 10) / 2);
+    //   }
+    // }
+
     // Loop through ability scores, and add their modifiers to our sheet output.
-    for (let [key, ability] of Object.entries(data.abilities)) {
+    for (let [key, skill] of Object.entries(data.skills)) {
       // Calculate the modifier using d20 rules.
-      ability.mod = Math.floor((ability.value - 10) / 2);
+      const conAtt = skill.ability;
+      skill.mod = skill.value + data.attributes[conAtt].value;
     }
   }
-
 }

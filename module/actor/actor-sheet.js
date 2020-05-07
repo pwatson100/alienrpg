@@ -3,15 +3,14 @@
  * @extends {ActorSheet}
  */
 export class alienrpgActorSheet extends ActorSheet {
-
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ["alienrpg", "sheet", "actor"],
-      template: "systems/alienrpg/templates/actor/actor-sheet.html",
+      classes: ['alienrpg', 'sheet', 'actor'],
+      template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 600,
       height: 600,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
+      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'skills' }],
     });
   }
 
@@ -20,9 +19,9 @@ export class alienrpgActorSheet extends ActorSheet {
   /** @override */
   getData() {
     const data = super.getData();
-    data.dtypes = ["String", "Number", "Boolean"];
+    data.dtypes = ['String', 'Number', 'Boolean'];
     for (let attr of Object.values(data.data.attributes)) {
-      attr.isCheckbox = attr.dtype === "Boolean";
+      attr.isCheckbox = attr.dtype === 'Boolean';
     }
     return data;
   }
@@ -38,16 +37,16 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
     // Update Inventory Item
-    html.find('.item-edit').click(ev => {
-      const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.getOwnedItem(li.data("itemId"));
+    html.find('.item-edit').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.getOwnedItem(li.data('itemId'));
       item.sheet.render(true);
     });
 
     // Delete Inventory Item
-    html.find('.item-delete').click(ev => {
-      const li = $(ev.currentTarget).parents(".item");
-      this.actor.deleteOwnedItem(li.data("itemId"));
+    html.find('.item-delete').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      this.actor.deleteOwnedItem(li.data('itemId'));
       li.slideUp(200, () => this.render(false));
     });
 
@@ -75,10 +74,10 @@ export class alienrpgActorSheet extends ActorSheet {
     const itemData = {
       name: name,
       type: type,
-      data: data
+      data: data,
     };
     // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.data["type"];
+    delete itemData.data['type'];
 
     // Finally, create the item!
     return this.actor.createOwnedItem(itemData);
@@ -99,9 +98,8 @@ export class alienrpgActorSheet extends ActorSheet {
       let label = dataset.label ? `Rolling ${dataset.label}` : '';
       roll.roll().toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        flavor: label
+        flavor: label,
       });
     }
   }
-
 }
