@@ -5,6 +5,8 @@ import { alienrpgItem } from './item/item.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
 
 Hooks.once('init', async function () {
+  console.log(`Initializing Alien RPG`);
+
   game.alienrpg = {
     alienrpgActor,
     alienrpgItem,
@@ -42,6 +44,17 @@ Hooks.once('init', async function () {
 
   Handlebars.registerHelper('toLowerCase', function (str) {
     return str.toLowerCase();
+  });
+
+  // Register system settings
+  game.settings.register('alienrpg', 'macroShorthand', {
+    name: 'Shortened Macro Syntax',
+    hint:
+      'Enable a shortened macro syntax which allows referencing attributes directly, for example @str instead of @attributes.str.value. Disable this setting if you need the ability to reference the full attribute model, for example @attributes.str.label.',
+    scope: 'world',
+    type: Boolean,
+    default: true,
+    config: true,
   });
 });
 
