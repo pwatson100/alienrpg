@@ -17,8 +17,8 @@ Hooks.once('init', async function () {
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: '1d6',
-    decimals: 2,
+    formula: '1d10',
+    decimals: 1,
   };
 
   // Define custom Entity classes
