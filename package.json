@@ -19,5 +19,8 @@
     "gulp-autoprefixer": "^7.0.1",
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.5"
+  },
+  "devDependencies": {
+    "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types"
   }
 }
