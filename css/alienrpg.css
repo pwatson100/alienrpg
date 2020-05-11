@@ -121,8 +121,8 @@
 
 .alienrpg .sheet-header {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 210px;
-  flex: 0 0 210px;
+  -ms-flex: 0 0 180px;
+  flex: 0 0 180px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -186,9 +186,14 @@
   padding: 0 8px;
 }
 
+.alienrpg .maxboxsize {
+  max-width: 30px;
+}
+
 .alienrpg .resource-label {
   font-weight: bold;
   text-transform: uppercase;
+  padding-right: 5px;
 }
 
 .alienrpg .tabs {

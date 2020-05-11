@@ -3,12 +3,11 @@ export class alienrolls extends ActorSheet {
     // Roll against the panic table and push the roll to the chat log.
     let chatMessage = '';
     const table = game.tables.getName('Panic Table');
-    const roll = new Roll('1d6 + @stress', actor.getRollData()).roll();
-    const result = table.data.results.find((r) => Number.between(roll.total, ...r.range));
-    //table.draw({roll, result}, {rollMode: 'gmroll'});
+    const roll = new Roll('1d6 + @stress', this.actor.getRollData());
+    const customResults = table.roll({ roll });
     chatMessage += '<h2>Panic Condition</h2>';
     chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-    chatMessage += `${table.roll()[1].text}`;
+    chatMessage += `${customResults.results[0].text}`;
     ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
   };
 
