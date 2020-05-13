@@ -5,12 +5,16 @@
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
       <div class="grid grid-2col">
         <div class="resource">
+          <label class="resource-label">Type</label>
+          <input type="text" name="data.header.type.value" value="{{data.header.type.value}}" data-dtype="text" />
+        </div>
+        <div class="resource">
           <label class="resource-label">Class</label>
           <input type="text" name="data.attributes.class.value" value="{{data.attributes.class.value}}" data-dtype="text" />
         </div>
         <div class="resource">
           <label class="resource-label">Weight</label>
-          <input type="text" name="data.attributes.weight.value" value="{{data.attributes.weight.value}}" data-dtype="Number" />
+          <input type="text" name="data.attributes.weight.value" class="maxboxsize" value="{{data.attributes.weight.value}}" data-dtype="Number" />
         </div>
       </div>
     </div>
@@ -29,16 +33,16 @@
       {{!-- As you add new fields, add them in here! --}}
       <div class="tab attributes" data-group="primary" data-tab="attributes">
         <label class="attribute-label">Bonus</label>
-        <input class="attribute-item-input" name="data.attributes.bonus.value" value="{{data.attributes.bonus.value}}" data-dtype="Number" />
+        <input class="attribute-item-input maxboxsize" name="data.attributes.bonus.value" value="{{data.attributes.bonus.value}}" data-dtype="Number" />
 
         <label class="attribute-label">Damage</label>
-        <input class="attribute-item-input" name="data.attributes.damage.value" value="{{data.attributes.damage.value}}" data-dtype="Number" />
+        <input class="attribute-item-input maxboxsize" name="data.attributes.damage.value" value="{{data.attributes.damage.value}}" data-dtype="Number" />
 
         <!-- <label class="attribute-label">Weight</label>
         <input class="attribute-item-input" name="data.attributes.weight.value" value="{{data.attributes.weight.value}}" data-dtype="Number" /> -->
 
         <label class="attribute-label">Cost</label>
-        <input class="attribute-item-input" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" data-dtype="Number" />
+        <input class="attribute-item-input maxboxsize" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" data-dtype="Number" />
 
         <label class="attribute-label">Range</label>
         <input class="attribute-text-input" type="text" name="data.attributes.range.value" value="{{data.attributes.range.value}}" data-dtype="String" />

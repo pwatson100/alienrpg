@@ -1,6 +1,8 @@
 {
   "Actor": {
-    "types": ["character"],
+    "types": [
+      "character"
+    ],
     "character": {
       "header": {
         "health": {
@@ -39,7 +41,7 @@
         },
         "closeCbt": {
           "value": 0,
-          "label": "Close Commbat",
+          "label": "Close Combat",
           "ability": "str"
         },
         "stamina": {
@@ -99,12 +101,14 @@
     }
   },
   "Item": {
-    "types": ["item"],
+    "types": [
+      "item"
+    ],
     "item": {
       "header": {
-        "resource1": {
-          "value": 0,
-          "label": "resource 1"
+        "type": {
+          "value": "",
+          "label": "Text"
         }
       },
       "attributes": {

@@ -68,7 +68,7 @@ export class alienrpgActor extends Actor {
     //   }
     // }
 
-    // Loop through ability scores, and add their modifiers to our sheet output.
+    // Loop through Skill scores, and add their attribute modifiers to our sheet output.
     for (let [key, skill] of Object.entries(data.skills)) {
       // Calculate the modifier using d20 rules.
       const conAtt = skill.ability;

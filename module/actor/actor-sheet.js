@@ -50,8 +50,22 @@ export class alienrpgActorSheet extends ActorSheet {
       li.slideUp(200, () => this.render(false));
     });
 
+
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
+
+    // Drag events for macros.
+    if (this.actor.owner) {
+      let handler = (ev) => this._onDragItemStart(ev);
+      // Find all items on the character sheet.
+      html.find('li.item').each((i, li) => {
+        // Ignore for the header row.
+        if (li.classList.contains('item-header')) return;
+        // Add draggable attribute and dragstart listener.
+        li.setAttribute('draggable', true);
+        li.addEventListener('dragstart', handler, false);
+      });
+    }
   }
 
   /* -------------------------------------------- */
@@ -92,14 +106,11 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-
+    let label = dataset.label
     if (dataset.roll) {
-      let roll = new Roll(dataset.roll, this.actor.data.data);
-      let label = dataset.label ? `Rolling ${dataset.label}` : '';
-      roll.roll().toMessage({
-        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        flavor: label,
-      });
+      let r1Data = parseInt(dataset.roll || 0);
+      let r2Data = this.actor.getRollData().stress;
+      this.yzeRoll(label, r1Data, 'Black', r2Data, 'Yellow');
     } else {
       if (dataset.panicroll) {
         let chatMessage = '';
@@ -112,5 +123,71 @@ export class alienrpgActorSheet extends ActorSheet {
         ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
       }
     }
+  }
+
+  /**
+   * YZEDice Roll method.
+   * Param for number of dice to roll for each die type/rolls
+   * @param {string} label
+   * @param {number} r1Dice
+   * @param {number} r2Dice
+   * @param {number} r3Dice
+   * @param {string} col1
+   * @param {string} col2
+   * @param {string} col3
+   * 
+   */
+
+  yzeRoll(label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
+    //   This finally works
+    let chatMessage = "";
+    const rollArr = { r1One: 0, r1Six: 0, r2One: 0, r2Six: 0, r3One: 0, r3Six: 0, };
+    const data = {
+      formula: '',
+      results: [],
+      whisper: [],
+      blind: false
+    }
+    const dResults = [];
+
+    function yzeRoll(numDie, yzeR6, yzeR1) {
+      let die = new Die(6);
+      die.roll(numDie);
+      die.results.forEach(el => { data.results.push(el); });
+      die.countSuccess(6, "=");
+      rollArr[yzeR6] = die.total;
+      die.countSuccess(1, "=");
+      rollArr[yzeR1] = die.total;
+      chatMessage += "Ones: ";
+      chatMessage += `${rollArr[yzeR1]}`;
+      chatMessage += "  Sixes: ";
+      chatMessage += `${rollArr[yzeR6]}`;
+      chatMessage += "<div><br></div>";
+    }
+    if (r1Dice < 1) {
+      chatMessage += "You must have at least one dice set to roll";
+    } else {
+      chatMessage += "<h2>Rolling " + label + " </h2>";
+      chatMessage += "<div>" + col1 + " - " + r1Dice + "</div>";
+      yzeRoll(r1Dice, 'r1Six', 'r1One');
+      data.formula = r1Dice + "d6";
+
+      if (r2Dice > 0) {
+        chatMessage += "<div>" + col2 + " - " + r2Dice + "</div>";
+        yzeRoll(r2Dice, 'r2Six', 'r2One');
+        data.formula = r1Dice + r2Dice + "d6";
+      }
+      if (r3Dice > 0) {
+        chatMessage += "<div>" + col3 + " - " + r3Dice + "</div>";
+        yzeRoll(r3Dice, 'r3Six', 'r3One');
+        data.formula = r1Dice + r2Dice + r3Dice + "d6";
+      }
+    }
+    game.dice3d.show(data).then(displayed => { });
+    ChatMessage.create({
+      user: game.user._id,
+      content: chatMessage, other:
+        game.users.entities.filter(u => u.isGM).map(u => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER
+    })
   }
 }

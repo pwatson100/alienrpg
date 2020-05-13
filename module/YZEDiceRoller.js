@@ -10,87 +10,53 @@ export class alienrolls extends ActorSheet {
     chatMessage += `${customResults.results[0].text}`;
     ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
   };
+  /**
+   * YZEDice RollFunction.
+   * Paramfornumber of dice to roll for each die type/rolls
+   * @param {number} r1Dice
+   * @param {number} r2Dice
+   * @param {number} r3Dice
+   */
+  async yzeRoll(r1Dice, r2Dice, r3Dice) {
+    //   This finally works
+    let chatMessage = "";
+    const rollArr = { r1One: 0, r1Six: 0, r2One: 0, r2Six: 0, r3One: 0, r3Six: 0, };
 
-  getRoll = (dn, arr) => {
-    // const dieRoll = [];
-    die.roll(dn).rolls = [];
-    let dieRoll = die.roll(dn).rolls;
-    dieRoll.forEach((el) => arr.push(el.roll));
-    return arr;
-  };
-
-  yzeDiceRoll = (system, d1, d2, d3, reRoll) => {
-    const first = [];
-    const second = [];
-    const third = [];
-    const die = new Die(6);
-    let wOneS = 0;
-    let wSixS = 0;
-    let yOneS = 0;
-    let ySixS = 0;
-    let bOneS = 0;
-    let bSixS = 0;
-    if (system != 'Alien') {
-      console.print('Not yet supported');
+    function yzeRoll(numDie, yzeR6, yzeR1) {
+      let die = new Die(6);
+      die.roll(numDie);
+      die.countSuccess(6, "=");
+      rollArr[yzeR6] = die.total;
+      die.countSuccess(1, "=");
+      rollArr[yzeR1] = die.total;
+      chatMessage += "Ones: ";
+      chatMessage += `${rollArr[yzeR1]}`;
+      chatMessage += "  Sixes: ";
+      chatMessage += `${rollArr[yzeR6]}`;
+      chatMessage += "<div><br></div>";
+    }
+    if (r1Dice < 1) {
+      chatMessage += "You must have at least one dice set to roll";
     } else {
-      // roll base dice
-      if (d1 <= 0) {
-        console.log('Error no dice specified in d1 yzeDiceRoll(system, d1, d2, d3) ');
-      } else {
-        getRoll(d1, first);
-        if (d2 > 0) {
-          getRoll(d2, second);
-          if (d3 > 0) {
-            getRoll(d3, third);
-          }
-        }
+      chatMessage += "<h2>Numbers</h2>";
+      chatMessage += "<div>Roll 1</div>";
+      yzeRoll(r1Dice, 'r1Six', 'r1One');
+
+      if (r2Dice > 0) {
+        chatMessage += "<div>Roll 2</div>";
+        yzeRoll(r2Dice, 'r2Six', 'r2One');
       }
-
-      // process successes and failures
-      first.forEach((elA) => {
-        if (elA === 1) {
-          wOneS++;
-        } else {
-          if (elA === 6) {
-            wSixS++;
-          }
-        }
-      });
-
-      if (d2 > 0) {
-        second.forEach((elB) => {
-          if (elB === 1) {
-            yOneS++;
-          } else {
-            if (elB === 6) {
-              ySixS++;
-            }
-          }
-        });
-      }
-
-      if (d3 > 0) {
-        third.forEach((elC) => {
-          if (elC === 1) {
-            bOneS++;
-          } else {
-            if (elC === 6) {
-              bSixS++;
-            }
-          }
-        });
+      if (r3Dice > 0) {
+        chatMessage += "<div>Roll 3</div>";
+        yzeRoll(r3Dice, 'r3Six', 'r3One');
       }
     }
-    return { wOneS, wSixS, yOneS, ySixS, bOneS, bSixS };
-  };
+    //console.log(rollArr);
 
-  // //  Dice roller usage : yzeDiceRoll(YZE system, number of dice, number of dice, number of dice)
-  // //   Currently only supports Alien.   passes back a string array for each dice.
-  // //let result ={};
-  // //let result = yzeDiceRoll('Alien', 12, 12, 12);
-  // //console.log('result', result);
-
-  // //console.log('first' ,first);
-  // //console.log('second',second);
-  // //console.log('third',third);
-} // End of Export
+    ChatMessage.create({
+      user: game.user._id,
+      content: chatMessage, other:
+        game.users.entities.filter(u => u.isGM).map(u => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER
+    });
+  }
+}

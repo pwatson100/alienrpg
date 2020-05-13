@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="resource flex-group-center">
-          <label for="data.header.stress.value" class="resource-label rollable"  data-panicroll="{{data.header.stress.value}}"  >Stress</label>
+          <label for="data.header.stress.value" class="resource-label rollable" data-panicroll="{{data.header.stress.value}}">Stress</label>
           <div class="resource-content flexrow flex-center">
             <input type="text" class="maxboxsize" name="data.header.stress.value" value="{{data.header.stress.value}}" data-dtype="Number" />
             <!-- <span> / </span>
@@ -33,7 +33,7 @@
       <div class="abilities grid grid-4col">
         {{#each data.attributes as |attribute key|}}
         <div class="ability flexrow flex-group-center">
-          <label for="data.attributes.{{key}}.value" class="resource-label  rollable" data-roll="({{attribute.value}})d6" data-label="{{attribute.label}}">{{attribute.label}}</label>
+          <label for="data.attributes.{{key}}.value" class="resource-label rollable" data-roll="{{attribute.value}}" data-label="{{attribute.label}}">{{attribute.label}}</label>
           <input type="text" class="maxboxsize" name="data.attributes.{{key}}.value" value="{{attribute.value}}" data-dtype="Number" />
           <!-- <span class="ability-mod rollable" data-roll="d20+@attributes.{{key}}.mod" data-label="{{key}}">{{numberFormat attribute.mod decimals=0 sign=true}}</span> -->
         </div>
@@ -54,12 +54,12 @@
   <section class="sheet-body">
     {{!--Skills Tab --}}
     <div class="tab skills" data-group="primary" data-tab="skills">
-    <!-- <div class="tab skills abilities grid grid-3col"> -->
+      <!-- <div class="tab skills abilities grid grid-3col"> -->
       {{#each data.skills as |skill key|}}
       <div class="ability flexrow flex-group-center">
-        <label for="data.skills.{{key}}.value" class="resource-label rollable" data-roll="(@skills.{{key}}.mod)d6" data-label="{{skill.label}}">{{skill.label}}</label>
+        <label for="data.skills.{{key}}.value" class="resource-label rollable" data-roll="{{skill.mod}}" data-label="{{skill.label}}">{{skill.label}}</label>
         <input type="text" class="maxboxsize" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
-        <span class="ability-mod" data-roll="(@skills.{{key}}.mod)d6">{{numberFormat skill.mod decimals=0}}</span>
+        <span class="ability-mod" data-roll="({{skill.mod}})d6">{{numberFormat skill.mod decimals=0}}</span>
       </div>
       {{/each}}
     </div>
