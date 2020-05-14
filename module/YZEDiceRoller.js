@@ -1,15 +1,15 @@
-export class alienRoll extends ActorSheet {
-  panicRoll = () => {
-    // Roll against the panic table and push the roll to the chat log.
-    let chatMessage = '';
-    const table = game.tables.getName('Panic Table');
-    const roll = new Roll('1d6 + @stress', this.actor.getRollData());
-    const customResults = table.roll({ roll });
-    chatMessage += '<h2>Panic Condition</h2>';
-    chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-    chatMessage += `${customResults.results[0].text}`;
-    ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
-  };
+export class alienRoll {
+  // static async panicRoll() {
+  //   // Roll against the panic table and push the roll to the chat log.
+  //   let chatMessage = '';
+  //   const table = game.tables.getName('Panic Table');
+  //   const roll = new Roll('1d6 + @stress', this.actor.getRollData());
+  //   const customResults = table.roll({ roll });
+  //   chatMessage += '<h2>Panic Condition</h2>';
+  //   chatMessage += `<h4><i>${table.data.description}</i></h4>`;
+  //   chatMessage += `${customResults.results[0].text}`;
+  //   ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+  // };
 
   /**
    * YZEDice RollFunction.
@@ -18,7 +18,7 @@ export class alienRoll extends ActorSheet {
    * @param {number} r2Dice
    * @param {number} r3Dice
    */
-  async yzeRoll(label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
+  static async yzeRoll(label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
     //   This finally works
     let chatMessage = "";
     const rollArr = { r1One: 0, r1Six: 0, r2One: 0, r2Six: 0, r3One: 0, r3Six: 0, };

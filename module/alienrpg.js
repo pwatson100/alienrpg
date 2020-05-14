@@ -3,6 +3,7 @@ import { alienrpgActor } from './actor/actor.js';
 import { alienrpgActorSheet } from './actor/actor-sheet.js';
 import { alienrpgItem } from './item/item.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
+import { alienRoll } from './YZEDiceRoller.js';
 
 Hooks.once('init', async function () {
   console.log(`Initializing Alien RPG`);
@@ -10,6 +11,7 @@ Hooks.once('init', async function () {
   game.alienrpg = {
     alienrpgActor,
     alienrpgItem,
+    alienRoll,
     rollItemMacro,
   };
 
