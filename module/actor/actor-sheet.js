@@ -150,7 +150,7 @@ export class alienrpgActorSheet extends ActorSheet {
     }
     const dResults = [];
 
-    function yzeRoll(numDie, yzeR6, yzeR1) {
+    function yzeDRoll(numDie, yzeR6, yzeR1) {
       let die = new Die(6);
       die.roll(numDie);
       die.results.forEach(el => { data.results.push(el); });
@@ -169,17 +169,17 @@ export class alienrpgActorSheet extends ActorSheet {
     } else {
       chatMessage += "<h2>Rolling " + label + " </h2>";
       chatMessage += "<div>" + col1 + " - " + r1Dice + "</div>";
-      yzeRoll(r1Dice, 'r1Six', 'r1One');
+      yzeDRoll(r1Dice, 'r1Six', 'r1One');
       data.formula = r1Dice + "d6";
 
       if (r2Dice > 0) {
         chatMessage += "<div>" + col2 + " - " + r2Dice + "</div>";
-        yzeRoll(r2Dice, 'r2Six', 'r2One');
+        yzeDRoll(r2Dice, 'r2Six', 'r2One');
         data.formula = r1Dice + r2Dice + "d6";
       }
       if (r3Dice > 0) {
         chatMessage += "<div>" + col3 + " - " + r3Dice + "</div>";
-        yzeRoll(r3Dice, 'r3Six', 'r3One');
+        yzeDRoll(r3Dice, 'r3Six', 'r3One');
         data.formula = r1Dice + r2Dice + r3Dice + "d6";
       }
     }

@@ -1,4 +1,4 @@
-export class alienrolls extends ActorSheet {
+export class alienRoll extends ActorSheet {
   panicRoll = () => {
     // Roll against the panic table and push the roll to the chat log.
     let chatMessage = '';
@@ -10,6 +10,7 @@ export class alienrolls extends ActorSheet {
     chatMessage += `${customResults.results[0].text}`;
     ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
   };
+
   /**
    * YZEDice RollFunction.
    * Paramfornumber of dice to roll for each die type/rolls
@@ -17,14 +18,22 @@ export class alienrolls extends ActorSheet {
    * @param {number} r2Dice
    * @param {number} r3Dice
    */
-  async yzeRoll(r1Dice, r2Dice, r3Dice) {
+  async yzeRoll(label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
     //   This finally works
     let chatMessage = "";
     const rollArr = { r1One: 0, r1Six: 0, r2One: 0, r2Six: 0, r3One: 0, r3Six: 0, };
+    const data = {
+      formula: '',
+      results: [],
+      whisper: [],
+      blind: false
+    }
+    const dResults = [];
 
-    function yzeRoll(numDie, yzeR6, yzeR1) {
+    function yzeDRoll(numDie, yzeR6, yzeR1) {
       let die = new Die(6);
       die.roll(numDie);
+      die.results.forEach(el => { data.results.push(el); });
       die.countSuccess(6, "=");
       rollArr[yzeR6] = die.total;
       die.countSuccess(1, "=");
@@ -38,25 +47,27 @@ export class alienrolls extends ActorSheet {
     if (r1Dice < 1) {
       chatMessage += "You must have at least one dice set to roll";
     } else {
-      chatMessage += "<h2>Numbers</h2>";
-      chatMessage += "<div>Roll 1</div>";
-      yzeRoll(r1Dice, 'r1Six', 'r1One');
+      chatMessage += "<h2>Rolling " + label + " </h2>";
+      chatMessage += "<div>" + col1 + " - " + r1Dice + "</div>";
+      yzeDRoll(r1Dice, 'r1Six', 'r1One');
+      data.formula = r1Dice + "d6";
 
       if (r2Dice > 0) {
-        chatMessage += "<div>Roll 2</div>";
-        yzeRoll(r2Dice, 'r2Six', 'r2One');
+        chatMessage += "<div>" + col2 + " - " + r2Dice + "</div>";
+        yzeDRoll(r2Dice, 'r2Six', 'r2One');
+        data.formula = r1Dice + r2Dice + "d6";
       }
       if (r3Dice > 0) {
-        chatMessage += "<div>Roll 3</div>";
-        yzeRoll(r3Dice, 'r3Six', 'r3One');
+        chatMessage += "<div>" + col3 + " - " + r3Dice + "</div>";
+        yzeDRoll(r3Dice, 'r3Six', 'r3One');
+        data.formula = r1Dice + r2Dice + r3Dice + "d6";
       }
     }
-    //console.log(rollArr);
-
+    game.dice3d.show(data).then(displayed => { });
     ChatMessage.create({
       user: game.user._id,
       content: chatMessage, other:
         game.users.entities.filter(u => u.isGM).map(u => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER
-    });
+    })
   }
 }
