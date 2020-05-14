@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "types": [
+            "foundry-pc-types"
+        ],
+        "allowJs": true,
+    }
+}
