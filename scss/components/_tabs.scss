@@ -19,12 +19,15 @@
 
 .tabs {
   height: 40px;
-  border-top: 1px solid #AAA;
-  border-bottom: 1px solid #AAA;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  color: greenyellow;
+  background-color: $c-black;
 
   .item {
     line-height: 40px;
     font-weight: bold;
+    color: greenyellow;
   }
 
   .item.active {

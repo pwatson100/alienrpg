@@ -1,12 +1,25 @@
 .window-app {
   font-family: $font-primary;
+  color: $c-green;
+  background: $c-black;
+
+  .window-content {
+    // display: flex;
+    // flex-direction: column;
+    // flex-wrap: nowrap;
+    // background: black;
+    padding: 1px;
+    // overflow-y: auto;
+    // overflow-x: hidden;
+  }
 }
 
 .rollable {
   &:hover,
   &:focus {
-    color: #000;
-    text-shadow: 0 0 10px red;
+    color: black;
+    text-shadow: 0 0 20px red;
+    font-size: 110%;
     cursor: pointer;
   }
 }

@@ -4,7 +4,7 @@
   grid-column: span 2 / span 2;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin: 10px 0;
+  margin: 5px 0;
   padding: 0;
 }
 
@@ -56,6 +56,13 @@
 .grid-12col {
   grid-column: span 12 / span 12;
   grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.grid-2row {
+  grid-column: span 1 / span 3;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  justify-self: center;
+  justify-items: center;
 }
 
 .flex-group-center,

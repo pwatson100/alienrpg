@@ -32,9 +32,9 @@
 
       <div class="abilities grid grid-4col">
         {{#each data.attributes as |attribute key|}}
-        <div class="ability flexrow flex-group-center">
+        <div class="ability flexrow flex-center grid grid-2row">
           <label for="data.attributes.{{key}}.value" class="resource-label rollable" data-roll="{{attribute.value}}" data-label="{{attribute.label}}">{{attribute.label}}</label>
-          <input type="text" class="maxboxsize" name="data.attributes.{{key}}.value" value="{{attribute.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize" name="data.attributes.{{key}}.value" value="{{attribute.value}} " data-dtype="Number" />
           <!-- <span class="ability-mod rollable" data-roll="d20+@attributes.{{key}}.mod" data-label="{{key}}">{{numberFormat attribute.mod decimals=0 sign=true}}</span> -->
         </div>
         {{/each}}

@@ -1,12 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Wallpoet:wght@400;800&family=Wallpoet:wght@300;400;500&display=swap");
 /* Global styles */
 .window-app {
-  font-family: "Roboto", sans-serif;
+  font-family: "Wallpoet", sans-serif;
+  color: greenyellow;
+  background: #000;
+}
+
+.window-app .window-content {
+  padding: 1px;
 }
 
 .rollable:hover, .rollable:focus {
-  color: #000;
-  text-shadow: 0 0 10px red;
+  color: black;
+  text-shadow: 0 0 20px red;
+  font-size: 110%;
   cursor: pointer;
 }
 
@@ -16,7 +23,7 @@
   grid-column: span 2 / span 2;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin: 10px 0;
+  margin: 5px 0;
   padding: 0;
 }
 
@@ -70,6 +77,13 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
+.grid-2row {
+  grid-column: span 1 / span 3;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  justify-self: center;
+  justify-items: center;
+}
+
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {
@@ -116,7 +130,8 @@
 
 /* Styles limited to alienrpg sheets */
 .alienrpg .item-form {
-  font-family: "Roboto", sans-serif;
+  font-family: "Wallpoet", sans-serif;
+  background: #000;
 }
 
 .alienrpg .sheet-header {
@@ -136,7 +151,9 @@
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 1px;
+  background-color: black;
+  color: greenyellow;
 }
 
 .alienrpg .sheet-header .profile-img {
@@ -164,18 +181,26 @@
   width: 100%;
   height: 100%;
   margin: 0;
+  color: greenyellow;
+}
+
+.alienrpg alienrpg.sheet {
+  background: black;
 }
 
 .alienrpg .sheet-tabs {
   -webkit-box-flex: 0;
   -ms-flex: 0;
   flex: 0;
+  color: greenyellow;
 }
 
 .alienrpg .sheet-body,
 .alienrpg .sheet-body .tab,
 .alienrpg .sheet-body .tab .editor {
   height: 100%;
+  background-color: black;
+  color: greenyellow;
 }
 
 .alienrpg .tox .tox-editor-container {
@@ -188,23 +213,33 @@
 
 .alienrpg .maxboxsize {
   max-width: 30px;
+  color: greenyellow;
+  justify-items: center;
+}
+
+.alienrpg .ability-mod {
+  color: greenyellow;
 }
 
 .alienrpg .resource-label {
   font-weight: bold;
   text-transform: uppercase;
   padding-right: 5px;
+  color: greenyellow;
 }
 
 .alienrpg .tabs {
   height: 40px;
-  border-top: 1px solid #AAA;
-  border-bottom: 1px solid #AAA;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  color: greenyellow;
+  background-color: #000;
 }
 
 .alienrpg .tabs .item {
   line-height: 40px;
   font-weight: bold;
+  color: greenyellow;
 }
 
 .alienrpg .tabs .item.active {
@@ -217,6 +252,7 @@
   margin: 7px 0;
   padding: 0;
   overflow-y: auto;
+  color: greenyellow;
 }
 
 .alienrpg .items-list .item-header {
@@ -227,7 +263,7 @@
   height: 30px;
   line-height: 24px;
   padding: 3px 0;
-  border-bottom: 1px solid #BBB;
+  border-bottom: 1px solid #bbb;
 }
 
 .alienrpg .items-list .item .item-image {
