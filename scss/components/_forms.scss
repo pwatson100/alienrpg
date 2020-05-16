@@ -11,8 +11,8 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-bottom: 1px;
-  background-color: black;
-  color: greenyellow;
+  background-color: $c-black;
+  color: $c-green;
 
   .profile-img {
     flex: 0 0 100px;
@@ -33,24 +33,22 @@
       width: 100%;
       height: 100%;
       margin: 0;
-      color: greenyellow;
+      color: $c-green;
     }
   }
 }
-alienrpg.sheet {
-  background: black;
-}
+
 .sheet-tabs {
   flex: 0;
   // background-color: rgb(56, 55, 55);
-  color: greenyellow;
+  color: $c-green;
 }
 
 .sheet-body,
 .sheet-body .tab,
 .sheet-body .tab .editor {
   height: 100%;
-  background-color: black;
+  background-color: $c-black;
   color: $c-green;
 }
 
@@ -65,10 +63,29 @@ alienrpg.sheet {
 }
 .maxboxsize {
   max-width: 30px;
-  color: greenyellow;
+  color: $c-green;
   justify-items: center;
+  background-color: $c-black;
+}
+.cashboxsize {
+  max-width: 100px;
+  color: $c-green;
+  justify-items: center;
+  background-color: $c-black;
 }
 
+.textbox {
+  color: $c-green;
+  justify-items: center;
+  background-color: $c-black;
+}
+
+input {
+  width: 50%;
+  // height: 20%;
+  margin: 4px;
+  color: $c-green;
+}
 .ability-mod {
-  color: greenyellow;
+  color: $c-green;
 }

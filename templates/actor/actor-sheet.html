@@ -13,16 +13,12 @@
           <label for="data.health.value" class="resource-label">Health</label>
           <div class="resource-content flexrow flex-center">
             <input type="text" class="maxboxsize" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
-            <!-- <span> / </span>
-            <input type="text" name="data.health.max" value="{{data.health.max}}" data-dtype="Number" /> -->
           </div>
         </div>
         <div class="resource flex-group-center">
           <label for="data.header.stress.value" class="resource-label rollable" data-panicroll="{{data.header.stress.value}}">Stress</label>
           <div class="resource-content flexrow flex-center">
             <input type="text" class="maxboxsize" name="data.header.stress.value" value="{{data.header.stress.value}}" data-dtype="Number" />
-            <!-- <span> / </span>
-            <input type="text" name="data.stress.max" value="{{data.stress.max}}" data-dtype="Number" /> -->
           </div>
         </div>
       </div>
@@ -33,9 +29,8 @@
       <div class="abilities grid grid-4col">
         {{#each data.attributes as |attribute key|}}
         <div class="ability flexrow flex-center grid grid-2row">
-          <label for="data.attributes.{{key}}.value" class="resource-label rollable" data-roll="{{attribute.value}}" data-label="{{attribute.label}}">{{attribute.label}}</label>
+          <label for="data.attributes.{{key}}.value" class="resource-label rollable" data-roll="{{attribute.value}}" data-label="{{attribute.label}}">{{attribute.label}}    </label>
           <input type="text" class="maxboxsize" name="data.attributes.{{key}}.value" value="{{attribute.value}} " data-dtype="Number" />
-          <!-- <span class="ability-mod rollable" data-roll="d20+@attributes.{{key}}.mod" data-label="{{key}}">{{numberFormat attribute.mod decimals=0 sign=true}}</span> -->
         </div>
         {{/each}}
       </div>

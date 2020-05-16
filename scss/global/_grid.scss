@@ -3,7 +3,7 @@
   display: grid;
   grid-column: span 2 / span 2;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 5px;
   margin: 5px 0;
   padding: 0;
 }
@@ -61,7 +61,7 @@
 .grid-2row {
   grid-column: span 1 / span 3;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  justify-self: center;
+  // justify-self: center;
   justify-items: center;
 }
 
@@ -71,7 +71,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 5px;
+  padding: 0;
   border: 1px solid #999;
 }
 

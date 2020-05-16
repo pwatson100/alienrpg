@@ -2,6 +2,13 @@
   font-weight: bold;
   text-transform: uppercase;
   padding-right: 5px;
-  color: greenyellow;
+  color: $c-green;
+  // justify-content: space-around;
+}
+.item-label {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-right: 15px;
+  color: $c-green;
   // justify-content: space-around;
 }

@@ -11,7 +11,7 @@ export class alienrpgActorSheet extends ActorSheet {
       classes: ['alienrpg', 'sheet', 'actor'],
       template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 600,
-      height: 600,
+      height: 665,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'skills' }],
     });
   }
@@ -51,7 +51,6 @@ export class alienrpgActorSheet extends ActorSheet {
       this.actor.deleteOwnedItem(li.data('itemId'));
       li.slideUp(200, () => this.render(false));
     });
-
 
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
@@ -108,7 +107,7 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    let label = dataset.label
+    let label = dataset.label;
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;

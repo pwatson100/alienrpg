@@ -3,20 +3,19 @@
  * @extends {ItemSheet}
  */
 export class alienrpgItemSheet extends ItemSheet {
-
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ["alienrpg", "sheet", "item"],
+      classes: ['alienrpg', 'sheet', 'item'],
       width: 520,
-      height: 480,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
+      height: 425,
+      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'description' }],
     });
   }
 
   /** @override */
   get template() {
-    const path = "systems/alienrpg/templates/item";
+    const path = 'systems/alienrpg/templates/item';
     // Return a single sheet for all item types.
     return `${path}/item-sheet.html`;
     // Alternatively, you could use the following return statement to do a
@@ -38,9 +37,9 @@ export class alienrpgItemSheet extends ItemSheet {
   /** @override */
   setPosition(options = {}) {
     const position = super.setPosition(options);
-    const sheetBody = this.element.find(".sheet-body");
+    const sheetBody = this.element.find('.sheet-body');
     const bodyHeight = position.height - 192;
-    sheetBody.css("height", bodyHeight);
+    sheetBody.css('height', bodyHeight);
     return position;
   }
 

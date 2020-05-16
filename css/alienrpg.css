@@ -4,6 +4,7 @@
   font-family: "Wallpoet", sans-serif;
   color: greenyellow;
   background: #000;
+  height: 663px;
 }
 
 .window-app .window-content {
@@ -22,7 +23,7 @@
   display: grid;
   grid-column: span 2 / span 2;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 5px;
   margin: 5px 0;
   padding: 0;
 }
@@ -80,7 +81,6 @@
 .grid-2row {
   grid-column: span 1 / span 3;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  justify-self: center;
   justify-items: center;
 }
 
@@ -94,7 +94,7 @@
   -ms-flex-align: center;
   align-items: center;
   text-align: center;
-  padding: 5px;
+  padding: 0;
   border: 1px solid #999;
 }
 
@@ -120,6 +120,7 @@
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
+  padding: 0;
 }
 
 .flex-between {
@@ -152,7 +153,7 @@
   -ms-flex-pack: start;
   justify-content: flex-start;
   margin-bottom: 1px;
-  background-color: black;
+  background-color: #000;
   color: greenyellow;
 }
 
@@ -184,10 +185,6 @@
   color: greenyellow;
 }
 
-.alienrpg alienrpg.sheet {
-  background: black;
-}
-
 .alienrpg .sheet-tabs {
   -webkit-box-flex: 0;
   -ms-flex: 0;
@@ -199,7 +196,7 @@
 .alienrpg .sheet-body .tab,
 .alienrpg .sheet-body .tab .editor {
   height: 100%;
-  background-color: black;
+  background-color: #000;
   color: greenyellow;
 }
 
@@ -215,6 +212,26 @@
   max-width: 30px;
   color: greenyellow;
   justify-items: center;
+  background-color: #000;
+}
+
+.alienrpg .cashboxsize {
+  max-width: 100px;
+  color: greenyellow;
+  justify-items: center;
+  background-color: #000;
+}
+
+.alienrpg .textbox {
+  color: greenyellow;
+  justify-items: center;
+  background-color: #000;
+}
+
+.alienrpg input {
+  width: 50%;
+  margin: 4px;
+  color: greenyellow;
 }
 
 .alienrpg .ability-mod {
@@ -225,6 +242,13 @@
   font-weight: bold;
   text-transform: uppercase;
   padding-right: 5px;
+  color: greenyellow;
+}
+
+.alienrpg .item-label {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-right: 15px;
   color: greenyellow;
 }
 
@@ -252,7 +276,6 @@
   margin: 7px 0;
   padding: 0;
   overflow-y: auto;
-  color: greenyellow;
 }
 
 .alienrpg .items-list .item-header {
