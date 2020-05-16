@@ -1,13 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Wallpoet:wght@400;800&family=Wallpoet:wght@300;400;500&display=swap");
 /* Global styles */
 .window-app {
-  font-family: "Wallpoet", sans-serif;
+  font-family: "Roboto", sans-serif;
   color: greenyellow;
   background: #000;
-  height: 663px;
 }
 
 .window-app .window-content {
+  font-family: "Wallpoet", sans-serif;
   padding: 1px;
 }
 
@@ -131,7 +132,6 @@
 
 /* Styles limited to alienrpg sheets */
 .alienrpg .item-form {
-  font-family: "Wallpoet", sans-serif;
   background: #000;
 }
 
@@ -305,8 +305,5 @@
 }
 
 .alienrpg .items-list .item-controls {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 86px;
-  flex: 0 0 86px;
   text-align: right;
 }
