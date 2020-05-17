@@ -7,8 +7,6 @@ import { alienRoll } from './YZEDiceRoller.js';
 
 Hooks.once('init', async function () {
   console.log(`Initializing Alien RPG`);
-  // Record Configuration Values
-  CONFIG.ALIENRPG = ALIENRPG;
 
   game.alienrpg = {
     alienrpgActor,

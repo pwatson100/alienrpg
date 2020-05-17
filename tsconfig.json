@@ -2,6 +2,5 @@
   "compilerOptions": {
     "types": ["foundry-pc-types"],
     "allowJs": true
-  },
-  "exclude": ["node_modules", "dist"]
+  }
 }

@@ -274,7 +274,10 @@
 .alienrpg .items-list {
   list-style: none;
   margin: 7px 0;
-  padding: 0;
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  padding-left: 10px;
   overflow-y: auto;
 }
 
@@ -305,8 +308,5 @@
 }
 
 .alienrpg .items-list .item-controls {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 86px;
-  flex: 0 0 86px;
   text-align: right;
 }
