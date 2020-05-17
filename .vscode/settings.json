@@ -15,3 +15,12 @@
   "liveSassCompile.settings.generateMap": true,
   "liveSassCompile.settings.autoprefix": ["> 1%", "last 2 versions"]
 }
+{
+  "files.associations": {
+    "*.html": "handlebars"
+  }
+}
+{
+  "i18n-ally.sortKeys": true,
+  "i18n-ally.keepFulfilled": true,
+}
