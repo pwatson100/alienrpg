@@ -1,7 +1,5 @@
 {
-    "compilerOptions": {
-        "types": [
-            "foundry-pc-types"
-        ]
-    }
+  "compilerOptions": {
+    "types": ["foundry-pc-types"]
+  }
 }

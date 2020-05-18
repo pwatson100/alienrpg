@@ -1,0 +1,21 @@
+{
+  "ALIENRPG.Health": "Gesundheit",
+  "ALIENRPG.Stress": "Stress",
+  "ALIENRPG.Skills": "Kompetenzen",
+  "ALIENRPG.Description": "Beschreibung",
+  "ALIENRPG.Items": "Artikel",
+  "ALIENRPG.AddItem": "Artikel hinzufügen",
+  "ALIENRPG.EditItem": "Bearbeiten",
+  "ALIENRPG.DeleteItem": "Löschen",
+  "ALIENRPG.Name": "Name",
+  "ALIENRPG.Type": "Art",
+  "ALIENRPG.Class": "Klasse",
+  "ALIENRPG.Weight": "Gewicht",
+  "ALIENRPG.Attributes": "Attribute",
+  "ALIENRPG.Notes": "Anmerkungen",
+  "ALIENRPG.Bonus": "Bonus",
+  "ALIENRPG.Damage": "Beschädigung",
+  "ALIENRPG.Cost": "Kosten",
+  "ALIENRPG.Range": "Angebot",
+  "ALIENRPG.Comment": "Kommentar"
+}

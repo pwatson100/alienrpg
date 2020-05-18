@@ -1,3 +1,21 @@
 {
-  "ALIENRPG.Health": "Health"
+  "ALIENRPG.Health": "Health",
+  "ALIENRPG.Stress": "Stress",
+  "ALIENRPG.Skills": "Skills",
+  "ALIENRPG.Description": "Description",
+  "ALIENRPG.Items": "Items",
+  "ALIENRPG.AddItem": "Add Item",
+  "ALIENRPG.EditItem": "Edit",
+  "ALIENRPG.DeleteItem": "Delete",
+  "ALIENRPG.Name": "Name",
+  "ALIENRPG.Type": "Type",
+  "ALIENRPG.Class": "Class",
+  "ALIENRPG.Weight": "Weight",
+  "ALIENRPG.Attributes": "Attributes",
+  "ALIENRPG.Notes": "Notes",
+  "ALIENRPG.Bonus": "Bonus",
+  "ALIENRPG.Damage": "Damage",
+  "ALIENRPG.Cost": "Cost",
+  "ALIENRPG.Range": "Range",
+  "ALIENRPG.Comment": "Comment"
 }

@@ -2,18 +2,18 @@
   <header class="sheet-header">
     <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
       <div class="grid grid-2col flexrow flex-center">
         <div class="resource">
-          <label class="resource-label">Type</label>
+          <label class="resource-label">{{localize "ALIENRPG.Type"}}</label>
           <input type="text" name="data.header.type.value" value="{{data.header.type.value}}" data-dtype="text" />
         </div>
         <div class="resource">
-          <label class="resource-label">Class</label>
+          <label class="resource-label">{{localize "ALIENRPG.Class"}}</label>
           <input type="text" name="data.attributes.class.value" value="{{data.attributes.class.value}}" data-dtype="text" />
         </div>
         <div class="resource">
-          <label class="resource-label">Weight</label>
+          <label class="resource-label">{{localize "ALIENRPG.Weight"}}</label>
           <input type="text" name="data.attributes.weight.value" class="flex maxboxsize" value="{{data.attributes.weight.value}}" data-dtype="Number" />
         </div>
       </div>
@@ -22,8 +22,8 @@
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="attributes">Attributes</a>
-    <a class="item" data-tab="notes">Notes</a>
+    <a class="item" data-tab="attributes">{{localize "ALIENRPG.Attributes"}}</a>
+    <a class="item" data-tab="notes">{{localize "ALIENRPG.Notes"}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -32,20 +32,20 @@
     <div class="tab attributes flexrow flex-center" data-group="primary" data-tab="attributes">
       {{!-- As you add new fields, add them in here! --}}
       <div class="tab attributes" data-group="primary" data-tab="attributes">
-        <label class="item-label">Bonus</label>
+        <label class="item-label">{{localize "ALIENRPG.Bonus"}}</label>
         <input type="text" class="maxboxsize" name="data.attributes.bonus.value" value="{{data.attributes.bonus.value}}" data-dtype="Number" />
 
-        <label class="item-label">Damage</label>
+        <label class="item-label">{{localize "ALIENRPG.Damage"}}</label>
         <input type="text" class="maxboxsize" name="data.attributes.damage.value" value="{{data.attributes.damage.value}}" data-dtype="Number" />
 
-        <label class="item-label">Cost</label>
+        <label class="item-label">{{localize "ALIENRPG.Cost"}}</label>
         <input type="text" class="cashboxsize" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" data-dtype="Number" />
         <br />
-        <label class="item-label">Range</label>
+        <label class="item-label">{{localize "ALIENRPG.Range"}}</label>
         <input type="text" class="textbox" name="data.attributes.range.value" value="{{data.attributes.range.value}}" data-dtype="String" />
 
         <br />
-        <label class="item-label">Comment</label>
+        <label class="item-label">{{localize "ALIENRPG.Comment"}}</label>
         <input type="text" class="textbox" name="data.attributes.comment.value" value="{{data.attributes.comment.value}}" data-dtype="String" />
       </div>
     </div>
