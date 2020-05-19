@@ -51,7 +51,7 @@ export class yze {
     if (r1Dice < 1) {
       chatMessage += 'You must have at least one dice set to roll';
     } else {
-      chatMessage += '<h2>Rolling ' + label + ' </h2>';
+      chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.Rolling') + ' ' + label + ' </h2>';
       chatMessage += '<div>' + col1 + ' - ' + r1Dice + '</div>';
       yzeDRoll(r1Dice, 'r1Six', 'r1One');
       data.formula = r1Dice + 'd6';

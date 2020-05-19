@@ -35,5 +35,9 @@
   "ALIENRPG.SkillSurvival": "Survival",
   "ALIENRPG.SkillComtech": "Comtech",
   "ALIENRPG.WepTypeRanged": "Ranged",
-  "ALIENRPG.WepTypeMelee": "Melee"
+  "ALIENRPG.WepTypeMelee": "Melee",
+  "ALIENRPG.Rolling": "Rolling",
+  "ALIENRPG.Black": "Black",
+  "ALIENRPG.White": "White",
+  "ALIENRPG.Yellow": "Yellow"
 }
