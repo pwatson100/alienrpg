@@ -1,4 +1,4 @@
-import { alienRoll } from '../YZEDiceRoller.js';
+import { yze } from '../YZEDiceRoller.js';
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -32,13 +32,14 @@ export class alienrpgItem extends Item {
     let r2Data = this.actor.getRollData().stress;
     let label = `${item.name}`;
     // Define the roll formula.
-    if (item.data.header.type.value === "Ranged") {
-      let r1Data = (actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value);
-      alienRoll.yzeRoll(label, r1Data, 'Black', r2Data, 'Yellow');
-    } else if (item.data.header.type.value === "Melee") {
-      let r1Data = (actorData.skills.closeCbt.mod + itemData.attributes.bonus.value);
-      alienRoll.yzeRoll(label, r1Data, 'Black', r2Data, 'Yellow');
-    } else { console.log('No type on item'); };
+    if (item.data.header.type.value === 'Ranged') {
+      let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
+      yze.yzeRoll(label, r1Data, 'Black', r2Data, 'Yellow');
+    } else if (item.data.header.type.value === 'Melee') {
+      let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
+      yze.yzeRoll(label, r1Data, 'Black', r2Data, 'Yellow');
+    } else {
+      console.log('No type on item');
+    }
   }
-
 }

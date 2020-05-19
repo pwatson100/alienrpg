@@ -86,6 +86,17 @@ input {
   margin: 4px;
   color: $c-green;
 }
+
 .ability-mod {
   color: $c-green;
+}
+
+.selectBox {
+  color: $c-green;
+
+  select {
+    // background-color: grey;
+    color: $c-green;
+    background-color: $c-black;
+  }
 }

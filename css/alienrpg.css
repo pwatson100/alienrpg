@@ -4,7 +4,6 @@
   font-family: "Wallpoet", sans-serif;
   color: greenyellow;
   background: #000;
-  height: 663px;
 }
 
 .window-app .window-content {
@@ -236,6 +235,15 @@
 
 .alienrpg .ability-mod {
   color: greenyellow;
+}
+
+.alienrpg .selectBox {
+  color: greenyellow;
+}
+
+.alienrpg .selectBox select {
+  color: greenyellow;
+  background-color: #000;
 }
 
 .alienrpg .resource-label {

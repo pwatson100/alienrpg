@@ -3,15 +3,15 @@ import { alienrpgActor } from './actor/actor.js';
 import { alienrpgActorSheet } from './actor/actor-sheet.js';
 import { alienrpgItem } from './item/item.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
-import { alienRoll } from './YZEDiceRoller.js';
+import { yze } from './YZEDiceRoller.js';
+import { ALIENRPG } from './config.js';
 
 Hooks.once('init', async function () {
   console.log(`Initializing Alien RPG`);
-
   game.alienrpg = {
     alienrpgActor,
     alienrpgItem,
-    alienRoll,
+    yze,
     rollItemMacro,
   };
 
@@ -25,6 +25,7 @@ Hooks.once('init', async function () {
   };
 
   // Define custom Entity classes
+  CONFIG.ALIENRPG = ALIENRPG;
   CONFIG.Actor.entityClass = alienrpgActor;
   CONFIG.Item.entityClass = alienrpgItem;
 
@@ -128,3 +129,14 @@ function rollItemMacro(itemName) {
   // Trigger the item roll
   return item.roll();
 }
+Hooks.once('setup', function () {
+  const toLocalize = ['skills', 'attributes'];
+
+  for (let o of toLocalize) {
+    CONFIG.ALIENRPG[o] = Object.entries(CONFIG.ALIENRPG[o]).reduce((obj, e) => {
+      obj[e[0]] = game.i18n.localize(e[1]);
+
+      return obj;
+    }, {});
+  }
+});

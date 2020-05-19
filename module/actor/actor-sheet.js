@@ -1,4 +1,4 @@
-import { alienRoll } from '../YZEDiceRoller.js';
+import { yze } from '../YZEDiceRoller.js';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -20,11 +20,48 @@ export class alienrpgActorSheet extends ActorSheet {
 
   /** @override */
   getData() {
-    const data = super.getData();
-    data.dtypes = ['String', 'Number', 'Boolean'];
-    for (let attr of Object.values(data.data.attributes)) {
-      attr.isCheckbox = attr.dtype === 'Boolean';
+    // const data = super.getData();
+    // data.dtypes = ['String', 'Number', 'Boolean'];
+    // for (let attr of Object.values(data.data.attributes)) {
+    //   attr.isCheckbox = attr.dtype === 'Boolean';
+    // }
+
+    // Basic data
+    let isOwner = this.entity.owner;
+    const data = {
+      owner: isOwner,
+      limited: this.entity.limited,
+      options: this.options,
+      editable: this.isEditable,
+      cssClass: isOwner ? 'editable' : 'locked',
+      isCharacter: this.entity.data.type === 'character',
+      // isNPC: this.entity.data.type === "npc",
+      config: CONFIG.ALIENRPG,
+    };
+
+    // The Actor and its Items
+    data.actor = duplicate(this.actor.data);
+    data.items = this.actor.items.map((i) => {
+      i.data.labels = i.labels;
+      return i.data;
+    });
+    data.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+    data.data = data.actor.data;
+    data.labels = this.actor.labels || {};
+    data.filters = this._filters;
+
+    // Ability Scores
+    for (let [a, abl] of Object.entries(data.actor.data.attributes)) {
+      abl.label = CONFIG.ALIENRPG.attributes[a];
     }
+
+    // Update skill labels
+    for (let [s, skl] of Object.entries(data.actor.data.skills)) {
+      skl.label = CONFIG.ALIENRPG.skills[s];
+    }
+
+    // Return data to the sheet
+
     return data;
   }
 
@@ -111,16 +148,17 @@ export class alienrpgActorSheet extends ActorSheet {
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
-      alienRoll.yzeRoll(label, r1Data, 'Black', r2Data, 'Yellow');
+      yze.yzeRoll(label, r1Data, 'Black', r2Data, 'Yellow');
     } else {
       if (dataset.panicroll) {
+        // Roll against the panic table and push the roll to the chat log.
         let chatMessage = '';
         const table = game.tables.getName('Panic Table');
-        const roll = new Roll('1d6 + @stress', this.actor.getRollData()).roll();
-        const result = table.data.results.find((r) => Number.between(roll.total, ...r.range));
+        const roll = new Roll('1d6 + @stress', this.actor.getRollData());
+        const customResults = table.roll({ roll });
         chatMessage += '<h2>Panic Condition</h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-        chatMessage += `${result.text}`;
+        chatMessage += `${customResults.results[0].text}`;
         ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
       }
     }
