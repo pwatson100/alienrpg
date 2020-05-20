@@ -79,6 +79,7 @@ Hooks.once('ready', async function () {
   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
 });
 
+/* --
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */

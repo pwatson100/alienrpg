@@ -18,7 +18,7 @@ export class yze {
    * @param {number} r2Dice
    * @param {number} r3Dice
    */
-  static async yzeRoll(label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
+  static async yzeRoll(reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
     //  So lets start...
 
     let chatMessage = '';
@@ -29,7 +29,7 @@ export class yze {
       whisper: [],
       blind: false,
     };
-    const dResults = [];
+    // const dResults = [];
 
     function yzeDRoll(numDie, yzeR6, yzeR1) {
       let die = new Die(6);
@@ -66,10 +66,13 @@ export class yze {
         yzeDRoll(r3Dice, 'r3Six', 'r3One');
         data.formula = r1Dice + r2Dice + r3Dice + 'd6';
       }
-      const btnStyling = 'width:65px; height:50px; font-size:45px;line-height:1px';
-      chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;
-      chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
-      chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
+
+      if (!reRoll) {
+        const btnStyling = 'width:65px; height:50px; font-size:45px;line-height:1px';
+        chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;
+        chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
+        chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
+      }
     }
 
     game.dice3d.show(data).then((displayed) => {});
@@ -79,5 +82,6 @@ export class yze {
       other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
     });
+    return rollArr;
   }
 }

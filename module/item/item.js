@@ -31,13 +31,15 @@ export class alienrpgItem extends Item {
     // let roll;
     let r2Data = this.actor.getRollData().stress;
     let label = `${item.name}`;
+    let reRoll = false;
     // Define the roll formula.
     if (item.data.header.type.value === 'Ranged') {
       let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
-      yze.yzeRoll(label, r1Data, 'Black', r2Data, 'Yellow');
+      const myResult = yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
+      console.log(myResult);
     } else if (item.data.header.type.value === 'Melee') {
       let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
-      yze.yzeRoll(label, r1Data, 'Black', r2Data, 'Yellow');
+      const myResult = yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
     } else {
       console.log('No type on item');
     }
