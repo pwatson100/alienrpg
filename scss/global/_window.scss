@@ -1,17 +1,20 @@
-.window-app {
+// .window-app {
+// font-family: $font-primary;
+// color: $c-green;
+// background: $c-black;
+// }
+
+.alienrpg .window-content {
   font-family: $font-primary;
   color: $c-green;
   background: $c-black;
-
-  .window-content {
-    // display: flex;
-    // flex-direction: column;
-    // flex-wrap: nowrap;
-    // background: black;
-    padding: 1px;
-    // overflow-y: auto;
-    // overflow-x: hidden;
-  }
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  // background: url(../ui/parchment.jpg) repeat;
+  padding: 2px;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .rollable {

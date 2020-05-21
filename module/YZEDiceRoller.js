@@ -65,31 +65,32 @@ export class yze {
       chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
       chatMessage += '<div><br></div>';
     }
-    if (r1Dice < 1) {
-      chatMessage += 'You must have at least one dice set to roll';
-    } else {
+
+    if (r1Dice >= 1) {
       chatMessage += '<h2>' + rType + ' ' + label + ' </h2>';
       chatMessage += '<div>' + col1 + ' - ' + r1Dice + '</div>';
       yzeDRoll('r1Dice', r1Dice, 'r1Six', 'r1One');
       data.formula = r1Dice + 'd6';
+    }
+    if (r2Dice >= 1) {
+      chatMessage += '<div>' + col2 + ' - ' + r2Dice + '</div>';
+      yzeDRoll('r2Dice', r2Dice, 'r2Six', 'r2One');
+      data.formula = r1Dice + r2Dice + 'd6';
+      if (game.alienrpg.rollArr.r2One > 0) {
+        reRoll = true;
+      }
+    }
+    if (r3Dice >= 1) {
+      chatMessage += '<div>' + col3 + ' - ' + r3Dice + '</div>';
+      yzeDRoll('r3Dice', r3Dice, 'r3Six', 'r3One');
+      data.formula = r1Dice + r2Dice + r3Dice + 'd6';
+    }
 
-      if (r2Dice > 0) {
-        chatMessage += '<div>' + col2 + ' - ' + r2Dice + '</div>';
-        yzeDRoll('r2Dice', r2Dice, 'r2Six', 'r2One');
-        data.formula = r1Dice + r2Dice + 'd6';
-      }
-      if (r3Dice > 0) {
-        chatMessage += '<div>' + col3 + ' - ' + r3Dice + '</div>';
-        yzeDRoll('r3Dice', r3Dice, 'r3Six', 'r3One');
-        data.formula = r1Dice + r2Dice + r3Dice + 'd6';
-      }
-
-      if (!reRoll) {
-        const btnStyling = 'height:50px; font-size:45px;line-height:1px';
-        chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;
-        chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
-        chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
-      }
+    if (!reRoll) {
+      const btnStyling = 'height:50px; font-size:45px;line-height:1px;background-color: #413131; color:#adff2f;border-color: #000000';
+      chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;
+      chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
+      chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
     }
 
     game.dice3d.show(data).then((displayed) => {});

@@ -1,13 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Wallpoet:wght@400;800&family=Wallpoet:wght@300;400;500&display=swap");
 /* Global styles */
-.window-app {
+.alienrpg .window-content {
   font-family: "Wallpoet", sans-serif;
   color: greenyellow;
   background: #000;
-}
-
-.window-app .window-content {
-  padding: 1px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  padding: 2px;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .rollable:hover, .rollable:focus {
