@@ -144,14 +144,13 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    // const rollArr = { r1One: 0, r1Six: 0, r2One: 0, r2Six: 0, r3One: 0, r3Six: 0 };
     let label = dataset.label;
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
       let reRoll = false;
-      const myResult = yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
-      console.log(myResult);
+      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
+      // console.log('onRoll', game.alienrpg.rollArr);
     } else {
       if (dataset.panicroll) {
         // Roll against the panic table and push the roll to the chat log.

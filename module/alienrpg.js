@@ -15,6 +15,9 @@ Hooks.once('init', async function () {
     rollItemMacro,
   };
 
+  // Global define for this so the roll data can be read by the reroll method.
+  game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, r3Dice: 0, r3One: 0, r3Six: 0, tLabel: '' };
+
   /**
    * Set an initiative formula for the system
    * @type {String}
@@ -77,6 +80,30 @@ Hooks.once('ready', async function () {
 Hooks.once('ready', async function () {
   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
+});
+
+//  Hook to watch for the Push button being pressed -   Need to refactor this so it does not firee all the time.
+//
+Hooks.on('renderChatMessage', (message, html, data) => {
+  // console.log('init hook here');
+
+  html.find('i.fas.fa-dice').each((i, li) => {
+    // console.log(li);
+    li.addEventListener('click', function (ev) {
+      // console.log(ev);
+      if (ev.target.classList.contains('fa-dice')) {
+        // do stuff
+        const reRoll1 = game.alienrpg.rollArr.r1Dice - (game.alienrpg.rollArr.r1One + game.alienrpg.rollArr.r1Six);
+        const reRoll2 = game.alienrpg.rollArr.r2Dice - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
+        yze.yzeRoll('true', game.alienrpg.rollArr.tLabel, reRoll1, 'Black', reRoll2, 'Yellow');
+        // console.log(game.alienrpg.rollArr);
+      }
+    });
+  });
+
+  // $('div.message-content').on('click', 'button.total-shield-dice-btn', function () {
+  //   console.log('triggered');
+  // });
 });
 
 /* --
