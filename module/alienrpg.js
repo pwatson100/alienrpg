@@ -105,10 +105,6 @@ Hooks.on('renderChatMessage', (message, html, data) => {
       }
     });
   });
-
-  // $('div.message-content').on('click', 'button.total-shield-dice-btn', function () {
-  //   console.log('triggered');
-  // });
 });
 
 /* --
