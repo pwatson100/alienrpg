@@ -16,6 +16,20 @@
   overflow-y: auto;
   overflow-x: auto;
 }
+.resource-content {
+  button {
+    flex: 0;
+    border: 0;
+    width: 30px;
+    font-size: 1.5rem;
+    // white-space: nowrap;
+    // text-decoration: none;
+    padding: 0;
+    color: #adff2f;
+    vertical-align: middle;
+    margin: 0;
+  }
+}
 
 .rollable {
   &:hover,
@@ -25,4 +39,11 @@
     font-size: 110%;
     cursor: pointer;
   }
+}
+
+.minus-btn .plus-btn {
+  width: 10px;
+  height: 10px;
+  line-height: 20px;
+  padding: 0;
 }

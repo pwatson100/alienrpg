@@ -91,6 +91,10 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
+    // minus from health and stress
+    html.find('.minus-btn').click(this._minusButton.bind(this));
+    // plus tohealth and stress
+    html.find('.plus-btn').click(this._plusButton.bind(this));
 
     // Drag events for macros.
     if (this.actor.owner) {
@@ -149,7 +153,7 @@ export class alienrpgActorSheet extends ActorSheet {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
       let reRoll = false;
-      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
+      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       // console.log('onRoll', game.alienrpg.rollArr);
     } else {
       if (dataset.panicroll) {
@@ -163,6 +167,27 @@ export class alienrpgActorSheet extends ActorSheet {
         chatMessage += `${customResults.results[0].text}`;
         ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
       }
+    }
+  }
+  _minusButton(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    if (dataset.pmbut === 'minusStress') {
+      this.actor.update({ 'data.header.stress.value': this.actor.data.data.header.stress.value - 1 });
+      // }
+    } else {
+      this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value - 1 });
+    }
+  }
+  _plusButton(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    if (dataset.pmbut === 'plusStress') {
+      this.actor.update({ 'data.header.stress.value': this.actor.data.data.header.stress.value + 1 });
+    } else {
+      this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value + 1 });
     }
   }
 }

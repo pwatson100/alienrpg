@@ -2,20 +2,28 @@
 .grid-2col {
   display: grid;
   grid-column: span 2 / span 2;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  // grid-template-columns: repeat(2, minmax(50fr, 1fr));
   gap: 5px;
   margin: 5px 0;
   padding: 0;
+  align-items: center;
+  // justify-items: center;
 }
 
 .grid-3col {
   grid-column: span 3 / span 3;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-color: $c-green;
+  // border-style: solid;
+  justify-items: center;
+  margin: 0;
 }
 
 .grid-4col {
   grid-column: span 4 / span 4;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-color: $c-green;
+  border-style: double;
 }
 
 .grid-5col {

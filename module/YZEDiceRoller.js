@@ -1,27 +1,28 @@
 export class yze {
-  // static async panicRoll() {
-  //   // Roll against the panic table and push the roll to the chat log.
-  //   let chatMessage = '';
-  //   const table = game.tables.getName('Panic Table');
-  //   const roll = new Roll('1d6 + @stress', actor.getRollData());
-  //   const customResults = table.roll({ roll });
-  //   chatMessage += '<h2>Panic Condition</h2>';
-  //   chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-  //   chatMessage += `${customResults.results[0].text}`;
-  //   ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
-  // };
-
   /**
    * YZEDice RollFunction.
    * Paramfornumber of dice to roll for each die type/rolls
-   * @param {Boolean} reRoll
-   * @param {Text} label
-   * @param {number} r1Dice
-   * @param {Text} col1
-   * @param {number} r2Dice
-   * @param {Text} col2
-   * @param {number} r3Dice
-   * @param {Text} col3
+   * @param {Boolean} reRoll - True or False
+   * @param {Text} label - The skill/item being rolled agains
+   * @param {number} r1Dice - Number of dice
+   * @param {Text} col1 - The Colour
+   * @param {number} r2Dice  - Number of dice
+   * @param {Text} col2 - The Colour
+   * @param {number} r3Dice  - Number of dice
+   * @param {Text} col3 - The Colour
+   *
+   * rollArr is a globally defined array to store all one'sand sixes and number of dice rolled for each type
+   *   game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, r3Dice: 0, r3One: 0, r3Six: 0, tLabel: '' };
+   *
+   * Call Example:
+   * const element = event.currentTarget;
+   * const dataset = element.dataset;
+   * let label = dataset.label;
+   * let r1Data = parseInt(dataset.roll || 0);
+   * let r2Data = this.actor.getRollData().stress;
+   * let reRoll = false;
+   * yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
+   *
    */
   static async yzeRoll(reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
     //  Initialse the chat message

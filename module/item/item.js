@@ -35,10 +35,10 @@ export class alienrpgItem extends Item {
     // Define the roll formula.
     if (item.data.header.type.value === 'Ranged') {
       let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
-      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
+      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
     } else if (item.data.header.type.value === 'Melee') {
       let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
-      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
+      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
     } else {
       console.log('No type on item');
     }
