@@ -118,6 +118,108 @@
   justify-items: center;
 }
 
+.grid-genPage {
+  display: grid;
+  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item1 Item5 Item5' 'Item1 Item3 Item3' 'Item1 Item6 Item6' 'Item1 Item7 Item7' 'Item8 Item9 .';
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.Item1 {
+  grid-area: Item1;
+  border: 1px solid white;
+}
+
+.Item2 {
+  grid-area: Item2;
+  border: 1px solid white;
+}
+
+.Item3 {
+  grid-area: Item3;
+  border: 1px solid white;
+}
+
+.Item4 {
+  grid-area: Item4;
+  border: 1px solid white;
+}
+
+.Item5 {
+  grid-area: Item5;
+  border: 1px solid white;
+}
+
+.Item6 {
+  grid-area: Item6;
+  border: 1px solid white;
+  justify-items: center;
+}
+
+.Item7 {
+  grid-area: Item7;
+  border: 1px solid white;
+}
+
+.Item8 {
+  grid-area: Item8;
+  border: 1px solid white;
+}
+
+.Item9 {
+  grid-area: Item9;
+  border: 1px solid white;
+}
+
+.grid-container {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-areas: 'Col1 Col2 ';
+  grid-template-rows: 1fr;
+  grid-template-columns: 240px 1fr;
+}
+
+.Col1 {
+  grid-area: Col1;
+}
+
+.Col2 {
+  grid-area: Col2;
+}
+
+.Col3 {
+  grid-area: Col3;
+}
+
+.grid-attr {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  padding-left: 5px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid white;
+  grid-template-areas: 'Attr1 Attr2 ';
+  grid-template-columns: 190px 50px;
+}
+
+.Attr1 {
+  grid-area: Attr1;
+}
+
+.Attr2 {
+  grid-area: Attr2;
+}
+
+.Attr3 {
+  grid-area: Attr3;
+}
+
+.Attr4 {
+  grid-area: Attr4;
+}
+
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {
@@ -229,7 +331,7 @@
 .alienrpg .sheet-body,
 .alienrpg .sheet-body .tab,
 .alienrpg .sheet-body .tab .editor {
-  height: 90%;
+  height: 100%;
   background-color: #000;
   color: greenyellow;
 }
@@ -266,6 +368,7 @@
   width: 50%;
   margin: 4px;
   color: greenyellow;
+  font-family: monospace;
 }
 
 .alienrpg .ability-mod {
@@ -281,12 +384,107 @@
   background-color: #000;
 }
 
+.alienrpg textarea {
+  resize: none;
+  width: 98%;
+  padding: 0;
+  color: greenyellow;
+  margin: 4px;
+  border: 1px solid greenyellow;
+}
+
+.alienrpg .alienrpg.actor .abilities .defense .proficiency-rank {
+  letter-spacing: -3px;
+  grid-area: auto;
+  height: 16px;
+  font-size: 12px;
+}
+
+.alienrpg .crb-style form .sheet-content .spellbook .directory-list .item .skills-list .skill-grid .skill-container.skill-proficiency .click-stat-level {
+  height: 18px;
+  padding: 8px;
+  background: black;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  font-family: 'Roboto', system, -apple-system, sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.alienrpg .click-stat-level .fas {
+  display: none;
+  padding: 2px 4px;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  font-family: 'Roboto', system, -apple-system, sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.alienrpg .alienrpg.actor .pf-value {
+  background: black;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.alienrpg .dots {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: #ffefbd;
+  margin-right: 8px;
+  font-weight: 700;
+  font-size: 10px;
+}
+
 .alienrpg .resource-label {
   font-weight: bold;
   text-transform: uppercase;
   padding-right: 5px;
   color: greenyellow;
   justify-self: center;
+}
+
+.alienrpg .attr-label {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-right: 5px;
+  color: greenyellow;
 }
 
 .alienrpg .item-label {

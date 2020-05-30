@@ -95,6 +95,32 @@
           "ability": "emp"
         }
       },
+	        "general": {
+        "career": {
+          "value": "",
+          "label": "career"
+        },
+        "appearance": {
+          "value": "",
+          "label": "appearance"
+        },
+        "sigItem": {
+          "value": "",
+          "label": "sigItem"
+        },
+        "agenda": {
+          "value": "",
+          "label": "agenda"
+        },
+        "relOne": {
+          "value": "",
+          "label": "relOne"
+        },
+        "relTwo": {
+          "value": "",
+          "label": "relTwo"
+        }
+        },
       "notes": {
         "notes": ""
       }

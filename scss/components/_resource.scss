@@ -5,6 +5,13 @@
   color: $c-green;
   justify-self: center;
 }
+.attr-label {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-right: 5px;
+  color: $c-green;
+  // justify-self: center;
+}
 .item-label {
   font-weight: bold;
   text-transform: uppercase;

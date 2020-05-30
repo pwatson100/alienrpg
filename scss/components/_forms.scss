@@ -47,7 +47,7 @@
 .sheet-body,
 .sheet-body .tab,
 .sheet-body .tab .editor {
-  height: 90%;
+  height: 100%;
   background-color: $c-black;
   color: $c-green;
 }
@@ -85,6 +85,7 @@ input {
   // height: 20%;
   margin: 4px;
   color: $c-green;
+  font-family: monospace;
 }
 
 .ability-mod {
@@ -99,4 +100,69 @@ input {
     color: $c-green;
     background-color: $c-black;
   }
+}
+textarea {
+  resize: none;
+  width: 98%;
+  padding: 0;
+  color: $c-green;
+  margin: 4px;
+  border: 1px solid $c-green;
+}
+
+.alienrpg.actor .abilities .defense .proficiency-rank {
+  letter-spacing: -3px;
+  grid-area: auto;
+  height: 16px;
+  font-size: 12px;
+}
+
+.crb-style form .sheet-content .spellbook .directory-list .item .skills-list .skill-grid .skill-container.skill-proficiency .click-stat-level {
+  height: 18px;
+  padding: 8px;
+  background: black;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  font-family: 'Roboto', system, -apple-system, sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.click-stat-level .fas {
+  display: none;
+  padding: 2px 4px;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  font-family: 'Roboto', system, -apple-system, sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.alienrpg.actor .pf-value {
+  background: black;
+  border: 1px solid white;
+  text-align: center;
+}
+.dots {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  color: #ffefbd;
+  margin-right: 8px;
+  font-weight: 700;
+  font-size: 10px;
 }

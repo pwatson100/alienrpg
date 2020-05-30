@@ -73,6 +73,122 @@
   justify-items: center;
 }
 
+.grid-genPage {
+  display: grid;
+  // border: 2px solid white;
+  grid-template-areas:
+    'Item1 Item2 Item2'
+    'Item1 Item4 Item4'
+    'Item1 Item5 Item5'
+    'Item1 Item3 Item3'
+    'Item1 Item6 Item6'
+    'Item1 Item7 Item7'
+    'Item8 Item9 .';
+
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.Item1 {
+  grid-area: Item1;
+  border: 1px solid white;
+}
+.Item2 {
+  grid-area: Item2;
+  border: 1px solid white;
+}
+.Item3 {
+  grid-area: Item3;
+  border: 1px solid white;
+}
+.Item4 {
+  grid-area: Item4;
+  border: 1px solid white;
+}
+.Item5 {
+  grid-area: Item5;
+  border: 1px solid white;
+}
+.Item6 {
+  grid-area: Item6;
+  border: 1px solid white;
+  justify-items: center;
+}
+.Item7 {
+  grid-area: Item7;
+  border: 1px solid white;
+}
+.Item8 {
+  grid-area: Item8;
+  border: 1px solid white;
+}
+.Item9 {
+  grid-area: Item9;
+  border: 1px solid white;
+}
+
+.grid-container {
+  display: grid;
+  // gap: 5px;
+  margin: 0;
+  padding: 0;
+  // align-items: center;
+  // justify-items: first baseline;
+  // border: 2px solid white;
+  grid-template-areas: 'Col1 Col2 ';
+  grid-template-rows: 1fr;
+  grid-template-columns: 240px 1fr;
+}
+.Col1 {
+  grid-area: Col1;
+  // justify-items: left;
+  // border: 2px solid white;
+}
+.Col2 {
+  grid-area: Col2;
+  // justify-items: right;
+  // border: 2px solid white;
+}
+
+.Col3 {
+  grid-area: Col3;
+  // justify-items: left;
+  // border: 2px solid white;
+}
+
+.grid-attr {
+  display: grid;
+  // gap: 5px;
+  margin: 0;
+  padding: 0;
+  padding-left: 5px;
+  align-items: center;
+  border: 1px solid white;
+  grid-template-areas: 'Attr1 Attr2 ';
+  grid-template-columns: 190px 50px;
+}
+
+.Attr1 {
+  grid-area: Attr1;
+  // justify-items: left;
+  // border: 2px solid white;
+}
+.Attr2 {
+  grid-area: Attr2;
+  // justify-items: right;
+  // border: 2px solid white;
+}
+
+.Attr3 {
+  grid-area: Attr3;
+  // justify-items: left;
+  // border: 2px solid white;
+}
+.Attr4 {
+  grid-area: Attr4;
+  // justify-items: right;
+  // border: 2px solid white;
+}
+
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {

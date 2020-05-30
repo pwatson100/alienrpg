@@ -21,6 +21,12 @@ export class alienrpgActor extends Actor {
       }
       delete data.header;
     }
+    if (!!shorthand) {
+      for (let [k, v] of Object.entries(data.general)) {
+        if (!(k in data)) data[k] = v.value;
+      }
+      delete data.general;
+    }
 
     // Map all items data using their slugified names
     data.items = this.data.items.reduce((obj, i) => {

@@ -40,5 +40,13 @@
   "ALIENRPG.Push": "Skuffa",
   "ALIENRPG.Black": "Svart",
   "ALIENRPG.White": "Vit",
-  "ALIENRPG.Yellow": "Gul"
+  "ALIENRPG.Yellow": "Gul",
+  "ALIENRPG.General": "General",
+  "ALIENRPG.Career": "Career",
+  "ALIENRPG.Appearance": "Appearance",
+  "ALIENRPG.SignatureItem": "Signature Item",
+  "ALIENRPG.relOne": "Buddy",
+  "ALIENRPG.relTwo": "Rival",
+  "ALIENRPG.PersonalAgenda": "Personal Agenda",
+  "ALIENRPG.Relationships": "Relationships"
 }

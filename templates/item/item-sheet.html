@@ -1,9 +1,11 @@
 <form class="{{cssClass}}" autocomplete="off">
   <header class="sheet-header">
+    <!-- {{log "CONTEXT!!!!"}} {{log this}} -->
+
     <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
-      <div class="grid grid-2col flexrow flex-center">
+      <div class="grid grid-2col">
         <div class="selectBox">
           <label>{{localize "ALIENRPG.Type"}}</label>
           <select name="data.header.type.value" data-dtype="{{data.header.type.value}}">
@@ -35,7 +37,7 @@
   {{!-- Sheet Body --}}
   <section class="sheet-body">
     {{!-- Attributes Tab --}}
-    <div class="tab attributes flexrow flex-center" data-group="primary" data-tab="attributes">
+    <div class="tab attributes grid grid-3col" data-group="primary" data-tab="attributes">
       {{!-- As you add new fields, add them in here! --}}
       <div class="tab attributes" data-group="primary" data-tab="attributes">
         <label class="item-label">{{localize "ALIENRPG.Bonus"}}</label>

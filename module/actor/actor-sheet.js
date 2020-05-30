@@ -12,7 +12,7 @@ export class alienrpgActorSheet extends ActorSheet {
       template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 600,
       height: 665,
-      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'skills' }],
+      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
 
@@ -95,6 +95,12 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.minus-btn').click(this._minusButton.bind(this));
     // plus tohealth and stress
     html.find('.plus-btn').click(this._plusButton.bind(this));
+
+    // // Career
+    // html.find('.career').click((ev) => {
+    //   console.log(ev);
+    //   this.actor.update({ 'data.general.career.value': ev });
+    // });
 
     // Drag events for macros.
     if (this.actor.owner) {

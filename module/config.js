@@ -25,3 +25,8 @@ ALIENRPG.skills = {
   survival: 'ALIENRPG.SkillSurvival',
   comtech: 'ALIENRPG.SkillComtech',
 };
+ALIENRPG.general = {
+  career: 'ALIENRPG.Career',
+  appearance: 'ALIENRPG.Apparance',
+  sigItem: 'ALIENRPG.SignatureItem',
+};

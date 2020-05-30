@@ -40,5 +40,13 @@
   "ALIENRPG.Push": "Push",
   "ALIENRPG.Black": "Black",
   "ALIENRPG.White": "White",
-  "ALIENRPG.Yellow": "Yellow"
+  "ALIENRPG.Yellow": "Yellow",
+  "ALIENRPG.General": "General",
+  "ALIENRPG.Career": "Career",
+  "ALIENRPG.Appearance": "Appearance",
+  "ALIENRPG.SignatureItem": "Signature Item",
+  "ALIENRPG.relOne": "Buddy",
+  "ALIENRPG.relTwo": "Rival",
+  "ALIENRPG.PersonalAgenda": "Personal Agenda",
+  "ALIENRPG.Relationships": "Relationships"
 }
