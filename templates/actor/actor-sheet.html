@@ -44,7 +44,6 @@
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
-    <!-- {{log "CONTEXT!!!!"}} {{log this}} -->
     
     {{!--Skills Tab --}}
     <div class="tab skills" data-group="primary" data-tab="skills">
@@ -54,12 +53,11 @@
       <span class="ability grid-attr">
         <label for="data.skills.{{key}}.value" class="attr-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{skill.label}}">{{skill.label}}</label>
         <input type="text" class="maxboxsize Attr2" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
-        <!-- <span class="ability-mod" data-roll="({{skill.mod}})d6">{{numberFormat skill.mod decimals=0}}</span> -->
       </span>
       {{/each}}
     </span>
       <span class="Col2">
-        <h2>Conditions</h2>
+        <h2>Talents</h2>
         <p > Lorem ipsum dolor sit, adipisicing elit.
            Sequi ducimus consequatur veritatis nesciunt libero magnam
             adipisc minus  doloribus tenetur, qui id quae deleniti architecto magni quaerat? Porro tempore nesciunt molestiae?
@@ -101,10 +99,73 @@
     </div>
     <div class="tab general" data-group="primary" data-tab="general">
       <div class="grid-genPage">
+
+<!-- Col1 -->
+                <div class="Item1">
+                  <div class="dots experience">
+                  <label class="resource-label">{{ localize "ALIENRPG.XP"}}</label>
+                    <input type="hidden" name="data.general.xp.value" data-max="{{data.general.xp.max}}" value="{{data.general.xp.value}}" data-dtype="Number">
+                      <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.xp.icon}}}
+                    </span>
+                  </div>
+                  <br>
+                  <div class="dots radiation">
+                    <label class="resource-label">{{ localize "ALIENRPG.Radiation"}}</label>
+                   <input type="hidden" name="data.general.radiation.value" data-max="{{data.general.radiation.max}}" value="{{data.general.radiation.value}}" data-dtype="Number">
+                   <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.radiation.icon}}}
+                  </span>
+                </div>
+              </div>
+        
+              <div class="Item8">
+                <h2>{{ localize 'ALIENRPG.Conditions'}}</h2>
+                <div class="dots starving">
+                  <input type="hidden" name="data.general.starving.value" data-max="{{data.general.starving.max}}" value="{{{data.general.starving.value}}}" data-dtype="Number">
+                  <label class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.starving.icon}}} {{ localize 'ALIENRPG.Starving'}}
+                </label>
+              </div>
+
+                <div class="dots dehydrated">
+                  <input type="hidden" name="data.general.dehydrated.value" data-max="{{data.general.dehydrated.max}}" value="{{{data.general.dehydrated.value}}}" data-dtype="Number">
+                  <label class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.dehydrated.icon}}} {{ localize 'ALIENRPG.Dehydrated'}}
+                </label>
+              </div>
+
+                <div class="dots exhausted">
+                  <input type="hidden" name="data.general.exhausted.value" data-max="{{data.general.exhausted.max}}" value="{{{data.general.exhausted.value}}}" data-dtype="Number">
+                  <label class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.exhausted.icon}}} {{ localize 'ALIENRPG.Exhausted'}}
+                </label>
+              </div>
+
+              <div class="dots freezing">
+                <input type="hidden" name="data.general.freezing.value" data-max="{{data.general.freezing.max}}" value="{{{data.general.freezing.value}}}" data-dtype="Number">
+                <label class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
+                </label>
+              </div>
+            </div>
+              
+<!-- Col 2 -->
+        <div class="Item2">
+          <label class="resource-label">{{ localize "ALIENRPG.Career"}}</label>
+          <input type="text" name="data.general.career.value" value="{{data.general.career.value}}" placeholder="{{localize "ALIENRPG.Career"}}" data-dtype="String" />
+        </div>
+
+        <div class="Item4">
+          <label class="resource-label">{{ localize "ALIENRPG.Appearance"}}</label> 
+          <br>
+          <textarea name="data.general.appearance.value" rows="2"data-dtype="String">{{data.general.appearance.value}}</textarea>
+         </div>
+
+         <div class="Item5">
+          <label class="resource-label">{{ localize "ALIENRPG.SignatureItem"}}</label>
+          <input  type="text" name="data.general.sigItem.value" value="{{data.general.sigItem.value}}" placeholder="{{localize "ALIENRPG.SignatureItem"}}" data-dtype="String" />
+          </div>
+
       <div class="Item3">
         <h3>{{ localize "ALIENRPG.PersonalAgenda"}}</h3>
           <textarea name="data.general.agenda.value" rows="2"data-dtype="String">{{data.general.agenda.value}}</textarea>
       </div>
+
       <div class="Item6">
           <h3>{{ localize "ALIENRPG.Relationships"}}</h3>
         <label class="resource-label">{{ localize "ALIENRPG.relOne"}}</label>
@@ -116,36 +177,19 @@
         <input type="text" name="data.general.relTwo.value" value="{{data.general.relTwo.value}}" placeholder="{{localize "ALIENRPG.relTwo"}}" data-dtype="String" />
       </div>
       
-      <div class="Item2">
-        <label class="resource-label">{{ localize "ALIENRPG.Career"}}</label>
-        <input type="text" name="data.general.career.value" value="{{data.general.career.value}}" placeholder="{{localize "ALIENRPG.Career"}}" data-dtype="String" />
+
+
+
+      <div class="Item9">
+        <h2>Consumables</h2>
+        <label class="resource-label">Air</label>
+        <label class="resource-label">Power</label>
+        <label class="resource-label">Food</label>
+        <label class="resource-label">Water</label>
       </div>
-      <div class="Item4">
-        <label class="resource-label">{{ localize "ALIENRPG.Appearance"}}</label> 
-        <br>
-        <textarea name="data.general.appearance.value" rows="2"data-dtype="String">{{data.general.appearance.value}}</textarea>
-       </div>
-       <div class="Item5">
-        <label class="resource-label">{{ localize "ALIENRPG.SignatureItem"}}</label>
-        <input  type="text" name="data.general.sigItem.value" value="{{data.general.sigItem.value}}" placeholder="{{localize "ALIENRPG.SignatureItem"}}" data-dtype="String" />
-        </div>
-
-        <div class="Item8">
-          <h2>Talents</h2>
-          <div class="dots wounded">
-            <label>Test1</label>
-            <span title="Test2">
-              {{log "CONTEXT!!!!"}} {{log this}}  
-            <input type="hidden" name="data.general.radiation.value" data-max="{{data.general.radiation.calculatedMax}}" value="{{data.general.radiation.value}}" data-dtype="Number"/>
-            <span class="proficiency-rank click-stat-level pf-value" title="Test 3">{{{data.general.radiation.icon}}}</span>
-            </span>
-            {{log "CONTEXT!!!!"}} {{log this}} 
-          </div>
-            
-        </div>
-</div>
-</div>
-
-      
+    </div>
+  </div>
+  
+  {{log "CONTEXT!!!!"}} {{log this}} 
   </section>
 </form>

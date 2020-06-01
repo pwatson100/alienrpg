@@ -60,6 +60,20 @@ export class alienrpgActorSheet extends ActorSheet {
       skl.label = CONFIG.ALIENRPG.skills[s];
     }
 
+    data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
+    data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
+    data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
+    data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
+    data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
+    data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
+
+    data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
+    data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
+    data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
+    data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
+    data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
+    data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
+
     // Return data to the sheet
 
     return data;
@@ -96,11 +110,9 @@ export class alienrpgActorSheet extends ActorSheet {
     // plus tohealth and stress
     html.find('.plus-btn').click(this._plusButton.bind(this));
 
-    // // Career
-    // html.find('.career').click((ev) => {
-    //   console.log(ev);
-    //   this.actor.update({ 'data.general.career.value': ev });
-    // });
+    html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle Dying Wounded
+
+    // html.find('.click-switch').on('click contextmenu', this._onClickCheckBox.bind(this)); // Toggle Dying Wounded
 
     // Drag events for macros.
     if (this.actor.owner) {
@@ -195,5 +207,100 @@ export class alienrpgActorSheet extends ActorSheet {
     } else {
       this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value + 1 });
     }
+  }
+
+  _onClickStatLevel(event) {
+    event.preventDefault();
+
+    const field = $(event.currentTarget).siblings('input[type="hidden"]');
+    const max = field.data('max') == undefined ? 4 : field.data('max');
+    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
+    const level = parseFloat(field.val());
+    let newLevel = ''; // Toggle next level - forward on click, backwards on right
+
+    if (event.type === 'click') {
+      newLevel = Math.clamped(level + 1, 0, max);
+    } else if (event.type === 'contextmenu') {
+      newLevel = Math.clamped(level - 1, 0, max);
+    } // Update the field value and save the form
+
+    // if (statIsItemType == 'item') {
+    //   let itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+
+    //   if (itemId == undefined) {
+    //     // Then item is spellcastingEntry, this could be refactored
+    //     // but data-contained-id and proviciency/proficient need to be refactored everywhere to give
+    //     // Lore Skills, Martial Skills and Spellcasting Entries the same structure.
+    //     itemId = $(event.currentTarget).parents('.item-container').attr('data-container-id');
+
+    //     if ($(event.currentTarget).attr('title') == game.i18n.localize('PF2E.Focus.pointTitle')) {
+    //       const item = this.actor.getOwnedItem(itemId);
+    //       const focusPoolSize = getProperty(item.data, 'data.focus.pool') || 1;
+    //       newLevel = Math.clamped(newLevel, 0, focusPoolSize);
+    //       this.actor.updateEmbeddedEntity('OwnedItem', {
+    //         _id: itemId,
+    //         'data.focus.points': newLevel,
+    //       });
+    //     } else {
+    //       this.actor.updateEmbeddedEntity('OwnedItem', {
+    //         _id: itemId,
+    //         'data.proficiency.value': newLevel,
+    //       });
+    //     }
+    //   } else {
+    //     this.actor.updateEmbeddedEntity('OwnedItem', {
+    //       _id: itemId,
+    //       'data.proficient.value': newLevel,
+    //     });
+    //   }
+
+    //   return;
+    // }
+
+    field.val(newLevel);
+
+    this._onSubmit(event);
+  }
+
+  /**
+   * Get the font-awesome icon used to display a certain level of radiation
+   * @private
+   */
+
+  _getClickIcon(level, stat) {
+    const maxPoints = this.object.data.data.general[stat].max;
+    const icons = {};
+    const usedPoint = '<i class="far fa-dot-circle"></i>';
+    const unUsedPoint = '<i class="far fa-circle"></i>';
+
+    for (let i = 0; i <= maxPoints; i++) {
+      let iconHtml = '';
+
+      for (let iconColumn = 1; iconColumn <= maxPoints; iconColumn++) {
+        iconHtml += iconColumn <= i ? usedPoint : unUsedPoint;
+      }
+
+      icons[i] = iconHtml;
+    }
+
+    return icons[level];
+  }
+  _getContitionIcon(level, stat) {
+    const maxPoints = this.object.data.data.general[stat].max;
+    const icons = {};
+    const usedPoint = '<i class="far fa-dot-circle"></i>';
+    const unUsedPoint = '<i class="far fa-circle"></i>';
+
+    for (let i = 0; i <= maxPoints; i++) {
+      let iconHtml = '';
+
+      for (let iconColumn = 1; iconColumn <= maxPoints; iconColumn++) {
+        iconHtml += iconColumn <= i ? usedPoint : unUsedPoint;
+      }
+
+      icons[i] = iconHtml;
+    }
+
+    return icons[level];
   }
 }

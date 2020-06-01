@@ -120,13 +120,14 @@
 
 .grid-genPage {
   display: grid;
-  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item1 Item5 Item5' 'Item1 Item3 Item3' 'Item1 Item6 Item6' 'Item1 Item7 Item7' 'Item8 Item9 .';
+  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item8 Item6 Item6' 'Item8 Item7 Item7' 'Item9 Item9 Item9';
   grid-template-columns: 1fr 1fr 1fr;
 }
 
 .Item1 {
   grid-area: Item1;
   border: 1px solid white;
+  padding: 5px;
 }
 
 .Item2 {
@@ -163,6 +164,7 @@
 .Item8 {
   grid-area: Item8;
   border: 1px solid white;
+  padding: 5px;
 }
 
 .Item9 {
@@ -393,14 +395,7 @@
   border: 1px solid greenyellow;
 }
 
-.alienrpg .alienrpg.actor .abilities .defense .proficiency-rank {
-  letter-spacing: -3px;
-  grid-area: auto;
-  height: 16px;
-  font-size: 12px;
-}
-
-.alienrpg .crb-style form .sheet-content .spellbook .directory-list .item .skills-list .skill-grid .skill-container.skill-proficiency .click-stat-level {
+.alienrpg form .sheet-content .click-stat-level {
   height: 18px;
   padding: 8px;
   background: black;
@@ -408,12 +403,12 @@
   -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
   font-family: 'Roboto', system, -apple-system, sans-serif;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.25px;
-  color: white;
+  color: greenyellow;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -433,12 +428,12 @@
   -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
   font-family: 'Roboto', system, -apple-system, sans-serif;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.25px;
-  color: white;
+  color: greenyellow;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -451,12 +446,6 @@
   cursor: pointer;
 }
 
-.alienrpg .alienrpg.actor .pf-value {
-  background: black;
-  border: 1px solid white;
-  text-align: center;
-}
-
 .alienrpg .dots {
   cursor: pointer;
   display: -webkit-box;
@@ -466,10 +455,10 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  color: #ffefbd;
+  color: greenyellow;
   margin-right: 8px;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 15px;
 }
 
 .alienrpg .resource-label {

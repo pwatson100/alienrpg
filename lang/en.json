@@ -48,5 +48,13 @@
   "ALIENRPG.relOne": "Buddy",
   "ALIENRPG.relTwo": "Rival",
   "ALIENRPG.PersonalAgenda": "Personal Agenda",
-  "ALIENRPG.Relationships": "Relationships"
+  "ALIENRPG.Relationships": "Relationships",
+  "ALIENRPG.Radiation": "Radiation",
+  "ALIENRPG.XP": "Experience",
+  "ALIENRPG.ConButtons": "Left Click to add. Right click to remove",
+  "ALIENRPG.Starving": "Starving",
+  "ALIENRPG.Dehydrated": "Dehydrated",
+  "ALIENRPG.Exhausted": "Exhausted",
+  "ALIENRPG.Freezing": "Freezing",
+  "ALIENRPG.Conditions": "Conditions"
 }

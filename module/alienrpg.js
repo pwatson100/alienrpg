@@ -158,6 +158,7 @@ function rollItemMacro(itemName) {
   // Trigger the item roll
   return item.roll();
 }
+
 Hooks.once('setup', function () {
   const toLocalize = ['skills', 'attributes'];
 

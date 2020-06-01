@@ -12,14 +12,15 @@ Please Note:
 
 - Functionality is not complete with plenty of work remaining.
 - If you find any issues or have any feedback please let me know.
+- I have added limited language support for Swedish and German.
 
 ### VTT Support:
 
 Tested with the following virtual table top platforms:
 
-- Foundry VTT v0.5.7.
+- Foundry VTT v0.6.0.
 
-Note: The following modules are required with Foundry VTT:
+### Note: The following modules are required with Foundry VTT:
 
 - Foundry VTT Dice So nice https://gitlab.com/riccisi/foundryvtt-dice-so-nice.
 
@@ -27,10 +28,10 @@ Note: The following modules are required with Foundry VTT:
 
 A huge thanks to:
 
-- @asacolips#1867 for creating a great base system to kickstart new developments
-- @NickEast#1131 for his development guides and base system
+- @asacolips#1867 for creating a great base system to kickstart new developments.
+- @NickEast#1131 for his development guides and base system.
 - @hooking [UTC+12]#0492 for his excellent PF2e which has provided many insights into how to build systems.
-- And all the devs on Discord who know more than me for their various contributions
+- And all the devs on Discord who know more than me for their various contributions.
 
 ### Feedback
 
@@ -42,12 +43,8 @@ Project Licensing:
 
 - All HTML, CSS and Javascript in this project is licensed under the Apache License v2.
 
-Content Usage and Licensing:
+### Content Usage and Licensing:
 
-Virtual Table Top Platform Licenses:
+### Virtual Table Top Platform Licenses:
 
 - Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
-
-### Contributing
-
-See CONTRIBUTING.md
