@@ -1,9 +1,11 @@
 .resource-label {
-  font-weight: bold;
+  // font-weight: bold;
+  font-family: $font-primary;
   text-transform: uppercase;
   padding-right: 5px;
   color: $c-green;
   justify-self: center;
+  flex: auto;
 }
 .attr-label {
   font-weight: bold;

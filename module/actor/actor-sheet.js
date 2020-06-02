@@ -105,14 +105,19 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
+
+    // Rollable Items.
+    html.find('.rollItem').click(this._rollItem.bind(this));
+
     // minus from health and stress
     html.find('.minus-btn').click(this._minusButton.bind(this));
+
     // plus tohealth and stress
     html.find('.plus-btn').click(this._plusButton.bind(this));
 
     html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle Dying Wounded
 
-    // html.find('.click-switch').on('click contextmenu', this._onClickCheckBox.bind(this)); // Toggle Dying Wounded
+    html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
     // Drag events for macros.
     if (this.actor.owner) {
@@ -170,7 +175,7 @@ export class alienrpgActorSheet extends ActorSheet {
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
-      let reRoll = false;
+      let reRoll = 'false';
       yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       // console.log('onRoll', game.alienrpg.rollArr);
     } else {
@@ -224,39 +229,6 @@ export class alienrpgActorSheet extends ActorSheet {
       newLevel = Math.clamped(level - 1, 0, max);
     } // Update the field value and save the form
 
-    // if (statIsItemType == 'item') {
-    //   let itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-
-    //   if (itemId == undefined) {
-    //     // Then item is spellcastingEntry, this could be refactored
-    //     // but data-contained-id and proviciency/proficient need to be refactored everywhere to give
-    //     // Lore Skills, Martial Skills and Spellcasting Entries the same structure.
-    //     itemId = $(event.currentTarget).parents('.item-container').attr('data-container-id');
-
-    //     if ($(event.currentTarget).attr('title') == game.i18n.localize('PF2E.Focus.pointTitle')) {
-    //       const item = this.actor.getOwnedItem(itemId);
-    //       const focusPoolSize = getProperty(item.data, 'data.focus.pool') || 1;
-    //       newLevel = Math.clamped(newLevel, 0, focusPoolSize);
-    //       this.actor.updateEmbeddedEntity('OwnedItem', {
-    //         _id: itemId,
-    //         'data.focus.points': newLevel,
-    //       });
-    //     } else {
-    //       this.actor.updateEmbeddedEntity('OwnedItem', {
-    //         _id: itemId,
-    //         'data.proficiency.value': newLevel,
-    //       });
-    //     }
-    //   } else {
-    //     this.actor.updateEmbeddedEntity('OwnedItem', {
-    //       _id: itemId,
-    //       'data.proficient.value': newLevel,
-    //     });
-    //   }
-
-    //   return;
-    // }
-
     field.val(newLevel);
 
     this._onSubmit(event);
@@ -302,5 +274,57 @@ export class alienrpgActorSheet extends ActorSheet {
     }
 
     return icons[level];
+  }
+
+  _supplyRoll(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    let label = dataset.spbutt + ' Supply';
+
+    // console.log(element);
+    const consUme = dataset.spbutt.toLowerCase();
+    let r1Data = 0;
+    let r2Data = this.actor.data.data.consumables[consUme].value;
+    let reRoll = 'never';
+    if (r2Data <= 0) {
+      return ui.notifications.warn('You have run out of supplies');
+    } else {
+      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      if (game.alienrpg.rollArr.r2One) {
+        switch (consUme) {
+          case 'air':
+            this.actor.update({ 'data.consumables.air.value': this.actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
+            break;
+          case 'food':
+            this.actor.update({ 'data.consumables.food.value': this.actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
+            break;
+          case 'power':
+            this.actor.update({ 'data.consumables.power.value': this.actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
+            break;
+          case 'water':
+            this.actor.update({ 'data.consumables.water.value': this.actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
+            break;
+        }
+      }
+    }
+  }
+
+  _rollItem(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    let label = dataset.label;
+    const itemName = dataset.item;
+    const speaker = ChatMessage.getSpeaker();
+    let actor;
+    if (speaker.token) actor = game.actors.tokens[speaker.token];
+    if (!actor) actor = game.actors.get(speaker.actor);
+    // console.log('actor-sheet.js 321 - Got here', speaker, actor);
+    const item = actor ? actor.items.find((i) => i.name === itemName) : null;
+    if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+
+    // Trigger the item roll
+    return item.roll();
   }
 }

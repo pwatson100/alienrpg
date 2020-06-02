@@ -64,8 +64,10 @@
 .maxboxsize {
   max-width: 35px;
   color: $c-green;
-  justify-items: center;
   background-color: $c-black;
+  height: 20px;
+  padding: 0;
+  margin: 0;
 }
 .cashboxsize {
   max-width: 100px;

@@ -31,7 +31,7 @@ export class alienrpgItem extends Item {
     // let roll;
     let r2Data = this.actor.getRollData().stress;
     let label = `${item.name}`;
-    let reRoll = false;
+    let reRoll = 'false';
     // Define the roll formula.
     if (item.data.header.type.value === 'Ranged') {
       let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;

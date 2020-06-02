@@ -3,8 +3,8 @@
   display: grid;
   grid-column: span 2 / span 2;
   // grid-template-columns: repeat(2, minmax(50fr, 1fr));
-  gap: 5px;
-  margin: 5px 0;
+  // gap: 5px;
+  // margin: 5px 0;
   padding: 0;
   align-items: center;
   // justify-items: center;
@@ -79,12 +79,12 @@
   grid-template-areas:
     'Item1 Item2 Item2'
     'Item1 Item4 Item4'
-    'Item8 Item4 Item4'
     'Item8 Item5 Item5'
     'Item8 Item3 Item3'
-    'Item8 Item6 Item6'
-    'Item8 Item7 Item7'
-    'Item9 Item9 Item9';
+    'Item9 Item6 Item6'
+    'Item9 Item7 Item7'
+    'Item9 . .'
+    'Item9 . .';
 
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -152,12 +152,6 @@
   // border: 2px solid white;
 }
 
-.Col3 {
-  grid-area: Col3;
-  // justify-items: left;
-  // border: 2px solid white;
-}
-
 .grid-attr {
   display: grid;
   // gap: 5px;
@@ -190,6 +184,61 @@
   grid-area: Attr4;
   // justify-items: right;
   // border: 2px solid white;
+}
+
+.grid-Consumables {
+  display: grid;
+  // border: 2px solid white;
+  grid-template-areas:
+    'Heading Heading '
+    'Air1 Air2'
+    'Food1 Food2'
+    'Power1 Power2'
+    'Water1 Water2';
+
+  grid-template-columns: 1fr 1fr;
+}
+
+.Heading {
+  grid-area: Heading;
+  // border: 1px solid white;
+  justify-self: left;
+}
+.Air1 {
+  grid-area: Air1;
+  // border: 1px solid white;
+  justify-content: left;
+}
+.Air2 {
+  grid-area: Air2;
+  // border: 1px solid white;
+}
+.Food1 {
+  grid-area: Food1;
+  // border: 1px solid white;
+  justify-self: left;
+}
+.Food2 {
+  grid-area: Food2;
+  // border: 1px solid white;
+}
+.Power1 {
+  grid-area: Power1;
+  // border: 1px solid white;
+  justify-self: left;
+}
+.Power2 {
+  grid-area: Power2;
+  // border: 1px solid white;
+}
+.Water1 {
+  grid-area: Water1;
+  // border: 1px solid white;
+  justify-self: left;
+}
+.Water2 {
+  grid-area: Water2;
+  // border: 1px solid white;
 }
 
 .flex-group-center,

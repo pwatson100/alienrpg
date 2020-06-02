@@ -27,11 +27,17 @@
   font-size: 1.5rem;
   padding: 0;
   color: #adff2f;
-  vertical-align: middle;
   margin: 0;
 }
 
 .rollable:hover, .rollable:focus {
+  color: black;
+  text-shadow: 0 0 20px red;
+  font-size: 110%;
+  cursor: pointer;
+}
+
+.rollItem:hover, .rollItem:focus {
   color: black;
   text-shadow: 0 0 20px red;
   font-size: 110%;
@@ -45,12 +51,14 @@
   padding: 0;
 }
 
+.supply-btn {
+  padding: 0;
+}
+
 .grid,
 .grid-2col {
   display: grid;
   grid-column: span 2 / span 2;
-  gap: 5px;
-  margin: 5px 0;
   padding: 0;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -120,7 +128,7 @@
 
 .grid-genPage {
   display: grid;
-  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item8 Item6 Item6' 'Item8 Item7 Item7' 'Item9 Item9 Item9';
+  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item9 Item6 Item6' 'Item9 Item7 Item7' 'Item9 . .' 'Item9 . .';
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -189,10 +197,6 @@
   grid-area: Col2;
 }
 
-.Col3 {
-  grid-area: Col3;
-}
-
 .grid-attr {
   display: grid;
   margin: 0;
@@ -220,6 +224,55 @@
 
 .Attr4 {
   grid-area: Attr4;
+}
+
+.grid-Consumables {
+  display: grid;
+  grid-template-areas: 'Heading Heading ' 'Air1 Air2' 'Food1 Food2' 'Power1 Power2' 'Water1 Water2';
+  grid-template-columns: 1fr 1fr;
+}
+
+.Heading {
+  grid-area: Heading;
+  justify-self: left;
+}
+
+.Air1 {
+  grid-area: Air1;
+  -webkit-box-pack: left;
+  -ms-flex-pack: left;
+  justify-content: left;
+}
+
+.Air2 {
+  grid-area: Air2;
+}
+
+.Food1 {
+  grid-area: Food1;
+  justify-self: left;
+}
+
+.Food2 {
+  grid-area: Food2;
+}
+
+.Power1 {
+  grid-area: Power1;
+  justify-self: left;
+}
+
+.Power2 {
+  grid-area: Power2;
+}
+
+.Water1 {
+  grid-area: Water1;
+  justify-self: left;
+}
+
+.Water2 {
+  grid-area: Water2;
 }
 
 .flex-group-center,
@@ -349,8 +402,10 @@
 .alienrpg .maxboxsize {
   max-width: 35px;
   color: greenyellow;
-  justify-items: center;
   background-color: #000;
+  height: 20px;
+  padding: 0;
+  margin: 0;
 }
 
 .alienrpg .cashboxsize {
@@ -462,11 +517,14 @@
 }
 
 .alienrpg .resource-label {
-  font-weight: bold;
+  font-family: "Wallpoet", sans-serif;
   text-transform: uppercase;
   padding-right: 5px;
   color: greenyellow;
   justify-self: center;
+  -webkit-box-flex: 1;
+  -ms-flex: auto;
+  flex: auto;
 }
 
 .alienrpg .attr-label {

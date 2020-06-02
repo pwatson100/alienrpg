@@ -27,10 +27,11 @@ export class yze {
   static async yzeRoll(reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
     //  Initialse the chat message
     let chatMessage = '';
+    // console.log('YZE', reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3);
 
     // Set uptext for a roll or push
     let rType = '';
-    if (reRoll) {
+    if (reRoll === 'true') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
       rType = game.i18n.localize('ALIENRPG.Rolling');
@@ -67,8 +68,8 @@ export class yze {
       chatMessage += '<div><br></div>';
     }
 
+    chatMessage += '<h2>' + rType + ' ' + label + ' </h2>';
     if (r1Dice >= 1) {
-      chatMessage += '<h2>' + rType + ' ' + label + ' </h2>';
       chatMessage += '<div>' + col1 + ' - ' + r1Dice + '</div>';
       yzeDRoll('r1Dice', r1Dice, 'r1Six', 'r1One');
       data.formula = r1Dice + 'd6';
@@ -77,8 +78,8 @@ export class yze {
       chatMessage += '<div>' + col2 + ' - ' + r2Dice + '</div>';
       yzeDRoll('r2Dice', r2Dice, 'r2Six', 'r2One');
       data.formula = r1Dice + r2Dice + 'd6';
-      if (game.alienrpg.rollArr.r2One > 0) {
-        reRoll = true;
+      if (game.alienrpg.rollArr.r2One > 0 && reRoll != 'never') {
+        reRoll = 'true';
       }
     }
     if (r3Dice >= 1) {
@@ -87,7 +88,7 @@ export class yze {
       data.formula = r1Dice + r2Dice + r3Dice + 'd6';
     }
 
-    if (!reRoll) {
+    if (reRoll === 'false') {
       const btnStyling = 'height:50px; font-size:45px;line-height:1px;background-color: #413131; color:#adff2f;border-color: #000000';
       chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;

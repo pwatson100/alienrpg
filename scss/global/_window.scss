@@ -26,7 +26,7 @@
     // text-decoration: none;
     padding: 0;
     color: #adff2f;
-    vertical-align: middle;
+    // vertical-align: middle;
     margin: 0;
   }
 }
@@ -40,10 +40,25 @@
     cursor: pointer;
   }
 }
+.rollItem {
+  &:hover,
+  &:focus {
+    color: black;
+    text-shadow: 0 0 20px red;
+    font-size: 110%;
+    cursor: pointer;
+  }
+}
 
 .minus-btn .plus-btn {
   width: 10px;
   height: 10px;
   line-height: 20px;
+  padding: 0;
+}
+.supply-btn {
+  // width: 5px;
+  // height: 5px;
+  // line-height: 10px;
   padding: 0;
 }

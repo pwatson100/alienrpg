@@ -56,5 +56,10 @@
   "ALIENRPG.Dehydrated": "Dehydrated",
   "ALIENRPG.Exhausted": "Exhausted",
   "ALIENRPG.Freezing": "Freezing",
-  "ALIENRPG.Conditions": "Conditions"
+  "ALIENRPG.Conditions": "Conditions",
+  "ALIENRPG.Consumables": "Consumables",
+  "ALIENRPG.Air": "Air",
+  "ALIENRPG.Power": "Power",
+  "ALIENRPG.Food": "Food",
+  "ALIENRPG.Water": "Water"
 }
