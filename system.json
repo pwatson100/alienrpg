@@ -34,5 +34,5 @@
   "secondaryTokenAttribute": "stress",
   "url": "https://github.com/pwatson100/alienrpg",
   "manifest": "https://raw.githubusercontent.com/pwatson100/alienrpg/master/system.json",
-  "download": ""
+  "download": "https://github.com/pwatson100/alienrpg/archive/master.zip"
 }
