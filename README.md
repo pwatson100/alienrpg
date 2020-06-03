@@ -28,6 +28,7 @@ Tested with the following virtual table top platforms:
 
 A huge thanks to:
 
+- Mikasaz#3063 for his help and support in developing the system.
 - @asacolips#1867 for creating a great base system to kickstart new developments.
 - @NickEast#1131 for his development guides and base system.
 - @hooking [UTC+12]#0492 for his excellent PF2e which has provided many insights into how to build systems.
