@@ -280,7 +280,8 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    let label = dataset.spbutt + ' Supply';
+    const lTemp = 'ALIENRPG.' + dataset.spbutt;
+    const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
 
     // console.log(element);
     const consUme = dataset.spbutt.toLowerCase();

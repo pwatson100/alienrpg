@@ -47,14 +47,14 @@
         <input type="text" class="maxboxsize" name="data.attributes.damage.value" value="{{data.attributes.damage.value}}" data-dtype="Number" />
 
         <label class="item-label">{{localize "ALIENRPG.Cost"}}</label>
-        <input type="text" class="cashboxsize" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" data-dtype="Number" />
+        <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
         <br />
         <label class="item-label">{{localize "ALIENRPG.Range"}}</label>
         <input type="text" class="textbox" name="data.attributes.range.value" value="{{data.attributes.range.value}}" data-dtype="String" />
 
         <br />
         <label class="item-label">{{localize "ALIENRPG.Comment"}}</label>
-        <input type="text" class="textbox" name="data.attributes.comment.value" value="{{data.attributes.comment.value}}" data-dtype="String" />
+        <textarea name="data.attributes.comment.value" rows="2" data-dtype="String">{{data.attributes.comment.value}}</textarea>
       </div>
     </div>
 

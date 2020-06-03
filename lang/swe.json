@@ -56,5 +56,20 @@
   "ALIENRPG.Dehydrated": "Uttorkad",
   "ALIENRPG.Exhausted": "Utmattad",
   "ALIENRPG.Freezing": "Frysning",
-  "ALIENRPG.Conditions": "Betingelser"
+  "ALIENRPG.Conditions": "Betingelser",
+  "ALIENRPG.Supply": "Tillförsel Rulla",
+  "ALIENRPG.Consumables": "Förbruknings",
+  "ALIENRPG.Air": "Luft",
+  "ALIENRPG.Power": "Kraft",
+  "ALIENRPG.Food": "Mat",
+  "ALIENRPG.Water": "Vatten",
+  "ALIENRPG.ColonialMarine": "Colonial Marine",
+  "ALIENRPG.ColonialMarshal": "Colonial Marshal",
+  "ALIENRPG.CompanyAgent": "Företag Agent",
+  "ALIENRPG.Kid": "Unge",
+  "ALIENRPG.Medic": "Läkare",
+  "ALIENRPG.Officer": "Officer",
+  "ALIENRPG.Pilot": "Pilot",
+  "ALIENRPG.Roughneck": "Råskinnet",
+  "ALIENRPG.Scientist": "Forskare"
 }

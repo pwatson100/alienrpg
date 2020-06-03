@@ -56,5 +56,20 @@
   "ALIENRPG.Dehydrated": "Dehydriert",
   "ALIENRPG.Exhausted": "Erschöpft",
   "ALIENRPG.Freezing": "Einfrieren",
-  "ALIENRPG.Conditions": "Bedingungen"
+  "ALIENRPG.Conditions": "Bedingungen",
+  "ALIENRPG.Supply": "Liefern Rollen",
+  "ALIENRPG.Consumables": "Verbrauchsmaterial",
+  "ALIENRPG.Air": "Luft",
+  "ALIENRPG.Power": "Leistung",
+  "ALIENRPG.Food": "Essen",
+  "ALIENRPG.Water": "Wasser",
+  "ALIENRPG.ColonialMarine": "Kolonialmarine",
+  "ALIENRPG.ColonialMarshal": "Kolonialmarschall",
+  "ALIENRPG.CompanyAgent": "Firmenvertreter",
+  "ALIENRPG.Kid": "Kind",
+  "ALIENRPG.Medic": "Medizin",
+  "ALIENRPG.Officer": "Offizier",
+  "ALIENRPG.Pilot": "Pilot",
+  "ALIENRPG.Roughneck": "Roughneck",
+  "ALIENRPG.Scientist": "Wissenschaftler"
 }

@@ -57,9 +57,19 @@
   "ALIENRPG.Exhausted": "Exhausted",
   "ALIENRPG.Freezing": "Freezing",
   "ALIENRPG.Conditions": "Conditions",
+  "ALIENRPG.Supply": "Supply Roll",
   "ALIENRPG.Consumables": "Consumables",
   "ALIENRPG.Air": "Air",
   "ALIENRPG.Power": "Power",
   "ALIENRPG.Food": "Food",
-  "ALIENRPG.Water": "Water"
+  "ALIENRPG.Water": "Water",
+  "ALIENRPG.ColonialMarine": "Colonial Marine",
+  "ALIENRPG.ColonialMarshal": "Colonial Marshal",
+  "ALIENRPG.CompanyAgent": "Company Agent",
+  "ALIENRPG.Kid": "Kid",
+  "ALIENRPG.Medic": "Medic",
+  "ALIENRPG.Officer": "Officer",
+  "ALIENRPG.Pilot": "Pilot",
+  "ALIENRPG.Roughneck": "Roughneck",
+  "ALIENRPG.Scientist": "Scientist"
 }

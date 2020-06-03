@@ -70,7 +70,7 @@
   margin: 0;
 }
 .cashboxsize {
-  max-width: 100px;
+  max-width: 150px;
   color: $c-green;
   justify-items: center;
   background-color: $c-black;
@@ -101,6 +101,7 @@ input {
     // background-color: grey;
     color: $c-green;
     background-color: $c-black;
+    font-size: 15px;
   }
 }
 textarea {

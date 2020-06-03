@@ -65,12 +65,6 @@ export class alienrpgActor extends Actor {
   _prepareCharacterData(actorData) {
     const data = actorData.data;
 
-    // Make modifications to data here. For example:
-    // this.actor.update({ 'data.general.air.value': this.actor.data.data.general.air.value - game.alienrpg.rollArr.r2One });
-    // this.actor.update({ 'data.general.food.value': this.actor.data.data.general.food.value - game.alienrpg.rollArr.r2One });
-    // this.actor.update({ 'data.general.power.value': this.actor.data.data.general.power.value - game.alienrpg.rollArr.r2One });
-    // this.actor.update({ 'data.general.water.value': this.actor.data.data.general.water.value - game.alienrpg.rollArr.r2One });
-
     //   // Loop through ability scores, and add their modifiers to our sheet output.
     //   for (let [key, ability] of Object.entries(data.abilities)) {
     //     // Calculate the modifier using d20 rules.
@@ -83,6 +77,14 @@ export class alienrpgActor extends Actor {
       // Calculate the modifier using d20 rules.
       const conAtt = skill.ability;
       skill.mod = skill.value + data.attributes[conAtt].value;
+    }
+  }
+
+  _prepareTokenImg() {
+    if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
+      if (this.data.token.img == 'icons/svg/mystery-man.svg' && this.data.token.img != this.img) {
+        this.data.token.img = this.img;
+      }
     }
   }
 }

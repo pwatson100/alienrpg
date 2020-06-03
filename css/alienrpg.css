@@ -409,7 +409,7 @@
 }
 
 .alienrpg .cashboxsize {
-  max-width: 100px;
+  max-width: 150px;
   color: greenyellow;
   justify-items: center;
   background-color: #000;
@@ -439,6 +439,7 @@
 .alienrpg .selectBox select {
   color: greenyellow;
   background-color: #000;
+  font-size: 15px;
 }
 
 .alienrpg textarea {

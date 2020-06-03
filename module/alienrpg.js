@@ -5,6 +5,7 @@ import { alienrpgItem } from './item/item.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
+import registerSettings from './settings.js';
 
 Hooks.once('init', async function () {
   console.log(`Initializing Alien RPG`);
@@ -13,6 +14,7 @@ Hooks.once('init', async function () {
     alienrpgItem,
     yze,
     rollItemMacro,
+    registerSettings,
   };
 
   // Global define for this so the roll data can be read by the reroll method.
@@ -37,6 +39,8 @@ Hooks.once('init', async function () {
   Actors.registerSheet('alienrpg', alienrpgActorSheet, { makeDefault: true });
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('alienrpg', alienrpgItemSheet, { makeDefault: true });
+
+  registerSettings();
 
   // If you need to add Handlebars helpers, here are a few useful examples:
   Handlebars.registerHelper('concat', function () {
@@ -107,6 +111,41 @@ Hooks.on('renderChatMessage', (message, html, data) => {
   });
 });
 
+Hooks.on('preCreateActor', (actor, dir) => {
+  if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
+    // Set wounds, advantage, and display name visibility
+    mergeObject(actor, {
+      'token.bar1': {
+        attribute: 'header.stress.value',
+      },
+      // Default Bar 1 to Wounds
+      'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      // Default display name to be on owner hover
+      'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      // Default display bars to be on owner hover
+      'token.disposition': CONST.TOKEN_DISPOSITIONS.HOSTILE,
+      // Default disposition to hostile
+      'token.name': actor.name, // Set token name to actor name
+    }); // Default characters to HasVision = true and Link Data = true
+
+    if (actor.type == 'character') {
+      actor.token.vision = true;
+      actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+      actor.token.actorLink = true;
+    }
+  }
+});
+
+Hooks.on('preUpdateActor', (data, updatedData) => {
+  if (updatedData.img) {
+    updatedData['token.img'] = updatedData.img;
+    data.data.token.img = updatedData.img;
+  }
+  if (updatedData.name) {
+    updatedData['token.name'] = updatedData.name;
+  }
+});
+
 /* --
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
@@ -152,7 +191,7 @@ function rollItemMacro(itemName) {
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
   if (!actor) actor = game.actors.get(speaker.actor);
-  console.log('alienrpg.js 155 - Got here', speaker, actor);
+  // console.log('alienrpg.js 155 - Got here', speaker, actor);
   const item = actor ? actor.items.find((i) => i.name === itemName) : null;
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
 
