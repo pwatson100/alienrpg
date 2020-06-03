@@ -53,14 +53,12 @@ export class alienrpgItemSheet extends ItemSheet {
     if (!this.options.editable) return;
 
     // Roll handlers, click handlers, etc. would go here.
-    html.find('.currency').click(this._currencyField.bind(this));
+    html.find('.currency').on('change', this._currencyField.bind(this));
   }
 
   _currencyField(event) {
     event.preventDefault();
     const element = event.currentTarget;
-    const dataset = element.dataset;
-    let label = dataset.label;
 
     console.log(element.dataset);
 
@@ -76,10 +74,10 @@ export class alienrpgItemSheet extends ItemSheet {
       return Number(String(s).replace(/[^0-9.-]+/g, ''));
     }
 
-    function onFocus(e) {
-      let value = e.target.value;
-      e.target.value = value ? localStringToNumber(value) : '';
-    }
+    // function onFocus(e) {
+    //   let value = e.target.value;
+    //   e.target.value = value ? localStringToNumber(value) : '';
+    // }
 
     function onBlur(e) {
       console.log('onblur');
