@@ -6,6 +6,8 @@ import { alienrpgItemSheet } from './item/item-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
+import { AlienRPGSetup } from './setupHandler.js';
+// import { createPanicTable } from './alienrpg-utils.js';
 
 Hooks.once('init', async function () {
   console.log(`Initializing Alien RPG`);
@@ -67,6 +69,11 @@ Hooks.once('init', async function () {
     default: true,
     config: true,
   });
+});
+
+// Build the panic table if it does not exist.
+Hooks.once('ready', async () => {
+  await AlienRPGSetup.setup();
 });
 
 // clear the minimum resolution message
