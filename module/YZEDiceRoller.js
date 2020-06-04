@@ -25,6 +25,16 @@ export class yze {
    *
    */
   static async yzeRoll(reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
+    // Is Dice So Nice enabled ?
+    let niceDice = '';
+
+    try {
+      niceDice = true;
+      game.settings.get('dice-so-nice', 'settings').enabled;
+    } catch {
+      niceDice = false;
+    }
+
     //  Initialse the chat message
     let chatMessage = '';
     // console.log('YZE', reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3);
@@ -95,7 +105,11 @@ export class yze {
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
     }
 
-    game.dice3d.show(data).then((displayed) => {});
+    // Only if Dice So Nice is enabled.
+    if (niceDice) {
+      game.dice3d.show(data).then((displayed) => {});
+    }
+
     ChatMessage.create({
       user: game.user._id,
       content: chatMessage,
