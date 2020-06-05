@@ -4,22 +4,11 @@
 
     <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'ALIENRPG.Suit'}}" /></h1>
       <div class="grid grid-2col">
-        <div class="selectBox">
-          <label>{{localize "ALIENRPG.Type"}}</label>
-          <select name="data.header.type.value" data-dtype="{{data.header.type.value}}">
-            {{#select data.header.type.value}}
-            <!-- <option value=""></option> -->
-            <option value="Data Storage">{{localize "ALIENRPG.DataStorage"}}</option>
-            <option value="Diagnostics and Display">{{localize "ALIENRPG.DiagnosticsDisplay"}}</option>
-            <option value="Vision Devices">{{localize "ALIENRPG.VisionDevices"}}</option>
-            <option value="Tools">{{localize "ALIENRPG.Tools"}}</option>
-            <option value="Medical Supplies">{{localize "ALIENRPG.MedicalSupplies"}}</option>
-            <option value="Pharmaceuticals">{{localize "ALIENRPG.Pharmaceuticals"}}</option>
-            <option value="Food and Drink">{{localize "ALIENRPG.FoodDrink"}}</option>
-            {{/select}}
-          </select>
+        <div class="resource">
+          <label class="resource-label">{{localize "ALIENRPG.ArmorRating"}}</label>
+          <input type="text" name="data.attributes.armorrating.value" value="{{data.attributes.armorrating.value}}" data-dtype="text" />
         </div>
         <div class="resource">
           <label class="resource-label">{{localize "ALIENRPG.Weight"}}</label>
@@ -41,6 +30,9 @@
     <div class="tab attributes grid grid-3col" data-group="primary" data-tab="attributes">
       {{!-- As you add new fields, add them in here! --}}
       <div class="tab attributes" data-group="primary" data-tab="attributes">
+        <label class="item-label">{{localize "ALIENRPG.AirSupply"}}</label>
+        <input type="text" class="maxboxsize" name="data.attributes.airsupply.value" value="{{data.attributes.airsupply.value}}" data-dtype="Number" />
+
         <label class="item-label">{{localize "ALIENRPG.Cost"}}</label>
         <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
         <br />

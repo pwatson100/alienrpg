@@ -2,7 +2,7 @@
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class alienrpgItemSheet extends ItemSheet {
+export class alienrpgArmorSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -17,7 +17,7 @@ export class alienrpgItemSheet extends ItemSheet {
   get template() {
     const path = 'systems/alienrpg/templates/item';
     // Return a single sheet for all item types.
-    // return `${path}/item-sheet.html`;
+    // return `${path}/armor-sheet.html`;
     // Alternatively, you could use the following return statement to do a
     // unique item sheet by type, like `weapon-sheet.html`.
 

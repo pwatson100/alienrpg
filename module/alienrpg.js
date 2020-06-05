@@ -2,12 +2,13 @@
 import { alienrpgActor } from './actor/actor.js';
 import { alienrpgActorSheet } from './actor/actor-sheet.js';
 import { alienrpgItem } from './item/item.js';
+import { alienrpgWeaponSheet } from './item/weapon-sheet.js';
+import { alienrpgArmorSheet } from './item/armor-sheet.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
 import { AlienRPGSetup } from './setupHandler.js';
-// import { createPanicTable } from './alienrpg-utils.js';
 
 Hooks.once('init', async function () {
   console.log(`Initializing Alien RPG`);
@@ -40,7 +41,10 @@ Hooks.once('init', async function () {
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('alienrpg', alienrpgActorSheet, { makeDefault: true });
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('alienrpg', alienrpgItemSheet, { makeDefault: true });
+
+  Items.registerSheet('alienrpg', alienrpgItemSheet, { makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgWeaponSheet, { makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgArmorSheet, { makeDefault: false });
 
   registerSettings();
 

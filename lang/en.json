@@ -71,5 +71,15 @@
   "ALIENRPG.Officer": "Officer",
   "ALIENRPG.Pilot": "Pilot",
   "ALIENRPG.Roughneck": "Roughneck",
-  "ALIENRPG.Scientist": "Scientist"
+  "ALIENRPG.Scientist": "Scientist",
+  "ALIENRPG.ArmorRating": "Armor Rating",
+  "ALIENRPG.Suit": "Suit/Armor",
+  "ALIENRPG.DataStorage": "Data Storage",
+  "ALIENRPG.DiagnosticsDisplay": "Diagnostics and Display",
+  "ALIENRPG.VisionDevices": "Vision Devices",
+  "ALIENRPG.Tools": "Tools",
+  "ALIENRPG.MedicalSupplies": "Medical Supplies",
+  "ALIENRPG.Pharmaceuticals": "Pharmaceuticals",
+  "ALIENRPG.FoodDrink": "Food and Drink",
+  "ALIENRPG.AirSupply": "Air Supply"
 }

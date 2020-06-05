@@ -11,15 +11,14 @@
           <select name="data.header.type.value" data-dtype="{{data.header.type.value}}">
             {{#select data.header.type.value}}
             <!-- <option value=""></option> -->
-            <option value="Data Storage">{{localize "ALIENRPG.DataStorage"}}</option>
-            <option value="Diagnostics and Display">{{localize "ALIENRPG.DiagnosticsDisplay"}}</option>
-            <option value="Vision Devices">{{localize "ALIENRPG.VisionDevices"}}</option>
-            <option value="Tools">{{localize "ALIENRPG.Tools"}}</option>
-            <option value="Medical Supplies">{{localize "ALIENRPG.MedicalSupplies"}}</option>
-            <option value="Pharmaceuticals">{{localize "ALIENRPG.Pharmaceuticals"}}</option>
-            <option value="Food and Drink">{{localize "ALIENRPG.FoodDrink"}}</option>
+            <option value="Ranged">{{localize "ALIENRPG.WepTypeRanged"}}</option>
+            <option value="Melee">{{localize "ALIENRPG.WepTypeMelee"}}</option>
             {{/select}}
           </select>
+        </div>
+        <div class="resource">
+          <label class="resource-label">{{localize "ALIENRPG.Class"}}</label>
+          <input type="text" name="data.attributes.class.value" value="{{data.attributes.class.value}}" data-dtype="text" />
         </div>
         <div class="resource">
           <label class="resource-label">{{localize "ALIENRPG.Weight"}}</label>
@@ -41,8 +40,18 @@
     <div class="tab attributes grid grid-3col" data-group="primary" data-tab="attributes">
       {{!-- As you add new fields, add them in here! --}}
       <div class="tab attributes" data-group="primary" data-tab="attributes">
+        <label class="item-label">{{localize "ALIENRPG.Bonus"}}</label>
+        <input type="text" class="maxboxsize" name="data.attributes.bonus.value" value="{{data.attributes.bonus.value}}" data-dtype="Number" />
+
+        <label class="item-label">{{localize "ALIENRPG.Damage"}}</label>
+        <input type="text" class="maxboxsize" name="data.attributes.damage.value" value="{{data.attributes.damage.value}}" data-dtype="Number" />
+
         <label class="item-label">{{localize "ALIENRPG.Cost"}}</label>
         <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
+        <br />
+        <label class="item-label">{{localize "ALIENRPG.Range"}}</label>
+        <input type="text" class="textbox" name="data.attributes.range.value" value="{{data.attributes.range.value}}" data-dtype="String" />
+
         <br />
         <label class="item-label">{{localize "ALIENRPG.Comment"}}</label>
         <textarea name="data.attributes.comment.value" rows="2" data-dtype="String">{{data.attributes.comment.value}}</textarea>

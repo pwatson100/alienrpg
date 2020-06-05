@@ -171,7 +171,7 @@
     }
   },
   "Item": {
-    "types": ["item"],
+    "types": ["item", "weapon", "armor"],
     "item": {
       "header": {
         "type": {
@@ -201,6 +201,14 @@
           "label": "Text"
         },
         "class": {
+          "value": "",
+          "label": "Text"
+        },
+        "armorrating": {
+          "value": "",
+          "label": "Text"
+        },
+        "airsupply": {
           "value": "",
           "label": "Text"
         },
