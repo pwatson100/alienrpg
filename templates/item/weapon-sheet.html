@@ -1,13 +1,20 @@
-<form class="{{cssClass}}" autocomplete="off">
-  <header class="sheet-header">
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <header class="vehicle-header">
     <!-- {{log "CONTEXT!!!!"}} {{log this}} -->
 
-    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
-      <div class="grid grid-2col">
-        <div class="selectBox">
-          <label>{{localize "ALIENRPG.Type"}}</label>
+
+      <div class="resources grid-weapon">
+        <h3 class="resource-label wItem1">{{localize "ALIENRPG.Weight"}}</h3>
+        <input type="text" name="data.attributes.weight.value" class="maxboxsize wItem2" value="{{data.attributes.weight.value}}" data-dtype="Number" />
+
+        <h3 class="resource-label wItem3">{{localize "ALIENRPG.Class"}}</h3>
+        <input type="text" class="wItem4" name="data.attributes.class.value" value="{{data.attributes.class.value}}" data-dtype="text" />
+
+        <h3 class="wItem6 resource-label">{{localize "ALIENRPG.Type"}}</h3>
+        <div class="selectBox wItem7">
           <select name="data.header.type.value" data-dtype="{{data.header.type.value}}">
             {{#select data.header.type.value}}
             <!-- <option value=""></option> -->
@@ -15,14 +22,6 @@
             <option value="Melee">{{localize "ALIENRPG.WepTypeMelee"}}</option>
             {{/select}}
           </select>
-        </div>
-        <div class="resource">
-          <label class="resource-label">{{localize "ALIENRPG.Class"}}</label>
-          <input type="text" name="data.attributes.class.value" value="{{data.attributes.class.value}}" data-dtype="text" />
-        </div>
-        <div class="resource">
-          <label class="resource-label">{{localize "ALIENRPG.Weight"}}</label>
-          <input type="text" name="data.attributes.weight.value" class="flex maxboxsize" value="{{data.attributes.weight.value}}" data-dtype="Number" />
         </div>
       </div>
     </div>
@@ -37,29 +36,26 @@
   {{!-- Sheet Body --}}
   <section class="sheet-body">
     {{!-- Attributes Tab --}}
-    <div class="tab attributes grid grid-3col" data-group="primary" data-tab="attributes">
-      {{!-- As you add new fields, add them in here! --}}
-      <div class="tab attributes" data-group="primary" data-tab="attributes">
-        <label class="item-label">{{localize "ALIENRPG.Bonus"}}</label>
-        <input type="text" class="maxboxsize" name="data.attributes.bonus.value" value="{{data.attributes.bonus.value}}" data-dtype="Number" />
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
+      <label class="resource-label">{{localize "ALIENRPG.Bonus"}}</label>
+      <input type="text" class="maxboxsize" name="data.attributes.bonus.value" value="{{data.attributes.bonus.value}}" data-dtype="Number" />
 
-        <label class="item-label">{{localize "ALIENRPG.Damage"}}</label>
-        <input type="text" class="maxboxsize" name="data.attributes.damage.value" value="{{data.attributes.damage.value}}" data-dtype="Number" />
+      <label class="resource-label">{{localize "ALIENRPG.Damage"}}</label>
+      <input type="text" class="maxboxsize" name="data.attributes.damage.value" value="{{data.attributes.damage.value}}" data-dtype="Number" />
 
-        <label class="item-label">{{localize "ALIENRPG.Cost"}}</label>
-        <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
-        <br />
-        <label class="item-label">{{localize "ALIENRPG.Range"}}</label>
-        <input type="text" class="textbox" name="data.attributes.range.value" value="{{data.attributes.range.value}}" data-dtype="String" />
+      <label class="resource-label">{{localize "ALIENRPG.Cost"}}</label>
+      <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
+      <br />
+      <label class="resource-label">{{localize "ALIENRPG.Range"}}</label>
+      <input type="text" class="textbox" name="data.attributes.range.value" value="{{data.attributes.range.value}}" data-dtype="String" />
 
-        <br />
-        <label class="item-label">{{localize "ALIENRPG.Comment"}}</label>
-        <textarea name="data.attributes.comment.value" rows="2" data-dtype="String">{{data.attributes.comment.value}}</textarea>
-      </div>
+      <br />
+      <label class="resource-label">{{localize "ALIENRPG.Comment"}}</label>
+      <textarea name="data.attributes.comment.value" rows="2" data-dtype="String">{{data.attributes.comment.value}}</textarea>
     </div>
 
     {{!-- Notes Tab --}}
-    <div class="tab notes active" data-group="primary" data-tab="notes">
+    <div class="tab item" data-group="primary" data-tab="notes">
       {{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=editable}}
     </div>
   </section>

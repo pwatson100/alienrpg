@@ -4,21 +4,21 @@ import { yze } from '../YZEDiceRoller.js';
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class alienrpgActorSheet extends ActorSheet {
+export class ActorSheetAlienRPGVehicle extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
-      // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
+      classes: ['alienrpg', 'sheet', 'actor', 'vehicles-sheet'],
+      // template: 'systems/alienrpg/templates/actor/vehicles-sheet.html',
       width: 600,
-      height: 665,
+      height: 458,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
 
   get template() {
     const path = 'systems/alienrpg/templates/actor/';
-    return `${path}actor-sheet.html`;
+    return `${path}vehicles-sheet.html`;
   }
 
   /* -------------------------------------------- */
@@ -26,11 +26,6 @@ export class alienrpgActorSheet extends ActorSheet {
   /** @override */
   getData() {
     // const data = super.getData();
-    // data.dtypes = ['String', 'Number', 'Boolean'];
-    // for (let attr of Object.values(data.data.attributes)) {
-    //   attr.isCheckbox = attr.dtype === 'Boolean';
-    // }
-
     // Basic data
     let isOwner = this.entity.owner;
     const data = {
@@ -54,30 +49,6 @@ export class alienrpgActorSheet extends ActorSheet {
     data.data = data.actor.data;
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
-
-    // Ability Scores
-    for (let [a, abl] of Object.entries(data.actor.data.attributes)) {
-      abl.label = CONFIG.ALIENRPG.attributes[a];
-    }
-
-    // Update skill labels
-    for (let [s, skl] of Object.entries(data.actor.data.skills)) {
-      skl.label = CONFIG.ALIENRPG.skills[s];
-    }
-
-    data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
-    data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
-    data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
-    data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
-    data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
-    data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
-
-    data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
-    data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
-    data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
-    data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
-    data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
-    data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
 
     // Return data to the sheet
 
@@ -334,4 +305,4 @@ export class alienrpgActorSheet extends ActorSheet {
     return item.roll();
   }
 }
-export default alienrpgActorSheet;
+export default ActorSheetAlienRPGVehicle;

@@ -1,9 +1,8 @@
 // Import Modules
+import registerActors from './register-actors.js';
 import { alienrpgActor } from './actor/actor.js';
-import { alienrpgActorSheet } from './actor/actor-sheet.js';
+// import { alienrpgActorSheet } from './actor/actor-sheet.js';
 import { alienrpgItem } from './item/item.js';
-import { alienrpgWeaponSheet } from './item/weapon-sheet.js';
-import { alienrpgArmorSheet } from './item/armor-sheet.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
@@ -38,15 +37,15 @@ Hooks.once('init', async function () {
   CONFIG.Item.entityClass = alienrpgItem;
 
   // Register sheet application classes
-  Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('alienrpg', alienrpgActorSheet, { makeDefault: true });
+  // Actors.unregisterSheet('core', ActorSheet);
+  // Actors.registerSheet('alienrpg', alienrpgActorSheet, { makeDefault: true });
   Items.unregisterSheet('core', ItemSheet);
-
   Items.registerSheet('alienrpg', alienrpgItemSheet, { makeDefault: false });
-  Items.registerSheet('alienrpg', alienrpgWeaponSheet, { makeDefault: false });
-  Items.registerSheet('alienrpg', alienrpgArmorSheet, { makeDefault: false });
-
+  // console.log('*******************************');
+  // console.log('register');
+  // console.log('*******************************');
   registerSettings();
+  registerActors();
 
   // If you need to add Handlebars helpers, here are a few useful examples:
   Handlebars.registerHelper('concat', function () {
@@ -126,10 +125,6 @@ Hooks.on('preCreateActor', (actor, dir) => {
   if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
     // Set wounds, advantage, and display name visibility
     mergeObject(actor, {
-      'token.bar1': {
-        attribute: 'header.stress.value',
-      },
-      // Default Bar 1 to Wounds
       'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
       // Default display name to be on owner hover
       'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
@@ -139,10 +134,25 @@ Hooks.on('preCreateActor', (actor, dir) => {
       'token.name': actor.name, // Set token name to actor name
     }); // Default characters to HasVision = true and Link Data = true
 
+    // actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+    // actor.token.vision = true;
+    // actor.token.actorLink = true;
+
     if (actor.type == 'character') {
-      actor.token.vision = true;
+      mergeObject(actor, {
+        'token.bar1': {
+          attribute: 'header.stress.value',
+        },
+      });
       actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+      actor.token.vision = true;
       actor.token.actorLink = true;
+    } else {
+      if (actor.type == 'vehicles') {
+        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+        actor.token.vision = true;
+        actor.token.actorLink = true;
+      }
     }
   }
 });

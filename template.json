@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character"],
+    "types": ["character", "vehicles"],
     "character": {
       "header": {
         "health": {
@@ -168,11 +168,81 @@
       "notes": {
         "notes": ""
       }
+    },
+    "vehicles": {
+      "header": {
+        "type": {
+          "value": "",
+          "label": "Text"
+        }
+      },
+      "attributes": {
+        "weight": {
+          "value": 0,
+          "label": "Number"
+        },
+        "cost": {
+          "value": 0,
+          "label": "Number"
+        },
+        "armorrating": {
+          "value": 0,
+          "label": "Number"
+        },
+        "comment": {
+          "value": "",
+          "label": "Text"
+        },
+        "hull": {
+          "value": 0,
+          "label": "Number"
+        },
+        "passengers": {
+          "value": 0,
+          "label": "Number"
+        },
+        "speed": {
+          "value": 0,
+          "label": "Number"
+        },
+        "manoeuvrability": {
+          "value": 0,
+          "label": "Number"
+        }
+      },
+      "notes": {
+        "notes": ""
+      }
     }
   },
   "Item": {
     "types": ["item", "weapon", "armor"],
     "item": {
+      "header": {
+        "type": {
+          "value": "",
+          "label": "Text"
+        }
+      },
+      "attributes": {
+        "weight": {
+          "value": 0,
+          "label": "Number"
+        },
+        "cost": {
+          "value": 0,
+          "label": "Number"
+        },
+        "comment": {
+          "value": "",
+          "label": "Text"
+        },
+        "notes": {
+          "notes": ""
+        }
+      }
+    },
+    "weapon": {
       "header": {
         "type": {
           "value": "",
@@ -198,19 +268,38 @@
         },
         "range": {
           "value": "",
-          "label": "Text"
+          "label": "Number"
         },
         "class": {
           "value": "",
           "label": "Text"
         },
-        "armorrating": {
+        "comment": {
           "value": "",
           "label": "Text"
+        }
+      },
+      "notes": {
+        "notes": ""
+      }
+    },
+    "armor": {
+      "attributes": {
+        "weight": {
+          "value": 0,
+          "label": "Number"
+        },
+        "cost": {
+          "value": 0,
+          "label": "Number"
+        },
+        "armorrating": {
+          "value": 0,
+          "label": "Number"
         },
         "airsupply": {
-          "value": "",
-          "label": "Text"
+          "value": 0,
+          "label": "Number"
         },
         "comment": {
           "value": "",

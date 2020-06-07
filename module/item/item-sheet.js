@@ -6,10 +6,10 @@ export class alienrpgItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['alienrpg', 'sheet', 'item'],
-      width: 520,
+      classes: ['alienrpg', 'sheet', 'item', 'item-sheet'],
+      width: 600,
       height: 458,
-      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'description' }],
+      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
 
@@ -66,18 +66,10 @@ export class alienrpgItemSheet extends ItemSheet {
 
     // format inital value
     onBlur({ target: event.currentTarget });
-    // bind event listeners
-    // event.currentTarget.addEventListener('focus', onFocus);
-    // event.currentTarget.addEventListener('blur', onBlur);
 
     function localStringToNumber(s) {
       return Number(String(s).replace(/[^0-9.-]+/g, ''));
     }
-
-    // function onFocus(e) {
-    //   let value = e.target.value;
-    //   e.target.value = value ? localStringToNumber(value) : '';
-    // }
 
     function onBlur(e) {
       console.log('onblur');

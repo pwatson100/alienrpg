@@ -24,6 +24,7 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border-color: $c-green;
   border-style: double;
+  padding: 4px;
 }
 
 .grid-5col {
@@ -91,42 +92,42 @@
 
 .Item1 {
   grid-area: Item1;
-  border: 1px solid white;
+  border: 1px solid $c-green;
   padding: 5px;
 }
 .Item2 {
   grid-area: Item2;
-  border: 1px solid white;
+  border: 1px solid $c-green;
 }
 .Item3 {
   grid-area: Item3;
-  border: 1px solid white;
+  border: 1px solid $c-green;
 }
 .Item4 {
   grid-area: Item4;
-  border: 1px solid white;
+  border: 1px solid $c-green;
 }
 .Item5 {
   grid-area: Item5;
-  border: 1px solid white;
+  border: 1px solid $c-green;
 }
 .Item6 {
   grid-area: Item6;
-  border: 1px solid white;
+  border: 1px solid $c-green;
   justify-items: center;
 }
 .Item7 {
   grid-area: Item7;
-  border: 1px solid white;
+  border: 1px solid $c-green;
 }
 .Item8 {
   grid-area: Item8;
-  border: 1px solid white;
+  border: 1px solid $c-green;
   padding: 5px;
 }
 .Item9 {
   grid-area: Item9;
-  border: 1px solid white;
+  border: 1px solid $c-green;
 }
 
 .grid-container {
@@ -136,7 +137,7 @@
   padding: 0;
   // align-items: center;
   // justify-items: first baseline;
-  // border: 2px solid white;
+  // border: 2px solid $c-green;
   grid-template-areas: 'Col1 Col2 ';
   grid-template-rows: 1fr;
   grid-template-columns: 240px 1fr;
@@ -159,7 +160,7 @@
   padding: 0;
   padding-left: 5px;
   align-items: center;
-  border: 1px solid white;
+  border: 1px solid $c-green;
   grid-template-areas: 'Attr1 Attr2 ';
   grid-template-columns: 190px 50px;
 }
@@ -239,6 +240,85 @@
 .Water2 {
   grid-area: Water2;
   // border: 1px solid white;
+}
+
+.grid-vehicle-header {
+  display: grid;
+  border: 2px solid $c-green;
+  grid-template-areas: 'vChar vChar';
+  grid-template-columns: auto;
+}
+
+.grid-vehicle {
+  display: grid;
+  border: 2px solid $c-green;
+  grid-template-areas:
+    'vItem1 vItem2 vItem3 vItem4'
+    'vItem5 vItem6 vItem7 vItem8';
+
+  grid-template-columns: auto;
+}
+
+.vChar {
+  grid-area: vChar;
+}
+.vItem1 {
+  grid-area: vItem1;
+}
+.vItem2 {
+  grid-area: vItem2;
+}
+.vItem3 {
+  grid-area: vItem3;
+}
+.vItem4 {
+  grid-area: vItem4;
+}
+.vItem5 {
+  grid-area: vItem5;
+}
+.vItem6 {
+  grid-area: vItem6;
+}
+.vItem7 {
+  grid-area: vItem7;
+}
+.vItem8 {
+  grid-area: vItem8;
+}
+
+.grid-weapon {
+  display: grid;
+  border: 2px solid $c-green;
+  grid-template-areas:
+    'wItem1 wItem2 wItem3 wItem4'
+    'wItem5 wItem6 wItem7 wItem7';
+
+  grid-template-columns: auto;
+  align-items: center;
+  padding-bottom: 2px;
+}
+
+.wItem1 {
+  grid-area: wItem1;
+}
+.wItem2 {
+  grid-area: wItem2;
+}
+.wItem3 {
+  grid-area: wItem3;
+}
+.wItem4 {
+  grid-area: wItem4;
+}
+.wItem5 {
+  grid-area: wItem5;
+}
+.wItem6 {
+  grid-area: wItem6;
+}
+.wItem7 {
+  grid-area: wItem7;
 }
 
 .flex-group-center,

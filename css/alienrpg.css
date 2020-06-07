@@ -4,9 +4,6 @@
   font-family: "Wallpoet", sans-serif;
   color: greenyellow;
   background: #000;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -14,8 +11,21 @@
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   padding: 2px;
-  overflow-y: auto;
   overflow-x: auto;
+  border: greenyellow 3px;
+}
+
+.alienrpg h2 {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.alienrpg h3 {
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .resource-content button {
@@ -78,6 +88,7 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border-color: greenyellow;
   border-style: double;
+  padding: 4px;
 }
 
 .grid-5col {
@@ -134,50 +145,50 @@
 
 .Item1 {
   grid-area: Item1;
-  border: 1px solid white;
+  border: 1px solid greenyellow;
   padding: 5px;
 }
 
 .Item2 {
   grid-area: Item2;
-  border: 1px solid white;
+  border: 1px solid greenyellow;
 }
 
 .Item3 {
   grid-area: Item3;
-  border: 1px solid white;
+  border: 1px solid greenyellow;
 }
 
 .Item4 {
   grid-area: Item4;
-  border: 1px solid white;
+  border: 1px solid greenyellow;
 }
 
 .Item5 {
   grid-area: Item5;
-  border: 1px solid white;
+  border: 1px solid greenyellow;
 }
 
 .Item6 {
   grid-area: Item6;
-  border: 1px solid white;
+  border: 1px solid greenyellow;
   justify-items: center;
 }
 
 .Item7 {
   grid-area: Item7;
-  border: 1px solid white;
+  border: 1px solid greenyellow;
 }
 
 .Item8 {
   grid-area: Item8;
-  border: 1px solid white;
+  border: 1px solid greenyellow;
   padding: 5px;
 }
 
 .Item9 {
   grid-area: Item9;
-  border: 1px solid white;
+  border: 1px solid greenyellow;
 }
 
 .grid-container {
@@ -205,7 +216,7 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border: 1px solid white;
+  border: 1px solid greenyellow;
   grid-template-areas: 'Attr1 Attr2 ';
   grid-template-columns: 190px 50px;
 }
@@ -273,6 +284,95 @@
 
 .Water2 {
   grid-area: Water2;
+}
+
+.grid-vehicle-header {
+  display: grid;
+  border: 2px solid greenyellow;
+  grid-template-areas: 'vChar vChar';
+  grid-template-columns: auto;
+}
+
+.grid-vehicle {
+  display: grid;
+  border: 2px solid greenyellow;
+  grid-template-areas: 'vItem1 vItem2 vItem3 vItem4' 'vItem5 vItem6 vItem7 vItem8';
+  grid-template-columns: auto;
+}
+
+.vChar {
+  grid-area: vChar;
+}
+
+.vItem1 {
+  grid-area: vItem1;
+}
+
+.vItem2 {
+  grid-area: vItem2;
+}
+
+.vItem3 {
+  grid-area: vItem3;
+}
+
+.vItem4 {
+  grid-area: vItem4;
+}
+
+.vItem5 {
+  grid-area: vItem5;
+}
+
+.vItem6 {
+  grid-area: vItem6;
+}
+
+.vItem7 {
+  grid-area: vItem7;
+}
+
+.vItem8 {
+  grid-area: vItem8;
+}
+
+.grid-weapon {
+  display: grid;
+  border: 2px solid greenyellow;
+  grid-template-areas: 'wItem1 wItem2 wItem3 wItem4' 'wItem5 wItem6 wItem7 wItem7';
+  grid-template-columns: auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-bottom: 2px;
+}
+
+.wItem1 {
+  grid-area: wItem1;
+}
+
+.wItem2 {
+  grid-area: wItem2;
+}
+
+.wItem3 {
+  grid-area: wItem3;
+}
+
+.wItem4 {
+  grid-area: wItem4;
+}
+
+.wItem5 {
+  grid-area: wItem5;
+}
+
+.wItem6 {
+  grid-area: wItem6;
+}
+
+.wItem7 {
+  grid-area: wItem7;
 }
 
 .flex-group-center,
@@ -348,7 +448,29 @@
   color: greenyellow;
 }
 
-.alienrpg .sheet-header .profile-img {
+.alienrpg .vehicle-header {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 130px;
+  flex: 0 0 130px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-bottom: 1px;
+  background-color: #000;
+  color: greenyellow;
+}
+
+.alienrpg .profile-img {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 100px;
   flex: 0 0 100px;
@@ -356,20 +478,20 @@
   margin-right: 10px;
 }
 
-.alienrpg .sheet-header .header-fields {
+.alienrpg .header-fields {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.alienrpg .sheet-header h1.charname {
+.alienrpg h1.charname {
   height: 50px;
   padding: 0px;
-  margin: 5px 0;
+  margin: 0 5px 5px 5px;
   border-bottom: 0;
 }
 
-.alienrpg .sheet-header h1.charname input {
+.alienrpg h1.charname input {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -383,12 +505,13 @@
   color: greenyellow;
 }
 
-.alienrpg .sheet-body,
-.alienrpg .sheet-body .tab,
-.alienrpg .sheet-body .tab .editor {
+.alienrpg .alienrpg .sheet-body,
+.alienrpg .tab,
+.alienrpg .editor {
   height: 100%;
   background-color: #000;
   color: greenyellow;
+  overflow: hidden;
 }
 
 .alienrpg .tox .tox-editor-container {
@@ -406,6 +529,7 @@
   height: 20px;
   padding: 0;
   margin: 0;
+  text-align: center;
 }
 
 .alienrpg .cashboxsize {
@@ -413,6 +537,7 @@
   color: greenyellow;
   justify-items: center;
   background-color: #000;
+  text-align: center;
 }
 
 .alienrpg .textbox {
@@ -422,7 +547,7 @@
 }
 
 .alienrpg input {
-  width: 50%;
+  width: 200px;
   margin: 4px;
   color: greenyellow;
   font-family: monospace;
@@ -521,6 +646,7 @@
   font-family: "Wallpoet", sans-serif;
   text-transform: uppercase;
   padding-right: 5px;
+  padding-left: 5px;
   color: greenyellow;
   justify-self: center;
   -webkit-box-flex: 1;
@@ -568,7 +694,6 @@
   padding-right: 10px;
   padding-bottom: 0px;
   padding-left: 10px;
-  overflow-y: auto;
 }
 
 .alienrpg .items-list .item-header {

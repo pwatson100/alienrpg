@@ -54,9 +54,12 @@ export class alienrpgActor extends Actor {
     const data = actorData.data;
     const flags = actorData.flags;
 
+    if (actorData.type === 'character') this._prepareCharacterData(actorData);
+    else if (actorData.type === 'vehicle') this._prepareVehicleData(data); // TODO: Migrate trait storage format
+
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
-    if (actorData.type === 'character') this._prepareCharacterData(actorData);
+    // if (actorData.type === 'character') this._prepareCharacterData(actorData);
   }
 
   /**
@@ -79,6 +82,11 @@ export class alienrpgActor extends Actor {
       skill.mod = skill.value + data.attributes[conAtt].value;
     }
   }
+  _prepareVehicleData(data) {
+    // As we only capture the NPCs Spell DC attribute, we need to calculate the Spell Attack Roll.
+    // see sidebar on p298 of pf2e core rulebook.
+    // data.attributes.spelldc.value = data.attributes.spelldc.dc - 10;
+  }
 
   _prepareTokenImg() {
     if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
@@ -88,3 +96,4 @@ export class alienrpgActor extends Actor {
     }
   }
 }
+export default alienrpgActor;

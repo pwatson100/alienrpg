@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   {{!-- Sheet Header --}}
   <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
       {{!-- The grid classes are defined in scss/global/_grid.scss. To use, use both the "grid" and "grid-Ncol" class where "N" can be any number from 1 to 12 and will create that number of columns.
@@ -26,7 +26,7 @@
       {{!-- Attributes --}}
       <div class="abilities grid grid-4col">
         {{#each data.attributes as |attribute key|}}
-          <h3 for="data.attributes.{{key}}.value" class="resource-label rollable" data-roll="{{attribute.value}}" data-label="{{attribute.label}}">{{attribute.label}}</h3>
+          <h3 class="resource-label rollable" data-roll="{{attribute.value}}" data-label="{{attribute.label}}">{{attribute.label}}</h3>
           <input type="text" class="maxboxsize" name="data.attributes.{{key}}.value" value="{{attribute.value}} " data-dtype="Number" />
         {{/each}}
       </div>
@@ -63,12 +63,8 @@
             adipisc minus  doloribus tenetur, qui id quae deleniti architecto magni quaerat? Porro tempore nesciunt molestiae?
           </p>
         Item 3</span>
-  
-    </div>
-
-    </div>
-
-
+        </div>
+        </div>
 
     {{!-- Biography Tab --}}
     <div class="tab biography" data-group="primary" data-tab="description">
@@ -148,25 +144,25 @@
               <div class="consumables grid grid-Consumables">
                 <h2 class="Heading "style="margin-bottom: 0; border-bottom: 0">{{localize "ALIENRPG.Consumables"}}</h2>
 
-                  <h3 class="Air1">{{localize "ALIENRPG.Air"}}</h3>
+                  <h3 class="Air1 resource-label">{{localize "ALIENRPG.Air"}}</h3>
                     <div class="resource-content">
                       <input type="text" class="maxboxsize"" name="data.consumables.air.value" value="{{data.consumables.air.value}}" data-dtype="Number" />
                       <button class="supply-btn Air2" data-spbutt="Air"  ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
                     
-                  <h3 class="Food1">{{localize "ALIENRPG.Food"}}</h3>
+                  <h3 class="Food1 resource-label">{{localize "ALIENRPG.Food"}}</h3>
                     <div class="resource-content">
                       <input type="text" class="maxboxsize" name="data.consumables.food.value" value="{{data.consumables.food.value}}" data-dtype="Number" />
                       <button class="supply-btn Food2" data-spbutt="Food" ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
                     
-                    <h3 class="Power1">{{localize "ALIENRPG.Power"}}</h3>
+                    <h3 class="Power1 resource-label">{{localize "ALIENRPG.Power"}}</h3>
                       <div class="resource-content">
                         <input type="text" class="maxboxsize" name="data.consumables.power.value" value="{{data.consumables.power.value}}" data-dtype="Number" />
                         <button class="supply-btn Power2" data-spbutt="Power"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                       </div>
 
-                  <h3 class="Water1">{{localize "ALIENRPG.Water"}}</h3>
+                  <h3 class="Water1 resource-label">{{localize "ALIENRPG.Water"}}</h3>
                     <div class="resource-content">
                       <input type="text" class="maxboxsize" name="data.consumables.water.value" value="{{data.consumables.water.value}}" data-dtype="Number" />
                       <button class="supply-btn Water2" data-spbutt="Water"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
@@ -183,7 +179,7 @@
 <!-- Col 2 -->
         <div class="Item2">
           <div class="selectBox">
-            <label>{{localize "ALIENRPG.Career"}}</label>
+            <label class="resource-label">{{localize "ALIENRPG.Career"}}</label>
             <select name="data.general.career.value" data-dtype="{{data.general.career.value}}">
               {{#select data.general.career.value}}
               <!-- <option value=""></option> -->
@@ -205,20 +201,23 @@
           <label class="resource-label">{{ localize "ALIENRPG.Appearance"}}</label> 
           <br>
           <textarea name="data.general.appearance.value" rows="2"data-dtype="String">{{data.general.appearance.value}}</textarea>
-         </div>
-
-         <div class="Item5">
+        </div>
+        
+        <div class="Item5">
           <label class="resource-label">{{ localize "ALIENRPG.SignatureItem"}}</label>
           <input  type="text" name="data.general.sigItem.value" value="{{data.general.sigItem.value}}" placeholder="{{localize "ALIENRPG.SignatureItem"}}" data-dtype="String" />
-          </div>
-
-      <div class="Item3">
-        <h3>{{ localize "ALIENRPG.PersonalAgenda"}}</h3>
+        </div>
+        
+        <div class="Item3">
+          <label class="resource-label">{{ localize "ALIENRPG.PersonalAgenda"}}</label> 
+          <!-- <h3>{{ localize "ALIENRPG.PersonalAgenda"}}</h3> -->
           <textarea name="data.general.agenda.value" rows="2"data-dtype="String">{{data.general.agenda.value}}</textarea>
-      </div>
-
-      <div class="Item6">
-          <h3>{{ localize "ALIENRPG.Relationships"}}</h3>
+        </div>
+        
+        <div class="Item6">
+          <label class="resource-label">{{ localize "ALIENRPG.Relationships"}}</label> 
+          <br>
+          <!-- <h3>{{ localize "ALIENRPG.Relationships"}}</h3> -->
         <label class="resource-label">{{ localize "ALIENRPG.relOne"}}</label>
         <input type="text" name="data.general.relOne.value" value="{{data.general.relOne.value}}" placeholder="{{localize "ALIENRPG.relOne"}}" data-dtype="String" />
       </div>

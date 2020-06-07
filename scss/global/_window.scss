@@ -8,13 +8,26 @@
   font-family: $font-primary;
   color: $c-green;
   background: $c-black;
-  display: flex;
+  // display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  // background: url(../ui/parchment.jpg) repeat;
   padding: 2px;
-  overflow-y: auto;
+  // overflow-y: auto;
   overflow-x: auto;
+  border: $c-green 3px;
+}
+
+.alienrpg h2 {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  margin-left: 5px;
+}
+.alienrpg h3 {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  // margin-left: 2px;
 }
 .resource-content {
   button {
@@ -22,11 +35,8 @@
     border: 0;
     width: 30px;
     font-size: 1.5rem;
-    // white-space: nowrap;
-    // text-decoration: none;
     padding: 0;
     color: #adff2f;
-    // vertical-align: middle;
     margin: 0;
   }
 }

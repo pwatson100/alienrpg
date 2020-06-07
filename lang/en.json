@@ -81,5 +81,10 @@
   "ALIENRPG.MedicalSupplies": "Medical Supplies",
   "ALIENRPG.Pharmaceuticals": "Pharmaceuticals",
   "ALIENRPG.FoodDrink": "Food and Drink",
-  "ALIENRPG.AirSupply": "Air Supply"
+  "ALIENRPG.AirSupply": "Air Supply",
+  "ALIENRPG.Hull": "Hull",
+  "ALIENRPG.Armament": "Armament",
+  "ALIENRPG.Passengers": "Passengers",
+  "ALIENRPG.Speed": "Speed",
+  "ALIENRPG.Manoeuvrability": "Manoeuvrability"
 }

@@ -4,7 +4,7 @@
   "description": "The Alien RPG system for FoundryVTT!",
   "version": "0.0.9",
   "minimumCoreVersion": "0.5.5",
-  "compatibleCoreVersion": "0.6.1",
+  "compatibleCoreVersion": "0.6.2",
   "templateVersion": 2,
   "author": "Paul Watson",
   "esmodules": ["module/alienrpg.js"],
