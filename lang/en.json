@@ -86,5 +86,8 @@
   "ALIENRPG.Armament": "Armament",
   "ALIENRPG.Passengers": "Passengers",
   "ALIENRPG.Speed": "Speed",
-  "ALIENRPG.Manoeuvrability": "Manoeuvrability"
+  "ALIENRPG.Manoeuvrability": "Manoeuvrability",
+  "ALIENRPG.InventoryWeaponsHeader": "Weapons",
+  "ALIENRPG.InventoryArmorHeader": "Armor",
+  "ALIENRPG.InventoryItemsHeader": "Items"
 }

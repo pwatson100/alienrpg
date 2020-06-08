@@ -421,6 +421,12 @@
 }
 
 /* Styles limited to alienrpg sheets */
+.alienrpg {
+  /* .inventory-list .item .item-name > * {
+  flex: 1;
+} */
+}
+
 .alienrpg .item-form {
   font-family: "Wallpoet", sans-serif;
   background: #000;
@@ -640,6 +646,211 @@
   margin-right: 8px;
   font-weight: 700;
   font-size: 15px;
+}
+
+.alienrpg .inventory-list .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  line-height: 24px;
+  padding: 0;
+  border-bottom: 1px solid grey;
+  /* Item Dropdown Summary */
+}
+
+.alienrpg .inventory-list .item > * {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.alienrpg .inventory-list .item .item-name,
+.alienrpg .inventory-list .item .melee-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+.alienrpg .inventory-list .item .feat-name {
+  /* display: flex; */
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+.alienrpg .inventory-list .item .item-name .item-image,
+.alienrpg .inventory-list .item .melee-name .item-image {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 24px;
+  flex: 0 0 24px;
+  margin-right: 6px;
+  background-size: 24px;
+  background-repeat: no-repeat;
+}
+
+.alienrpg .inventory-list .item .item-name h4,
+.alienrpg .inventory-list .item .melee-name h4 {
+  -webkit-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  margin: 0;
+}
+
+.alienrpg .inventory-list .item .item-name .prepared {
+  color: #666;
+  margin-left: 3px;
+  font-size: 10px;
+}
+
+.alienrpg .inventory-list .item .item-name .item-charges {
+  color: #666;
+  font-size: 12px;
+  -webkit-box-flex: 0;
+  -ms-flex: 0;
+  flex: 0;
+}
+
+.alienrpg .inventory-list .item .item-name:hover .item-image {
+  background-image: url("/icons/svg/d20-grey.svg") !important;
+}
+
+.alienrpg .inventory-list .item .item-name .item-image:hover {
+  background-image: url("/icons/svg/d20-black.svg") !important;
+}
+
+.alienrpg .inventory-list .item .item-quantity,
+.alienrpg .inventory-list .item .item-weight {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 32px;
+  flex: 0 0 32px;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  border-right: 1px solid grey;
+}
+
+.alienrpg .inventory-list .item .item-controls {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 66px;
+  flex: 0 0 66px;
+}
+
+.alienrpg .inventory-list .item .item-controls a,
+.alienrpg .item.action-header .item-controls a {
+  display: block;
+  float: left;
+  width: 22px;
+  font-size: 10px;
+  text-align: center;
+  color: #666;
+}
+
+.alienrpg .inventory-list .item .item-controls a.item-toggle-equip {
+  color: #aaa;
+}
+
+.alienrpg .inventory-list .item .item-controls a.item-toggle-equip.active {
+  color: #666;
+}
+
+.alienrpg .inventory-list .item .item-summary {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 0.25em 0.5em;
+  border-top: 1px solid grey;
+}
+
+.alienrpg .inventory-list .action-header h3 {
+  font-size: 24px;
+  margin: 0;
+  padding-left: 32px;
+  text-align: center;
+  /* font-weight: bold; */
+}
+
+.alienrpg .action-header .item-controls a.item-create,
+.alienrpg .action-header .item-controls a.item-delete,
+.alienrpg .action-header .item-controls a.feat-browse,
+.alienrpg .action-header .item-controls a.action-browse,
+.alienrpg .inventory-header .item-controls a.inventory-browse {
+  width: 100%;
+  color: #fff;
+  background: var(#454a7c);
+}
+
+.alienrpg .inventory-list .inventory-header {
+  font-weight: 700;
+  line-height: 20px;
+  /* background: rgba(0, 0, 0, 0.05); */
+  background: var(#454a7c);
+}
+
+.alienrpg .inventory-list .inventory-header.sub-category {
+  font-weight: 700;
+  line-height: 20px;
+  /* background: rgba(0, 0, 0, 0.05); */
+  background: grey;
+}
+
+.alienrpg .inventory-list .inventory-header h3 {
+  font-size: 1em;
+  margin: 0;
+  padding-left: 5px;
+  font-weight: bold;
+}
+
+.alienrpg .inventory-list .inventory-header .item-quantity,
+.alienrpg .inventory-list .inventory-header .item-weight {
+  color: white;
+}
+
+.alienrpg .inventory-list .inventory-header .item-controls a.item-create {
+  width: 100%;
+  color: white;
+}
+
+.alienrpg .inventory-list .inventory-header .item-controls a.spell-create,
+.alienrpg .inventory-list .inventory-header .item-controls a.spell-browse {
+  /* width: 100%; */
+  color: white;
+}
+
+.alienrpg .inventory-list .inventory-header > * {
+  color: white;
+}
+
+.alienrpg .alienrpg.character-sheet .inventory-list {
+  height: calc(100% - 42px);
+  /* height: 100%; */
 }
 
 .alienrpg .resource-label {

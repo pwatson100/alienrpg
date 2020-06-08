@@ -1,4 +1,6 @@
 import { yze } from '../YZEDiceRoller.js';
+import { getContainerMap } from '../item/container.js';
+import { calculateBulk, itemsFromActorData, stacks, formatBulk, indexBulkItemsById } from '../item/bulk.js';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -81,7 +83,85 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Return data to the sheet
 
+    this._prepareItems(data.actor); // Return data to the sheet
+
     return data;
+  }
+
+  _findActiveList() {
+    return this.element.find('.tab.active .directory-list');
+  }
+
+  _prepareItems(actorData) {
+    // Inventory
+    const inventory = {
+      weapon: {
+        label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'),
+        items: [],
+      },
+      armor: {
+        label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'),
+        items: [],
+      },
+      item: {
+        label: game.i18n.localize('ALIENRPG.InventoryItemsHeader'),
+        items: [],
+      },
+    };
+    console.log('Prepare items', inventory);
+    const bulkConfig = {};
+    let readonlyEquipment = [];
+
+    const bulkItems = itemsFromActorData(actorData);
+    const indexedBulkItems = indexBulkItemsById(bulkItems);
+
+    const containers = getContainerMap(actorData.items, indexedBulkItems, stacks, bulkConfig);
+    for (const i of actorData.items) {
+      var _i$data, _i$data$equipped, _i$data2, _i$data2$stackGroup;
+      i.img = i.img || CONST.DEFAULT_TOKEN;
+      i.containerData = containers.get(i._id);
+      i.isContainer = i.containerData.isContainer;
+      i.isNotInContainer = i.containerData.isNotInContainer; // Read-Only Equipment
+
+      if (i.type === 'armor' || i.type === 'item') {
+        readonlyEquipment.push(i);
+        actorData.hasEquipment = true;
+      }
+
+      if (Object.keys(inventory).includes(i.type)) {
+        // i.data.quantity.value = i.data.quantity.value || 0;
+        // i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+        // const [approximatedBulk] = calculateBulk([indexedBulkItems.get(i._id)], stacks, false, bulkConfig);
+        // i.totalWeight = formatBulk(approximatedBulk);
+        // i.hasCharges = i.type === 'consumable' && i.data.charges.max > 0;
+        // i.isTwoHanded = i.type === 'weapon' && !!(i.data.traits.value || []).find(x => x.startsWith('two-hand'));
+        // i.wieldedTwoHanded = i.type === 'weapon' && (i.data.hands || {}).value;
+
+        if (i.type === 'weapon') {
+          let item;
+          console.log('data', i);
+
+          try {
+            item = this.actor.getOwnedItem(i._id);
+            i.chatData = item.getChatData({
+              secrets: this.actor.owner,
+            });
+          } catch (err) {
+            console.log(`AlienRPG System | Character Sheet | Could not load item ${i.name}`);
+          }
+
+          // attacks['weapon'].items.push(i);
+        }
+
+        inventory[i.type].items.push(i);
+      }
+      const embeddedEntityUpdate = []; // Iterate through all spells in the temp spellbook and check that they are assigned to a valid spellcasting entry. If not place in unassigned.
+      if (embeddedEntityUpdate.length) {
+        console.log('PF2e System | Prepare Actor Data | Updating location for the following embedded entities: ', embeddedEntityUpdate);
+        this.actor.updateEmbeddedEntity('OwnedItem', embeddedEntityUpdate); //ui.notifications.info('PF2e actor data migration for orphaned spells applied. Please close actor and open again for changes to take affect.');
+      } // Assign and return
+      actorData.inventory = inventory; // Any spells found that don't belong to a spellcasting entry are added to a "orphaned spells" spell book (allowing the player to fix where they should go)
+    }
   }
 
   /** @override */
