@@ -8,6 +8,7 @@ import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
 import { AlienRPGSetup } from './setupHandler.js';
+import { preloadHandlebarsTemplates } from './templates.js';
 
 Hooks.once('init', async function () {
   console.log(`Initializing Alien RPG`);
@@ -46,6 +47,8 @@ Hooks.once('init', async function () {
   // console.log('*******************************');
   registerSettings();
   registerActors();
+  // Preload Handlebars Templates
+  preloadHandlebarsTemplates();
 
   // If you need to add Handlebars helpers, here are a few useful examples:
   Handlebars.registerHelper('concat', function () {

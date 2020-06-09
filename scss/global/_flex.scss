@@ -11,3 +11,44 @@
 // .alienflex {
 //   flex: auto;
 // }
+.alienrpg .flexcol {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.alienrpg .flexcol > * {
+  flex: 1;
+}
+.alienrpg .flexcol .flex1 {
+  flex: 1;
+}
+.alienrpg .flexcol .flex2 {
+  flex: 2;
+}
+.alienrpg .flexcol .flex3 {
+  flex: 3;
+}
+.alienrpg .alienrpg .flexcol .flex4 {
+  flex: 4;
+}
+.alienrpg .flexrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.alienrpg .flexrow > * {
+  flex: 1;
+}
+.alienrpg .flexrow .flex1 {
+  flex: 1;
+}
+.alienrpg .flexrow .flex2 {
+  flex: 2;
+}
+.alienrpg .flexrow .flex3 {
+  flex: 3;
+}
+.alienrpg .flexrow .flex4 {
+  flex: 4;
+}

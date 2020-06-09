@@ -84,8 +84,8 @@
     'Item8 Item3 Item3'
     'Item9 Item6 Item6'
     'Item9 Item7 Item7'
-    'Item9 . .'
-    'Item9 . .';
+    'Item9 Item10 Item10'
+    'Item11 Item10 Item10';
 
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -128,6 +128,15 @@
 .Item9 {
   grid-area: Item9;
   border: 1px solid $c-green;
+}
+.Item10 {
+  grid-area: Item10;
+  border: 1px solid $c-green;
+}
+.Item11 {
+  grid-area: Item11;
+  border: 1px solid $c-green;
+  padding: 4px;
 }
 
 .grid-container {
@@ -319,6 +328,50 @@
 }
 .wItem7 {
   grid-area: wItem7;
+}
+
+.grid-items {
+  display: grid;
+  // border: 2px solid $c-green;
+  grid-template-areas:
+    'lCol1 lCol2 lCol2 lCol3 lCol4'
+    'lCol5 lCol6 lCol6 lCol7 lCol8';
+  padding-bottom: 2px;
+  grid-template-columns: 0.25fr 1fr 1.5fr 0.4fr 0.5fr;
+  align-items: center;
+}
+
+.lCol1 {
+  grid-area: lCol1;
+  justify-self: left;
+}
+.lCol2 {
+  grid-area: lCol2;
+  justify-self: center;
+}
+.lCol3 {
+  grid-area: lCol3;
+  justify-self: right;
+}
+.lCol4 {
+  grid-area: lCol4;
+  justify-self: right;
+}
+.lCol5 {
+  grid-area: lCol5;
+  justify-self: left;
+}
+.lCol6 {
+  grid-area: lCol6;
+  justify-self: left;
+}
+.lCol7 {
+  grid-area: lCol7;
+  justify-self: right;
+}
+.lCol8 {
+  grid-area: lCol8;
+  justify-self: right;
 }
 
 .flex-group-center,

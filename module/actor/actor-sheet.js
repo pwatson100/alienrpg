@@ -1,12 +1,25 @@
 import { yze } from '../YZEDiceRoller.js';
-import { getContainerMap } from '../item/container.js';
-import { calculateBulk, itemsFromActorData, stacks, formatBulk, indexBulkItemsById } from '../item/bulk.js';
+import { toNumber } from '../utils.js';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
 export class alienrpgActorSheet extends ActorSheet {
+  constructor(...args) {
+    super(...args);
+
+    /**
+     * Track the set of item filters which are applied
+     * @type {Set}
+     */
+    this._filters = {
+      inventory: new Set(),
+      // spellbook: new Set(),
+      // features: new Set()
+    };
+  }
+
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -27,12 +40,6 @@ export class alienrpgActorSheet extends ActorSheet {
 
   /** @override */
   getData() {
-    // const data = super.getData();
-    // data.dtypes = ['String', 'Number', 'Boolean'];
-    // for (let attr of Object.values(data.data.attributes)) {
-    //   attr.isCheckbox = attr.dtype === 'Boolean';
-    // }
-
     // Basic data
     let isOwner = this.entity.owner;
     const data = {
@@ -83,7 +90,9 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Return data to the sheet
 
-    this._prepareItems(data.actor); // Return data to the sheet
+    this._prepareItems(data); // Return data to the sheet
+
+    // console.log('inventory', data.inventory);
 
     return data;
   }
@@ -92,76 +101,127 @@ export class alienrpgActorSheet extends ActorSheet {
     return this.element.find('.tab.active .directory-list');
   }
 
-  _prepareItems(actorData) {
-    // Inventory
+  /*
+   * Organize and classify Owned Items for Character sheets
+   * @private
+   */
+  _prepareItems(data) {
+    // Categorize items as inventory, spellbook, features, and classes
     const inventory = {
-      weapon: {
-        label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'),
-        items: [],
-      },
-      armor: {
-        label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'),
-        items: [],
-      },
-      item: {
-        label: game.i18n.localize('ALIENRPG.InventoryItemsHeader'),
-        items: [],
-      },
+      weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },
+      item: { label: 'Items', items: [], dataset: { type: 'item' } },
+      armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
     };
-    console.log('Prepare items', inventory);
-    const bulkConfig = {};
-    let readonlyEquipment = [];
+    // Partition items by category
+    let [items, spells, feats, classes] = data.items.reduce(
+      (arr, item) => {
+        // Item details
+        item.img = item.img || DEFAULT_TOKEN;
+        item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
 
-    const bulkItems = itemsFromActorData(actorData);
-    const indexedBulkItems = indexBulkItemsById(bulkItems);
+        // console.log('inventory', inventory);
 
-    const containers = getContainerMap(actorData.items, indexedBulkItems, stacks, bulkConfig);
-    for (const i of actorData.items) {
-      var _i$data, _i$data$equipped, _i$data2, _i$data2$stackGroup;
-      i.img = i.img || CONST.DEFAULT_TOKEN;
-      i.containerData = containers.get(i._id);
-      i.isContainer = i.containerData.isContainer;
-      i.isNotInContainer = i.containerData.isNotInContainer; // Read-Only Equipment
+        // Classify items into types
+        if (item.type === 'spell') arr[1].push(item);
+        else if (item.type === 'feat') arr[2].push(item);
+        else if (item.type === 'class') arr[3].push(item);
+        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+        return arr;
+      },
+      [[], [], [], []]
+    );
 
-      if (i.type === 'armor' || i.type === 'item') {
-        readonlyEquipment.push(i);
-        actorData.hasEquipment = true;
-      }
+    // Apply active item filters
+    items = this._filterItems(items, this._filters.inventory);
 
-      if (Object.keys(inventory).includes(i.type)) {
-        // i.data.quantity.value = i.data.quantity.value || 0;
-        // i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-        // const [approximatedBulk] = calculateBulk([indexedBulkItems.get(i._id)], stacks, false, bulkConfig);
-        // i.totalWeight = formatBulk(approximatedBulk);
-        // i.hasCharges = i.type === 'consumable' && i.data.charges.max > 0;
-        // i.isTwoHanded = i.type === 'weapon' && !!(i.data.traits.value || []).find(x => x.startsWith('two-hand'));
-        // i.wieldedTwoHanded = i.type === 'weapon' && (i.data.hands || {}).value;
-
-        if (i.type === 'weapon') {
-          let item;
-          console.log('data', i);
-
-          try {
-            item = this.actor.getOwnedItem(i._id);
-            i.chatData = item.getChatData({
-              secrets: this.actor.owner,
-            });
-          } catch (err) {
-            console.log(`AlienRPG System | Character Sheet | Could not load item ${i.name}`);
-          }
-
-          // attacks['weapon'].items.push(i);
-        }
-
-        inventory[i.type].items.push(i);
-      }
-      const embeddedEntityUpdate = []; // Iterate through all spells in the temp spellbook and check that they are assigned to a valid spellcasting entry. If not place in unassigned.
-      if (embeddedEntityUpdate.length) {
-        console.log('PF2e System | Prepare Actor Data | Updating location for the following embedded entities: ', embeddedEntityUpdate);
-        this.actor.updateEmbeddedEntity('OwnedItem', embeddedEntityUpdate); //ui.notifications.info('PF2e actor data migration for orphaned spells applied. Please close actor and open again for changes to take affect.');
-      } // Assign and return
-      actorData.inventory = inventory; // Any spells found that don't belong to a spellcasting entry are added to a "orphaned spells" spell book (allowing the player to fix where they should go)
+    // Organize Inventory
+    let totalWeight = 0;
+    for (let i of items) {
+      //  i.data.quantity = i.data.quantity || 0;
+      i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+      i.totalWeight = i.data.attributes.weight.value;
+      inventory[i.type].items.push(i);
+      totalWeight += i.totalWeight;
     }
+
+    // Loop through the items and update the actors AC
+    let totalAc = 0;
+    for (let i of items) {
+      try {
+        i.data.attributes.armorrating.value === true;
+        i.data.attributes.armorrating.value = i.data.attributes.armorrating.value || 0;
+        i.totalAc = parseInt(i.data.attributes.armorrating.value, 10);
+        totalAc += i.totalAc;
+        data.data.general.armor.value = totalAc;
+      } catch {
+        data.data.general.armor.value = totalAc;
+      }
+    }
+    // console.log('totalAc', i.totalAc, totalAc);
+
+    data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
+
+    // Assign and return
+    data.inventory = Object.values(inventory);
+  }
+
+  /*
+   * Compute the level and percentage of encumbrance for an Actor.
+   *
+   * Optionally include the weight of carried currency across all denominations by applying the standard rule
+   * from the PHB pg. 143
+   *
+   * @param {Number} totalWeight    The cumulative item weight from inventory items
+   * @param {Object} actorData      The data object for the Actor being rendered
+   * @return {Object}               An object describing the character's encumbrance level
+   * @private
+   */
+  _computeEncumbrance(totalWeight, actorData) {
+    // Compute Encumbrance percentage
+    const enc = {
+      max: actorData.data.attributes.str.value * 4,
+      value: Math.round(totalWeight * 10) / 10,
+    };
+    enc.pct = Math.min((enc.value * 100) / enc.max, 99);
+    enc.encumbered = enc.pct > 50;
+    return enc;
+  }
+
+  /**
+   * Determine whether an Owned Item will be shown based on the current set of filters
+   * @return {boolean}
+   * @private
+   */
+  _filterItems(items, filters) {
+    return items.filter((item) => {
+      const data = item.data;
+
+      // Action usage
+      for (let f of ['action', 'bonus', 'reaction']) {
+        if (filters.has(f)) {
+          if (data.activation && data.activation.type !== f) return false;
+        }
+      }
+
+      // Spell-specific filters
+      if (filters.has('ritual')) {
+        if (data.components.ritual !== true) return false;
+      }
+      if (filters.has('concentration')) {
+        if (data.components.concentration !== true) return false;
+      }
+      if (filters.has('prepared')) {
+        if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
+        if (this.actor.data.type === 'npc') return true;
+        return data.preparation.prepared;
+      }
+
+      // Equipment-specific filters
+      if (filters.has('equipped')) {
+        if (data.equipped !== true) return false;
+      }
+      return true;
+    });
   }
 
   /** @override */
@@ -398,20 +458,15 @@ export class alienrpgActorSheet extends ActorSheet {
 
   _rollItem(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    let label = dataset.label;
-    const itemName = dataset.item;
-    const speaker = ChatMessage.getSpeaker();
-    let actor;
-    if (speaker.token) actor = game.actors.tokens[speaker.token];
-    if (!actor) actor = game.actors.get(speaker.actor);
-    // console.log('actor-sheet.js 321 - Got here', speaker, actor);
-    const item = actor ? actor.items.find((i) => i.name === itemName) : null;
-    if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
-
-    // Trigger the item roll
-    return item.roll();
+    // const element = event.currentTarget;
+    // console.log('element', element);
+    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+    const item = this.actor.getOwnedItem(itemId);
+    // console.log('item', item);
+    if (item.type === 'weapon') {
+      // Trigger the item roll
+      return item.roll();
+    }
   }
 }
 export default alienrpgActorSheet;

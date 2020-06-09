@@ -55,7 +55,8 @@
   &:focus {
     color: black;
     text-shadow: 0 0 20px red;
-    font-size: 110%;
+    // font-size: 110%;
+    font-weight: bolder;
     cursor: pointer;
   }
 }

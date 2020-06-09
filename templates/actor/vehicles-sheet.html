@@ -32,34 +32,28 @@
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
-    <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
+    <!-- <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a> -->
     <a class="item" data-tab="items">{{localize "ALIENRPG.Armament"}}</a>
   </nav>
   
   {{!-- Sheet Body --}}
   <section class="sheet-body">
     <div class="tab attributes" data-group="primary" data-tab="general">
-      <!-- <div class="grid-genPage"> -->
-        <label class="resource-label">{{localize "ALIENRPG.Weight"}}</label>
-        <input type="text" name="data.attributes.weight.value" class="flex maxboxsize" value="{{data.attributes.weight.value}}" data-dtype="Number" />
         
         <label class="resource-label">{{localize "ALIENRPG.Passengers"}}</label>
         <input type="text" class="maxboxsize" name="data.attributes.passengers.value" value="{{data.attributes.passengers.value}}" data-dtype="Number" />
         
         <label class="resource-label">{{localize "ALIENRPG.Cost"}}</label>
-        <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
-        
-        <!-- <div class="resource attributes"> -->
-        <label class="resource-label">{{localize "ALIENRPG.Comment"}}</label>
+        <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}"/>
+        <br>
+        <label class="resource-label">{{localize "ALIENRPG.Description"}}</label>
         <textarea name="data.attributes.comment.value" rows="10" data-dtype="String">{{data.attributes.comment.value}}</textarea>
-          <!-- </div> -->
-        <!-- </div> -->
     </div>
 
-    {{!-- Biography Tab --}}
+    <!-- {{!-- Biography Tab --}}
     <div class="tab item" data-group="primary" data-tab="description">
       {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
-    </div>
+    </div> -->
     
     {{!-- Owned Items Tab --}}
     <div class="tab items" data-group="primary" data-tab="items">

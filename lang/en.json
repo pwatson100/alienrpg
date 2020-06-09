@@ -89,5 +89,18 @@
   "ALIENRPG.Manoeuvrability": "Manoeuvrability",
   "ALIENRPG.InventoryWeaponsHeader": "Weapons",
   "ALIENRPG.InventoryArmorHeader": "Armor",
-  "ALIENRPG.InventoryItemsHeader": "Items"
+  "ALIENRPG.InventoryItemsHeader": "Items",
+  "ALIENRPG.QuantityLabel": "Quantity",
+  "ALIENRPG.BulkShortLabel": "Bulk",
+  "ALIENRPG.CreateItemTitle": "Create Item",
+  "ALIENRPG.OpenInventoryBrowser": "Open Inventory Browser",
+  "ALIENRPG.OpenItemTitle": "Toggle Container Contents",
+  "ALIENRPG.EditItemTitle": "Edit Item",
+  "ALIENRPG.DeleteItemTitle": "Delete Item",
+  "ALIENRPG.CapacityBarLabel": "Capacity",
+  "ALIENRPG.AbbreviationKg": "Kg",
+  "ALIENRPG.Filter": "Filter",
+  "ALIENRPG.Inventory": "Inventory",
+  "ALIENRPG.CriticalInjuries": "Critical Injuries",
+  "ALIENRPG.Armor": "Armor"
 }

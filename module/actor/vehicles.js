@@ -95,6 +95,9 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
 
     html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
+    // Roll handlers, click handlers, etc. would go here.
+    html.find('.currency').on('change', this._currencyField.bind(this));
+
     // Drag events for macros.
     if (this.actor.owner) {
       let handler = (ev) => this._onDragItemStart(ev);
@@ -303,6 +306,35 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
 
     // Trigger the item roll
     return item.roll();
+  }
+  _currencyField(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+
+    console.log(element.dataset);
+
+    const currency = 'USD'; // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
+
+    // format inital value
+    onBlur({ target: event.currentTarget });
+
+    function localStringToNumber(s) {
+      return Number(String(s).replace(/[^0-9.-]+/g, ''));
+    }
+
+    function onBlur(e) {
+      console.log('onblur');
+      let value = e.target.value;
+
+      let options = {
+        maximumFractionDigits: 2,
+        currency: currency,
+        style: 'currency',
+        currencyDisplay: 'symbol',
+      };
+      e.target.value = value ? localStringToNumber(value).toLocaleString(undefined, options) : '';
+      console.log(e.target.value);
+    }
   }
 }
 export default ActorSheetAlienRPGVehicle;

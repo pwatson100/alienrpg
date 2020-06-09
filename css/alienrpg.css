@@ -50,7 +50,7 @@
 .rollItem:hover, .rollItem:focus {
   color: black;
   text-shadow: 0 0 20px red;
-  font-size: 110%;
+  font-weight: bolder;
   cursor: pointer;
 }
 
@@ -139,7 +139,7 @@
 
 .grid-genPage {
   display: grid;
-  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item9 Item6 Item6' 'Item9 Item7 Item7' 'Item9 . .' 'Item9 . .';
+  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item9 Item6 Item6' 'Item9 Item7 Item7' 'Item9 Item10 Item10' 'Item11 Item10 Item10';
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -189,6 +189,17 @@
 .Item9 {
   grid-area: Item9;
   border: 1px solid greenyellow;
+}
+
+.Item10 {
+  grid-area: Item10;
+  border: 1px solid greenyellow;
+}
+
+.Item11 {
+  grid-area: Item11;
+  border: 1px solid greenyellow;
+  padding: 4px;
 }
 
 .grid-container {
@@ -375,6 +386,56 @@
   grid-area: wItem7;
 }
 
+.grid-items {
+  display: grid;
+  grid-template-areas: 'lCol1 lCol2 lCol2 lCol3 lCol4' 'lCol5 lCol6 lCol6 lCol7 lCol8';
+  padding-bottom: 2px;
+  grid-template-columns: 0.25fr 1fr 1.5fr 0.4fr 0.5fr;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.lCol1 {
+  grid-area: lCol1;
+  justify-self: left;
+}
+
+.lCol2 {
+  grid-area: lCol2;
+  justify-self: center;
+}
+
+.lCol3 {
+  grid-area: lCol3;
+  justify-self: right;
+}
+
+.lCol4 {
+  grid-area: lCol4;
+  justify-self: right;
+}
+
+.lCol5 {
+  grid-area: lCol5;
+  justify-self: left;
+}
+
+.lCol6 {
+  grid-area: lCol6;
+  justify-self: left;
+}
+
+.lCol7 {
+  grid-area: lCol7;
+  justify-self: right;
+}
+
+.lCol8 {
+  grid-area: lCol8;
+  justify-self: right;
+}
+
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {
@@ -420,13 +481,203 @@
   justify-content: space-between;
 }
 
-/* Styles limited to alienrpg sheets */
-.alienrpg {
-  /* .inventory-list .item .item-name > * {
-  flex: 1;
-} */
+.alienrpg .flexcol {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }
 
+.alienrpg .flexcol > * {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.alienrpg .flexcol .flex1 {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.alienrpg .flexcol .flex2 {
+  -webkit-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+}
+
+.alienrpg .flexcol .flex3 {
+  -webkit-box-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+}
+
+.alienrpg .alienrpg .flexcol .flex4 {
+  -webkit-box-flex: 4;
+  -ms-flex: 4;
+  flex: 4;
+}
+
+.alienrpg .flexrow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.alienrpg .flexrow > * {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.alienrpg .flexrow .flex1 {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.alienrpg .flexrow .flex2 {
+  -webkit-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+}
+
+.alienrpg .flexrow .flex3 {
+  -webkit-box-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+}
+
+.alienrpg .flexrow .flex4 {
+  -webkit-box-flex: 4;
+  -ms-flex: 4;
+  flex: 4;
+}
+
+.alienrpg.actor .encumbrance {
+  background: rgba(0, 0, 0, 0.1);
+  height: 12px;
+  margin-top: 5px;
+  border: 1px solid #111;
+  border-radius: 3px;
+  position: relative;
+  width: calc(100% - 20px);
+}
+
+.alienrpg.actor .encumbrance .encumbrance-bar {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background: greenyellow;
+  height: 8px;
+  border: 1px solid #6f5439;
+  border-radius: 3px;
+}
+
+.alienrpg.actor .encumbrance .encumbrance-label {
+  position: absolute;
+  top: -3px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+  color: #000;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 0 3px;
+}
+
+.alienrpg.actor .encumbrance .encumbrance-breakpoint {
+  position: absolute;
+  left: 50%;
+}
+
+.alienrpg.actor .encumbrance .arrow-up {
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #666;
+}
+
+.alienrpg.actor .encumbrance .arrow-down {
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #666;
+}
+
+.alienrpg.actor .encumbrance.encumbered .arrow-up {
+  border-bottom: 4px solid #fff;
+}
+
+.alienrpg.actor .encumbrance.encumbered .arrow-down {
+  border-top: 4px solid #fff;
+}
+
+.alienrpg.actor .encumbrance.encumbered .encumbrance-bar {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background: #ff1e00;
+  height: 8px;
+  border: 1px solid #b9ca1d;
+  border-radius: 3px;
+}
+
+/* @group Blink */
+.blink {
+  -webkit-animation: blink 2s linear infinite;
+  animation: blink 2s linear infinite;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* @end */
+/* Styles limited to alienrpg sheets */
 .alienrpg .item-form {
   font-family: "Wallpoet", sans-serif;
   background: #000;
@@ -648,211 +899,6 @@
   font-size: 15px;
 }
 
-.alienrpg .inventory-list .item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  line-height: 24px;
-  padding: 0;
-  border-bottom: 1px solid grey;
-  /* Item Dropdown Summary */
-}
-
-.alienrpg .inventory-list .item > * {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.alienrpg .inventory-list .item .item-name,
-.alienrpg .inventory-list .item .melee-name {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  cursor: pointer;
-}
-
-.alienrpg .inventory-list .item .feat-name {
-  /* display: flex; */
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  cursor: pointer;
-}
-
-.alienrpg .inventory-list .item .item-name .item-image,
-.alienrpg .inventory-list .item .melee-name .item-image {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 24px;
-  flex: 0 0 24px;
-  margin-right: 6px;
-  background-size: 24px;
-  background-repeat: no-repeat;
-}
-
-.alienrpg .inventory-list .item .item-name h4,
-.alienrpg .inventory-list .item .melee-name h4 {
-  -webkit-box-flex: 2;
-  -ms-flex: 2;
-  flex: 2;
-  margin: 0;
-}
-
-.alienrpg .inventory-list .item .item-name .prepared {
-  color: #666;
-  margin-left: 3px;
-  font-size: 10px;
-}
-
-.alienrpg .inventory-list .item .item-name .item-charges {
-  color: #666;
-  font-size: 12px;
-  -webkit-box-flex: 0;
-  -ms-flex: 0;
-  flex: 0;
-}
-
-.alienrpg .inventory-list .item .item-name:hover .item-image {
-  background-image: url("/icons/svg/d20-grey.svg") !important;
-}
-
-.alienrpg .inventory-list .item .item-name .item-image:hover {
-  background-image: url("/icons/svg/d20-black.svg") !important;
-}
-
-.alienrpg .inventory-list .item .item-quantity,
-.alienrpg .inventory-list .item .item-weight {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 32px;
-  flex: 0 0 32px;
-  font-size: 12px;
-  color: #666;
-  text-align: center;
-  border-right: 1px solid grey;
-}
-
-.alienrpg .inventory-list .item .item-controls {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 66px;
-  flex: 0 0 66px;
-}
-
-.alienrpg .inventory-list .item .item-controls a,
-.alienrpg .item.action-header .item-controls a {
-  display: block;
-  float: left;
-  width: 22px;
-  font-size: 10px;
-  text-align: center;
-  color: #666;
-}
-
-.alienrpg .inventory-list .item .item-controls a.item-toggle-equip {
-  color: #aaa;
-}
-
-.alienrpg .inventory-list .item .item-controls a.item-toggle-equip.active {
-  color: #666;
-}
-
-.alienrpg .inventory-list .item .item-summary {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 100%;
-  flex: 0 0 100%;
-  font-size: 12px;
-  line-height: 16px;
-  padding: 0.25em 0.5em;
-  border-top: 1px solid grey;
-}
-
-.alienrpg .inventory-list .action-header h3 {
-  font-size: 24px;
-  margin: 0;
-  padding-left: 32px;
-  text-align: center;
-  /* font-weight: bold; */
-}
-
-.alienrpg .action-header .item-controls a.item-create,
-.alienrpg .action-header .item-controls a.item-delete,
-.alienrpg .action-header .item-controls a.feat-browse,
-.alienrpg .action-header .item-controls a.action-browse,
-.alienrpg .inventory-header .item-controls a.inventory-browse {
-  width: 100%;
-  color: #fff;
-  background: var(#454a7c);
-}
-
-.alienrpg .inventory-list .inventory-header {
-  font-weight: 700;
-  line-height: 20px;
-  /* background: rgba(0, 0, 0, 0.05); */
-  background: var(#454a7c);
-}
-
-.alienrpg .inventory-list .inventory-header.sub-category {
-  font-weight: 700;
-  line-height: 20px;
-  /* background: rgba(0, 0, 0, 0.05); */
-  background: grey;
-}
-
-.alienrpg .inventory-list .inventory-header h3 {
-  font-size: 1em;
-  margin: 0;
-  padding-left: 5px;
-  font-weight: bold;
-}
-
-.alienrpg .inventory-list .inventory-header .item-quantity,
-.alienrpg .inventory-list .inventory-header .item-weight {
-  color: white;
-}
-
-.alienrpg .inventory-list .inventory-header .item-controls a.item-create {
-  width: 100%;
-  color: white;
-}
-
-.alienrpg .inventory-list .inventory-header .item-controls a.spell-create,
-.alienrpg .inventory-list .inventory-header .item-controls a.spell-browse {
-  /* width: 100%; */
-  color: white;
-}
-
-.alienrpg .inventory-list .inventory-header > * {
-  color: white;
-}
-
-.alienrpg .alienrpg.character-sheet .inventory-list {
-  height: calc(100% - 42px);
-  /* height: 100%; */
-}
-
 .alienrpg .resource-label {
   font-family: "Wallpoet", sans-serif;
   text-transform: uppercase;
@@ -863,6 +909,15 @@
   -webkit-box-flex: 1;
   -ms-flex: auto;
   flex: auto;
+}
+
+.alienrpg .item-label {
+  font-family: "Wallpoet", sans-serif;
+  font-size: small;
+  text-transform: uppercase;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: greenyellow;
 }
 
 .alienrpg .attr-label {
@@ -898,41 +953,6 @@
   text-shadow: none;
 }
 
-.alienrpg .items-list {
-  list-style: none;
-  margin: 7px 0;
-  padding-top: 0px;
-  padding-right: 10px;
-  padding-bottom: 0px;
-  padding-left: 10px;
-}
-
-.alienrpg .items-list .item-header {
-  font-weight: bold;
-}
-
-.alienrpg .items-list .item {
-  height: 30px;
-  line-height: 24px;
-  padding: 3px 0;
-  border-bottom: 1px solid #bbb;
-}
-
-.alienrpg .items-list .item .item-image {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 24px;
-  flex: 0 0 24px;
-  margin-right: 5px;
-}
-
-.alienrpg .items-list .item img {
-  display: block;
-}
-
-.alienrpg .items-list .item-name {
-  margin: 0;
-}
-
-.alienrpg .items-list .item-controls {
-  text-align: right;
+.alienrpg .item-header {
+  background-color: #534f4f;
 }
