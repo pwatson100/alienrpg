@@ -5,6 +5,20 @@ import { yze } from '../YZEDiceRoller.js';
  * @extends {ActorSheet}
  */
 export class ActorSheetAlienRPGVehicle extends ActorSheet {
+  constructor(...args) {
+    super(...args);
+
+    /**
+     * Track the set of item filters which are applied
+     * @type {Set}
+     */
+    this._filters = {
+      inventory: new Set(),
+      // spellbook: new Set(),
+      // features: new Set()
+    };
+  }
+
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -51,8 +65,44 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     data.filters = this._filters;
 
     // Return data to the sheet
+    this._prepareItems(data); // Return data to the sheet
 
     return data;
+  }
+
+  _findActiveList() {
+    return this.element.find('.tab.active .directory-list');
+  }
+  _filterItems(items, filters) {
+    return items.filter((item) => {
+      const data = item.data;
+
+      // Action usage
+      for (let f of ['action', 'bonus', 'reaction']) {
+        if (filters.has(f)) {
+          if (data.activation && data.activation.type !== f) return false;
+        }
+      }
+
+      // Spell-specific filters
+      if (filters.has('ritual')) {
+        if (data.components.ritual !== true) return false;
+      }
+      if (filters.has('concentration')) {
+        if (data.components.concentration !== true) return false;
+      }
+      if (filters.has('prepared')) {
+        if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
+        if (this.actor.data.type === 'npc') return true;
+        return data.preparation.prepared;
+      }
+
+      // Equipment-specific filters
+      if (filters.has('equipped')) {
+        if (data.equipped !== true) return false;
+      }
+      return true;
+    });
   }
 
   /** @override */
@@ -307,6 +357,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     // Trigger the item roll
     return item.roll();
   }
+
   _currencyField(event) {
     event.preventDefault();
     const element = event.currentTarget;
@@ -335,6 +386,49 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
       e.target.value = value ? localStringToNumber(value).toLocaleString(undefined, options) : '';
       console.log(e.target.value);
     }
+  }
+
+  _prepareItems(data) {
+    // Categorize items as inventory, spellbook, features, and classes
+    const inventory = {
+      weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },
+      item: { label: 'Items', items: [], dataset: { type: 'item' } },
+      armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
+    };
+    // Partition items by category
+    let [items, spells, feats, classes] = data.items.reduce(
+      (arr, item) => {
+        // Item details
+        item.img = item.img || DEFAULT_TOKEN;
+        item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
+
+        // console.log('inventory', inventory);
+
+        // Classify items into types
+        if (item.type === 'spell') arr[1].push(item);
+        else if (item.type === 'feat') arr[2].push(item);
+        else if (item.type === 'class') arr[3].push(item);
+        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+        return arr;
+      },
+      [[], [], [], []]
+    );
+
+    // Apply active item filters
+    items = this._filterItems(items, this._filters.inventory);
+
+    // Organize Inventory
+    let totalWeight = 0;
+    for (let i of items) {
+      //  i.data.quantity = i.data.quantity || 0;
+      i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+      i.totalWeight = i.data.attributes.weight.value;
+      inventory[i.type].items.push(i);
+      totalWeight += i.totalWeight;
+    }
+
+    // Assign and return
+    data.inventory = Object.values(inventory);
   }
 }
 export default ActorSheetAlienRPGVehicle;
