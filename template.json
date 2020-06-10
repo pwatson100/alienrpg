@@ -222,7 +222,7 @@
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor"],
+    "types": ["item", "weapon", "armor", "talent"],
     "item": {
       "header": {
         "type": {
@@ -315,6 +315,21 @@
       "notes": {
         "notes": ""
       }
+    },
+    "talent": {
+      "general": {
+        "career": {
+          "value": "",
+          "label": "career"
+        },
+        "comment": {
+          "value": "",
+          "label": "Text"
+        }
+      }
+    },
+    "notes": {
+      "notes": ""
     }
   }
 }

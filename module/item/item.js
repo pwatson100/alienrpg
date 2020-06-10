@@ -15,8 +15,8 @@ export class alienrpgItem extends Item {
     const itemData = this.data;
     const actorData = this.actor ? this.actor.data : {};
     const data = itemData.data;
+    // console.log('data', data);
   }
-
   /**
    * Handle clickable rolls.
    * @param {Event} event   The originating click event

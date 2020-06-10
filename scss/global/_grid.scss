@@ -373,6 +373,45 @@
   grid-area: lCol8;
   justify-self: right;
 }
+.grid-talents {
+  display: grid;
+  grid-template-areas:
+    'talTitle talTitle'
+    'tal1 tal2'
+    'tal3 tal4';
+
+  padding: 3px;
+  grid-template-columns: 75% 25%;
+  align-items: center;
+}
+
+.tal1 {
+  grid-area: tal1;
+  justify-self: center;
+  padding-left: 8px;
+  // background-color: $c-black;
+}
+.tal2 {
+  grid-area: tal2;
+  justify-self: right;
+  padding-right: 8px;
+}
+.tal3 {
+  grid-area: tal3;
+  align-self: center;
+}
+.tal4 {
+  grid-area: tal4;
+  justify-self: right;
+  padding-right: 8px;
+  align-self: center;
+
+  // padding-top: 2px;
+}
+.talTitle {
+  grid-area: talTitle;
+  background-color: #221f1f;
+}
 
 .flex-group-center,
 .flex-group-left,

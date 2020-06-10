@@ -16,7 +16,7 @@ export class alienrpgActorSheet extends ActorSheet {
     this._filters = {
       inventory: new Set(),
       // spellbook: new Set(),
-      // features: new Set()
+      // talents: new Set(),
     };
   }
 
@@ -64,6 +64,8 @@ export class alienrpgActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
+    console.log('data', data, data.filters);
+
     // Ability Scores
     for (let [a, abl] of Object.entries(data.actor.data.attributes)) {
       abl.label = CONFIG.ALIENRPG.attributes[a];
@@ -88,12 +90,12 @@ export class alienrpgActorSheet extends ActorSheet {
     data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
     data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
 
-    // Return data to the sheet
-
+    // Prepare items.
     this._prepareItems(data); // Return data to the sheet
 
     // console.log('inventory', data.inventory);
 
+    // Return data to the sheet
     return data;
   }
 
@@ -106,14 +108,32 @@ export class alienrpgActorSheet extends ActorSheet {
    * @private
    */
   _prepareItems(data) {
+    // Initialize containers.
+    const talents = [];
+
+    // Iterate through items, allocating to containers
+    // let totalWeight = 0;
+    for (let i of data.items) {
+      let item = i.data;
+      // Append to gear.
+      if (i.type === 'talent') {
+        talents.push(i);
+      }
+    }
+
+    // Assign and return
+    data.talents = talents;
+    console.log('data.talents', data.talents);
+
     // Categorize items as inventory, spellbook, features, and classes
     const inventory = {
       weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },
       item: { label: 'Items', items: [], dataset: { type: 'item' } },
       armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
+      // talents: { label: 'Talent', items: [], dataset: { type: 'talents' } },
     };
     // Partition items by category
-    let [items, spells, feats, classes] = data.items.reduce(
+    let [items, spells, feats, classes, talent] = data.items.reduce(
       (arr, item) => {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
@@ -124,7 +144,7 @@ export class alienrpgActorSheet extends ActorSheet {
         // Classify items into types
         if (item.type === 'spell') arr[1].push(item);
         else if (item.type === 'feat') arr[2].push(item);
-        else if (item.type === 'class') arr[3].push(item);
+        else if (item.type === 'feature') arr[3].push(item);
         else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
         return arr;
       },
@@ -133,15 +153,17 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
+    console.log('items', items);
 
     // Organize Inventory
     let totalWeight = 0;
     for (let i of items) {
-      //  i.data.quantity = i.data.quantity || 0;
-      i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-      i.totalWeight = i.data.attributes.weight.value;
-      inventory[i.type].items.push(i);
-      totalWeight += i.totalWeight;
+      if (i.type != 'talent') {
+        i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+        i.totalWeight = i.data.attributes.weight.value;
+        inventory[i.type].items.push(i);
+        totalWeight += i.totalWeight;
+      }
     }
 
     // Loop through the items and update the actors AC

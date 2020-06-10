@@ -38,8 +38,8 @@
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
     <a class="item" data-tab="skills">{{localize "ALIENRPG.Skills"}}</a>
-    <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
     <a class="item" data-tab="inventory">{{localize "ALIENRPG.Inventory"}}</a>
+    <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -47,24 +47,45 @@
     
     {{!--Skills Tab --}}
     <div class="tab skills" data-group="primary" data-tab="skills">
-<div class="grid-container ">
-  <span class="Col1">
-      {{#each data.skills as |skill key|}}
-      <span class="ability grid-attr">
-        <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{skill.label}}">{{skill.label}}</h3>
-        <input type="text" class="maxboxsize Attr2" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
-      </span>
-      {{/each}}
-    </span>
-      <span class="Col2">
-        <h2>Talents</h2>
-        <p > Lorem ipsum dolor sit, adipisicing elit.
-           Sequi ducimus consequatur veritatis nesciunt libero magnam
-            adipisc minus  doloribus tenetur, qui id quae deleniti architecto magni quaerat? Porro tempore nesciunt molestiae?
-          </p>
-        Item 3</span>
+      <div class="grid-container ">
+           <!-- Col1 -->
+        <span class="Col1">
+          {{#each data.skills as |skill key|}}
+          <span class="ability grid-attr">
+            <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{skill.label}}">{{skill.label}}</h3>
+            <input type="text" class="maxboxsize Attr2" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
+          </span>
+          {{/each}}
+        </span>
+
+            <!-- Col2 -->
+
+        <div class="Col2">
+          <li class="item grid-talents item-header">
+              <h2 class="item talTitle">Talents</h2>
+              {{!-- Owned Features Tab --}}
+                    <h3 class="item-name tal1"  >Name</h3>
+                    <div class="item-controls tal2">
+                      <a class="item-control item-create" style="font-size: smaller;" title="Create item" data-type="talent"><i class="fas fa-plus"></i> Add item</a>
+                    </div>
+            </li>
+
+                  {{#each talents as |item iid|}}
+                  <li class="item grid-talents" data-item-id="{{item._id}}">
+                    <h4 class="item-name tal3">{{item.name}}</h4>
+                    <div class="tal4">
+                              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                      </div>
+                  </li>
+                  {{/each}}
         </div>
-        </div>
+      </div>
+    </div>
+    
+    
+    
+    
 
     {{!-- Biography Tab --}}
     <div class="tab biography" data-group="primary" data-tab="description">

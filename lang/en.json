@@ -102,5 +102,6 @@
   "ALIENRPG.Filter": "Filter",
   "ALIENRPG.Inventory": "Inventory",
   "ALIENRPG.CriticalInjuries": "Critical Injuries",
-  "ALIENRPG.Armor": "Armor"
+  "ALIENRPG.Armor": "Armor",
+  "ALIENRPG.GeneralTalent": "General Talent"
 }
