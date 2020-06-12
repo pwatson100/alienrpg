@@ -98,10 +98,11 @@
   "ALIENRPG.EditItemTitle": "Edit Item",
   "ALIENRPG.DeleteItemTitle": "Delete Item",
   "ALIENRPG.CapacityBarLabel": "Capacity",
-  "ALIENRPG.AbbreviationKg": "Kg",
+  "ALIENRPG.AbbreviationKg": "kg",
   "ALIENRPG.Filter": "Filter",
   "ALIENRPG.Inventory": "Inventory",
   "ALIENRPG.CriticalInjuries": "Critical Injuries",
   "ALIENRPG.Armor": "Armor",
-  "ALIENRPG.GeneralTalent": "General Talent"
+  "ALIENRPG.GeneralTalent": "General Talent",
+  "ALIENRPG.SpecialAbilities": "Special Abilities"
 }

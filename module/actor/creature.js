@@ -1,14 +1,13 @@
 import { yze } from '../YZEDiceRoller.js';
-import { toNumber } from '../utils.js';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class alienrpgActorSheet extends ActorSheet {
+export class ActorSheetAlienRPGCreat extends ActorSheet {
   constructor(...args) {
     super(...args);
-
+    console.warn('Creature.js - Got here');
     /**
      * Track the set of item filters which are applied
      * @type {Set}
@@ -16,30 +15,31 @@ export class alienrpgActorSheet extends ActorSheet {
     this._filters = {
       inventory: new Set(),
       // spellbook: new Set(),
-      // talents: new Set(),
+      // features: new Set()
     };
   }
 
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
-      // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
+      classes: ['alienrpg', 'sheet', 'actor', 'creature-sheet'],
+      // template: 'systems/alienrpg/templates/actor/creature-sheet.html',
       width: 600,
-      height: 665,
+      height: 458,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
 
   get template() {
     const path = 'systems/alienrpg/templates/actor/';
-    return `${path}actor-sheet.html`;
+    return `${path}creature-sheet.html`;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
   getData() {
+    // const data = super.getData();
     // Basic data
     let isOwner = this.entity.owner;
     const data = {
@@ -51,7 +51,6 @@ export class alienrpgActorSheet extends ActorSheet {
       isCharacter: this.entity.data.type === 'character',
       isVehicles: this.entity.data.type === 'vehicles',
       isCreature: this.entity.data.type === 'creature',
-
       config: CONFIG.ALIENRPG,
     };
 
@@ -66,157 +65,14 @@ export class alienrpgActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-    console.warn('data', data, data.filters);
+    // this._prepareItems(data);
 
-    // Ability Scores
-    for (let [a, abl] of Object.entries(data.actor.data.attributes)) {
-      abl.label = CONFIG.ALIENRPG.attributes[a];
-    }
-
-    // Update skill labels
-    for (let [s, skl] of Object.entries(data.actor.data.skills)) {
-      skl.label = CONFIG.ALIENRPG.skills[s];
-    }
-
-    data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
-    data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
-    data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
-    data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
-    data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
-    data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
-
-    data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
-    data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
-    data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
-    data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
-    data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
-    data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
-
-    // Prepare items.
-    this._prepareItems(data); // Return data to the sheet
-
-    // console.warn('inventory', data.inventory);
-
-    // Return data to the sheet
     return data;
   }
 
   _findActiveList() {
     return this.element.find('.tab.active .directory-list');
   }
-
-  /*
-   * Organize and classify Owned Items for Character sheets
-   * @private
-   */
-  _prepareItems(data) {
-    // Initialize containers.
-    const talents = [];
-
-    // Iterate through items, allocating to containers
-    // let totalWeight = 0;
-    for (let i of data.items) {
-      let item = i.data;
-      // Append to gear.
-      if (i.type === 'talent') {
-        talents.push(i);
-      }
-    }
-
-    // Assign and return
-    data.talents = talents;
-    // console.warn('data.talents', data.talents);
-    console.warn('data.talents', data.talents);
-
-    // Categorize items as inventory, spellbook, features, and classes
-    const inventory = {
-      weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },
-      item: { label: 'Items', items: [], dataset: { type: 'item' } },
-      armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
-      // talents: { label: 'Talent', items: [], dataset: { type: 'talents' } },
-    };
-    // Partition items by category
-    let [items, spells, feats, classes, talent] = data.items.reduce(
-      (arr, item) => {
-        // Item details
-        item.img = item.img || DEFAULT_TOKEN;
-        item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
-
-        // console.warn('inventory', inventory);
-
-        // Classify items into types
-        if (item.type === 'spell') arr[1].push(item);
-        else if (item.type === 'feat') arr[2].push(item);
-        else if (item.type === 'feature') arr[3].push(item);
-        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
-        return arr;
-      },
-      [[], [], [], []]
-    );
-
-    // Apply active item filters
-    items = this._filterItems(items, this._filters.inventory);
-    console.warn('items', items);
-
-    // Organize Inventory
-    let totalWeight = 0;
-    for (let i of items) {
-      if (i.type != 'talent') {
-        i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-        i.totalWeight = i.data.attributes.weight.value;
-        inventory[i.type].items.push(i);
-        totalWeight += i.totalWeight;
-      }
-    }
-
-    // Loop through the items and update the actors AC
-    let totalAc = 0;
-    for (let i of items) {
-      try {
-        i.data.attributes.armorrating.value === true;
-        i.data.attributes.armorrating.value = i.data.attributes.armorrating.value || 0;
-        i.totalAc = parseInt(i.data.attributes.armorrating.value, 10);
-        totalAc += i.totalAc;
-        data.data.general.armor.value = totalAc;
-      } catch {
-        data.data.general.armor.value = totalAc;
-      }
-    }
-    // console.warn('totalAc', i.totalAc, totalAc);
-
-    data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
-
-    // Assign and return
-    data.inventory = Object.values(inventory);
-  }
-
-  /*
-   * Compute the level and percentage of encumbrance for an Actor.
-   *
-   * Optionally include the weight of carried currency across all denominations by applying the standard rule
-   * from the PHB pg. 143
-   *
-   * @param {Number} totalWeight    The cumulative item weight from inventory items
-   * @param {Object} actorData      The data object for the Actor being rendered
-   * @return {Object}               An object describing the character's encumbrance level
-   * @private
-   */
-  _computeEncumbrance(totalWeight, actorData) {
-    // Compute Encumbrance percentage
-    const enc = {
-      max: actorData.data.attributes.str.value * 4,
-      value: Math.round(totalWeight * 10) / 10,
-    };
-    enc.pct = Math.min((enc.value * 100) / enc.max, 99);
-    enc.encumbered = enc.pct > 50;
-    return enc;
-  }
-
-  /**
-   * Determine whether an Owned Item will be shown based on the current set of filters
-   * @return {boolean}
-   * @private
-   */
   _filterItems(items, filters) {
     return items.filter((item) => {
       const data = item.data;
@@ -288,6 +144,9 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle Dying Wounded
 
     html.find('.supply-btn').click(this._supplyRoll.bind(this));
+
+    // Roll handlers, click handlers, etc. would go here.
+    html.find('.currency').on('change', this._currencyField.bind(this));
 
     // Drag events for macros.
     if (this.actor.owner) {
@@ -483,15 +342,93 @@ export class alienrpgActorSheet extends ActorSheet {
 
   _rollItem(event) {
     event.preventDefault();
-    // const element = event.currentTarget;
-    // console.warn('element', element);
-    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    const item = this.actor.getOwnedItem(itemId);
-    // console.warn('item', item);
-    if (item.type === 'weapon') {
-      // Trigger the item roll
-      return item.roll();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    let label = dataset.label;
+    const itemName = dataset.item;
+    const speaker = ChatMessage.getSpeaker();
+    let actor;
+    if (speaker.token) actor = game.actors.tokens[speaker.token];
+    if (!actor) actor = game.actors.get(speaker.actor);
+    // console.warn('actor-sheet.js 321 - Got here', speaker, actor);
+    const item = actor ? actor.items.find((i) => i.name === itemName) : null;
+    if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+
+    // Trigger the item roll
+    return item.roll();
+  }
+
+  _currencyField(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+
+    console.warn(element.dataset);
+
+    const currency = 'USD'; // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
+
+    // format inital value
+    onBlur({ target: event.currentTarget });
+
+    function localStringToNumber(s) {
+      return Number(String(s).replace(/[^0-9.-]+/g, ''));
+    }
+
+    function onBlur(e) {
+      console.warn('onblur');
+      let value = e.target.value;
+
+      let options = {
+        maximumFractionDigits: 2,
+        currency: currency,
+        style: 'currency',
+        currencyDisplay: 'symbol',
+      };
+      e.target.value = value ? localStringToNumber(value).toLocaleString(undefined, options) : '';
+      console.warn(e.target.value);
     }
   }
+
+  _prepareItems(data) {
+    // Categorize items as inventory, spellbook, features, and classes
+    const inventory = {
+      weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },
+      item: { label: 'Items', items: [], dataset: { type: 'item' } },
+      armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
+    };
+    // Partition items by category
+    let [items, spells, feats, classes] = data.items.reduce(
+      (arr, item) => {
+        // Item details
+        item.img = item.img || DEFAULT_TOKEN;
+        item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
+
+        // console.warn('inventory', inventory);
+
+        // Classify items into types
+        if (item.type === 'spell') arr[1].push(item);
+        else if (item.type === 'feat') arr[2].push(item);
+        else if (item.type === 'class') arr[3].push(item);
+        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+        return arr;
+      },
+      [[], [], [], []]
+    );
+
+    // Apply active item filters
+    items = this._filterItems(items, this._filters.inventory);
+
+    // Organize Inventory
+    let totalWeight = 0;
+    for (let i of items) {
+      //  i.data.quantity = i.data.quantity || 0;
+      i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+      i.totalWeight = i.data.attributes.weight.value;
+      inventory[i.type].items.push(i);
+      totalWeight += i.totalWeight;
+    }
+
+    // Assign and return
+    data.inventory = Object.values(inventory);
+  }
 }
-export default alienrpgActorSheet;
+export default ActorSheetAlienRPGCreat;

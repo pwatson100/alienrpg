@@ -6,10 +6,10 @@
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
 
-      <div class="resources grid-weapon">
+      <div class="grid-weapon">
         <h3 class="wItem2 resource-label">{{localize "ALIENRPG.Type"}}</h3>
-        <div class="selectBox wItem3">
-          <select name="data.general.career.value" data-dcareer="{{data.general.career.value}}">
+        <div class="wItem3">
+          <select class="select-css" name="data.general.career.value" data-dcareer="{{data.general.career.value}}">
             {{#select data.general.career.value}}
             <!-- <option value=""></option> -->
             <option value="General Talent">{{localize "ALIENRPG.GeneralTalent"}}</option>
@@ -39,13 +39,13 @@
   <section class="sheet-body">
     {{!-- Attributes Tab --}}
     <div class="tab general" data-group="primary" data-tab="general">
-      <h2 class="item-label">{{localize "ALIENRPG.Comment"}}</h2>
-      <textarea name="data.general.comment.value" rows="16" data-dtype="String">{{data.general.comment.value}}</textarea>
+      <h2 class="resource-label">{{localize "ALIENRPG.Comment"}}</h2>
+      <textarea name="data.general.comment.value" rows="14" data-dtype="String">{{data.general.comment.value}}</textarea>
     </div>
 
     {{!-- Notes Tab --}}
     <div class="tab item" data-group="primary" data-tab="notes">
-      {{editor content=data.notes target="data.notes" button=true owner=owner editable=editable}}
+      {{editor content=data.notes.value target="data.notes" button=true owner=owner editable=editable}}
     </div>
   </section>
 </form>

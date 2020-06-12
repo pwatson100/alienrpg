@@ -11,7 +11,7 @@ import { AlienRPGSetup } from './setupHandler.js';
 import { preloadHandlebarsTemplates } from './templates.js';
 
 Hooks.once('init', async function () {
-  console.log(`Initializing Alien RPG`);
+  console.warn(`Initializing Alien RPG`);
   game.alienrpg = {
     alienrpgActor,
     alienrpgItem,
@@ -42,9 +42,9 @@ Hooks.once('init', async function () {
   // Actors.registerSheet('alienrpg', alienrpgActorSheet, { makeDefault: true });
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('alienrpg', alienrpgItemSheet, { makeDefault: false });
-  // console.log('*******************************');
-  // console.log('register');
-  // console.log('*******************************');
+  // console.warn('*******************************');
+  // console.warn('register');
+  // console.warn('*******************************');
   registerSettings();
   registerActors();
   // Preload Handlebars Templates
@@ -102,12 +102,12 @@ Hooks.once('ready', async function () {
 //  Hook to watch for the Push button being pressed -   Need to refactor this so it does not firee all the time.
 //
 Hooks.on('renderChatMessage', (message, html, data) => {
-  // console.log('init hook here');
+  // console.warn('init hook here');
 
   html.find('i.fas.fa-dice').each((i, li) => {
-    // console.log(li);
+    // console.warn(li);
     li.addEventListener('click', function (ev) {
-      // console.log(ev);
+      // console.warn(ev);
       if (ev.target.classList.contains('fa-dice')) {
         // do stuff
         let actor = game.actors.get(ChatMessage.getSpeaker().actor);
@@ -118,7 +118,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         const reRoll1 = game.alienrpg.rollArr.r1Dice - (game.alienrpg.rollArr.r1One + game.alienrpg.rollArr.r1Six);
         const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
         yze.yzeRoll('true', game.alienrpg.rollArr.tLabel, reRoll1, 'Black', reRoll2, 'Yellow');
-        // console.log(game.alienrpg.rollArr);
+        // console.warn(game.alienrpg.rollArr);
       }
     });
   });
@@ -215,7 +215,7 @@ function rollItemMacro(itemName) {
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
   if (!actor) actor = game.actors.get(speaker.actor);
-  // console.log('alienrpg.js 155 - Got here', speaker, actor);
+  // console.warn('alienrpg.js 155 - Got here', speaker, actor);
   const item = actor ? actor.items.find((i) => i.name === itemName) : null;
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
 

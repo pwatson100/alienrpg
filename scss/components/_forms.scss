@@ -3,7 +3,7 @@
   background: $c-black;
 }
 
-.sheet-header {
+.actor-header {
   flex: 0 0 180px;
   overflow: hidden;
   display: flex;
@@ -14,8 +14,9 @@
   background-color: $c-black;
   color: $c-green;
 }
+
 .vehicle-header {
-  flex: 0 0 130px;
+  flex: 0 0 125px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -108,22 +109,24 @@ input {
   color: $c-green;
 }
 
-.selectBox {
-  color: $c-green;
+// .selectBox {
+//   color: $c-green;
 
-  select {
-    // background-color: grey;
-    color: $c-green;
-    background-color: $c-black;
-    font-size: 15px;
-  }
-}
+//   select {
+//     // background-color: grey;
+//     color: $c-green;
+//     background-color: $c-black;
+//     font-size: 15px;
+//     border: none;
+//     border-radius: 4px;
+//   }
+// }
 textarea {
   resize: none;
-  width: 98%;
-  padding: 0;
+  // width: 98%;
+  padding: 2;
   color: $c-green;
-  margin: 4px;
+  // margin: 4px;
   border: 1px solid $c-green;
 }
 

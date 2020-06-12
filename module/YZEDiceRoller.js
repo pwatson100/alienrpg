@@ -37,7 +37,7 @@ export class yze {
 
     //  Initialse the chat message
     let chatMessage = '';
-    // console.log('YZE', reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3);
+    // console.warn('YZE', reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3);
 
     // Set uptext for a roll or push
     let rType = '';

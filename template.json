@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "vehicles"],
+    "types": ["character", "vehicles", "creature"],
     "character": {
       "header": {
         "health": {
@@ -169,6 +169,37 @@
           "value": 0,
           "min": 0,
           "max": 5
+        }
+      },
+      "notes": {
+        "notes": ""
+      }
+    },
+    "creature": {
+      "header": {
+        "health": {
+          "value": 0,
+          "label": "Health"
+        },
+        "speed": {
+          "value": 0,
+          "label": "Speed"
+        },
+        "armorrating": {
+          "value": 0,
+          "label": "Number"
+        },
+        "mobility": {
+          "value": "-",
+          "label": "Mobility"
+        },
+        "observation": {
+          "value": "-",
+          "label": "Observation"
+        },
+        "comment": {
+          "value": "",
+          "label": "Text"
         }
       },
       "notes": {

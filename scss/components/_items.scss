@@ -1,38 +1,56 @@
-// .items-list {
-//   list-style: none;
-//   margin: 7px 0;
-//   padding-top: 0px;
-//   padding-right: 10px;
-//   padding-bottom: 0px;
-//   padding-left: 10px;
-//   // overflow-y: auto;
+.items-list {
+  list-style: none;
+  // margin: 7px 0;
 
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  // overflow-y: auto;
+}
 .item-header {
   // font-weight: bold;
-  background-color: rgb(83, 79, 79);
+  background-color: rgb(44, 40, 40);
 }
 
-//   .item {
-//     height: 30px;
-//     line-height: 24px;
-//     padding: 3px 0;
-//     border-bottom: 1px solid #bbb;
+.item-name {
+  margin: 0;
+}
 
-//     .item-image {
-//       flex: 0 0 24px;
-//       margin-right: 5px;
-//     }
+.item-controls {
+  text-align: right;
+}
 
-//     img {
-//       display: block;
-//     }
-//   }
+.item-label {
+  // font-weight: bold;
+  font-family: $font-primary;
+  font-size: small;
+  text-transform: uppercase;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: $c-green;
+  // flex: auto;
+}
 
-//   .item-name {
-//     margin: 0;
-//   }
+//   This calls needs tobe used for the editorbox on actor templates without flexcol.
+.biog {
+  line-height: 24px;
+  height: 300px;
+  padding: 3px 0;
+  width: 1fr;
+  // border-bottom: 1px solid #bbb;
 
-//   .item-controls {
-//     text-align: right;
-//   }
-// }
+  .biog-image {
+    flex: 0 0 24px;
+    margin-right: 5px;
+  }
+  .editor-content {
+    width: 550px;
+    word-wrap: break-word;
+    color: $c-black;
+  }
+
+  img {
+    display: block;
+  }
+}

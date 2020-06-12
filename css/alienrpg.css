@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Wallpoet:wght@400;800&family=Wallpoet:wght@300;400;500&display=swap");
 /* Global styles */
+.alienrpg ul ol {
+  margin-left: 3px;
+}
+
 .alienrpg .window-content {
   font-family: "Wallpoet", sans-serif;
   color: greenyellow;
@@ -91,52 +95,6 @@
   padding: 4px;
 }
 
-.grid-5col {
-  grid-column: span 5 / span 5;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.grid-6col {
-  grid-column: span 5 / span 5;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.grid-7col {
-  grid-column: span 7 / span 7;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.grid-8col {
-  grid-column: span 8 / span 8;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-}
-
-.grid-9col {
-  grid-column: span 9 / span 9;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
-}
-
-.grid-10col {
-  grid-column: span 10 / span 10;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-}
-
-.grid-11col {
-  grid-column: span 11 / span 11;
-  grid-template-columns: repeat(11, minmax(0, 1fr));
-}
-
-.grid-12col {
-  grid-column: span 12 / span 12;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
-
-.grid-2row {
-  grid-column: span 1 / span 3;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  justify-items: center;
-}
-
 .grid-genPage {
   display: grid;
   grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item9 Item6 Item6' 'Item9 Item7 Item7' 'Item9 Item10 Item10' 'Item11 Item10 Item10';
@@ -157,11 +115,15 @@
 .Item3 {
   grid-area: Item3;
   border: 1px solid greenyellow;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .Item4 {
   grid-area: Item4;
   border: 1px solid greenyellow;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .Item5 {
@@ -194,12 +156,15 @@
 .Item10 {
   grid-area: Item10;
   border: 1px solid greenyellow;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .Item11 {
   grid-area: Item11;
   border: 1px solid greenyellow;
   padding: 4px;
+  padding-left: 24px;
 }
 
 .grid-container {
@@ -475,6 +440,43 @@
   background-color: #221f1f;
 }
 
+.grid-two {
+  display: grid;
+  grid-template-areas: 'box1 box2';
+  padding: 3px;
+  grid-template-columns: 25% 75%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.box1 {
+  grid-area: box1;
+  justify-self: center;
+  padding-left: 8px;
+}
+
+.box2 {
+  grid-area: box2;
+  justify-self: right;
+  padding-right: 8px;
+}
+
+.grid-one {
+  display: grid;
+  grid-template-areas: 'scr';
+  padding: 3px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.scr {
+  grid-area: scr;
+  justify-self: center;
+  padding-left: 8px;
+}
+
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {
@@ -716,13 +718,96 @@
 }
 
 /* @end */
+/* class applies to select element itself, not a wrapper element */
+.select-css {
+  display: block;
+  font-size: 15px;
+  font-family: 'Wallpoet', sans-serif;
+  font-weight: 700;
+  color: greenyellow;
+  width: 100%;
+  max-width: 75%;
+  /* useful when width is set to anything other than 100% */
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid greenyellow;
+  -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 0.5em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  /* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 
+		for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
+		
+	*/
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ADFF2F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -webkit-gradient(linear, left top, left bottom, from(black), to(black));
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ADFF2F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -o-linear-gradient(top, black 0%, black 100%);
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ADFF2F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, black 0%, black 100%);
+  background-repeat: no-repeat, repeat;
+  /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
+  background-position: right 0.7em top 50%, 0 0;
+  /* icon size, then gradient */
+  background-size: 0.65em auto, 100%;
+}
+
+/* Hide arrow icon in IE browsers */
+.select-css::-ms-expand {
+  display: none;
+}
+
+/* Hover style */
+.select-css:hover {
+  border-color: greenyellow;
+}
+
+/* Focus style */
+.select-css:focus {
+  border-color: greenyellow;
+  /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
+  -webkit-box-shadow: 0 0 1px 1px greenyellow;
+  box-shadow: 0 0 1px 1px greenyellow;
+  box-shadow: 0 0 0 1px -moz-mac-focusring greenyellow;
+  color: greenyellow;
+  outline: none;
+  background-color: black;
+}
+
+/* Set options to normal weight */
+.select-css option {
+  font-weight: normal;
+}
+
+/* Support for rtl text, explicit support for Arabic and Hebrew */
+*[dir='rtl'] .select-css,
+:root:lang(ar) .select-css,
+:root:lang(iw) .select-css {
+  background-position: left 0.7em top 50%, 0 0;
+  padding: 0.6em 0.8em 0.5em 1.4em;
+}
+
+/* Disabled styles */
+.select-css:disabled,
+.select-css[aria-disabled='true'] {
+  color: greenyellow;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -webkit-gradient(linear, left top, left bottom, from(black), to(black));
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -o-linear-gradient(top, black 0%, black 100%);
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, black 0%, black 100%);
+}
+
+.select-css:disabled:hover,
+.select-css[aria-disabled='true'] {
+  border-color: #aaa;
+}
+
 /* Styles limited to alienrpg sheets */
 .alienrpg .item-form {
   font-family: "Wallpoet", sans-serif;
   background: #000;
 }
 
-.alienrpg .sheet-header {
+.alienrpg .actor-header {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 180px;
   flex: 0 0 180px;
@@ -746,8 +831,8 @@
 
 .alienrpg .vehicle-header {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 130px;
-  flex: 0 0 130px;
+  -ms-flex: 0 0 125px;
+  flex: 0 0 125px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -853,22 +938,10 @@
   color: greenyellow;
 }
 
-.alienrpg .selectBox {
-  color: greenyellow;
-}
-
-.alienrpg .selectBox select {
-  color: greenyellow;
-  background-color: #000;
-  font-size: 15px;
-}
-
 .alienrpg textarea {
   resize: none;
-  width: 98%;
-  padding: 0;
+  padding: 2;
   color: greenyellow;
-  margin: 4px;
   border: 1px solid greenyellow;
 }
 
@@ -950,15 +1023,6 @@
   flex: auto;
 }
 
-.alienrpg .item-label {
-  font-family: "Wallpoet", sans-serif;
-  font-size: small;
-  text-transform: uppercase;
-  padding-right: 5px;
-  padding-left: 5px;
-  color: greenyellow;
-}
-
 .alienrpg .attr-label {
   font-weight: bold;
   text-transform: uppercase;
@@ -966,15 +1030,8 @@
   color: greenyellow;
 }
 
-.alienrpg .item-label {
-  font-weight: bold;
-  text-transform: uppercase;
-  padding-right: 15px;
-  color: greenyellow;
-}
-
 .alienrpg .tabs {
-  height: 40px;
+  height: 30px;
   border-top: 1px solid #aaa;
   border-bottom: 1px solid #aaa;
   color: greenyellow;
@@ -982,7 +1039,7 @@
 }
 
 .alienrpg .tabs .item {
-  line-height: 40px;
+  line-height: 30px;
   font-weight: bold;
   color: greenyellow;
 }
@@ -992,6 +1049,55 @@
   text-shadow: none;
 }
 
+.alienrpg .items-list {
+  list-style: none;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 .alienrpg .item-header {
-  background-color: #534f4f;
+  background-color: #2c2828;
+}
+
+.alienrpg .item-name {
+  margin: 0;
+}
+
+.alienrpg .item-controls {
+  text-align: right;
+}
+
+.alienrpg .item-label {
+  font-family: "Wallpoet", sans-serif;
+  font-size: small;
+  text-transform: uppercase;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: greenyellow;
+}
+
+.alienrpg .biog {
+  line-height: 24px;
+  height: 300px;
+  padding: 3px 0;
+  width: 1fr;
+}
+
+.alienrpg .biog .biog-image {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 24px;
+  flex: 0 0 24px;
+  margin-right: 5px;
+}
+
+.alienrpg .biog .editor-content {
+  width: 550px;
+  word-wrap: break-word;
+  color: #000;
+}
+
+.alienrpg .biog img {
+  display: block;
 }

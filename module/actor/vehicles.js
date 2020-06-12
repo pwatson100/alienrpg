@@ -50,6 +50,8 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
       cssClass: isOwner ? 'editable' : 'locked',
       isCharacter: this.entity.data.type === 'character',
       isVehicles: this.entity.data.type === 'vehicles',
+      isCreature: this.entity.data.type === 'creature',
+
       config: CONFIG.ALIENRPG,
     };
 
@@ -206,7 +208,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
       let r2Data = this.actor.getRollData().stress;
       let reRoll = 'false';
       yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      // console.log('onRoll', game.alienrpg.rollArr);
+      // console.warn('onRoll', game.alienrpg.rollArr);
     } else {
       if (dataset.panicroll) {
         // Roll against the panic table and push the roll to the chat log.
@@ -312,7 +314,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
 
-    // console.log(element);
+    // console.warn(element);
     const consUme = dataset.spbutt.toLowerCase();
     let r1Data = 0;
     let r2Data = this.actor.data.data.consumables[consUme].value;
@@ -350,7 +352,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     let actor;
     if (speaker.token) actor = game.actors.tokens[speaker.token];
     if (!actor) actor = game.actors.get(speaker.actor);
-    // console.log('actor-sheet.js 321 - Got here', speaker, actor);
+    // console.warn('actor-sheet.js 321 - Got here', speaker, actor);
     const item = actor ? actor.items.find((i) => i.name === itemName) : null;
     if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
 
@@ -362,7 +364,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
 
-    console.log(element.dataset);
+    console.warn(element.dataset);
 
     const currency = 'USD'; // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
 
@@ -374,7 +376,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     }
 
     function onBlur(e) {
-      console.log('onblur');
+      console.warn('onblur');
       let value = e.target.value;
 
       let options = {
@@ -384,7 +386,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
         currencyDisplay: 'symbol',
       };
       e.target.value = value ? localStringToNumber(value).toLocaleString(undefined, options) : '';
-      console.log(e.target.value);
+      console.warn(e.target.value);
     }
   }
 
@@ -402,7 +404,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
         item.img = item.img || DEFAULT_TOKEN;
         item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
 
-        // console.log('inventory', inventory);
+        // console.warn('inventory', inventory);
 
         // Classify items into types
         if (item.type === 'spell') arr[1].push(item);

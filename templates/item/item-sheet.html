@@ -13,8 +13,8 @@
         <input type="text" class="wItem4 cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
 
         <h4 class="wItem6 resource-label">{{localize "ALIENRPG.Type"}}</h4>
-        <div class="selectBox wItem7">
-          <select name="data.header.type.value" data-dtype="{{data.header.type.value}}">
+        <div class="wItem7">
+          <select class="select-css" name="data.header.type.value" data-dtype="{{data.header.type.value}}">
             {{#select data.header.type.value}}
             <!-- <option value=""></option> -->
             <option value="Data Storage">{{localize "ALIENRPG.DataStorage"}}</option>
@@ -41,13 +41,13 @@
   <section class="sheet-body">
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
-      <h3 class="item-label">{{localize "ALIENRPG.Comment"}}</h3>
-      <textarea name="data.attributes.comment.value" rows="5" data-dtype="String">{{data.attributes.comment.value}}</textarea>
+      <h2 class="resource-label">{{localize "ALIENRPG.Comment"}}</h2>
+      <textarea name="data.attributes.comment.value" rows="12" data-dtype="String">{{data.attributes.comment.value}}</textarea>
     </div>
 
     {{!-- Notes Tab --}}
     <div class="tab item" data-group="primary" data-tab="notes">
-      {{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=editable}}
+      {{editor content=data.notes.notes.value target="data.notes.notes" button=true owner=owner editable=editable}}
     </div>
   </section>
 </form>

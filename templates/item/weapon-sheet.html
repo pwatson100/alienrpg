@@ -15,7 +15,7 @@
 
         <h3 class="wItem6 resource-label">{{localize "ALIENRPG.Type"}}</h3>
         <div class="selectBox wItem7">
-          <select name="data.header.type.value" data-dtype="{{data.header.type.value}}">
+          <select class="select-css" name="data.header.type.value" data-dtype="{{data.header.type.value}}">
             {{#select data.header.type.value}}
             <!-- <option value=""></option> -->
             <option value="Ranged">{{localize "ALIENRPG.WepTypeRanged"}}</option>
@@ -51,12 +51,12 @@
 
       <br />
       <label class="resource-label">{{localize "ALIENRPG.Comment"}}</label>
-      <textarea name="data.attributes.comment.value" rows="2" data-dtype="String">{{data.attributes.comment.value}}</textarea>
+      <textarea name="data.attributes.comment.value" rows="8" data-dtype="String">{{data.attributes.comment.value}}</textarea>
     </div>
 
     {{!-- Notes Tab --}}
     <div class="tab item" data-group="primary" data-tab="notes">
-      {{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=editable}}
+      {{editor content=data.notes.notes.value target="data.notes.notes" button=true owner=owner editable=editable}}
     </div>
   </section>
 </form>

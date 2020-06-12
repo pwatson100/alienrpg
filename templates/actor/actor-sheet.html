@@ -1,6 +1,6 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
+<form class="{{cssClass}} " autocomplete="off">
   {{!-- Sheet Header --}}
-  <header class="sheet-header">
+  <header class="actor-header">
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
@@ -61,7 +61,7 @@
             <!-- Col2 -->
 
         <div class="Col2">
-          <li class="item grid-talents item-header">
+          <li class=" grid-talents item-header">
               <h2 class="item talTitle">Talents</h2>
               {{!-- Owned Features Tab --}}
                     <h3 class="item-name tal1"  >Name</h3>
@@ -82,16 +82,12 @@
         </div>
       </div>
     </div>
-    
-    
-    
-    
+
 
     {{!-- Biography Tab --}}
-    <div class="tab biography" data-group="primary" data-tab="description">
-      {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+    <div class="tab biog " data-group="primary" data-tab="description">
+      {{editor content=data.notes.value target="data.notes" button=true owner=owner editable=editable}}
     </div>
-
     {{!-- Owned Items Tab --}}
       <!-- INVENTORY -->
     <div class="tab inventory" data-group="primary" data-tab="inventory">
@@ -182,9 +178,9 @@
 
             <!-- Col 2 -->
         <div class="Item2">
-          <div class="selectBox">
+          <div class="grid-two">
             <label class="resource-label" >{{localize "ALIENRPG.Career"}}</label>
-            <select name="data.general.career.value" data-dtype="{{data.general.career.value}}">
+            <select class="select-css" name="data.general.career.value" data-dtype="{{data.general.career.value}}">
               {{#select data.general.career.value}}
               <!-- <option value=""></option> -->
               <option value="Colonial Marine">{{localize "ALIENRPG.ColonialMarine"}}</option>

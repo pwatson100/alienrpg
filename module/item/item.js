@@ -15,7 +15,7 @@ export class alienrpgItem extends Item {
     const itemData = this.data;
     const actorData = this.actor ? this.actor.data : {};
     const data = itemData.data;
-    // console.log('data', data);
+    // console.warn('data', data);
   }
   /**
    * Handle clickable rolls.
@@ -41,7 +41,7 @@ export class alienrpgItem extends Item {
       let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
       yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
     } else {
-      console.log('No type on item');
+      console.warn('No type on item');
     }
   }
 }

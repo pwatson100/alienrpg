@@ -8,27 +8,11 @@
   justify-self: center;
   flex: auto;
 }
-.item-label {
-  // font-weight: bold;
-  font-family: $font-primary;
-  font-size: small;
-  text-transform: uppercase;
-  padding-right: 5px;
-  padding-left: 5px;
-  color: $c-green;
-  // flex: auto;
-}
+
 .attr-label {
   font-weight: bold;
   text-transform: uppercase;
   padding-right: 5px;
   color: $c-green;
   // justify-self: center;
-}
-.item-label {
-  font-weight: bold;
-  text-transform: uppercase;
-  padding-right: 15px;
-  color: $c-green;
-  // justify-content: space-around;
 }

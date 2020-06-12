@@ -27,52 +27,52 @@
   padding: 4px;
 }
 
-.grid-5col {
-  grid-column: span 5 / span 5;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
+// .grid-5col {
+//   grid-column: span 5 / span 5;
+//   grid-template-columns: repeat(5, minmax(0, 1fr));
+// }
 
-.grid-6col {
-  grid-column: span 5 / span 5;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
+// .grid-6col {
+//   grid-column: span 5 / span 5;
+//   grid-template-columns: repeat(5, minmax(0, 1fr));
+// }
 
-.grid-7col {
-  grid-column: span 7 / span 7;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
+// .grid-7col {
+//   grid-column: span 7 / span 7;
+//   grid-template-columns: repeat(7, minmax(0, 1fr));
+// }
 
-.grid-8col {
-  grid-column: span 8 / span 8;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-}
+// .grid-8col {
+//   grid-column: span 8 / span 8;
+//   grid-template-columns: repeat(8, minmax(0, 1fr));
+// }
 
-.grid-9col {
-  grid-column: span 9 / span 9;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
-}
+// .grid-9col {
+//   grid-column: span 9 / span 9;
+//   grid-template-columns: repeat(9, minmax(0, 1fr));
+// }
 
-.grid-10col {
-  grid-column: span 10 / span 10;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-}
+// .grid-10col {
+//   grid-column: span 10 / span 10;
+//   grid-template-columns: repeat(10, minmax(0, 1fr));
+// }
 
-.grid-11col {
-  grid-column: span 11 / span 11;
-  grid-template-columns: repeat(11, minmax(0, 1fr));
-}
+// .grid-11col {
+//   grid-column: span 11 / span 11;
+//   grid-template-columns: repeat(11, minmax(0, 1fr));
+// }
 
-.grid-12col {
-  grid-column: span 12 / span 12;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
+// .grid-12col {
+//   grid-column: span 12 / span 12;
+//   grid-template-columns: repeat(12, minmax(0, 1fr));
+// }
 
-.grid-2row {
-  grid-column: span 1 / span 3;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  // justify-self: center;
-  justify-items: center;
-}
+// .grid-2row {
+//   grid-column: span 1 / span 3;
+//   grid-template-columns: repeat(1, minmax(0, 1fr));
+//   // justify-self: center;
+//   justify-items: center;
+// }
 
 .grid-genPage {
   display: grid;
@@ -102,10 +102,14 @@
 .Item3 {
   grid-area: Item3;
   border: 1px solid $c-green;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .Item4 {
   grid-area: Item4;
   border: 1px solid $c-green;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .Item5 {
   grid-area: Item5;
@@ -132,11 +136,14 @@
 .Item10 {
   grid-area: Item10;
   border: 1px solid $c-green;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .Item11 {
   grid-area: Item11;
   border: 1px solid $c-green;
   padding: 4px;
+  padding-left: 24px;
 }
 
 .grid-container {
@@ -411,6 +418,41 @@
 .talTitle {
   grid-area: talTitle;
   background-color: #221f1f;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-areas: 'box1 box2';
+  padding: 3px;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+}
+
+.box1 {
+  grid-area: box1;
+  justify-self: center;
+  padding-left: 8px;
+  // background-color: $c-black;
+}
+.box2 {
+  grid-area: box2;
+  justify-self: right;
+  padding-right: 8px;
+}
+
+.grid-one {
+  display: grid;
+  grid-template-areas: 'scr';
+  padding: 3px;
+  // grid-template-columns: 25% 75%;
+  align-items: center;
+}
+
+.scr {
+  grid-area: scr;
+  justify-self: center;
+  padding-left: 8px;
+  // background-color: $c-black;
 }
 
 .flex-group-center,

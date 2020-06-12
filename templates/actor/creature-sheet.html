@@ -1,0 +1,59 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="vehicle-header">
+    <!-- {{log "CONTEXT!!!!"}} {{log this}} -->
+
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+      <div class="grid-vehicle">
+        {{!-- Health and Stress --}}
+        <h2 for="data.health.value vItem1" class="resource-label">{{ localize "ALIENRPG.Health"}}</h2>
+        <div class="resource-content">
+          <input type="text" class="maxboxsize vItem2" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
+        </div>
+
+        <h2 for="data.header.speed.value vItem3" class="resource-label">{{localize "ALIENRPG.Speed"}}</h2>
+        <div class="resource-content">
+          <input type="text" class="maxboxsize vItem4" name="data.header.speed.value" value="{{data.header.speed.value}}" data-dtype="Number" />
+        </div>
+
+        <h2 for="data.header.armorrating.value vItem1" class="resource-label">{{localize "ALIENRPG.InventoryArmorHeader"}}</h2>
+        <div class="resource-content">
+          <input type="text" class="maxboxsize vItem2" name="data.header.armorrating.value" value="{{data.header.armorrating.value}}" data-dtype="Number" />
+        </div>
+
+        <h2 for="data.header.mobility.value vItem3" class="resource-label">{{localize "ALIENRPG.SkillMobility"}}</h2>
+        <div class="resource-content">
+          <input type="text" class="maxboxsize vItem4" name="data.header.mobility.value" value="{{data.header.mobility.value}}" data-dtype="String" />
+        </div>
+
+        <h2 for="data.header.observation.value vItem7" class="resource-label">{{localize "ALIENRPG.SkillObservation"}}</h2>
+        <div class="resource-content">
+          <input type="text" class="maxboxsize vItem8" name="data.header.observation.value" value="{{data.header.observation.value}}" data-dtype="String" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
+    <a class="item" data-tab="notes">{{localize "ALIENRPG.Notes"}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    {{!-- Attributes Tab --}}
+    <div class="tab general" data-group="primary" data-tab="general">
+      <h3 class="resource-label">{{localize "ALIENRPG.SpecialAbilities"}}</h3>
+      <textarea name="data.header.comment.value" rows="2" data-dtype="String">{{data.header.comment.value}}</textarea>
+      <h3 class="resource-label">{{localize "ALIENRPG.Comment"}}</h3>
+      <textarea name="data.header.comment.value" rows="10" data-dtype="String">{{data.header.comment.value}}</textarea>
+    </div>
+
+    {{!-- Notes Tab --}}
+    <div class="tab biog" data-group="primary" data-tab="notes">
+      {{editor content=data.notes.value target="data.notes" button=true owner=owner editable=editable}}
+    </div>
+  </section>
+</form>
