@@ -117,7 +117,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
         const reRoll1 = game.alienrpg.rollArr.r1Dice - (game.alienrpg.rollArr.r1One + game.alienrpg.rollArr.r1Six);
         const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
-        yze.yzeRoll('true', game.alienrpg.rollArr.tLabel, reRoll1, 'Black', reRoll2, 'Yellow');
+        yze.yzeRoll(false, true, game.alienrpg.rollArr.tLabel, reRoll1, 'Black', reRoll2, 'Yellow');
         // console.warn(game.alienrpg.rollArr);
       }
     });

@@ -60,7 +60,7 @@ export class alienrpgItemSheet extends ItemSheet {
     event.preventDefault();
     const element = event.currentTarget;
 
-    console.warn(element.dataset);
+    // console.warn(element.dataset);
 
     const currency = 'USD'; // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
 
@@ -72,7 +72,7 @@ export class alienrpgItemSheet extends ItemSheet {
     }
 
     function onBlur(e) {
-      console.warn('onblur');
+      // console.warn('onblur');
       let value = e.target.value;
 
       let options = {
@@ -82,7 +82,7 @@ export class alienrpgItemSheet extends ItemSheet {
         currencyDisplay: 'symbol',
       };
       e.target.value = value ? localStringToNumber(value).toLocaleString(undefined, options) : '';
-      console.warn(e.target.value);
+      // console.warn(e.target.value);
     }
   }
 }

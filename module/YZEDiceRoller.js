@@ -2,6 +2,7 @@ export class yze {
   /**
    * YZEDice RollFunction.
    * Paramfornumber of dice to roll for each die type/rolls
+   * @param {Boolean} blind - True or False
    * @param {Boolean} reRoll - True or False
    * @param {Text} label - The skill/item being rolled agains
    * @param {number} r1Dice - Number of dice
@@ -21,10 +22,10 @@ export class yze {
    * let r1Data = parseInt(dataset.roll || 0);
    * let r2Data = this.actor.getRollData().stress;
    * let reRoll = false;
-   * yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
+   * yze.yzeRoll(blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
    */
-  static async yzeRoll(reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
+  static async yzeRoll(blind, reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
     // Is Dice So Nice enabled ?
     let niceDice = '';
 
@@ -41,7 +42,7 @@ export class yze {
 
     // Set uptext for a roll or push
     let rType = '';
-    if (reRoll === 'true') {
+    if (reRoll) {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
       rType = game.i18n.localize('ALIENRPG.Rolling');
@@ -106,15 +107,24 @@ export class yze {
     }
 
     // Only if Dice So Nice is enabled.
-    if (niceDice) {
+    if (niceDice && !blind) {
       game.dice3d.show(data).then((displayed) => {});
     }
-
-    ChatMessage.create({
-      user: game.user._id,
-      content: chatMessage,
-      other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-    });
+    if (!blind) {
+      ChatMessage.create({
+        user: game.user._id,
+        content: chatMessage,
+        other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      });
+    } else {
+      ChatMessage.create({
+        user: game.user._id,
+        content: chatMessage,
+        whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        blind: true,
+        type: CONST.CHAT_MESSAGE_TYPES.WHISPER,
+      });
+    }
   }
 }

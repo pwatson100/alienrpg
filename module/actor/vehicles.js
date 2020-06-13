@@ -206,8 +206,8 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
-      let reRoll = 'false';
-      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      let reRoll = false;
+      yze.yzeRoll(false, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       // console.warn('onRoll', game.alienrpg.rollArr);
     } else {
       if (dataset.panicroll) {
@@ -318,11 +318,11 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     const consUme = dataset.spbutt.toLowerCase();
     let r1Data = 0;
     let r2Data = this.actor.data.data.consumables[consUme].value;
-    let reRoll = 'never';
+    let reRoll = false;
     if (r2Data <= 0) {
       return ui.notifications.warn('You have run out of supplies');
     } else {
-      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      yze.yzeRoll(false, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       if (game.alienrpg.rollArr.r2One) {
         switch (consUme) {
           case 'air':
@@ -364,7 +364,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
 
-    console.warn(element.dataset);
+    // console.warn(element.dataset);
 
     const currency = 'USD'; // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
 
@@ -376,7 +376,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     }
 
     function onBlur(e) {
-      console.warn('onblur');
+      // console.warn('onblur');
       let value = e.target.value;
 
       let options = {
@@ -386,7 +386,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
         currencyDisplay: 'symbol',
       };
       e.target.value = value ? localStringToNumber(value).toLocaleString(undefined, options) : '';
-      console.warn(e.target.value);
+      // console.warn(e.target.value);
     }
   }
 

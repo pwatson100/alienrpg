@@ -462,6 +462,28 @@
   padding-right: 8px;
 }
 
+.grid-2 {
+  display: grid;
+  grid-template-areas: 'box11 box21';
+  padding: 3px;
+  grid-template-columns: 75% 25%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.box11 {
+  grid-area: box11;
+  justify-self: center;
+  padding-left: 8px;
+}
+
+.box21 {
+  grid-area: box21;
+  justify-self: right;
+  padding-right: 8px;
+}
+
 .grid-one {
   display: grid;
   grid-template-areas: 'scr';
@@ -469,12 +491,52 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .scr {
   grid-area: scr;
-  justify-self: center;
   padding-left: 8px;
+}
+
+.grid-creature {
+  display: grid;
+  border: 2px solid greenyellow;
+  grid-template-areas: 'vCre1 vCre2 ' 'vCre3 vCre4 ' 'vCre5 vCre6 ' 'vCre7 vCre8';
+}
+
+.vCre1 {
+  grid-area: vCre1;
+}
+
+.vCre2 {
+  grid-area: vCre2;
+}
+
+.vCre3 {
+  grid-area: vCre3;
+}
+
+.vCre4 {
+  grid-area: vCre4;
+}
+
+.vCre5 {
+  grid-area: vCre5;
+}
+
+.vCre6 {
+  grid-area: vCre6;
+}
+
+.vCre7 {
+  grid-area: vCre7;
+}
+
+.vCre8 {
+  grid-area: vCre8;
 }
 
 .flex-group-center,
@@ -1079,10 +1141,10 @@
 }
 
 .alienrpg .biog {
-  line-height: 24px;
   height: 300px;
   padding: 3px 0;
   width: 1fr;
+  font-family: 'Roboto', sans-serif;
 }
 
 .alienrpg .biog .biog-image {
@@ -1095,7 +1157,8 @@
 .alienrpg .biog .editor-content {
   width: 550px;
   word-wrap: break-word;
-  color: #000;
+  color: greenyellow;
+  font-family: 'Roboto', sans-serif;
 }
 
 .alienrpg .biog img {

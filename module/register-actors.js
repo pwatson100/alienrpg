@@ -15,7 +15,7 @@ function registerActors() {
     makeDefault: false,
   }); // Register vehicle Sheet
 
-  console.warn('Reg: Got here');
+  // console.warn('Reg: Got here');
 
   Actors.registerSheet('alienrpg', ActorSheetAlienRPGCreat, {
     types: ['creature'],

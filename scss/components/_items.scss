@@ -34,11 +34,12 @@
 
 //   This calls needs tobe used for the editorbox on actor templates without flexcol.
 .biog {
-  line-height: 24px;
+  // line-height: 24px;
   height: 300px;
   padding: 3px 0;
   width: 1fr;
   // border-bottom: 1px solid #bbb;
+  font-family: 'Roboto', sans-serif;
 
   .biog-image {
     flex: 0 0 24px;
@@ -47,7 +48,8 @@
   .editor-content {
     width: 550px;
     word-wrap: break-word;
-    color: $c-black;
+    color: $c-green;
+    font-family: 'Roboto', sans-serif;
   }
 
   img {

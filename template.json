@@ -180,7 +180,9 @@
         "health": {
           "value": 0,
           "label": "Health"
-        },
+        }
+      },
+      "attributes": {
         "speed": {
           "value": 0,
           "label": "Speed"
@@ -188,7 +190,9 @@
         "armorrating": {
           "value": 0,
           "label": "Number"
-        },
+        }
+      },
+      "general": {
         "mobility": {
           "value": "-",
           "label": "Mobility"
@@ -198,6 +202,10 @@
           "label": "Observation"
         },
         "comment": {
+          "value": "",
+          "label": "Text"
+        },
+        "special": {
           "value": "",
           "label": "Text"
         }
@@ -245,6 +253,11 @@
         "manoeuvrability": {
           "value": 0,
           "label": "Number"
+        }
+      },
+      "general": {
+        "misc": {
+          "value": ""
         }
       },
       "notes": {

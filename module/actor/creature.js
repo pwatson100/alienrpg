@@ -7,7 +7,7 @@ import { yze } from '../YZEDiceRoller.js';
 export class ActorSheetAlienRPGCreat extends ActorSheet {
   constructor(...args) {
     super(...args);
-    console.warn('Creature.js - Got here');
+    // console.warn('Creature.js - Got here');
     /**
      * Track the set of item filters which are applied
      * @type {Set}
@@ -201,24 +201,20 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     const element = event.currentTarget;
     const dataset = element.dataset;
     let label = dataset.label;
-    if (dataset.roll) {
+    // console.warn('OnRoll', element, dataset, label);
+    if (dataset.roll != '-') {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
-      let reRoll = 'false';
-      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      let reRoll = false;
+      yze.yzeRoll(true, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       // console.warn('onRoll', game.alienrpg.rollArr);
     } else {
-      if (dataset.panicroll) {
-        // Roll against the panic table and push the roll to the chat log.
-        let chatMessage = '';
-        const table = game.tables.getName('Panic Table');
-        const roll = new Roll('1d6 + @stress', this.actor.getRollData());
-        const customResults = table.roll({ roll });
-        chatMessage += '<h2>Panic Condition</h2>';
-        chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-        chatMessage += `${customResults.results[0].text}`;
-        ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
-      }
+      // Roll against the panic table and push the roll to the chat log.
+      let chatMessage = '';
+      chatMessage += '<h2>No Skill</h2>';
+      chatMessage += `<h4><i>This Creature does not have this Skill</i></h4>`;
+      // chatMessage += `${customResults.results[0].text}`;
+      ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
     }
   }
   _minusButton(event) {
@@ -316,11 +312,11 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     const consUme = dataset.spbutt.toLowerCase();
     let r1Data = 0;
     let r2Data = this.actor.data.data.consumables[consUme].value;
-    let reRoll = 'never';
+    let reRoll = false;
     if (r2Data <= 0) {
       return ui.notifications.warn('You have run out of supplies');
     } else {
-      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      yze.yzeRoll(false, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       if (game.alienrpg.rollArr.r2One) {
         switch (consUme) {
           case 'air':
@@ -362,7 +358,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
 
-    console.warn(element.dataset);
+    // console.warn(element.dataset);
 
     const currency = 'USD'; // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
 
@@ -374,7 +370,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     }
 
     function onBlur(e) {
-      console.warn('onblur');
+      // console.warn('onblur');
       let value = e.target.value;
 
       let options = {
@@ -384,7 +380,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
         currencyDisplay: 'symbol',
       };
       e.target.value = value ? localStringToNumber(value).toLocaleString(undefined, options) : '';
-      console.warn(e.target.value);
+      // console.warn(e.target.value);
     }
   }
 
