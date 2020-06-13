@@ -465,17 +465,17 @@
 .grid-2 {
   display: grid;
   grid-template-areas: 'box11 box21';
-  padding: 3px;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: 195px 33px;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .box11 {
   grid-area: box11;
   justify-self: center;
-  padding-left: 8px;
 }
 
 .box21 {

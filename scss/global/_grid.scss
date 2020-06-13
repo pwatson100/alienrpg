@@ -442,15 +442,18 @@
 .grid-2 {
   display: grid;
   grid-template-areas: 'box11 box21';
-  padding: 3px;
-  grid-template-columns: 75% 25%;
+  // padding: 3px;
+  grid-template-columns: 195px 33px;
   align-items: center;
+  margin: 0;
+  padding: 0;
+  // padding-left: 2px;
 }
 
 .box11 {
   grid-area: box11;
   justify-self: center;
-  padding-left: 8px;
+  // padding-left: 8px;
   // background-color: $c-black;
 }
 .box21 {
