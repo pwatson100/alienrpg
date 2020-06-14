@@ -361,6 +361,12 @@
       }
     },
     "talent": {
+      "attributes": {
+        "flag": {
+          "value": 0,
+          "label": "Flag"
+        }
+      },
       "general": {
         "career": {
           "value": "",

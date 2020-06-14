@@ -32,17 +32,15 @@ export class alienrpgActor extends Actor {
     // Map all items data using their slugified names
     data.items = this.data.items.reduce((obj, i) => {
       let key = i.name.slugify({ strict: true });
-      if (i.type != 'talent') {
-        let itemData = duplicate(i.data);
-        if (!!shorthand) {
-          for (let [k, v] of Object.entries(itemData.attributes)) {
-            if (!(k in itemData)) itemData[k] = v.value;
-          }
-          delete itemData['attributes'];
+      let itemData = duplicate(i.data);
+      if (!!shorthand) {
+        for (let [k, v] of Object.entries(itemData.attributes)) {
+          if (!(k in itemData)) itemData[k] = v.value;
         }
-        obj[key] = itemData;
-        return obj;
+        delete itemData['attributes'];
       }
+      obj[key] = itemData;
+      return obj;
     }, {});
     return data;
   }
