@@ -66,7 +66,7 @@ export class alienrpgActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-    console.warn('data', data, data.filters);
+    // console.warn('data', data, data.filters);
 
     // Ability Scores
     for (let [a, abl] of Object.entries(data.actor.data.attributes)) {
@@ -126,7 +126,7 @@ export class alienrpgActorSheet extends ActorSheet {
     // Assign and return
     data.talents = talents;
     // console.warn('data.talents', data.talents);
-    console.warn('data.talents', data.talents);
+    // console.warn('data.talents', data.talents);
 
     // Categorize items as inventory, spellbook, features, and classes
     const inventory = {
@@ -156,7 +156,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
-    console.warn('items', items);
+    // console.warn('items', items);
 
     // Organize Inventory
     let totalWeight = 0;
@@ -345,8 +345,15 @@ export class alienrpgActorSheet extends ActorSheet {
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
-      let reRoll = 'false';
-      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      let reRoll = false;
+      let hostile = false;
+      let blind = false;
+
+      if (this.actor.data.token.disposition === -1) {
+        hostile = true;
+        blind = true;
+      }
+      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       // console.warn('onRoll', game.alienrpg.rollArr);
     } else {
       if (dataset.panicroll) {
@@ -457,11 +464,18 @@ export class alienrpgActorSheet extends ActorSheet {
     const consUme = dataset.spbutt.toLowerCase();
     let r1Data = 0;
     let r2Data = this.actor.data.data.consumables[consUme].value;
-    let reRoll = 'never';
+    let reRoll = false;
+    let hostile = false;
+    let blind = false;
+
+    if (this.actor.data.token.disposition === -1) {
+      hostile = true;
+      blind = true;
+    }
     if (r2Data <= 0) {
       return ui.notifications.warn('You have run out of supplies');
     } else {
-      yze.yzeRoll(reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       if (game.alienrpg.rollArr.r2One) {
         switch (consUme) {
           case 'air':

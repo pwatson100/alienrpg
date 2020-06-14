@@ -919,6 +919,7 @@
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
+  width: auto;
 }
 
 .alienrpg .header-fields {

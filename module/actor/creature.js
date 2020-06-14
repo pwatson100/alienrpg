@@ -206,7 +206,15 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
       let reRoll = false;
-      yze.yzeRoll(true, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      let hostile = false;
+      let blind = true;
+
+      if (this.actor.data.token.disposition === -1) {
+        hostile = true;
+        blind = true;
+        reRoll = true;
+      }
+      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       // console.warn('onRoll', game.alienrpg.rollArr);
     } else {
       // Roll against the panic table and push the roll to the chat log.
@@ -313,10 +321,17 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     let r1Data = 0;
     let r2Data = this.actor.data.data.consumables[consUme].value;
     let reRoll = false;
+    let hostile = false;
+    let blind = true;
+
+    if (this.actor.data.token.disposition === -1) {
+      hostile = true;
+      blind = true;
+    }
     if (r2Data <= 0) {
       return ui.notifications.warn('You have run out of supplies');
     } else {
-      yze.yzeRoll(false, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       if (game.alienrpg.rollArr.r2One) {
         switch (consUme) {
           case 'air':

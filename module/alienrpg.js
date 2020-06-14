@@ -112,12 +112,19 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         // do stuff
         let actor = game.actors.get(ChatMessage.getSpeaker().actor);
         let token = game.actors.get(ChatMessage.getSpeaker().token);
+        let reRoll = true;
+        let hostile = false;
+        let blind = false;
 
+        if (actor.data.token.disposition === -1) {
+          hostile = true;
+          blind = true;
+        }
         // actor.update({ [{'data.header.stress.value'}]: [{'data.header.stress.value'}] + 1 });
         actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
         const reRoll1 = game.alienrpg.rollArr.r1Dice - (game.alienrpg.rollArr.r1One + game.alienrpg.rollArr.r1Six);
         const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
-        yze.yzeRoll(false, true, game.alienrpg.rollArr.tLabel, reRoll1, 'Black', reRoll2, 'Yellow');
+        yze.yzeRoll(hostile, blind, reRoll, game.alienrpg.rollArr.tLabel, reRoll1, 'Black', reRoll2, 'Yellow');
         // console.warn(game.alienrpg.rollArr);
       }
     });

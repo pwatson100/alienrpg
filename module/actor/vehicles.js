@@ -207,7 +207,14 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
       let reRoll = false;
-      yze.yzeRoll(false, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      let hostile = false;
+      let blind = false;
+
+      if (this.actor.data.token.disposition === -1) {
+        hostile = true;
+        blind = true;
+      }
+      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       // console.warn('onRoll', game.alienrpg.rollArr);
     } else {
       if (dataset.panicroll) {
@@ -319,10 +326,17 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     let r1Data = 0;
     let r2Data = this.actor.data.data.consumables[consUme].value;
     let reRoll = false;
+    let hostile = false;
+    let blind = false;
+
+    if (this.actor.data.token.disposition === -1) {
+      hostile = true;
+      blind = true;
+    }
     if (r2Data <= 0) {
       return ui.notifications.warn('You have run out of supplies');
     } else {
-      yze.yzeRoll(false, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       if (game.alienrpg.rollArr.r2One) {
         switch (consUme) {
           case 'air':
@@ -351,10 +365,12 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     const speaker = ChatMessage.getSpeaker();
     let actor;
     if (speaker.token) actor = game.actors.tokens[speaker.token];
+
     if (!actor) actor = game.actors.get(speaker.actor);
-    // console.warn('actor-sheet.js 321 - Got here', speaker, actor);
     const item = actor ? actor.items.find((i) => i.name === itemName) : null;
     if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+    // console.warn('actor.type', actor.data.type);
+    if (actor.data.type === 'vehicles') return ui.notifications.warn(`You do not have a Ranged Combat Skill`);
 
     // Trigger the item roll
     return item.roll();

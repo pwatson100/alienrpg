@@ -2,6 +2,7 @@ export class yze {
   /**
    * YZEDice RollFunction.
    * Paramfornumber of dice to roll for each die type/rolls
+   * @param {Boolean} hostile - True or False
    * @param {Boolean} blind - True or False
    * @param {Boolean} reRoll - True or False
    * @param {Text} label - The skill/item being rolled agains
@@ -25,7 +26,7 @@ export class yze {
    * yze.yzeRoll(blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
    */
-  static async yzeRoll(blind, reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
+  static async yzeRoll(hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
     // Is Dice So Nice enabled ?
     let niceDice = '';
 
@@ -99,7 +100,7 @@ export class yze {
       data.formula = r1Dice + r2Dice + r3Dice + 'd6';
     }
 
-    if (reRoll === 'false') {
+    if (reRoll === false) {
       const btnStyling = 'height:50px; font-size:45px;line-height:1px;background-color: #413131; color:#adff2f;border-color: #000000';
       chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
