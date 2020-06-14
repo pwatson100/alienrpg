@@ -33,11 +33,10 @@ export class alienrpgItem extends Item {
     let r2Data = this.actor.getRollData().stress;
     let label = `${item.name}`;
     let reRoll = false;
-    let hostile = false;
+    let hostile = this.actor.data.type;
     let blind = false;
 
     if (this.actor.data.token.disposition === -1) {
-      hostile = true;
       blind = true;
     }
     // Define the roll formula.

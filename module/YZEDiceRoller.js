@@ -2,7 +2,7 @@ export class yze {
   /**
    * YZEDice RollFunction.
    * Paramfornumber of dice to roll for each die type/rolls
-   * @param {Boolean} hostile - True or False
+   * @param {Text} hostile - Passed actor type
    * @param {Boolean} blind - True or False
    * @param {Boolean} reRoll - True or False
    * @param {Text} label - The skill/item being rolled agains
@@ -23,7 +23,7 @@ export class yze {
    * let r1Data = parseInt(dataset.roll || 0);
    * let r2Data = this.actor.getRollData().stress;
    * let reRoll = false;
-   * yze.yzeRoll(blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
+   * yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
    */
   static async yzeRoll(hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
@@ -43,7 +43,7 @@ export class yze {
 
     // Set uptext for a roll or push
     let rType = '';
-    if (reRoll) {
+    if (reRoll && hostile === 'character') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
       rType = game.i18n.localize('ALIENRPG.Rolling');

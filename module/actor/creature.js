@@ -1,4 +1,5 @@
 import { yze } from '../YZEDiceRoller.js';
+import { ALIENRPG } from '../config.js';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -51,6 +52,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       isCharacter: this.entity.data.type === 'character',
       isVehicles: this.entity.data.type === 'vehicles',
       isCreature: this.entity.data.type === 'creature',
+      // isNPC: this.entity.data.type === 'creature',
       config: CONFIG.ALIENRPG,
     };
 
@@ -204,13 +206,12 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     // console.warn('OnRoll', element, dataset, label);
     if (dataset.roll != '-') {
       let r1Data = parseInt(dataset.roll || 0);
-      let r2Data = this.actor.getRollData().stress;
+      let r2Data = 0;
       let reRoll = false;
-      let hostile = false;
+      let hostile = this.actor.type;
       let blind = true;
 
       if (this.actor.data.token.disposition === -1) {
-        hostile = true;
         blind = true;
         reRoll = true;
       }
@@ -321,11 +322,10 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     let r1Data = 0;
     let r2Data = this.actor.data.data.consumables[consUme].value;
     let reRoll = false;
-    let hostile = false;
+    let hostile = this.actor.data.type;
     let blind = true;
 
     if (this.actor.data.token.disposition === -1) {
-      hostile = true;
       blind = true;
     }
     if (r2Data <= 0) {

@@ -207,11 +207,10 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
       let reRoll = false;
-      let hostile = false;
+      let hostile = this.actor.type;
       let blind = false;
 
       if (this.actor.data.token.disposition === -1) {
-        hostile = true;
         blind = true;
       }
       yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
@@ -326,11 +325,10 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     let r1Data = 0;
     let r2Data = this.actor.data.data.consumables[consUme].value;
     let reRoll = false;
-    let hostile = false;
+    let hostile = this.actor.data.type;
     let blind = false;
 
     if (this.actor.data.token.disposition === -1) {
-      hostile = true;
       blind = true;
     }
     if (r2Data <= 0) {
