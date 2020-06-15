@@ -69,6 +69,36 @@
   padding: 0;
 }
 
+.creature-attack-roll {
+  -webkit-box-shadow: 3px 4px 0px 0px #077e1b;
+  box-shadow: 3px 4px 0px 0px #077e1b;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, greenyellow), to(#077e1b));
+  background: -o-linear-gradient(top, greenyellow 5%, #077e1b 100%);
+  background: linear-gradient(to bottom, greenyellow 5%, #077e1b 100%);
+  background-color: #077e1b;
+  border-radius: 18px;
+  border: 1px solid #035c0a;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: "Wallpoet", sans-serif;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #dbcd06;
+}
+
+.creature-attack-roll:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #91f237), to(#adc61f));
+  background: -o-linear-gradient(top, #91f237 5%, #adc61f 100%);
+  background: linear-gradient(to bottom, #91f237 5%, #adc61f 100%);
+  background-color: #942a22;
+  color: red;
+}
+
+.creature-attack-roll:active {
+  position: relative;
+  top: 1px;
+}
+
 .grid,
 .grid-2col {
   display: grid;
@@ -484,21 +514,26 @@
   padding-right: 8px;
 }
 
-.grid-one {
+.grid-rTables {
   display: grid;
-  grid-template-areas: 'scr';
-  padding: 3px;
+  grid-template-areas: 'rTable1 rTable2';
+  grid-template-columns: 1fr 0.5fr;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
-.scr {
-  grid-area: scr;
-  padding-left: 8px;
+.rTable1 {
+  grid-area: rTable1;
+  justify-self: center;
+}
+
+.rTable2 {
+  grid-area: rTable2;
+  justify-self: center;
+  padding-right: 8px;
 }
 
 .grid-creature {
@@ -788,7 +823,7 @@
   font-weight: 700;
   color: greenyellow;
   width: 100%;
-  max-width: 75%;
+  max-width: 90%;
   /* useful when width is set to anything other than 100% */
   -webkit-box-sizing: border-box;
   box-sizing: border-box;

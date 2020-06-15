@@ -1,8 +1,9 @@
-export async function createPanicTable(rebuild, cardpack) {
-  let cardTable = game.tables.getName('Panic Table');
+export async function createPanicTable(folderid) {
+  let panicTable = game.tables.getName('Panic Table');
+  // console.warn('panicT folderid', folderid);
 
   //If the table doesn't exist, create it
-  if (!cardTable) {
+  if (!panicTable) {
     const createData = [
       {
         type: 0,
@@ -84,6 +85,7 @@ export async function createPanicTable(rebuild, cardpack) {
 
     const tableData = {
       name: 'Panic Table',
+      folder: folderid,
       replacement: true,
       displayRoll: true,
       description: '',
@@ -91,8 +93,8 @@ export async function createPanicTable(rebuild, cardpack) {
       formula: '1d6',
     };
     const tableOptions = { temporary: false, renderSheet: false };
-    cardTable = await RollTable.create(tableData, tableOptions);
-    await cardTable.createEmbeddedEntity('TableResult', createData);
+    panicTable = await RollTable.create(tableData, tableOptions);
+    await panicTable.createEmbeddedEntity('TableResult', createData);
     ui.tables.render();
   }
 }

@@ -75,3 +75,30 @@
   // line-height: 10px;
   padding: 0;
 }
+
+.creature-attack-roll {
+  // width: 100px;
+  // height: 25px;
+  box-shadow: 3px 4px 0px 0px #077e1b;
+  background: linear-gradient(to bottom, $c-green 5%, #077e1b 100%);
+  background-color: #077e1b;
+  border-radius: 18px;
+  border: 1px solid #035c0a;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: $font-primary;
+  // font-size: 17px;
+  // padding: 7px 16px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #dbcd06;
+}
+.creature-attack-roll:hover {
+  background: linear-gradient(to bottom, #91f237 5%, #adc61f 100%);
+  background-color: #942a22;
+  color: rgb(255, 0, 0);
+}
+.creature-attack-roll:active {
+  position: relative;
+  top: 1px;
+}

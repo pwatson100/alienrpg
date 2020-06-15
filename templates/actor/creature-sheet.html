@@ -1,7 +1,5 @@
 <form class="{{cssClass}} " autocomplete="off">
   <header class="vehicle-header">
-    <!-- {{log "CONTEXT!!!!"}} {{log this}} -->
-
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
@@ -11,25 +9,19 @@
       <div class="grid-creature">
         <div class="vCre1 grid-2">
           <h2 class="resource-label box11">{{ localize "ALIENRPG.Health"}}</h2>
-          <!-- <div class="resource-label"> -->
-          <!-- <button class="minus-btn" data-pmbut="minusHealth"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button> -->
+
           <input type="text" class="maxboxsize box21" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
-          <!-- <button class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button> -->
-          <!-- </div> -->
         </div>
         <div class="vCre3 grid-2">
           <h2 class="resource-label box11">{{localize "ALIENRPG.Speed"}}</h2>
-          <!-- <div class="resource-label"> -->
           <input type="text" class="maxboxsize box21" name="data.attributes.speed.value" value="{{data.attributes.speed.value}}" data-dtype="Number" />
         </div>
         <div class="vCre4 grid-2">
           <h2 class="resource-label box11">{{localize "ALIENRPG.InventoryArmorHeader"}}</h2>
-          <!-- <div class="resource-label"> -->
           <input type="text" class="maxboxsize box21" name="data.attributes.armorrating.value" value="{{data.attributes.armorrating.value}}" data-dtype="Number" />
         </div>
         <div class="vCre5 grid-2">
           <h2 class="resource-label box11 rollable" data-roll="{{data.general.mobility.value}}" data-label="Mobility">{{localize "ALIENRPG.SkillMobility"}}</h2>
-          <!-- <div class="resource-label"> -->
           <input type="text" class="maxboxsize box21" name="data.general.mobility.value" value="{{data.general.mobility.value}}" data-dtype="String" />
         </div>
         <div class="vCre6 grid-2">
@@ -48,8 +40,21 @@
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
-    {{!-- Attributes Tab --}}
+    {{!-- General Tab --}}
     <div class="tab general" data-group="primary" data-tab="general">
+      <label class="resource-label">Attack Table</label>
+      <div class="grid-rTables">
+        <select class="select-css rTable1" name="data.rTables" data-atttype="{{data.rTables}}">
+          {{#select data.rTables}}
+          <!-- <option value=""></option> -->
+          <option value="None">None</option>
+          {{#each rTables as |k v|}}
+          <option value="{{k}}">{{k}}</option>
+          {{/each}} {{/select}}
+        </select>
+
+        <button class="creature-attack-roll rTable2" data-atttype="{{data.rTables}}">Roll Attack</button>
+      </div>
       <h3 class="resource-label">{{localize "ALIENRPG.SpecialAbilities"}}</h3>
       <textarea name="data.general.special.value" rows="2" data-dtype="String">{{data.general.special.value}}</textarea>
       <h3 class="resource-label">{{localize "ALIENRPG.Comment"}}</h3>

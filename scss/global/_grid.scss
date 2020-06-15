@@ -462,23 +462,24 @@
   padding-right: 8px;
 }
 
-.grid-one {
+.grid-rTables {
   display: grid;
-  grid-template-areas: 'scr';
-  padding: 3px;
-  // width: 100%;
-  // grid-template-columns: 40%;
-  // grid-template-columns: 75% 25%;
+  grid-template-areas: 'rTable1 rTable2';
+  // padding: 3px;
+  grid-template-columns: 1fr 0.5fr;
   align-items: center;
-  justify-content: center;
-  // border: 2px solid $c-green;
+  margin: 0;
+  padding: 0;
 }
 
-.scr {
-  grid-area: scr;
-  // justify-self: center;
-  padding-left: 8px;
-  // background-color: $c-black;
+.rTable1 {
+  grid-area: rTable1;
+  justify-self: center;
+}
+.rTable2 {
+  grid-area: rTable2;
+  justify-self: center;
+  padding-right: 8px;
 }
 
 .grid-creature {

@@ -73,9 +73,16 @@ export class yze {
       game.alienrpg.rollArr[yzeR6] = die.total;
       die.countSuccess(1, '=');
       game.alienrpg.rollArr[yzeR1] = die.total;
-      chatMessage += 'Ones: ';
-      chatMessage += `${game.alienrpg.rollArr[yzeR1]}`;
-      chatMessage += '  Sixes: ';
+
+      chatMessage += '<span style="color: red">Ones: </span>';
+
+      if (game.alienrpg.rollArr[yzeR1] > 0) {
+        chatMessage += `<span class="blink" style="font-weight: bold; font-size: larger">${game.alienrpg.rollArr[yzeR1]}</span>`;
+      } else {
+        chatMessage += `${game.alienrpg.rollArr[yzeR1]}`;
+      }
+      // chatMessage += `<span class="blink">${game.alienrpg.rollArr[yzeR1]}</span>`;
+      chatMessage += '<span style="color: green">  Sixes: </span>';
       chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
       chatMessage += '<div><br></div>';
     }
@@ -87,10 +94,10 @@ export class yze {
       data.formula = r1Dice + 'd6';
     }
     if (r2Dice >= 1) {
-      chatMessage += '<div>' + col2 + ' - ' + r2Dice + '</div>';
+      chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + ' - ' + r2Dice + '</div>';
       yzeDRoll('r2Dice', r2Dice, 'r2Six', 'r2One');
       data.formula = r1Dice + r2Dice + 'd6';
-      if (game.alienrpg.rollArr.r2One > 0 && reRoll != 'never') {
+      if (game.alienrpg.rollArr.r2One > 0 && !reRoll) {
         reRoll = 'true';
       }
     }
@@ -100,7 +107,7 @@ export class yze {
       data.formula = r1Dice + r2Dice + r3Dice + 'd6';
     }
 
-    if (reRoll === false) {
+    if (!reRoll) {
       const btnStyling = 'height:50px; font-size:45px;line-height:1px;background-color: #413131; color:#adff2f;border-color: #000000';
       chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
