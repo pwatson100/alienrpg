@@ -4,7 +4,7 @@ export class alienrpgrTableGet extends Actor {
   }
 
   static rTableget() {
-    let folder = game.folders.entities.find((x) => x.name === 'Alien Tables');
+    let folder = game.folders.entities.find((x) => x.name === 'Alien Creature Tables');
     let aTables = folder.content;
     let lTables = {};
     // let lTables = aTables.find((x) => x.name);

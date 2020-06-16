@@ -26,7 +26,30 @@ export class AlienRPGSetup {
         },
         { temporary: false }
       );
-      await createPanicTable(folder.id);
+
+      let crefolder = await Folder.create(
+        {
+          color: '#ff0000',
+          name: 'Alien Creature Tables',
+          parent: folder.id,
+          nullsort: 100000,
+          type: 'RollTable',
+        },
+        { temporary: false }
+      );
+      let mothfolder = await Folder.create(
+        {
+          color: '#00c100',
+          name: 'Alien Mother Tables',
+          parent: folder.id,
+          nullsort: 100000,
+          type: 'RollTable',
+        },
+        { temporary: false }
+      );
+
+      console.warn('folder.id', mothfolder.id);
+      await createPanicTable(mothfolder.id);
     }
     ui.notifications.info('First-Time-Setup complete');
   }

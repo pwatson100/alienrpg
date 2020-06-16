@@ -93,6 +93,16 @@ export async function createPanicTable(folderid) {
       formula: '1d6',
     };
     const tableOptions = { temporary: false, renderSheet: false };
+
+    // let folder = game.folders.entities[4];
+    // var tables = game.packs.get('world.alien-tables');
+    // console.warn('tables', folderid, tables);
+    // tables.getContent().then((d) =>
+    //   d.forEach((a) => {
+    //     RollTable.create(a.data, { folderid });
+    //   })
+    // );
+
     panicTable = await RollTable.create(tableData, tableOptions);
     await panicTable.createEmbeddedEntity('TableResult', createData);
     ui.tables.render();
