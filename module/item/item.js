@@ -19,11 +19,9 @@ export class alienrpgItem extends Item {
   }
   /**
    * Handle clickable rolls.
-   * @param {Event} event   The originating click event
-   * @private
    */
 
-  async roll() {
+  async roll(right) {
     // Basic template rendering data
     const token = this.actor.token;
     const item = this.data;
@@ -39,15 +37,61 @@ export class alienrpgItem extends Item {
     if (this.actor.data.token.disposition === -1) {
       blind = true;
     }
-    // Define the roll formula.
-    if (item.data.header.type.value === 'Ranged') {
-      let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-    } else if (item.data.header.type.value === 'Melee') {
-      let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+
+    if (right) {
+      // callpop upbox here to get any mods then update r1Data or rData as appropriate.
+      let confirmed = false;
+      new Dialog({
+        title: `Roll Modified ${label} check`,
+        content: `
+       <p>Please enter your modifier.</p>
+       <form>
+        <div class="form-group">
+         <label>Modifier:</label>
+           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
+        </div>
+       </form>
+       `,
+        buttons: {
+          one: {
+            icon: '<i class="fas fa-check"></i>',
+            label: 'Roll!',
+            callback: () => (confirmed = true),
+          },
+          two: {
+            icon: '<i class="fas fa-times"></i>',
+            label: 'Cancel',
+            callback: () => (confirmed = false),
+          },
+        },
+        default: 'one',
+        close: (html) => {
+          if (confirmed) {
+            let modifier = parseInt(html.find('[name=modifier]')[0].value);
+            // Define the roll formula.
+            if (item.data.header.type.value === 'Ranged') {
+              let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
+              yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+            } else if (item.data.header.type.value === 'Melee') {
+              let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
+              yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+            } else {
+              console.warn('No type on item');
+            }
+          }
+        },
+      }).render(true);
     } else {
-      console.warn('No type on item');
+      // Define the roll formula.
+      if (item.data.header.type.value === 'Ranged') {
+        let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
+        yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      } else if (item.data.header.type.value === 'Melee') {
+        let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
+        yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      } else {
+        console.warn('No type on item');
+      }
     }
   }
 }

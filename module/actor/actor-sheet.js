@@ -276,8 +276,12 @@ export class alienrpgActorSheet extends ActorSheet {
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
 
+    html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
     // Rollable Items.
     html.find('.rollItem').click(this._rollItem.bind(this));
+
+    html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
 
     // minus from health and stress
     html.find('.minus-btn').click(this._minusButton.bind(this));
@@ -371,6 +375,78 @@ export class alienrpgActorSheet extends ActorSheet {
       }
     }
   }
+
+  _onRollMod(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    let label = dataset.label;
+    let r1Data = parseInt(dataset.roll || 0);
+    let r2Data = this.actor.getRollData().stress;
+    let reRoll = false;
+    let hostile = this.actor.type;
+    let blind = false;
+
+    if (this.actor.data.token.disposition === -1) {
+      // hostile = true;
+      blind = true;
+    }
+
+    // callpop upbox here to get any mods then update r1Data or rData as appropriate.
+    let confirmed = false;
+    new Dialog({
+      title: `Roll Modified ${label} check`,
+      content: `
+       <p>Please enter your modifier.</p>
+       <form>
+        <div class="form-group">
+         <label>Modifier:</label>
+           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
+        </div>
+       </form>
+       `,
+      buttons: {
+        one: {
+          icon: '<i class="fas fa-check"></i>',
+          label: 'Roll!',
+          callback: () => (confirmed = true),
+        },
+        two: {
+          icon: '<i class="fas fa-times"></i>',
+          label: 'Cancel',
+          callback: () => (confirmed = false),
+        },
+      },
+      default: 'one',
+      close: (html) => {
+        if (confirmed) {
+          let modifier = parseInt(html.find('[name=modifier]')[0].value);
+          r1Data = r1Data + modifier;
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+        }
+      },
+    }).render(true);
+  }
+  _onRollItemMod(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    let label = dataset.label;
+    let r1Data = parseInt(dataset.roll || 0);
+    let r2Data = this.actor.getRollData().stress;
+    let reRoll = false;
+    let hostile = this.actor.type;
+    let blind = false;
+
+    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+    const item = this.actor.getOwnedItem(itemId);
+    // console.warn('item', item);
+    if (item.type === 'weapon') {
+      // Trigger the item roll
+      return item.roll(true);
+    }
+  }
+
   _minusButton(event) {
     event.preventDefault();
     const element = event.currentTarget;

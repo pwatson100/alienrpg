@@ -149,7 +149,7 @@
 
                   <h3 class="Air1 resource-label">{{localize "ALIENRPG.Air"}}</h3>
                     <div class="resource-content">
-                      <input type="text" class="maxboxsize"" name="data.consumables.air.value" value="{{data.consumables.air.value}}" data-dtype="Number" />
+                      <input type="text" class="maxboxsize" name="data.consumables.air.value" value="{{data.consumables.air.value}}" data-dtype="Number" />
                       <button class="supply-btn Air2" data-spbutt="Air"  ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
                     
@@ -160,28 +160,28 @@
                     </div>
                     
                     <h3 class="Power1 resource-label">{{localize "ALIENRPG.Power"}}</h3>
-                      <div class="resource-content">
-                        <input type="text" class="maxboxsize" name="data.consumables.power.value" value="{{data.consumables.power.value}}" data-dtype="Number" />
-                        <button class="supply-btn Power2" data-spbutt="Power"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
-                      </div>
-
-                  <h3 class="Water1 resource-label">{{localize "ALIENRPG.Water"}}</h3>
+                    <div class="resource-content">
+                      <input type="text" class="maxboxsize" name="data.consumables.power.value" value="{{data.consumables.power.value}}" data-dtype="Number" />
+                      <button class="supply-btn Power2" data-spbutt="Power"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
+                    </div>
+                    
+                    <h3 class="Water1 resource-label">{{localize "ALIENRPG.Water"}}</h3>
                     <div class="resource-content">
                       <input type="text" class="maxboxsize" name="data.consumables.water.value" value="{{data.consumables.water.value}}" data-dtype="Number" />
                       <button class="supply-btn Water2" data-spbutt="Water"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
+                    
+                    
+                  </div>
 
-
-              </div>
-
-            </div>
-
-            <!-- Col 2 -->
-        <div class="Item2">
-          <div class="grid-two">
-            <label class="resource-label" >{{localize "ALIENRPG.Career"}}</label>
-            <select class="select-css" name="data.general.career.value" data-dtype="{{data.general.career.value}}">
-              {{#select data.general.career.value}}
+                </div>
+                
+                <!-- Col 2 -->
+                <div class="Item2">
+                  <div class="grid-two">
+                    <label class="resource-label" >{{localize "ALIENRPG.Career"}}</label>
+                    <select class="select-css" name="data.general.career.value" data-dtype="{{data.general.career.value}}">
+                      {{#select data.general.career.value}}
               <!-- <option value=""></option> -->
               <option value="Colonial Marine">{{localize "ALIENRPG.ColonialMarine"}}</option>
               <option value="Colonial Marshal">{{localize "ALIENRPG.ColonialMarshal"}}</option>
@@ -229,12 +229,12 @@
           <label class="resource-label">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
           <textarea name="data.general.critInj.value" rows="2"data-dtype="String">{{data.general.critInj.value}}</textarea>
         </div>
-
+        
         <div class="Item11">
-          <label class="resource-label " data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}</label>
+          <label class="resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}</label>
         <input type="text" class="maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number">
       </div>
-    </div>
-    
-  </section>
-</form>
+      </div>
+      
+    </section>
+  </form>
