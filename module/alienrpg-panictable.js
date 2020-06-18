@@ -94,17 +94,20 @@ export async function createPanicTable(folderid) {
     };
     const tableOptions = { temporary: false, renderSheet: false };
 
-    // let folder = game.folders.entities[4];
-    // var tables = game.packs.get('world.alien-tables');
-    // console.warn('tables', folderid, tables);
-    // tables.getContent().then((d) =>
-    //   d.forEach((a) => {
-    //     RollTable.create(a.data, { folderid });
-    //   })
-    // );
+    let folder = game.folders.entities[4];
+    var tables = game.packs.get('AlienRPG.tables_gm');
+    console.warn('tables', folderid, tables);
 
-    panicTable = await RollTable.create(tableData, tableOptions);
-    await panicTable.createEmbeddedEntity('TableResult', createData);
+    tables.getContent().then((d) =>
+      d.forEach((a) => {
+        let tData = a.data;
+        console.warn('ForEach', tData);
+        game.tables.importFromCollection('AlienRPG.tables_gm', a.data._id, { folder: folderid });
+        // RollTable.create(tData, { folder: folderid });
+      })
+    );
+    // panicTable = await RollTable.create(tableData, tableOptions);
+    // await panicTable.createEmbeddedEntity('TableResult', createData);
     ui.tables.render();
   }
 }

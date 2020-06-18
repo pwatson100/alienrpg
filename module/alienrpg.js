@@ -9,6 +9,7 @@ import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
 import { AlienRPGSetup } from './setupHandler.js';
 import { preloadHandlebarsTemplates } from './templates.js';
+// import * as migrations from './migration.js';
 
 Hooks.once('init', async function () {
   console.warn(`Initializing Alien RPG`);
@@ -91,6 +92,44 @@ Hooks.once('ready', async function () {
       }
     });
   }, 250);
+});
+
+Hooks.once('diceSoNiceReady', (dice3d) => {
+  // dice3d.addSystem({ id: 'degenesis', name: 'DEGENESIS: Rebirth' }, true);
+  // dice3d.addDicePreset({
+  //   type: 'd6',
+  //   labels: [
+  //     'systems/degenesis/icons/dice-faces/d1.png',
+  //     'systems/degenesis/icons/dice-faces/d2.png',
+  //     'systems/degenesis/icons/dice-faces/d3.png',
+  //     'systems/degenesis/icons/dice-faces/d4.png',
+  //     'systems/degenesis/icons/dice-faces/d5.png',
+  //     'systems/degenesis/icons/dice-faces/d6.png',
+  //   ],
+  //   system: 'degenesis',
+  // });
+
+  // dice3d.addColorset(
+  //   {
+  //     name: 'degenesis',
+  //     description: 'Degenesis Black',
+  //     category: 'Colors',
+  //     foreground: '#FFFFFF',
+  //     background: '#000000',
+  //     outline: 'none',
+  //     texture: 'none',
+  //   },
+  //   'force'
+  // );
+  dice3d.addColorset({
+    name: 'rainbow',
+    description: 'Rainbow',
+    category: 'Colors',
+    foreground: ['#FF5959', '#FFA74F', '#FFFF56', '#59FF59', '#2374FF', '#00FFFF', '#FF59FF'],
+    background: ['#900000', '#CE3900', '#BCBC00', '#00B500', '#00008E', '#008282', '#A500A5'],
+    outline: 'black',
+    texture: 'none',
+  });
 });
 
 // Item Drag Hook

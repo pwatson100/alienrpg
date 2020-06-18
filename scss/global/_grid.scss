@@ -154,9 +154,9 @@
   // align-items: center;
   // justify-items: first baseline;
   // border: 2px solid $c-green;
-  grid-template-areas: 'Col1 Col2 ';
+  grid-template-areas: 'Col1 Col2 ' 'Col3 Col3';
   grid-template-rows: 1fr;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 300px 1fr;
 }
 .Col1 {
   grid-area: Col1;
@@ -169,6 +169,12 @@
   // border: 2px solid white;
 }
 
+.Col3 {
+  grid-area: Col3;
+  // justify-items: right;
+  // border: 2px solid white;
+}
+
 .grid-attr {
   display: grid;
   // gap: 5px;
@@ -177,8 +183,8 @@
   padding-left: 5px;
   align-items: center;
   border: 1px solid $c-green;
-  grid-template-areas: 'Attr1 Attr2 ';
-  grid-template-columns: 190px 50px;
+  grid-template-areas: 'Attr1 Attr2 Attr3';
+  grid-template-columns: 195px 50px 30px;
 }
 
 .Attr1 {
@@ -194,8 +200,9 @@
 
 .Attr3 {
   grid-area: Attr3;
+  width: 30px;
+  height: 20px;
   // justify-items: left;
-  // border: 2px solid white;
 }
 .Attr4 {
   grid-area: Attr4;
@@ -403,6 +410,7 @@
   justify-self: right;
   padding-right: 8px;
 }
+
 .tal3 {
   grid-area: tal3;
   align-self: center;

@@ -62,6 +62,16 @@
     cursor: pointer;
   }
 }
+.talent-btn {
+  &:hover,
+  &:focus {
+    color: rgb(40, 143, 0);
+    text-shadow: 0 0 20px red;
+    // font-size: 110%;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+}
 
 .minus-btn .plus-btn {
   width: 10px;
@@ -73,7 +83,18 @@
   // width: 5px;
   // height: 5px;
   // line-height: 10px;
+  font-size: 5px;
   padding: 0;
+  font-family: $font-primary;
+}
+
+.stunt-btn {
+  width: 5px;
+  // height: 10px;
+  // line-height: 20px;
+  // font-size: 5px;
+  padding: 0;
+  font-family: $font-primary;
 }
 
 .creature-attack-roll {

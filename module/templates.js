@@ -17,6 +17,7 @@ export const preloadHandlebarsTemplates = async function () {
     // "systems/dnd5e/templates/items/parts/item-action.html",
     // "systems/dnd5e/templates/items/parts/item-activation.html",
     // "systems/dnd5e/templates/items/parts/item-description.html"
+    'systems/alienrpg/templates/actor/tabs/skills.html',
   ];
 
   // Load the template parts

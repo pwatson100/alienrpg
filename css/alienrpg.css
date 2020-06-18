@@ -58,6 +58,13 @@
   cursor: pointer;
 }
 
+.talent-btn:hover, .talent-btn:focus {
+  color: #288f00;
+  text-shadow: 0 0 20px red;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
 .minus-btn .plus-btn {
   width: 10px;
   height: 10px;
@@ -66,7 +73,15 @@
 }
 
 .supply-btn {
+  font-size: 5px;
   padding: 0;
+  font-family: "Wallpoet", sans-serif;
+}
+
+.stunt-btn {
+  width: 5px;
+  padding: 0;
+  font-family: "Wallpoet", sans-serif;
 }
 
 .creature-attack-roll {
@@ -201,9 +216,9 @@
   display: grid;
   margin: 0;
   padding: 0;
-  grid-template-areas: 'Col1 Col2 ';
+  grid-template-areas: 'Col1 Col2 ' 'Col3 Col3';
   grid-template-rows: 1fr;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 300px 1fr;
 }
 
 .Col1 {
@@ -212,6 +227,10 @@
 
 .Col2 {
   grid-area: Col2;
+}
+
+.Col3 {
+  grid-area: Col3;
 }
 
 .grid-attr {
@@ -223,8 +242,8 @@
   -ms-flex-align: center;
   align-items: center;
   border: 1px solid greenyellow;
-  grid-template-areas: 'Attr1 Attr2 ';
-  grid-template-columns: 190px 50px;
+  grid-template-areas: 'Attr1 Attr2 Attr3';
+  grid-template-columns: 195px 50px 30px;
 }
 
 .Attr1 {
@@ -237,6 +256,8 @@
 
 .Attr3 {
   grid-area: Attr3;
+  width: 30px;
+  height: 20px;
 }
 
 .Attr4 {

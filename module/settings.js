@@ -7,4 +7,11 @@ export default function () {
     default: true,
     type: Boolean,
   });
+  game.settings.register('alienrpg', 'systemMigrationVersion', {
+    name: 'System Migration Version',
+    scope: 'world',
+    config: false,
+    type: Number,
+    default: 0,
+  });
 }

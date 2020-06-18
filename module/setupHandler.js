@@ -1,9 +1,9 @@
 import { createPanicTable } from './alienrpg-panictable.js';
 export class AlienRPGSetup {
   static async setup() {
-    // console.warn('***************************************************************');
-    // console.warn('AlienRPGSetup');
-    // console.warn('***************************************************************');
+    console.warn('***************************************************************');
+    console.warn('AlienRPGSetup Directories and tables');
+    console.warn('***************************************************************');
 
     function pExists() {
       if (Folder.collection.entities.filter((entry) => entry.data.name == 'Alien Tables').length > 0) {
@@ -48,8 +48,23 @@ export class AlienRPGSetup {
         { temporary: false }
       );
 
-      console.warn('folder.id', mothfolder.id);
-      await createPanicTable(mothfolder.id);
+      // Copy the gm tables from the pack into the correct folder so it's available to the templates.
+      var gTables = game.packs.get('AlienRPG.tables_gm');
+      gTables.getContent().then((d) =>
+        d.forEach((a) => {
+          game.tables.importFromCollection('AlienRPG.tables_gm', a.data._id, { folder: mothfolder.id });
+        })
+      );
+
+      // Copy the attack tables from the pack into the correct folder so it's available to the creatures template.
+      var mTables = game.packs.get('AlienRPG.tables_attack');
+      mTables.getContent().then((d) =>
+        d.forEach((a) => {
+          game.tables.importFromCollection('AlienRPG.tables_attack', a.data._id, { folder: crefolder.id });
+        })
+      );
+
+      ui.tables.render();
     }
     ui.notifications.info('First-Time-Setup complete');
   }

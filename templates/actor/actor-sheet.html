@@ -54,31 +54,41 @@
           <span class="ability grid-attr">
             <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{skill.label}}">{{skill.label}}</h3>
             <input type="text" class="maxboxsize Attr2" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
+            <div class="resource-content">
+              <button class="stunt-btn Attr3" data-pmbut="{{key}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>
+            </div>
           </span>
           {{/each}}
+          
         </span>
-
-            <!-- Col2 -->
-
+        
+        <!-- Col2 -->
+        
         <div class="Col2">
           <li class="grid-talents item-header">
-              <h2 class="item talTitle">Talents</h2>
-                    <h3 class="item-name tal1"  >Name</h3>
-                    <div class="item-controls tal2">
-                      <a class="item-control item-create" style="font-size: smaller;" title="Create item" data-type="talent"><i class="fas fa-plus"></i> Add item</a>
-                    </div>
-            </li>
-
-                  {{#each talents as |item iid|}}
-                  <li class="item grid-talents" data-item-id="{{item._id}}">
-                    <h4 class="item-name tal3">{{item.name}}</h4>
-                    <div class="tal4">
-                              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                      </div>
-                  </li>
-                  {{/each}}
+            <h2 class="item talTitle">Talents</h2>
+            <h3 class="item-name tal1"  >Name</h3>
+            <div class="item-controls tal2">
+              <a class="item-control item-create" style="font-size: smaller;" title="Create item" data-type="talent"><i class="fas fa-plus"></i> Add item</a>
+            </div>
+          </li>
+          
+          {{#each talents as |item iid|}}
+          <li class="item grid-talents" data-item-id="{{item._id}}">
+            <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
+            <div class="tal4">
+              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+              <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            </div>
+          </li>
+          {{/each}}
         </div>
+
+        {{!-- Stunts/Talents pop up --}}
+        <div class="Col3" id="panel" hidden >
+          <h2><st-head></st-head></h2>
+          <st-text></st-text>
+      </div>
       </div>
     </div>
 

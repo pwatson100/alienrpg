@@ -117,6 +117,8 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
 
+    html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
     // plus tohealth and stress
     html.find('.creature-attack-roll').click(this._creatureAttackRoll.bind(this));
 
@@ -180,7 +182,12 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       let reRoll = false;
       let hostile = this.actor.type;
       let blind = true;
-
+      if (dataset.spbutt === 'armor' && r1Data < 1) {
+        return;
+      } else if (dataset.spbutt === 'armor') {
+        label = 'Armor';
+        r2Data = 0;
+      }
       if (this.actor.data.token.disposition === -1) {
         blind = true;
         reRoll = true;
@@ -196,6 +203,64 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
     }
   }
+  _onRollMod(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    let label = dataset.label;
+    let r1Data = parseInt(dataset.roll || 0);
+    let r2Data = this.actor.getRollData().stress;
+    let reRoll = false;
+    let hostile = this.actor.type;
+    let blind = false;
+    if (dataset.spbutt === 'armor' && r1Data < 1) {
+      return;
+    } else if (dataset.spbutt === 'armor') {
+      label = 'Armor';
+      r2Data = 0;
+    }
+
+    if (this.actor.data.token.disposition === -1) {
+      // hostile = true;
+      blind = true;
+    }
+
+    // callpop upbox here to get any mods then update r1Data or rData as appropriate.
+    let confirmed = false;
+    new Dialog({
+      title: `Roll Modified ${label} check`,
+      content: `
+       <p>Please enter your modifier.</p>
+       <form>
+        <div class="form-group">
+         <label>Modifier:</label>
+           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
+        </div>
+       </form>
+       `,
+      buttons: {
+        one: {
+          icon: '<i class="fas fa-check"></i>',
+          label: 'Roll!',
+          callback: () => (confirmed = true),
+        },
+        two: {
+          icon: '<i class="fas fa-times"></i>',
+          label: 'Cancel',
+          callback: () => (confirmed = false),
+        },
+      },
+      default: 'one',
+      close: (html) => {
+        if (confirmed) {
+          let modifier = parseInt(html.find('[name=modifier]')[0].value);
+          r1Data = r1Data + modifier;
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+        }
+      },
+    }).render(true);
+  }
+
   _creatureAttackRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;

@@ -25,8 +25,8 @@ export class alienrpgActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
-      width: 600,
-      height: 665,
+      width: 650,
+      height: 690,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -293,6 +293,10 @@ export class alienrpgActorSheet extends ActorSheet {
 
     html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
+    html.find('.stunt-btn').click(this._stuntBtn.bind(this));
+
+    html.find('.talent-btn').click(this._talentBtn.bind(this));
+
     // Drag events for macros.
     if (this.actor.owner) {
       let handler = (ev) => this._onDragItemStart(ev);
@@ -352,7 +356,12 @@ export class alienrpgActorSheet extends ActorSheet {
       let reRoll = false;
       let hostile = this.actor.type;
       let blind = false;
-
+      if (dataset.spbutt === 'armor' && r1Data < 1) {
+        return;
+      } else if (dataset.spbutt === 'armor') {
+        label = 'Armor';
+        r2Data = 0;
+      }
       if (this.actor.data.token.disposition === -1) {
         // hostile = true;
         blind = true;
@@ -386,6 +395,12 @@ export class alienrpgActorSheet extends ActorSheet {
     let reRoll = false;
     let hostile = this.actor.type;
     let blind = false;
+    if (dataset.spbutt === 'armor' && r1Data < 1) {
+      return;
+    } else if (dataset.spbutt === 'armor') {
+      label = 'Armor';
+      r2Data = 0;
+    }
 
     if (this.actor.data.token.disposition === -1) {
       // hostile = true;
@@ -427,6 +442,7 @@ export class alienrpgActorSheet extends ActorSheet {
       },
     }).render(true);
   }
+
   _onRollItemMod(event) {
     event.preventDefault();
     const element = event.currentTarget;
@@ -467,6 +483,28 @@ export class alienrpgActorSheet extends ActorSheet {
     } else {
       this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value + 1 });
     }
+  }
+  _stuntBtn(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    let chatHead = this.actor.data.data.skills[dataset.pmbut].label;
+    let chatDisc = this.actor.data.data.skills[dataset.pmbut].description;
+    $('st-head').text(`Stunts: ${chatHead}`);
+    $('st-text').html(chatDisc);
+    $('#panel').slideToggle(100, 'linear');
+  }
+
+  _talentBtn(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    const item = this.actor.getOwnedItem(dataset.pmbut);
+    let chatHead = item.name;
+    let chatDisc = item.data.data.general.comment.value;
+    $('st-head').text(`Talents: ${chatHead}`);
+    $('st-text').html(chatDisc);
+    $('#panel').slideToggle(100, 'linear');
   }
 
   _onClickStatLevel(event) {
