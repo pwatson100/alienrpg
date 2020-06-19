@@ -49,18 +49,18 @@ export class AlienRPGSetup {
       );
 
       // Copy the gm tables from the pack into the correct folder so it's available to the templates.
-      var gTables = game.packs.get('AlienRPG.tables_gm');
+      var gTables = game.packs.get('alienrpg.tables_gm');
       gTables.getContent().then((d) =>
         d.forEach((a) => {
-          game.tables.importFromCollection('AlienRPG.tables_gm', a.data._id, { folder: mothfolder.id });
+          game.tables.importFromCollection('alienrpg.tables_gm', a.data._id, { folder: mothfolder.id });
         })
       );
 
       // Copy the attack tables from the pack into the correct folder so it's available to the creatures template.
-      var mTables = game.packs.get('AlienRPG.tables_attack');
+      var mTables = game.packs.get('alienrpg.tables_attack');
       mTables.getContent().then((d) =>
         d.forEach((a) => {
-          game.tables.importFromCollection('AlienRPG.tables_attack', a.data._id, { folder: crefolder.id });
+          game.tables.importFromCollection('alienrpg.tables_attack', a.data._id, { folder: crefolder.id });
         })
       );
 
