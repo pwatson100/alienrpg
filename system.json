@@ -2,15 +2,86 @@
   "name": "alienrpg",
   "title": "Alien RPG",
   "description": "The Alien RPG system for FoundryVTT!",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "minimumCoreVersion": "0.5.5",
-  "compatibleCoreVersion": "0.6.2",
+  "compatibleCoreVersion": "0.6.3",
   "templateVersion": 2,
   "author": "Paul Watson",
   "esmodules": ["module/alienrpg.js"],
   "styles": ["css/alienrpg.css"],
   "scripts": [],
-  "packs": [],
+  "packs": [
+    {
+      "name": "items",
+      "label": "Items",
+      "path": "packs/AlienRPG-items.db",
+      "entity": "Item",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "creatures",
+      "label": "Creatures",
+      "path": "packs/AlienRPG-creatures.db",
+      "entity": "Actor",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "weapons",
+      "label": "Weapons",
+      "path": "packs/AlienRPG-weapons.db",
+      "entity": "Item",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "armor",
+      "label": "Armor",
+      "path": "packs/AlienRPG-armor.db",
+      "entity": "Item",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "vehicles",
+      "label": "Vehicles",
+      "path": "packs/AlienRPG-vehicles.db",
+      "entity": "Actor",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "vehicle_weapons",
+      "label": "Vehicle Weapons",
+      "path": "packs/AlienRPG-vehicle_weapons.db",
+      "entity": "Item",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "talents_general",
+      "label": "Talents (General)",
+      "path": "packs/AlienRPG-talents_general.db",
+      "entity": "Item",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "talents_career",
+      "label": "Talents (Career)",
+      "path": "packs/AlienRPG-talents_career.db",
+      "entity": "Item",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "tables_attack",
+      "label": "Tables (Attack)",
+      "path": "packs/AlienRPG-tables_attack.db",
+      "entity": "RollTable",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "tables_gm",
+      "label": "Tables (GM)",
+      "path": "packs/AlienRPG-tables_gm.db",
+      "entity": "RollTable",
+      "module": "AlienRPG"
+    }
+  ],
   "languages": [
     {
       "lang": "en",
