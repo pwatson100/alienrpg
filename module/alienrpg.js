@@ -66,6 +66,26 @@ Hooks.once('init', async function () {
     return str.toLowerCase();
   });
 
+  Handlebars.registerHelper('if_isWeapons', function (sectionlabel, options) {
+    console.warn('helper triggered', sectionlabel);
+    if (sectionlabel === 'Weapons') {
+      console.warn('true');
+      return options.fn(this);
+    }
+  });
+
+  // Ifis not equal
+  Handlebars.registerHelper('ifne', function (v1, v2, options) {
+    if (v1 !== v2) return options.fn(this);
+    else return options.inverse(this);
+  });
+
+  // if equal
+  Handlebars.registerHelper('ife', function (v1, v2, options) {
+    if (v1 === v2) return options.fn(this);
+    else return options.inverse(this);
+  });
+
   // Register system settings
   game.settings.register('alienrpg', 'macroShorthand', {
     name: 'Shortened Macro Syntax',

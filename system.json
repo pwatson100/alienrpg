@@ -2,7 +2,7 @@
   "name": "alienrpg",
   "title": "Alien RPG",
   "description": "The Alien RPG system for FoundryVTT!",
-  "version": "0.1.12",
+  "version": "0.2.0",
   "minimumCoreVersion": "0.5.5",
   "compatibleCoreVersion": "0.6.3",
   "templateVersion": 2,
@@ -79,6 +79,13 @@
       "label": "Tables (GM)",
       "path": "packs/AlienRPG-tables_gm.db",
       "entity": "RollTable",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "alien",
+      "label": "Alien",
+      "path": "packs/AlienRPG-alien.db",
+      "entity": "Macro",
       "module": "AlienRPG"
     }
   ],

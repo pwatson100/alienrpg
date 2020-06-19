@@ -348,10 +348,10 @@
   display: grid;
   // border: 2px solid $c-green;
   grid-template-areas:
-    'lCol1 lCol2 lCol2 lCol3 lCol4'
-    'lCol5 lCol6 lCol6 lCol7 lCol8';
+    'lCol1 lCol2 lCol2 lCol10 lCol3 lCol4'
+    'lCol5 lCol6 lCol6 lCol9 lCol7 lCol8';
   padding-bottom: 2px;
-  grid-template-columns: 0.25fr 1fr 1.5fr 0.4fr 0.5fr;
+  grid-template-columns: 0.25fr 1fr 1.5fr 0.15fr 0.4fr 0.5fr;
   align-items: center;
 }
 
@@ -387,6 +387,15 @@
   grid-area: lCol8;
   justify-self: right;
 }
+.lCol9 {
+  grid-area: lCol9;
+  justify-self: center;
+}
+.lCol10 {
+  grid-area: lCol10;
+  justify-self: center;
+}
+
 .grid-talents {
   display: grid;
   grid-template-areas:

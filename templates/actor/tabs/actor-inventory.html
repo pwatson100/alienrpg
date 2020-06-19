@@ -14,19 +14,22 @@
     {{/if}}
     {{#each sections as |section sid|}}
     <li class=" grid-items item-header">
-
-        <div class="item-name lCol1">{{section.label}}</div>
-        <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
-        <div class="item-detail item-weight lCol3">{{localize "ALIENRPG.Weight"}}</div>
-
-        <div class="item-controls lCol4">
-          <a class="item-control item-create" style="font-size: smaller;" title="{{localize "ALIENRPG.AddItem"}}" data-type="item"><i class="fas fa-plus"></i>{{localize "ALIENRPG.AddItem"}}</a>
-        </div>
-      </li>
-      {{#each section.items as |item iid|}}
+      <div class="item-name lCol1">{{section.label}}</div>
+      <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
+      <div class="item-detail lCol10">{{localize "ALIENRPG.Damage"}}</div>
+      <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div>
+      <div class="item-detail item-weight lCol3">{{localize "ALIENRPG.Weight"}}</div>
+      <div class="item-controls lCol4">
+        <a class="item-control item-create" style="font-size: smaller;" title="{{localize "ALIENRPG.AddItem"}}" data-type="item"><i class="fas fa-plus"></i>{{localize "ALIENRPG.AddItem"}}</a>
+      </div>
+    </li>
+    {{#each section.items as |item iid|}}
         <li class="item grid-items" data-item-id="{{item._id}}">
                 <div class="item-image lCol5" ><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
                 <span class="item-label rollItem lCol6" data-item="{{item.name}}">{{item.name~}}</span>
+                {{#ife item.type 'weapon'}}
+                <span class="item-label lCol9" data-item="{{item.data.attributes.damage.value}}">{{item.data.attributes.damage.value}}</span>
+                {{/ife}}
                 <div class="item-detail lCol7" style="font-size: smaller;">{{ item.totalWeight }} {{localize "ALIENRPG.AbbreviationKg"}}</div>
                  <div class="item-controls lCol8">
                   <a class="item-control item-edit" title="{{localize "ALIENRPG.EditItem"}}"><i class="fas fa-edit"></i></a>
