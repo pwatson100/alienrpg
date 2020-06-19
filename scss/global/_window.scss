@@ -52,6 +52,15 @@
     cursor: pointer;
   }
 }
+.creature-acid-roll {
+  &:hover,
+  &:focus {
+    color: black;
+    text-shadow: 0 0 20px red;
+    font-size: 110%;
+    cursor: pointer;
+  }
+}
 .rollItem {
   &:hover,
   &:focus {

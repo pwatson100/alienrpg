@@ -26,7 +26,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       classes: ['alienrpg', 'sheet', 'actor', 'creature-sheet'],
       // template: 'systems/alienrpg/templates/actor/creature-sheet.html',
       width: 600,
-      height: 458,
+      height: 600,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -68,6 +68,10 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     data.filters = this._filters;
 
     data.rTables = alienrpgrTableGet.rTableget();
+
+    for (let [a, abl] of Object.entries(data.actor.data.general)) {
+      abl.label = CONFIG.ALIENRPG.general[a];
+    }
 
     return data;
   }
@@ -121,6 +125,9 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
 
     // plus tohealth and stress
     html.find('.creature-attack-roll').click(this._creatureAttackRoll.bind(this));
+    // Rollable abilities.
+
+    html.find('.creature-acid-roll').click(this._creatureAcidRoll.bind(this));
 
     // Drag events for macros.
     if (this.actor.owner) {
@@ -209,8 +216,8 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     const dataset = element.dataset;
     let label = dataset.label;
     let r1Data = parseInt(dataset.roll || 0);
-    let r2Data = this.actor.getRollData().stress;
-    let reRoll = false;
+    let r2Data = 0;
+    let reRoll = true;
     let hostile = this.actor.type;
     let blind = false;
     if (dataset.spbutt === 'armor' && r1Data < 1) {
@@ -254,6 +261,64 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       close: (html) => {
         if (confirmed) {
           let modifier = parseInt(html.find('[name=modifier]')[0].value);
+          r1Data = r1Data + modifier;
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+        }
+      },
+    }).render(true);
+  }
+
+  _creatureAcidRoll(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    let label = dataset.label;
+    let r1Data = parseInt(dataset.roll || 0);
+    let r2Data = 0;
+    let reRoll = true;
+    let hostile = this.actor.type;
+    let blind = false;
+    if (dataset.spbutt === 'armor' && r1Data < 1) {
+      return;
+    } else if (dataset.spbutt === 'armor') {
+      label = 'Armor';
+      r2Data = 0;
+    }
+
+    if (this.actor.data.token.disposition === -1) {
+      // hostile = true;
+      blind = true;
+    }
+
+    // callpop upbox here to get any mods then update r1Data or rData as appropriate.
+    let confirmed = false;
+    new Dialog({
+      title: `Roll ${label} Damage`,
+      content: `
+       <p>Please enter the damage inflicted on the Xeno.</p>
+       <form>
+        <div class="form-group">
+         <label>Damage:</label>
+           <input type="text" id="damage" name="damage" value="0" autofocus="autofocus" >
+        </div>
+       </form>
+       `,
+      buttons: {
+        one: {
+          icon: '<i class="fas fa-check"></i>',
+          label: 'Roll!',
+          callback: () => (confirmed = true),
+        },
+        two: {
+          icon: '<i class="fas fa-times"></i>',
+          label: 'Cancel',
+          callback: () => (confirmed = false),
+        },
+      },
+      default: 'one',
+      close: (html) => {
+        if (confirmed) {
+          let modifier = parseInt(html.find('[name=damage]')[0].value);
           r1Data = r1Data + modifier;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
         }

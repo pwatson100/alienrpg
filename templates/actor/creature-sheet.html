@@ -9,24 +9,27 @@
       <div class="grid-creature">
         <div class="vCre1 grid-2">
           <h2 class="resource-label box11">{{ localize "ALIENRPG.Health"}}</h2>
-
           <input type="text" class="maxboxsize box21" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
         </div>
+            <div class="vCre2 grid-2">
+              <h2 class="resource-label box11 rollable" data-roll="{{data.attributes.armorrating.value}}" data-label="{{localize "ALIENRPG.InventoryArmorHeader"}}">{{localize "ALIENRPG.InventoryArmorHeader"}}</h2>
+              <input type="text" class="maxboxsize box21" name="data.attributes.armorrating.value" value="{{data.attributes.armorrating.value}}" data-dtype="Number" />
+            </div>
         <div class="vCre3 grid-2">
           <h2 class="resource-label box11">{{localize "ALIENRPG.Speed"}}</h2>
           <input type="text" class="maxboxsize box21" name="data.attributes.speed.value" value="{{data.attributes.speed.value}}" data-dtype="Number" />
         </div>
         <div class="vCre4 grid-2">
-          <h2 class="resource-label box11 rollable" data-roll="{{data.attributes.armorrating.value}}" data-label="{{localize "ALIENRPG.InventoryArmorHeader"}}">{{localize "ALIENRPG.InventoryArmorHeader"}}</h2>
-          <input type="text" class="maxboxsize box21" name="data.attributes.armorrating.value" value="{{data.attributes.armorrating.value}}" data-dtype="Number" />
+          <h2 class="resource-label box11 rollable" data-roll="{{data.general.observation.value}}" data-label="Observation">{{localize "ALIENRPG.SkillObservation"}}</h2>
+          <input type="text" class="maxboxsize box21" name="data.general.observation.value" value="{{data.general.observation.value}}" data-dtype="String" />
         </div>
         <div class="vCre5 grid-2">
           <h2 class="resource-label box11 rollable" data-roll="{{data.general.mobility.value}}" data-label="Mobility">{{localize "ALIENRPG.SkillMobility"}}</h2>
           <input type="text" class="maxboxsize box21" name="data.general.mobility.value" value="{{data.general.mobility.value}}" data-dtype="String" />
         </div>
         <div class="vCre6 grid-2">
-          <h2 class="resource-label box11 rollable" data-roll="{{data.general.observation.value}}" data-label="Observation">{{localize "ALIENRPG.SkillObservation"}}</h2>
-          <input type="text" class="maxboxsize box21" name="data.general.observation.value" value="{{data.general.observation.value}}" data-dtype="String" />
+          <h2 class="resource-label box11 creature-acid-roll" data-roll="{{data.general.acidSplash.value}}" data-label="Acid Splash">{{localize "ALIENRPG.SkillAcidSplash"}}</h2>
+          <input type="text" class="maxboxsize box21" name="data.general.acidSplash.value" value="{{data.general.acidSplash.value}}" data-dtype="String" />
         </div>
       </div>
     </div>
@@ -56,7 +59,8 @@
         <button class="creature-attack-roll rTable2" data-atttype="{{data.rTables}}">Roll Attack</button>
       </div>
       <h3 class="resource-label">{{localize "ALIENRPG.SpecialAbilities"}}</h3>
-      <textarea name="data.general.special.value" rows="12" data-dtype="String">{{data.general.special.value}}</textarea>
+      <textarea name="data.general.special.value" rows="20" data-dtype="String">{{data.general.special.value}}</textarea>
+
       <!-- <h3 class="resource-label">{{localize "ALIENRPG.Comment"}}</h3>
       <textarea name="data.general.comment.value" rows="6" data-dtype="String">{{data.general.comment.value}}</textarea> -->
     </div>

@@ -220,6 +220,10 @@
         "special": {
           "value": "",
           "label": "Text"
+        },
+        "acidSplash": {
+          "value": "-",
+          "label": "Acid Splash"
         }
       },
       "notes": {
