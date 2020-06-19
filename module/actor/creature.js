@@ -278,23 +278,24 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     let reRoll = true;
     let hostile = this.actor.type;
     let blind = false;
-    if (dataset.spbutt === 'armor' && r1Data < 1) {
-      return;
-    } else if (dataset.spbutt === 'armor') {
-      label = 'Armor';
-      r2Data = 0;
-    }
+    if (dataset.roll != '-') {
+      if (dataset.spbutt === 'armor' && r1Data < 1) {
+        return;
+      } else if (dataset.spbutt === 'armor') {
+        label = 'Armor';
+        r2Data = 0;
+      }
 
-    if (this.actor.data.token.disposition === -1) {
-      // hostile = true;
-      blind = true;
-    }
+      if (this.actor.data.token.disposition === -1) {
+        // hostile = true;
+        blind = true;
+      }
 
-    // callpop upbox here to get any mods then update r1Data or rData as appropriate.
-    let confirmed = false;
-    new Dialog({
-      title: `Roll ${label} Damage`,
-      content: `
+      // callpop upbox here to get any mods then update r1Data or rData as appropriate.
+      let confirmed = false;
+      new Dialog({
+        title: `Roll ${label} Damage`,
+        content: `
        <p>Please enter the damage inflicted on the Xeno.</p>
        <form>
         <div class="form-group">
@@ -303,27 +304,35 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
         </div>
        </form>
        `,
-      buttons: {
-        one: {
-          icon: '<i class="fas fa-check"></i>',
-          label: 'Roll!',
-          callback: () => (confirmed = true),
+        buttons: {
+          one: {
+            icon: '<i class="fas fa-check"></i>',
+            label: 'Roll!',
+            callback: () => (confirmed = true),
+          },
+          two: {
+            icon: '<i class="fas fa-times"></i>',
+            label: 'Cancel',
+            callback: () => (confirmed = false),
+          },
         },
-        two: {
-          icon: '<i class="fas fa-times"></i>',
-          label: 'Cancel',
-          callback: () => (confirmed = false),
+        default: 'one',
+        close: (html) => {
+          if (confirmed) {
+            let modifier = parseInt(html.find('[name=damage]')[0].value);
+            r1Data = r1Data + modifier;
+            yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+          }
         },
-      },
-      default: 'one',
-      close: (html) => {
-        if (confirmed) {
-          let modifier = parseInt(html.find('[name=damage]')[0].value);
-          r1Data = r1Data + modifier;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-        }
-      },
-    }).render(true);
+      }).render(true);
+    } else {
+      // Roll against the panic table and push the roll to the chat log.
+      let chatMessage = '';
+      chatMessage += '<h2>Acid Blood</h2>';
+      chatMessage += `<h4><i>This Creature does not have Acid Blood</i></h4>`;
+      // chatMessage += `${customResults.results[0].text}`;
+      ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
+    }
   }
 
   _creatureAttackRoll(event) {

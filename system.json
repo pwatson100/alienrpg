@@ -2,7 +2,7 @@
   "name": "alienrpg",
   "title": "Alien RPG",
   "description": "The Alien RPG system for FoundryVTT!",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "minimumCoreVersion": "0.5.5",
   "compatibleCoreVersion": "0.6.3",
   "templateVersion": 2,
