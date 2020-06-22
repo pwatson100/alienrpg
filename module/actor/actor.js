@@ -55,7 +55,7 @@ export class alienrpgActor extends Actor {
     const data = actorData.data;
     const flags = actorData.flags;
 
-    if (actorData.type === 'character') this._prepareCharacterData(actorData);
+    if (actorData.type === 'character' || actorData.type === 'synthetic') this._prepareCharacterData(actorData);
     else if (actorData.type === 'vehicle') this._prepareVehicleData(data);
     else if (actorData.type === 'creature') this._prepareCreatureData(data);
 

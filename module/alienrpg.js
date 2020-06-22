@@ -208,7 +208,7 @@ Hooks.on('preCreateActor', (actor, dir) => {
     // actor.token.vision = true;
     // actor.token.actorLink = true;
 
-    if (actor.type == 'character') {
+    if (actor.type === 'character') {
       mergeObject(actor, {
         'token.bar1': {
           attribute: 'header.stress.value',
@@ -217,12 +217,17 @@ Hooks.on('preCreateActor', (actor, dir) => {
       actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
       actor.token.vision = true;
       actor.token.actorLink = true;
-    } else {
-      if (actor.type == 'vehicles') {
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
-      }
+    } else if (actor.type === 'vehicles') {
+      actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+      actor.token.vision = true;
+      actor.token.actorLink = true;
+    } else if (actor.type === 'creature') {
+      actor.token.vision = true;
+      actor.token.actorLink = true;
+    } else if (actor.type === 'synthetic') {
+      actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+      actor.token.vision = true;
+      actor.token.actorLink = true;
     }
   }
 });

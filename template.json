@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "vehicles", "creature"],
+    "types": ["character", "synthetic", "vehicles", "creature"],
     "character": {
       "header": {
         "health": {
@@ -10,6 +10,188 @@
         "stress": {
           "value": 0,
           "label": "Stress"
+        }
+      },
+      "attributes": {
+        "str": {
+          "value": 5,
+          "label": "Strength",
+          "proficient": 0
+        },
+        "wit": {
+          "value": 3,
+          "label": "Wits"
+        },
+        "agl": {
+          "value": 3,
+          "label": "Agility"
+        },
+        "emp": {
+          "value": 3,
+          "label": "Empathy"
+        }
+      },
+      "skills": {
+        "heavyMach": {
+          "value": 0,
+          "label": "Heavy Machinery",
+          "ability": "str",
+          "description": "<ol>For each extra 6 rolled beyond the first, choose one stunt applicable to the situation:<li>Gain a +1 modification to a later skill roll relating to this one.</li><li>Gain a +1 modification to a later skill roll relating to this one.</li><li>You got this. You don’t need to roll to overcome the exact same challenge in the future.</li><li>You do it quickly, in half the time it would normally take.</li><li>You break it permanently.</li><li>You act quietly.</li><li>You show off</li></ol>"
+        },
+        "closeCbt": {
+          "value": 0,
+          "label": "Close Combat",
+          "ability": "str",
+          "description": "<ol>For every extra you roll, choose one stunt applicable to the situation: <li>You inflict one more point of damage. You can choose this stunt multiple times, if you roll several 6's.</li><li>You out maneuver your enemy and can trade initiative scores with them, taking effect next turn. You can’t go back to your earlier initiative.</li><li>You knock or pull a weapon or other object from your opponent. You choose which. During combat, picking up a dropped object counts as a fast action.</li><li>Your opponent is knocked to the ground.</li><li>You hold your opponent in a grapple. They need to win an opposed CLOSE COMBAT roll against you to break free, and can’t perform any other action until they have done so, or until you are Broken or let them go. This effect only works on humans and synthetics.</li></ol>"
+        },
+        "stamina": {
+          "value": 0,
+          "label": "Stamina",
+          "ability": "str",
+          "description": "<ol>For every extra you roll, choose one stunt applicable to the situation: <li> Give one to another PC in the same situation as you.</li><li>Gain a +1 modification to a later skill roll relating to this one.</li><li>You’re hardened by the experience, and don’t need to roll to overcome the exact same challenge in the future.</li><li>You impress someone.</li></ol>"
+        },
+        "rangedCbt": {
+          "value": 0,
+          "label": "Ranged Combat",
+          "ability": "agl",
+          "description": "<ol>For every extra you roll, choose one stunt applicable to the situation: <li>You inflict one more point of damage. You can choose this stunt multiple times, if you roll several .</li><li>You pin down your enemy. They need to make an immediate Panic Roll.</li><li>You position yourself and get to exchange your initiative score with your enemy, taking effect next turn. You can’t go back to your earlier initiative.</li><li>Your target drops a weapon or another hand-held object. You choose which.</li><li>Your opponent falls to the ground or is pushed back, for example through an airlock.</li></ol>"
+        },
+        "mobility": {
+          "value": 0,
+          "label": "Mobility",
+          "ability": "agl",
+          "description": "<ol>For every extra you roll, choose one stunt applicable to the situation: <li>Give one to another PC in the same situation as you.</li><li>Gain a +1 modification to a later skill roll relating to this one.</li><li>You impress someone.</li></ol>"
+        },
+        "piloting": {
+          "value": 0,
+          "label": "Piloting",
+          "ability": "agl",
+          "description": "<ol>For every extra you roll, choose one stunt applicable to the situation: <li>Gain a +1 modification to a later skill roll relating to this one.</li><li>You show off. </li></ol>"
+        },
+        "command": {
+          "value": 0,
+          "label": "Command",
+          "ability": "wit",
+          "description": "<ol>No Stunts for this skill.</ol>"
+        },
+        "manipulation": {
+          "value": 0,
+          "label": "Manipulation",
+          "ability": "wit",
+          "description": "<ol>For each you roll in excess of what you need to win the opposed roll, you can choose one of these stunts: <li>Your opponent does what you want without demanding a favor in return.</li><li>Your opponent does more than you ask for, for example giving you some useful piece of information. Details are up to the GM.</li><li>Your opponent is impressed by you and will try to help you later on in some way. Details are up to the GM.</li></ol>"
+        },
+        "medicalAid": {
+          "value": 0,
+          "label": "Medical Aid",
+          "ability": "wit",
+          "description": "<ol>No Stunts for this skill.</ol>"
+        },
+        "observation": {
+          "value": 0,
+          "label": "Observation",
+          "ability": "emp",
+          "description": "<ol>For every extra you roll, you get to know the answer to one of these questions:  <li>Is it coming for me? </li><li>Are there more of them close by?</li><li>How do I get in/past/away?</li></ol>"
+        },
+        "survival": {
+          "value": 0,
+          "label": "Survival",
+          "ability": "emp",
+          "description": "<ol>For every extra you roll, choose one stunt applicable to the situation: <li>Give one to another PC in the same trouble as you.</li><li>Gain a +1 modification to a later skill roll relating to this one. </li><li>You impress someone.</li></ol>"
+        },
+        "comtech": {
+          "value": 0,
+          "label": "Comtech",
+          "ability": "emp",
+          "description": "<ol>For each extra rolled beyond the first, choose one stunt applicable to the situation: <li>Gain a +1 modification to a later skill roll relating to this one. </li><li>You don’t need to roll to overcome the exact same challenge in the future.</li><li>You do it quickly, in half the time it would normally take.</li><li>You get new or unexpected information (GM’s choice).</li><li>ou hide your tracks.</li><li>You show off.</li></ol>"
+        }
+      },
+      "general": {
+        "career": {
+          "value": "",
+          "label": "career"
+        },
+        "appearance": {
+          "value": "",
+          "label": "appearance"
+        },
+        "sigItem": {
+          "value": "",
+          "label": "sigItem"
+        },
+        "agenda": {
+          "value": "",
+          "label": "agenda"
+        },
+        "relOne": {
+          "value": "",
+          "label": "relOne"
+        },
+        "relTwo": {
+          "value": "",
+          "label": "relTwo"
+        },
+        "xp": {
+          "value": 0,
+          "max": 10
+        },
+        "radiation": {
+          "value": 0,
+          "max": 10
+        },
+        "starving": {
+          "value": 0,
+          "max": 1
+        },
+        "dehydrated": {
+          "value": 0,
+          "max": 1
+        },
+        "exhausted": {
+          "value": 0,
+          "max": 1
+        },
+        "freezing": {
+          "value": 0,
+          "max": 1
+        },
+        "critInj": {
+          "value": ""
+        },
+        "armor": {
+          "value": 0
+        }
+      },
+      "consumables": {
+        "air": {
+          "value": 0,
+          "min": 0,
+          "max": 5
+        },
+        "power": {
+          "value": 0,
+          "min": 0,
+          "max": 5
+        },
+        "food": {
+          "value": 0,
+          "min": 0,
+          "max": 5
+        },
+        "water": {
+          "value": 0,
+          "min": 0,
+          "max": 5
+        }
+      },
+      "notes": {
+        "notes": ""
+      }
+    },
+    "synthetic": {
+      "header": {
+        "health": {
+          "value": 10,
+          "label": "Health"
         }
       },
       "attributes": {

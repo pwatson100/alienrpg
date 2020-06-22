@@ -38,6 +38,11 @@ export class alienrpgItem extends Item {
       blind = true;
     }
 
+    if (this.actor.data.type === 'synthetic') {
+      r2Data = 0;
+      reRoll = true;
+    }
+
     if (right) {
       // callpop upbox here to get any mods then update r1Data or rData as appropriate.
       let confirmed = false;
