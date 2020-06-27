@@ -105,5 +105,14 @@
   "ALIENRPG.Armor": "Armor",
   "ALIENRPG.GeneralTalent": "General Talent",
   "ALIENRPG.SpecialAbilities": "Special Abilities",
-  "ALIENRPG.SkillAcidSplash": "Acid Splash"
+  "ALIENRPG.SkillAcidSplash": "Acid Splash",
+  "ALIENRPG.CommonName": "Common Name",
+  "ALIENRPG.Location": "Location",
+  "ALIENRPG.Affiliation": "Affiliation",
+  "ALIENRPG.Classification": "Classification",
+  "ALIENRPG.Details": "Details",
+  "ALIENRPG.System": "System",
+  "ALIENRPG.Systems": "Systems",
+  "ALIENRPG.Sector": "Sector",
+  "ALIENRPG.Sectors": "Sectors"
 }

@@ -1,0 +1,76 @@
+<form class="{{cssClass}} " autocomplete="off">
+  <header class="vehicle-header">
+    {{log "CONTEXT!!!!"}} {{log this}}
+
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+
+      <div class="resources grid-planet-header">
+        <h3 class="resource-label hplan1">{{localize "ALIENRPG.CommonName"}}</h3>
+        <input type="text" class="hplan2 textbox" name="data.header.commonName.value" value="{{data.header.commonName.value}}" data-dtype="text" />
+
+        <h3 class="resource-label hplan3">{{localize "ALIENRPG.System"}}</h3>
+        <input type="text" class="hplan4 textbox" name="data.header.system.value" value="{{data.header.system.value}}" data-dtype="text" />
+
+        <h3 class="resource-label hplan5">{{localize "ALIENRPG.Sector"}}</h3>
+        <input type="text" class="hplan6 textbox" name="data.header.sector.value" value="{{data.header.sector.value}}" data-dtype="text" />
+
+        <h3 class="resource-label hplan7">{{localize "ALIENRPG.Location"}}</h3>
+        <input type="text" class="hplan8 textbox" name="data.header.location.value" value="{{data.header.location.value}}" data-dtype="text" />
+      </div>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="details">{{localize "ALIENRPG.Details"}}</a>
+    <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    {{!-- Attributes Tab --}}
+    <div class="tab details" data-group="primary" data-tab="details">
+      <div class="plan1">
+        <label class="resource-label">{{data.details.affiliation.label}}</label>
+        <textarea name="data.details.affiliation.value" rows="2" data-dtype="String">{{data.details.affiliation.value}}</textarea>
+
+        <!-- <input type="text" class="textbox2" name="data.details.affiliation.value" value="{{data.details.affiliation.value}}" data-dtype="text" /> -->
+      </div>
+      <div class="grid-planet">
+        <div class="plan2">
+          <label class="resource-label">{{data.details.classification.label}}</label>
+          <input type="text" class="textbox1" name="data.details.classification.value" value="{{data.details.classification.value}}" data-dtype="text" />
+        </div>
+        <div class="plan3">
+          <label class="resource-label">{{data.details.population.label}}</label>
+          <input type="text" class="textbox" name="data.details.population.value" value="{{data.details.population.value}}" data-dtype="text" />
+        </div>
+        <div class="plan4">
+          <label class="resource-label">{{data.details.meanTemperature.label}}</label>
+          <input type="text" class="textbox2" name="data.details.meanTemperature.value" value="{{data.details.meanTemperature.value}}" data-dtype="text" />
+        </div>
+      </div>
+      <label class="resource-label">{{data.details.climate.label}}</label>
+      <textarea name="data.details.climate.value" rows="2" data-dtype="String">{{data.details.climate.value}}</textarea>
+
+      <label class="resource-label">{{data.details.terrain.label}}</label>
+      <textarea name="data.details.terrain.value" rows="2" data-dtype="String">{{data.details.terrain.value}}</textarea>
+
+      <label class="resource-label">{{data.details.colonies.label}}</label>
+      <textarea name="data.details.colonies.value" rows="2" data-dtype="String">{{data.details.colonies.value}}</textarea>
+
+      <label class="resource-label">{{data.details.keyResources.label}}</label>
+      <textarea name="data.details.keyResources.value" rows="2" data-dtype="String">{{data.details.keyResources.value}}</textarea>
+    </div>
+
+    {{!-- Notes Tab --}}
+    <div class="tab item" data-group="primary" data-tab="description">
+      <label class="resource-label">{{localize "ALIENRPG.Description"}}</label>
+      <textarea name="data.misc.comment.value" rows="20" data-dtype="String">{{data.misc.comment.value}}</textarea>
+
+      <!-- {{editor content=data.misc.notes target="data.misc.notes" button=true owner=owner editable=editable}} -->
+    </div>
+  </section>
+</form>

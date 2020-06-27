@@ -374,7 +374,7 @@ export class alienrpgActorSheet extends ActorSheet {
         let chatMessage = '';
         const table = game.tables.getName('Panic Table');
         const roll = new Roll('1d6 + @stress', this.actor.getRollData());
-        console.warn('actor roll', roll);
+        // console.warn('actor roll', roll);
 
         const customResults = table.roll({ roll });
         chatMessage += '<h2>Panic Condition</h2>';

@@ -1,0 +1,77 @@
+<form class="{{cssClass}}" autocomplete="off">
+  {{!-- Sheet Header --}}
+  <header class="vehicle-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+      {{!-- The grid classes are defined in scss/global/_grid.scss. To use, use both the "grid" and "grid-Ncol" class where "N" can be any number from 1 to 12 and will create that number of columns.
+      --}}
+
+      <!-- <div class="resources grid-vehicle"> -->
+        <!-- <h2 class="vItem1">{{ localize "ALIENRPG.Hull"}}</h2>
+        <div class="resource-label">
+          <input type="text" class="maxboxsize vItem2" name="data.attributes.hull.value" value="{{data.attributes.hull.value}}" data-dtype="Number" />
+        </div>
+        <h2 class="vItem3">{{localize "ALIENRPG.ArmorRating"}}</h2>
+        <div class="resource-label">
+          <input type="text" class="maxboxsize vItem4" name="data.attributes.armorrating.value" value="{{data.attributes.armorrating.value}}" data-dtype="Number" />
+        </div>
+        <h2 class="vItem5">{{localize "ALIENRPG.Speed"}}</h2>
+        <div class="resource-label">
+          <input type="text" class="maxboxsize vItem6" name="data.attributes.speed.value" value="{{data.attributes.speed.value}}" data-dtype="Number" />
+        </div>
+        <h2 class="vItem7">{{localize "ALIENRPG.Manoeuvrability"}}</h2>
+        <div class="resource-label">
+          <input type="text" class="maxboxsize vItem8" name="data.attributes.manoeuvrability.value" value="{{data.attributes.manoeuvrability.value}}" data-dtype="Number" />
+        </div>
+      </div> -->
+    <!-- </div> -->
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
+    <a class="item" data-tab="systems">{{localize "ALIENRPG.Systems"}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    <div class="tab attributes" data-group="primary" data-tab="general">
+      <h2 class="resource-label">{{localize "ALIENRPG.Description"}}</h2>
+      <textarea name="data.comment.value" rows="13" data-dtype="String">{{data.comment.value}}</textarea>
+      <h2 class="resource-label">{{localize "ALIENRPG.Sectors"}}</h2>
+      <textarea name="data.sectors.value" rows="13" data-dtype="String">{{data.sectors.value}}</textarea>
+    </div>
+
+    {{!-- Owned Items Tab --}}
+    <!-- INVENTORY -->
+    <div class="tab systems" data-group="primary" data-tab="systems">
+      <li class="grid-systems">
+        <!-- <label class="item-name hplan1">Systems/Planets</label> -->
+        <label class="item-name sys1">Sector</label>
+        <label class="item-name sys2">System</label>
+        <label class="item-name sys3">Name</label>
+        <div class="item-controls sys4">
+          <a class="item-control item-create" style="font-size: smaller;" title="Create item" data-type="talent"><i class="fas fa-plus"></i> Add item</a>
+        </div>
+      </li>
+
+      {{#each systems as |item iid|}}
+      <li class="item grid-systems" data-item-id="{{item._id}}">
+        <div class="item-name sys1">{{item.data.header.sector.value}} </div>
+        <div class="item-name sys2">{{item.data.header.system.value}} </div>
+        <div class="item-name sys3">{{item.name}} </div>
+
+        <div class="sys4">
+          <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        </div>
+      </li>
+      {{/each}}
+
+      <!-- {{> "systems/alienrpg/templates/actor/tabs/actor-systems.html" sections=systems}} -->
+    </div>
+
+    {{log "CONTEXT!!!!"}} {{log this}}
+  </section>
+</form>

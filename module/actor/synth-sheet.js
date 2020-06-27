@@ -349,7 +349,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    console.warn('on rolll', element, dataset);
+    // console.warn('on rolll', element, dataset);
     let label = dataset.label;
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0);

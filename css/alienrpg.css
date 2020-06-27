@@ -15,6 +15,7 @@
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   padding: 2px;
+  overflow-y: scroll;
   overflow-x: auto;
   border: greenyellow 3px;
 }
@@ -230,6 +231,7 @@
 
 .Col1 {
   grid-area: Col1;
+  align-self: center;
 }
 
 .Col2 {
@@ -610,6 +612,121 @@
 
 .vCre8 {
   grid-area: vCre8;
+}
+
+.grid-planet-header {
+  display: grid;
+  border: 2px solid greenyellow;
+  grid-template-areas: 'hplan1 hplan2 hplan3 hplan4' 'hplan5 hplan6 hplan7 hplan8';
+  grid-template-columns: auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-bottom: 2px;
+}
+
+.hplan1 {
+  grid-area: hplan1;
+}
+
+.hplan2 {
+  grid-area: hplan2;
+}
+
+.hplan3 {
+  grid-area: hplan3;
+}
+
+.hplan4 {
+  grid-area: hplan4;
+}
+
+.hplan5 {
+  grid-area: hplan5;
+}
+
+.hplan6 {
+  grid-area: hplan6;
+}
+
+.hplan7 {
+  grid-area: hplan7;
+}
+
+.hplan8 {
+  grid-area: hplan8;
+}
+
+.grid-planet {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-areas: "plan1 plan1 plan1 plan1" "plan2 plan2 plan3 plan3 " "plan4 plan4 plan4 plan4 ";
+  grid-template-columns: 220px 1fr;
+}
+
+.plan1 {
+  grid-area: plan1;
+  justify-self: left;
+  align-self: center;
+}
+
+.plan2 {
+  grid-area: plan2;
+  justify-self: left;
+}
+
+.plan3 {
+  grid-area: plan3;
+  justify-self: left;
+}
+
+.plan4 {
+  grid-area: plan4;
+  justify-self: left;
+}
+
+.grid-systems {
+  display: grid;
+  padding: 3px;
+  grid-template-areas: 'sys1 sys2 sys3 sys4' 'sys5 sys6 sys7 sys8';
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.sys1 {
+  grid-area: sys1;
+  justify-self: left;
+}
+
+.sys2 {
+  grid-area: sys2;
+  justify-self: center;
+}
+
+.sys3 {
+  grid-area: sys3;
+  justify-self: center;
+}
+
+.sys4 {
+  grid-area: sys4;
+  justify-self: right;
+}
+
+.sys5 {
+  grid-area: sys5;
+}
+
+.sys6 {
+  grid-area: sys6;
+}
+
+.sys7 {
+  grid-area: sys7;
+}
+
+.sys8 {
+  grid-area: sys8;
 }
 
 .flex-group-center,
@@ -1062,6 +1179,26 @@
   justify-items: center;
   background-color: #000;
   width: 180px;
+}
+
+.alienrpg .textbox1 {
+  color: greenyellow;
+  justify-items: center;
+  background-color: #000;
+  width: 200px;
+  padding: 0;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.alienrpg .textbox2 {
+  color: greenyellow;
+  justify-items: center;
+  background-color: #000;
+  width: 400px;
+  padding: 0;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 
 .alienrpg input {

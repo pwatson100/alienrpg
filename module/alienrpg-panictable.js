@@ -96,12 +96,12 @@ export async function createPanicTable(folderid) {
 
     let folder = game.folders.entities[4];
     var tables = game.packs.get('AlienRPG.tables_gm');
-    console.warn('tables', folderid, tables);
+    // console.warn('tables', folderid, tables);
 
     tables.getContent().then((d) =>
       d.forEach((a) => {
         let tData = a.data;
-        console.warn('ForEach', tData);
+        // console.warn('ForEach', tData);
         game.tables.importFromCollection('AlienRPG.tables_gm', a.data._id, { folder: folderid });
         // RollTable.create(tData, { folder: folderid });
       })

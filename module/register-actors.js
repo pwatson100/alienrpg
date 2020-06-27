@@ -2,6 +2,7 @@ import alienrpgActorSheet from './actor/actor-sheet.js';
 import alienrpgSynthActorSheet from './actor/synth-sheet.js';
 import ActorSheetAlienRPGVehicle from './actor/vehicles.js';
 import ActorSheetAlienRPGCreat from './actor/creature.js';
+import ActorSheetAlienRPGTerritory from './actor/territory.js';
 
 function registerActors() {
   Actors.unregisterSheet('core', ActorSheet); // Register Character Sheet
@@ -27,6 +28,11 @@ function registerActors() {
     types: ['creature'],
     makeDefault: false,
   }); // Register vehicle Sheet
+
+  Actors.registerSheet('alienrpg', ActorSheetAlienRPGTerritory, {
+    types: ['territory'],
+    makeDefault: false,
+  }); // Register Territory Sheet
 }
 
 export default registerActors;

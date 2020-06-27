@@ -4,6 +4,7 @@ import { alienrpgActor } from './actor/actor.js';
 // import { alienrpgActorSheet } from './actor/actor-sheet.js';
 import { alienrpgItem } from './item/item.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
+import { alienrpgPlanetSheet } from './item/planet-system-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
@@ -16,6 +17,7 @@ Hooks.once('init', async function () {
   game.alienrpg = {
     alienrpgActor,
     alienrpgItem,
+    alienrpgPlanetSheet,
     yze,
     rollItemMacro,
     registerSettings,
@@ -37,12 +39,14 @@ Hooks.once('init', async function () {
   CONFIG.ALIENRPG = ALIENRPG;
   CONFIG.Actor.entityClass = alienrpgActor;
   CONFIG.Item.entityClass = alienrpgItem;
+  // CONFIG.Planet.entityClass = alienrpgPlanet;
 
   // Register sheet application classes
   // Actors.unregisterSheet('core', ActorSheet);
   // Actors.registerSheet('alienrpg', alienrpgActorSheet, { makeDefault: true });
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('alienrpg', alienrpgItemSheet, { makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent'], makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
   // console.warn('*******************************');
   // console.warn('register');
   // console.warn('*******************************');
@@ -67,9 +71,9 @@ Hooks.once('init', async function () {
   });
 
   Handlebars.registerHelper('if_isWeapons', function (sectionlabel, options) {
-    console.warn('helper triggered', sectionlabel);
+    // console.warn('helper triggered', sectionlabel);
     if (sectionlabel === 'Weapons') {
-      console.warn('true');
+      // console.warn('true');
       return options.fn(this);
     }
   });

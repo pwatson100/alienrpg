@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "synthetic", "vehicles", "creature"],
+    "types": ["character", "synthetic", "vehicles", "creature", "territory"],
     "character": {
       "header": {
         "health": {
@@ -461,10 +461,34 @@
       "notes": {
         "notes": ""
       }
+    },
+    "territory": {
+      "header": {
+        "type": {
+          "value": "",
+          "label": "Text"
+        }
+      },
+      "comment": {
+        "value": "",
+        "label": "Text"
+      },
+      "sectors": {
+        "value": "",
+        "label": "Text"
+      }
+    },
+    "general": {
+      "misc": {
+        "value": ""
+      }
+    },
+    "notes": {
+      "notes": ""
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor", "talent"],
+    "types": ["item", "weapon", "armor", "talent", "planet-system"],
     "item": {
       "header": {
         "type": {
@@ -574,10 +598,73 @@
           "value": "",
           "label": "Text"
         }
+      },
+      "notes": {
+        "notes": ""
       }
     },
-    "notes": {
-      "notes": ""
+    "planet-system": {
+      "header": {
+        "commonName": {
+          "value": "",
+          "label": "Text"
+        },
+        "system": {
+          "value": "",
+          "label": "Text"
+        },
+        "sector": {
+          "value": "",
+          "label": "Text"
+        },
+        "location": {
+          "value": "",
+          "label": "Text"
+        }
+      },
+      "details": {
+        "affiliation": {
+          "value": "",
+          "label": "Affiliation"
+        },
+        "classification": {
+          "value": "",
+          "label": "Classification"
+        },
+        "climate": {
+          "value": "",
+          "label": "Climate"
+        },
+        "meanTemperature": {
+          "value": "",
+          "label": "Mean Temperature"
+        },
+        "terrain": {
+          "value": "",
+          "label": "Terrain"
+        },
+        "colonies": {
+          "value": "",
+          "label": "Colonies"
+        },
+        "population": {
+          "value": 0,
+          "label": "Population"
+        },
+        "keyResources": {
+          "value": "",
+          "label": "Key Resources"
+        }
+      },
+      "misc": {
+        "description": {
+          "value": "",
+          "label": "Description"
+        },
+        "notes": {
+          "notes": ""
+        }
+      }
     }
   }
 }

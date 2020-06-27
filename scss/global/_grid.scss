@@ -27,53 +27,6 @@
   padding: 4px;
 }
 
-// .grid-5col {
-//   grid-column: span 5 / span 5;
-//   grid-template-columns: repeat(5, minmax(0, 1fr));
-// }
-
-// .grid-6col {
-//   grid-column: span 5 / span 5;
-//   grid-template-columns: repeat(5, minmax(0, 1fr));
-// }
-
-// .grid-7col {
-//   grid-column: span 7 / span 7;
-//   grid-template-columns: repeat(7, minmax(0, 1fr));
-// }
-
-// .grid-8col {
-//   grid-column: span 8 / span 8;
-//   grid-template-columns: repeat(8, minmax(0, 1fr));
-// }
-
-// .grid-9col {
-//   grid-column: span 9 / span 9;
-//   grid-template-columns: repeat(9, minmax(0, 1fr));
-// }
-
-// .grid-10col {
-//   grid-column: span 10 / span 10;
-//   grid-template-columns: repeat(10, minmax(0, 1fr));
-// }
-
-// .grid-11col {
-//   grid-column: span 11 / span 11;
-//   grid-template-columns: repeat(11, minmax(0, 1fr));
-// }
-
-// .grid-12col {
-//   grid-column: span 12 / span 12;
-//   grid-template-columns: repeat(12, minmax(0, 1fr));
-// }
-
-// .grid-2row {
-//   grid-column: span 1 / span 3;
-//   grid-template-columns: repeat(1, minmax(0, 1fr));
-//   // justify-self: center;
-//   justify-items: center;
-// }
-
 .grid-genPage {
   display: grid;
   // border: 2px solid white;
@@ -162,6 +115,7 @@
   grid-area: Col1;
   // justify-items: left;
   // border: 2px solid white;
+  align-self: center;
 }
 .Col2 {
   grid-area: Col2;
@@ -535,6 +489,110 @@
 }
 .vCre8 {
   grid-area: vCre8;
+}
+.grid-planet-header {
+  display: grid;
+  border: 2px solid $c-green;
+  grid-template-areas:
+    'hplan1 hplan2 hplan3 hplan4'
+    'hplan5 hplan6 hplan7 hplan8';
+
+  grid-template-columns: auto;
+  align-items: center;
+  padding-bottom: 2px;
+}
+
+.hplan1 {
+  grid-area: hplan1;
+}
+.hplan2 {
+  grid-area: hplan2;
+}
+.hplan3 {
+  grid-area: hplan3;
+}
+.hplan4 {
+  grid-area: hplan4;
+}
+.hplan5 {
+  grid-area: hplan5;
+}
+.hplan6 {
+  grid-area: hplan6;
+}
+.hplan7 {
+  grid-area: hplan7;
+}
+.hplan8 {
+  grid-area: hplan8;
+}
+
+.grid-planet {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-areas:
+    'plan1 plan1 plan1 plan1'
+    'plan2 plan2 plan3 plan3 '
+    // 'plan3 plan3 plan3 plan3 '
+    'plan4 plan4 plan4 plan4 ';
+  grid-template-columns: 220px 1fr;
+}
+.plan1 {
+  grid-area: plan1;
+  justify-self: left;
+  align-self: center;
+}
+.plan2 {
+  grid-area: plan2;
+  justify-self: left;
+}
+.plan3 {
+  grid-area: plan3;
+  justify-self: left;
+}
+.plan4 {
+  grid-area: plan4;
+  justify-self: left;
+}
+
+.grid-systems {
+  display: grid;
+  padding: 3px;
+  grid-template-areas:
+    'sys1 sys2 sys3 sys4'
+    'sys5 sys6 sys7 sys8';
+
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.sys1 {
+  grid-area: sys1;
+  justify-self: left;
+}
+.sys2 {
+  grid-area: sys2;
+  justify-self: center;
+}
+.sys3 {
+  grid-area: sys3;
+  justify-self: center;
+}
+.sys4 {
+  grid-area: sys4;
+  justify-self: right;
+}
+.sys5 {
+  grid-area: sys5;
+}
+.sys6 {
+  grid-area: sys6;
+}
+.sys7 {
+  grid-area: sys7;
+}
+.sys8 {
+  grid-area: sys8;
 }
 
 .flex-group-center,

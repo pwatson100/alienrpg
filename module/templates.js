@@ -10,6 +10,7 @@ export const preloadHandlebarsTemplates = async function () {
     // "systems/dnd5e/templates/actors/parts/actor-traits.html",
     'systems/alienrpg/templates/actor/tabs/actor-inventory.html',
     'systems/alienrpg/templates/actor/tabs/talents.html',
+    'systems/alienrpg/templates/actor/tabs/actor-systems.html',
     // 'systems/alienrpg/templates/actor/tabs/item-line.html',
     // "systems/dnd5e/templates/actors/parts/actor-spellbook.html",
 

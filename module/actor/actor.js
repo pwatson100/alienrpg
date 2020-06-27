@@ -58,6 +58,7 @@ export class alienrpgActor extends Actor {
     if (actorData.type === 'character' || actorData.type === 'synthetic') this._prepareCharacterData(actorData);
     else if (actorData.type === 'vehicle') this._prepareVehicleData(data);
     else if (actorData.type === 'creature') this._prepareCreatureData(data);
+    else if (actorData.type === 'territory') this._prepareTeritoryData(data);
 
     // TODO: Migrate trait storage format
 
@@ -90,6 +91,11 @@ export class alienrpgActor extends Actor {
     // data.attributes.spelldc.value = data.attributes.spelldc.dc - 10;
   }
   _prepareCreatureData(data) {
+    // As we only capture the NPCs Spell DC attribute, we need to calculate the Spell Attack Roll.
+    // see sidebar on p298 of pf2e core rulebook.
+    // data.attributes.spelldc.value = data.attributes.spelldc.dc - 10;
+  }
+  _prepareTeritoryData(data) {
     // As we only capture the NPCs Spell DC attribute, we need to calculate the Spell Attack Roll.
     // see sidebar on p298 of pf2e core rulebook.
     // data.attributes.spelldc.value = data.attributes.spelldc.dc - 10;
