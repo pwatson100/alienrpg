@@ -2,7 +2,7 @@
   "name": "alienrpg",
   "title": "Alien RPG",
   "description": "The Alien RPG system for FoundryVTT!",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "minimumCoreVersion": "0.5.7",
   "compatibleCoreVersion": "0.6.3",
   "templateVersion": 2,
@@ -23,6 +23,20 @@
       "label": "Creatures",
       "path": "packs/AlienRPG-creatures.db",
       "entity": "Actor",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "territories",
+      "label": "Territories",
+      "path": "packs/AlienRPG-territories.db",
+      "entity": "Actor",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "systems",
+      "label": "Systems",
+      "path": "packs/AlienRPG-systems.db",
+      "entity": "Item",
       "module": "AlienRPG"
     },
     {
