@@ -56,16 +56,7 @@ export class AlienRPGSetup {
         })
       );
 
-      // Copy the attack tables from the pack into the correct folder so it's available to the creatures template.
-      var mTables = game.packs.get('alienrpg.tables_attack');
-      mTables.getContent().then((d) =>
-        d.forEach((a) => {
-          game.tables.importFromCollection('alienrpg.tables_attack', a.data._id, { folder: crefolder.id });
-        })
-      );
-
-      ui.tables.render();
+      ui.notifications.info('First-Time-Setup complete');
     }
-    ui.notifications.info('First-Time-Setup complete');
   }
 }
