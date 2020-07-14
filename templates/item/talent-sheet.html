@@ -1,8 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
   <header class="vehicle-header">
-    <!-- {{log "CONTEXT!!!!"}} {{log this}} -->
-
-    <!-- <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{talent.name}}" height="100" width="100" /> -->
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
 
@@ -45,7 +42,7 @@
 
     {{!-- Notes Tab --}}
     <div class="tab item" data-group="primary" data-tab="notes">
-      {{editor content=data.notes target="data.notes" button=true owner=owner editable=editable}}
+      {{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=editable}}
     </div>
   </section>
 </form>

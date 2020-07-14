@@ -4,10 +4,7 @@
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
-      {{!-- The grid classes are defined in scss/global/_grid.scss. To use, use both the "grid" and "grid-Ncol" class where "N" can be any number from 1 to 12 and will create that number of columns.
-      --}}
       <div class="resources grid grid-4col">
-        {{!-- "flex-group-center" is also defined in the _grid.scss file and it will add a small amount of padding, a border, and will center all of its child elements content and text. --}}
         {{!-- Health and Stress --}}
           <h2 for="data.health.value" class="resource-label">{{ localize "ALIENRPG.Health"}}</h2>
           <div class="resource-content">
@@ -18,8 +15,6 @@
           <h2>Synth</h2>
           <h3>No Stress</h3>
 
-      {{!-- The grid classes are defined in scss/global/_grid.scss. To use, use both the "grid" and "grid-Ncol" class where "N" can be any number from 1 to 12 and will create that number of columns.
-      --}}
       {{!-- Attributes --}}
       <div class="abilities grid grid-4col">
         {{#each data.attributes as |attribute key|}}
@@ -81,11 +76,6 @@
           {{/each}}
         </div>
 
-        {{!-- Stunts/Talents pop up --}}
-        <div class="Col3" id="panel" hidden >
-          <h2><st-head></st-head></h2>
-          <st-text></st-text>
-      </div>
       </div>
     </div>
 
@@ -93,7 +83,7 @@
 
     {{!-- Biography Tab --}}
     <div class="tab biog " data-group="primary" data-tab="description">
-      {{editor content=data.notes.value target="data.notes" button=true owner=owner editable=editable}}
+      {{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=editable}}
     </div>
     {{!-- Owned Items Tab --}}
       <!-- INVENTORY -->
@@ -127,58 +117,17 @@
                 <h2 >{{ localize 'ALIENRPG.Conditions'}}</h2>
 
                 <div>Synthetics don’t need air, food, water, or sleep. They are immune to vacuum, cold, and disease. Androids are typically unaffected by alien pathogens.</div>
-                <!-- <div class="dots starving">
-                  <input type="hidden" name="data.general.starving.value" data-max="{{data.general.starving.max}}" value="{{{data.general.starving.value}}}" data-dtype="Number">
-                  <h4 class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.starving.icon}}} {{ localize 'ALIENRPG.Starving'}}
-                </h4>
-              </div>
-
-                <div class="dots dehydrated">
-                  <input type="hidden" name="data.general.dehydrated.value" data-max="{{data.general.dehydrated.max}}" value="{{{data.general.dehydrated.value}}}" data-dtype="Number">
-                  <h4 class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.dehydrated.icon}}} {{ localize 'ALIENRPG.Dehydrated'}}
-                </h4>
-              </div>
-
-                <div class="dots exhausted">
-                  <input type="hidden" name="data.general.exhausted.value" data-max="{{data.general.exhausted.max}}" value="{{{data.general.exhausted.value}}}" data-dtype="Number">
-                  <h4 class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.exhausted.icon}}} {{ localize 'ALIENRPG.Exhausted'}}
-                </h4>
-              </div> -->
-
-              <!-- <div class="dots freezing">
-                <input type="hidden" name="data.general.freezing.value" data-max="{{data.general.freezing.max}}" value="{{{data.general.freezing.value}}}" data-dtype="Number">
-                <h4 class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
-                </h4>
-              </div> -->
             </div>
             
             <div class="Item9">
               <div class="consumables grid grid-Consumables">
                 <h2 class="Heading "style="margin-bottom: 0; border-bottom: 0">{{localize "ALIENRPG.Consumables"}}</h2>
 
-                  <!-- <h3 class="Air1 resource-label">{{localize "ALIENRPG.Air"}}</h3>
-                    <div class="resource-content">
-                      <input type="text" class="maxboxsize" name="data.consumables.air.value" value="{{data.consumables.air.value}}" data-dtype="Number" />
-                      <button class="supply-btn Air2" data-spbutt="Air"  ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
-                    </div> -->
-                    
-                  <!-- <h3 class="Food1 resource-label">{{localize "ALIENRPG.Food"}}</h3>
-                    <div class="resource-content">
-                      <input type="text" class="maxboxsize" name="data.consumables.food.value" value="{{data.consumables.food.value}}" data-dtype="Number" />
-                      <button class="supply-btn Food2" data-spbutt="Food" ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
-                    </div> -->
-                    
                     <h3 class="Air1 resource-label">{{localize "ALIENRPG.Power"}}</h3>
                     <div class="resource-content">
                       <input type="text" class="maxboxsize" name="data.consumables.power.value" value="{{data.consumables.power.value}}" data-dtype="Number" />
                       <button class="supply-btn Air2" data-spbutt="Power"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
-                    
-                    <!-- <h3 class="Water1 resource-label">{{localize "ALIENRPG.Water"}}</h3>
-                    <div class="resource-content">
-                      <input type="text" class="maxboxsize" name="data.consumables.water.value" value="{{data.consumables.water.value}}" data-dtype="Number" />
-                      <button class="supply-btn Water2" data-spbutt="Water"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
-                    </div> -->
                     
                     
                   </div>
@@ -212,10 +161,6 @@
           <textarea name="data.general.appearance.value" rows="2"data-dtype="String">{{data.general.appearance.value}}</textarea>
         </div>
         
-        <!-- <div class="Item5">
-          <label class="resource-label">{{ localize "ALIENRPG.SignatureItem"}}</label>
-          <input  type="text" name="data.general.sigItem.value" value="{{data.general.sigItem.value}}" placeholder="{{localize "ALIENRPG.SignatureItem"}}" data-dtype="String" />
-        </div> -->
         
         <div class="Item5">
           <label class="resource-label">{{ localize "ALIENRPG.PersonalAgenda"}}</label> 
@@ -244,6 +189,5 @@
         <input type="text" class="maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number">
       </div>
       </div>
-      {{log "CONTEXT!!!!"}} {{log this}} 
     </section>
   </form>

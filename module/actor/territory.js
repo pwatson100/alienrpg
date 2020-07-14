@@ -79,26 +79,6 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
     return items.filter((item) => {
       const data = item.data;
 
-      // Action usage
-      // for (let f of ['action', 'bonus', 'reaction']) {
-      //   if (filters.has(f)) {
-      //     if (data.activation && data.activation.type !== f) return false;
-      //   }
-      // }
-
-      // // Spell-specific filters
-      // if (filters.has('ritual')) {
-      //   if (data.components.ritual !== true) return false;
-      // }
-      // if (filters.has('concentration')) {
-      //   if (data.components.concentration !== true) return false;
-      // }
-      // if (filters.has('prepared')) {
-      //   if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
-      //   if (this.actor.data.type === 'npc') return true;
-      //   return data.preparation.prepared;
-      // }
-
       // Equipment-specific filters
       if (filters.has('equipped')) {
         if (data.equipped !== true) return false;
@@ -130,29 +110,6 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
       this.actor.deleteOwnedItem(li.data('itemId'));
       li.slideUp(200, () => this.render(false));
     });
-
-    // Rollable abilities.
-    // html.find('.rollable').click(this._onRoll.bind(this));
-
-    // html.find('.rollable').contextmenu(this._onRollMod.bind(this));
-
-    // // Rollable Items.
-    // html.find('.rollItem').click(this._rollItem.bind(this));
-
-    // html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
-
-    // // minus from health and stress
-    // html.find('.minus-btn').click(this._minusButton.bind(this));
-
-    // // plus tohealth and stress
-    // html.find('.plus-btn').click(this._plusButton.bind(this));
-
-    // html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle Dying Wounded
-
-    // html.find('.supply-btn').click(this._supplyRoll.bind(this));
-
-    // // Roll handlers, click handlers, etc. would go here.
-    // html.find('.currency').on('change', this._currencyField.bind(this));
 
     // Drag events for macros.
     if (this.actor.owner) {
@@ -212,47 +169,6 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
 
     // Assign and return
     data.systems = systems;
-
-    // Categorize items as inventory, spellbook, features, and classes
-    //   const systems = {
-    //     planetsystem: { label: 'Planet-System', items: [], dataset: { type: 'planet-system' } },
-    //     // item: { label: 'Items', items: [], dataset: { type: 'item' } },
-    //     // armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
-    //   };
-    //   // Partition items by category
-    //   let [items, spells, feats, classes] = data.items.reduce(
-    //     (arr, item) => {
-    //       // Item details
-    //       item.img = item.img || DEFAULT_TOKEN;
-    //       item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
-
-    //       // console.warn('inventory', inventory);
-
-    //       // Classify items into types
-    //       if (item.type === 'spell') arr[1].push(item);
-    //       else if (item.type === 'feat') arr[2].push(item);
-    //       else if (item.type === 'class') arr[3].push(item);
-    //       else if (Object.keys(systems).includes(item.type)) arr[0].push(item);
-    //       return arr;
-    //     },
-    //     [[], [], [], []]
-    //   );
-
-    //   // Apply active item filters
-    //   items = this._filterItems(items, this._filters.systems);
-
-    //   // // Organize Inventory
-    //   // let totalWeight = 0;
-    //   // for (let i of items) {
-    //   //   //  i.data.quantity = i.data.quantity || 0;
-    //   //   i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-    //   //   i.totalWeight = i.data.attributes.weight.value;
-    //   //   inventory[i.type].items.push(i);
-    //   //   totalWeight += i.totalWeight;
-    //   // }
-
-    //   // Assign and return
-    //   data.systems = Object.values(systems);
   }
 }
 export default ActorSheetAlienRPGTerritory;

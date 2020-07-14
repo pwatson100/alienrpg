@@ -2,9 +2,9 @@
   "name": "alienrpg",
   "title": "Alien RPG",
   "description": "The Alien RPG system for FoundryVTT!",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "minimumCoreVersion": "0.5.7",
-  "compatibleCoreVersion": "0.6.3",
+  "compatibleCoreVersion": "0.6.5",
   "templateVersion": 2,
   "author": "Paul Watson",
   "esmodules": ["module/alienrpg.js"],
@@ -16,6 +16,13 @@
       "label": "Tables (GM)",
       "path": "packs/AlienRPG-tables_gm.db",
       "entity": "RollTable",
+      "module": "AlienRPG"
+    },
+    {
+      "name": "mother_instructions",
+      "label": "Mother Instructions",
+      "path": "packs/AlienRPG-mother-instructions.db",
+      "entity": "JournalEntry",
       "module": "AlienRPG"
     },
     {

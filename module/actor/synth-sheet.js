@@ -293,6 +293,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle Dying Wounded
 
+    html.find('.supply-btn').click(this._supplyRoll.bind(this));
+
     html.find('.stunt-btn').click(this._stuntBtn.bind(this));
 
     html.find('.talent-btn').click(this._talentBtn.bind(this));
@@ -554,6 +556,46 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     }
 
     return icons[level];
+  }
+  _supplyRoll(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    const lTemp = 'ALIENRPG.' + dataset.spbutt;
+    const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
+
+    // console.warn(element);
+    const consUme = dataset.spbutt.toLowerCase();
+    let r1Data = 0;
+    let r2Data = this.actor.data.data.consumables[consUme].value;
+    let reRoll = true;
+    let hostile = this.actor.data.data.type;
+    let blind = false;
+
+    if (this.actor.data.token.disposition === -1) {
+      blind = true;
+    }
+    if (r2Data <= 0) {
+      return ui.notifications.warn('You have run out of supplies');
+    } else {
+      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      if (game.alienrpg.rollArr.r2One) {
+        switch (consUme) {
+          case 'air':
+            this.actor.update({ 'data.consumables.air.value': this.actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
+            break;
+          case 'food':
+            this.actor.update({ 'data.consumables.food.value': this.actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
+            break;
+          case 'power':
+            this.actor.update({ 'data.consumables.power.value': this.actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
+            break;
+          case 'water':
+            this.actor.update({ 'data.consumables.water.value': this.actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
+            break;
+        }
+      }
+    }
   }
 
   _rollItem(event) {

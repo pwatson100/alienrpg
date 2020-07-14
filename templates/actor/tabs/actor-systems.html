@@ -1,17 +1,5 @@
 <ol class="items-list">
-    <!-- {{#if isCharacter }}
-    {{#with data.general.encumbrance}}
-    <div class="encumbrance-label">Encumbrance - {{value}} / {{max}}</div>
-    <div class="encumbrance {{#if encumbered}}encumbered blink{{/if}}">
-        <span class="encumbrance-bar" style="width:{{pct}}%"></span>
-        <i class="encumbrance-breakpoint encumbrance-33 arrow-up"></i>
-        <i class="encumbrance-breakpoint encumbrance-33 arrow-down"></i>
-        <i class="encumbrance-breakpoint  encumbrance-66 arrow-up"></i>
-        <i class="encumbrance-breakpoint  encumbrance-66 arrow-down"></i>
-    </div>
-    <br>
-    {{/with}} -->
-    {{/if}}
+
     {{#each systems as |section sid|}}
     <li class=" grid-items item-header">
       <div class="item-name lCol1">{{section.label}}</div>
@@ -28,7 +16,6 @@
                 <div class="item-image lCol5" ><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
                 <span class="item-label lCol6" data-item="{{item.name}}">{{item.name~}}</span>
                 <span class="item-label lCol9" data-item="{{item.data.header.System.value}}">{{item.data.attributes.damage.value}}</span>
-                <!-- <div class="item-detail lCol7" style="font-size: smaller;">{{ item.totalWeight }} {{localize "ALIENRPG.AbbreviationKg"}}</div> -->
                  <div class="item-controls lCol8">
                   <a class="item-control item-edit" title="{{localize "ALIENRPG.EditItem"}}"><i class="fas fa-edit"></i></a>
                   <a class="item-control item-delete" title="{{localize "ALIENRPG.DeleteItem"}}"><i class="fas fa-trash"></i></a>

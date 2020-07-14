@@ -59,12 +59,6 @@ export class alienrpgActor extends Actor {
     else if (actorData.type === 'vehicle') this._prepareVehicleData(data);
     else if (actorData.type === 'creature') this._prepareCreatureData(data);
     else if (actorData.type === 'territory') this._prepareTeritoryData(data);
-
-    // TODO: Migrate trait storage format
-
-    // Make separate methods for each Actor type (character, npc, etc.) to keep
-    // things organized.
-    // if (actorData.type === 'character') this._prepareCharacterData(actorData);
   }
 
   /**
@@ -72,12 +66,6 @@ export class alienrpgActor extends Actor {
    */
   _prepareCharacterData(actorData) {
     const data = actorData.data;
-    //   // Loop through ability scores, and add their modifiers to our sheet output.
-    //   for (let [key, ability] of Object.entries(data.abilities)) {
-    //     // Calculate the modifier using d20 rules.
-    //     ability.mod = Math.floor((ability.value - 10) / 2);
-    //   }
-    // }
     // Loop through Skill scores, and add their attribute modifiers to our sheet output.
     for (let [key, skill] of Object.entries(data.skills)) {
       // Calculate the modifier using d20 rules.
@@ -85,21 +73,9 @@ export class alienrpgActor extends Actor {
       skill.mod = skill.value + data.attributes[conAtt].value;
     }
   }
-  _prepareVehicleData(data) {
-    // As we only capture the NPCs Spell DC attribute, we need to calculate the Spell Attack Roll.
-    // see sidebar on p298 of pf2e core rulebook.
-    // data.attributes.spelldc.value = data.attributes.spelldc.dc - 10;
-  }
-  _prepareCreatureData(data) {
-    // As we only capture the NPCs Spell DC attribute, we need to calculate the Spell Attack Roll.
-    // see sidebar on p298 of pf2e core rulebook.
-    // data.attributes.spelldc.value = data.attributes.spelldc.dc - 10;
-  }
-  _prepareTeritoryData(data) {
-    // As we only capture the NPCs Spell DC attribute, we need to calculate the Spell Attack Roll.
-    // see sidebar on p298 of pf2e core rulebook.
-    // data.attributes.spelldc.value = data.attributes.spelldc.dc - 10;
-  }
+  _prepareVehicleData(data) {}
+  _prepareCreatureData(data) {}
+  _prepareTeritoryData(data) {}
 
   _prepareTokenImg() {
     if (game.settings.get('alienrpg', 'defaultTokenSettings')) {

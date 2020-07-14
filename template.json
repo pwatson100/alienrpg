@@ -14,20 +14,20 @@
       },
       "attributes": {
         "str": {
-          "value": 5,
+          "value": 0,
           "label": "Strength",
           "proficient": 0
         },
         "wit": {
-          "value": 3,
+          "value": 0,
           "label": "Wits"
         },
         "agl": {
-          "value": 3,
+          "value": 0,
           "label": "Agility"
         },
         "emp": {
-          "value": 3,
+          "value": 0,
           "label": "Empathy"
         }
       },
@@ -196,20 +196,20 @@
       },
       "attributes": {
         "str": {
-          "value": 5,
+          "value": 0,
           "label": "Strength",
           "proficient": 0
         },
         "wit": {
-          "value": 3,
+          "value": 0,
           "label": "Wits"
         },
         "agl": {
-          "value": 3,
+          "value": 0,
           "label": "Agility"
         },
         "emp": {
-          "value": 3,
+          "value": 0,
           "label": "Empathy"
         }
       },

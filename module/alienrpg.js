@@ -174,6 +174,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
       if (ev.target.classList.contains('fa-dice')) {
         // do stuff
         let actor = game.actors.get(ChatMessage.getSpeaker().actor);
+        if (!actor) return ui.notifications.warn(`You do not have a token selected`);
         let token = game.actors.get(ChatMessage.getSpeaker().token);
         let reRoll = true;
         let hostile = actor.data.type;

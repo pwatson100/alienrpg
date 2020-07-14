@@ -1,16 +1,17 @@
 # Alien RPG System
 
-A community contributed game system for Alien RPG by Free League.
+An UNOFFICIAL system for playing Alien RPG on Foundry VTT. It provides support for character, creature, items, system, talent and sheets only, game content must be drawn from official source books.
+
+Please do not ask me to provide content. Buy the system !
+
+See the Journal Entry "Mother Instructions" for an overview on how the sheets work.
 
 ### System Version
 
 This is community created game system to run Alien RPG games on virtual table top platforms.
 
-Patch Notes: See CHANGELOG
-
 Please Note:
 
-- Functionality is not complete with plenty of work remaining.
 - If you find any issues or have any feedback please let me know.
 - I have added limited language support for Swedish and German.
 
@@ -18,7 +19,7 @@ Please Note:
 
 Tested with the following virtual table top platforms:
 
-- Foundry VTT v0.6.3.
+- Foundry VTT v0.6.5.
 
 ### Note: Dice so Nice is no longer required for this system but it fully supports DsN and is recommended:
 
@@ -28,7 +29,7 @@ Tested with the following virtual table top platforms:
 
 A huge thanks to:
 
-- Mikasaz#3063 for his help and support in developing the system.
+- Mikasaz#3063 for his help and support in developing and testing the system.
 - @asacolips#1867 for creating a great base system to kickstart new developments.
 - @NickEast#1131 for his development guides and base system.
 - @hooking [UTC+12]#0492 for his excellent PF2e which has provided many insights into how to build systems.
@@ -45,6 +46,9 @@ Project Licensing:
 - All HTML, CSS and Javascript in this project is licensed under the Apache License v2.
 
 ### Content Usage and Licensing:
+
+Please get yourself a copy of Alien RPG by Free League. It's a fantaistic system with endless possibilities.  
+Support our game creators and publishers.
 
 ### Virtual Table Top Platform Licenses:
 

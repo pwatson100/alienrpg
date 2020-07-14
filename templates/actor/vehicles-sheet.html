@@ -4,8 +4,6 @@
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
-      {{!-- The grid classes are defined in scss/global/_grid.scss. To use, use both the "grid" and "grid-Ncol" class where "N" can be any number from 1 to 12 and will create that number of columns.
-      --}}
 
       <div class="resources grid-vehicle">
         <h2 class="vItem1">{{ localize "ALIENRPG.Hull"}}</h2>
@@ -31,7 +29,6 @@
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
-    <!-- <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a> -->
     <a class="item" data-tab="inventory">{{localize "ALIENRPG.Inventory"}}</a>
   </nav>
 
@@ -53,7 +50,5 @@
     <div class="tab inventory" data-group="primary" data-tab="inventory">
       {{> "systems/alienrpg/templates/actor/tabs/actor-inventory.html" sections=inventory}}
     </div>
-
-    {{log "CONTEXT!!!!"}} {{log this}}
   </section>
 </form>

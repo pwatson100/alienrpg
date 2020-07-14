@@ -61,13 +61,11 @@
       <h3 class="resource-label">{{localize "ALIENRPG.SpecialAbilities"}}</h3>
       <textarea name="data.general.special.value" rows="20" data-dtype="String">{{data.general.special.value}}</textarea>
 
-      <!-- <h3 class="resource-label">{{localize "ALIENRPG.Comment"}}</h3>
-      <textarea name="data.general.comment.value" rows="6" data-dtype="String">{{data.general.comment.value}}</textarea> -->
     </div>
 
     {{!-- Notes Tab --}}
     <div class="tab biog" data-group="primary" data-tab="notes">
-      {{editor content=data.notes target="data.notes" button=true owner=owner editable=editable}}
+      {{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=editable}}
     </div>
   </section>
 </form>

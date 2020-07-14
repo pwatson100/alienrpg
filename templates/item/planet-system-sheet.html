@@ -1,7 +1,5 @@
 <form class="{{cssClass}} " autocomplete="off">
   <header class="vehicle-header">
-    {{log "CONTEXT!!!!"}} {{log this}}
-
     <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
@@ -35,8 +33,6 @@
       <div class="plan1">
         <label class="resource-label">{{data.details.affiliation.label}}</label>
         <textarea name="data.details.affiliation.value" rows="2" data-dtype="String">{{data.details.affiliation.value}}</textarea>
-
-        <!-- <input type="text" class="textbox2" name="data.details.affiliation.value" value="{{data.details.affiliation.value}}" data-dtype="text" /> -->
       </div>
       <div class="grid-planet">
         <div class="plan2">
@@ -69,8 +65,6 @@
     <div class="tab item" data-group="primary" data-tab="description">
       <label class="resource-label">{{localize "ALIENRPG.Description"}}</label>
       <textarea name="data.misc.comment.value" rows="20" data-dtype="String">{{data.misc.comment.value}}</textarea>
-
-      <!-- {{editor content=data.misc.notes target="data.misc.notes" button=true owner=owner editable=editable}} -->
     </div>
   </section>
 </form>
