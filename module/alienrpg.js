@@ -24,8 +24,8 @@ Hooks.once('init', async function () {
   };
 
   // Global define for this so the roll data can be read by the reroll method.
-  game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, r3Dice: 0, r3One: 0, r3Six: 0, tLabel: '' };
-
+  game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, r3Dice: 0, r3One: 0, r3Six: 0, tLabel: '', sCount: 0 };
+  // console.warn('sCount init', game.alienrpg.rollArr.sCount);
   /**
    * Set an initiative formula for the system
    * @type {String}
@@ -119,32 +119,6 @@ Hooks.once('ready', async function () {
 });
 
 Hooks.once('diceSoNiceReady', (dice3d) => {
-  // dice3d.addSystem({ id: 'degenesis', name: 'DEGENESIS: Rebirth' }, true);
-  // dice3d.addDicePreset({
-  //   type: 'd6',
-  //   labels: [
-  //     'systems/degenesis/icons/dice-faces/d1.png',
-  //     'systems/degenesis/icons/dice-faces/d2.png',
-  //     'systems/degenesis/icons/dice-faces/d3.png',
-  //     'systems/degenesis/icons/dice-faces/d4.png',
-  //     'systems/degenesis/icons/dice-faces/d5.png',
-  //     'systems/degenesis/icons/dice-faces/d6.png',
-  //   ],
-  //   system: 'degenesis',
-  // });
-
-  // dice3d.addColorset(
-  //   {
-  //     name: 'degenesis',
-  //     description: 'Degenesis Black',
-  //     category: 'Colors',
-  //     foreground: '#FFFFFF',
-  //     background: '#000000',
-  //     outline: 'none',
-  //     texture: 'none',
-  //   },
-  //   'force'
-  // );
   dice3d.addColorset({
     name: 'rainbow',
     description: 'Rainbow',
@@ -179,6 +153,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         let reRoll = true;
         let hostile = actor.data.type;
         let blind = false;
+        // actor.unsetFlag('alienrpg', 'sixEs');
 
         if (actor.data.token.disposition === -1) {
           blind = true;
@@ -187,10 +162,10 @@ Hooks.on('renderChatMessage', (message, html, data) => {
           actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
         }
         // actor.update({ [{'data.header.stress.value'}]: [{'data.header.stress.value'}] + 1 });
-        const reRoll1 = game.alienrpg.rollArr.r1Dice - (game.alienrpg.rollArr.r1One + game.alienrpg.rollArr.r1Six);
+        // const reRoll1 = game.alienrpg.rollArr.r1Dice - (game.alienrpg.rollArr.r1One + game.alienrpg.rollArr.r1Six);
+        const reRoll1 = game.alienrpg.rollArr.r1Dice - game.alienrpg.rollArr.r1Six;
         const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
         yze.yzeRoll(hostile, blind, reRoll, game.alienrpg.rollArr.tLabel, reRoll1, 'Black', reRoll2, 'Yellow');
-        // console.warn(game.alienrpg.rollArr);
       }
     });
   });

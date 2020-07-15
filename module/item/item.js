@@ -26,6 +26,8 @@ export class alienrpgItem extends Item {
     const item = this.data;
     const actorData = this.actor ? this.actor.data.data : {};
     const itemData = item.data;
+    game.alienrpg.rollArr.sCount = 0;
+
     // let roll;
     let r2Data = this.actor.getRollData().stress;
     let label = `${item.name}`;
@@ -76,9 +78,11 @@ export class alienrpgItem extends Item {
             if (item.data.header.type.value === 'Ranged') {
               let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
               yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+              game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
             } else if (item.data.header.type.value === 'Melee') {
               let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
               yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+              game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
             } else {
               console.warn('No type on item');
             }
@@ -90,9 +94,11 @@ export class alienrpgItem extends Item {
       if (item.data.header.type.value === 'Ranged') {
         let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
         yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+        game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
       } else if (item.data.header.type.value === 'Melee') {
         let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
         yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+        game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
       } else {
         console.warn('No type on item');
       }

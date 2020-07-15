@@ -2,6 +2,7 @@ export class yze {
   /**
    * YZEDice RollFunction.
    * Paramfornumber of dice to roll for each die type/rolls
+   * @param {Text} actor - Passed actor data
    * @param {Text} hostile - Passed actor type
    * @param {Boolean} blind - True or False
    * @param {Boolean} reRoll - True or False
@@ -50,7 +51,17 @@ export class yze {
     }
 
     // Clear the global dice array
-    game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, r3Dice: 0, r3One: 0, r3Six: 0, tLabel: '' };
+    // game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, r3Dice: 0, r3One: 0, r3Six: 0, tLabel: '' };
+    game.alienrpg.rollArr.r1Dice = 0;
+    game.alienrpg.rollArr.r1One = 0;
+    game.alienrpg.rollArr.r1Six = 0;
+    game.alienrpg.rollArr.r2Dice = 0;
+    game.alienrpg.rollArr.r2One = 0;
+    game.alienrpg.rollArr.r2Six = 0;
+    game.alienrpg.rollArr.r3Dice = 0;
+    game.alienrpg.rollArr.r3One = 0;
+    game.alienrpg.rollArr.r3Six = 0;
+    game.alienrpg.rollArr.tLabel = '';
 
     // Setup the constants for the 3D dice roll method
     const data = {
@@ -74,39 +85,52 @@ export class yze {
       die.countSuccess(1, '=');
       game.alienrpg.rollArr[yzeR1] = die.total;
 
-      chatMessage += '<span style="color: red">Ones: </span>';
-
-      if (game.alienrpg.rollArr[yzeR1] > 0) {
-        chatMessage += `<span class="blink" style="font-weight: bold; font-size: larger">${game.alienrpg.rollArr[yzeR1]}</span>`;
+      if (sLot === 'r1Dice') {
+        chatMessage += '<span style="color: green">  Sixes: </span>';
+        chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
+        chatMessage += '<div><br></div>';
+        // chatMessage += `<span class="blink" style="font-weight: bold; font-size: larger">${game.alienrpg.rollArr[yzeR1]}</span>`;
       } else {
-        chatMessage += `${game.alienrpg.rollArr[yzeR1]}`;
+        chatMessage += '<span style="color: red">Ones: </span>';
+        chatMessage += `<span>${game.alienrpg.rollArr[yzeR1]}</span>`;
+        chatMessage += '<span style="color: green">  Sixes: </span>';
+        chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
+        chatMessage += '<div><br></div>';
       }
       // chatMessage += `<span class="blink">${game.alienrpg.rollArr[yzeR1]}</span>`;
-      chatMessage += '<span style="color: green">  Sixes: </span>';
-      chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
-      chatMessage += '<div><br></div>';
     }
 
     chatMessage += '<h2>' + rType + ' ' + label + ' </h2>';
     if (r1Dice >= 1) {
-      chatMessage += '<div>' + col1 + ' - ' + r1Dice + '</div>';
+      chatMessage += '<div>' + col1 + '  ' + r1Dice + ' Dice</div>';
       yzeDRoll('r1Dice', r1Dice, 'r1Six', 'r1One');
       data.formula = r1Dice + 'd6';
     }
     if (r2Dice >= 1) {
-      chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + ' - ' + r2Dice + '</div>';
+      chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' Dice</div>';
       yzeDRoll('r2Dice', r2Dice, 'r2Six', 'r2One');
       data.formula = r1Dice + r2Dice + 'd6';
       if (game.alienrpg.rollArr.r2One > 0 && !reRoll) {
         reRoll = 'true';
       }
+      if (game.alienrpg.rollArr.r2One === 1) {
+        chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">Roll Stress Once</div>';
+      } else if (game.alienrpg.rollArr.r2One > 1) {
+        chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">Roll Stress ' + game.alienrpg.rollArr.r2One + ' times. Use worst result.</div>';
+      }
     }
     if (r3Dice >= 1) {
-      chatMessage += '<div>' + col3 + ' - ' + r3Dice + '</div>';
+      chatMessage += '<div>' + col3 + '  ' + r3Dice + ' Dice</div>';
       yzeDRoll('r3Dice', r3Dice, 'r3Six', 'r3One');
       data.formula = r1Dice + r2Dice + r3Dice + 'd6';
     }
 
+    // Show total successes
+    let succEss = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six + game.alienrpg.rollArr.sCount;
+    chatMessage += '<div style="color: blue; font-weight: bold; font-size: larger"> You have ' + succEss + ' Success</div>';
+    console.warn('YZE 2', game.alienrpg.rollArr.sCount);
+
+    // Render the reroll button
     if (!reRoll) {
       const btnStyling = 'height:50px; font-size:45px;line-height:1px;background-color: #413131; color:#adff2f;border-color: #000000';
       chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;

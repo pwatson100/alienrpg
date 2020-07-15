@@ -91,6 +91,7 @@ export class alienrpgActorSheet extends ActorSheet {
     data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
     data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
     data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
+    // this.actor.setFlag('alienrpg', 'sixEs', 0);
 
     // Prepare items.
     this._prepareItems(data); // Return data to the sheet
@@ -350,6 +351,7 @@ export class alienrpgActorSheet extends ActorSheet {
     const element = event.currentTarget;
     const dataset = element.dataset;
     let label = dataset.label;
+    game.alienrpg.rollArr.sCount = 0;
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
@@ -367,14 +369,13 @@ export class alienrpgActorSheet extends ActorSheet {
         blind = true;
       }
       yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      // console.warn('onRoll', game.alienrpg.rollArr);
+      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
     } else {
       if (dataset.panicroll) {
         // Roll against the panic table and push the roll to the chat log.
         let chatMessage = '';
         const table = game.tables.getName('Panic Table');
         const roll = new Roll('1d6 + @stress', this.actor.getRollData());
-        // console.warn('actor roll', roll);
 
         const customResults = table.roll({ roll });
         chatMessage += '<h2>Panic Condition</h2>';
@@ -390,6 +391,8 @@ export class alienrpgActorSheet extends ActorSheet {
     const element = event.currentTarget;
     const dataset = element.dataset;
     let label = dataset.label;
+    game.alienrpg.rollArr.sCount = 0;
+
     let r1Data = parseInt(dataset.roll || 0);
     let r2Data = this.actor.getRollData().stress;
     let reRoll = false;
@@ -438,6 +441,7 @@ export class alienrpgActorSheet extends ActorSheet {
           let modifier = parseInt(html.find('[name=modifier]')[0].value);
           r1Data = r1Data + modifier;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
         }
       },
     }).render(true);

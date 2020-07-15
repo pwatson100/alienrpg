@@ -207,6 +207,8 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     const element = event.currentTarget;
     const dataset = element.dataset;
     let label = dataset.label;
+    game.alienrpg.rollArr.sCount = 0;
+
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
@@ -218,6 +220,8 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
         blind = true;
       }
       yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+
       // console.warn('onRoll', game.alienrpg.rollArr);
     } else {
       if (dataset.panicroll) {
@@ -239,8 +243,10 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     const element = event.currentTarget;
     const dataset = element.dataset;
     let label = dataset.label;
+    game.alienrpg.rollArr.sCount = 0;
+
     let r1Data = parseInt(dataset.roll || 0);
-    let r2Data = this.actor.getRollData().stress;
+    let r2Data = 0;
     let reRoll = false;
     let hostile = this.actor.type;
     let blind = false;
@@ -287,6 +293,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
           let modifier = parseInt(html.find('[name=modifier]')[0].value);
           r1Data = r1Data + modifier;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
         }
       },
     }).render(true);

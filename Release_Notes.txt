@@ -1,1 +1,7 @@
-Initial release on Foundry VTT. 
+Removed the Add Item button from the Inventory page as it's confusing. Items, weapons etc. should be created from the Item tab then dragged to the character sheet.  
+Corrected an error with the dice rolling mechanic.  
+Push rolls now show total successes from both rolls.
+
+Known issues: 
+Weapon rolls on the vehicle template do not work correctly because there is no Ranged Combat attribute which should be derived from the operator (actor).  
+I am considering the best way to fix this.   
