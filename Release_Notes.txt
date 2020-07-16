@@ -1,3 +1,4 @@
+Version 1.0.3
 Removed the Add Item button from the Inventory page as it's confusing. Items, weapons etc. should be created from the Item tab then dragged to the character sheet.  
 Corrected an error with the dice rolling mechanic.  
 Push rolls now show total successes from both rolls.
@@ -5,3 +6,10 @@ Push rolls now show total successes from both rolls.
 Known issues: 
 Weapon rolls on the vehicle template do not work correctly because there is no Ranged Combat attribute which should be derived from the operator (actor).  
 I am considering the best way to fix this.   
+
+Version 1.0.4
+Added a "Rounds" text box to the Weapons template to allow the player to keep track of ammo.
+Added the table roll number to the chat output for stress rolls.
+Added prompt for Permanent Trauma to the chat message when the roll is >= 13.
+Skills now show the controlling attribute.
+Thanks to @Dani#2184 for his feedback.   

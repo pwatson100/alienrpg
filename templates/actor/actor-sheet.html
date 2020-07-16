@@ -47,7 +47,7 @@
         <span class="Col1">
           {{#each data.skills as |skill key|}}
           <span class="ability grid-attr">
-            <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{skill.label}}">{{skill.label}}</h3>
+            <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{skill.label}}">{{skill.label}}  ({{skill.ability}})</h3>
             <input type="text" class="maxboxsize Attr2" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
           </span>
           {{/each}}

@@ -226,7 +226,7 @@
   padding: 0;
   grid-template-areas: 'Col1 Col2 ' 'Col3 Col3';
   grid-template-rows: 1fr;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 320px 1fr;
 }
 
 .Col1 {
@@ -252,7 +252,7 @@
   align-items: center;
   border: 1px solid greenyellow;
   grid-template-areas: 'Attr1 Attr2 Attr3';
-  grid-template-columns: 195px 50px 30px;
+  grid-template-columns: 250px 40px 30px;
 }
 
 .Attr1 {

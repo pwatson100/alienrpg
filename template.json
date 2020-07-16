@@ -546,6 +546,10 @@
           "value": "",
           "label": "Text"
         },
+        "rounds": {
+          "value": 0,
+          "label": "Number"
+        },
         "comment": {
           "value": "",
           "label": "Text"

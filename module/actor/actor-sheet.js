@@ -378,9 +378,14 @@ export class alienrpgActorSheet extends ActorSheet {
         const roll = new Roll('1d6 + @stress', this.actor.getRollData());
 
         const customResults = table.roll({ roll });
+        // console.warn('customResults', customResults.roll._total);
         chatMessage += '<h2>Panic Condition</h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
+        chatMessage += `<h4><i><b>Roll ${customResults.roll._total} </b></i></h4>`;
         chatMessage += `${customResults.results[0].text}`;
+        if (customResults.roll._total >= 13) {
+          chatMessage += `<h4><b><i>Permanant Trauma. Make an EMPATHY roll at the end of the session.</b>  (See page 106 of the Alien rule book.)</i></h4>`;
+        }
         ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
       }
     }
