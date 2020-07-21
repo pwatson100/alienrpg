@@ -147,6 +147,7 @@ export class yze {
         user: game.user._id,
         content: chatMessage,
         other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        sound: CONFIG.sounds.dice,
         type: CONST.CHAT_MESSAGE_TYPES.OTHER,
       });
     } else {
