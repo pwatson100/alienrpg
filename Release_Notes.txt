@@ -13,3 +13,6 @@ Added the table roll number to the chat output for stress rolls.
 Added prompt for Permanent Trauma to the chat message when the roll is >= 13.
 Skills now show the controlling attribute.
 Thanks to @Dani#2184 for his feedback.   
+
+Version 1.0.5
+Corrcted an error with default dice rolls not making sounds. 
