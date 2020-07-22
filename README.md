@@ -1,8 +1,15 @@
 # Alien RPG System
 
-An UNOFFICIAL system for playing Alien RPG on Foundry VTT. It provides support for character, creature, items, system, talent and sheets only, game content must be drawn from official source books.
+An UNOFFICIAL system for playing Alien RPG on Foundry VTT.
 
-Please do not ask me to provide content. Buy the system !
+This system only provides support for character, creature, items, system, talent and character sheets.
+
+There is no game content or images in this system.
+
+Should you wish to populate the system with game content for your own use please purchase the rules from Free League Publishing: https://frialigan.se/en/games/alien/
+
+My intention is to enable people to play Alien RPG remotely and not to create a fully enabled/automated system. Mother will still need to do some work.  
+Please do not ask me to provide content. Buy the system from Free League !
 
 See the Journal Entry "Mother Instructions" for an overview on how the sheets work.
 
