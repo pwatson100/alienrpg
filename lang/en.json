@@ -115,5 +115,7 @@
   "ALIENRPG.Systems": "Systems",
   "ALIENRPG.Sector": "Sector",
   "ALIENRPG.Sectors": "Sectors",
-  "ALIENRPG.Rounds": "Rounds"
+  "ALIENRPG.Rounds": "Rounds",
+  "ALIENRPG.Mercenary": "Mercenary",
+  "ALIENRPG.Synthetic": "Synthetic"
 }
