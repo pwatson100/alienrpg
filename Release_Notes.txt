@@ -16,3 +16,6 @@ Thanks to @Dani#2184 for his feedback.
 
 Version 1.0.5
 Corrcted an error with default dice rolls not making sounds. 
+
+Version 1.0.6
+Added Synthetics and Mercenarys to the Career dropdowns.
