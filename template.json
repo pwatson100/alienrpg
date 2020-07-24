@@ -1,6 +1,12 @@
 {
   "Actor": {
-    "types": ["character", "synthetic", "vehicles", "creature", "territory"],
+    "types": [
+      "character",
+      "synthetic",
+      "vehicles",
+      "creature",
+      "territory"
+    ],
     "character": {
       "header": {
         "health": {
@@ -488,7 +494,14 @@
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor", "talent", "planet-system"],
+    "types": [
+      "item",
+      "weapon",
+      "armor",
+      "talent",
+      "planet-system",
+      "PDFoundry_PDF"
+    ],
     "item": {
       "header": {
         "type": {
@@ -669,6 +682,12 @@
           "notes": ""
         }
       }
+    },
+    "PDFoundry_PDF": {
+      "url": "",
+      "code": "",
+      "offset": 0,
+      "cache": false
     }
   }
 }

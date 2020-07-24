@@ -19,3 +19,8 @@ Corrcted an error with default dice rolls not making sounds.
 
 Version 1.0.6
 Added Synthetics and Mercenarys to the Career dropdowns.
+
+Version 1.0.7
+Corrected an issue with supply rolls suggesting the player needed to roll Stress when a 1 was rolled.
+Incorporated PDFoundry by #DJ#1982 - Fantastic module for adding a PDF reader to Foundry. 
+Corrected error with my DsN implementation not showing rolls to all players (when needed).

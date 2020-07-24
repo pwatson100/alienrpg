@@ -44,7 +44,7 @@ export class yze {
 
     // Set uptext for a roll or push
     let rType = '';
-    if (reRoll && hostile === 'character') {
+    if (reRoll && (hostile === true) === 'character') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
       rType = game.i18n.localize('ALIENRPG.Rolling');
@@ -67,8 +67,6 @@ export class yze {
     const data = {
       formula: '',
       results: [],
-      whisper: [],
-      blind: false,
     };
 
     function yzeDRoll(sLot, numDie, yzeR6, yzeR1) {
@@ -113,10 +111,14 @@ export class yze {
       if (game.alienrpg.rollArr.r2One > 0 && !reRoll) {
         reRoll = 'true';
       }
-      if (game.alienrpg.rollArr.r2One === 1) {
-        chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">Roll Stress Once</div>';
-      } else if (game.alienrpg.rollArr.r2One > 1) {
-        chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">Roll Stress ' + game.alienrpg.rollArr.r2One + ' times. Use worst result.</div>';
+      if (hostile != 'supply') {
+        if (game.alienrpg.rollArr.r2One === 1) {
+          chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">Roll Stress Once</div>';
+        } else if (game.alienrpg.rollArr.r2One > 1) {
+          chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">Roll Stress ' + game.alienrpg.rollArr.r2One + ' times. Use worst result.</div>';
+        }
+      } else if (game.alienrpg.rollArr.r2One >= 1) {
+        chatMessage += '<div class="blink"; style="color: blue; font-weight: bold; font-size: larger">Your supply decreses</div>';
       }
     }
     if (r3Dice >= 1) {
@@ -128,7 +130,7 @@ export class yze {
     // Show total successes
     let succEss = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six + game.alienrpg.rollArr.sCount;
     chatMessage += '<div style="color: blue; font-weight: bold; font-size: larger"> You have ' + succEss + ' Success</div>';
-    console.warn('YZE 2', game.alienrpg.rollArr.sCount);
+    // console.warn('YZE 2', game.alienrpg.rollArr.sCount);
 
     // Render the reroll button
     if (!reRoll) {
@@ -140,7 +142,7 @@ export class yze {
 
     // Only if Dice So Nice is enabled.
     if (niceDice && !blind) {
-      game.dice3d.show(data).then((displayed) => {});
+      game.dice3d.show(data, game.user, true, null, false).then((displayed) => {});
     }
     if (!blind) {
       ChatMessage.create({
