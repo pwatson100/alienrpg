@@ -61,6 +61,7 @@ export class yze {
     game.alienrpg.rollArr.r3Dice = 0;
     game.alienrpg.rollArr.r3One = 0;
     game.alienrpg.rollArr.r3Six = 0;
+    game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.tLabel = '';
 
     // Setup the constants for the 3D dice roll method
