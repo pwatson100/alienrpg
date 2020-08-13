@@ -10,7 +10,7 @@ import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
 import { AlienRPGSetup } from './setupHandler.js';
 import { preloadHandlebarsTemplates } from './templates.js';
-// import * as migrations from './migration.js';
+import * as migrations from './migration.js';
 
 Hooks.once('init', async function () {
   console.warn(`Initializing Alien RPG`);
@@ -105,6 +105,22 @@ Hooks.once('init', async function () {
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
   await AlienRPGSetup.setup();
+  // Determine whether a system migration is required and feasible
+  const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
+  const NEEDS_MIGRATION_VERSION = '1.0.9';
+  const COMPATIBLE_MIGRATION_VERSION = '0';
+  let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
+  console.warn('needMigration', needMigration, currentVersion);
+  // Perform the migration
+  if (needMigration && game.user.isGM) {
+    if (currentVersion && currentVersion < COMPATIBLE_MIGRATION_VERSION) {
+      ui.notifications.error(
+        `Your AlienRPG system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`,
+        { permanent: true }
+      );
+    }
+    migrations.migrateWorld();
+  }
 });
 
 // clear the minimum resolution message

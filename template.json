@@ -1,12 +1,6 @@
 {
   "Actor": {
-    "types": [
-      "character",
-      "synthetic",
-      "vehicles",
-      "creature",
-      "territory"
-    ],
+    "types": ["character", "synthetic", "vehicles", "creature", "territory"],
     "character": {
       "header": {
         "health": {
@@ -77,37 +71,37 @@
         "command": {
           "value": 0,
           "label": "Command",
-          "ability": "wit",
+          "ability": "emp",
           "description": ""
         },
         "manipulation": {
           "value": 0,
           "label": "Manipulation",
-          "ability": "wit",
+          "ability": "emp",
           "description": ""
         },
         "medicalAid": {
           "value": 0,
           "label": "Medical Aid",
-          "ability": "wit",
+          "ability": "emp",
           "description": ""
         },
         "observation": {
           "value": 0,
           "label": "Observation",
-          "ability": "emp",
+          "ability": "wit",
           "description": ""
         },
         "survival": {
           "value": 0,
           "label": "Survival",
-          "ability": "emp",
+          "ability": "wit",
           "description": ""
         },
         "comtech": {
           "value": 0,
           "label": "Comtech",
-          "ability": "emp",
+          "ability": "wit",
           "description": ""
         }
       },
@@ -259,37 +253,37 @@
         "command": {
           "value": 0,
           "label": "Command",
-          "ability": "wit",
+          "ability": "emp",
           "description": ""
         },
         "manipulation": {
           "value": 0,
           "label": "Manipulation",
-          "ability": "wit",
+          "ability": "emp",
           "description": ""
         },
         "medicalAid": {
           "value": 0,
           "label": "Medical Aid",
-          "ability": "wit",
+          "ability": "emp",
           "description": ""
         },
         "observation": {
           "value": 0,
           "label": "Observation",
-          "ability": "emp",
+          "ability": "wit",
           "description": ""
         },
         "survival": {
           "value": 0,
           "label": "Survival",
-          "ability": "emp",
+          "ability": "wit",
           "description": ""
         },
         "comtech": {
           "value": 0,
           "label": "Comtech",
-          "ability": "emp",
+          "ability": "wit",
           "description": ""
         }
       },
@@ -494,14 +488,7 @@
     }
   },
   "Item": {
-    "types": [
-      "item",
-      "weapon",
-      "armor",
-      "talent",
-      "planet-system",
-      "PDFoundry_PDF"
-    ],
+    "types": ["item", "weapon", "armor", "talent", "planet-system", "PDFoundry_PDF"],
     "item": {
       "header": {
         "type": {

@@ -27,3 +27,6 @@ Corrected error with my DsN implementation not showing rolls to all players (whe
 
 Version 1.0.8
 Corrected error with sucess totals for supply rolls.
+
+Version 1.0.9
+Corrected error with wrong attributes assigned to some skills.

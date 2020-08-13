@@ -10,6 +10,7 @@ export const migrateWorld = async function () {
     try {
       console.warn('Tyring to migrate actors');
       const updateData = migrateActorData(a.data);
+      // console.warn('updateData', updateData, a.data);
       if (!isObjectEmpty(updateData)) {
         console.log(`Migrating Actor entity ${a.name}`);
         await a.update(updateData, { enforceTypes: false });
@@ -55,7 +56,7 @@ export const migrateWorld = async function () {
 
   // Set the migration as complete
   game.settings.set('alienrpg', 'systemMigrationVersion', game.system.data.version);
-  ui.notifications.info(`ALIENRPG System Migration to version ${game.system.data.version} completed!`, { permanent: true });
+  ui.notifications.info(`AlienRPG System Migration to version ${game.system.data.version} completed!`, { permanent: true });
 };
 
 /* -------------------------------------------- */
@@ -107,7 +108,7 @@ export const migrateActorData = function (actor) {
   const updateData = {};
 
   // Actor Data Updates
-  _migrateActorBonuses(actor, updateData);
+  _migrateActorSkills(actor, updateData);
 
   // Remove deprecated fields
   _migrateRemoveDeprecated(actor, updateData);
@@ -120,11 +121,11 @@ export const migrateActorData = function (actor) {
     let itemUpdate = migrateItemData(i);
 
     // Prepared, Equipped, and Proficient for NPC actors
-    // if ( actor.type === "npc" ) {
-    //   if (getProperty(i.data, "preparation.prepared") === false) itemUpdate["data.preparation.prepared"] = true;
-    //   if (getProperty(i.data, "equipped") === false) itemUpdate["data.equipped"] = true;
-    //   if (getProperty(i.data, "proficient") === false) itemUpdate["data.proficient"] = true;
-    // }
+    if (actor.type === 'npc') {
+      if (getProperty(i.data, 'preparation.prepared') === false) itemUpdate['data.preparation.prepared'] = true;
+      if (getProperty(i.data, 'equipped') === false) itemUpdate['data.equipped'] = true;
+      if (getProperty(i.data, 'proficient') === false) itemUpdate['data.proficient'] = true;
+    }
 
     // Update the Owned Item
     if (!isObjectEmpty(itemUpdate)) {
@@ -149,12 +150,12 @@ function cleanActorData(actorData) {
   actorData.data = filterObject(actorData.data, model);
 
   // Scrub system flags
-  const allowedFlags = CONFIG.DND5E.allowedActorFlags.reduce((obj, f) => {
+  const allowedFlags = CONFIG.ALIENRPG.allowedActorFlags.reduce((obj, f) => {
     obj[f] = null;
     return obj;
   }, {});
-  if (actorData.flags.dnd5e) {
-    actorData.flags.dnd5e = filterObject(actorData.flags.dnd5e, allowedFlags);
+  if (actorData.flags.alienrpg) {
+    actorData.flags.alienrpg = filterObject(actorData.flags.alienrpg, allowedFlags);
   }
 
   // Return the scrubbed data
@@ -214,12 +215,17 @@ export const migrateSceneData = function (scene) {
  * Migrate the actor bonuses object
  * @private
  */
-function _migrateActorBonuses(actor, updateData) {
-  const b = game.system.model.Actor.character.bonuses;
-  for (let k of Object.keys(actor.data.bonuses || {})) {
-    if (k in b) updateData[`data.bonuses.${k}`] = b[k];
-    else updateData[`data.bonuses.-=${k}`] = null;
-  }
+function _migrateActorSkills(actor, updateData) {
+  // const b = game.actors;
+  // setProperty(game.data.actors[0].data.skills.comtech, 'ability', "wit")
+  // console.warn('actor', actor);
+  setProperty(actor.data.skills.comtech, 'ability', 'wit');
+  setProperty(actor.data.skills.survival, 'ability', 'wit');
+  setProperty(actor.data.skills.observation, 'ability', 'wit');
+  setProperty(actor.data.skills.command, 'ability', 'emp');
+  setProperty(actor.data.skills.manipulation, 'ability', 'emp');
+  setProperty(actor.data.skills.medicalAid, 'ability', 'emp');
+  // console.warn('actor', actor);
 }
 
 /* -------------------------------------------- */
@@ -230,7 +236,7 @@ function _migrateActorBonuses(actor, updateData) {
  */
 const _migrateRemoveDeprecated = function (ent, updateData) {
   const flat = flattenObject(ent.data);
-
+  // console.warn('flat', flat);
   // Identify objects to deprecate
   const toDeprecate = Object.entries(flat)
     .filter((e) => e[0].endsWith('_deprecated') && e[1] === true)
