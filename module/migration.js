@@ -9,6 +9,7 @@ export const migrateWorld = async function () {
   for (let a of game.actors.entities) {
     try {
       console.warn('Tyring to migrate actors');
+      // console.warn('Pre actor', a.data);
       const updateData = migrateActorData(a.data);
       // console.warn('updateData', updateData, a.data);
       if (!isObjectEmpty(updateData)) {
@@ -68,7 +69,7 @@ export const migrateWorld = async function () {
  */
 export const migrateCompendium = async function (pack) {
   const entity = pack.metadata.entity;
-  if (!['Actor', 'Item', 'Scene'].includes(entity)) return;
+  // if (!['Actor', 'Item', 'Scene'].includes(entity)) return;
 
   // Begin by requesting server-side data model migration and get the migrated content
   await pack.migrate();
@@ -81,6 +82,7 @@ export const migrateCompendium = async function (pack) {
       if (entity === 'Item') updateData = migrateItemData(ent.data);
       else if (entity === 'Actor') updateData = migrateActorData(ent.data);
       else if (entity === 'Scene') updateData = migrateSceneData(ent.data);
+      // console.warn('ent.data,updateData', ent.data, updateData);
       if (!isObjectEmpty(updateData)) {
         expandObject(updateData);
         updateData['_id'] = ent._id;
@@ -104,11 +106,38 @@ export const migrateCompendium = async function (pack) {
  * @param {Actor} actor   The actor to Update
  * @return {Object}       The updateData to apply
  */
-export const migrateActorData = function (actor) {
+const migrateActorData = (actor) => {
+  // console.warn('mactor', actor);
   const updateData = {};
+  if (actor.type === 'character') {
+    if (actor.data.skills.comtech.ability === 'emp') {
+      updateData['data.skills.comtech.ability'] = 'wit';
+    }
+    if (actor.data.skills.survival.ability === 'emp') {
+      updateData['data.skills.survival.ability'] = 'wit';
+    }
+    if (actor.data.skills.observation.ability === 'emp') {
+      updateData['data.skills.observation.ability'] = 'wit';
+    }
+    if (actor.data.skills.command.ability === 'wit') {
+      updateData['data.skills.command.ability'] = 'emp';
+    }
+    if (actor.data.skills.manipulation.ability === 'wit') {
+      updateData['data.skills.manipulation.ability'] = 'emp';
+    }
+    if (actor.data.skills.medicalAid.ability === 'wit') {
+      updateData['data.skills.medicalAid.ability'] = 'emp';
+    }
+  }
 
-  // Actor Data Updates
-  _migrateActorSkills(actor, updateData);
+  const data = actor.data;
+  // Loop through Skill scores, and add their attribute modifiers to our sheet output.
+  for (let [key, skill] of Object.entries(data.skills)) {
+    // Calculate the modifier using d20 rules.
+    const conAtt = skill.ability;
+    skill.mod = skill.value + data.attributes[conAtt].value;
+    // console.warn('skill.mod', skill.mod);
+  }
 
   // Remove deprecated fields
   _migrateRemoveDeprecated(actor, updateData);
@@ -119,13 +148,6 @@ export const migrateActorData = function (actor) {
   const items = actor.items.map((i) => {
     // Migrate the Owned Item
     let itemUpdate = migrateItemData(i);
-
-    // Prepared, Equipped, and Proficient for NPC actors
-    if (actor.type === 'npc') {
-      if (getProperty(i.data, 'preparation.prepared') === false) itemUpdate['data.preparation.prepared'] = true;
-      if (getProperty(i.data, 'equipped') === false) itemUpdate['data.equipped'] = true;
-      if (getProperty(i.data, 'proficient') === false) itemUpdate['data.proficient'] = true;
-    }
 
     // Update the Owned Item
     if (!isObjectEmpty(itemUpdate)) {
@@ -210,23 +232,6 @@ export const migrateSceneData = function (scene) {
 /* -------------------------------------------- */
 /*  Low level migration utilities
 /* -------------------------------------------- */
-
-/**
- * Migrate the actor bonuses object
- * @private
- */
-function _migrateActorSkills(actor, updateData) {
-  // const b = game.actors;
-  // setProperty(game.data.actors[0].data.skills.comtech, 'ability', "wit")
-  // console.warn('actor', actor);
-  setProperty(actor.data.skills.comtech, 'ability', 'wit');
-  setProperty(actor.data.skills.survival, 'ability', 'wit');
-  setProperty(actor.data.skills.observation, 'ability', 'wit');
-  setProperty(actor.data.skills.command, 'ability', 'emp');
-  setProperty(actor.data.skills.manipulation, 'ability', 'emp');
-  setProperty(actor.data.skills.medicalAid, 'ability', 'emp');
-  // console.warn('actor', actor);
-}
 
 /* -------------------------------------------- */
 

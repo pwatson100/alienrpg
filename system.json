@@ -1,13 +1,13 @@
 {
   "name": "alienrpg",
   "title": "Alien RPG",
-  "description": "The Alien RPG system for FoundryVTT!",
-  "version": "1.0.9",
+  "description": "The Alien RPG system for Foundry VTT!",
+  "version": "1.1.0",
   "minimumCoreVersion": "0.5.7",
   "compatibleCoreVersion": "0.6.5",
   "templateVersion": 2,
   "author": "Paul Watson",
-  "esmodules": ["module/alienrpg.js", "pdfoundry-dist/bundle.js"],
+  "esmodules": ["module/alienrpg.js"],
   "styles": ["css/alienrpg.css"],
   "scripts": [],
   "packs": [
