@@ -30,3 +30,9 @@ Corrected error with sucess totals for supply rolls.
 
 Version 1.0.9
 Corrected error with wrong attributes assigned to some skills.
+
+Version 1.1.0
+PDFoundry is no longer bundled with AlienRPG so if you have been using this feature please make sure you install the fantastic 
+module by Djphoenix.  
+Improved migration code as it was not working properly for some people. 
+
