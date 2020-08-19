@@ -9,29 +9,29 @@ function registerActors() {
 
   Actors.registerSheet('alienrpg', alienrpgActorSheet, {
     types: ['character'],
-    makeDefault: false,
+    makeDefault: true,
   });
 
   Actors.registerSheet('alienrpg', alienrpgSynthActorSheet, {
     types: ['synthetic'],
-    makeDefault: false,
+    makeDefault: true,
   });
 
   Actors.registerSheet('alienrpg', ActorSheetAlienRPGVehicle, {
     types: ['vehicles'],
-    makeDefault: false,
+    makeDefault: true,
   }); // Register vehicle Sheet
 
   // console.warn('Reg: Got here');
 
   Actors.registerSheet('alienrpg', ActorSheetAlienRPGCreat, {
     types: ['creature'],
-    makeDefault: false,
+    makeDefault: true,
   }); // Register vehicle Sheet
 
   Actors.registerSheet('alienrpg', ActorSheetAlienRPGTerritory, {
     types: ['territory'],
-    makeDefault: false,
+    makeDefault: true,
   }); // Register Territory Sheet
 }
 

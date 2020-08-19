@@ -55,6 +55,14 @@ export const migrateWorld = async function () {
     await migrateCompendium(p);
   }
 
+  // Migrate Chariot of the Gods Compendium Packs
+  const cGpacks = game.packs.filter((cp) => {
+    return cp.metadata.package === 'ChariotsOfTheGods' && ['Actor', 'Item', 'Scene'].includes(cp.metadata.entity);
+  });
+  for (let cp of cGpacks) {
+    await migrateCompendium(cp);
+  }
+
   // Set the migration as complete
   game.settings.set('alienrpg', 'systemMigrationVersion', game.system.data.version);
   ui.notifications.info(`AlienRPG System Migration to version ${game.system.data.version} completed!`, { permanent: true });
@@ -109,7 +117,7 @@ export const migrateCompendium = async function (pack) {
 const migrateActorData = (actor) => {
   // console.warn('mactor', actor);
   const updateData = {};
-  if (actor.type === 'character') {
+  if (actor.type === 'character' || 'synthetic') {
     if (actor.data.skills.comtech.ability === 'emp') {
       updateData['data.skills.comtech.ability'] = 'wit';
     }

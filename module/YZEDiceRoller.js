@@ -84,17 +84,42 @@ export class yze {
       die.countSuccess(1, '=');
       game.alienrpg.rollArr[yzeR1] = die.total;
 
+      let numOf6s = game.alienrpg.rollArr[yzeR6]; // added by Steph
+      let numOf1s = game.alienrpg.rollArr[yzeR1]; // added by Steph
+
       if (sLot === 'r1Dice') {
         chatMessage += '<span style="color: green">  Sixes: </span>';
         chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
-        chatMessage += '<div><br></div>';
-        // chatMessage += `<span class="blink" style="font-weight: bold; font-size: larger">${game.alienrpg.rollArr[yzeR1]}</span>`;
+        chatMessage += '<div>';
+        // chatMessage += `<span class="blink" style="font-weight: bold; font-size: larger">${game.alienrpg.rollArr[r1Dice]}</span>`;
+        // added by Steph (for loop, and moved div close)
+        for (var _d = 0; _d < numDie; _d++) {
+          if (numOf6s > 0) {
+            chatMessage += "<span class='alien-diceface-b6'></span>";
+            numOf6s--;
+          } else {
+            chatMessage += "<span class='alien-diceface-b0'></span>";
+          }
+        }
+        chatMessage += '</div>';
       } else {
         chatMessage += '<span style="color: red">Ones: </span>';
         chatMessage += `<span>${game.alienrpg.rollArr[yzeR1]}</span>`;
         chatMessage += '<span style="color: green">  Sixes: </span>';
         chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
-        chatMessage += '<div><br></div>';
+        chatMessage += '<div>';
+        // added by Steph (for loops, and moved div close)
+        for (var _d = 0; _d < numOf6s; _d++) {
+          chatMessage += "<span class='alien-diceface-y6'></span>";
+        }
+        for (var _d = 0; _d < numOf1s; _d++) {
+          chatMessage += "<span class='alien-diceface-y1'></span>";
+        }
+        let _theRest = numDie - (numOf6s + numOf1s);
+        for (var _d = 0; _d < _theRest; _d++) {
+          chatMessage += "<span class='alien-diceface-y0'></span>";
+        }
+        chatMessage += '</div>';
       }
       // chatMessage += `<span class="blink">${game.alienrpg.rollArr[yzeR1]}</span>`;
     }
@@ -130,7 +155,9 @@ export class yze {
 
     // Show total successes
     let succEss = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six + game.alienrpg.rollArr.sCount;
-    chatMessage += '<div style="color: blue; font-weight: bold; font-size: larger"> You have ' + succEss + ' Success</div>';
+    if (hostile != 'supply') {
+      chatMessage += '<div style="color: blue; font-weight: bold; font-size: larger"> You have ' + succEss + ' Success</div>';
+    }
     // console.warn('YZE 2', game.alienrpg.rollArr.sCount);
 
     // Render the reroll button

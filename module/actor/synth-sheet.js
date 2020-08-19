@@ -574,7 +574,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     let r1Data = 0;
     let r2Data = this.actor.data.data.consumables[consUme].value;
     let reRoll = true;
-    let hostile = this.actor.data.data.type;
+    //let hostile = this.actor.data.data.type;
     let blind = false;
 
     if (this.actor.data.token.disposition === -1) {
@@ -583,7 +583,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     if (r2Data <= 0) {
       return ui.notifications.warn('You have run out of supplies');
     } else {
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      yze.yzeRoll('supply', blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
       if (game.alienrpg.rollArr.r2One) {
         switch (consUme) {
           case 'air':

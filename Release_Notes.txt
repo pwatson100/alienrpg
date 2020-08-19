@@ -36,3 +36,8 @@ PDFoundry is no longer bundled with AlienRPG so if you have been using this feat
 module by Djphoenix.  
 Improved migration code as it was not working properly for some people. 
 
+Version 1.1.1
+Included new dice images in chat developed by @shteff#8724 (many thanks) which really improves the visuals.
+Corrected an error when synth data was not being migrated.
+Actor data in unlocked compendiums will now be correctly migrated.  
+
