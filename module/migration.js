@@ -136,6 +136,10 @@ const migrateActorData = (actor) => {
     if (actor.data.skills.medicalAid.ability === 'wit') {
       updateData['data.skills.medicalAid.ability'] = 'emp';
     }
+    if (actor.data.general.panic.value === null) {
+      updateData['actor.data.general.panic.value'] = 0;
+      updateData['actor.data.general.panic.max'] = 1;
+    }
   }
 
   const data = actor.data;

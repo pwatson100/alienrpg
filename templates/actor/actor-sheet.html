@@ -143,6 +143,15 @@
                 <h4 class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
                 </h4>
               </div>
+              <div class="dots panic">
+                <input type="hidden" name="data.general.panic.value" data-max="{{data.general.panic.max}}" value="{{{data.general.panic.value}}}" data-dtype="Number">
+                {{#if data.general.panic.value}}
+                <h4 class="click-stat-level resource-label blink" style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Paniced'}}
+                </h4>
+                {{else}}
+                <h4 class="click-stat-level resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Paniced'}} </h4>
+                {{/if}}
+                </div>
             </div>
             
             <div class="Item9">
@@ -235,9 +244,11 @@
         </div>
         
         <div class="Item11">
-          <label class="resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}</label>
+          <label class="resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}  </label>
         <input type="text" class="maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number">
       </div>
+  </div>
+
       </div>
       
     </section>

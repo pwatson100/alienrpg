@@ -84,6 +84,7 @@ export class alienrpgActorSheet extends ActorSheet {
     data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
     data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
     data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
+    data.actor.data.general.panic.calculatedMax = data.actor.data.general.panic.max; // Update
 
     data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
@@ -91,6 +92,7 @@ export class alienrpgActorSheet extends ActorSheet {
     data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
     data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
     data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
+    data.actor.data.general.panic.icon = this._getContitionIcon(data.actor.data.general.panic.value, 'panic');
     // this.actor.setFlag('alienrpg', 'sixEs', 0);
 
     // Prepare items.

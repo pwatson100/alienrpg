@@ -41,3 +41,6 @@ Included new dice images in chat developed by @shteff#8724 (many thanks) which r
 Corrected an error when synth data was not being migrated.
 Actor data in unlocked compendiums will now be correctly migrated.  
 
+Version 1.1.2
+Added a "Panicked" check box to the conditions area to 
+allow players to note when they are in a temporary or permanant panic condition.  
