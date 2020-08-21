@@ -378,15 +378,67 @@ export class alienrpgActorSheet extends ActorSheet {
         let chatMessage = '';
         const table = game.tables.getName('Panic Table');
         const roll = new Roll('1d6 + @stress', this.actor.getRollData());
-
         const customResults = table.roll({ roll });
-        // console.warn('customResults', customResults.roll._total);
+        let oldPanic = this.actor.data.data.general.panic.lastRoll;
+
+        // console.warn('customResults.roll.total', customResults.roll.total);
+
+        if (customResults.roll.total >= 7 && this.actor.data.data.general.panic.value === 0) {
+          this.actor.update({ 'data.general.panic.value': this.actor.data.data.general.panic.value + 1 });
+        }
+
         chatMessage += '<h2>Panic Condition</h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-        chatMessage += `<h4><i><b>Roll ${customResults.roll._total} </b></i></h4>`;
-        chatMessage += `${customResults.results[0].text}`;
-        if (customResults.roll._total >= 13) {
-          chatMessage += `<h4><b><i>Permanant Trauma. Make an EMPATHY roll at the end of the session.</b>  (See page 106 of the Alien rule book.)</i></h4>`;
+
+        let mPanic = customResults.roll.total < this.actor.data.data.general.panic.lastRoll;
+        let pCheck = oldPanic + 1;
+        // console.warn('mPanic', mPanic);
+        if (this.actor.data.data.general.panic.value && mPanic) {
+          this.actor.update({ 'data.general.panic.lastRoll': pCheck });
+          // console.warn('this.actor.data.data.general.panic.lastRoll', this.actor.data.data.general.panic.lastRoll);
+
+          chatMessage += `<h4><i><b>Roll ${customResults.roll.total}   More Panic.</b> </i></h4>`;
+          chatMessage += `<h4><i>PC's Panic level has increased by one step to <b>Level ${pCheck}</b> (See page 104 of the Alien rule book.)</i></h4>`;
+          switch (pCheck) {
+            case 8:
+              chatMessage += `<b>TREMBLE:</b>  You start to tremble uncontrollably. All skill rolls using AGILITY suffer a –2 modification until your panic stops.`;
+              break;
+            case 9:
+              chatMessage += `<b>DROP ITEM:</b>  Whether by stress, confusion or the realization that you’re all going to die anyway, you drop a weapon or other important item—the GM decides which one. Your STRESS LEVEL increases by one.`;
+              break;
+            case 10:
+              chatMessage += `<b>FREEZE:</b>  You’re frozen by fear or stress for one Round, losing your next slow action. Your STRESS LEVEL, and the STRESS LEVEL of all friendly PCs in SHORT range of you, increases by one`;
+              break;
+            case 11:
+              chatMessage += `<b>SEEK COVER:</b>  You must use your next action to move away from danger and find a safe spot if possible. You are allowed to make a retreat roll (see page 93) if you have an enemy at ENGAGED range. Your STRESS LEVEL is decreased by one, but the STRESS LEVEL of all friendly PCs in SHORT range increases by one. After one Round, you can act normally.`;
+              break;
+            case 12:
+              chatMessage += `<b>SCREAM:</b> You scream your lungs out for one Round, losing your next slow action. Your STRESS LEVEL is decreased by one, but every friendly character who hears your scream must make an immediate Panic Roll.`;
+              break;
+            case 13:
+              chatMessage += `<b>FLEE:</b>  You just can’t take it anymore. You must flee to a safe place and refuse to leave it. You won’t attack anyone and won’t attempt anything dangerous. You are not allowed to make a retreat roll (see page 93) if you have an enemy at ENGAGED range when you flee. Your STRESS LEVEL is decreased by one, but every friendly character who sees you run must make an immediate Panic Roll.`;
+              break;
+            case 14:
+              chatMessage += `<b>BERSERK:</b>  You must immediately attack the nearest person or creature, friendly or not. You won’t stop until you or the target is Broken. Every friendly character who witnesses your rampage must make an immediate Panic Roll`;
+              break;
+            default:
+              chatMessage += `<b>CATATONIC:</b>  You collapse to the floor and can’t talk or move, staring blankly into oblivion.`;
+              break;
+          }
+        } else {
+          this.actor.update({ 'data.general.panic.lastRoll': customResults.roll.total });
+          // console.warn('Else', this.actor.data.data.general.panic.lastRoll);
+
+          chatMessage += `<h4><i><b>Roll ${customResults.roll.total} </b></i></h4>`;
+          chatMessage += `${customResults.results[0].text}`;
+          if (customResults.roll.total >= 7) {
+            chatMessage += `<h4><i><b>You are at Panic <b>Level ${customResults.roll.total}</b></i></h4>`;
+          }
+        }
+        let trauma = customResults.roll.total >= 13 || pCheck >= 13;
+        // console.warn('trauma', trauma);
+        if (trauma) {
+          chatMessage += `<h4><b>Permanant Trauma. Make an EMPATHY roll at the end of the session. <i>(See page 106 of the Alien rule book.)</i></h4></b>`;
         }
         ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
       }
@@ -576,7 +628,9 @@ export class alienrpgActorSheet extends ActorSheet {
 
       icons[i] = iconHtml;
     }
-
+    if (this.actor.data.data.general.panic.value === 0) {
+      this.actor.update({ 'data.general.panic.lastRoll': 0 });
+    }
     return icons[level];
   }
 

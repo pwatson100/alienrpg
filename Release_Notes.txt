@@ -44,3 +44,8 @@ Actor data in unlocked compendiums will now be correctly migrated.
 Version 1.1.2
 Added a "Panicked" check box to the conditions area to 
 allow players to note when they are in a temporary or permanant panic condition.  
+
+Version 1.1.3
+Automatically sets the PC's panicked condition on stress rolls of 7+
+"More Panic" mechanics implemented.  Unchecking the "Panicked" condition will restet the panic level to zero.  
+Also corrected a spelling mistake. 

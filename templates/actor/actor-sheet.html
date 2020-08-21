@@ -146,10 +146,10 @@
               <div class="dots panic">
                 <input type="hidden" name="data.general.panic.value" data-max="{{data.general.panic.max}}" value="{{{data.general.panic.value}}}" data-dtype="Number">
                 {{#if data.general.panic.value}}
-                <h4 class="click-stat-level resource-label blink" style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Paniced'}}
+                <h4 class="click-stat-level resource-label blink" style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}}
                 </h4>
                 {{else}}
-                <h4 class="click-stat-level resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Paniced'}} </h4>
+                <h4 class="click-stat-level resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}} </h4>
                 {{/if}}
                 </div>
             </div>
@@ -252,5 +252,4 @@
       </div>
       
     </section>
-    {{log "CONTEXT!!!!"}} {{log this}} 
   </form>
