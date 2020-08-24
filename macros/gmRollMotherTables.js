@@ -6,30 +6,37 @@
     }
   });
   let template = `
-                  <form>
-                      <div class="form-group">
-                          <label>Select Table</label>
-                          <select id="tableSelect">${options}</select>
-                      </div>
-                      <div class="form-group">
-                          <label>How Many?</label>
-                          <input type="text" id="inputNbr" value=1>
-                      </div>
-                  </form>`;
+                    <form>
+                        <div class="form-group">
+                            <label>Select Table</label>
+                            <select id="tableSelect">${options}</select>
+                        </div>
+                        <div class="form-group">
+                            <label>How Many?</label>
+                            <input type="text" id="inputNbr" value=1>
+                        </div>
+                        <div class="form-group">
+                            <label>Modifier?</label>
+                            <input type="text" id="inputMod" value="0">
+                        </div>
+                    </form>`;
 
   let buttons = {};
   if (game.tables.entities.length > 0) {
     buttons = {
       draw: {
         icon: '<i class="fas fa-check"></i>',
-        label: 'Roll',
+        label: 'Draw',
         callback: async (html) => {
           const tableId = html.find('#tableSelect')[0].value;
           const table = game.tables.get(tableId);
           const drawNumber = parseInt(html.find('#inputNbr')[0].value || 0);
+          const formula = table.data.formula;
+          const modifier = parseInt(html.find('#inputMod')[0].value || '0');
 
           for (let i = 0; i < drawNumber; i++) {
-            await table.draw();
+            const roll = new Roll(formula + ' + ' + modifier);
+            await table.draw({ roll: roll });
           }
         },
       },
@@ -52,6 +59,6 @@
     title: 'Roll on selected Mother table',
     content: template,
     buttons: buttons,
-    default: 'roll',
+    default: 'draw',
   }).render(true);
 })();

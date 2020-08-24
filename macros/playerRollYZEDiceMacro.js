@@ -40,6 +40,6 @@
     title: 'Player - Roll YZE Dice.',
     content: template,
     buttons: buttons,
-    default: 'roll',
+    default: 'draw',
   }).render(true);
 })();

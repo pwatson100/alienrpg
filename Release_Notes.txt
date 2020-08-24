@@ -47,5 +47,8 @@ allow players to note when they are in a temporary or permanant panic condition.
 
 Version 1.1.3
 Automatically sets the PC's panicked condition on stress rolls of 7+
-"More Panic" mechanics implemented.  Unchecking the "Panicked" condition will restet the panic level to zero.  
+"More Panic" mechanics implemented.  Unchecking the "Panicked" condition will reset the panic level to zero.  
 Also corrected a spelling mistake. 
+
+Version 1.1.4
+Included macro improvements by @shteff#8724.  You will need to delete the existing macros and import for the Alien (macro) compendium to get the new ones. 

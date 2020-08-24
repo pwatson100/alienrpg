@@ -22,7 +22,7 @@
     buttons = {
       draw: {
         icon: '<i class="fas fa-check"></i>',
-        label: 'Roll',
+        label: 'Draw',
         callback: async (html) => {
           const tableId = html.find('#tableSelect')[0].value;
           const table = game.tables.get(tableId);
@@ -51,6 +51,6 @@
     title: 'Draw multiple RollTable entries',
     content: template,
     buttons: buttons,
-    default: 'roll',
+    default: 'draw',
   }).render(true);
 })();
