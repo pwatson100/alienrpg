@@ -37,10 +37,10 @@ export class yze {
     } catch {
       niceDice = false;
     }
-
+    let spud = 'true';
     //  Initialse the chat message
     let chatMessage = '';
-    // console.warn('YZE', reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3);
+    console.warn('YZE', hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3);
 
     // Set uptext for a roll or push
     let rType = '';
@@ -50,6 +50,8 @@ export class yze {
       rType = game.i18n.localize('ALIENRPG.Rolling');
     }
 
+    // Save the sucesses from the last roll
+    let oldRoll = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
     // Clear the global dice array
     // game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, r3Dice: 0, r3One: 0, r3Six: 0, tLabel: '' };
     game.alienrpg.rollArr.r1Dice = 0;
@@ -135,7 +137,8 @@ export class yze {
       yzeDRoll('r2Dice', r2Dice, 'r2Six', 'r2One');
       data.formula = r1Dice + r2Dice + 'd6';
       if (game.alienrpg.rollArr.r2One > 0 && !reRoll) {
-        reRoll = 'true';
+        reRoll = true;
+        spud = false;
       }
       if (hostile != 'supply') {
         if (game.alienrpg.rollArr.r2One === 1) {
@@ -156,17 +159,36 @@ export class yze {
     // Show total successes
     let succEss = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six + game.alienrpg.rollArr.sCount;
     if (hostile != 'supply') {
-      chatMessage += '<div style="color: blue; font-weight: bold; font-size: larger"> You have ' + succEss + ' Success</div>';
+      if (succEss === 1) {
+        chatMessage += '<div style="color: blue; font-weight: bold; font-size: larger"> You have ' + succEss + ' Success</div>';
+      } else {
+        chatMessage += '<div style="color: blue; font-weight: bold; font-size: larger"> You have ' + succEss + ' Successes</div>';
+      }
     }
     // console.warn('YZE 2', game.alienrpg.rollArr.sCount);
+    if (reRoll && spud && hostile != 'synthetic' && hostile != 'supply') {
+      chatMessage += '<hr>';
+      let sTotal = oldRoll + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+      if (sTotal === 1) {
+        chatMessage += '<div style="color: darkblue; font-weight: bold; font-size: larger"> Following the Push,<br> You have a Total of ' + sTotal + ' Success</div>';
+      } else {
+        chatMessage += '<div style="color: darkblue; font-weight: bold; font-size: larger"> Following the Push,<br> You have a Total of ' + sTotal + ' Successes</div>';
+      }
+    }
 
     // Render the reroll button
     if (!reRoll) {
-      const btnStyling = 'height:50px; font-size:45px;line-height:1px;background-color: #413131; color:#adff2f;border-color: #000000';
-      chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;
+      const btnStyling = '<span class="alien-Push-button"</span>';
+      chatMessage += `<button class="alien-Push-button" ><i class="alien-Push-button" title="PUSH Roll?"></i></button>`;
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
     }
+    // if (!reRoll) {
+    //   const btnStyling = 'height:50px; font-size:45px;line-height:1px;background-color: #413131; color:#adff2f;border-color: #000000';
+    //   chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;
+    //   chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
+    //   chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
+    // }
 
     // Only if Dice So Nice is enabled.
     if (niceDice && !blind) {

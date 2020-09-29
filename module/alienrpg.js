@@ -45,7 +45,7 @@ Hooks.once('init', async function () {
   // Actors.unregisterSheet('core', ActorSheet);
   // Actors.registerSheet('alienrpg', alienrpgActorSheet, { makeDefault: true });
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent'], makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts'], makeDefault: false });
   Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
   // console.warn('*******************************');
   // console.warn('register');
@@ -107,7 +107,7 @@ Hooks.once('ready', async () => {
   await AlienRPGSetup.setup();
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
-  const NEEDS_MIGRATION_VERSION = '1.1.4';
+  const NEEDS_MIGRATION_VERSION = '1.1.5';
   const COMPATIBLE_MIGRATION_VERSION = '0' || isNaN('NaN');
   let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   console.warn('needMigration', needMigration, currentVersion);
@@ -157,11 +157,11 @@ Hooks.once('ready', async function () {
 Hooks.on('renderChatMessage', (message, html, data) => {
   // console.warn('init hook here');
 
-  html.find('i.fas.fa-dice').each((i, li) => {
+  html.find('i.alien-Push-button').each((i, li) => {
     // console.warn(li);
     li.addEventListener('click', function (ev) {
       // console.warn(ev);
-      if (ev.target.classList.contains('fa-dice')) {
+      if (ev.target.classList.contains('alien-Push-button')) {
         // do stuff
         let actor = game.actors.get(ChatMessage.getSpeaker().actor);
         if (!actor) return ui.notifications.warn(`You do not have a token selected`);
@@ -169,6 +169,9 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         let reRoll = true;
         let hostile = actor.data.type;
         let blind = false;
+        //  Initialse the chat message
+        let chatMessage = '';
+
         // actor.unsetFlag('alienrpg', 'sixEs');
 
         if (actor.data.token.disposition === -1) {

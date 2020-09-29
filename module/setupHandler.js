@@ -12,6 +12,13 @@ export class AlienRPGSetup {
         return false;
       }
     }
+    function itemExists() {
+      if (Folder.collection.entities.filter((entry) => entry.data.name == 'Skill-Stunts').length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 
     let isHere = pExists();
 
@@ -56,6 +63,32 @@ export class AlienRPGSetup {
         })
       );
 
+      ui.notifications.info('First-Time-Setup complete');
+    }
+
+    let isItems = itemExists();
+
+    if (!isItems) {
+      let folder = await Folder.create(
+        {
+          color: '',
+          name: 'Skill-Stunts',
+          parent: null,
+          nullsort: 100000,
+          type: 'Item',
+        },
+        { temporary: false }
+      );
+
+      // Copy the gm tables from the pack into the correct folder so it's available to the templates.
+      var gItems = game.packs.get('alienrpg.skill-stunts');
+      gItems.getContent().then((d) =>
+        d.forEach((a) => {
+          game.items.importFromCollection('alienrpg.skill-stunts', a.data._id, { folder: folder.id });
+        })
+      );
+
+      ui.items.render();
       ui.notifications.info('First-Time-Setup complete');
     }
   }

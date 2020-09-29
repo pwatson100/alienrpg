@@ -551,11 +551,19 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    let chatHead = this.actor.data.data.skills[dataset.pmbut].label;
-    let chatDisc = this.actor.data.data.skills[dataset.pmbut].description;
-    $('st-head').text(`Stunts: ${chatHead}`);
-    $('st-text').html(chatDisc);
-    $('#panel').slideToggle(100, 'linear');
+    const item = game.items.getName(dataset.pmbut);
+    if (!item) {
+      return ui.notifications.warn('You have no Stunts defined for this Skill');
+    } else {
+      // console.warn('Item', item, dataset);
+      let chatHead = dataset.pmbut;
+      // let chatDisc = this.actor.data.data.skills[dataset.pmbut].description;
+      let chatDisc = item.data.data.description;
+
+      $('st-head').text(`Stunts: ${chatHead}`);
+      $('st-text').html(chatDisc);
+      $('#panel').slideToggle(100, 'linear');
+    }
   }
 
   _talentBtn(event) {
@@ -583,6 +591,10 @@ export class alienrpgActorSheet extends ActorSheet {
       newLevel = Math.clamped(level + 1, 0, max);
     } else if (event.type === 'contextmenu') {
       newLevel = Math.clamped(level - 1, 0, max);
+      if (field[0].name === 'data.general.panic.value') {
+        // console.warn('Here', field[0].name);
+        this.actor.update({ 'data.general.panic.lastRoll': 0 });
+      }
     } // Update the field value and save the form
 
     field.val(newLevel);
@@ -627,9 +639,6 @@ export class alienrpgActorSheet extends ActorSheet {
       }
 
       icons[i] = iconHtml;
-    }
-    if (this.actor.data.data.general.panic.value === 0) {
-      this.actor.update({ 'data.general.panic.lastRoll': 0 });
     }
     return icons[level];
   }

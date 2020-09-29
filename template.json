@@ -493,7 +493,7 @@
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor", "talent", "planet-system", "PDFoundry_PDF"],
+    "types": ["item", "weapon", "armor", "talent", "planet-system", "skill-stunts"],
     "item": {
       "header": {
         "type": {
@@ -674,6 +674,10 @@
           "notes": ""
         }
       }
+    },
+    "skill-stunts": {
+      "skill": "",
+      "description": ""
     }
   }
 }

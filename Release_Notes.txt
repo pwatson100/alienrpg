@@ -52,3 +52,12 @@ Also corrected a spelling mistake.
 
 Version 1.1.4
 Included macro improvements by @shteff#8724.  You will need to delete the existing macros and import for the Alien (macro) compendium to get the new ones. 
+
+Version 1.1.5
+Panic rolls now show total success for both rolls.
+Added a better looking panic button.
+Added the ability to add Stunt descriptions on the Skills tab.  Toggling the spanner icon will display the text (like Talents).
+System will automatically create a folder in Items called "Skill-Stunts" and populate with items for each skill.  
+Using the editor you can easily format the text as you want.  
+You just need to open each skill and edit the text with the Stunts from the rule book.
+Updated "Mother Instructions".       

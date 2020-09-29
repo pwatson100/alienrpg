@@ -1,4 +1,4 @@
-<form class="{{cssClass}} " autocomplete="off">
+<form class="{{cssClass}}" autocomplete="off">
   {{!-- Sheet Header --}}
   <header class="actor-header">
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
@@ -49,6 +49,9 @@
           <span class="ability grid-attr">
             <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{skill.label}}">{{skill.label}}  ({{skill.ability}})</h3>
             <input type="text" class="maxboxsize Attr2" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
+            <div class="resource-content">
+              <button class="stunt-btn Attr3" data-pmbut="{{skill.label}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>
+            </div>
           </span>
           {{/each}}
           

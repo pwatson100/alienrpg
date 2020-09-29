@@ -359,7 +359,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = 0;
       let reRoll = true;
-      let hostile = this.actor.type;
+      let hostile = 'synthetic';
       let blind = false;
       if (dataset.spbutt === 'armor' && r1Data < 1) {
         return;
@@ -386,7 +386,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     let r1Data = parseInt(dataset.roll || 0);
     let r2Data = 0;
     let reRoll = true;
-    let hostile = this.actor.type;
+    let hostile = 'synthetic';
     let blind = false;
     if (dataset.spbutt === 'armor' && r1Data < 1) {
       return;
@@ -482,11 +482,19 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    let chatHead = this.actor.data.data.skills[dataset.pmbut].label;
-    let chatDisc = this.actor.data.data.skills[dataset.pmbut].description;
-    $('st-head').text(`Stunts: ${chatHead}`);
-    $('st-text').html(chatDisc);
-    $('#panel').slideToggle(100, 'linear');
+    const item = game.items.getName(dataset.pmbut);
+    if (!item) {
+      return ui.notifications.warn('You have no Stunts defined for this Skill');
+    } else {
+      // console.warn('Item', item, dataset);
+      let chatHead = dataset.pmbut;
+      // let chatDisc = this.actor.data.data.skills[dataset.pmbut].description;
+      let chatDisc = item.data.data.description;
+
+      $('st-head').text(`Stunts: ${chatHead}`);
+      $('st-text').html(chatDisc);
+      $('#panel').slideToggle(100, 'linear');
+    }
   }
 
   _talentBtn(event) {

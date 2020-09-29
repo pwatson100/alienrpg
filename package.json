@@ -15,14 +15,17 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@types/vscode": "^1.47.0",
+    "@types/gulp": "^4.0.6",
+    "@types/vscode": "^1.49.0",
     "fg-select-css": "^3.2.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.5",
-    "lodash": "^4.17.19",
-    "vue-i18n": "^8.18.2"
+    "lodash": "^4.17.20",
+    "vue-i18n": "^8.21.1",
+    "yargs": "^16.0.3",
+    "yargs-parser": "^20.2.0"
   },
   "devDependencies": {
     "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types"
