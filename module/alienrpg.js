@@ -107,7 +107,7 @@ Hooks.once('ready', async () => {
   await AlienRPGSetup.setup();
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
-  const NEEDS_MIGRATION_VERSION = '1.1.5';
+  const NEEDS_MIGRATION_VERSION = '1.1.6';
   const COMPATIBLE_MIGRATION_VERSION = '0' || isNaN('NaN');
   let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   console.warn('needMigration', needMigration, currentVersion);
@@ -191,6 +191,8 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 });
 
 Hooks.on('preCreateActor', (actor, dir) => {
+  // console.warn('1 actor data', actor);
+
   if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
     // Set wounds, advantage, and display name visibility
     mergeObject(actor, {
@@ -205,7 +207,7 @@ Hooks.on('preCreateActor', (actor, dir) => {
 
     // actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
     // actor.token.vision = true;
-    // actor.token.actorLink = true;
+    console.warn('actor data', actor);
 
     if (actor.type === 'character') {
       mergeObject(actor, {
@@ -238,6 +240,15 @@ Hooks.on('preUpdateActor', (data, updatedData) => {
   }
   if (updatedData.name) {
     updatedData['token.name'] = updatedData.name;
+  }
+});
+
+Hooks.on('preCreateToken', async (scene, tokenData) => {
+  let aTarget = game.actors.find((i) => i.data.name === tokenData.name);
+  if (aTarget.data.data.header.npc) {
+    // console.warn('Is NPC?', aTarget.data.data.header.npc);
+    tokenData.disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+    tokenData.actorLink = false;
   }
 });
 

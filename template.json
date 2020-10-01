@@ -10,7 +10,8 @@
         "stress": {
           "value": 0,
           "label": "Stress"
-        }
+        },
+        "npc": false
       },
       "attributes": {
         "str": {
@@ -197,7 +198,8 @@
         "health": {
           "value": 10,
           "label": "Health"
-        }
+        },
+        "npc": false
       },
       "attributes": {
         "str": {

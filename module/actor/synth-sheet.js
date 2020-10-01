@@ -52,7 +52,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       isSynthetic: this.entity.data.type === 'synthetic',
       isVehicles: this.entity.data.type === 'vehicles',
       isCreature: this.entity.data.type === 'creature',
-
+      isNPC: this.entity.data.data.header.npc,
+      isGM: game.user.isGM,
       config: CONFIG.ALIENRPG,
     };
 
@@ -93,7 +94,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
     data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
 
-    this.actor.data.token.disposition = 1;
+    // this.actor.data.token.disposition = 1;
     // Prepare items.
     this._prepareItems(data); // Return data to the sheet
 

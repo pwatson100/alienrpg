@@ -16,12 +16,30 @@
           <h3>No Stress</h3>
 
       {{!-- Attributes --}}
-      <div class="abilities grid grid-4col">
-        {{#each data.attributes as |attribute key|}}
-          <h3 class="resource-label rollable" data-roll="{{attribute.value}}" data-label="{{attribute.label}}">{{attribute.label}}</h3>
-          <input type="text" class="maxboxsize" name="data.attributes.{{key}}.value" value="{{attribute.value}} " data-dtype="Number" />
-        {{/each}}
-      </div>
+      <div class="abilities grid-Char-Att">
+
+        <h3 class="resource-label rollable gCol1" data-roll="{{data.attributes.str.value}}" data-label="{{data.attributes.str.label}}">{{localize "ALIENRPG.AbilityStr"}}</h3>
+        <input type="text" class="maxboxsize gCol2" name="data.attributes.str.value" value="{{data.attributes.str.value}}" data-dtype="Number" />
+
+        <h3 class="resource-label rollable gCol3" data-roll="{{data.attributes.wit.value}}" data-label="{{data.attributes.wit.label}}">{{localize "ALIENRPG.AbilityWit"}}</h3>
+        <input type="text" class="maxboxsize gCol4" name="data.attributes.wit.value" value="{{data.attributes.wit.value}}" data-dtype="Number" />
+
+        <h3 class="resource-label rollable gCol6" data-roll="{{data.attributes.agl.value}}" data-label="{{data.attributes.agl.label}}">{{localize "ALIENRPG.AbilityAgl"}}</h3>
+        <input type="text" class="maxboxsize gCol7" name="data.attributes.agl.value" value="{{data.attributes.agl.value}}" data-dtype="Number" />
+
+        <h3 class="resource-label rollable gCol8" data-roll="{{data.attributes.emp.value}}" data-label="{{data.attributes.emp.label}}">{{localize "ALIENRPG.AbilityEmp"}}</h3>
+        <input type="text" class="maxboxsize gCol9" name="data.attributes.emp.value" value="{{data.attributes.emp.value}}" data-dtype="Number" />
+
+        {{#if isGM}}
+        <div class="tooltip"> 
+        <h3 class="resource-label gCol5 tooltip" >NPC?</h3>
+          <span class="tooltiptext">Checking this box will cause all tokens created to be Unlnked and Hostile.</span>
+          </div>
+        <input class="gCol10 NPC" name="data.header.npc" type="checkbox" {{checked data.header.npc}} />
+        {{/if}}
+
+        {{log "CONTEXT!!!!"}} {{log this}} 
+    </div>
     </div>
     </div>
   </header>

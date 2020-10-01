@@ -49,11 +49,14 @@ export class alienrpgActorSheet extends ActorSheet {
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
       isCharacter: this.entity.data.type === 'character',
+      isSynthetic: this.entity.data.type === 'synthetic',
       isVehicles: this.entity.data.type === 'vehicles',
       isCreature: this.entity.data.type === 'creature',
-
+      isNPC: this.entity.data.data.header.npc,
+      isGM: game.user.isGM,
       config: CONFIG.ALIENRPG,
     };
+    // console.warn('getdata', this.entity.data.name);
 
     // The Actor and its Items
     data.actor = duplicate(this.actor.data);

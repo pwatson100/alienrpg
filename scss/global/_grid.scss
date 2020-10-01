@@ -596,6 +596,67 @@
   grid-area: sys8;
 }
 
+.grid-Char-Att {
+  display: grid;
+  // border: 2px solid $c-green;
+  padding-bottom: 4px;
+  padding-top: 5px;
+  padding-left: 30px;
+  grid-row-gap: 3px;
+  grid-column-gap: 10px;
+  border-color: $c-green;
+  align-items: center;
+  grid-template-areas:
+    'gCol1 gCol2 gCol3 gCol4 gCol5'
+    'gCol6 gCol7 gCol8 gCol9 gCol10';
+  grid-template-columns: 110px 50px 110px 50px 65px;
+}
+
+.gCol1 {
+  grid-area: gCol1;
+  justify-self: left;
+}
+.gCol2 {
+  grid-area: gCol2;
+  justify-self: center;
+  align-self: center;
+}
+.gCol3 {
+  grid-area: gCol3;
+  justify-self: left;
+}
+.gCol4 {
+  grid-area: gCol4;
+  justify-self: center;
+  align-self: center;
+}
+.gCol5 {
+  grid-area: gCol5;
+  justify-self: center;
+}
+.gCol6 {
+  grid-area: gCol6;
+  justify-self: left;
+}
+.gCol7 {
+  grid-area: gCol7;
+  justify-self: center;
+  align-self: center;
+}
+.gCol8 {
+  grid-area: gCol8;
+  justify-self: left;
+}
+.gCol9 {
+  grid-area: gCol9;
+  justify-self: center;
+  align-self: center;
+}
+.gCol10 {
+  grid-area: gCol10;
+  justify-self: center;
+}
+
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {

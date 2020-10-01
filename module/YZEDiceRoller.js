@@ -28,6 +28,9 @@ export class yze {
    *
    */
   static async yzeRoll(hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3) {
+    // Store the version number of FVTT
+    const sysVer = game.data.version;
+
     // Is Dice So Nice enabled ?
     let niceDice = '';
 
@@ -73,18 +76,44 @@ export class yze {
     };
 
     function yzeDRoll(sLot, numDie, yzeR6, yzeR1) {
-      let die = new Die(6);
-      die.roll(numDie);
+      let i;
+      let numbers = [];
+      let roll = new Roll(`${numDie}d6`);
+      let result = roll.roll();
       game.alienrpg.rollArr[sLot] = numDie;
-      die.results.forEach((el) => {
-        data.results.push(el);
-      });
 
-      game.alienrpg.rollArr.tLabel = label;
-      die.countSuccess(6, '=');
-      game.alienrpg.rollArr[yzeR6] = die.total;
-      die.countSuccess(1, '=');
-      game.alienrpg.rollArr[yzeR1] = die.total;
+      if (sysVer > '0.6.6') {
+        for (let index = 0; index < roll.terms[0].results.length; index++) {
+          let spanner = flattenObj(roll.terms[0].results[index]);
+          numbers.push(spanner.result);
+        }
+        // console.warn('numbers', numbers);
+        game.alienrpg.rollArr.tLabel = label;
+        let R6 = numbers.filter(myFunSix);
+        let R1 = numbers.filter(myFunOne);
+
+        game.alienrpg.rollArr[yzeR6] = R6.length;
+        game.alienrpg.rollArr[yzeR1] = R1.length;
+
+        function myFunSix(value, index, array) {
+          return value === 6;
+        }
+        function myFunOne(value, index, array) {
+          return value === 1;
+        }
+      } else {
+        // Foundry v0.6.6 code
+        die.results.forEach((el) => {
+          data.results.push(el);
+        });
+        // console.warn('data', data, die);
+
+        game.alienrpg.rollArr.tLabel = label;
+        die.countSuccess(6, '=');
+        game.alienrpg.rollArr[yzeR6] = die.result;
+        die.countSuccess(1, '=');
+        game.alienrpg.rollArr[yzeR1] = die.result;
+      }
 
       let numOf6s = game.alienrpg.rollArr[yzeR6]; // added by Steph
       let numOf1s = game.alienrpg.rollArr[yzeR1]; // added by Steph
@@ -183,12 +212,6 @@ export class yze {
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
     }
-    // if (!reRoll) {
-    //   const btnStyling = 'height:50px; font-size:45px;line-height:1px;background-color: #413131; color:#adff2f;border-color: #000000';
-    //   chatMessage += `<button class="dice-total-shield-btn" style="${btnStyling}"><i class="fas fa-dice" title="PUSH Roll?"></i></button>`;
-    //   chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
-    //   chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
-    // }
 
     // Only if Dice So Nice is enabled.
     if (niceDice && !blind) {
@@ -210,6 +233,17 @@ export class yze {
         blind: true,
         type: CONST.CHAT_MESSAGE_TYPES.WHISPER,
       });
+    }
+    function flattenObj(obj, parent, res = {}) {
+      for (let key in obj) {
+        let propName = parent ? parent + '_' + key : key;
+        if (typeof obj[key] == 'object') {
+          flattenObj(obj[key], propName, res);
+        } else {
+          res[propName] = obj[key];
+        }
+      }
+      return res;
     }
   }
 }
