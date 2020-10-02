@@ -68,5 +68,5 @@ Added an NPC check box to the Character and Synth sheets only visible to the GM.
 If this is checked when the actor is dragged on to the Scene the Token will be set to Unlinked and Hostile.
 Unchecking the NPC box will not affect existing tokens.  
 
-Version 1.1.6 - Bug fix
+Version 1.1.7 - Bug fix
 In my eagerness to get the dice system working with FVTT V0.7.3 I broke the dice rolling for V0.6.6 !
