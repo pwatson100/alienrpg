@@ -43,7 +43,7 @@ export class yze {
     let spud = 'true';
     //  Initialse the chat message
     let chatMessage = '';
-    console.warn('YZE', hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3);
+    // console.warn('YZE', hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2, r3Dice, col3);
 
     // Set uptext for a roll or push
     let rType = '';
@@ -78,11 +78,11 @@ export class yze {
     function yzeDRoll(sLot, numDie, yzeR6, yzeR1) {
       let i;
       let numbers = [];
-      let roll = new Roll(`${numDie}d6`);
-      let result = roll.roll();
-      game.alienrpg.rollArr[sLot] = numDie;
 
       if (sysVer > '0.6.6') {
+        let roll = new Roll(`${numDie}d6`);
+        let result = roll.roll();
+        game.alienrpg.rollArr[sLot] = numDie;
         for (let index = 0; index < roll.terms[0].results.length; index++) {
           let spanner = flattenObj(roll.terms[0].results[index]);
           numbers.push(spanner.result);
@@ -103,17 +103,22 @@ export class yze {
         }
       } else {
         // Foundry v0.6.6 code
+        let die = new Die(6);
+        die.roll(numDie);
+        game.alienrpg.rollArr[sLot] = numDie;
         die.results.forEach((el) => {
           data.results.push(el);
         });
-        // console.warn('data', data, die);
 
         game.alienrpg.rollArr.tLabel = label;
         die.countSuccess(6, '=');
-        game.alienrpg.rollArr[yzeR6] = die.result;
+        game.alienrpg.rollArr[yzeR6] = die.total;
         die.countSuccess(1, '=');
-        game.alienrpg.rollArr[yzeR1] = die.result;
+        game.alienrpg.rollArr[yzeR1] = die.total;
       }
+      // *************************************
+      //
+      // *************************************
 
       let numOf6s = game.alienrpg.rollArr[yzeR6]; // added by Steph
       let numOf1s = game.alienrpg.rollArr[yzeR1]; // added by Steph
