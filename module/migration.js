@@ -14,7 +14,7 @@ export const migrateWorld = async function () {
       // console.warn('updateData', updateData, a.data);
       if (!isObjectEmpty(updateData)) {
         console.log(`Migrating Actor entity ${a.name}`);
-        await a.update(updateData, { enforceTypes: false });
+        await a.update(updateData, { enforceTypes: true });
       }
     } catch (err) {
       console.error(err);
@@ -115,9 +115,15 @@ export const migrateCompendium = async function (pack) {
  * @return {Object}       The updateData to apply
  */
 const migrateActorData = (actor) => {
-  // console.warn('mactor', actor);
+  console.warn('mactor', actor);
   const updateData = {};
-  if (actor.type === 'character' || 'synthetic') {
+  if (actor.type === 'creature') {
+    // console.warn('Here', actor.token.actorLink);
+    if (actor.token.actorLink === true) {
+      actor.token.actorLink = false;
+      // console.warn('After', actor.token.actorLink);
+    }
+  } else if (actor.type === 'character' || 'synthetic') {
     if (actor.data.skills.comtech.ability === 'emp') {
       updateData['data.skills.comtech.ability'] = 'wit';
     }
@@ -141,7 +147,6 @@ const migrateActorData = (actor) => {
       updateData['actor.data.general.panic.max'] = 1;
     }
   }
-
   const data = actor.data;
   // Loop through Skill scores, and add their attribute modifiers to our sheet output.
   for (let [key, skill] of Object.entries(data.skills)) {

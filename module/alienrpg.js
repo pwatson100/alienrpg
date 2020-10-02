@@ -107,7 +107,7 @@ Hooks.once('ready', async () => {
   await AlienRPGSetup.setup();
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
-  const NEEDS_MIGRATION_VERSION = '1.1.7';
+  const NEEDS_MIGRATION_VERSION = '1.1.8';
   const COMPATIBLE_MIGRATION_VERSION = '0' || isNaN('NaN');
   let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   console.warn('needMigration', needMigration, currentVersion);
@@ -224,7 +224,7 @@ Hooks.on('preCreateActor', (actor, dir) => {
       actor.token.actorLink = true;
     } else if (actor.type === 'creature') {
       actor.token.vision = true;
-      actor.token.actorLink = true;
+      actor.token.actorLink = false;
     } else if (actor.type === 'synthetic') {
       actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
       actor.token.vision = true;
