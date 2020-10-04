@@ -73,3 +73,7 @@ In my eagerness to get the dice system working with FVTT V0.7.3 I broke the dice
 
 Version 1.1.8
 Dragging Creatures on to a Scene now sets them to unlinked as well as hostile.
+
+Version 1.1.9 - Bug fix
+Resolved a issue where if you had two character/synth sheets open and used the Stunt or Talent details dropdowns the data would 
+always appear on the first opened sheet.  Thanks to Kribby-D#3747 for making me aware of the issue.  

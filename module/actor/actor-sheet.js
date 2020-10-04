@@ -552,33 +552,44 @@ export class alienrpgActorSheet extends ActorSheet {
   }
   _stuntBtn(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    const item = game.items.getName(dataset.pmbut);
-    if (!item) {
-      return ui.notifications.warn('You have no Stunts defined for this Skill');
-    } else {
-      // console.warn('Item', item, dataset);
-      let chatHead = dataset.pmbut;
-      // let chatDisc = this.actor.data.data.skills[dataset.pmbut].description;
-      let chatDisc = item.data.data.description;
+    let li = $(event.currentTarget).parents('.grid-container');
+    let li2 = li.children('#panel');
 
-      $('st-head').text(`Stunts: ${chatHead}`);
-      $('st-text').html(chatDisc);
-      $('#panel').slideToggle(100, 'linear');
+    const dataset = event.currentTarget.dataset;
+    let item = game.items.getName(dataset.pmbut);
+    let chatData = item.data.data.description;
+    let div = $(`<div class="panel Col3">${chatData}</div>`);
+
+    // Toggle summary
+    if (li2.hasClass('expanded')) {
+      let summary = li2.children('.panel');
+      summary.slideUp(200, () => summary.remove());
+    } else {
+      li2.append(div.hide());
+      div.slideDown(200);
     }
+    li2.toggleClass('expanded');
   }
 
   _talentBtn(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    const item = this.actor.getOwnedItem(dataset.pmbut);
-    let chatHead = item.name;
-    let chatDisc = item.data.data.general.comment.value;
-    $('st-head').text(`Talents: ${chatHead}`);
-    $('st-text').html(chatDisc);
-    $('#panel').slideToggle(100, 'linear');
+    let li = $(event.currentTarget).parents('.grid-container');
+    let li2 = li.children('#panel');
+
+    const dataset = event.currentTarget.dataset;
+    let item = this.actor.getOwnedItem(dataset.pmbut);
+    let chatData = item.data.data.general.comment.value;
+    let div = $(`<div class="panel Col3">${chatData}</div>`);
+
+    // Toggle summary
+    if (li2.hasClass('expanded')) {
+      let summary = li2.children('.panel');
+      summary.slideUp(200, () => summary.remove());
+    } else {
+      li2.append(div.hide());
+      div.slideDown(200);
+    }
+    li2.toggleClass('expanded');
   }
 
   _onClickStatLevel(event) {
