@@ -26,7 +26,7 @@ Please Note:
 
 Tested with the following virtual table top platforms:
 
-- Foundry VTT v0.6.6.
+- Foundry VTT v0.6.6 & v0.7.3.
 
 ### Note: Dice so Nice is no longer required for this system but it fully supports DsN and is recommended:
 
