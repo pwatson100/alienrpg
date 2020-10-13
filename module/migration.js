@@ -115,13 +115,11 @@ export const migrateCompendium = async function (pack) {
  * @return {Object}       The updateData to apply
  */
 const migrateActorData = (actor) => {
-  console.warn('mactor', actor);
+  // console.log("migrateActorData -> actor", actor)
   const updateData = {};
   if (actor.type === 'creature') {
-    // console.warn('Here', actor.token.actorLink);
     if (actor.token.actorLink === true) {
       actor.token.actorLink = false;
-      // console.warn('After', actor.token.actorLink);
     }
   } else if (actor.type === 'character' || 'synthetic') {
     if (actor.data.skills.comtech.ability === 'emp') {

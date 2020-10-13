@@ -373,7 +373,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         blind = true;
       }
       yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
     }
   }
 
@@ -409,9 +409,9 @@ export class alienrpgSynthActorSheet extends ActorSheet {
        <p>Please enter your modifier.</p>
        <form>
         <div class="form-group">
-         <label>Modifier:</label>
+         <label>Base Modifier:</label>
            <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-        </div>
+           </div>
        </form>
        `,
       buttons: {
@@ -432,7 +432,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
           let modifier = parseInt(html.find('[name=modifier]')[0].value);
           r1Data = r1Data + modifier;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         }
       },
     }).render(true);
@@ -446,7 +446,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     let r1Data = parseInt(dataset.roll || 0);
     let r2Data = 0;
     let reRoll = false;
-    let hostile = this.actor.type;
+    let hostile = 'synthetic';
     let blind = false;
 
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');

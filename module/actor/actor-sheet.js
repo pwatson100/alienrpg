@@ -361,7 +361,7 @@ export class alienrpgActorSheet extends ActorSheet {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = this.actor.getRollData().stress;
       let reRoll = false;
-      let hostile = this.actor.type;
+      let hostile = 'character';
       let blind = false;
       if (dataset.spbutt === 'armor' && r1Data < 1) {
         return;
@@ -374,7 +374,7 @@ export class alienrpgActorSheet extends ActorSheet {
         blind = true;
       }
       yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
     } else {
       if (dataset.panicroll) {
         // Roll against the panic table and push the roll to the chat log.
@@ -458,7 +458,7 @@ export class alienrpgActorSheet extends ActorSheet {
     let r1Data = parseInt(dataset.roll || 0);
     let r2Data = this.actor.getRollData().stress;
     let reRoll = false;
-    let hostile = this.actor.type;
+    let hostile = 'character';
     let blind = false;
     if (dataset.spbutt === 'armor' && r1Data < 1) {
       return;
@@ -480,8 +480,12 @@ export class alienrpgActorSheet extends ActorSheet {
        <p>Please enter your modifier.</p>
        <form>
         <div class="form-group">
-         <label>Modifier:</label>
+         <label>Base Modifier:</label>
            <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
+           </div>
+           <div class="form-group">
+           <label>Stress Modifier:</label>
+           <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus">
         </div>
        </form>
        `,
@@ -501,9 +505,11 @@ export class alienrpgActorSheet extends ActorSheet {
       close: (html) => {
         if (confirmed) {
           let modifier = parseInt(html.find('[name=modifier]')[0].value);
+          let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
           r1Data = r1Data + modifier;
+          r2Data = r2Data + stressMod;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         }
       },
     }).render(true);
@@ -517,7 +523,7 @@ export class alienrpgActorSheet extends ActorSheet {
     let r1Data = parseInt(dataset.roll || 0);
     let r2Data = this.actor.getRollData().stress;
     let reRoll = false;
-    let hostile = this.actor.type;
+    let hostile = 'character';
     let blind = false;
 
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');

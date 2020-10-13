@@ -10,6 +10,8 @@ import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
 import { AlienRPGSetup } from './setupHandler.js';
 import { preloadHandlebarsTemplates } from './templates.js';
+import { AlienRPGBaseDie } from './alienRPGBaseDice.js';
+import { AlienRPGStressDie } from './alienRPGBaseDice.js';
 import * as migrations from './migration.js';
 
 Hooks.once('init', async function () {
@@ -23,9 +25,13 @@ Hooks.once('init', async function () {
     registerSettings,
   };
 
+  // Set FVTT version constant
+  const is07x = game.data.version.split('.')[1] === '7';
+
   // Global define for this so the roll data can be read by the reroll method.
-  game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, r3Dice: 0, r3One: 0, r3Six: 0, tLabel: '', sCount: 0 };
+  game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, tLabel: '', sCount: 0 };
   // console.warn('sCount init', game.alienrpg.rollArr.sCount);
+
   /**
    * Set an initiative formula for the system
    * @type {String}
@@ -34,6 +40,11 @@ Hooks.once('init', async function () {
     formula: '1d10',
     decimals: 1,
   };
+  // If the FVTT version is > V0.7.x initalise the Base and Stress dice terms
+  if (is07x) {
+    CONFIG.Dice.terms['b'] = AlienRPGBaseDie;
+    CONFIG.Dice.terms['s'] = AlienRPGStressDie;
+  }
 
   // Define custom Entity classes
   CONFIG.ALIENRPG = ALIENRPG;
@@ -42,20 +53,15 @@ Hooks.once('init', async function () {
   // CONFIG.Planet.entityClass = alienrpgPlanet;
 
   // Register sheet application classes
-  // Actors.unregisterSheet('core', ActorSheet);
-  // Actors.registerSheet('alienrpg', alienrpgActorSheet, { makeDefault: true });
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts'], makeDefault: false });
   Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
-  // console.warn('*******************************');
-  // console.warn('register');
-  // console.warn('*******************************');
   registerSettings();
   registerActors();
+
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();
 
-  // If you need to add Handlebars helpers, here are a few useful examples:
   Handlebars.registerHelper('concat', function () {
     var outStr = '';
     for (var arg in arguments) {
@@ -105,9 +111,10 @@ Hooks.once('init', async function () {
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
   await AlienRPGSetup.setup();
+
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
-  const NEEDS_MIGRATION_VERSION = '1.1.9';
+  const NEEDS_MIGRATION_VERSION = '1.2.0';
   const COMPATIBLE_MIGRATION_VERSION = '0' || isNaN('NaN');
   let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   console.warn('needMigration', needMigration, currentVersion);
@@ -123,7 +130,7 @@ Hooks.once('ready', async () => {
   }
 });
 
-// clear the minimum resolution message
+// clear the minimum resolution message faster
 Hooks.once('ready', async function () {
   setTimeout(() => {
     $('.notification.error').each((index, item) => {
@@ -134,15 +141,48 @@ Hooks.once('ready', async function () {
   }, 250);
 });
 
+// ***************************
+// DsN V3 Hooks
+// ***************************
+Hooks.on('diceSoNiceRollComplete', (chatMessageID) => {});
+
 Hooks.once('diceSoNiceReady', (dice3d) => {
   dice3d.addColorset({
-    name: 'rainbow',
-    description: 'Rainbow',
+    name: 'yellow',
+    description: 'Yellow',
     category: 'Colors',
-    foreground: ['#FF5959', '#FFA74F', '#FFFF56', '#59FF59', '#2374FF', '#00FFFF', '#FF59FF'],
-    background: ['#900000', '#CE3900', '#BCBC00', '#00B500', '#00008E', '#008282', '#A500A5'],
+    foreground: ['#e3e300'],
+    background: ['#e3e300'],
     outline: 'black',
     texture: 'none',
+  });
+
+  dice3d.addSystem({ id: 'alienrpg', name: 'Alien RPG' }, true);
+  dice3d.addDicePreset({
+    type: 'db',
+    labels: [
+      'systems/alienrpg/ui/DsN/alien-dice-b0.png',
+      'systems/alienrpg/ui/DsN/alien-dice-b0.png',
+      'systems/alienrpg/ui/DsN/alien-dice-b0.png',
+      'systems/alienrpg/ui/DsN/alien-dice-b0.png',
+      'systems/alienrpg/ui/DsN/alien-dice-b0.png',
+      'systems/alienrpg/ui/DsN/alien-dice-b6.png',
+    ],
+    colorset: 'black',
+    system: 'alienrpg',
+  });
+  dice3d.addDicePreset({
+    type: 'ds',
+    labels: [
+      'systems/alienrpg/ui/DsN/alien-dice-y1.png',
+      'systems/alienrpg/ui/DsN/alien-dice-y0.png',
+      'systems/alienrpg/ui/DsN/alien-dice-y0.png',
+      'systems/alienrpg/ui/DsN/alien-dice-y0.png',
+      'systems/alienrpg/ui/DsN/alien-dice-y0.png',
+      'systems/alienrpg/ui/DsN/alien-dice-y6.png',
+    ],
+    colorset: 'yellow',
+    system: 'alienrpg',
   });
 });
 
@@ -152,7 +192,7 @@ Hooks.once('ready', async function () {
   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
 });
 
-//  Hook to watch for the Push button being pressed -   Need to refactor this so it does not firee all the time.
+//  Hook to watch for the Push button being pressed -   Need to refactor this so it does not fire all the time.
 //
 Hooks.on('renderChatMessage', (message, html, data) => {
   // console.warn('init hook here');
@@ -172,16 +212,12 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         //  Initialse the chat message
         let chatMessage = '';
 
-        // actor.unsetFlag('alienrpg', 'sixEs');
-
         if (actor.data.token.disposition === -1) {
           blind = true;
         }
         if (actor.data.type != 'creature') {
           actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
         }
-        // actor.update({ [{'data.header.stress.value'}]: [{'data.header.stress.value'}] + 1 });
-        // const reRoll1 = game.alienrpg.rollArr.r1Dice - (game.alienrpg.rollArr.r1One + game.alienrpg.rollArr.r1Six);
         const reRoll1 = game.alienrpg.rollArr.r1Dice - game.alienrpg.rollArr.r1Six;
         const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
         yze.yzeRoll(hostile, blind, reRoll, game.alienrpg.rollArr.tLabel, reRoll1, 'Black', reRoll2, 'Yellow');
@@ -190,9 +226,10 @@ Hooks.on('renderChatMessage', (message, html, data) => {
   });
 });
 
+// *************************************************
+// Setupthe prototype token
+// *************************************************
 Hooks.on('preCreateActor', (actor, dir) => {
-  // console.warn('1 actor data', actor);
-
   if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
     // Set wounds, advantage, and display name visibility
     mergeObject(actor, {
@@ -204,10 +241,6 @@ Hooks.on('preCreateActor', (actor, dir) => {
       // Default disposition to hostile
       'token.name': actor.name, // Set token name to actor name
     }); // Default characters to HasVision = true and Link Data = true
-
-    // actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-    // actor.token.vision = true;
-    console.warn('actor data', actor);
 
     if (actor.type === 'character') {
       mergeObject(actor, {
@@ -243,10 +276,12 @@ Hooks.on('preUpdateActor', (data, updatedData) => {
   }
 });
 
+// **********************************
+// If the Actor dragged on to the canvas has the NPC box checked unlink the token and change the disposition to Hostile.
+// **********************************
 Hooks.on('preCreateToken', async (scene, tokenData) => {
   let aTarget = game.actors.find((i) => i.data.name === tokenData.name);
   if (aTarget.data.data.header.npc) {
-    // console.warn('Is NPC?', aTarget.data.data.header.npc);
     tokenData.disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE;
     tokenData.actorLink = false;
   }

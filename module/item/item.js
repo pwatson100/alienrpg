@@ -50,14 +50,18 @@ export class alienrpgItem extends Item {
       new Dialog({
         title: `Roll Modified ${label} check`,
         content: `
-       <p>Please enter your modifier.</p>
-       <form>
-        <div class="form-group">
-         <label>Modifier:</label>
-           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-        </div>
-       </form>
-       `,
+        <p>Please enter your modifier.</p>
+        <form>
+         <div class="form-group">
+          <label>Base Modifier:</label>
+            <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
+            </div>
+            <div class="form-group">
+            <label>Stress Modifier:</label>
+            <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus">
+         </div>
+        </form>
+        `,
         buttons: {
           one: {
             icon: '<i class="fas fa-check"></i>',
@@ -74,15 +78,19 @@ export class alienrpgItem extends Item {
         close: (html) => {
           if (confirmed) {
             let modifier = parseInt(html.find('[name=modifier]')[0].value);
+            let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
+
             // Define the roll formula.
             if (item.data.header.type.value === 'Ranged') {
               let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
+              r2Data = r2Data + stressMod;
               yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-              game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+              game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
             } else if (item.data.header.type.value === 'Melee') {
               let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
+              r2Data = r2Data + stressMod;
               yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-              game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+              game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
             } else {
               console.warn('No type on item');
             }
@@ -94,11 +102,11 @@ export class alienrpgItem extends Item {
       if (item.data.header.type.value === 'Ranged') {
         let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
         yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-        game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+        game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
       } else if (item.data.header.type.value === 'Melee') {
         let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
         yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-        game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+        game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
       } else {
         console.warn('No type on item');
       }

@@ -220,7 +220,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
         blind = true;
       }
       yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 
       // console.warn('onRoll', game.alienrpg.rollArr);
     } else {
@@ -270,8 +270,12 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
        <p>Please enter your modifier.</p>
        <form>
         <div class="form-group">
-         <label>Modifier:</label>
+         <label>Base Modifier:</label>
            <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
+           </div>
+           <div class="form-group">
+           <label>Stress Modifier:</label>
+           <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus">
         </div>
        </form>
        `,
@@ -291,9 +295,11 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
       close: (html) => {
         if (confirmed) {
           let modifier = parseInt(html.find('[name=modifier]')[0].value);
+          let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
           r1Data = r1Data + modifier;
+          r2Data = r2Data + stressMod;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         }
       },
     }).render(true);

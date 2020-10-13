@@ -62,8 +62,6 @@ export class AlienRPGSetup {
           game.tables.importFromCollection('alienrpg.tables_gm', a.data._id, { folder: mothfolder.id });
         })
       );
-
-      ui.notifications.info('First-Time-Setup complete');
     }
 
     let isItems = itemExists();

@@ -77,3 +77,15 @@ Dragging Creatures on to a Scene now sets them to unlinked as well as hostile.
 Version 1.1.9 - Bug fix
 Resolved a issue where if you had two character/synth sheets open and used the Stunt or Talent details dropdowns the data would 
 always appear on the first opened sheet.  Thanks to Kribby-D#3747 for making me aware of the issue.  
+
+Version 1.2.0
+Right Click to Modify rolls now allows mods to Stress for Characters and Items.
+Corrected issue with image and stat alignment on Item sheets.
+Full DsN support for virtual Alien Dice under DsN V3 Alpha 11 & FVTT 0.7.3. 
+In the chat use /r 1db to roll base dice and /r 1ds to roll Stress dice.
+Thanks to @JDW#6422 for helping me get this set up properly.
+*******************************************************************************
+NOTE:
+You need to have the DsN V3 Alpha module installed 
+https://gitlab.com/riccisi/foundryvtt-dice-so-nice/raw/alpha/module/module.json
+*******************************************************************************

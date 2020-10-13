@@ -187,7 +187,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       let r1Data = parseInt(dataset.roll || 0);
       let r2Data = 0;
       let reRoll = false;
-      let hostile = this.actor.type;
+      let hostile = 'creature';
       let blind = true;
       if (dataset.spbutt === 'armor' && r1Data < 1) {
         return;
@@ -220,7 +220,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     let r1Data = parseInt(dataset.roll || 0);
     let r2Data = 0;
     let reRoll = true;
-    let hostile = this.actor.type;
+    let hostile = 'creature';
     let blind = false;
     if (dataset.spbutt === 'armor' && r1Data < 1) {
       return;
@@ -242,9 +242,9 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
        <p>Please enter your modifier.</p>
        <form>
         <div class="form-group">
-         <label>Modifier:</label>
+         <label>Base Modifier:</label>
            <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-        </div>
+           </div>
        </form>
        `,
       buttons: {
@@ -265,7 +265,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
           let modifier = parseInt(html.find('[name=modifier]')[0].value);
           r1Data = r1Data + modifier;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
+          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         }
       },
     }).render(true);
@@ -279,7 +279,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     let r1Data = parseInt(dataset.roll || 0);
     let r2Data = 0;
     let reRoll = true;
-    let hostile = this.actor.type;
+    let hostile = 'creature';
     let blind = false;
     if (dataset.roll != '-') {
       if (dataset.spbutt === 'armor' && r1Data < 1) {

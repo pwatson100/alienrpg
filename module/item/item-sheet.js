@@ -7,7 +7,7 @@ export class alienrpgItemSheet extends ItemSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'item', 'item-sheet'],
-      width: 600,
+      width: 675,
       height: 458,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });

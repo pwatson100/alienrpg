@@ -1276,6 +1276,15 @@
   width: auto;
 }
 
+.alienrpg .profile-img-item {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100px;
+  flex: 0 0 100px;
+  height: 100px;
+  margin-right: 10px;
+  width: 200px;
+}
+
 .alienrpg .header-fields {
   -webkit-box-flex: 1;
   -ms-flex: 1;
