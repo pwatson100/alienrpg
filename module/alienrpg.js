@@ -114,7 +114,7 @@ Hooks.once('ready', async () => {
 
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
-  const NEEDS_MIGRATION_VERSION = '1.2.0';
+  const NEEDS_MIGRATION_VERSION = '1.2.1';
   const COMPATIBLE_MIGRATION_VERSION = '0' || isNaN('NaN');
   let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   console.warn('needMigration', needMigration, currentVersion);
@@ -157,7 +157,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
     texture: 'none',
   });
 
-  dice3d.addSystem({ id: 'alienrpg', name: 'Alien RPG' }, true);
+  dice3d.addSystem({ id: 'alienrpg', name: 'Alien RPG - Blank' }, false);
   dice3d.addDicePreset({
     type: 'db',
     labels: [
@@ -183,6 +183,34 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
     ],
     colorset: 'yellow',
     system: 'alienrpg',
+  });
+
+  dice3d.addSystem({ id: 'alienrpgf', name: 'Alien RPG - Full Dice' }, false);
+  dice3d.addDicePreset({
+    type: 'db',
+    labels: [
+      'systems/alienrpg/ui/DsN/b1.png',
+      'systems/alienrpg/ui/DsN/b2.png',
+      'systems/alienrpg/ui/DsN/b3.png',
+      'systems/alienrpg/ui/DsN/b4.png',
+      'systems/alienrpg/ui/DsN/b5.png',
+      'systems/alienrpg/ui/DsN/alien-dice-b6.png',
+    ],
+    colorset: 'black',
+    system: 'alienrpgf',
+  });
+  dice3d.addDicePreset({
+    type: 'ds',
+    labels: [
+      'systems/alienrpg/ui/DsN/alien-dice-y1.png',
+      'systems/alienrpg/ui/DsN/y2.png',
+      'systems/alienrpg/ui/DsN/y3.png',
+      'systems/alienrpg/ui/DsN/y4.png',
+      'systems/alienrpg/ui/DsN/y5.png',
+      'systems/alienrpg/ui/DsN/alien-dice-y6.png',
+    ],
+    colorset: 'yellow',
+    system: 'alienrpgf',
   });
 });
 

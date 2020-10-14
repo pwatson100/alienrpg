@@ -89,3 +89,10 @@ NOTE:
 You need to have the DsN V3 Alpha module installed 
 https://gitlab.com/riccisi/foundryvtt-dice-so-nice/raw/alpha/module/module.json
 *******************************************************************************
+
+Version 1.2.1
+Updated the Migration script as it was wiping out selected creature rolls.
+Updated the template file to ensure it's protected. 
+Added better images for the dice thanks to  @shteff#8724.
+Two dice types now selectable in the DsN config, one without numbers and one with.
+You will need to select one as it no longer defaults to the Alien Dice.    

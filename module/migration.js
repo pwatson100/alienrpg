@@ -55,6 +55,14 @@ export const migrateWorld = async function () {
     await migrateCompendium(p);
   }
 
+  // Migrate Base Rules Compendium Packs
+  const bRpacks = game.packs.filter((cp) => {
+    return cp.metadata.package === 'AlienRPG-CoreRules' && ['Actor', 'Item', 'Scene'].includes(cp.metadata.entity);
+  });
+  for (let cp of bRpacks) {
+    await migrateCompendium(cp);
+  }
+
   // Migrate Chariot of the Gods Compendium Packs
   const cGpacks = game.packs.filter((cp) => {
     return cp.metadata.package === 'ChariotsOfTheGods' && ['Actor', 'Item', 'Scene'].includes(cp.metadata.entity);
@@ -101,7 +109,7 @@ export const migrateCompendium = async function (pack) {
       console.error(err);
     }
   }
-  console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
+  // console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
 };
 
 /* -------------------------------------------- */
@@ -115,45 +123,23 @@ export const migrateCompendium = async function (pack) {
  * @return {Object}       The updateData to apply
  */
 const migrateActorData = (actor) => {
-  // console.log("migrateActorData -> actor", actor)
+  // // console.log("migrateActorData -> actor", actor)
+  const data = actor.data;
   const updateData = {};
   if (actor.type === 'creature') {
     if (actor.token.actorLink === true) {
       actor.token.actorLink = false;
     }
-  } else if (actor.type === 'character' || 'synthetic') {
-    if (actor.data.skills.comtech.ability === 'emp') {
-      updateData['data.skills.comtech.ability'] = 'wit';
-    }
-    if (actor.data.skills.survival.ability === 'emp') {
-      updateData['data.skills.survival.ability'] = 'wit';
-    }
-    if (actor.data.skills.observation.ability === 'emp') {
-      updateData['data.skills.observation.ability'] = 'wit';
-    }
-    if (actor.data.skills.command.ability === 'wit') {
-      updateData['data.skills.command.ability'] = 'emp';
-    }
-    if (actor.data.skills.manipulation.ability === 'wit') {
-      updateData['data.skills.manipulation.ability'] = 'emp';
-    }
-    if (actor.data.skills.medicalAid.ability === 'wit') {
-      updateData['data.skills.medicalAid.ability'] = 'emp';
-    }
-    if (actor.data.general.panic.value === null) {
-      updateData['actor.data.general.panic.value'] = 0;
-      updateData['actor.data.general.panic.max'] = 1;
+  }
+  if (actor.type === 'character' || actor.type === 'synthetic') {
+    // Loop through Skill scores, and add their attribute modifiers to our sheet output.
+    for (let [key, skill] of Object.entries(data.skills)) {
+      // Calculate the modifier using d20 rules.
+      const conAtt = skill.ability;
+      skill.mod = skill.value + data.attributes[conAtt].value;
+      // console.warn('skill.mod', skill.mod);
     }
   }
-  const data = actor.data;
-  // Loop through Skill scores, and add their attribute modifiers to our sheet output.
-  for (let [key, skill] of Object.entries(data.skills)) {
-    // Calculate the modifier using d20 rules.
-    const conAtt = skill.ability;
-    skill.mod = skill.value + data.attributes[conAtt].value;
-    // console.warn('skill.mod', skill.mod);
-  }
-
   // Remove deprecated fields
   _migrateRemoveDeprecated(actor, updateData);
 
