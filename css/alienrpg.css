@@ -170,9 +170,10 @@
 
 .alien-Push-button {
   display: inline-block;
-  width: 272px;
-  height: 40px;
-  padding: 0px;
+  width: 274px;
+  height: 42px;
+  padding: 8px;
+  padding-top: 5px;
   margin: 1px;
   border: none;
   background: url(../images/AlienRPG-Push-Button.png) no-repeat top left;

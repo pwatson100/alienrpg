@@ -225,7 +225,7 @@ Hooks.once('ready', async function () {
 Hooks.on('renderChatMessage', (message, html, data) => {
   // console.warn('init hook here');
 
-  html.find('i.alien-Push-button').each((i, li) => {
+  html.find('button.alien-Push-button').each((i, li) => {
     // console.warn(li);
     li.addEventListener('click', function (ev) {
       // console.warn(ev);
