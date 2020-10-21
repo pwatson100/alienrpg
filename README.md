@@ -1,4 +1,4 @@
-[![foundry-shield-066]][foundry-url] [![foundry-shield-074]][foundry-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![All Release Downloads](https://img.shields.io/github/downloads/pwatson100/alienrpg/total.svg)]()
+[![All Release Downloads](https://img.shields.io/github/downloads/pwatson100/alienrpg/total.svg)]()
 # Alien RPG System
 
 An UNOFFICIAL system for playing Alien RPG on Foundry VTT.
