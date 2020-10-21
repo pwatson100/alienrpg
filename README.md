@@ -1,4 +1,3 @@
-[![All Release Downloads](https://img.shields.io/github/downloads/pwatson100/alienrpg/total.svg)]()
 # Alien RPG System
 
 An UNOFFICIAL system for playing Alien RPG on Foundry VTT.
