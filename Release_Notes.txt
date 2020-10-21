@@ -95,4 +95,8 @@ Updated the Migration script as it was wiping out selected creature rolls.
 Updated the template file to ensure it's protected. 
 Added better images for the dice thanks to  @shteff#8724.
 Two dice types now selectable in the DsN config, one without numbers and one with.
-You will need to select one as it no longer defaults to the Alien Dice.    
+You will need to select one as it no longer defaults to the Alien Dice.   
+
+Version 1.2.2
+Updated chat to display background image and clearer text
+Tested with FVTT V 0.7.5
