@@ -51,7 +51,7 @@ export class yze {
     // *******************************************************
     //  Initialse the chat message
     // *******************************************************
-    let chatMessage = `<div style="background-image: url('/systems/alienrpg/images/IndBackground3.png');background-size: contain;background-repeat: no-repeat;background-position: center; background-color: black; color:greenyellow">`;
+    let chatMessage = `<div class="chatBG">`;
 
     // *******************************************************
     //  Data structure for DsN V3

@@ -170,9 +170,8 @@
 
 .alien-Push-button {
   display: inline-block;
-  width: 274px;
+  width: 260px;
   height: 42px;
-  padding: 8px;
   padding-top: 5px;
   margin: 1px;
   border: none;
@@ -216,6 +215,21 @@
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.alienrpg a.entity-link {
+  color: white;
+  background: black;
+}
+
+.chatBG {
+  background-image: url("/systems/alienrpg/images/IndBackground3.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
+  color: greenyellow;
+  padding-left: 6px;
 }
 
 .grid,
