@@ -98,7 +98,7 @@ export class yze {
     // *******************************************************
     // Handle Base Dice Roll
     // *******************************************************
-    chatMessage += '<h2>' + rType + ' ' + label + ' </h2>';
+    chatMessage += '<h2 style="color:  #fff">' + rType + ' ' + label + ' </h2>';
     if (r1Dice >= 1) {
       // chatMessage += '<div>' + col1 + '  ' + r1Dice + ' Dice</div>';
       if (sysVer < '0.7.3') {
@@ -342,7 +342,7 @@ export class yze {
         game.alienrpg.rollArr.r1One = R1.length;
         let numOf6s = R6.length; // added by Steph
         let numOf1s = R1.length; // added by Steph
-        chatMessage += '<div>' + col1 + '  ' + r1Dice + ' Dice</div>';
+        chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' Dice</div>';
         chatMessage += '<span style="color: #03cf03">  Sixes: </span>';
         chatMessage += `${R6.length}`;
         chatMessage += '<div>';
@@ -370,7 +370,7 @@ export class yze {
           let numOfB6s = RB6.length; // added by Steph
           let numOfB1s = RB1.length; // added by Steph
           // Base Dice
-          chatMessage += '<div>' + col1 + '  ' + r1Dice + ' Dice</div>';
+          chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' Dice</div>';
           chatMessage += '<span style="color: #03cf03">  Sixes: </span>';
           chatMessage += `${RB6.length}`;
           chatMessage += '<div>';

@@ -21,6 +21,143 @@
   border: greenyellow 3px;
 }
 
+.journal-sheet form {
+  color: greenyellow;
+  background: #000;
+  border: 1px solid greenyellow;
+  border-radius: 1px;
+}
+
+.journal-sheet select {
+  font-family: "Wallpoet", sans-serif;
+  color: greenyellow;
+  background: #000;
+  border: greenyellow 3px;
+  border: 1px solid #7a7971;
+  border-radius: 3px;
+  padding: 0 3px;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 16px;
+}
+
+.journal-sheet input {
+  font-family: "Wallpoet", sans-serif;
+  color: greenyellow;
+  background: #000;
+  border: greenyellow 3px;
+}
+
+.journal-sheet button {
+  font-family: "Wallpoet", sans-serif;
+  color: greenyellow;
+  background: #000;
+  border: greenyellow solid 1px;
+  width: 100%;
+  margin: 0 1px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 28px;
+}
+
+.alienrpg a.entity-link {
+  color: white;
+  background: black;
+}
+
+#chat .message {
+  border: 1px solid #5e5050;
+  border-radius: 1px;
+}
+
+.chat-message {
+  background-image: url("/systems/alienrpg/images/IndBackground3.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: greenyellow;
+}
+
+.chat-message .message-header .message-sender {
+  color: greenyellow;
+}
+
+.chat-message .message-metadata {
+  color: greenyellow;
+}
+
+.chat-message .flavor-text {
+  color: greenyellow;
+}
+
+.chat-message .table-draw .table-results .table-result {
+  color: greenyellow;
+}
+
+.chat-message .table-draw .table-results .table-result .chatBG {
+  background-image: url("/systems/alienrpg/images/IndBackground3.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: greenyellow;
+  padding-left: 6px;
+}
+
+.chat-message.whisper {
+  background: #161616;
+  color: greenyellow;
+}
+
+.chat-message.blind {
+  background: #161616;
+}
+
+.dice-tooltip {
+  border: 1px solid greenyellow;
+  border-radius: 1px;
+  background: #000;
+}
+
+.dice-tooltip .dice-rolls {
+  color: greenyellow;
+  background: #000;
+}
+
+.dice-tooltip .part-header {
+  color: greenyellow;
+  background: #000;
+}
+
+.inline-roll .dice-tooltip {
+  color: greenyellow;
+  background: #000;
+  border: 2px solid greenyellow;
+  border-radius: 2px;
+  color: #ffff00;
+}
+
+a.inline-roll {
+  background: black;
+  padding: 1px 4px;
+  border: 1px solid greenyellow;
+  border-radius: 2px;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+.dice-roll .dice-formula,
+.dice-roll .dice-total {
+  color: greenyellow;
+}
+
+.dice-tooltip .part-header .part-formula {
+  color: greenyellow;
+}
+
+.part-total {
+  color: greenyellow;
+}
+
 .alienrpg h2 {
   border: 0;
   padding: 0;
@@ -94,26 +231,17 @@
 }
 
 .creature-attack-roll {
-  -webkit-box-shadow: 3px 4px 0px 0px #077e1b;
-  box-shadow: 3px 4px 0px 0px #077e1b;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, greenyellow), to(#077e1b));
-  background: -o-linear-gradient(top, greenyellow 5%, #077e1b 100%);
-  background: linear-gradient(to bottom, greenyellow 5%, #077e1b 100%);
-  background-color: #077e1b;
-  border-radius: 18px;
-  border: 1px solid #035c0a;
   display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: "Wallpoet", sans-serif;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #dbcd06;
+  width: 260px;
+  height: 42px;
+  padding-top: 5px;
+  margin: 1px;
+  border: none;
+  background: url(../images/AlienRPG-Roll-Attack-Push-Button.png) no-repeat top left;
 }
 
 .creature-attack-roll:hover {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #91f237), to(#adc61f));
-  background: -o-linear-gradient(top, #91f237 5%, #adc61f 100%);
-  background: linear-gradient(to bottom, #91f237 5%, #adc61f 100%);
+  border-radius: 10px;
   background-color: #942a22;
   color: red;
 }
@@ -121,6 +249,15 @@
 .creature-attack-roll:active {
   position: relative;
   top: 1px;
+  border-radius: unset;
+  background-color: unset;
+  color: unset;
+}
+
+button:hover,
+button:focus {
+  -webkit-box-shadow: unset;
+  box-shadow: unset;
 }
 
 .alien-diceface-b0 {
@@ -178,6 +315,12 @@
   background: url(../images/AlienRPG-Push-Button.png) no-repeat top left;
 }
 
+.alien-Push-button:hover {
+  border-radius: 10px;
+  background-color: #942a22;
+  color: red;
+}
+
 .tooltip {
   position: relative;
   display: inline-block;
@@ -215,21 +358,6 @@
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
-}
-
-.alienrpg a.entity-link {
-  color: white;
-  background: black;
-}
-
-.chatBG {
-  background-image: url("/systems/alienrpg/images/IndBackground3.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: black;
-  color: greenyellow;
-  padding-left: 6px;
 }
 
 .grid,

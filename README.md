@@ -1,6 +1,5 @@
-[![foundry-shield-066]][foundry-url]
-[![foundry-shield-075]][foundry-url]
-[![All Release Downloads](https://img.shields.io/github/downloads/pwatson100/alienrpg/total.svg)]()
+[![foundry-shield-066]][foundry-url] [![foundry-shield-075]][foundry-url] [![All Release Downloads](https://img.shields.io/github/downloads/pwatson100/alienrpg/total.svg)]()
+
 # Alien RPG System
 
 An UNOFFICIAL system for playing Alien RPG on Foundry VTT.
@@ -29,7 +28,7 @@ Please Note:
 
 Tested with the following virtual table top platforms:
 
-- Foundry VTT v0.6.6 & v0.7.3.
+- Foundry VTT v0.6.6 & v0.7.5.
 
 ### Note: Dice so Nice is no longer required for this system but it fully supports DsN and is recommended:
 

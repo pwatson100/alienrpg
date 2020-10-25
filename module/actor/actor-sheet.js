@@ -390,7 +390,7 @@ export class alienrpgActorSheet extends ActorSheet {
           this.actor.update({ 'data.general.panic.value': this.actor.data.data.general.panic.value + 1 });
         }
 
-        chatMessage += '<h2>Panic Condition</h2>';
+        chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >Panic Condition</h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
 
         let mPanic = customResults.roll.total < this.actor.data.data.general.panic.lastRoll;
@@ -400,7 +400,7 @@ export class alienrpgActorSheet extends ActorSheet {
           this.actor.update({ 'data.general.panic.lastRoll': pCheck });
           // console.warn('this.actor.data.data.general.panic.lastRoll', this.actor.data.data.general.panic.lastRoll);
 
-          chatMessage += `<h4><i><b>Roll ${customResults.roll.total}   More Panic.</b> </i></h4>`;
+          chatMessage += `<h4  style="color: #f71403;font-weight: bolder"><i><b>Roll ${customResults.roll.total}   More Panic.</b> </i></h4>`;
           chatMessage += `<h4><i>PC's Panic level has increased by one step to <b>Level ${pCheck}</b> (See page 104 of the Alien rule book.)</i></h4>`;
           switch (pCheck) {
             case 8:
@@ -435,7 +435,7 @@ export class alienrpgActorSheet extends ActorSheet {
           chatMessage += `<h4><i><b>Roll ${customResults.roll.total} </b></i></h4>`;
           chatMessage += `${customResults.results[0].text}`;
           if (customResults.roll.total >= 7) {
-            chatMessage += `<h4><i><b>You are at Panic <b>Level ${customResults.roll.total}</b></i></h4>`;
+            chatMessage += `<h4 style="color: #f71403;"><i><b>You are at Panic <b>Level ${customResults.roll.total}</b></i></h4>`;
           }
         }
         let trauma = customResults.roll.total >= 13 || pCheck >= 13;

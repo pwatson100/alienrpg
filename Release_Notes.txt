@@ -100,3 +100,6 @@ You will need to select one as it no longer defaults to the Alien Dice.
 Version 1.2.2
 Updated chat to display background image and clearer text
 Tested with FVTT V 0.7.5
+
+Version 1.2.3
+General Styling improvements to Chat, Journal and Creature Roll Attack Button. 
