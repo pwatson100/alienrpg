@@ -8,15 +8,12 @@ import { alienrpgrTableGet } from './rollTableData.js';
 export class ActorSheetAlienRPGCreat extends ActorSheet {
   constructor(...args) {
     super(...args);
-    // console.warn('Creature.js - Got here');
     /**
      * Track the set of item filters which are applied
      * @type {Set}
      */
     this._filters = {
       inventory: new Set(),
-      // spellbook: new Set(),
-      // features: new Set()
     };
   }
 
@@ -26,7 +23,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       classes: ['alienrpg', 'sheet', 'actor', 'creature-sheet'],
       // template: 'systems/alienrpg/templates/actor/creature-sheet.html',
       width: 600,
-      height: 600,
+      height: 610,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -206,7 +203,6 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       let chatMessage = '';
       chatMessage += '<h2>No Skill</h2>';
       chatMessage += `<h4><i>This Creature does not have this Skill</i></h4>`;
-      // chatMessage += `${customResults.results[0].text}`;
       ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
     }
   }
@@ -333,7 +329,6 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       let chatMessage = '';
       chatMessage += '<h2>Acid Blood</h2>';
       chatMessage += `<h4><i>This Creature does not have Acid Blood</i></h4>`;
-      // chatMessage += `${customResults.results[0].text}`;
       ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
     }
   }

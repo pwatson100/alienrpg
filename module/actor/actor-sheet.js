@@ -15,8 +15,6 @@ export class alienrpgActorSheet extends ActorSheet {
      */
     this._filters = {
       inventory: new Set(),
-      // spellbook: new Set(),
-      // talents: new Set(),
     };
   }
 
@@ -26,7 +24,7 @@ export class alienrpgActorSheet extends ActorSheet {
       classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 650,
-      height: 690,
+      height: 710,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -56,7 +54,6 @@ export class alienrpgActorSheet extends ActorSheet {
       isGM: game.user.isGM,
       config: CONFIG.ALIENRPG,
     };
-    // console.warn('getdata', this.entity.data.name);
 
     // The Actor and its Items
     data.actor = duplicate(this.actor.data);
@@ -68,8 +65,6 @@ export class alienrpgActorSheet extends ActorSheet {
     data.data = data.actor.data;
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
-
-    // console.warn('data', data, data.filters);
 
     // Ability Scores
     for (let [a, abl] of Object.entries(data.actor.data.attributes)) {
@@ -96,12 +91,9 @@ export class alienrpgActorSheet extends ActorSheet {
     data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
     data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
     data.actor.data.general.panic.icon = this._getContitionIcon(data.actor.data.general.panic.value, 'panic');
-    // this.actor.setFlag('alienrpg', 'sixEs', 0);
 
     // Prepare items.
     this._prepareItems(data); // Return data to the sheet
-
-    // console.warn('inventory', data.inventory);
 
     // Return data to the sheet
     return data;
@@ -120,7 +112,6 @@ export class alienrpgActorSheet extends ActorSheet {
     const talents = [];
 
     // Iterate through items, allocating to containers
-    // let totalWeight = 0;
     for (let i of data.items) {
       let item = i.data;
       // Append to gear.
@@ -131,15 +122,12 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Assign and return
     data.talents = talents;
-    // console.warn('data.talents', data.talents);
-    // console.warn('data.talents', data.talents);
 
     // Categorize items as inventory, spellbook, features, and classes
     const inventory = {
       weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },
       item: { label: 'Items', items: [], dataset: { type: 'item' } },
       armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
-      // talents: { label: 'Talent', items: [], dataset: { type: 'talents' } },
     };
     // Partition items by category
     let [items, spells, feats, classes, talent] = data.items.reduce(
@@ -147,8 +135,6 @@ export class alienrpgActorSheet extends ActorSheet {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
         item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
-
-        // console.warn('inventory', inventory);
 
         // Classify items into types
         if (item.type === 'spell') arr[1].push(item);
@@ -290,12 +276,12 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
 
     // minus from health and stress
-    html.find('.minus-btn').click(this._minusButton.bind(this));
+    html.find('.minus-btn').click(this._plusMinusButton.bind(this));
 
     // plus tohealth and stress
-    html.find('.plus-btn').click(this._plusButton.bind(this));
+    html.find('.plus-btn').click(this._plusMinusButton.bind(this));
 
-    html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle Dying Wounded
+    html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
 
     html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
@@ -353,209 +339,34 @@ export class alienrpgActorSheet extends ActorSheet {
    */
   _onRoll(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    let label = dataset.label;
-    game.alienrpg.rollArr.sCount = 0;
-    if (dataset.roll) {
-      let r1Data = parseInt(dataset.roll || 0);
-      let r2Data = this.actor.getRollData().stress;
-      let reRoll = false;
-      let hostile = 'character';
-      let blind = false;
-      if (dataset.spbutt === 'armor' && r1Data < 1) {
-        return;
-      } else if (dataset.spbutt === 'armor') {
-        label = 'Armor';
-        r2Data = 0;
-      }
-      if (this.actor.data.token.disposition === -1) {
-        // hostile = true;
-        blind = true;
-      }
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-    } else {
-      if (dataset.panicroll) {
-        // Roll against the panic table and push the roll to the chat log.
-        let chatMessage = '';
-        const table = game.tables.getName('Panic Table');
-        const roll = new Roll('1d6 + @stress', this.actor.getRollData());
-        const customResults = table.roll({ roll });
-        let oldPanic = this.actor.data.data.general.panic.lastRoll;
+    const dataset = event.currentTarget.dataset;
 
-        // console.warn('customResults.roll.total', customResults.roll.total);
-
-        if (customResults.roll.total >= 7 && this.actor.data.data.general.panic.value === 0) {
-          this.actor.update({ 'data.general.panic.value': this.actor.data.data.general.panic.value + 1 });
-        }
-
-        chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >Panic Condition</h2>';
-        chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-
-        let mPanic = customResults.roll.total < this.actor.data.data.general.panic.lastRoll;
-        let pCheck = oldPanic + 1;
-        // console.warn('mPanic', mPanic);
-        if (this.actor.data.data.general.panic.value && mPanic) {
-          this.actor.update({ 'data.general.panic.lastRoll': pCheck });
-          // console.warn('this.actor.data.data.general.panic.lastRoll', this.actor.data.data.general.panic.lastRoll);
-
-          chatMessage += `<h4  style="color: #f71403;font-weight: bolder"><i><b>Roll ${customResults.roll.total}   More Panic.</b> </i></h4>`;
-          chatMessage += `<h4><i>PC's Panic level has increased by one step to <b>Level ${pCheck}</b> (See page 104 of the Alien rule book.)</i></h4>`;
-          switch (pCheck) {
-            case 8:
-              chatMessage += `<b>TREMBLE:</b>  You start to tremble uncontrollably. All skill rolls using AGILITY suffer a –2 modification until your panic stops.`;
-              break;
-            case 9:
-              chatMessage += `<b>DROP ITEM:</b>  Whether by stress, confusion or the realization that you’re all going to die anyway, you drop a weapon or other important item—the GM decides which one. Your STRESS LEVEL increases by one.`;
-              break;
-            case 10:
-              chatMessage += `<b>FREEZE:</b>  You’re frozen by fear or stress for one Round, losing your next slow action. Your STRESS LEVEL, and the STRESS LEVEL of all friendly PCs in SHORT range of you, increases by one`;
-              break;
-            case 11:
-              chatMessage += `<b>SEEK COVER:</b>  You must use your next action to move away from danger and find a safe spot if possible. You are allowed to make a retreat roll (see page 93) if you have an enemy at ENGAGED range. Your STRESS LEVEL is decreased by one, but the STRESS LEVEL of all friendly PCs in SHORT range increases by one. After one Round, you can act normally.`;
-              break;
-            case 12:
-              chatMessage += `<b>SCREAM:</b> You scream your lungs out for one Round, losing your next slow action. Your STRESS LEVEL is decreased by one, but every friendly character who hears your scream must make an immediate Panic Roll.`;
-              break;
-            case 13:
-              chatMessage += `<b>FLEE:</b>  You just can’t take it anymore. You must flee to a safe place and refuse to leave it. You won’t attack anyone and won’t attempt anything dangerous. You are not allowed to make a retreat roll (see page 93) if you have an enemy at ENGAGED range when you flee. Your STRESS LEVEL is decreased by one, but every friendly character who sees you run must make an immediate Panic Roll.`;
-              break;
-            case 14:
-              chatMessage += `<b>BERSERK:</b>  You must immediately attack the nearest person or creature, friendly or not. You won’t stop until you or the target is Broken. Every friendly character who witnesses your rampage must make an immediate Panic Roll`;
-              break;
-            default:
-              chatMessage += `<b>CATATONIC:</b>  You collapse to the floor and can’t talk or move, staring blankly into oblivion.`;
-              break;
-          }
-        } else {
-          this.actor.update({ 'data.general.panic.lastRoll': customResults.roll.total });
-          // console.warn('Else', this.actor.data.data.general.panic.lastRoll);
-
-          chatMessage += `<h4><i><b>Roll ${customResults.roll.total} </b></i></h4>`;
-          chatMessage += `${customResults.results[0].text}`;
-          if (customResults.roll.total >= 7) {
-            chatMessage += `<h4 style="color: #f71403;"><i><b>You are at Panic <b>Level ${customResults.roll.total}</b></i></h4>`;
-          }
-        }
-        let trauma = customResults.roll.total >= 13 || pCheck >= 13;
-        // console.warn('trauma', trauma);
-        if (trauma) {
-          chatMessage += `<h4><b>Permanant Trauma. Make an EMPATHY roll at the end of the session. <i>(See page 106 of the Alien rule book.)</i></h4></b>`;
-        }
-        ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
-      }
-    }
+    this.actor.rollAbility(this.actor, dataset);
   }
 
   _onRollMod(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    let label = dataset.label;
-    game.alienrpg.rollArr.sCount = 0;
 
-    let r1Data = parseInt(dataset.roll || 0);
-    let r2Data = this.actor.getRollData().stress;
-    let reRoll = false;
-    let hostile = 'character';
-    let blind = false;
-    if (dataset.spbutt === 'armor' && r1Data < 1) {
-      return;
-    } else if (dataset.spbutt === 'armor') {
-      label = 'Armor';
-      r2Data = 0;
-    }
-
-    if (this.actor.data.token.disposition === -1) {
-      // hostile = true;
-      blind = true;
-    }
-
-    // callpop upbox here to get any mods then update r1Data or rData as appropriate.
-    let confirmed = false;
-    new Dialog({
-      title: `Roll Modified ${label} check`,
-      content: `
-       <p>Please enter your modifier.</p>
-       <form>
-        <div class="form-group">
-         <label>Base Modifier:</label>
-           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-           </div>
-           <div class="form-group">
-           <label>Stress Modifier:</label>
-           <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus">
-        </div>
-       </form>
-       `,
-      buttons: {
-        one: {
-          icon: '<i class="fas fa-check"></i>',
-          label: 'Roll!',
-          callback: () => (confirmed = true),
-        },
-        two: {
-          icon: '<i class="fas fa-times"></i>',
-          label: 'Cancel',
-          callback: () => (confirmed = false),
-        },
-      },
-      default: 'one',
-      close: (html) => {
-        if (confirmed) {
-          let modifier = parseInt(html.find('[name=modifier]')[0].value);
-          let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
-          r1Data = r1Data + modifier;
-          r2Data = r2Data + stressMod;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-        }
-      },
-    }).render(true);
+    this.actor.rollAbilityMod(this.actor, dataset);
   }
 
   _onRollItemMod(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    let label = dataset.label;
-    let r1Data = parseInt(dataset.roll || 0);
-    let r2Data = this.actor.getRollData().stress;
-    let reRoll = false;
-    let hostile = 'character';
-    let blind = false;
-
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.getOwnedItem(itemId);
-    // console.warn('item', item);
-    if (item.type === 'weapon') {
-      // Trigger the item roll
-      return item.roll(true);
-    }
+    this.actor.rollItemMod(item);
   }
 
-  _minusButton(event) {
+  _plusMinusButton(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    if (dataset.pmbut === 'minusStress') {
-      this.actor.update({ 'data.header.stress.value': this.actor.data.data.header.stress.value - 1 });
-      // }
-    } else {
-      this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value - 1 });
-    }
+    console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
+    this.actor.stressChange(this.actor, dataset);
   }
-  _plusButton(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    if (dataset.pmbut === 'plusStress') {
-      this.actor.update({ 'data.header.stress.value': this.actor.data.data.header.stress.value + 1 });
-    } else {
-      this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value + 1 });
-    }
-  }
+
   _stuntBtn(event) {
     event.preventDefault();
     let li = $(event.currentTarget).parents('.grid-container');
@@ -600,25 +411,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
   _onClickStatLevel(event) {
     event.preventDefault();
-
-    const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    const max = field.data('max') == undefined ? 4 : field.data('max');
-    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
-    const level = parseFloat(field.val());
-    let newLevel = ''; // Toggle next level - forward on click, backwards on right
-
-    if (event.type === 'click') {
-      newLevel = Math.clamped(level + 1, 0, max);
-    } else if (event.type === 'contextmenu') {
-      newLevel = Math.clamped(level - 1, 0, max);
-      if (field[0].name === 'data.general.panic.value') {
-        // console.warn('Here', field[0].name);
-        this.actor.update({ 'data.general.panic.lastRoll': 0 });
-      }
-    } // Update the field value and save the form
-
-    field.val(newLevel);
-
+    this.actor.checkMarks(this.actor, event);
     this._onSubmit(event);
   }
 
@@ -669,52 +462,18 @@ export class alienrpgActorSheet extends ActorSheet {
     const dataset = element.dataset;
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
-
-    // console.warn(element);
     const consUme = dataset.spbutt.toLowerCase();
-    let r1Data = 0;
-    let r2Data = this.actor.data.data.consumables[consUme].value;
-    let reRoll = true;
-    // let hostile = this.actor.data.data.type;
-    let blind = false;
 
-    if (this.actor.data.token.disposition === -1) {
-      blind = true;
-    }
-    if (r2Data <= 0) {
-      return ui.notifications.warn('You have run out of supplies');
-    } else {
-      yze.yzeRoll('supply', blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      if (game.alienrpg.rollArr.r2One) {
-        switch (consUme) {
-          case 'air':
-            this.actor.update({ 'data.consumables.air.value': this.actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'food':
-            this.actor.update({ 'data.consumables.food.value': this.actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'power':
-            this.actor.update({ 'data.consumables.power.value': this.actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'water':
-            this.actor.update({ 'data.consumables.water.value': this.actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
-            break;
-        }
-      }
-    }
+    this.actor.consumablesCheck(this.actor, consUme, label);
   }
 
   _rollItem(event) {
+    // console.log('alienrpgActorSheet -> _rollItem -> event', event);
     event.preventDefault();
-    // const element = event.currentTarget;
-    // console.warn('element', element);
+
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.getOwnedItem(itemId);
-    // console.warn('item', item);
-    if (item.type === 'weapon') {
-      // Trigger the item roll
-      return item.roll();
-    }
+    this.actor.nowRollItem(item);
   }
 }
 export default alienrpgActorSheet;

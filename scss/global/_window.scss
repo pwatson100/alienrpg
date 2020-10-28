@@ -48,7 +48,11 @@
     font-size: 14px;
     line-height: 28px;
   }
+  .tox .tox-editor-container {
+    background-color: white;
+  }
 }
+
 .alienrpg a.entity-link {
   color: white;
   background: black;
@@ -141,13 +145,13 @@ a.inline-roll {
 .alienrpg h2 {
   border: 0;
   padding: 0;
-  margin: 0;
+  margin: 1px;
   margin-left: 5px;
 }
 .alienrpg h3 {
   border: 0;
   padding: 0;
-  margin: 0;
+  margin: 1px;
   // margin-left: 2px;
 }
 .resource-content {

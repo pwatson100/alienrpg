@@ -82,12 +82,12 @@ h1.charname {
   }
 }
 .maxboxsize {
-  max-width: 35px;
+  max-width: 40px;
   color: $c-green;
   background-color: $c-black;
   height: 20px;
   padding: 0;
-  margin: 0;
+  margin: 1px;
   text-align: center;
 }
 .cashboxsize {
@@ -123,13 +123,13 @@ h1.charname {
   margin-bottom: 1px;
 }
 
-input {
-  width: 200px;
-  // height: 20%;
-  margin: 4px;
-  color: $c-green;
-  font-family: monospace;
-}
+// input {
+//   width: 200px;
+//   // height: 20%;
+//   margin: 4px;
+//   color: $c-green;
+//   font-family: monospace;
+// }
 
 .ability-mod {
   color: $c-green;

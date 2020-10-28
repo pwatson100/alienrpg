@@ -60,6 +60,10 @@
   line-height: 28px;
 }
 
+.journal-sheet .tox .tox-editor-container {
+  background-color: white;
+}
+
 .alienrpg a.entity-link {
   color: white;
   background: black;
@@ -161,14 +165,14 @@ a.inline-roll {
 .alienrpg h2 {
   border: 0;
   padding: 0;
-  margin: 0;
+  margin: 1px;
   margin-left: 5px;
 }
 
 .alienrpg h3 {
   border: 0;
   padding: 0;
-  margin: 0;
+  margin: 1px;
 }
 
 .resource-content button {
@@ -388,7 +392,7 @@ button:focus {
 
 .grid-genPage {
   display: grid;
-  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item9 Item6 Item6' 'Item9 Item7 Item7' 'Item9 Item10 Item10' 'Item11 Item10 Item10';
+  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item9 Item6 Item6' 'Item9 Item7 Item7' 'Item11 Item10 Item10' 'Item11 Item10 Item10';
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -420,17 +424,22 @@ button:focus {
 .Item5 {
   grid-area: Item5;
   border: 1px solid greenyellow;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .Item6 {
   grid-area: Item6;
   border: 1px solid greenyellow;
-  justify-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .Item7 {
   grid-area: Item7;
   border: 1px solid greenyellow;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .Item8 {
@@ -456,6 +465,11 @@ button:focus {
   border: 1px solid greenyellow;
   padding: 4px;
   padding-left: 24px;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .grid-container {
@@ -490,7 +504,7 @@ button:focus {
   align-items: center;
   border: 1px solid greenyellow;
   grid-template-areas: 'Attr1 Attr2 Attr3';
-  grid-template-columns: 250px 40px 30px;
+  grid-template-columns: 250px 35px 30px;
 }
 
 .Attr1 {
@@ -777,7 +791,7 @@ button:focus {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin: 0;
+  margin: 1px;
   padding: 0;
 }
 
@@ -855,7 +869,7 @@ button:focus {
 .grid-planet-header {
   display: grid;
   border: 2px solid greenyellow;
-  grid-template-areas: 'hplan1 hplan2 hplan3 hplan4' 'hplan5 hplan6 hplan7 hplan8';
+  grid-template-areas: 'hplan1 hplan2 ' 'hplan3 hplan4' 'hplan5 hplan6 ' 'hplan7 hplan8';
   grid-template-columns: auto;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1473,12 +1487,12 @@ button:focus {
 }
 
 .alienrpg .maxboxsize {
-  max-width: 35px;
+  max-width: 40px;
   color: greenyellow;
   background-color: #000;
   height: 20px;
   padding: 0;
-  margin: 0;
+  margin: 1px;
   text-align: center;
 }
 
@@ -1515,13 +1529,6 @@ button:focus {
   padding: 0;
   margin-top: 1px;
   margin-bottom: 1px;
-}
-
-.alienrpg input {
-  width: 200px;
-  margin: 4px;
-  color: greenyellow;
-  font-family: monospace;
 }
 
 .alienrpg .ability-mod {

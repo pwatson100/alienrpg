@@ -37,7 +37,7 @@
     'Item8 Item3 Item3'
     'Item9 Item6 Item6'
     'Item9 Item7 Item7'
-    'Item9 Item10 Item10'
+    'Item11 Item10 Item10'
     'Item11 Item10 Item10';
 
   grid-template-columns: 1fr 1fr 1fr;
@@ -67,15 +67,21 @@
 .Item5 {
   grid-area: Item5;
   border: 1px solid $c-green;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .Item6 {
   grid-area: Item6;
   border: 1px solid $c-green;
-  justify-items: center;
+  // justify-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .Item7 {
   grid-area: Item7;
   border: 1px solid $c-green;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .Item8 {
   grid-area: Item8;
@@ -97,6 +103,8 @@
   border: 1px solid $c-green;
   padding: 4px;
   padding-left: 24px;
+  align-content: center;
+  justify-content: center;
 }
 
 .grid-container {
@@ -138,7 +146,7 @@
   align-items: center;
   border: 1px solid $c-green;
   grid-template-areas: 'Attr1 Attr2 Attr3';
-  grid-template-columns: 250px 40px 30px;
+  grid-template-columns: 250px 35px 30px;
 }
 
 .Attr1 {
@@ -416,7 +424,7 @@
   // padding: 3px;
   grid-template-columns: 195px 33px;
   align-items: center;
-  margin: 0;
+  margin: 1px;
   padding: 0;
   // padding-left: 2px;
 }
@@ -495,8 +503,10 @@
   display: grid;
   border: 2px solid $c-green;
   grid-template-areas:
-    'hplan1 hplan2 hplan3 hplan4'
-    'hplan5 hplan6 hplan7 hplan8';
+    'hplan1 hplan2 '
+    'hplan3 hplan4'
+    'hplan5 hplan6 '
+    'hplan7 hplan8';
 
   grid-template-columns: auto;
   align-items: center;

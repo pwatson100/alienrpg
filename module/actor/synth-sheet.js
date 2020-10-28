@@ -15,8 +15,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
      */
     this._filters = {
       inventory: new Set(),
-      // spellbook: new Set(),
-      // talents: new Set(),
     };
   }
 
@@ -26,7 +24,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       classes: ['alienrpg', 'sheet', 'actor', 'synth-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 650,
-      height: 690,
+      height: 630,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -68,8 +66,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-    // console.warn('data', data, data.filters);
-
     // Ability Scores
     for (let [a, abl] of Object.entries(data.actor.data.attributes)) {
       abl.label = CONFIG.ALIENRPG.attributes[a];
@@ -98,8 +94,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     // Prepare items.
     this._prepareItems(data); // Return data to the sheet
 
-    // console.warn('inventory', data.inventory);
-
     // Return data to the sheet
     return data;
   }
@@ -117,7 +111,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const talents = [];
 
     // Iterate through items, allocating to containers
-    // let totalWeight = 0;
     for (let i of data.items) {
       let item = i.data;
       // Append to gear.
@@ -128,15 +121,12 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // Assign and return
     data.talents = talents;
-    // console.warn('data.talents', data.talents);
-    // console.warn('data.talents', data.talents);
 
     // Categorize items as inventory, spellbook, features, and classes
     const inventory = {
       weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },
       item: { label: 'Items', items: [], dataset: { type: 'item' } },
       armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
-      // talents: { label: 'Talent', items: [], dataset: { type: 'talents' } },
     };
     // Partition items by category
     let [items, spells, feats, classes, talent] = data.items.reduce(
@@ -144,8 +134,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
         item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
-
-        // console.warn('inventory', inventory);
 
         // Classify items into types
         if (item.type === 'spell') arr[1].push(item);
@@ -185,7 +173,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         data.data.general.armor.value = totalAc;
       }
     }
-    // console.warn('totalAc', i.totalAc, totalAc);
 
     data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
 
@@ -287,12 +274,12 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
 
     // minus from health and stress
-    html.find('.minus-btn').click(this._minusButton.bind(this));
+    html.find('.minus-btn').click(this._plusMinusButton.bind(this));
 
     // plus tohealth and stress
-    html.find('.plus-btn').click(this._plusButton.bind(this));
+    html.find('.plus-btn').click(this._plusMinusButton.bind(this));
 
-    html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle Dying Wounded
+    html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
 
     html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
@@ -350,134 +337,36 @@ export class alienrpgSynthActorSheet extends ActorSheet {
    */
   _onRoll(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    // console.warn('on rolll', element, dataset);
-    let label = dataset.label;
-    game.alienrpg.rollArr.sCount = 0;
-
-    if (dataset.roll) {
-      let r1Data = parseInt(dataset.roll || 0);
-      let r2Data = 0;
-      let reRoll = true;
-      let hostile = 'synthetic';
-      let blind = false;
-      if (dataset.spbutt === 'armor' && r1Data < 1) {
-        return;
-      } else if (dataset.spbutt === 'armor') {
-        label = 'Armor';
-        r2Data = 0;
-      }
-      if (this.actor.data.token.disposition === -1) {
-        // hostile = true;
-        blind = true;
-      }
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-    }
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollAbility(this.actor, dataset);
   }
 
   _onRollMod(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    let label = dataset.label;
-    game.alienrpg.rollArr.sCount = 0;
-
-    let r1Data = parseInt(dataset.roll || 0);
-    let r2Data = 0;
-    let reRoll = true;
-    let hostile = 'synthetic';
-    let blind = false;
-    if (dataset.spbutt === 'armor' && r1Data < 1) {
-      return;
-    } else if (dataset.spbutt === 'armor') {
-      label = 'Armor';
-      r2Data = 0;
-    }
-
-    if (this.actor.data.token.disposition === -1) {
-      // hostile = true;
-      blind = true;
-    }
-
-    // callpop upbox here to get any mods then update r1Data or rData as appropriate.
-    let confirmed = false;
-    new Dialog({
-      title: `Roll Modified ${label} check`,
-      content: `
-       <p>Please enter your modifier.</p>
-       <form>
-        <div class="form-group">
-         <label>Base Modifier:</label>
-           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-           </div>
-       </form>
-       `,
-      buttons: {
-        one: {
-          icon: '<i class="fas fa-check"></i>',
-          label: 'Roll!',
-          callback: () => (confirmed = true),
-        },
-        two: {
-          icon: '<i class="fas fa-times"></i>',
-          label: 'Cancel',
-          callback: () => (confirmed = false),
-        },
-      },
-      default: 'one',
-      close: (html) => {
-        if (confirmed) {
-          let modifier = parseInt(html.find('[name=modifier]')[0].value);
-          r1Data = r1Data + modifier;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-        }
-      },
-    }).render(true);
+    this.actor.rollAbilityMod(this.actor, dataset);
   }
 
   _onRollItemMod(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    let label = dataset.label;
-    let r1Data = parseInt(dataset.roll || 0);
-    let r2Data = 0;
-    let reRoll = false;
-    let hostile = 'synthetic';
-    let blind = false;
-
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.getOwnedItem(itemId);
-    // console.warn('item', item);
-    if (item.type === 'weapon') {
-      // Trigger the item roll
-      return item.roll(true);
-    }
+    this.actor.rollItemMod(item);
+  }
+  _rollItem(event) {
+    event.preventDefault();
+    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+    const item = this.actor.getOwnedItem(itemId);
+    this.actor.nowRollItem(item);
   }
 
-  _minusButton(event) {
+  _plusMinusButton(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    if (dataset.pmbut === 'minusStress') {
-      this.actor.update({ 'data.header.stress.value': this.actor.data.data.header.stress.value - 1 });
-      // }
-    } else {
-      this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value - 1 });
-    }
-  }
-  _plusButton(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    if (dataset.pmbut === 'plusStress') {
-      this.actor.update({ 'data.header.stress.value': this.actor.data.data.header.stress.value + 1 });
-    } else {
-      this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value + 1 });
-    }
+    console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
+    this.actor.stressChange(this.actor, dataset);
   }
   _stuntBtn(event) {
     event.preventDefault();
@@ -523,21 +412,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
   _onClickStatLevel(event) {
     event.preventDefault();
-
-    const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    const max = field.data('max') == undefined ? 4 : field.data('max');
-    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
-    const level = parseFloat(field.val());
-    let newLevel = ''; // Toggle next level - forward on click, backwards on right
-
-    if (event.type === 'click') {
-      newLevel = Math.clamped(level + 1, 0, max);
-    } else if (event.type === 'contextmenu') {
-      newLevel = Math.clamped(level - 1, 0, max);
-    } // Update the field value and save the form
-
-    field.val(newLevel);
-
+    this.actor.checkMarks(this.actor, event);
     this._onSubmit(event);
   }
 
@@ -588,52 +463,9 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const dataset = element.dataset;
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
-
-    // console.warn(element);
     const consUme = dataset.spbutt.toLowerCase();
-    let r1Data = 0;
-    let r2Data = this.actor.data.data.consumables[consUme].value;
-    let reRoll = true;
-    //let hostile = this.actor.data.data.type;
-    let blind = false;
 
-    if (this.actor.data.token.disposition === -1) {
-      blind = true;
-    }
-    if (r2Data <= 0) {
-      return ui.notifications.warn('You have run out of supplies');
-    } else {
-      yze.yzeRoll('supply', blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      if (game.alienrpg.rollArr.r2One) {
-        switch (consUme) {
-          case 'air':
-            this.actor.update({ 'data.consumables.air.value': this.actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'food':
-            this.actor.update({ 'data.consumables.food.value': this.actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'power':
-            this.actor.update({ 'data.consumables.power.value': this.actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'water':
-            this.actor.update({ 'data.consumables.water.value': this.actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
-            break;
-        }
-      }
-    }
-  }
-
-  _rollItem(event) {
-    event.preventDefault();
-    // const element = event.currentTarget;
-    // console.warn('element', element);
-    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    const item = this.actor.getOwnedItem(itemId);
-    // console.warn('item', item);
-    if (item.type === 'weapon') {
-      // Trigger the item roll
-      return item.roll();
-    }
+    this.actor.consumablesCheck(this.actor, consUme, label);
   }
 }
 export default alienrpgSynthActorSheet;

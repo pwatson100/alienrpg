@@ -103,3 +103,9 @@ Tested with FVTT V 0.7.5
 
 Version 1.2.3
 General Styling improvements to Chat, Journal and Creature Roll Attack Button. 
+
+Version 1.2.4
+Corrected bug where the Journal edit window background was black. 
+Changed text boxes to textarea boxes on sheets to give more room for text.  
+Roll Mod dialoge boxes now only allow Stress mods for Characters.  
+Don't forget to checkout the "Mother Instructions" Journal entry for tips and tricks.

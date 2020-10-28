@@ -142,14 +142,14 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
 
     // minus from health and stress
-    html.find('.minus-btn').click(this._minusButton.bind(this));
+    // html.find('.minus-btn').click(this._minusButton.bind(this));
 
     // plus tohealth and stress
-    html.find('.plus-btn').click(this._plusButton.bind(this));
+    // html.find('.plus-btn').click(this._plusButton.bind(this));
 
-    html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle Dying Wounded
+    // html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle Dying Wounded
 
-    html.find('.supply-btn').click(this._supplyRoll.bind(this));
+    // html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
     // Roll handlers, click handlers, etc. would go here.
     html.find('.currency').on('change', this._currencyField.bind(this));
@@ -204,271 +204,159 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
    */
   _onRoll(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    let label = dataset.label;
-    game.alienrpg.rollArr.sCount = 0;
+    const dataset = event.currentTarget.dataset;
 
-    if (dataset.roll) {
-      let r1Data = parseInt(dataset.roll || 0);
-      let r2Data = this.actor.getRollData().stress;
-      let reRoll = false;
-      let hostile = this.actor.type;
-      let blind = false;
-
-      if (this.actor.data.token.disposition === -1) {
-        blind = true;
-      }
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-
-      // console.warn('onRoll', game.alienrpg.rollArr);
-    } else {
-      if (dataset.panicroll) {
-        // Roll against the panic table and push the roll to the chat log.
-        let chatMessage = '';
-        const table = game.tables.getName('Panic Table');
-        const roll = new Roll('1d6 + @stress', this.actor.getRollData());
-        const customResults = table.roll({ roll });
-        chatMessage += '<h2>Panic Condition</h2>';
-        chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-        chatMessage += `${customResults.results[0].text}`;
-        ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
-      }
-    }
+    this.actor.rollAbility(this.actor, dataset);
   }
 
   _onRollMod(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    let label = dataset.label;
-    game.alienrpg.rollArr.sCount = 0;
 
-    let r1Data = parseInt(dataset.roll || 0);
-    let r2Data = 0;
-    let reRoll = false;
-    let hostile = this.actor.type;
-    let blind = false;
-    if (dataset.spbutt === 'armor' && r1Data < 1) {
-      return;
-    } else if (dataset.spbutt === 'armor') {
-      label = 'Armor';
-      r2Data = 0;
-    }
+    this.actor.rollAbilityMod(this.actor, dataset);
+  }
 
-    if (this.actor.data.token.disposition === -1) {
-      // hostile = true;
-      blind = true;
-    }
+  _rollItem(event) {
+    // console.log('alienrpgActorSheet -> _rollItem -> event', event);
+    event.preventDefault();
 
-    // callpop upbox here to get any mods then update r1Data or rData as appropriate.
-    let confirmed = false;
-    new Dialog({
-      title: `Roll Modified ${label} check`,
-      content: `
-       <p>Please enter your modifier.</p>
-       <form>
-        <div class="form-group">
-         <label>Base Modifier:</label>
-           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-           </div>
-           <div class="form-group">
-           <label>Stress Modifier:</label>
-           <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus">
-        </div>
-       </form>
-       `,
-      buttons: {
-        one: {
-          icon: '<i class="fas fa-check"></i>',
-          label: 'Roll!',
-          callback: () => (confirmed = true),
-        },
-        two: {
-          icon: '<i class="fas fa-times"></i>',
-          label: 'Cancel',
-          callback: () => (confirmed = false),
-        },
-      },
-      default: 'one',
-      close: (html) => {
-        if (confirmed) {
-          let modifier = parseInt(html.find('[name=modifier]')[0].value);
-          let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
-          r1Data = r1Data + modifier;
-          r2Data = r2Data + stressMod;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-        }
-      },
-    }).render(true);
+    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+    const item = this.actor.getOwnedItem(itemId);
+    this.actor.nowRollItem(item);
   }
 
   _onRollItemMod(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    let label = dataset.label;
-    let r1Data = parseInt(dataset.roll || 0);
-    let r2Data = this.actor.getRollData().stress;
-    let reRoll = false;
-    let hostile = this.actor.type;
-    let blind = false;
-
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.getOwnedItem(itemId);
-    // console.warn('item', item);
-    if (item.type === 'weapon') {
-      // Trigger the item roll
-      return item.roll(true);
-    }
+    this.actor.rollItemMod(item);
   }
 
-  _minusButton(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    if (dataset.pmbut === 'minusStress') {
-      this.actor.update({ 'data.header.stress.value': this.actor.data.data.header.stress.value - 1 });
-      // }
-    } else {
-      this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value - 1 });
-    }
-  }
-  _plusButton(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    if (dataset.pmbut === 'plusStress') {
-      this.actor.update({ 'data.header.stress.value': this.actor.data.data.header.stress.value + 1 });
-    } else {
-      this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value + 1 });
-    }
-  }
+  // _minusButton(event) {
+  //   event.preventDefault();
+  //   const element = event.currentTarget;
+  //   const dataset = element.dataset;
+  //   if (dataset.pmbut === 'minusStress') {
+  //     this.actor.update({ 'data.header.stress.value': this.actor.data.data.header.stress.value - 1 });
+  //     // }
+  //   } else {
+  //     this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value - 1 });
+  //   }
+  // }
+  // _plusButton(event) {
+  //   event.preventDefault();
+  //   const element = event.currentTarget;
+  //   const dataset = element.dataset;
+  //   if (dataset.pmbut === 'plusStress') {
+  //     this.actor.update({ 'data.header.stress.value': this.actor.data.data.header.stress.value + 1 });
+  //   } else {
+  //     this.actor.update({ 'data.header.health.value': this.actor.data.data.header.health.value + 1 });
+  //   }
+  // }
 
-  _onClickStatLevel(event) {
-    event.preventDefault();
+  // _onClickStatLevel(event) {
+  //   event.preventDefault();
 
-    const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    const max = field.data('max') == undefined ? 4 : field.data('max');
-    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
-    const level = parseFloat(field.val());
-    let newLevel = ''; // Toggle next level - forward on click, backwards on right
+  //   const field = $(event.currentTarget).siblings('input[type="hidden"]');
+  //   const max = field.data('max') == undefined ? 4 : field.data('max');
+  //   const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
+  //   const level = parseFloat(field.val());
+  //   let newLevel = ''; // Toggle next level - forward on click, backwards on right
 
-    if (event.type === 'click') {
-      newLevel = Math.clamped(level + 1, 0, max);
-    } else if (event.type === 'contextmenu') {
-      newLevel = Math.clamped(level - 1, 0, max);
-    } // Update the field value and save the form
+  //   if (event.type === 'click') {
+  //     newLevel = Math.clamped(level + 1, 0, max);
+  //   } else if (event.type === 'contextmenu') {
+  //     newLevel = Math.clamped(level - 1, 0, max);
+  //   } // Update the field value and save the form
 
-    field.val(newLevel);
+  //   field.val(newLevel);
 
-    this._onSubmit(event);
-  }
+  //   this._onSubmit(event);
+  // }
 
-  /**
-   * Get the font-awesome icon used to display a certain level of radiation
-   * @private
-   */
+  // /**
+  //  * Get the font-awesome icon used to display a certain level of radiation
+  //  * @private
+  //  */
 
-  _getClickIcon(level, stat) {
-    const maxPoints = this.object.data.data.general[stat].max;
-    const icons = {};
-    const usedPoint = '<i class="far fa-dot-circle"></i>';
-    const unUsedPoint = '<i class="far fa-circle"></i>';
+  // _getClickIcon(level, stat) {
+  //   const maxPoints = this.object.data.data.general[stat].max;
+  //   const icons = {};
+  //   const usedPoint = '<i class="far fa-dot-circle"></i>';
+  //   const unUsedPoint = '<i class="far fa-circle"></i>';
 
-    for (let i = 0; i <= maxPoints; i++) {
-      let iconHtml = '';
+  //   for (let i = 0; i <= maxPoints; i++) {
+  //     let iconHtml = '';
 
-      for (let iconColumn = 1; iconColumn <= maxPoints; iconColumn++) {
-        iconHtml += iconColumn <= i ? usedPoint : unUsedPoint;
-      }
+  //     for (let iconColumn = 1; iconColumn <= maxPoints; iconColumn++) {
+  //       iconHtml += iconColumn <= i ? usedPoint : unUsedPoint;
+  //     }
 
-      icons[i] = iconHtml;
-    }
+  //     icons[i] = iconHtml;
+  //   }
 
-    return icons[level];
-  }
-  _getContitionIcon(level, stat) {
-    const maxPoints = this.object.data.data.general[stat].max;
-    const icons = {};
-    const usedPoint = '<i class="far fa-dot-circle"></i>';
-    const unUsedPoint = '<i class="far fa-circle"></i>';
+  //   return icons[level];
+  // }
+  // _getContitionIcon(level, stat) {
+  //   const maxPoints = this.object.data.data.general[stat].max;
+  //   const icons = {};
+  //   const usedPoint = '<i class="far fa-dot-circle"></i>';
+  //   const unUsedPoint = '<i class="far fa-circle"></i>';
 
-    for (let i = 0; i <= maxPoints; i++) {
-      let iconHtml = '';
+  //   for (let i = 0; i <= maxPoints; i++) {
+  //     let iconHtml = '';
 
-      for (let iconColumn = 1; iconColumn <= maxPoints; iconColumn++) {
-        iconHtml += iconColumn <= i ? usedPoint : unUsedPoint;
-      }
+  //     for (let iconColumn = 1; iconColumn <= maxPoints; iconColumn++) {
+  //       iconHtml += iconColumn <= i ? usedPoint : unUsedPoint;
+  //     }
 
-      icons[i] = iconHtml;
-    }
+  //     icons[i] = iconHtml;
+  //   }
 
-    return icons[level];
-  }
+  //   return icons[level];
+  // }
 
-  _supplyRoll(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    const lTemp = 'ALIENRPG.' + dataset.spbutt;
-    const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
+  // _supplyRoll(event) {
+  //   event.preventDefault();
+  //   const element = event.currentTarget;
+  //   const dataset = element.dataset;
+  //   const lTemp = 'ALIENRPG.' + dataset.spbutt;
+  //   const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
 
-    // console.warn(element);
-    const consUme = dataset.spbutt.toLowerCase();
-    let r1Data = 0;
-    let r2Data = this.actor.data.data.consumables[consUme].value;
-    let reRoll = false;
-    let hostile = this.actor.data.type;
-    let blind = false;
+  //   // console.warn(element);
+  //   const consUme = dataset.spbutt.toLowerCase();
+  //   let r1Data = 0;
+  //   let r2Data = this.actor.data.data.consumables[consUme].value;
+  //   let reRoll = false;
+  //   let hostile = this.actor.data.type;
+  //   let blind = false;
 
-    if (this.actor.data.token.disposition === -1) {
-      blind = true;
-    }
-    if (r2Data <= 0) {
-      return ui.notifications.warn('You have run out of supplies');
-    } else {
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      if (game.alienrpg.rollArr.r2One) {
-        switch (consUme) {
-          case 'air':
-            this.actor.update({ 'data.consumables.air.value': this.actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'food':
-            this.actor.update({ 'data.consumables.food.value': this.actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'power':
-            this.actor.update({ 'data.consumables.power.value': this.actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'water':
-            this.actor.update({ 'data.consumables.water.value': this.actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
-            break;
-        }
-      }
-    }
-  }
-
-  _rollItem(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    let label = dataset.label;
-    const itemName = dataset.item;
-    const speaker = ChatMessage.getSpeaker();
-    let actor;
-    if (speaker.token) actor = game.actors.tokens[speaker.token];
-
-    if (!actor) actor = game.actors.get(speaker.actor);
-    const item = actor ? actor.items.find((i) => i.name === itemName) : null;
-    if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
-    // console.warn('actor.type', actor.data.type);
-    if (actor.data.type === 'vehicles') return ui.notifications.warn(`You do not have a Ranged Combat Skill`);
-
-    // Trigger the item roll
-    return item.roll();
-  }
+  //   if (this.actor.data.token.disposition === -1) {
+  //     blind = true;
+  //   }
+  //   if (r2Data <= 0) {
+  //     return ui.notifications.warn('You have run out of supplies');
+  //   } else {
+  //     yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+  //     if (game.alienrpg.rollArr.r2One) {
+  //       switch (consUme) {
+  //         case 'air':
+  //           this.actor.update({ 'data.consumables.air.value': this.actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
+  //           break;
+  //         case 'food':
+  //           this.actor.update({ 'data.consumables.food.value': this.actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
+  //           break;
+  //         case 'power':
+  //           this.actor.update({ 'data.consumables.power.value': this.actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
+  //           break;
+  //         case 'water':
+  //           this.actor.update({ 'data.consumables.water.value': this.actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
+  //           break;
+  //       }
+  //     }
+  //   }
+  // }
 
   _currencyField(event) {
     event.preventDefault();
