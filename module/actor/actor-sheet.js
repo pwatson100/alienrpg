@@ -371,8 +371,10 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     let li = $(event.currentTarget).parents('.grid-container');
     let li2 = li.children('#panel');
+    console.log('alienrpgActorSheet -> _stuntBtn -> li2', li2);
 
     const dataset = event.currentTarget.dataset;
+    console.log('alienrpgActorSheet -> _stuntBtn -> dataset', dataset);
     let item = game.items.getName(dataset.pmbut);
     let chatData = item.data.data.description;
     let div = $(`<div class="panel Col3">${chatData}</div>`);

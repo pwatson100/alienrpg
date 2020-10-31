@@ -114,7 +114,7 @@ Hooks.once('ready', async () => {
 
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
-  const NEEDS_MIGRATION_VERSION = '1.2.1';
+  const NEEDS_MIGRATION_VERSION = '1.2.5';
   const COMPATIBLE_MIGRATION_VERSION = '0' || isNaN('NaN');
   let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   console.warn('needMigration', needMigration, currentVersion);
@@ -232,7 +232,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
       if (ev.target.classList.contains('alien-Push-button')) {
         // do stuff
         let actor = game.actors.get(ChatMessage.getSpeaker().actor);
-        if (!actor) return ui.notifications.warn(`You do not have a token selected`);
+        if (!actor) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoToken'));
         let token = game.actors.get(ChatMessage.getSpeaker().token);
         let reRoll = true;
         let hostile = actor.data.type;
@@ -248,7 +248,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         }
         const reRoll1 = game.alienrpg.rollArr.r1Dice - game.alienrpg.rollArr.r1Six;
         const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
-        yze.yzeRoll(hostile, blind, reRoll, game.alienrpg.rollArr.tLabel, reRoll1, 'Black', reRoll2, 'Yellow');
+        yze.yzeRoll(hostile, blind, reRoll, game.alienrpg.rollArr.tLabel, reRoll1, game.i18n.localize('ALIENRPG.Black'), reRoll2, game.i18n.localize('ALIENRPG.Yellow'));
       }
     });
   });
@@ -329,7 +329,7 @@ Hooks.on('preCreateToken', async (scene, tokenData) => {
  */
 async function createAlienrpgMacro(data, slot) {
   if (data.type !== 'Item') return;
-  if (!('data' in data)) return ui.notifications.warn('You can only create macro buttons for owned Items');
+  if (!('data' in data)) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoActor'));
   const item = data.data;
 
   // Create the macro command
@@ -362,7 +362,7 @@ function rollItemMacro(itemName) {
   if (!actor) actor = game.actors.get(speaker.actor);
   // console.warn('alienrpg.js 155 - Got here', speaker, actor);
   const item = actor ? actor.items.find((i) => i.name === itemName) : null;
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+  if (!item) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoItem') + ' ' + ` ${itemName}`);
 
   // Trigger the item roll
   return item.roll();

@@ -1403,22 +1403,10 @@ button:focus {
 }
 
 .alienrpg .vehicle-header {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 125px;
-  flex: 0 0 125px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
   margin-bottom: 1px;
   background-color: #000;
   color: greenyellow;
@@ -1428,8 +1416,7 @@ button:focus {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 100px;
   flex: 0 0 100px;
-  height: 100px;
-  margin-right: 10px;
+  height: 150px;
   width: auto;
 }
 
@@ -1439,7 +1426,7 @@ button:focus {
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
-  width: 200px;
+  width: 150px;
 }
 
 .alienrpg .header-fields {
@@ -1611,7 +1598,6 @@ button:focus {
 .alienrpg .resource-label {
   font-family: "Wallpoet", sans-serif;
   text-transform: uppercase;
-  padding-right: 5px;
   padding-left: 5px;
   color: greenyellow;
   justify-self: center;

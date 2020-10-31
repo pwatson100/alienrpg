@@ -123,7 +123,7 @@ export const migrateCompendium = async function (pack) {
  * @return {Object}       The updateData to apply
  */
 const migrateActorData = (actor) => {
-  // // console.log("migrateActorData -> actor", actor)
+  console.log('migrateActorData -> actor', actor);
   const data = actor.data;
   const updateData = {};
   if (actor.type === 'creature') {
@@ -139,7 +139,58 @@ const migrateActorData = (actor) => {
       skill.mod = skill.value + data.attributes[conAtt].value;
       // console.warn('skill.mod', skill.mod);
     }
+    switch (data.general.career.value) {
+      case 'Colonial Marine':
+        data.general.career.value = 1;
+        break;
+      case 'Colonial Marshal':
+        data.general.career.value = 2;
+        break;
+      case 'Company Agent':
+        data.general.career.value = 3;
+        break;
+      case 'Kid':
+        data.general.career.value = 4;
+        break;
+      case 'Medic':
+        data.general.career.value = 5;
+        break;
+      case 'Mercenary':
+        data.general.career.value = 6;
+        break;
+      case 'Officer':
+        data.general.career.value = 7;
+        break;
+      case 'Pilot':
+        data.general.career.value = 8;
+        break;
+      case 'Roughneck':
+        data.general.career.value = 9;
+        break;
+      case 'Scientist':
+        data.general.career.value = 10;
+        break;
+      case 'Synthetic':
+        data.general.career.value = 11;
+        break;
+
+      default:
+        break;
+    }
+    data.skills.heavyMach.description = 'Heavy Machinery';
+    data.skills.closeCbt.description = 'Close Combat';
+    data.skills.stamina.description = 'Stamina';
+    data.skills.rangedCbt.description = 'Ranged Combat';
+    data.skills.mobility.description = 'Mobility';
+    data.skills.piloting.description = 'Piloting';
+    data.skills.command.description = 'Command';
+    data.skills.manipulation.description = 'Manipulation';
+    data.skills.medicalAid.description = 'Medical Aid';
+    data.skills.observation.description = 'Observation';
+    data.skills.survival.description = 'Survival';
+    data.skills.comtech.description = 'Comtech';
   }
+
   // Remove deprecated fields
   _migrateRemoveDeprecated(actor, updateData);
 
@@ -192,7 +243,90 @@ function cleanActorData(actorData) {
  * @param item
  */
 export const migrateItemData = function (item) {
+  console.log('migrateItemData -> item', item);
   const updateData = {};
+  if (item.type === 'item') {
+    switch (item.data.header.type.value) {
+      case 'Data Storage':
+        item.data.header.type.value = 1;
+        break;
+      case 'Diagnostics and Display':
+        item.data.header.type.value = 2;
+        break;
+      case 'Vision Devices':
+        item.data.header.type.value = 3;
+        break;
+      case 'Tools':
+        item.data.header.type.value = 4;
+        break;
+      case 'Medical Supplies':
+        item.data.header.type.value = 5;
+        break;
+      case 'Pharmaceuticals':
+        item.data.header.type.value = 6;
+        break;
+      case 'Food and Drink':
+        item.data.header.type.value = 7;
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  if (item.type === 'weapon') {
+    switch (item.data.header.type.value) {
+      case 'Ranged':
+        item.data.header.type.value = 1;
+        break;
+      case 'Melee':
+        item.data.header.type.value = 2;
+        break;
+
+      default:
+        break;
+    }
+  }
+  if (item.type === 'talent') {
+    switch (item.data.general.career.value) {
+      case 'General Talent':
+        item.data.general.career.value = 1;
+        break;
+      case 'Colonial Marine':
+        item.data.general.career.value = 2;
+        break;
+      case 'Colonial Marshal':
+        item.data.general.career.value = 3;
+        break;
+      case 'Company Agent':
+        item.data.general.career.value = 4;
+        break;
+      case 'Kid':
+        item.data.general.career.value = 5;
+        break;
+      case 'Medic':
+        item.data.general.career.value = 6;
+        break;
+      case 'Mercenary':
+        item.data.general.career.value = 7;
+        break;
+      case 'Officer':
+        item.data.general.career.value = 8;
+        break;
+      case 'Pilot':
+        item.data.general.career.value = 9;
+        break;
+      case 'Roughneck':
+        item.data.general.career.value = 10;
+        break;
+      case 'Scientist':
+        item.data.general.career.value = 11;
+        break;
+
+      default:
+        break;
+    }
+  }
 
   // Remove deprecated fields
   _migrateRemoveDeprecated(item, updateData);

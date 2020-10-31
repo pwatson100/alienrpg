@@ -1,6 +1,6 @@
 <form class="{{cssClass}} " autocomplete="off">
   <header class="vehicle-header">
-    <img class="profile-img-item" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+    <img class="profile-img-item" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
 
@@ -16,8 +16,8 @@
           <select class="select-css" name="data.header.type.value" data-dtype="{{data.header.type.value}}">
             {{#select data.header.type.value}}
             <!-- <option value=""></option> -->
-            <option value="Ranged">{{localize "ALIENRPG.WepTypeRanged"}}</option>
-            <option value="Melee">{{localize "ALIENRPG.WepTypeMelee"}}</option>
+            <option value="1">{{localize "ALIENRPG.WepTypeRanged"}}</option>
+            <option value="2">{{localize "ALIENRPG.WepTypeMelee"}}</option>
             {{/select}}
           </select>
         </div>

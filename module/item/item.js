@@ -31,7 +31,7 @@ export class alienrpgItem extends Item {
     // let roll;
     let r2Data = 0;
     let reRoll = false;
-    console.log('alienrpgItem -> roll -> this.actor.data.type', this.actor.data.type);
+    // console.log('alienrpgItem -> roll -> this.actor.data.type', this.actor.data.type);
     if (this.actor.data.type === 'character') {
       r2Data = this.actor.getRollData().stress;
       reRoll = false;
@@ -89,15 +89,15 @@ export class alienrpgItem extends Item {
               let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
 
               // Define the roll formula.
-              if (item.data.header.type.value === 'Ranged') {
+              if (item.data.header.type.value === '1') {
                 let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
                 r2Data = r2Data + stressMod;
-                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
                 game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-              } else if (item.data.header.type.value === 'Melee') {
+              } else if (item.data.header.type.value === '2') {
                 let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
                 r2Data = r2Data + stressMod;
-                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
                 game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
               } else {
                 console.warn('No type on item');
@@ -138,15 +138,15 @@ export class alienrpgItem extends Item {
               if (this.actor.data.type != 'vehicles') {
                 // it's not a vehicle so add the correct attribute bonus
                 // Define the roll formula.
-                if (item.data.header.type.value === 'Ranged') {
+                if (item.data.header.type.value === '1') {
                   let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
                   r2Data = r2Data + stressMod;
-                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-                } else if (item.data.header.type.value === 'Melee') {
+                } else if (item.data.header.type.value === '2') {
                   let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
                   r2Data = r2Data + stressMod;
-                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                 } else {
                   console.warn('No type on item');
@@ -154,15 +154,15 @@ export class alienrpgItem extends Item {
               } else {
                 // it's a vehicle so no attribute bonus
 
-                if (item.data.header.type.value === 'Ranged') {
+                if (item.data.header.type.value === '1') {
                   let r1Data = itemData.attributes.bonus.value + modifier;
                   r2Data = r2Data + stressMod;
-                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-                } else if (item.data.header.type.value === 'Melee') {
+                } else if (item.data.header.type.value === '2') {
                   let r1Data = itemData.attributes.bonus.value + modifier;
                   r2Data = r2Data + stressMod;
-                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                 } else {
                   console.warn('No type on item');
@@ -179,13 +179,14 @@ export class alienrpgItem extends Item {
       // Define the roll formula.
       if (this.actor.data.type != 'vehicles') {
         // it's not a vehicle so add the correct attribute bonus
-        if (item.data.header.type.value === 'Ranged') {
+        console.log('alienrpgItem -> roll -> item.data.header.type.value', item.data.header.type.value);
+        if (item.data.header.type.value === '1') {
           let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-        } else if (item.data.header.type.value === 'Melee') {
+        } else if (item.data.header.type.value === '2') {
           let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         } else {
           console.warn('No type on item');
@@ -193,13 +194,13 @@ export class alienrpgItem extends Item {
       } else {
         // it's a vehicle so no attribute bonus
 
-        if (item.data.header.type.value === 'Ranged') {
+        if (item.data.header.type.value === '1') {
           let r1Data = itemData.attributes.bonus.value;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-        } else if (item.data.header.type.value === 'Melee') {
+        } else if (item.data.header.type.value === '2') {
           let r1Data = itemData.attributes.bonus.value;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         } else {
           console.warn('No type on item');

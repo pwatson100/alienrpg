@@ -1,7 +1,7 @@
 <form class="{{cssClass}} " autocomplete="off">
   {{!-- Sheet Header --}}
   <header class="actor-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
       <div class="resources grid grid-4col">
@@ -33,12 +33,11 @@
         {{#if isGM}}
         <div class="tooltip"> 
         <h3 class="resource-label gCol5 tooltip" >NPC?</h3>
-          <span class="tooltiptext">Checking this box will cause all tokens created to be Unlnked and Hostile.</span>
+          <span class="tooltiptext">{{localize "ALIENRPG.NPCpopUp"}}</span>
           </div>
         <input class="gCol10 NPC" name="data.header.npc" type="checkbox" {{checked data.header.npc}} />
         {{/if}}
 
-        {{log "CONTEXT!!!!"}} {{log this}} 
     </div>
     </div>
     </div>
@@ -65,7 +64,7 @@
             <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{skill.label}}">{{skill.label}}  ({{skill.ability}})</h3>
             <input type="text" class="maxboxsize Attr2" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
             <div class="resource-content">
-              <button class="stunt-btn Attr3" data-pmbut="{{skill.label}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>
+              <button class="stunt-btn Attr3" data-pmbut="{{skill.description}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>
             </div>
           </span>
           {{/each}}
@@ -94,7 +93,7 @@
           {{/each}}
         </div>
         {{!-- Stunts/Talents pop up    DO NOT TOUCH THE DIV BELOW --}}
-        <div class="Col3" id="panel" >
+        <div class="Col3" style="font-family: initial;font-size: larger" id="panel" >
         </div>
       </div>
     </div>
@@ -161,17 +160,17 @@
                     <select class="select-css" name="data.general.career.value" data-dtype="{{data.general.career.value}}">
                       {{#select data.general.career.value}}
               <!-- <option value=""></option> -->
-              <option value="Colonial Marine">{{localize "ALIENRPG.ColonialMarine"}}</option>
-              <option value="Colonial Marshal">{{localize "ALIENRPG.ColonialMarshal"}}</option>
-              <option value="Company Agent">{{localize "ALIENRPG.CompanyAgent"}}</option>
-              <option value="Kid">{{localize "ALIENRPG.Kid"}}</option>
-              <option value="Medic">{{localize "ALIENRPG.Medic"}}</option>
-              <option value="Mercenary">{{localize "ALIENRPG.Mercenary"}}</option>           
-              <option value="Officer">{{localize "ALIENRPG.Officer"}}</option>
-              <option value="Pilot">{{localize "ALIENRPG.Pilot"}}</option>
-              <option value="Roughneck">{{localize "ALIENRPG.Roughneck"}}</option>
-              <option value="Scientist">{{localize "ALIENRPG.Scientist"}}</option>           
-              <option value="Synthetic">{{localize "ALIENRPG.Synthetic"}}</option>            
+              <option value="1">{{localize "ALIENRPG.ColonialMarine"}}</option>
+              <option value="2">{{localize "ALIENRPG.ColonialMarshal"}}</option>
+              <option value="3">{{localize "ALIENRPG.CompanyAgent"}}</option>
+              <option value="4">{{localize "ALIENRPG.Kid"}}</option>
+              <option value="5">{{localize "ALIENRPG.Medic"}}</option>
+              <option value="6">{{localize "ALIENRPG.Mercenary"}}</option>           
+              <option value="7">{{localize "ALIENRPG.Officer"}}</option>
+              <option value="8">{{localize "ALIENRPG.Pilot"}}</option>
+              <option value="9">{{localize "ALIENRPG.Roughneck"}}</option>
+              <option value="10">{{localize "ALIENRPG.Scientist"}}</option>           
+              <option value="11">{{localize "ALIENRPG.Synthetic"}}</option>           
               {{/select}}
             </select>
           </div>
@@ -212,4 +211,6 @@
       </div>
       </div>
     </section>
+    {{log "CONTEXT!!!!"}} {{log this}} 
+
   </form>

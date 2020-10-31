@@ -1,6 +1,6 @@
 <form class="{{cssClass}}" autocomplete="off">
   <header class="vehicle-header">
-    <img class="profile-img-item" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+    <img class="profile-img-item" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
 
@@ -15,13 +15,13 @@
           <select class="select-css" name="data.header.type.value" data-dtype="{{data.header.type.value}}">
             {{#select data.header.type.value}}
             <!-- <option value=""></option> -->
-            <option value="Data Storage">{{localize "ALIENRPG.DataStorage"}}</option>
-            <option value="Diagnostics and Display">{{localize "ALIENRPG.DiagnosticsDisplay"}}</option>
-            <option value="Vision Devices">{{localize "ALIENRPG.VisionDevices"}}</option>
-            <option value="Tools">{{localize "ALIENRPG.Tools"}}</option>
-            <option value="Medical Supplies">{{localize "ALIENRPG.MedicalSupplies"}}</option>
-            <option value="Pharmaceuticals">{{localize "ALIENRPG.Pharmaceuticals"}}</option>
-            <option value="Food and Drink">{{localize "ALIENRPG.FoodDrink"}}</option>
+            <option value="1">{{localize "ALIENRPG.DataStorage"}}</option>
+            <option value="2">{{localize "ALIENRPG.DiagnosticsDisplay"}}</option>
+            <option value="3">{{localize "ALIENRPG.VisionDevices"}}</option>
+            <option value="4">{{localize "ALIENRPG.Tools"}}</option>
+            <option value="5">{{localize "ALIENRPG.MedicalSupplies"}}</option>
+            <option value="6">{{localize "ALIENRPG.Pharmaceuticals"}}</option>
+            <option value="7">{{localize "ALIENRPG.FoodDrink"}}</option>
             {{/select}}
           </select>
         </div>

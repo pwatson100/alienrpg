@@ -108,7 +108,7 @@ export class yze {
         roll1 = `${r1Dice}` + 'db';
         if (r2Dice <= 0) {
           mr = new Roll(`${roll1}`).roll();
-          buildChat(mr, r1Dice, 'Base');
+          buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
           // console.log('yze -> yzeRoll -> mr', mr);
         }
       }
@@ -135,7 +135,7 @@ export class yze {
         }
         mr = new Roll(`${com}`).roll();
         // // console.log('yze -> yzeRoll -> mr', mr);
-        buildChat(mr, r1Dice, 'Stress');
+        buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Stress'));
       }
 
       // *******************************************************
@@ -151,12 +151,18 @@ export class yze {
       // *******************************************************
       if (hostile != 'supply') {
         if (game.alienrpg.rollArr.r2One === 1) {
-          chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">Roll Stress Once</div>';
+          chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.rollStress') + '</div>';
         } else if (game.alienrpg.rollArr.r2One > 1) {
-          chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">Roll Stress ' + game.alienrpg.rollArr.r2One + ' times. Use worst result.</div>';
+          chatMessage +=
+            '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">' +
+            game.i18n.localize('ALIENRPG.rollStress') +
+            ' ' +
+            game.alienrpg.rollArr.r2One +
+            game.i18n.localize('ALIENRPG.worstResult') +
+            '</div>';
         }
       } else if (game.alienrpg.rollArr.r2One >= 1) {
-        chatMessage += '<div class="blink"; style="color: blue; font-weight: bold; font-size: larger">Your supply decreses</div>';
+        chatMessage += '<div class="blink"; style="color: blue; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.supplyDecreases') + '</div>';
       }
     }
 
@@ -167,9 +173,11 @@ export class yze {
 
     if (hostile != 'supply') {
       if (succEss === 1) {
-        chatMessage += '<div style="color: #6868fc; font-weight: bold; font-size: larger"> You have ' + succEss + ' Success</div>';
+        chatMessage +=
+          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.youHave') + ' ' + succEss + ' ' + game.i18n.localize('ALIENRPG.sucess') + ' </div>';
       } else {
-        chatMessage += '<div style="color: #6868fc; font-weight: bold; font-size: larger"> You have ' + succEss + ' Successes</div>';
+        chatMessage +=
+          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.youHave') + ' ' + succEss + ' ' + game.i18n.localize('ALIENRPG.sucesses') + '</div>';
       }
     }
 
@@ -180,9 +188,27 @@ export class yze {
       chatMessage += '<hr>';
       let sTotal = oldRoll + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
       if (sTotal === 1) {
-        chatMessage += '<div style="color: #6868fc; font-weight: bold; font-size: larger"> Following the Push,<br> You have a Total of ' + sTotal + ' Success</div>';
+        chatMessage +=
+          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+          game.i18n.localize('ALIENRPG.followingPush') +
+          '<br>' +
+          game.i18n.localize('ALIENRPG.totalOf') +
+          ' ' +
+          sTotal +
+          ' ' +
+          game.i18n.localize('ALIENRPG.sucess') +
+          ' </div>';
       } else {
-        chatMessage += '<div style="color: #6868fc; font-weight: bold; font-size: larger"> Following the Push,<br> You have a Total of ' + sTotal + ' Successes</div>';
+        chatMessage +=
+          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+          game.i18n.localize('ALIENRPG.followingPush') +
+          '<br> ' +
+          game.i18n.localize('ALIENRPG.totalOf') +
+          ' ' +
+          sTotal +
+          ' ' +
+          game.i18n.localize('ALIENRPG.sucesses') +
+          '</div>';
       }
     }
 

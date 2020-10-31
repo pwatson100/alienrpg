@@ -109,3 +109,7 @@ Corrected bug where the Journal edit window background was black.
 Changed text boxes to textarea boxes on sheets to give more room for text.  
 Roll Mod dialoge boxes now only allow Stress mods for Characters.  
 Don't forget to checkout the "Mother Instructions" Journal entry for tips and tricks.
+
+Version 1.2.5
+Phase 1 of French language support added with thanks to Carter#2703 and Isma#1088
+Minor sheet improvements. 

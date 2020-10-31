@@ -16,12 +16,12 @@
 }
 
 .vehicle-header {
-  flex: 0 0 125px;
+  // flex: 0 0 125px;
   overflow: hidden;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  // justify-content: flex-start;
   margin-bottom: 1px;
   background-color: $c-black;
   color: $c-green;
@@ -29,15 +29,15 @@
 
 .profile-img {
   flex: 0 0 100px;
-  height: 100px;
-  margin-right: 10px;
+  height: 150px;
+  // margin-right: 10px;
   width: auto;
 }
 .profile-img-item {
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
-  width: 200px;
+  width: 150px;
 }
 
 .header-fields {

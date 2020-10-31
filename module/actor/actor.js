@@ -86,7 +86,7 @@ export class alienrpgActor extends Actor {
     }
   }
   async rollAbility(actor, dataset) {
-    console.log('alienrpgActor -> rollAbility -> actor, dataset', actor, dataset);
+    console.log('alienrpgActor -> rollAbility ->  dataset', dataset);
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
@@ -112,7 +112,7 @@ export class alienrpgActor extends Actor {
         // hostile = true;
         blind = true;
       }
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
       game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
     } else {
       if (dataset.panicroll) {
@@ -136,7 +136,7 @@ export class alienrpgActor extends Actor {
           actor.update({ 'data.general.panic.lastRoll': pCheck });
 
           chatMessage += `<h4  style="color: #f71403;font-weight: bolder"><i><b>Roll ${customResults.roll.total}   More Panic.</b> </i></h4>`;
-          chatMessage += `<h4><i>PC's Panic level has increased by one step to <b>Level ${pCheck}</b> (See page 104 of the Alien rule book.)</i></h4>`;
+          chatMessage += `<h4><i>PC's Panic level has increased by one step to <b style="color: #f71403;">Level ${pCheck}</b> (See page 104 of the Alien rule book.)</i></h4>`;
           switch (pCheck) {
             case 8:
               chatMessage += `<b>TREMBLE:</b>  You start to tremble uncontrollably. All skill rolls using AGILITY suffer a –2 modification until your panic stops.`;
@@ -255,7 +255,7 @@ export class alienrpgActor extends Actor {
             let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
             r1Data = r1Data + modifier;
             r2Data = r2Data + stressMod;
-            yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+            yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
             game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
           }
         },
@@ -290,7 +290,7 @@ export class alienrpgActor extends Actor {
             let modifier = parseInt(html.find('[name=modifier]')[0].value);
             r1Data = r1Data + modifier;
             r2Data = 0;
-            yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+            yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
             game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
           }
         },
@@ -356,9 +356,9 @@ export class alienrpgActor extends Actor {
       blind = true;
     }
     if (r2Data <= 0) {
-      return ui.notifications.warn('You have run out of supplies');
+      return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSupplys'));
     } else {
-      yze.yzeRoll('supply', blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+      yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
       if (game.alienrpg.rollArr.r2One) {
         switch (consUme) {
           case 'air':

@@ -43,6 +43,7 @@ A huge thanks to:
 - @asacolips#1867 for creating a great base system to kickstart new developments.
 - @NickEast#1131 for his development guides and base system.
 - @hooking [UTC+12]#0492 for his excellent PF2e which has provided many insights into how to build systems.
+- Carter#2703 and Isma#1088 for thir help with French language support.
 - And all the devs on Discord who know more than me for their various contributions.
 
 ### Feedback

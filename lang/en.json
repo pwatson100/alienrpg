@@ -119,5 +119,22 @@
   "ALIENRPG.Mercenary": "Mercenary",
   "ALIENRPG.Synthetic": "Synthetic",
   "ALIENRPG.Panicked": "Panicked",
-  "ALIENRPG.Stunts": "Stunts"
+  "ALIENRPG.Stunts": "Stunts",
+  "ALIENRPG.NPCpopUp": "Checking this box will cause all tokens created to be Unlnked and Hostile.",
+  "ALIENRPG.rollStress": "Roll Stress",
+  "ALIENRPG.worstResult": "times. Use worst result.",
+  "ALIENRPG.supplyDecreases": "Your supply decreses",
+  "ALIENRPG.sucess": "Sucess",
+  "ALIENRPG.sucesses": "Sucesses",
+  "ALIENRPG.Base": "Base",
+  "ALIENRPG.totalOf": "You have a Total of",
+  "ALIENRPG.followingPush": "Following the Push,",
+  "ALIENRPG.NoSupplys": "You have run out of supplies",
+  "ALIENRPG.NoToken": "You do not have a token selected",
+  "ALIENRPG.NoItem": "Your controlled Actor does not have an item named",
+  "ALIENRPG.NoActor": "You can only create macro buttons for owned Items",
+  "ALIENRPG.BaseMod": "Base Modifier",
+  "ALIENRPG.StressMod": "Stress Modifier",
+  "ALIENRPG.RollMod": "Roll Modifier",
+  "ALIENRPG.EnterMod": "Please enter your modifier"
 }
