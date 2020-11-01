@@ -14,7 +14,7 @@ export const migrateWorld = async function () {
       // console.warn('updateData', updateData, a.data);
       if (!isObjectEmpty(updateData)) {
         console.log(`Migrating Actor entity ${a.name}`);
-        await a.update(updateData, { enforceTypes: true });
+        await a.update(updateData, { enforceTypes: false });
       }
     } catch (err) {
       console.error(err);
@@ -26,7 +26,7 @@ export const migrateWorld = async function () {
     try {
       const updateData = migrateItemData(i.data);
       if (!isObjectEmpty(updateData)) {
-        console.log(`Migrating Item entity ${i.name}`);
+        // console.log(`Migrating Item entity ${i.name}`);
         await i.update(updateData, { enforceTypes: false });
       }
     } catch (err) {
@@ -39,7 +39,7 @@ export const migrateWorld = async function () {
     try {
       const updateData = migrateSceneData(s.data);
       if (!isObjectEmpty(updateData)) {
-        console.log(`Migrating Scene entity ${s.name}`);
+        // console.log(`Migrating Scene entity ${s.name}`);
         await s.update(updateData, { enforceTypes: false });
       }
     } catch (err) {
@@ -49,7 +49,7 @@ export const migrateWorld = async function () {
 
   // Migrate World Compendium Packs
   const packs = game.packs.filter((p) => {
-    return p.metadata.package === 'world' && ['Actor', 'Item', 'Scene'].includes(p.metadata.entity);
+    return p.metadata.package === 'world' && ['Actor', 'Item'].includes(p.metadata.entity);
   });
   for (let p of packs) {
     await migrateCompendium(p);
@@ -57,18 +57,18 @@ export const migrateWorld = async function () {
 
   // Migrate Base Rules Compendium Packs
   const bRpacks = game.packs.filter((cp) => {
-    return cp.metadata.package === 'AlienRPG-CoreRules' && ['Actor', 'Item', 'Scene'].includes(cp.metadata.entity);
+    return cp.metadata.package === 'AlienRPG-CoreRules' && ['Actor', 'Item'].includes(cp.metadata.entity);
   });
   for (let cp of bRpacks) {
     await migrateCompendium(cp);
   }
 
   // Migrate Chariot of the Gods Compendium Packs
-  const cGpacks = game.packs.filter((cp) => {
-    return cp.metadata.package === 'ChariotsOfTheGods' && ['Actor', 'Item', 'Scene'].includes(cp.metadata.entity);
+  const cGpacks = game.packs.filter((cg) => {
+    return cg.metadata.package === 'AlienRPG-ChariotOfTheGods' && ['Actor', 'Item'].includes(cg.metadata.entity);
   });
-  for (let cp of cGpacks) {
-    await migrateCompendium(cp);
+  for (let cg of cGpacks) {
+    await migrateCompendium(cg);
   }
 
   // Set the migration as complete
@@ -85,7 +85,7 @@ export const migrateWorld = async function () {
  */
 export const migrateCompendium = async function (pack) {
   const entity = pack.metadata.entity;
-  // if (!['Actor', 'Item', 'Scene'].includes(entity)) return;
+  if (!['Actor', 'Item'].includes(entity)) return;
 
   // Begin by requesting server-side data model migration and get the migrated content
   await pack.migrate();
@@ -97,7 +97,7 @@ export const migrateCompendium = async function (pack) {
       let updateData = null;
       if (entity === 'Item') updateData = migrateItemData(ent.data);
       else if (entity === 'Actor') updateData = migrateActorData(ent.data);
-      else if (entity === 'Scene') updateData = migrateSceneData(ent.data);
+      // else if (entity === 'Scene') updateData = migrateSceneData(ent.data);
       // console.warn('ent.data,updateData', ent.data, updateData);
       if (!isObjectEmpty(updateData)) {
         expandObject(updateData);
@@ -123,7 +123,7 @@ export const migrateCompendium = async function (pack) {
  * @return {Object}       The updateData to apply
  */
 const migrateActorData = (actor) => {
-  console.log('migrateActorData -> actor', actor);
+  // console.log('migrateActorData -> actor', actor);
   const data = actor.data;
   const updateData = {};
   if (actor.type === 'creature') {
@@ -141,54 +141,99 @@ const migrateActorData = (actor) => {
     }
     switch (data.general.career.value) {
       case 'Colonial Marine':
-        data.general.career.value = 1;
+        updateData[`data.general.career`] = { value: '1' };
+        // data.general.career.value = 1;
         break;
       case 'Colonial Marshal':
-        data.general.career.value = 2;
+        updateData[`data.general.career`] = { value: '2' };
+        // data.general.career.value = 2;
         break;
       case 'Company Agent':
-        data.general.career.value = 3;
+        updateData[`data.general.career`] = { value: '3' };
+        // data.general.career.value = 3;
         break;
       case 'Kid':
-        data.general.career.value = 4;
+        updateData[`data.general.career`] = { value: '4' };
+        // data.general.career.value = 4;
         break;
       case 'Medic':
-        data.general.career.value = 5;
+        updateData[`data.general.career`] = { value: '5' };
+        // data.general.career.value = 5;
         break;
       case 'Mercenary':
-        data.general.career.value = 6;
+        updateData[`data.general.career`] = { value: '6' };
+        // data.general.career.value = 6;
         break;
       case 'Officer':
-        data.general.career.value = 7;
+        updateData[`data.general.career`] = { value: '7' };
+        // data.general.career.value = 7;
         break;
       case 'Pilot':
-        data.general.career.value = 8;
+        updateData[`data.general.career`] = { value: '8' };
+        // data.general.career.value = 8;
         break;
       case 'Roughneck':
-        data.general.career.value = 9;
+        updateData[`data.general.career`] = { value: '9' };
+        // data.general.career.value = 9;
         break;
       case 'Scientist':
-        data.general.career.value = 10;
+        updateData[`data.general.career`] = { value: '10' };
+        // data.general.career.value = 10;
         break;
       case 'Synthetic':
-        data.general.career.value = 11;
+        updateData[`data.general.career`] = { value: '11' };
+        // data.general.career.value = 11;
         break;
 
       default:
         break;
     }
-    data.skills.heavyMach.description = 'Heavy Machinery';
-    data.skills.closeCbt.description = 'Close Combat';
-    data.skills.stamina.description = 'Stamina';
-    data.skills.rangedCbt.description = 'Ranged Combat';
-    data.skills.mobility.description = 'Mobility';
-    data.skills.piloting.description = 'Piloting';
-    data.skills.command.description = 'Command';
-    data.skills.manipulation.description = 'Manipulation';
-    data.skills.medicalAid.description = 'Medical Aid';
-    data.skills.observation.description = 'Observation';
-    data.skills.survival.description = 'Survival';
-    data.skills.comtech.description = 'Comtech';
+    // data.skills.heavyMach.description = 'Heavy Machinery';
+    updateData[`data.skills.heavyMach.description.-=value`] = null;
+    updateData[`data.skills.heavyMach`] = { description: 'Heavy Machinery' };
+    // data.skills.closeCbt.description = 'Close Combat';
+    updateData[`data.skills.closeCbt.description.-=value`] = null;
+    updateData[`data.skills.closeCbt`] = { description: 'Close Combat' };
+
+    // data.skills.stamina.description = 'Stamina';
+    updateData[`data.skills.stamina.description.-=value`] = null;
+    updateData[`data.skills.stamina`] = { description: 'Stamina' };
+
+    // data.skills.rangedCbt.description = 'Ranged Combat';
+    updateData[`data.skills.rangedCbt.description.-=value`] = null;
+    updateData[`data.skills.rangedCbt`] = { description: 'Ranged Combat' };
+
+    // data.skills.mobility.description = 'Mobility';
+    updateData[`data.skills.mobility.description.-=value`] = null;
+    updateData[`data.skills.mobility`] = { description: 'Mobility' };
+
+    // data.skills.piloting.description = 'Piloting';
+    updateData[`data.skills.piloting.description.-=value`] = null;
+    updateData[`data.skills.piloting`] = { description: 'Piloting' };
+
+    // data.skills.command.description = 'Command';
+    updateData[`data.skills.command.description.-=value`] = null;
+    updateData[`data.skills.command`] = { description: 'Command' };
+
+    // data.skills.manipulation.description = 'Manipulation';
+    updateData[`data.skills.manipulation.description.-=value`] = null;
+    updateData[`data.skills.manipulation`] = { description: 'Manipulation' };
+
+    // data.skills.medicalAid.description = 'Medical Aid';
+    updateData[`data.skills.medicalAid.description.-=value`] = null;
+    updateData[`data.skills.medicalAid`] = { description: 'Medical Aid' };
+
+    // data.skills.observation.description = 'Observation';
+    updateData[`data.skills.observation.description.-=value`] = null;
+    updateData[`data.skills.observation`] = { description: 'Observation' };
+
+    // data.skills.survival.description = 'Survival';
+    updateData[`data.skills.survival.description.-=value`] = null;
+    updateData[`data.skills.survival`] = { description: 'Survival' };
+
+    // data.skills.comtech.description = 'Comtech';
+    updateData[`data.skills.comtech.description.-=value`] = null;
+    updateData[`data.skills.comtech`] = { description: 'Comtech' };
   }
 
   // Remove deprecated fields
@@ -243,30 +288,46 @@ function cleanActorData(actorData) {
  * @param item
  */
 export const migrateItemData = function (item) {
-  console.log('migrateItemData -> item', item);
+  // console.log('migrateItemData -> item', item);
   const updateData = {};
   if (item.type === 'item') {
+    console.log('migrateItemData -> item.data.header.type', item.data.header.type.value);
+
     switch (item.data.header.type.value) {
       case 'Data Storage':
-        item.data.header.type.value = 1;
+        // item.data.header.type.value = 1;
+        updateData[`item.data.header.type`] = { value: '1' };
         break;
       case 'Diagnostics and Display':
-        item.data.header.type.value = 2;
+        updateData[`item.data.header.type`] = { value: '2' };
+        console.log('migrateItemData -> updateData', updateData);
+        // item.data.header.type.value = 2;
         break;
       case 'Vision Devices':
-        item.data.header.type.value = 3;
+        updateData[`item.data.header.type`] = { value: '3' };
+        console.log('migrateItemData -> updateData', updateData);
+        // item.data.header.type.value = 3;
         break;
       case 'Tools':
-        item.data.header.type.value = 4;
+        updateData[`item.data.header.type`] = { value: '4' };
+        console.log('migrateItemData -> updateData', updateData);
+        // item.data.header.type.value = 4;
         break;
       case 'Medical Supplies':
-        item.data.header.type.value = 5;
+        updateData[`item.data.header.type`] = { value: '5' };
+        console.log('migrateItemData -> updateData', updateData);
+        // item.data.header.type.value = 5;
         break;
       case 'Pharmaceuticals':
-        item.data.header.type.value = 6;
+        updateData[`item.data.header.type`] = { value: '6' };
+        console.log('migrateItemData -> updateData', updateData);
+        // item.data.header.type.value = 6;
         break;
       case 'Food and Drink':
-        item.data.header.type.value = 7;
+        updateData[`item.data.header.type`] = { value: '7' };
+        console.log('migrateItemData -> updateData', updateData);
+        // item.data.header.type.value = 7;
+        console.log('migrateItemData -> updateData', updateData);
         break;
 
       default:
@@ -277,10 +338,12 @@ export const migrateItemData = function (item) {
   if (item.type === 'weapon') {
     switch (item.data.header.type.value) {
       case 'Ranged':
-        item.data.header.type.value = 1;
+        updateData[`item.data.header.type`] = { value: '1' };
+        // item.data.header.type.value = 1;
         break;
       case 'Melee':
-        item.data.header.type.value = 2;
+        updateData[`item.data.header.type`] = { value: '2' };
+        // item.data.header.type.value = 2;
         break;
 
       default:
@@ -290,37 +353,48 @@ export const migrateItemData = function (item) {
   if (item.type === 'talent') {
     switch (item.data.general.career.value) {
       case 'General Talent':
-        item.data.general.career.value = 1;
+        updateData[`item.data.general.career`] = { value: '1' };
+        // item.data.general.career.value = 1;
         break;
       case 'Colonial Marine':
-        item.data.general.career.value = 2;
+        updateData[`item.data.general.career`] = { value: '2' };
+        // item.data.general.career.value = 2;
         break;
       case 'Colonial Marshal':
-        item.data.general.career.value = 3;
+        updateData[`item.data.general.career`] = { value: '3' };
+        // item.data.general.career.value = 3;
         break;
       case 'Company Agent':
-        item.data.general.career.value = 4;
+        updateData[`item.data.general.career`] = { value: '4' };
+        // item.data.general.career.value = 4;
         break;
       case 'Kid':
-        item.data.general.career.value = 5;
+        updateData[`item.data.general.career`] = { value: '5' };
+        // item.data.general.career.value = 5;
         break;
       case 'Medic':
-        item.data.general.career.value = 6;
+        updateData[`item.data.general.career`] = { value: '6' };
+        // item.data.general.career.value = 6;
         break;
       case 'Mercenary':
-        item.data.general.career.value = 7;
+        updateData[`item.data.general.career`] = { value: '7' };
+        // item.data.general.career.value = 7;
         break;
       case 'Officer':
-        item.data.general.career.value = 8;
+        updateData[`item.data.general.career`] = { value: '8' };
+        // item.data.general.career.value = 8;
         break;
       case 'Pilot':
-        item.data.general.career.value = 9;
+        updateData[`item.data.general.career`] = { value: '9' };
+        // item.data.general.career.value = 9;
         break;
       case 'Roughneck':
-        item.data.general.career.value = 10;
+        updateData[`item.data.general.career`] = { value: '10' };
+        // item.data.general.career.value = 10;
         break;
       case 'Scientist':
-        item.data.general.career.value = 11;
+        updateData[`item.data.general.career`] = { value: '11' };
+        // item.data.general.career.value = 11;
         break;
 
       default:

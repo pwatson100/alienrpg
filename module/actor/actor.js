@@ -107,6 +107,7 @@ export class alienrpgActor extends Actor {
       } else if (dataset.spbutt === 'armor') {
         label = 'Armor';
         r2Data = 0;
+        reRoll = true;
       }
       if (actor.data.token.disposition === -1) {
         // hostile = true;

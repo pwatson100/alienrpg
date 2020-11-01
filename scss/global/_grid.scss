@@ -1,8 +1,17 @@
-.grid,
-.grid-2col {
+.grid {
   display: grid;
   grid-column: span 2 / span 2;
   // grid-template-columns: repeat(2, minmax(50fr, 1fr));
+  // gap: 5px;
+  // margin: 5px 0;
+  padding: 0;
+  align-items: center;
+  // justify-items: center;
+}
+.grid-2col {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: 1fr 1fr;
   // gap: 5px;
   // margin: 5px 0;
   padding: 0;

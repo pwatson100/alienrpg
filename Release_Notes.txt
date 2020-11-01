@@ -113,3 +113,10 @@ Don't forget to checkout the "Mother Instructions" Journal entry for tips and tr
 Version 1.2.5
 Phase 1 of French language support added with thanks to Carter#2703 and Isma#1088
 Minor sheet improvements. 
+
+Version 1.2.6
+With the release of DsN V3.1 only the two sets of Alien dice will now be selectable.   
+The system will default to the Alien unnumbered dice this can be changed in the DsN configuration by the GM and players.  
+Removed the Push button from Armor rolls.
+More French language localisation work.
+Corrected an issue with the migration script.

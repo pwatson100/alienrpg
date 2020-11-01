@@ -12,19 +12,15 @@
   justify-content: flex-start;
   margin-bottom: 1px;
   background-color: $c-black;
-  color: $c-green;
+  //  color: $c-green;
 }
 
 .vehicle-header {
-  // flex: 0 0 125px;
   overflow: hidden;
   display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
-  // justify-content: flex-start;
   margin-bottom: 1px;
   background-color: $c-black;
-  color: $c-green;
+  //  color: $c-green;
 }
 
 .profile-img {
@@ -53,14 +49,13 @@ h1.charname {
     width: 100%;
     height: 100%;
     margin: 0;
-    color: $c-green;
+    color: inherit;
   }
 }
 
 .sheet-tabs {
   flex: 0;
-  // background-color: rgb(56, 55, 55);
-  color: $c-green;
+  //  color: $c-green;
 }
 
 .alienrpg .sheet-body,
@@ -68,7 +63,7 @@ h1.charname {
 .editor {
   height: 100%; //  Do not change this or notes will stop working
   background-color: $c-black;
-  color: $c-green;
+  //  color: $c-green;
   overflow: hidden;
 }
 
@@ -83,7 +78,7 @@ h1.charname {
 }
 .maxboxsize {
   max-width: 40px;
-  color: $c-green;
+  color: inherit;
   background-color: $c-black;
   height: 20px;
   padding: 0;
@@ -92,20 +87,20 @@ h1.charname {
 }
 .cashboxsize {
   max-width: 150px;
-  color: $c-green;
+  color: inherit;
   justify-items: center;
   background-color: $c-black;
   text-align: center;
 }
 
 .textbox {
-  color: $c-green;
+  color: inherit;
   justify-items: center;
   background-color: $c-black;
   width: 180px;
 }
 .textbox1 {
-  color: $c-green;
+  color: inherit;
   justify-items: center;
   background-color: $c-black;
   width: 200px;
@@ -114,7 +109,7 @@ h1.charname {
   margin-bottom: 1px;
 }
 .textbox2 {
-  color: $c-green;
+  color: inherit;
   justify-items: center;
   background-color: $c-black;
   width: 400px;
@@ -123,36 +118,15 @@ h1.charname {
   margin-bottom: 1px;
 }
 
-// input {
-//   width: 200px;
-//   // height: 20%;
-//   margin: 4px;
-//   color: $c-green;
-//   font-family: monospace;
-// }
-
 .ability-mod {
-  color: $c-green;
+  //  color: $c-green;
 }
 
-// .selectBox {
-//   color: $c-green;
-
-//   select {
-//     // background-color: grey;
-//     color: $c-green;
-//     background-color: $c-black;
-//     font-size: 15px;
-//     border: none;
-//     border-radius: 4px;
-//   }
-// }
 textarea {
   resize: none;
-  // width: 98%;
   padding: 2;
-  color: $c-green;
-  // margin: 4px;
+  // color: $c-green;
+  color: inherit;
   border: 1px solid $c-green;
 }
 
@@ -168,7 +142,7 @@ form .sheet-content .click-stat-level {
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.25px;
-  color: $c-green;
+  //  color: $c-green;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -185,7 +159,7 @@ form .sheet-content .click-stat-level {
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.25px;
-  color: $c-green;
+  //  color: $c-green;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -195,7 +169,7 @@ form .sheet-content .click-stat-level {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  color: $c-green;
+  //  color: $c-green;
   margin-right: 8px;
   font-weight: 700;
   font-size: 15px;

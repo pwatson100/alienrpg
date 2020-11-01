@@ -22,7 +22,8 @@
   }
   select {
     font-family: $font-primary;
-    color: $c-green;
+    //  color: $c-green;
+    color: inherit;
     background: $c-black;
     border: $c-green 3px;
     border: 1px solid #7a7971;
@@ -33,13 +34,17 @@
   }
   input {
     font-family: $font-primary;
-    color: $c-green;
+    //  color: $c-green;
+    color: inherit;
+
     background: $c-black;
     border: $c-green 3px;
   }
   button {
     font-family: $font-primary;
-    color: $c-green;
+    //  color: $c-green;
+    color: inherit;
+
     background: $c-black;
     border: $c-green solid 1px;
     width: 100%;
@@ -66,20 +71,24 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-
-  color: $c-green;
+  color: inherit;
+  //  color: $c-green;
 
   .message-header .message-sender {
     color: $c-green;
+    // color: inherit;
   }
   .message-metadata {
     color: $c-green;
+    // color: inherit;
   }
   .flavor-text {
     color: $c-green;
+    // color: inherit;
   }
   .table-draw .table-results .table-result {
     color: $c-green;
+    // color: inherit;
   }
 }
 .chat-message .table-draw .table-results .table-result .chatBG {
@@ -88,11 +97,14 @@
   background-repeat: no-repeat;
   background-position: center;
   color: $c-green;
+  color: inherit;
+
   padding-left: 6px;
 }
 .chat-message.whisper {
   background: rgb(22, 22, 22);
-  color: $c-green;
+  //  color: $c-green;
+  color: inherit;
 }
 
 .chat-message.blind {
@@ -105,21 +117,23 @@
   background: $c-black;
 
   .dice-rolls {
-    color: $c-green;
+    color: inherit;
+    //  color: $c-green;
     background: $c-black;
   }
   .part-header {
-    color: $c-green;
+    color: inherit;
+    //  color: $c-green;
     background: $c-black;
   }
 }
 
 .inline-roll .dice-tooltip {
-  color: $c-green;
+  color: inherit;
+  //  color: $c-green;
   background: $c-black;
   border: 2px solid $c-green;
   border-radius: 2px;
-  color: #ffff00;
 }
 // a.entity-link,
 a.inline-roll {
@@ -133,13 +147,16 @@ a.inline-roll {
 
 .dice-roll .dice-formula,
 .dice-roll .dice-total {
+  // color: inherit;
   color: $c-green;
 }
 .dice-tooltip .part-header .part-formula {
-  color: $c-green;
+  //  color: $c-green;
+  color: inherit;
 }
 .part-total {
-  color: $c-green;
+  //  color: $c-green;
+  color: inherit;
 }
 
 .alienrpg h2 {
@@ -161,7 +178,7 @@ a.inline-roll {
     width: 30px;
     font-size: 1.5rem;
     padding: 0;
-    color: #adff2f;
+    color: inherit;
     margin: 0;
   }
 }
@@ -169,16 +186,16 @@ a.inline-roll {
 .rollable {
   &:hover,
   &:focus {
-    color: black;
+    // color: black;
     text-shadow: 0 0 20px red;
-    font-size: 110%;
+    font-size: 95%;
     cursor: pointer;
   }
 }
 .creature-acid-roll {
   &:hover,
   &:focus {
-    color: black;
+    // color: black;
     text-shadow: 0 0 20px red;
     font-size: 110%;
     cursor: pointer;
@@ -187,9 +204,9 @@ a.inline-roll {
 .rollItem {
   &:hover,
   &:focus {
-    color: black;
+    // color: black;
     text-shadow: 0 0 20px red;
-    // font-size: 110%;
+    font-size: 110%;
     font-weight: bolder;
     cursor: pointer;
   }
@@ -314,7 +331,7 @@ button:focus {
   visibility: hidden;
   width: 250px;
   background-color: black;
-  color: $c-green;
+  //  color: $c-green;
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;

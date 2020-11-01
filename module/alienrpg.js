@@ -157,7 +157,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
     texture: 'none',
   });
 
-  dice3d.addSystem({ id: 'alienrpg', name: 'Alien RPG - Blank' }, false);
+  dice3d.addSystem({ id: 'alienrpg', name: 'Alien RPG - Blank' }, 'exclusive');
   dice3d.addDicePreset({
     type: 'db',
     labels: [
@@ -185,7 +185,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
     system: 'alienrpg',
   });
 
-  dice3d.addSystem({ id: 'alienrpgf', name: 'Alien RPG - Full Dice' }, false);
+  dice3d.addSystem({ id: 'alienrpgf', name: 'Alien RPG - Full Dice' }, 'exclusive');
   dice3d.addDicePreset({
     type: 'db',
     labels: [

@@ -371,14 +371,18 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     let li = $(event.currentTarget).parents('.grid-container');
     let li2 = li.children('#panel');
-    console.log('alienrpgActorSheet -> _stuntBtn -> li2', li2);
 
     const dataset = event.currentTarget.dataset;
-    console.log('alienrpgActorSheet -> _stuntBtn -> dataset', dataset);
     let item = game.items.getName(dataset.pmbut);
-    let chatData = item.data.data.description;
-    let div = $(`<div class="panel Col3">${chatData}</div>`);
+    let chatData = '';
+    let temp1 = 'ALIENRPG.' + [item.name];
 
+    chatData = game.i18n.localize(temp1);
+    console.log('alienrpgActorSheet -> _stuntBtn -> chatData.length', chatData.length);
+    if (chatData.length < 25) {
+      chatData = item.data.data.description;
+    }
+    let div = $(`<div class="panel Col3">${chatData}</div>`);
     // Toggle summary
     if (li2.hasClass('expanded')) {
       let summary = li2.children('.panel');

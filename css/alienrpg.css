@@ -30,7 +30,7 @@
 
 .journal-sheet select {
   font-family: "Wallpoet", sans-serif;
-  color: greenyellow;
+  color: inherit;
   background: #000;
   border: greenyellow 3px;
   border: 1px solid #7a7971;
@@ -43,14 +43,14 @@
 
 .journal-sheet input {
   font-family: "Wallpoet", sans-serif;
-  color: greenyellow;
+  color: inherit;
   background: #000;
   border: greenyellow 3px;
 }
 
 .journal-sheet button {
   font-family: "Wallpoet", sans-serif;
-  color: greenyellow;
+  color: inherit;
   background: #000;
   border: greenyellow solid 1px;
   width: 100%;
@@ -79,7 +79,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: greenyellow;
+  color: inherit;
 }
 
 .chat-message .message-header .message-sender {
@@ -104,12 +104,13 @@
   background-repeat: no-repeat;
   background-position: center;
   color: greenyellow;
+  color: inherit;
   padding-left: 6px;
 }
 
 .chat-message.whisper {
   background: #161616;
-  color: greenyellow;
+  color: inherit;
 }
 
 .chat-message.blind {
@@ -123,21 +124,20 @@
 }
 
 .dice-tooltip .dice-rolls {
-  color: greenyellow;
+  color: inherit;
   background: #000;
 }
 
 .dice-tooltip .part-header {
-  color: greenyellow;
+  color: inherit;
   background: #000;
 }
 
 .inline-roll .dice-tooltip {
-  color: greenyellow;
+  color: inherit;
   background: #000;
   border: 2px solid greenyellow;
   border-radius: 2px;
-  color: #ffff00;
 }
 
 a.inline-roll {
@@ -155,11 +155,11 @@ a.inline-roll {
 }
 
 .dice-tooltip .part-header .part-formula {
-  color: greenyellow;
+  color: inherit;
 }
 
 .part-total {
-  color: greenyellow;
+  color: inherit;
 }
 
 .alienrpg h2 {
@@ -183,27 +183,25 @@ a.inline-roll {
   width: 30px;
   font-size: 1.5rem;
   padding: 0;
-  color: #adff2f;
+  color: inherit;
   margin: 0;
 }
 
 .rollable:hover, .rollable:focus {
-  color: black;
   text-shadow: 0 0 20px red;
-  font-size: 110%;
+  font-size: 95%;
   cursor: pointer;
 }
 
 .creature-acid-roll:hover, .creature-acid-roll:focus {
-  color: black;
   text-shadow: 0 0 20px red;
   font-size: 110%;
   cursor: pointer;
 }
 
 .rollItem:hover, .rollItem:focus {
-  color: black;
   text-shadow: 0 0 20px red;
+  font-size: 110%;
   font-weight: bolder;
   cursor: pointer;
 }
@@ -335,7 +333,6 @@ button:focus {
   visibility: hidden;
   width: 250px;
   background-color: black;
-  color: greenyellow;
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
@@ -364,10 +361,19 @@ button:focus {
   visibility: visible;
 }
 
-.grid,
-.grid-2col {
+.grid {
   display: grid;
   grid-column: span 2 / span 2;
+  padding: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.grid-2col {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: 1fr 1fr;
   padding: 0;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -392,7 +398,7 @@ button:focus {
 
 .grid-genPage {
   display: grid;
-  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item9 Item6 Item6' 'Item9 Item7 Item7' 'Item11 Item10 Item10' 'Item11 Item10 Item10';
+  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item9 Item6 Item6' 'Item9 Item7 Item7' 'Item11 Item10 Item10' 'Item11 Item10 Item10';
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -527,7 +533,7 @@ button:focus {
 
 .grid-Consumables {
   display: grid;
-  grid-template-areas: 'Heading Heading ' 'Air1 Air2' 'Food1 Food2' 'Power1 Power2' 'Water1 Water2';
+  grid-template-areas: 'Heading Heading ' 'Air1 Air2' 'Food1 Food2' 'Power1 Power2' 'Water1 Water2';
   grid-template-columns: 1fr 1fr;
 }
 
@@ -584,7 +590,7 @@ button:focus {
 .grid-vehicle {
   display: grid;
   border: 2px solid greenyellow;
-  grid-template-areas: 'vItem1 vItem2 vItem3 vItem4' 'vItem5 vItem6 vItem7 vItem8';
+  grid-template-areas: 'vItem1 vItem2 vItem3 vItem4' 'vItem5 vItem6 vItem7 vItem8';
   grid-template-columns: auto;
 }
 
@@ -627,7 +633,7 @@ button:focus {
 .grid-weapon {
   display: grid;
   border: 2px solid greenyellow;
-  grid-template-areas: 'wItem1 wItem2 wItem3 wItem4' 'wItem5 wItem6 wItem7 wItem7';
+  grid-template-areas: 'wItem1 wItem2 wItem3 wItem4' 'wItem5 wItem6 wItem7 wItem7';
   grid-template-columns: auto;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -665,7 +671,7 @@ button:focus {
 
 .grid-items {
   display: grid;
-  grid-template-areas: 'lCol1 lCol2 lCol2 lCol10 lCol3 lCol4' 'lCol5 lCol6 lCol6 lCol9 lCol7 lCol8';
+  grid-template-areas: 'lCol1 lCol2 lCol2 lCol10 lCol3 lCol4' 'lCol5 lCol6 lCol6 lCol9 lCol7 lCol8';
   padding-bottom: 2px;
   grid-template-columns: 0.25fr 1fr 1.5fr 0.15fr 0.4fr 0.5fr;
   -webkit-box-align: center;
@@ -725,7 +731,7 @@ button:focus {
 
 .grid-talents {
   display: grid;
-  grid-template-areas: 'talTitle talTitle' 'tal1 tal2' 'tal3 tal4';
+  grid-template-areas: 'talTitle talTitle' 'tal1 tal2' 'tal3 tal4';
   padding: 3px;
   grid-template-columns: 75% 25%;
   -webkit-box-align: center;
@@ -831,7 +837,7 @@ button:focus {
 .grid-creature {
   display: grid;
   border: 2px solid greenyellow;
-  grid-template-areas: 'vCre1 vCre2 ' 'vCre3 vCre4 ' 'vCre5 vCre6 ' 'vCre7 vCre8';
+  grid-template-areas: 'vCre1 vCre2 ' 'vCre3 vCre4 ' 'vCre5 vCre6 ' 'vCre7 vCre8';
 }
 
 .vCre1 {
@@ -869,7 +875,7 @@ button:focus {
 .grid-planet-header {
   display: grid;
   border: 2px solid greenyellow;
-  grid-template-areas: 'hplan1 hplan2 ' 'hplan3 hplan4' 'hplan5 hplan6 ' 'hplan7 hplan8';
+  grid-template-areas: 'hplan1 hplan2 ' 'hplan3 hplan4' 'hplan5 hplan6 ' 'hplan7 hplan8';
   grid-template-columns: auto;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -941,7 +947,7 @@ button:focus {
 .grid-systems {
   display: grid;
   padding: 3px;
-  grid-template-areas: 'sys1 sys2 sys3 sys4' 'sys5 sys6 sys7 sys8';
+  grid-template-areas: 'sys1 sys2 sys3 sys4' 'sys5 sys6 sys7 sys8';
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
@@ -992,7 +998,7 @@ button:focus {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  grid-template-areas: 'gCol1 gCol2 gCol3 gCol4 gCol5' 'gCol6 gCol7 gCol8 gCol9 gCol10';
+  grid-template-areas: 'gCol1 gCol2 gCol3 gCol4 gCol5' 'gCol6 gCol7 gCol8 gCol9 gCol10';
   grid-template-columns: 110px 50px 110px 50px 65px;
 }
 
@@ -1297,7 +1303,7 @@ button:focus {
   font-size: 15px;
   font-family: "Wallpoet", sans-serif;
   font-weight: 700;
-  color: greenyellow;
+  color: inherit;
   width: 100%;
   max-width: 90%;
   /* useful when width is set to anything other than 100% */
@@ -1332,17 +1338,17 @@ button:focus {
 
 /* Hover style */
 .select-css:hover {
-  border-color: greenyellow;
+  color: inherit;
 }
 
 /* Focus style */
 .select-css:focus {
-  border-color: greenyellow;
+  color: inherit;
   /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
   -webkit-box-shadow: 0 0 1px 1px greenyellow;
   box-shadow: 0 0 1px 1px greenyellow;
   box-shadow: 0 0 0 1px -moz-mac-focusring greenyellow;
-  color: greenyellow;
+  color: inherit;
   outline: none;
   background-color: black;
 }
@@ -1399,7 +1405,6 @@ button:focus {
   justify-content: flex-start;
   margin-bottom: 1px;
   background-color: #000;
-  color: greenyellow;
 }
 
 .alienrpg .vehicle-header {
@@ -1409,7 +1414,6 @@ button:focus {
   display: flex;
   margin-bottom: 1px;
   background-color: #000;
-  color: greenyellow;
 }
 
 .alienrpg .profile-img {
@@ -1446,14 +1450,13 @@ button:focus {
   width: 100%;
   height: 100%;
   margin: 0;
-  color: greenyellow;
+  color: inherit;
 }
 
 .alienrpg .sheet-tabs {
   -webkit-box-flex: 0;
   -ms-flex: 0;
   flex: 0;
-  color: greenyellow;
 }
 
 .alienrpg .alienrpg .sheet-body,
@@ -1461,7 +1464,6 @@ button:focus {
 .alienrpg .editor {
   height: 100%;
   background-color: #000;
-  color: greenyellow;
   overflow: hidden;
 }
 
@@ -1475,7 +1477,7 @@ button:focus {
 
 .alienrpg .maxboxsize {
   max-width: 40px;
-  color: greenyellow;
+  color: inherit;
   background-color: #000;
   height: 20px;
   padding: 0;
@@ -1485,21 +1487,21 @@ button:focus {
 
 .alienrpg .cashboxsize {
   max-width: 150px;
-  color: greenyellow;
+  color: inherit;
   justify-items: center;
   background-color: #000;
   text-align: center;
 }
 
 .alienrpg .textbox {
-  color: greenyellow;
+  color: inherit;
   justify-items: center;
   background-color: #000;
   width: 180px;
 }
 
 .alienrpg .textbox1 {
-  color: greenyellow;
+  color: inherit;
   justify-items: center;
   background-color: #000;
   width: 200px;
@@ -1509,7 +1511,7 @@ button:focus {
 }
 
 .alienrpg .textbox2 {
-  color: greenyellow;
+  color: inherit;
   justify-items: center;
   background-color: #000;
   width: 400px;
@@ -1518,14 +1520,10 @@ button:focus {
   margin-bottom: 1px;
 }
 
-.alienrpg .ability-mod {
-  color: greenyellow;
-}
-
 .alienrpg textarea {
   resize: none;
   padding: 2;
-  color: greenyellow;
+  color: inherit;
   border: 1px solid greenyellow;
 }
 
@@ -1542,7 +1540,6 @@ button:focus {
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.25px;
-  color: greenyellow;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1567,7 +1564,6 @@ button:focus {
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.25px;
-  color: greenyellow;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1589,7 +1585,6 @@ button:focus {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  color: greenyellow;
   margin-right: 8px;
   font-weight: 700;
   font-size: 15px;
@@ -1599,7 +1594,6 @@ button:focus {
   font-family: "Wallpoet", sans-serif;
   text-transform: uppercase;
   padding-left: 5px;
-  color: greenyellow;
   justify-self: center;
   -webkit-box-flex: 1;
   -ms-flex: auto;
@@ -1610,21 +1604,20 @@ button:focus {
   font-weight: bold;
   text-transform: uppercase;
   padding-right: 5px;
-  color: greenyellow;
 }
 
 .alienrpg .tabs {
   height: 30px;
   border-top: 1px solid #aaa;
   border-bottom: 1px solid #aaa;
-  color: greenyellow;
+  color: inherit;
   background-color: #000;
 }
 
 .alienrpg .tabs .item {
   line-height: 30px;
   font-weight: bold;
-  color: greenyellow;
+  color: inherit;
 }
 
 .alienrpg .tabs .item.active {
@@ -1658,7 +1651,6 @@ button:focus {
   text-transform: uppercase;
   padding-right: 5px;
   padding-left: 5px;
-  color: greenyellow;
 }
 
 .alienrpg .biog {
@@ -1678,7 +1670,6 @@ button:focus {
 .alienrpg .biog .editor-content {
   width: 550px;
   word-wrap: break-word;
-  color: greenyellow;
   font-family: "Wallpoet", sans-serif;
 }
 

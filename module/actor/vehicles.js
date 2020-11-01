@@ -24,7 +24,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'vehicles-sheet'],
       // template: 'systems/alienrpg/templates/actor/vehicles-sheet.html',
-      width: 600,
+      width: 745,
       height: 510,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
