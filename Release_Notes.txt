@@ -120,3 +120,14 @@ The system will default to the Alien unnumbered dice this can be changed in the 
 Removed the Push button from Armor rolls.
 More French language localisation work.
 Corrected an issue with the migration script.
+
+Version 1.2.7
+Added configuration options per GM/player to allow:
+- Switch to Right Mouse click for Rolls and left Mouse click for Mods
+- Change fonts from a preselected list
+- Change text colours on character sheets etc. 
+Fixed issue with draging owned items on to the macro hotbar.
+Phase 3 of French translation completed, Just the dialog boxes to do. 
+If you see anything wrong or missing please let me know as I am relying on Google Translate for the final parts.
+Phase 3 de la traduction française terminée, juste les boîtes de dialogue à faire.
+Si vous voyez quelque chose d'anormal ou de manquant, veuillez me le faire savoir car je compte sur Google Traduction pour les parties finales.

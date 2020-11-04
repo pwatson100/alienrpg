@@ -1,7 +1,7 @@
 export default function () {
   game.settings.register('alienrpg', 'defaultTokenSettings', {
-    name: 'Default Prototype Token Settings',
-    hint: 'Automatically set advised prototype token settings to newly created Actors.',
+    name: 'ALIENRPG.DefProto',
+    hint: 'ALIENRPG.DefProtoHint',
     scope: 'world',
     config: true,
     default: true,
@@ -13,5 +13,17 @@ export default function () {
     config: false,
     type: String,
     default: 0,
+  });
+
+  game.settings.register('alienrpg', 'switchMouseKeys', {
+    name: 'ALIENRPG.SwitchKeys',
+    hint: 'ALIENRPG.SwitchKeysHint',
+    scope: 'world',
+    type: Boolean,
+    default: false,
+    config: true,
+    onChange: () => {
+      location.reload();
+    },
   });
 }

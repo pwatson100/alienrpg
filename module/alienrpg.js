@@ -13,6 +13,7 @@ import { preloadHandlebarsTemplates } from './templates.js';
 import { AlienRPGBaseDie } from './alienRPGBaseDice.js';
 import { AlienRPGStressDie } from './alienRPGBaseDice.js';
 import * as migrations from './migration.js';
+import { AlienConfig } from './alienRPGConfig.js';
 
 Hooks.once('init', async function () {
   console.warn(`Initializing Alien RPG`);
@@ -21,6 +22,7 @@ Hooks.once('init', async function () {
     alienrpgItem,
     alienrpgPlanetSheet,
     yze,
+    AlienConfig,
     rollItemMacro,
     registerSettings,
   };
@@ -98,13 +100,61 @@ Hooks.once('init', async function () {
 
   // Register system settings
   game.settings.register('alienrpg', 'macroShorthand', {
-    name: 'Shortened Macro Syntax',
-    hint:
-      'Enable a shortened macro syntax which allows referencing attributes directly, for example @str instead of @attributes.str.value. Disable this setting if you need the ability to reference the full attribute model, for example @attributes.str.label.',
+    name: 'ALIENRPG.DefMacro',
+    hint: 'ALIENRPG.DefMacroHint',
     scope: 'world',
     type: Boolean,
     default: true,
     config: true,
+  });
+
+  game.settings.register('alienrpg', 'fontColour', {
+    name: 'ALIENRPG.Fontpick',
+    label: 'ALIENRPG.Colpick',
+    hint: 'ALIENRPG.ColpickHint',
+    icon: 'fas fa-dice-d20',
+    restricted: false,
+    type: String,
+    config: false,
+    scope: 'client',
+    default: '#adff2f',
+    onChange: () => {
+      location.reload();
+    },
+  });
+  game.settings.register('alienrpg', 'fontStyle', {
+    name: 'ALIENRPG.FontStyle',
+    label: 'ALIENRPG.StylePicker',
+    hint: 'ALIENRPG.StylePickerHint',
+    icon: 'fas fa-cogs',
+    restricted: false,
+    scope: 'client',
+    type: String,
+    config: false,
+    onChange: () => {
+      location.reload();
+    },
+  });
+  game.settings.registerMenu('alienrpg', 'alienrpgSettings', {
+    name: 'ALIENRPG.MenuName',
+    label: 'ALIENRPG.MenuLabel',
+    hint: 'ALIENRPG.MenuHint',
+    icon: 'fas fa-palette',
+    type: AlienConfig,
+    restricted: false,
+  });
+
+  // register setting for add/remove menu button
+  game.settings.register('alienrpg', 'addMenuButton', {
+    name: 'ALIENRPG.AddMenuName',
+    hint: 'ALIENRPG.AddMenuHint',
+    scope: 'world',
+    config: true,
+    default: AlienConfig.getDefaults.addMenuButton,
+    type: Boolean,
+    onChange: (enabled) => {
+      AlienConfig.toggleConfigButton(enabled);
+    },
   });
 });
 
@@ -139,6 +189,18 @@ Hooks.once('ready', async function () {
       }
     });
   }, 250);
+});
+
+// create/remove the quick access config button
+Hooks.once('renderSettings', () => {
+  AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
+});
+
+Hooks.once('ready', () => {
+  // game.settings.get('alienrpg', 'fontColour');
+  var r = document.querySelector(':root');
+  r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
+  r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
 });
 
 // ***************************
@@ -379,3 +441,30 @@ Hooks.once('setup', function () {
     }, {});
   }
 });
+class Utils {
+  /**
+   *
+   * @param cfg
+   * @returns {{}}
+   */
+  static localize(cfg) {
+    return Object.keys(cfg).reduce((i18nCfg, key) => {
+      i18nCfg[key] = game.i18n.localize(cfg[key]);
+      return i18nCfg;
+    }, {});
+  }
+}
+
+// class AlienConfig extends FormApplication {
+//   static get defaultOptions() {
+//     return mergeObject(super.defaultOptions, {
+//       title: game.i18n.localize('Alien RPG Colour Settings'),
+//       id: 'AlienConfig',
+//       template: 'systems/alienrpg/module/alienprgSettings.html',
+//       width: 500,
+//       height: 500,
+//       closeOnSubmit: true,
+//     });
+//   }
+
+// }

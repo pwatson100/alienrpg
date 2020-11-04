@@ -1,13 +1,57 @@
-@import url("https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Wallpoet:wght@400;800&family=Wallpoet:wght@300;400;500&display=swap");
+@font-face {
+  font-family: 'Changa', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Changa", sans-serif), url(../fonts2-c79JNi2YuVOUcOarRPgnNGooxCZ62xcjfj9w.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto-Regular"), url(../fonts/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Wallpoet';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Wallpoet"), url(../fonts/f0X10em2_8RnXVVdUObp58Q.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Sansita Swashed';
+  src: local("Sansita Swashed"), url(../fonts/SansitaSwashed-VariableFont_wght.ttf);
+  font-weight: 400;
+  font-stretch: 25%;
+}
+
+:root {
+  --alienfont: 'Wallpoet';
+  --fontsize: 15px;
+}
+
+:root {
+  --aliengreen: #adff2f;
+  --blue: #577ee7;
+  --black: #000;
+  --white: #ffffff;
+}
+
 /* Global styles */
 .alienrpg ul ol {
   margin-left: 3px;
 }
 
 .alienrpg .window-content {
-  font-family: "Wallpoet", sans-serif;
-  color: greenyellow;
+  font-family: var(--alienfont);
+  color: var(--aliengreen);
+  font-size: var(--fontsize);
   background: #000;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -18,21 +62,21 @@
   padding: 2px;
   overflow-y: scroll;
   overflow-x: auto;
-  border: greenyellow 3px;
+  border: var(--aliengreen) 3px;
 }
 
 .journal-sheet form {
-  color: greenyellow;
+  color: var(--aliengreen);
   background: #000;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   border-radius: 1px;
 }
 
 .journal-sheet select {
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
   color: inherit;
   background: #000;
-  border: greenyellow 3px;
+  border: var(--aliengreen) 3px;
   border: 1px solid #7a7971;
   border-radius: 3px;
   padding: 0 3px;
@@ -42,17 +86,17 @@
 }
 
 .journal-sheet input {
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
   color: inherit;
   background: #000;
-  border: greenyellow 3px;
+  border: var(--aliengreen) 3px;
 }
 
 .journal-sheet button {
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
   color: inherit;
   background: #000;
-  border: greenyellow solid 1px;
+  border: var(--aliengreen) solid 1px;
   width: 100%;
   margin: 0 1px;
   border-radius: 3px;
@@ -83,19 +127,19 @@
 }
 
 .chat-message .message-header .message-sender {
-  color: greenyellow;
+  color: var(--aliengreen);
 }
 
 .chat-message .message-metadata {
-  color: greenyellow;
+  color: var(--aliengreen);
 }
 
 .chat-message .flavor-text {
-  color: greenyellow;
+  color: var(--aliengreen);
 }
 
 .chat-message .table-draw .table-results .table-result {
-  color: greenyellow;
+  color: var(--aliengreen);
 }
 
 .chat-message .table-draw .table-results .table-result .chatBG {
@@ -103,14 +147,13 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: greenyellow;
-  color: inherit;
+  color: var(--aliengreen);
   padding-left: 6px;
 }
 
 .chat-message.whisper {
   background: #161616;
-  color: inherit;
+  color: var(--aliengreen);
 }
 
 .chat-message.blind {
@@ -118,7 +161,7 @@
 }
 
 .dice-tooltip {
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   border-radius: 1px;
   background: #000;
 }
@@ -136,14 +179,14 @@
 .inline-roll .dice-tooltip {
   color: inherit;
   background: #000;
-  border: 2px solid greenyellow;
+  border: 2px solid var(--aliengreen);
   border-radius: 2px;
 }
 
 a.inline-roll {
   background: black;
   padding: 1px 4px;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   border-radius: 2px;
   white-space: nowrap;
   word-break: break-all;
@@ -151,7 +194,7 @@ a.inline-roll {
 
 .dice-roll .dice-formula,
 .dice-roll .dice-total {
-  color: greenyellow;
+  color: var(--aliengreen);
 }
 
 .dice-tooltip .part-header .part-formula {
@@ -170,6 +213,12 @@ a.inline-roll {
 }
 
 .alienrpg h3 {
+  border: 0;
+  padding: 0;
+  margin: 1px;
+}
+
+.alienrpg h4 {
   border: 0;
   padding: 0;
   margin: 1px;
@@ -223,13 +272,13 @@ a.inline-roll {
 .supply-btn {
   font-size: 5px;
   padding: 0;
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
 }
 
 .stunt-btn {
   width: 5px;
   padding: 0;
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
 }
 
 .creature-attack-roll {
@@ -342,7 +391,7 @@ button:focus {
   right: 105%;
   margin-left: -60px;
   border-style: solid;
-  border-color: greenyellow;
+  border-color: var(--aliengreen);
 }
 
 .tooltip .tooltiptext::after {
@@ -383,7 +432,7 @@ button:focus {
 .grid-3col {
   grid-column: span 3 / span 3;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-color: greenyellow;
+  border-color: var(--aliengreen);
   justify-items: center;
   margin: 0;
 }
@@ -391,7 +440,7 @@ button:focus {
 .grid-4col {
   grid-column: span 4 / span 4;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-color: greenyellow;
+  border-color: var(--aliengreen);
   border-style: double;
   padding: 4px;
 }
@@ -404,71 +453,71 @@ button:focus {
 
 .Item1 {
   grid-area: Item1;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   padding: 5px;
 }
 
 .Item2 {
   grid-area: Item2;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
 }
 
 .Item3 {
   grid-area: Item3;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 
 .Item4 {
   grid-area: Item4;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 
 .Item5 {
   grid-area: Item5;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 
 .Item6 {
   grid-area: Item6;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 
 .Item7 {
   grid-area: Item7;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 
 .Item8 {
   grid-area: Item8;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   padding: 5px;
 }
 
 .Item9 {
   grid-area: Item9;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
 }
 
 .Item10 {
   grid-area: Item10;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 
 .Item11 {
   grid-area: Item11;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   padding: 4px;
   padding-left: 24px;
   -ms-flex-line-pack: center;
@@ -484,7 +533,7 @@ button:focus {
   padding: 0;
   grid-template-areas: 'Col1 Col2 ' 'Col3 Col3';
   grid-template-rows: 1fr;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 335px 1fr;
 }
 
 .Col1 {
@@ -508,9 +557,9 @@ button:focus {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   grid-template-areas: 'Attr1 Attr2 Attr3';
-  grid-template-columns: 250px 35px 30px;
+  grid-template-columns: 260px 35px 30px;
 }
 
 .Attr1 {
@@ -582,14 +631,14 @@ button:focus {
 
 .grid-vehicle-header {
   display: grid;
-  border: 2px solid greenyellow;
+  border: 2px solid var(--aliengreen);
   grid-template-areas: 'vChar vChar';
   grid-template-columns: auto;
 }
 
 .grid-vehicle {
   display: grid;
-  border: 2px solid greenyellow;
+  border: 2px solid var(--aliengreen);
   grid-template-areas: 'vItem1 vItem2 vItem3 vItem4' 'vItem5 vItem6 vItem7 vItem8';
   grid-template-columns: auto;
 }
@@ -632,7 +681,7 @@ button:focus {
 
 .grid-weapon {
   display: grid;
-  border: 2px solid greenyellow;
+  border: 2px solid var(--aliengreen);
   grid-template-areas: 'wItem1 wItem2 wItem3 wItem4' 'wItem5 wItem6 wItem7 wItem7';
   grid-template-columns: auto;
   -webkit-box-align: center;
@@ -836,7 +885,7 @@ button:focus {
 
 .grid-creature {
   display: grid;
-  border: 2px solid greenyellow;
+  border: 2px solid var(--aliengreen);
   grid-template-areas: 'vCre1 vCre2 ' 'vCre3 vCre4 ' 'vCre5 vCre6 ' 'vCre7 vCre8';
 }
 
@@ -874,7 +923,7 @@ button:focus {
 
 .grid-planet-header {
   display: grid;
-  border: 2px solid greenyellow;
+  border: 2px solid var(--aliengreen);
   grid-template-areas: 'hplan1 hplan2 ' 'hplan3 hplan4' 'hplan5 hplan6 ' 'hplan7 hplan8';
   grid-template-columns: auto;
   -webkit-box-align: center;
@@ -994,7 +1043,7 @@ button:focus {
   padding-left: 30px;
   grid-row-gap: 3px;
   grid-column-gap: 10px;
-  border-color: greenyellow;
+  border-color: var(--aliengreen);
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -1202,7 +1251,7 @@ button:focus {
   position: absolute;
   top: 1px;
   left: 1px;
-  background: greenyellow;
+  background: var(--aliengreen);
   height: 8px;
   border: 1px solid #6f5439;
   border-radius: 3px;
@@ -1301,7 +1350,7 @@ button:focus {
 .select-css {
   display: block;
   font-size: 15px;
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
   font-weight: 700;
   color: inherit;
   width: 100%;
@@ -1310,7 +1359,7 @@ button:focus {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
   -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
   box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
   border-radius: 0.5em;
@@ -1345,9 +1394,9 @@ button:focus {
 .select-css:focus {
   color: inherit;
   /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
-  -webkit-box-shadow: 0 0 1px 1px greenyellow;
-  box-shadow: 0 0 1px 1px greenyellow;
-  box-shadow: 0 0 0 1px -moz-mac-focusring greenyellow;
+  -webkit-box-shadow: 0 0 1px 1px var(--aliengreen);
+  box-shadow: 0 0 1px 1px var(--aliengreen);
+  box-shadow: 0 0 0 1px -moz-mac-focusring var(--aliengreen);
   color: inherit;
   outline: none;
   background-color: black;
@@ -1369,7 +1418,7 @@ button:focus {
 /* Disabled styles */
 .select-css:disabled,
 .select-css[aria-disabled='true'] {
-  color: greenyellow;
+  color: var(--aliengreen);
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -webkit-gradient(linear, left top, left bottom, from(black), to(black));
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -o-linear-gradient(top, black 0%, black 100%);
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, black 0%, black 100%);
@@ -1382,7 +1431,7 @@ button:focus {
 
 /* Styles limited to alienrpg sheets */
 .alienrpg .item-form {
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
   background: #000;
 }
 
@@ -1524,7 +1573,7 @@ button:focus {
   resize: none;
   padding: 2;
   color: inherit;
-  border: 1px solid greenyellow;
+  border: 1px solid var(--aliengreen);
 }
 
 .alienrpg form .sheet-content .click-stat-level {
@@ -1591,7 +1640,7 @@ button:focus {
 }
 
 .alienrpg .resource-label {
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
   text-transform: uppercase;
   padding-left: 5px;
   justify-self: center;
@@ -1646,7 +1695,7 @@ button:focus {
 }
 
 .alienrpg .item-label {
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
   font-size: small;
   text-transform: uppercase;
   padding-right: 5px;
@@ -1657,7 +1706,7 @@ button:focus {
   height: 300px;
   padding: 3px 0;
   width: 1fr;
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
 }
 
 .alienrpg .biog .biog-image {
@@ -1670,7 +1719,7 @@ button:focus {
 .alienrpg .biog .editor-content {
   width: 550px;
   word-wrap: break-word;
-  font-family: "Wallpoet", sans-serif;
+  font-family: var(--alienfont);
 }
 
 .alienrpg .biog img {

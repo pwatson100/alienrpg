@@ -170,12 +170,13 @@ export class alienrpgActor extends Actor {
           chatMessage += `<h4><i><b>Roll ${customResults.roll.total} </b></i></h4>`;
           chatMessage += `${customResults.results[0].text}`;
           if (customResults.roll.total >= 7) {
-            chatMessage += `<h4 style="color: #f71403;"><i><b>You are at Panic <b>Level ${customResults.roll.total}</b></i></h4>`;
+            chatMessage +=
+              `<h4 style="color: #f71403;"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${customResults.roll.total}</b></i></h4>`;
           }
         }
         let trauma = customResults.roll.total >= 13 || pCheck >= 13;
         if (trauma) {
-          chatMessage += `<h4><b>Permanant Trauma. Make an EMPATHY roll at the end of the session. <i>(See page 106 of the Alien rule book.)</i></h4></b>`;
+          chatMessage += `<h4><b>` + game.i18n.localize('ALIENRPG.PermanantTrauma') + `<i>(` + game.i18n.localize('ALIENRPG.Seepage106') + `) </i></h4></b>`;
         }
         ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
       }

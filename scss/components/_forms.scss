@@ -1,5 +1,5 @@
 .item-form {
-  font-family: $font-primary;
+  font-family: var(--alienfont);
   background: $c-black;
 }
 
@@ -127,7 +127,7 @@ textarea {
   padding: 2;
   // color: $c-green;
   color: inherit;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
 }
 
 form .sheet-content .click-stat-level {

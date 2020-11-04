@@ -1,5 +1,6 @@
 import { yze } from '../YZEDiceRoller.js';
 import { toNumber } from '../utils.js';
+// import * as CP from '../color-picker.js';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -23,8 +24,8 @@ export class alienrpgActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
-      width: 650,
-      height: 710,
+      width: 670,
+      height: 725,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -264,16 +265,38 @@ export class alienrpgActorSheet extends ActorSheet {
       this.actor.deleteOwnedItem(li.data('itemId'));
       li.slideUp(200, () => this.render(false));
     });
+    if (game.settings.get('alienrpg', 'switchMouseKeys')) {
+      // Right to Roll and left to mod
+      // Rollable abilities.
+      html.find('.rollable').contextmenu(this._onRoll.bind(this));
 
-    // Rollable abilities.
-    html.find('.rollable').click(this._onRoll.bind(this));
+      html.find('.rollable').click(this._onRollMod.bind(this));
 
-    html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+      // Rollable Items.
+      html.find('.rollItem').contextmenu(this._rollItem.bind(this));
 
-    // Rollable Items.
-    html.find('.rollItem').click(this._rollItem.bind(this));
+      html.find('.rollItem').click(this._onRollItemMod.bind(this));
+    } else {
+      // Left to Roll and Right toMod
+      // Rollable abilities.
+      html.find('.rollable').click(this._onRoll.bind(this));
 
-    html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
+      html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
+      // Rollable Items.
+      html.find('.rollItem').click(this._rollItem.bind(this));
+
+      html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
+    }
+    // // Rollable abilities.
+    // html.find('.rollable').click(this._onRoll.bind(this));
+
+    // html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
+    // // Rollable Items.
+    // html.find('.rollItem').click(this._rollItem.bind(this));
+
+    // html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
 
     // minus from health and stress
     html.find('.minus-btn').click(this._plusMinusButton.bind(this));
@@ -291,7 +314,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Drag events for macros.
     if (this.actor.owner) {
-      let handler = (ev) => this._onDragItemStart(ev);
+      let handler = (ev) => this._onDragStart(ev);
       // Find all items on the character sheet.
       html.find('li.item').each((i, li) => {
         // Ignore for the header row.
@@ -378,7 +401,6 @@ export class alienrpgActorSheet extends ActorSheet {
     let temp1 = 'ALIENRPG.' + [item.name];
 
     chatData = game.i18n.localize(temp1);
-    console.log('alienrpgActorSheet -> _stuntBtn -> chatData.length', chatData.length);
     if (chatData.length < 25) {
       chatData = item.data.data.description;
     }

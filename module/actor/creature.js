@@ -115,11 +115,16 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
 
-    // Rollable abilities.
-    html.find('.rollable').click(this._onRoll.bind(this));
-
-    html.find('.rollable').contextmenu(this._onRollMod.bind(this));
-
+    if (game.settings.get('alienrpg', 'switchMouseKeys')) {
+      // Right to Roll and left to mod
+      // Rollable abilities.
+      html.find('.rollable').contextmenu(this._onRoll.bind(this));
+      html.find('.rollable').click(this._onRollMod.bind(this));
+    } else {
+      // Left to Roll and Right toMod
+      html.find('.rollable').click(this._onRoll.bind(this));
+      html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+    }
     // plus tohealth and stress
     html.find('.creature-attack-roll').click(this._creatureAttackRoll.bind(this));
     // Rollable abilities.
@@ -201,8 +206,8 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     } else {
       // Roll against the panic table and push the roll to the chat log.
       let chatMessage = '';
-      chatMessage += '<h2>No Skill</h2>';
-      chatMessage += `<h4><i>This Creature does not have this Skill</i></h4>`;
+      chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.NoSkill') + '</h2>';
+      chatMessage += `<h4><i>` + game.i18n.localize('ALIENRPG.CreatureSkill') + `</i></h4>`;
       ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
     }
   }
@@ -327,8 +332,8 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     } else {
       // Roll against the panic table and push the roll to the chat log.
       let chatMessage = '';
-      chatMessage += '<h2>Acid Blood</h2>';
-      chatMessage += `<h4><i>This Creature does not have Acid Blood</i></h4>`;
+      chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AcidAttack') + '</h2>';
+      chatMessage += `<h4><i>` + game.i18n.localize('ALIENRPG.AcidBlood') + `</i></h4>`;
       ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
     }
   }
@@ -343,7 +348,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     const roll = new Roll('1d6');
 
     const customResults = table.roll({ roll });
-    chatMessage += '<h2>Attack Roll</h2>';
+    chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
     chatMessage += `<h4><i>${table.data.description}</i></h4>`;
     chatMessage += `${customResults.results[0].text}`;
     ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.WHISPER });

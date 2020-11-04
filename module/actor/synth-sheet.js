@@ -263,15 +263,39 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       li.slideUp(200, () => this.render(false));
     });
 
-    // Rollable abilities.
-    html.find('.rollable').click(this._onRoll.bind(this));
+    if (game.settings.get('alienrpg', 'switchMouseKeys')) {
+      // Right to Roll and left to mod
+      // Rollable abilities.
+      html.find('.rollable').contextmenu(this._onRoll.bind(this));
 
-    html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+      html.find('.rollable').click(this._onRollMod.bind(this));
 
-    // Rollable Items.
-    html.find('.rollItem').click(this._rollItem.bind(this));
+      // Rollable Items.
+      html.find('.rollItem').contextmenu(this._rollItem.bind(this));
 
-    html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
+      html.find('.rollItem').click(this._onRollItemMod.bind(this));
+    } else {
+      // Left to Roll and Right toMod
+      // Rollable abilities.
+      html.find('.rollable').click(this._onRoll.bind(this));
+
+      html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
+      // Rollable Items.
+      html.find('.rollItem').click(this._rollItem.bind(this));
+
+      html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
+    }
+
+    // // Rollable abilities.
+    // html.find('.rollable').click(this._onRoll.bind(this));
+
+    // html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
+    // // Rollable Items.
+    // html.find('.rollItem').click(this._rollItem.bind(this));
+
+    // html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
 
     // minus from health and stress
     html.find('.minus-btn').click(this._plusMinusButton.bind(this));
@@ -289,7 +313,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // Drag events for macros.
     if (this.actor.owner) {
-      let handler = (ev) => this._onDragItemStart(ev);
+      let handler = (ev) => this._onDragStart(ev);
       // Find all items on the character sheet.
       html.find('li.item').each((i, li) => {
         // Ignore for the header row.
@@ -368,6 +392,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
     this.actor.stressChange(this.actor, dataset);
   }
+
   _stuntBtn(event) {
     event.preventDefault();
     let li = $(event.currentTarget).parents('.grid-container');
@@ -375,9 +400,14 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     const dataset = event.currentTarget.dataset;
     let item = game.items.getName(dataset.pmbut);
-    let chatData = item.data.data.description;
-    let div = $(`<div class="panel Col3">${chatData}</div>`);
+    let chatData = '';
+    let temp1 = 'ALIENRPG.' + [item.name];
 
+    chatData = game.i18n.localize(temp1);
+    if (chatData.length < 25) {
+      chatData = item.data.data.description;
+    }
+    let div = $(`<div class="panel Col3">${chatData}</div>`);
     // Toggle summary
     if (li2.hasClass('expanded')) {
       let summary = li2.children('.panel');

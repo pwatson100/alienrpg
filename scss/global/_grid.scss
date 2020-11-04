@@ -22,7 +22,7 @@
 .grid-3col {
   grid-column: span 3 / span 3;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-color: $c-green;
+  border-color: var(--aliengreen);
   // border-style: solid;
   justify-items: center;
   margin: 0;
@@ -31,7 +31,7 @@
 .grid-4col {
   grid-column: span 4 / span 4;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-color: $c-green;
+  border-color: var(--aliengreen);
   border-style: double;
   padding: 4px;
 }
@@ -54,62 +54,62 @@
 
 .Item1 {
   grid-area: Item1;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   padding: 5px;
 }
 .Item2 {
   grid-area: Item2;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
 }
 .Item3 {
   grid-area: Item3;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 .Item4 {
   grid-area: Item4;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 .Item5 {
   grid-area: Item5;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 .Item6 {
   grid-area: Item6;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   // justify-items: center;
   padding-left: 5px;
   padding-right: 5px;
 }
 .Item7 {
   grid-area: Item7;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 .Item8 {
   grid-area: Item8;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   padding: 5px;
 }
 .Item9 {
   grid-area: Item9;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
 }
 .Item10 {
   grid-area: Item10;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   padding-left: 5px;
   padding-right: 5px;
 }
 .Item11 {
   grid-area: Item11;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   padding: 4px;
   padding-left: 24px;
   align-content: center;
@@ -123,10 +123,10 @@
   padding: 0;
   // align-items: center;
   // justify-items: first baseline;
-  // border: 2px solid $c-green;
+  // border: 2px solid var(--aliengreen);
   grid-template-areas: 'Col1 Col2 ' 'Col3 Col3';
   grid-template-rows: 1fr;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 335px 1fr;
 }
 .Col1 {
   grid-area: Col1;
@@ -153,9 +153,9 @@
   padding: 0;
   padding-left: 5px;
   align-items: center;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   grid-template-areas: 'Attr1 Attr2 Attr3';
-  grid-template-columns: 250px 35px 30px;
+  grid-template-columns: 260px 35px 30px;
 }
 
 .Attr1 {
@@ -238,14 +238,14 @@
 
 .grid-vehicle-header {
   display: grid;
-  border: 2px solid $c-green;
+  border: 2px solid var(--aliengreen);
   grid-template-areas: 'vChar vChar';
   grid-template-columns: auto;
 }
 
 .grid-vehicle {
   display: grid;
-  border: 2px solid $c-green;
+  border: 2px solid var(--aliengreen);
   grid-template-areas:
     'vItem1 vItem2 vItem3 vItem4'
     'vItem5 vItem6 vItem7 vItem8';
@@ -283,7 +283,7 @@
 
 .grid-weapon {
   display: grid;
-  border: 2px solid $c-green;
+  border: 2px solid var(--aliengreen);
   grid-template-areas:
     'wItem1 wItem2 wItem3 wItem4'
     'wItem5 wItem6 wItem7 wItem7';
@@ -317,7 +317,7 @@
 
 .grid-items {
   display: grid;
-  // border: 2px solid $c-green;
+  // border: 2px solid var(--aliengreen);
   grid-template-areas:
     'lCol1 lCol2 lCol2 lCol10 lCol3 lCol4'
     'lCol5 lCol6 lCol6 lCol9 lCol7 lCol8';
@@ -472,7 +472,7 @@
 
 .grid-creature {
   display: grid;
-  border: 2px solid $c-green;
+  border: 2px solid var(--aliengreen);
   grid-template-areas:
     // 'vChar1 vChar1  '
 
@@ -510,7 +510,7 @@
 }
 .grid-planet-header {
   display: grid;
-  border: 2px solid $c-green;
+  border: 2px solid var(--aliengreen);
   grid-template-areas:
     'hplan1 hplan2 '
     'hplan3 hplan4'
@@ -617,13 +617,13 @@
 
 .grid-Char-Att {
   display: grid;
-  // border: 2px solid $c-green;
+  // border: 2px solid var(--aliengreen);
   padding-bottom: 4px;
   padding-top: 5px;
   padding-left: 30px;
   grid-row-gap: 3px;
   grid-column-gap: 10px;
-  border-color: $c-green;
+  border-color: var(--aliengreen);
   align-items: center;
   grid-template-areas:
     'gCol1 gCol2 gCol3 gCol4 gCol5'

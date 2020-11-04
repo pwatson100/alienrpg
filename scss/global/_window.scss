@@ -2,30 +2,31 @@
   margin-left: 3px;
 }
 .alienrpg .window-content {
-  font-family: $font-primary;
-  color: $c-green;
+  font-family: var(--alienfont);
+  color: var(--aliengreen);
+  font-size: var(--fontsize);
   background: $c-black;
   flex-direction: column;
   flex-wrap: nowrap;
   padding: 2px;
   overflow-y: scroll;
   overflow-x: auto;
-  border: $c-green 3px;
+  border: var(--aliengreen) 3px;
 }
 .journal-sheet {
   form {
-    // font-family: $font-primary;
-    color: $c-green;
+    // font-family: var(--alienfont);
+    color: var(--aliengreen);
     background: $c-black;
-    border: 1px solid $c-green;
+    border: 1px solid var(--aliengreen);
     border-radius: 1px;
   }
   select {
-    font-family: $font-primary;
+    font-family: var(--alienfont);
     //  color: $c-green;
     color: inherit;
     background: $c-black;
-    border: $c-green 3px;
+    border: var(--aliengreen) 3px;
     border: 1px solid #7a7971;
     border-radius: 3px;
     padding: 0 3px;
@@ -33,20 +34,20 @@
     font-size: 16px;
   }
   input {
-    font-family: $font-primary;
+    font-family: var(--alienfont);
     //  color: $c-green;
     color: inherit;
 
     background: $c-black;
-    border: $c-green 3px;
+    border: var(--aliengreen) 3px;
   }
   button {
-    font-family: $font-primary;
+    font-family: var(--alienfont);
     //  color: $c-green;
     color: inherit;
 
     background: $c-black;
-    border: $c-green solid 1px;
+    border: var(--aliengreen) solid 1px;
     width: 100%;
     margin: 0 1px;
     border-radius: 3px;
@@ -75,19 +76,19 @@
   //  color: $c-green;
 
   .message-header .message-sender {
-    color: $c-green;
+    color: var(--aliengreen);
     // color: inherit;
   }
   .message-metadata {
-    color: $c-green;
+    color: var(--aliengreen);
     // color: inherit;
   }
   .flavor-text {
-    color: $c-green;
+    color: var(--aliengreen);
     // color: inherit;
   }
   .table-draw .table-results .table-result {
-    color: $c-green;
+    color: var(--aliengreen);
     // color: inherit;
   }
 }
@@ -96,15 +97,14 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: $c-green;
-  color: inherit;
+  color: var(--aliengreen);
 
   padding-left: 6px;
 }
 .chat-message.whisper {
   background: rgb(22, 22, 22);
   //  color: $c-green;
-  color: inherit;
+  color: var(--aliengreen);
 }
 
 .chat-message.blind {
@@ -112,7 +112,7 @@
 }
 
 .dice-tooltip {
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   border-radius: 1px;
   background: $c-black;
 
@@ -132,14 +132,14 @@
   color: inherit;
   //  color: $c-green;
   background: $c-black;
-  border: 2px solid $c-green;
+  border: 2px solid var(--aliengreen);
   border-radius: 2px;
 }
 // a.entity-link,
 a.inline-roll {
   background: black;
   padding: 1px 4px;
-  border: 1px solid $c-green;
+  border: 1px solid var(--aliengreen);
   border-radius: 2px;
   white-space: nowrap;
   word-break: break-all;
@@ -148,7 +148,7 @@ a.inline-roll {
 .dice-roll .dice-formula,
 .dice-roll .dice-total {
   // color: inherit;
-  color: $c-green;
+  color: var(--aliengreen);
 }
 .dice-tooltip .part-header .part-formula {
   //  color: $c-green;
@@ -164,12 +164,22 @@ a.inline-roll {
   padding: 0;
   margin: 1px;
   margin-left: 5px;
+  // font-size: var(--fontsize) ;
 }
 .alienrpg h3 {
   border: 0;
   padding: 0;
   margin: 1px;
+  // font-size: var(--fontsize) ;
+
   // margin-left: 2px;
+}
+
+.alienrpg h4 {
+  border: 0;
+  padding: 0;
+  margin: 1px;
+  // font-size: var(--fontsize) ;
 }
 .resource-content {
   button {
@@ -231,13 +241,13 @@ a.inline-roll {
 .supply-btn {
   font-size: 5px;
   padding: 0;
-  font-family: $font-primary;
+  font-family: var(--alienfont);
 }
 
 .stunt-btn {
   width: 5px;
   padding: 0;
-  font-family: $font-primary;
+  font-family: var(--alienfont);
 }
 
 .creature-attack-roll {
@@ -341,7 +351,7 @@ button:focus {
   right: 105%;
   margin-left: -60px;
   border-style: solid;
-  border-color: $c-green;
+  border-color: var(--aliengreen);
 }
 .tooltip .tooltiptext::after {
   content: ' ';
