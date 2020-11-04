@@ -132,5 +132,5 @@ If you see anything wrong or missing please let me know as I am relying on Googl
 Phase 3 de la traduction française terminée, juste les boîtes de dialogue à faire.
 Si vous voyez quelque chose d'anormal ou de manquant, veuillez me le faire savoir car je compte sur Google Traduction pour les parties finales.
 
-Version 1.2.7
+Version 1.2.8
 Backed out package loaded fonts as "The Forge" tries to get hem from the Bazaar rather than the defined source location.
