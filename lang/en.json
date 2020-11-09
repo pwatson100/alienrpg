@@ -187,5 +187,11 @@
   "ALIENRPG.CreatureSkill": "This Creature does not have this Skill.",
   "ALIENRPG.AttackRoll": "Attack Roll",
   "ALIENRPG.AcidAttack": "Acid Blood",
-  "ALIENRPG.AcidBlood": "This Creature does not have Acid Blood"
+  "ALIENRPG.AcidBlood": "This Creature does not have Acid Blood",
+  "ALIENRPG.Engaged": "Engaged",
+  "ALIENRPG.Short": "Short",
+  "ALIENRPG.Medium": "Medium",
+  "ALIENRPG.Long": "Long",
+  "ALIENRPG.Extreme": "Extreme",
+  "ALIENRPG.Modifiers": "Modifiers"
 }

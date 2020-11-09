@@ -66,6 +66,7 @@ export class alienrpgActor extends Actor {
    * Prepare Character type specific data
    */
   _prepareCharacterData(actorData) {
+    // console.log('alienrpgActor -> _prepareCharacterData -> actorData', actorData);
     const data = actorData.data;
     // Loop through Skill scores, and add their attribute modifiers to our sheet output.
     for (let [key, skill] of Object.entries(data.skills)) {
@@ -73,6 +74,10 @@ export class alienrpgActor extends Actor {
       const conAtt = skill.ability;
       skill.mod = skill.value + data.attributes[conAtt].value;
     }
+    // actorData.attributes.str.mod = 0;
+    // actorData.attributes.agl.mod = 0;
+    // actorData.attributes.emp.mod = 0;
+    // actorData.attributes.wit.mod = 0;
   }
   _prepareVehicleData(data) {}
   _prepareCreatureData(data) {}
@@ -86,7 +91,7 @@ export class alienrpgActor extends Actor {
     }
   }
   async rollAbility(actor, dataset) {
-    console.log('alienrpgActor -> rollAbility ->  dataset', dataset);
+    // console.log('alienrpgActor -> rollAbility ->  dataset', dataset);
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
@@ -191,14 +196,14 @@ export class alienrpgActor extends Actor {
   }
 
   async rollAbilityMod(actor, dataset) {
-    console.log('alienrpgActor -> rollAbilityMod -> actor, dataset', actor, dataset);
+    // console.log('alienrpgActor -> rollAbilityMod -> actor, dataset', actor, dataset);
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
     game.alienrpg.rollArr.sCount = 0;
 
     let r1Data = parseInt(dataset.roll || 0);
-    console.log('alienrpgActor -> rollAbilityMod -> r1Data', r1Data);
+    // console.log('alienrpgActor -> rollAbilityMod -> r1Data', r1Data);
     if (actor.data.type === 'character') {
       r2Data = actor.getRollData().stress;
       reRoll = false;
@@ -328,7 +333,7 @@ export class alienrpgActor extends Actor {
 
   async checkMarks(actor, event) {
     const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    console.log('alienrpgActor -> checkMarks -> field', field);
+    // console.log('alienrpgActor -> checkMarks -> field', field);
     const max = field.data('max') == undefined ? 4 : field.data('max');
     const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
     const level = parseFloat(field.val());
@@ -346,10 +351,11 @@ export class alienrpgActor extends Actor {
     return event;
   }
 
-  async consumablesCheck(actor, consUme, label) {
-    console.log('alienrpgActor -> consumablesCheck -> consUme', consUme);
+  async consumablesCheck(actor, consUme, label, consumables) {
+    // console.log('alienrpgActor -> consumablesCheck -> actor', actor);
     let r1Data = 0;
-    let r2Data = actor.data.data.consumables[consUme].value;
+    let r2Data = 0;
+    r2Data = actor.data.data.consumables[`${consUme}`].value;
     let reRoll = true;
     // let hostile = this.actor.data.data.type;
     let blind = false;
@@ -362,21 +368,41 @@ export class alienrpgActor extends Actor {
     } else {
       yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
       if (game.alienrpg.rollArr.r2One) {
+        let itemId = consumables.find(showme)[0].item;
+        let itemVal = consumables.find(showme)[0][`${consUme}`];
+        let mitem = actor.getOwnedItem(itemId);
+        let field = '';
         switch (consUme) {
           case 'air':
-            actor.update({ 'data.consumables.air.value': actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
+            field = `data.attributes.airsupply.value`;
+            await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
+            await actor.update({ 'data.consumables.air.value': actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
             break;
           case 'food':
-            actor.update({ 'data.consumables.food.value': actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
+            // console.warn('FOOD UPDATE', mitem);
+            field = `data.attributes.${consUme}.value`;
+            await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
+            await actor.update({ 'data.consumables.food.value': actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
             break;
           case 'power':
-            actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
+            field = `data.attributes.${consUme}.value`;
+            await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
+            await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
             break;
           case 'water':
-            actor.update({ 'data.consumables.water.value': actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
+            // console.warn('WATER UPDATE', mitem);
+            field = `data.attributes.${consUme}.value`;
+            await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
+            // console.log('alienrpgActor -> consumablesCheck -> field', field);
+            await actor.update({ 'data.consumables.water.value': actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
             break;
         }
       }
+    }
+    function showme(consumables) {
+      console.warn('alienrpgActorSheet -> showme -> ', consumables[0][consUme] >= 1);
+      return consumables[0][consUme] >= 1;
+      // // console.log('alienrpgActorSheet -> showme -> item', item, consUme);
     }
   }
 }

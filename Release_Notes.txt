@@ -134,3 +134,11 @@ Si vous voyez quelque chose d'anormal ou de manquant, veuillez me le faire savoi
 
 Version 1.2.8
 Backed out package loaded fonts as "The Forge" tries to get hem from the Bazaar rather than the defined source location.
+
+Version 1.2.9
+Add a context sensitive menu to items lists.  Right click on the edit icon to get edit or delete options.
+Added a Rounds box to the character sheet inventory for ranged weapons.  
+  This is editable in-line and updates the characters item so it's easier for players to track Rounds.
+Tidied up the systems list presentation on the Territories sheet. 
+
+  

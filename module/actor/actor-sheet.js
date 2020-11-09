@@ -1,6 +1,5 @@
 import { yze } from '../YZEDiceRoller.js';
 import { toNumber } from '../utils.js';
-// import * as CP from '../color-picker.js';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -96,8 +95,64 @@ export class alienrpgActorSheet extends ActorSheet {
     // Prepare items.
     this._prepareItems(data); // Return data to the sheet
 
+    this._attributeMods(data); // Get Attribute mods from owned items
+
     // Return data to the sheet
     return data;
+  }
+
+  _attributeMods(data) {
+    //   Attribute mods from items
+    let str = 0;
+    let agl = 0;
+    let emp = 0;
+    let wit = 0;
+    let health = 0;
+    let stress = 0;
+    for (let [key, Attrib] of Object.entries(data.inventory[1].items)) {
+      let base = Attrib.data.modifiers.attributes;
+      for (let [key, Attrib] of Object.entries(base)) {
+        // console.warn('Element', key, Attrib.value);
+        switch (key) {
+          case 'str':
+            str += Attrib.value;
+            break;
+          case 'agl':
+            agl += Attrib.value;
+            break;
+          case 'emp':
+            emp += Attrib.value;
+            break;
+          case 'wit':
+            wit += Attrib.value;
+            break;
+          case 'health':
+            health += Attrib.value;
+            break;
+          case 'stress':
+            stress += Attrib.value;
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      // Calculate the modifier using d20 rules.
+      // const conAtt = skill.ability;
+      // skill.mod = skill.value + data.attributes[conAtt].value;
+    }
+    // data.attributes.str.mod = str;
+    // data.attributes.agl.mod = agl;
+    // data.attributes.emp.mod = emp;
+    // data.attributes.wit.mod = wit;
+
+    // console.log('alienrpgActorSheet -> _attributeMods -> str', str);
+    // console.log('alienrpgActorSheet -> _attributeMods -> agl', agl);
+    // console.log('alienrpgActorSheet -> _attributeMods -> emp', emp);
+    // console.log('alienrpgActorSheet -> _attributeMods -> wit', wit);
+    // console.log('alienrpgActorSheet -> _attributeMods -> health', health);
+    // console.log('alienrpgActorSheet -> _attributeMods -> stress', stress);
   }
 
   _findActiveList() {
@@ -138,10 +193,11 @@ export class alienrpgActorSheet extends ActorSheet {
         item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
 
         // Classify items into types
-        if (item.type === 'spell') arr[1].push(item);
-        else if (item.type === 'feat') arr[2].push(item);
-        else if (item.type === 'feature') arr[3].push(item);
-        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+        // console.log('alienrpgActorSheet -> _prepareItems -> item', item);
+        // if (item.type === 'talent') arr[1].push(item);
+        // else if (item.type === 'feat') arr[2].push(item);
+        // else if (item.type === 'feature') arr[3].push(item);
+        if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
         return arr;
       },
       [[], [], [], []]
@@ -164,17 +220,65 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Loop through the items and update the actors AC
     let totalAc = 0;
+    let totalWat = 0;
+    let totalFood = 0;
+    let totalAir = 0;
+    let totalPower = 0;
+
     for (let i of items) {
       try {
+        //  Update armor value fron items
         i.data.attributes.armorrating.value === true;
         i.data.attributes.armorrating.value = i.data.attributes.armorrating.value || 0;
         i.totalAc = parseInt(i.data.attributes.armorrating.value, 10);
         totalAc += i.totalAc;
-        data.data.general.armor.value = totalAc;
+        data.actor.data.general.armor.value = totalAc;
       } catch {
-        data.data.general.armor.value = totalAc;
+        data.actor.data.general.armor.value = totalAc;
+      }
+
+      try {
+        //  Update water value fron items
+        i.data.attributes.water.value === true;
+        i.data.attributes.water.value = i.data.attributes.water.value || 0;
+        i.totalWat = parseInt(i.data.attributes.water.value, 10);
+        totalWat += i.totalWat;
+        data.actor.data.consumables.water.value = totalWat;
+      } catch {
+        data.actor.data.consumables.water.value = totalWat;
+      }
+      try {
+        //  Update food value fron items
+        i.data.attributes.food.value === true;
+        i.data.attributes.food.value = i.data.attributes.food.value || 0;
+        i.totalFood = parseInt(i.data.attributes.food.value, 10);
+        totalFood += i.totalFood;
+        data.actor.data.consumables.food.value = totalFood;
+      } catch {
+        data.actor.data.consumables.food.value = totalFood;
+      }
+      try {
+        //  Update air value fron items
+        i.data.attributes.airsupply.value === true;
+        i.data.attributes.airsupply.value = i.data.attributes.airsupply.value || 0;
+        i.totalAir = parseInt(i.data.attributes.airsupply.value, 10);
+        totalAir += i.totalAir;
+        data.actor.data.consumables.air.value = totalAir;
+      } catch {
+        data.actor.data.consumables.air.value = totalAir;
+      }
+      try {
+        //  Update air value fron items
+        i.data.attributes.power.value === true;
+        i.data.attributes.power.value = i.data.attributes.power.value || 0;
+        i.totalPower = parseInt(i.data.attributes.power.value, 10);
+        totalPower += i.totalPower;
+        data.actor.data.consumables.power.value = totalPower;
+      } catch {
+        data.actor.data.consumables.power.value = totalPower;
       }
     }
+
     // console.warn('totalAc', i.totalAc, totalAc);
 
     data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
@@ -215,29 +319,29 @@ export class alienrpgActorSheet extends ActorSheet {
       const data = item.data;
 
       // Action usage
-      for (let f of ['action', 'bonus', 'reaction']) {
-        if (filters.has(f)) {
-          if (data.activation && data.activation.type !== f) return false;
-        }
-      }
+      // for (let f of ['action', 'bonus', 'reaction']) {
+      //   if (filters.has(f)) {
+      //     if (data.activation && data.activation.type !== f) return false;
+      //   }
+      // }
 
-      // Spell-specific filters
-      if (filters.has('ritual')) {
-        if (data.components.ritual !== true) return false;
-      }
-      if (filters.has('concentration')) {
-        if (data.components.concentration !== true) return false;
-      }
-      if (filters.has('prepared')) {
-        if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
-        if (this.actor.data.type === 'npc') return true;
-        return data.preparation.prepared;
-      }
+      // // Spell-specific filters
+      // if (filters.has('ritual')) {
+      //   if (data.components.ritual !== true) return false;
+      // }
+      // if (filters.has('concentration')) {
+      //   if (data.components.concentration !== true) return false;
+      // }
+      // if (filters.has('prepared')) {
+      //   if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
+      //   if (this.actor.data.type === 'npc') return true;
+      //   return data.preparation.prepared;
+      // }
 
-      // Equipment-specific filters
-      if (filters.has('equipped')) {
-        if (data.equipped !== true) return false;
-      }
+      // // Equipment-specific filters
+      // if (filters.has('equipped')) {
+      //   if (data.equipped !== true) return false;
+      // }
       return true;
     });
   }
@@ -245,26 +349,45 @@ export class alienrpgActorSheet extends ActorSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
-
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
+    const itemContextMenu = [
+      {
+        name: game.i18n.localize('ALIENRPG.EditItem'),
+        icon: '<i class="fas fa-edit"></i>',
+        callback: (element) => {
+          const item = this.actor.getOwnedItem(element.data('item-id'));
+          item.sheet.render(true);
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.DeleteItem'),
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (element) => {
+          this.actor.deleteOwnedItem(element.data('item-id'));
+        },
+      },
+    ];
 
     // Add Inventory Item
+    new ContextMenu(html, '.item-edit', itemContextMenu);
+
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
-    // Update Inventory Item
-    html.find('.item-edit').click((ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.getOwnedItem(li.data('itemId'));
-      item.sheet.render(true);
-    });
+    // // Update Inventory Item
+    // html.find('.item-edit').click((ev) => {
+    //   const li = $(ev.currentTarget).parents('.item');
+    //   const item = this.actor.getOwnedItem(li.data('itemId'));
+    //   item.sheet.render(true);
+    // });
 
-    // Delete Inventory Item
-    html.find('.item-delete').click((ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      this.actor.deleteOwnedItem(li.data('itemId'));
-      li.slideUp(200, () => this.render(false));
-    });
+    // // Delete Inventory Item
+    // html.find('.item-delete').click((ev) => {
+    //   const li = $(ev.currentTarget).parents('.item');
+    //   this.actor.deleteOwnedItem(li.data('itemId'));
+    //   li.slideUp(200, () => this.render(false));
+    // });
+
     if (game.settings.get('alienrpg', 'switchMouseKeys')) {
       // Right to Roll and left to mod
       // Rollable abilities.
@@ -288,15 +411,6 @@ export class alienrpgActorSheet extends ActorSheet {
 
       html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
     }
-    // // Rollable abilities.
-    // html.find('.rollable').click(this._onRoll.bind(this));
-
-    // html.find('.rollable').contextmenu(this._onRollMod.bind(this));
-
-    // // Rollable Items.
-    // html.find('.rollItem').click(this._rollItem.bind(this));
-
-    // html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
 
     // minus from health and stress
     html.find('.minus-btn').click(this._plusMinusButton.bind(this));
@@ -311,6 +425,8 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.stunt-btn').click(this._stuntBtn.bind(this));
 
     html.find('.talent-btn').click(this._talentBtn.bind(this));
+
+    html.find('.inline-edit').change(this._inlineedit.bind(this));
 
     // Drag events for macros.
     if (this.actor.owner) {
@@ -353,6 +469,39 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Finally, create the item!
     return this.actor.createOwnedItem(itemData);
+  }
+
+  _inlineedit(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    let itemId = dataset.parentElement.dataset.itemId;
+    let item = this.actor.getOwnedItem(itemId);
+    let field = dataset.name;
+    console.log('alienrpgActorSheet -> _inlineedit -> field', dataset.name, dataset.value);
+    let addData = 0;
+    let actData = 0;
+    // let itData = 0;
+    let itData = parseInt([dataset.value] || 0);
+    // let afield = `data.attributes.${dataset.name}.value`;
+    //   THIS WORKS
+    // switch (dataset.name) {
+    //   case 'food':
+    //     actData = this.actor.data.data.consumables.food.value;
+    //     break;
+    //   case 'water':
+    //     actData = this.actor.data.data.consumables.water.value;
+    //     break;
+
+    //   default:
+    //     break;
+    // }
+
+    addData = actData + itData;
+    this.actor.update({ [field]: [addData] });
+    // console.log('alienrpgActorSheet -> _inlineedit -> afield', afield);
+    // this._onSubmit(event);
+
+    return item.update({ [field]: dataset.value }, {});
   }
 
   /**
@@ -491,12 +640,81 @@ export class alienrpgActorSheet extends ActorSheet {
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
     const consUme = dataset.spbutt.toLowerCase();
+    let mItems = this.actor.items;
+    let numbers = [];
+    let temp = [];
+    for (let index = 0; index < mItems.entries.length; index++) {
+      let spanner = mItems.entries[index].data;
+      // console.log('alienrpgActorSheet -> _supplyRoll -> spanner', spanner);
 
-    this.actor.consumablesCheck(this.actor, consUme, label);
+      switch (spanner.type) {
+        case 'item':
+          temp = [
+            {
+              name: spanner.name,
+              item: spanner._id,
+              food: spanner.data.attributes.food.value,
+              water: spanner.data.attributes.water.value,
+            },
+          ];
+          numbers.push(temp);
+          break;
+        case 'armor':
+          temp = [
+            {
+              name: spanner.name,
+              item: spanner._id,
+              air: spanner.data.attributes.airsupply.value,
+            },
+          ];
+          numbers.push(temp);
+          break;
+        case 'weapon':
+          temp = [
+            {
+              name: spanner.name,
+              item: spanner._id,
+              power: spanner.data.attributes.power.value,
+            },
+          ];
+          numbers.push(temp);
+          break;
+
+        default:
+          break;
+      }
+
+      // if (spanner.type === 'item') {
+      //   let temp = [
+      //     {
+      //       name: spanner.name,
+      //       item: spanner._id,
+      //       food: spanner.data.attributes.food.value,
+      //       water: spanner.data.attributes.water.value,
+      //       power: spanner.data.attributes.power.value,
+
+      //     },
+      //   ];
+      //   numbers.push(temp);
+      // } else {
+      //   if (spanner.type === 'armor') {
+      //     let temp = [
+      //       {
+      //         name: spanner.name,
+      //         item: spanner._id,
+      //         air: spanner.data.attributes.airsupply.value,
+      //       },
+      //     ];
+      //     numbers.push(temp);
+      //   }
+      // }
+      // // console.log('Numbers', numbers);
+    }
+    this.actor.consumablesCheck(this.actor, consUme, label, numbers);
   }
 
   _rollItem(event) {
-    // console.log('alienrpgActorSheet -> _rollItem -> event', event);
+    // // console.log('alienrpgActorSheet -> _rollItem -> event', event);
     event.preventDefault();
 
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');

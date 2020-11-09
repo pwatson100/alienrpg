@@ -16,8 +16,18 @@
     <li class=" grid-items item-header">
       <div class="item-name lCol1">{{section.label}}</div>
       <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
+      <!-- <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div> -->
+      {{#ife section.label 'Weapons'}}
       <div class="item-detail lCol10">{{localize "ALIENRPG.Damage"}}</div>
-      <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div>
+      <div class="item-detail item-weight lCol11">{{localize "ALIENRPG.Rounds"}}</div>
+      {{/ife}}
+      {{#ife section.label 'Items'}}
+      <!-- <div class="item-detail item-weight lCol11">{{localize "ALIENRPG.Food"}}</div> -->
+      <span class="item-detail item-weight lCol11">{{localize "ALIENRPG.Food"}}</span>
+      <span class="item-detail item-weight lCol10">{{localize "ALIENRPG.Water"}}</span>
+      {{/ife}}
+
+
       <div class="item-detail item-weight lCol3">{{localize "ALIENRPG.Weight"}}</div>
       <!-- <div class="item-controls lCol4">
         <a class="item-control item-create" style="font-size: smaller;" title="{{localize "ALIENRPG.AddItem"}}" data-type="item"><i class="fas fa-plus"></i>{{localize "ALIENRPG.AddItem"}}</a>
@@ -26,14 +36,25 @@
     {{#each section.items as |item iid|}}
         <li class="item grid-items" data-item-id="{{item._id}}">
                 <div class="item-image lCol5" ><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
-                <span class="item-label rollItem lCol6" data-item="{{item.name}}">{{item.name~}}</span>
-                {{#ife item.type 'weapon'}}
-                <span class="item-label lCol9" data-item="{{item.data.attributes.damage.value}}">{{item.data.attributes.damage.value}}</span>
+                <span class="item-detail rollItem lCol6" data-item="{{item.name}}">{{item.name~}}</span>
+                {{#ife item.data.header.type.value '1'}}
+                <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-value="item.data.attributes.rounds.value" name="data.attributes.rounds.value" value="{{item.data.attributes.rounds.value}}" data-dtype="String" />
+               <span class="item-detail lCol9" data-item="{{item.data.attributes.damage.value}}">{{item.data.attributes.damage.value}}</span>
+                {{/ife}}
+
+                {{#ife item.data.header.type.value '7'}}
+                <!-- <input type="text" class="item-label maxboxsize lCol12 " data-value="item.data.attributes.food.value" name="data.attributes.food.value" value="{{item.data.attributes.food.value}}" data-dtype="String" /> -->
+                <span class="item-detail lCol12" name="data.attributes.food.value" data-item="{{item.data.attributes.food.value}}">{{item.data.attributes.food.value}}</span>
+                <!-- <input type="text" class="item-label maxboxsize lCol9" data-value="item.data.attributes.water.value" name="data.attributes.water.value" value="{{item.data.attributes.water.value}}" data-dtype="String" /> -->
+                <span class="item-detail lCol9" name="data.attributes.water.value" data-item="{{item.data.attributes.water.value}}">{{item.data.attributes.water.value}}</span>
+
+<!-- </div>
+                </div> -->
                 {{/ife}}
                 <div class="item-detail lCol7" style="font-size: smaller;">{{ item.totalWeight }} {{localize "ALIENRPG.AbbreviationKg"}}</div>
-                 <div class="item-controls lCol8">
-                  <a class="item-control item-edit" title="{{localize "ALIENRPG.EditItem"}}"><i class="fas fa-edit"></i></a>
-                  <a class="item-control item-delete" title="{{localize "ALIENRPG.DeleteItem"}}"><i class="fas fa-trash"></i></a>
+                <div class="item-controls lCol8">
+                  <a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+                  <!-- <a class="item-control item-delete" title="{{localize "ALIENRPG.DeleteItem"}}"><i class="fas fa-trash"></i></a> -->
                 </div>
       </li>
 

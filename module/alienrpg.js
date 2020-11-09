@@ -164,7 +164,7 @@ Hooks.once('ready', async () => {
 
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
-  const NEEDS_MIGRATION_VERSION = '1.2.6';
+  const NEEDS_MIGRATION_VERSION = '1.2.9';
   const COMPATIBLE_MIGRATION_VERSION = '0' || isNaN('NaN');
   let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   console.warn('needMigration', needMigration, currentVersion);
@@ -454,17 +454,3 @@ class Utils {
     }, {});
   }
 }
-
-// class AlienConfig extends FormApplication {
-//   static get defaultOptions() {
-//     return mergeObject(super.defaultOptions, {
-//       title: game.i18n.localize('Alien RPG Colour Settings'),
-//       id: 'AlienConfig',
-//       template: 'systems/alienrpg/module/alienprgSettings.html',
-//       width: 500,
-//       height: 500,
-//       closeOnSubmit: true,
-//     });
-//   }
-
-// }

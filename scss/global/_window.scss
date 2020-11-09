@@ -1,6 +1,23 @@
 .alienrpg ul ol {
   margin-left: 3px;
 }
+.alienrpg #context-menu {
+  width: 100%;
+  height: max-content;
+  min-width: 100px;
+  max-width: 360px;
+  position: absolute;
+  left: -500%;
+  top: 50%;
+  background: #000000;
+  border: 1px solid var(--aliengreen);
+  border-radius: 5px;
+  color: var(--aliengreen);
+  text-align: left;
+  font-size: smaller;
+  z-index: 1;
+}
+
 .alienrpg .window-content {
   font-family: var(--alienfont);
   color: var(--aliengreen);

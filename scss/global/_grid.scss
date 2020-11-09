@@ -315,14 +315,78 @@
   grid-area: wItem7;
 }
 
+.grid-weapon-body {
+  display: grid;
+  // border: 2px solid var(--aliengreen);
+  grid-template-areas:
+    'wCol1 wCol2 wCol3 wCol4 wCol5 wCol6'
+    'wCol7 wCol8 wCol9 wCol10 wCol11 wCol12';
+  padding-bottom: 2px;
+  //                      l1     l2  l3     l4    l5    l6
+  grid-template-columns: 1fr 1.2fr 0.81fr 0.5fr 0.5fr 1fr;
+  // grid-template-columns: 2em 25em 5em 5em 4em 2em;
+  align-items: center;
+}
+
+.wCol1 {
+  grid-area: wCol1;
+  justify-self: left;
+}
+.wCol2 {
+  grid-area: wCol2;
+  justify-self: left;
+}
+.wCol3 {
+  grid-area: wCol3;
+  justify-self: left;
+}
+.wCol4 {
+  grid-area: wCol4;
+  justify-self: center;
+}
+.wCol5 {
+  grid-area: wCol5;
+  justify-self: left;
+}
+.wCol6 {
+  grid-area: wCol6;
+  justify-self: center;
+}
+.wCol7 {
+  grid-area: wCol7;
+  justify-self: left;
+}
+.wCol8 {
+  grid-area: wCol8;
+  justify-self: left;
+}
+.wCol9 {
+  grid-area: wCol9;
+  justify-self: left;
+}
+.wCol10 {
+  grid-area: wCol10;
+  justify-self: center;
+}
+.wCol11 {
+  grid-area: wCol11;
+  justify-self: left;
+}
+.wCol12 {
+  grid-area: wCol12;
+  justify-self: center;
+}
+
 .grid-items {
   display: grid;
   // border: 2px solid var(--aliengreen);
   grid-template-areas:
-    'lCol1 lCol2 lCol2 lCol10 lCol3 lCol4'
-    'lCol5 lCol6 lCol6 lCol9 lCol7 lCol8';
+    'lCol1 lCol2 lCol11 lCol10 lCol3 lCol4'
+    'lCol5 lCol6 lCol12 lCol9 lCol7 lCol8';
   padding-bottom: 2px;
-  grid-template-columns: 0.25fr 1fr 1.5fr 0.15fr 0.4fr 0.5fr;
+  //                      l1     l2  l3     l4    l5    l6
+  grid-template-columns: 2em 25em 5em 5em 4em 2em;
+  // grid-template-columns: 25px 410px 60px 60px 60px 20px;
   align-items: center;
 }
 
@@ -336,7 +400,7 @@
 }
 .lCol3 {
   grid-area: lCol3;
-  justify-self: right;
+  justify-self: center;
 }
 .lCol4 {
   grid-area: lCol4;
@@ -352,7 +416,7 @@
 }
 .lCol7 {
   grid-area: lCol7;
-  justify-self: right;
+  justify-self: center;
 }
 .lCol8 {
   grid-area: lCol8;
@@ -364,6 +428,14 @@
 }
 .lCol10 {
   grid-area: lCol10;
+  justify-self: center;
+}
+.lCol11 {
+  grid-area: lCol11;
+  justify-self: center;
+}
+.lCol12 {
+  grid-area: lCol12;
   justify-self: center;
 }
 
@@ -582,8 +654,9 @@
   grid-template-areas:
     'sys1 sys2 sys3 sys4'
     'sys5 sys6 sys7 sys8';
-
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 14em 15em 10em 2em;
+  border-color: var(--aliengreen);
+  border-bottom: double;
 }
 
 .sys1 {
@@ -592,11 +665,11 @@
 }
 .sys2 {
   grid-area: sys2;
-  justify-self: center;
+  justify-self: left;
 }
 .sys3 {
   grid-area: sys3;
-  justify-self: center;
+  justify-self: left;
 }
 .sys4 {
   grid-area: sys4;
@@ -604,15 +677,19 @@
 }
 .sys5 {
   grid-area: sys5;
+  justify-self: left;
 }
 .sys6 {
   grid-area: sys6;
+  justify-self: left;
 }
 .sys7 {
   grid-area: sys7;
+  justify-self: left;
 }
 .sys8 {
   grid-area: sys8;
+  justify-self: right;
 }
 
 .grid-Char-Att {

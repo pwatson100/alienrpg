@@ -94,22 +94,42 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
 
+    const itemContextMenu = [
+      {
+        name: game.i18n.localize('ALIENRPG.EditItem'),
+        icon: '<i class="fas fa-edit"></i>',
+        callback: (element) => {
+          const item = this.actor.getOwnedItem(element.data('item-id'));
+          item.sheet.render(true);
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.DeleteItem'),
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (element) => {
+          this.actor.deleteOwnedItem(element.data('item-id'));
+        },
+      },
+    ];
+
     // Add Inventory Item
+    new ContextMenu(html, '.item-edit', itemContextMenu);
+
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
-    // Update Inventory Item
-    html.find('.item-edit').click((ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.getOwnedItem(li.data('itemId'));
-      item.sheet.render(true);
-    });
+    // // Update Inventory Item
+    // html.find('.item-edit').click((ev) => {
+    //   const li = $(ev.currentTarget).parents('.item');
+    //   const item = this.actor.getOwnedItem(li.data('itemId'));
+    //   item.sheet.render(true);
+    // });
 
-    // Delete Inventory Item
-    html.find('.item-delete').click((ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      this.actor.deleteOwnedItem(li.data('itemId'));
-      li.slideUp(200, () => this.render(false));
-    });
+    // // Delete Inventory Item
+    // html.find('.item-delete').click((ev) => {
+    //   const li = $(ev.currentTarget).parents('.item');
+    //   this.actor.deleteOwnedItem(li.data('itemId'));
+    //   li.slideUp(200, () => this.render(false));
+    // });
 
     // Drag events for macros.
     if (this.actor.owner) {

@@ -29,7 +29,7 @@
         <label class="item-name sys2">{{localize "ALIENRPG.System"}}</label>
         <label class="item-name sys3">{{localize "ALIENRPG.Name"}}</label>
         <div class="item-controls sys4">
-          <a class="item-control item-create" style="font-size: smaller;" title="Create item" data-type="talent"><i class="fas fa-plus"></i> Add item</a>
+          <a class="item-control item-create" style="font-size: smaller;" title="Create item" data-type="planet-system"><i class="fas fa-plus"></i></a>
         </div>
       </li>
 
@@ -40,8 +40,7 @@
         <div class="item-name sys3">{{item.name}} </div>
 
         <div class="sys4">
-          <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-          <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+          <a class="item-control item-edit" data-item-id="{{item._id}}" title="Edit Item"><i class="fas fa-edit"></i></a>
         </div>
       </li>
       {{/each}}

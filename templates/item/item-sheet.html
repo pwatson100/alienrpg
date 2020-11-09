@@ -33,14 +33,44 @@
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="attributes">{{localize "ALIENRPG.Attributes"}}</a>
     <a class="item" data-tab="notes">{{localize "ALIENRPG.Notes"}}</a>
+    <a class="item" data-tab="modifiers">{{localize "ALIENRPG.Modifiers"}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
+      {{#ife data.header.type.value '7'}}
+      <div class="grid-Char-Att">
+        <h3 class="resource-label gCol1">{{localize "ALIENRPG.Food"}}</h3>
+        <input type="text" name="data.attributes.food.value" class="maxboxsize gCol2" value="{{data.attributes.food.value}}" data-dtype="Number" />
+        <h3 class="resource-label gCol3">{{localize "ALIENRPG.Water"}}</h3>
+        <input type="text" name="data.attributes.water.value" class="maxboxsize gCol4" value="{{data.attributes.water.value}}" data-dtype="Number" />
+      </div>
+      {{/ife}}
       <h2 class="resource-label">{{localize "ALIENRPG.Comment"}}</h2>
       <textarea name="data.attributes.comment.value" rows="12" data-dtype="String">{{data.attributes.comment.value}}</textarea>
+    </div>
+
+    <div class="tab modifiers" data-group="primary" data-tab="modifiers">
+      <h2 class="resource-label">{{localize "ALIENRPG.Attributes"}}</h2>
+      <div class="grid-2col">
+        {{#each data.modifiers.attributes as |attributes key|}}
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.attributes.{{key}}.value" class="resource-label">{{attributes.label}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.attributes.{{key}}.value" value="{{attributes.value}}" data-dtype="Number" />
+        </div>
+        {{/each}}
+      </div>
+      <h2 class="resource-label">{{localize "ALIENRPG.Skills"}}</h2>
+      <div class="grid-2col">
+        {{#each data.modifiers.skills as |skills key|}}
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.{{key}}.value" class="resource-label">{{skills.label}} ({{skills.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.{{key}}.value" value="{{skills.value}}" data-dtype="Number" />
+        </div>
+        {{/each}}
+      </div>
     </div>
 
     {{!-- Notes Tab --}}
