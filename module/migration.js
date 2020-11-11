@@ -349,8 +349,6 @@ export const migrateItemData = function (item) {
     }
   }
 
-  Item.update({ _id: 'V4Mp3mFnLxSrtbYX', 'data.data.header.type.value': 1 });
-
   if (item.type === 'weapon') {
     switch (item.data.header.type.value) {
       case 'Ranged':

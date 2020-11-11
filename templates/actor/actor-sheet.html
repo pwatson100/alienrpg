@@ -12,7 +12,7 @@
             <input type="text" class="maxboxsize" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
             <button class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
           </div>
-          <h2 for="data.header.stress.value" class="resource-label rollable" data-panicroll="{{data.header.stress.value}}">{{localize "ALIENRPG.Stress"}}</h2>
+          <h2 for="data.header.stress.value" class="resource-label rollable" data-panicroll="{{data.header.stress.value}}"data-mod="{{data.header.stress.mod}}">{{localize "ALIENRPG.Stress"}}</h2>
           <div class="resource-content">
             <button class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
             <input type="text" class="maxboxsize" name="data.header.stress.value" value="{{data.header.stress.value}}" data-dtype="Number" />
@@ -21,16 +21,16 @@
       {{!-- Attributes --}}
       <div class="abilities grid-Char-Att">
 
-          <h3 class="resource-label rollable gCol1" data-roll="{{data.attributes.str.value}}" data-label="{{data.attributes.str.label}}">{{localize "ALIENRPG.AbilityStr"}}</h3>
+          <h3 class="resource-label rollable gCol1" data-roll="{{data.attributes.str.value}}" data-mod="{{data.attributes.str.mod}}" data-label="{{data.attributes.str.label}}">{{localize "ALIENRPG.AbilityStr"}}</h3>
           <input type="text" class="maxboxsize gCol2" name="data.attributes.str.value" value="{{data.attributes.str.value}}" data-dtype="Number" />
 
-          <h3 class="resource-label rollable gCol3" data-roll="{{data.attributes.wit.value}}" data-label="{{data.attributes.wit.label}}">{{localize "ALIENRPG.AbilityWit"}}</h3>
+          <h3 class="resource-label rollable gCol3" data-roll="{{data.attributes.wit.value}}" data-mod="{{data.attributes.wit.mod}}"  data-label="{{data.attributes.wit.label}}">{{localize "ALIENRPG.AbilityWit"}}</h3>
           <input type="text" class="maxboxsize gCol4" name="data.attributes.wit.value" value="{{data.attributes.wit.value}}" data-dtype="Number" />
 
-          <h3 class="resource-label rollable gCol6" data-roll="{{data.attributes.agl.value}}" data-label="{{data.attributes.agl.label}}">{{localize "ALIENRPG.AbilityAgl"}}</h3>
+          <h3 class="resource-label rollable gCol6" data-roll="{{data.attributes.agl.value}}"  data-mod="{{data.attributes.agl.mod}}" data-label="{{data.attributes.agl.label}}">{{localize "ALIENRPG.AbilityAgl"}}</h3>
           <input type="text" class="maxboxsize gCol7" name="data.attributes.agl.value" value="{{data.attributes.agl.value}}" data-dtype="Number" />
 
-          <h3 class="resource-label rollable gCol8" data-roll="{{data.attributes.emp.value}}" data-label="{{data.attributes.emp.label}}">{{localize "ALIENRPG.AbilityEmp"}}</h3>
+          <h3 class="resource-label rollable gCol8" data-roll="{{data.attributes.emp.value}}"  data-mod="{{data.attributes.emp.mod}}" data-label="{{data.attributes.emp.label}}">{{localize "ALIENRPG.AbilityEmp"}}</h3>
           <input type="text" class="maxboxsize gCol9" name="data.attributes.emp.value" value="{{data.attributes.emp.value}}" data-dtype="Number" />
          
           {{#if isGM}}
@@ -66,7 +66,7 @@
         <span class="Col1">
           {{#each data.skills as |skill key|}}
           <span class="ability grid-attr">
-            <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{skill.label}}">{{skill.label}}  ({{skill.ability}})</h3>
+            <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}"  data-label="{{skill.label}}">{{skill.label}}  ({{skill.ability}})</h3>
             <input type="text" class="maxboxsize Attr2" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
             <div class="resource-content">
               <button class="stunt-btn Attr3" data-pmbut="{{skill.description}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>

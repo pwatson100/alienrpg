@@ -49,8 +49,8 @@ export class alienrpgActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareData() {
-    super.prepareData();
+  prepareBaseData() {
+    super.prepareBaseData();
 
     const actorData = this.data;
     const data = actorData.data;
@@ -65,20 +65,136 @@ export class alienrpgActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  _prepareCharacterData(actorData) {
-    // console.log('alienrpgActor -> _prepareCharacterData -> actorData', actorData);
+  async _prepareCharacterData(actorData) {
+    super.prepareDerivedData();
     const data = actorData.data;
-    // Loop through Skill scores, and add their attribute modifiers to our sheet output.
-    for (let [key, skill] of Object.entries(data.skills)) {
-      // Calculate the modifier using d20 rules.
-      const conAtt = skill.ability;
-      skill.mod = skill.value + data.attributes[conAtt].value;
+    console.log('alienrpgActor -> _prepareCharacterData -> data', actorData);
+    var attrMod = {
+      str: 0,
+      agl: 0,
+      emp: 0,
+      wit: 0,
+      health: 0,
+      stress: 0,
+    };
+
+    var sklMod = {
+      heavyMach: 0,
+      closeCbt: 0,
+      stamina: 0,
+      rangedCbt: 0,
+      mobility: 0,
+      piloting: 0,
+      command: 0,
+      manipulation: 0,
+      medicalAid: 0,
+      observation: 0,
+      survival: 0,
+      comtech: 0,
+    };
+
+    for (let [skey, Attrib] of Object.entries(actorData.items)) {
+      if (Attrib.type === 'item') {
+        let base = Attrib.data.modifiers.attributes;
+        for (let [bkey, aAttrib] of Object.entries(base)) {
+          switch (bkey) {
+            case 'str':
+              attrMod.str = attrMod.str += parseInt(aAttrib.value);
+              break;
+            case 'agl':
+              attrMod.agl = attrMod.agl += parseInt(aAttrib.value);
+              break;
+            case 'emp':
+              attrMod.emp = attrMod.emp += parseInt(aAttrib.value);
+              break;
+            case 'wit':
+              attrMod.wit = attrMod.wit += parseInt(aAttrib.value);
+              break;
+            case 'health':
+              attrMod.health = attrMod.health += parseInt(aAttrib.value);
+              break;
+            case 'stress':
+              attrMod.stress = attrMod.stress += parseInt(aAttrib.value);
+              break;
+
+            default:
+              break;
+          }
+        }
+
+        let skillBase = Attrib.data.modifiers.skills;
+        for (let [skey, sAttrib] of Object.entries(skillBase)) {
+          // console.log('alienrpgActor -> _prepareCharacterData -> sAttrib', sAttrib.data.modifiers.skills);
+
+          switch (skey) {
+            case 'heavyMach':
+              sklMod.heavyMach = sklMod.heavyMach += parseInt(sAttrib.value);
+              break;
+            case 'closeCbt':
+              sklMod.closeCbt = sklMod.closeCbt += parseInt(sAttrib.value);
+              break;
+            case 'stamina':
+              sklMod.stamina = sklMod.stamina += parseInt(sAttrib.value);
+              break;
+            case 'rangedCbt':
+              sklMod.rangedCbt = sklMod.rangedCbt += parseInt(sAttrib.value);
+              break;
+            case 'mobility':
+              sklMod.mobility = sklMod.mobility += parseInt(sAttrib.value);
+              break;
+            case 'piloting':
+              sklMod.piloting = sklMod.piloting += parseInt(sAttrib.value);
+              break;
+            case 'command':
+              sklMod.command = sklMod.command += parseInt(sAttrib.value);
+              break;
+            case 'manipulation':
+              sklMod.manipulation = sklMod.manipulation += parseInt(sAttrib.value);
+              break;
+            case 'medicalAid':
+              sklMod.medicalAid = sklMod.medicalAid += parseInt(sAttrib.value);
+              break;
+            case 'observation':
+              sklMod.observation = sklMod.observation += parseInt(sAttrib.value);
+              break;
+            case 'survival':
+              sklMod.survival = sklMod.survival += parseInt(sAttrib.value);
+              break;
+            case 'comtech':
+              sklMod.comtech = sklMod.comtech += parseInt(sAttrib.value);
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
     }
-    // actorData.attributes.str.mod = 0;
-    // actorData.attributes.agl.mod = 0;
-    // actorData.attributes.emp.mod = 0;
-    // actorData.attributes.wit.mod = 0;
+
+    for (let [a, abl] of Object.entries(data.attributes)) {
+      abl.mod = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
+      abl.label = CONFIG.ALIENRPG.attributes[a];
+    }
+    for (let [s, skl] of Object.entries(data.skills)) {
+      const conSkl = skl.ability;
+      skl.mod = parseInt(skl.value || 0) + parseInt(actorData.data.attributes[conSkl].mod || 0) + parseInt(sklMod[s] || 0);
+      skl.label = CONFIG.ALIENRPG.skills[s];
+
+      setProperty(actorData, 'data.header.health.mod', (data.header.health.mod = parseInt(attrMod.health || 0)));
+      setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod = parseInt(attrMod.stress || 0)));
+      // this.actor.update({ 'data.header.health.mod': (data.header.health.mod += parseInt(attrMod.health || 0)) });
+      // this.actor.update({ 'data.header.stress.mod': (data.header.stress.mod += parseInt(attrMod.stress || 0)) });
+    }
+
+    // const data = actorData.data;
+    // // Loop through Skill scores, and add their attribute modifiers to our sheet output.
+    // for (let [key, skill] of Object.entries(data.skills)) {
+    //   // Calculate the modifier using d20 rules.
+    //   const conAtt = skill.ability;
+    //   skill.mod = skill.value + data.attributes[conAtt].value;
+    // }
   }
+
   _prepareVehicleData(data) {}
   _prepareCreatureData(data) {}
   _prepareTeritoryData(data) {}
@@ -91,13 +207,12 @@ export class alienrpgActor extends Actor {
     }
   }
   async rollAbility(actor, dataset) {
-    // console.log('alienrpgActor -> rollAbility ->  dataset', dataset);
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
     game.alienrpg.rollArr.sCount = 0;
     if (dataset.roll) {
-      let r1Data = parseInt(dataset.roll || 0);
+      let r1Data = parseInt(dataset.roll || 0) + parseInt(dataset.mod || 0);
       if (actor.data.type === 'character') {
         reRoll = false;
         r2Data = actor.getRollData().stress;
@@ -188,10 +303,12 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  async nowRollItem(item) {
+  async nowRollItem(item, event) {
     if (item.type === 'weapon' || item.type === 'armor') {
+      console.log('alienrpgActor -> rollItemMod -> event', event);
+
       // Trigger the item roll
-      return item.roll();
+      return item.roll(false);
     }
   }
 
@@ -202,7 +319,7 @@ export class alienrpgActor extends Actor {
     let reRoll = false;
     game.alienrpg.rollArr.sCount = 0;
 
-    let r1Data = parseInt(dataset.roll || 0);
+    let r1Data = parseInt(dataset.roll || 0) + parseInt(dataset.mod || 0);
     // console.log('alienrpgActor -> rollAbilityMod -> r1Data', r1Data);
     if (actor.data.type === 'character') {
       r2Data = actor.getRollData().stress;
@@ -228,6 +345,9 @@ export class alienrpgActor extends Actor {
     // callpop upbox here to get any mods then update r1Data or rData as appropriate.
     let confirmed = false;
     if (actor.data.type === 'character') {
+      console.log('panic!!', dataset);
+      // if (dataset.panicroll) {
+
       new Dialog({
         title: `Roll Modified ${label} check`,
         content: `
@@ -305,8 +425,10 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  async rollItemMod(item) {
+  async rollItemMod(item, event) {
     if (item.type === 'weapon') {
+      console.log('alienrpgActor -> rollItemMod -> event', event);
+
       // Trigger the item roll
       return item.roll(true);
     }
@@ -352,7 +474,6 @@ export class alienrpgActor extends Actor {
   }
 
   async consumablesCheck(actor, consUme, label, consumables) {
-    // console.log('alienrpgActor -> consumablesCheck -> actor', actor);
     let r1Data = 0;
     let r2Data = 0;
     r2Data = actor.data.data.consumables[`${consUme}`].value;
@@ -379,7 +500,6 @@ export class alienrpgActor extends Actor {
             await actor.update({ 'data.consumables.air.value': actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
             break;
           case 'food':
-            // console.warn('FOOD UPDATE', mitem);
             field = `data.attributes.${consUme}.value`;
             await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
             await actor.update({ 'data.consumables.food.value': actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
@@ -390,19 +510,17 @@ export class alienrpgActor extends Actor {
             await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
             break;
           case 'water':
-            // console.warn('WATER UPDATE', mitem);
             field = `data.attributes.${consUme}.value`;
             await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
-            // console.log('alienrpgActor -> consumablesCheck -> field', field);
             await actor.update({ 'data.consumables.water.value': actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
             break;
         }
       }
     }
+
     function showme(consumables) {
       console.warn('alienrpgActorSheet -> showme -> ', consumables[0][consUme] >= 1);
       return consumables[0][consUme] >= 1;
-      // // console.log('alienrpgActorSheet -> showme -> item', item, consUme);
     }
   }
 }

@@ -27,11 +27,9 @@ export class alienrpgItem extends Item {
     const actorData = this.actor ? this.actor.data.data : {};
     const itemData = item.data;
     game.alienrpg.rollArr.sCount = 0;
-
     // let roll;
     let r2Data = 0;
     let reRoll = false;
-    // console.log('alienrpgItem -> roll -> this.actor.data.type', this.actor.data.type);
     if (this.actor.data.type === 'character') {
       r2Data = this.actor.getRollData().stress;
       reRoll = false;
@@ -90,12 +88,12 @@ export class alienrpgItem extends Item {
 
               // Define the roll formula.
               if (item.data.header.type.value === '1') {
-                let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
+                let r1Data = actorData.skills.rangedCbt.mod + actorData.attributes.agl.mod + itemData.attributes.bonus.value + modifier;
                 r2Data = r2Data + stressMod;
                 yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
                 game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
               } else if (item.data.header.type.value === '2') {
-                let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
+                let r1Data = actorData.skills.closeCbt.mod + actorData.attributes.str.mod + itemData.attributes.bonus.value + modifier;
                 r2Data = r2Data + stressMod;
                 yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
                 game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
@@ -139,12 +137,12 @@ export class alienrpgItem extends Item {
                 // it's not a vehicle so add the correct attribute bonus
                 // Define the roll formula.
                 if (item.data.header.type.value === '1') {
-                  let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
+                  let r1Data = actorData.skills.rangedCbt.mod + actorData.attributes.agl.mod + itemData.attributes.bonus.value + modifier;
                   r2Data = r2Data + stressMod;
                   yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                 } else if (item.data.header.type.value === '2') {
-                  let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
+                  let r1Data = actorData.skills.closeCbt.mod + actorData.attributes.str.mod + itemData.attributes.bonus.value + modifier;
                   r2Data = r2Data + stressMod;
                   yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
@@ -179,13 +177,15 @@ export class alienrpgItem extends Item {
       // Define the roll formula.
       if (this.actor.data.type != 'vehicles') {
         // it's not a vehicle so add the correct attribute bonus
-        console.log('alienrpgItem -> roll -> item.data.header.type.value', item.data.header.type.value);
+        // console.log('alienrpgItem -> roll -> item.data.header.type.value', item.data.header.type.value);
         if (item.data.header.type.value === '1') {
-          let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
+          let r1Data = actorData.skills.rangedCbt.mod + actorData.attributes.agl.mod + itemData.attributes.bonus.value;
+          console.log('alienrpgItem -> roll -> actorData.skills.rangedCbt.mod', actorData.skills.rangedCbt.mod);
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         } else if (item.data.header.type.value === '2') {
-          let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
+          // console.log('alienrpgItem -> roll -> this.actor.data.data.skills.closeCbt.mod', this.actor.data.data.skills.closeCbt.mod);
+          let r1Data = actorData.skills.closeCbt.mod + actorData.attributes.str.mod + itemData.attributes.bonus.value;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         } else {

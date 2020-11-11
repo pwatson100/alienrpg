@@ -5,11 +5,13 @@
       "header": {
         "health": {
           "value": 10,
-          "label": "Health"
+          "label": "Health",
+          "mod": 0
         },
         "stress": {
           "value": 0,
-          "label": "Stress"
+          "label": "Stress",
+          "mod": 0
         },
         "npc": false
       },
@@ -17,19 +19,22 @@
         "str": {
           "value": 0,
           "label": "Strength",
-          "proficient": 0
+          "mod": 0
         },
         "wit": {
           "value": 0,
-          "label": "Wits"
+          "label": "Wits",
+          "mod": 0
         },
         "agl": {
           "value": 0,
-          "label": "Agility"
+          "label": "Agility",
+          "mod": 0
         },
         "emp": {
           "value": 0,
-          "label": "Empathy"
+          "label": "Empathy",
+          "mod": 0
         }
       },
       "skills": {

@@ -57,6 +57,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // The Actor and its Items
     data.actor = duplicate(this.actor.data);
+
     data.items = this.actor.items.map((i) => {
       i.data.labels = i.labels;
       return i.data;
@@ -65,16 +66,6 @@ export class alienrpgActorSheet extends ActorSheet {
     data.data = data.actor.data;
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
-
-    // Ability Scores
-    for (let [a, abl] of Object.entries(data.actor.data.attributes)) {
-      abl.label = CONFIG.ALIENRPG.attributes[a];
-    }
-
-    // Update skill labels
-    for (let [s, skl] of Object.entries(data.actor.data.skills)) {
-      skl.label = CONFIG.ALIENRPG.skills[s];
-    }
 
     data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
     data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
@@ -95,65 +86,126 @@ export class alienrpgActorSheet extends ActorSheet {
     // Prepare items.
     this._prepareItems(data); // Return data to the sheet
 
-    this._attributeMods(data); // Get Attribute mods from owned items
+    // this._attributeMods(data); // Get Attribute mods from owned items
 
-    // Return data to the sheet
+    console.log('alienrpgActorSheet -> getData ->  this.object', this.object);
+    //Return data to the sheet
     return data;
   }
 
-  _attributeMods(data) {
-    //   Attribute mods from items
-    let str = 0;
-    let agl = 0;
-    let emp = 0;
-    let wit = 0;
-    let health = 0;
-    let stress = 0;
-    for (let [key, Attrib] of Object.entries(data.inventory[1].items)) {
-      let base = Attrib.data.modifiers.attributes;
-      for (let [key, Attrib] of Object.entries(base)) {
-        // console.warn('Element', key, Attrib.value);
-        switch (key) {
-          case 'str':
-            str += Attrib.value;
-            break;
-          case 'agl':
-            agl += Attrib.value;
-            break;
-          case 'emp':
-            emp += Attrib.value;
-            break;
-          case 'wit':
-            wit += Attrib.value;
-            break;
-          case 'health':
-            health += Attrib.value;
-            break;
-          case 'stress':
-            stress += Attrib.value;
-            break;
+  // _attributeMods(data) {
+  //   //   Attribute mods from items
+  //   var attrMod = {
+  //     str: 0,
+  //     agl: 0,
+  //     emp: 0,
+  //     wit: 0,
+  //     health: 0,
+  //     stress: 0,
+  //   };
+  //   var sklMod = {
+  //     heavyMach: 0,
+  //     closeCbt: 0,
+  //     stamina: 0,
+  //     rangedCbt: 0,
+  //     mobility: 0,
+  //     piloting: 0,
+  //     command: 0,
+  //     manipulation: 0,
+  //     medicalAid: 0,
+  //     observation: 0,
+  //     survival: 0,
+  //     comtech: 0,
+  //   };
 
-          default:
-            break;
-        }
-      }
+  //   for (let [key, aAttrib] of Object.entries(data.inventory[1].items)) {
+  //     let base = aAttrib.data.modifiers.attributes;
+  //     for (let [bkey, Attrib] of Object.entries(base)) {
+  //       switch (bkey) {
+  //         case 'str':
+  //           attrMod.str = attrMod.str += parseInt(Attrib.value);
+  //           break;
+  //         case 'agl':
+  //           attrMod.agl = attrMod.agl += parseInt(Attrib.value);
+  //           break;
+  //         case 'emp':
+  //           attrMod.emp = attrMod.emp += parseInt(Attrib.value);
+  //           break;
+  //         case 'wit':
+  //           attrMod.wit = attrMod.wit += parseInt(Attrib.value);
+  //           break;
+  //         case 'health':
+  //           attrMod.health = attrMod.health += parseInt(Attrib.value);
+  //           break;
+  //         case 'stress':
+  //           attrMod.stress = attrMod.stress += parseInt(Attrib.value);
+  //           break;
 
-      // Calculate the modifier using d20 rules.
-      // const conAtt = skill.ability;
-      // skill.mod = skill.value + data.attributes[conAtt].value;
-    }
-    // data.attributes.str.mod = str;
-    // data.attributes.agl.mod = agl;
-    // data.attributes.emp.mod = emp;
-    // data.attributes.wit.mod = wit;
+  //         default:
+  //           break;
+  //       }
+  //     }
+  //     let skillBase = aAttrib.data.modifiers.skills;
+  //     for (let [skey, sAttrib] of Object.entries(skillBase)) {
+  //       switch (skey) {
+  //         case 'heavyMach':
+  //           sklMod.heavyMach = sklMod.heavyMach += parseInt(sAttrib.value);
+  //           break;
+  //         case 'closeCbt':
+  //           sklMod.closeCbt = sklMod.closeCbt += parseInt(sAttrib.value);
+  //           break;
+  //         case 'stamina':
+  //           sklMod.stamina = sklMod.stamina += parseInt(sAttrib.value);
+  //           break;
+  //         case 'rangedCbt':
+  //           sklMod.rangedCbt = sklMod.rangedCbt += parseInt(sAttrib.value);
+  //           break;
+  //         case 'mobility':
+  //           sklMod.mobility = sklMod.mobility += parseInt(sAttrib.value);
+  //           break;
+  //         case 'piloting':
+  //           sklMod.piloting = sklMod.piloting += parseInt(sAttrib.value);
+  //           break;
+  //         case 'command':
+  //           sklMod.command = sklMod.command += parseInt(sAttrib.value);
+  //           break;
+  //         case 'manipulation':
+  //           sklMod.manipulation = sklMod.manipulation += parseInt(sAttrib.value);
+  //           break;
+  //         case 'medicalAid':
+  //           sklMod.medicalAid = sklMod.medicalAid += parseInt(sAttrib.value);
+  //           break;
+  //         case 'observation':
+  //           sklMod.observation = sklMod.observation += parseInt(sAttrib.value);
+  //           break;
+  //         case 'survival':
+  //           sklMod.survival = sklMod.survival += parseInt(sAttrib.value);
+  //           break;
+  //         case 'comtech':
+  //           sklMod.comtech = sklMod.comtech += parseInt(sAttrib.value);
+  //           break;
 
-    // console.log('alienrpgActorSheet -> _attributeMods -> str', str);
-    // console.log('alienrpgActorSheet -> _attributeMods -> agl', agl);
-    // console.log('alienrpgActorSheet -> _attributeMods -> emp', emp);
-    // console.log('alienrpgActorSheet -> _attributeMods -> wit', wit);
-    // console.log('alienrpgActorSheet -> _attributeMods -> health', health);
-    // console.log('alienrpgActorSheet -> _attributeMods -> stress', stress);
-  }
+  //         default:
+  //           break;
+  //       }
+  //     }
+  //   }
+  //   // console.log('alienrpgActorSheet -> getData -> data', data);
+  //   this.actor._prepareCharacterData(data, sklMod);
+  //   for (let [s, skl] of Object.entries(data.actor.data.skills)) {
+  //     const conSkl = skl.ability;
+  //     skl.mod = parseInt(skl.value || 0) + parseInt(data.actor.data.attributes[conSkl].value || 0) + parseInt(sklMod[s] || 0);
+  //     skl.label = CONFIG.ALIENRPG.skills[s];
+  //   }
+  //   // Ability Scores
+  //   for (let [a, abl] of Object.entries(data.actor.data.attributes)) {
+  //     abl.mod = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
+  //     abl.label = CONFIG.ALIENRPG.attributes[a];
+  //   }
+
+  //   this.actor.update({ 'data.header.health.mod': (data.data.header.health.mod += parseInt(attrMod.health || 0)) });
+  //   this.actor.update({ 'data.header.stress.mod': (data.data.header.stress.mod += parseInt(attrMod.stress || 0)) });
+  // }
 
   _findActiveList() {
     return this.element.find('.tab.active .directory-list');
@@ -439,6 +491,7 @@ export class alienrpgActorSheet extends ActorSheet {
         li.setAttribute('draggable', true);
         li.addEventListener('dragstart', handler, false);
       });
+      return this._onSubmit(event);
     }
   }
 
@@ -477,8 +530,8 @@ export class alienrpgActorSheet extends ActorSheet {
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.getOwnedItem(itemId);
     let field = dataset.name;
-    console.log('alienrpgActorSheet -> _inlineedit -> field', dataset.name, dataset.value);
-    let addData = 0;
+    // console.log('alienrpgActorSheet -> _inlineedit -> field', dataset.name, dataset.value);
+    // let addData = 0;
     let actData = 0;
     // let itData = 0;
     let itData = parseInt([dataset.value] || 0);
@@ -496,8 +549,8 @@ export class alienrpgActorSheet extends ActorSheet {
     //     break;
     // }
 
-    addData = actData + itData;
-    this.actor.update({ [field]: [addData] });
+    // addData = actData + itData;
+    // this.actor.update({ [field]: [addData] });
     // console.log('alienrpgActorSheet -> _inlineedit -> afield', afield);
     // this._onSubmit(event);
 
@@ -512,7 +565,7 @@ export class alienrpgActorSheet extends ActorSheet {
   _onRoll(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
-
+    // console.log(getProperty(this.actor, 'data.data.skills.rangedCbt'));
     this.actor.rollAbility(this.actor, dataset);
   }
 
@@ -520,7 +573,6 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-
     this.actor.rollAbilityMod(this.actor, dataset);
   }
 
@@ -535,7 +587,7 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
+    // console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
     this.actor.stressChange(this.actor, dataset);
   }
 
@@ -645,70 +697,44 @@ export class alienrpgActorSheet extends ActorSheet {
     let temp = [];
     for (let index = 0; index < mItems.entries.length; index++) {
       let spanner = mItems.entries[index].data;
-      // console.log('alienrpgActorSheet -> _supplyRoll -> spanner', spanner);
+      if (spanner.totalAir || spanner.totalFood || spanner.totalWat || spanner.totalPower) {
+        switch (spanner.type) {
+          case 'item':
+            temp = [
+              {
+                name: spanner.name,
+                item: spanner._id,
+                food: spanner.data.attributes.food.value,
+                water: spanner.data.attributes.water.value,
+              },
+            ];
+            numbers.push(temp);
+            break;
+          case 'armor':
+            temp = [
+              {
+                name: spanner.name,
+                item: spanner._id,
+                air: spanner.data.attributes.airsupply.value,
+              },
+            ];
+            numbers.push(temp);
+            break;
+          case 'weapon':
+            temp = [
+              {
+                name: spanner.name,
+                item: spanner._id,
+                power: spanner.data.attributes.power.value,
+              },
+            ];
+            numbers.push(temp);
+            break;
 
-      switch (spanner.type) {
-        case 'item':
-          temp = [
-            {
-              name: spanner.name,
-              item: spanner._id,
-              food: spanner.data.attributes.food.value,
-              water: spanner.data.attributes.water.value,
-            },
-          ];
-          numbers.push(temp);
-          break;
-        case 'armor':
-          temp = [
-            {
-              name: spanner.name,
-              item: spanner._id,
-              air: spanner.data.attributes.airsupply.value,
-            },
-          ];
-          numbers.push(temp);
-          break;
-        case 'weapon':
-          temp = [
-            {
-              name: spanner.name,
-              item: spanner._id,
-              power: spanner.data.attributes.power.value,
-            },
-          ];
-          numbers.push(temp);
-          break;
-
-        default:
-          break;
+          default:
+            break;
+        }
       }
-
-      // if (spanner.type === 'item') {
-      //   let temp = [
-      //     {
-      //       name: spanner.name,
-      //       item: spanner._id,
-      //       food: spanner.data.attributes.food.value,
-      //       water: spanner.data.attributes.water.value,
-      //       power: spanner.data.attributes.power.value,
-
-      //     },
-      //   ];
-      //   numbers.push(temp);
-      // } else {
-      //   if (spanner.type === 'armor') {
-      //     let temp = [
-      //       {
-      //         name: spanner.name,
-      //         item: spanner._id,
-      //         air: spanner.data.attributes.airsupply.value,
-      //       },
-      //     ];
-      //     numbers.push(temp);
-      //   }
-      // }
-      // // console.log('Numbers', numbers);
     }
     this.actor.consumablesCheck(this.actor, consUme, label, numbers);
   }
@@ -716,7 +742,10 @@ export class alienrpgActorSheet extends ActorSheet {
   _rollItem(event) {
     // // console.log('alienrpgActorSheet -> _rollItem -> event', event);
     event.preventDefault();
+    let rCbtMod = 0;
+    // this.actor.update({ 'data.skills.rangedCbt.mod': (data.data.skills.rangedCbt.mod += rangedCbt) });
 
+    // console.warn('combat mod', this.actor._data.data.skills.rangedCbt.mod);
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.getOwnedItem(itemId);
     this.actor.nowRollItem(item);
