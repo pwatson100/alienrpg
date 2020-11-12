@@ -22,7 +22,7 @@ jobs:
           download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/master.zip
 
       # create a zip file with all files required by the module to add to the release
-      - run: zip -r ./master.zip system.json template.json README.md Realease_Notes.txt ui/ templates/ packs/ module/ macros/ lang/ images/ css/
+      - run: zip -r ./master.zip system.json template.json README.md Realease_Notes.txt ui/ templates/ packs/ module/ macros/ lang/ images/ css/ fonts/
 
       # Create a release for this specific version
       - name: Update Release with Files
