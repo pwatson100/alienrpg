@@ -141,47 +141,47 @@ const migrateActorData = (actor) => {
     }
     switch (data.general.career.value) {
       case 'Colonial Marine':
-        updateData[`data.general.career.value`] = 1;
+        updateData[`data.general.career.value`] = '1';
         // data.general.career.value = 1;
         break;
       case 'Colonial Marshal':
-        updateData[`data.general.career.value`] = 2;
+        updateData[`data.general.career.value`] = '2';
         // data.general.career.value = 2;
         break;
       case 'Company Agent':
-        updateData[`data.general.career.value`] = 3;
+        updateData[`data.general.career.value`] = '3';
         // data.general.career.value = 3;
         break;
       case 'Kid':
-        updateData[`data.general.career.value`] = 4;
+        updateData[`data.general.career.value`] = '4';
         // data.general.career.value = 4;
         break;
       case 'Medic':
-        updateData[`data.general.career.value`] = 5;
+        updateData[`data.general.career.value`] = '5';
         // data.general.career.value = 5;
         break;
       case 'Mercenary':
-        updateData[`data.general.career.value`] = 6;
+        updateData[`data.general.career.value`] = '6';
         // data.general.career.value = 6;
         break;
       case 'Officer':
-        updateData[`data.general.career.value`] = 7;
+        updateData[`data.general.career.value`] = '7';
         // data.general.career.value = 7;
         break;
       case 'Pilot':
-        updateData[`data.general.career.value`] = 8;
+        updateData[`data.general.career.value`] = '8';
         // data.general.career.value = 8;
         break;
       case 'Roughneck':
-        updateData[`data.general.career.value`] = 9;
+        updateData[`data.general.career.value`] = '9';
         // data.general.career.value = 9;
         break;
       case 'Scientist':
-        updateData[`data.general.career.value`] = 10;
+        updateData[`data.general.career.value`] = '10';
         // data.general.career.value = 10;
         break;
       case 'Synthetic':
-        updateData[`data.general.career.value`] = 11;
+        updateData[`data.general.career.value`] = '11';
         // data.general.career.value = 11;
         break;
 
@@ -297,48 +297,48 @@ export const migrateItemData = function (item) {
     switch (item.data.header.type.value) {
       case 'Data Storage':
         // updateData[`data.header.type.-=value`] = null;
-        updateData[`data.header.type`] = { value: 1 };
+        updateData[`data.header.type`] = { value: '1' };
 
         // updateData[`item.data.header.type`] = { value: 1 };
         break;
       case 'Diagnostics and Display':
         // updateData[`data.header.type.-=value`] = null;
-        updateData[`data.header.type`] = { value: 2 };
+        updateData[`data.header.type`] = { value: '2' };
 
         // updateData[`item.data.header.type`] = { value: 2 };
         // console.log('migrateItemData -> updateData', updateData);
         break;
       case 'Vision Devices':
         // updateData[`data.header.type.-=value`] = null;
-        updateData[`data.header.type`] = { value: 3 };
+        updateData[`data.header.type`] = { value: '3' };
 
         // updateData[`item.data.header.type`] = { value: 3 };
         // console.log('migrateItemData -> updateData', updateData);
         break;
       case 'Tools':
         // updateData[`item.data.header.type.-=value`] = null;
-        updateData[`data.header.type`] = { value: 4 };
+        updateData[`data.header.type`] = { value: '4' };
 
         // updateData[`item.data.header.type`] = { value: 4 };
         // console.log('migrateItemData -> updateData', updateData);
         break;
       case 'Medical Supplies':
         // updateData[`item.data.header.type.-=value`] = null;
-        updateData[`data.header.type`] = { value: 5 };
+        updateData[`data.header.type`] = { value: '5' };
 
         // updateData[`item.data.header.type`] = { value: 5 };
         // console.log('migrateItemData -> updateData', updateData);
         break;
       case 'Pharmaceuticals':
         // updateData[`item.data.header.type.-=value`] = null;
-        updateData[`data.header.type`] = { value: 6 };
+        updateData[`data.header.type`] = { value: '6' };
 
         // updateData[`item.data.header.type`] = { value: 6 };
         // console.log('migrateItemData -> updateData', updateData);
         break;
       case 'Food and Drink':
         // updateData[`item.data.header.type.-=value`] = null;
-        updateData[`data.header.type`] = { value: 7 };
+        updateData[`data.header.type`] = { value: '7' };
 
         // updateData[`item.data.header.type`] = { value: 7 };
         // console.log('migrateItemData -> updateData', updateData);
@@ -353,13 +353,13 @@ export const migrateItemData = function (item) {
     switch (item.data.header.type.value) {
       case 'Ranged':
         // updateData[`item.data.header.type.-=value`] = null;
-        updateData[`data.header.type`] = { value: 1 };
+        updateData[`data.header.type`] = { value: '1' };
 
         // updateData[`item.data.header.type.value`] = { value: 1 };
         break;
       case 'Melee':
         // updateData[`item.data.header.type.-=value`] = null;
-        updateData[`data.header.type`] = { value: 2 };
+        updateData[`data.header.type`] = { value: '2' };
 
         // updateData[`item.data.header.type.value`] = { value: 2 };
         break;
@@ -372,67 +372,67 @@ export const migrateItemData = function (item) {
     switch (item.data.general.career.value) {
       case 'General Talent':
         // updateData[`item.data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 1 };
+        updateData[`data.general.career`] = { value: '1' };
 
         // updateData[`item.data.general.career.value`] = { value: 1 };
         break;
       case 'Colonial Marine':
         // updateData[`item.data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 2 };
+        updateData[`data.general.career`] = { value: '2' };
 
         // updateData[`item.data.general.career.value`] = { value: 2 };
         break;
       case 'Colonial Marshal':
         // updateData[`item.data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 3 };
+        updateData[`data.general.career`] = { value: '3' };
 
         // updateData[`item.data.general.career.value`] = { value: 3 };
         break;
       case 'Company Agent':
         // updateData[`item.data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 4 };
+        updateData[`data.general.career`] = { value: '4' };
 
         // updateData[`item.data.general.career.value`] = { value: 4 };
         break;
       case 'Kid':
         // updateData[`item.data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 5 };
+        updateData[`data.general.career`] = { value: '5' };
 
         // updateData[`data.general.career.value`] = { value: 5 };
         break;
       case 'Medic':
         // updateData[`data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 6 };
+        updateData[`data.general.career`] = { value: '6' };
 
         // updateData[`data.general.career.value`] = { value: 6 };
         break;
       case 'Mercenary':
         // updateData[`data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 7 };
+        updateData[`data.general.career`] = { value: '7' };
 
         // updateData[`data.general.career.value`] = { value: 7 };
         break;
       case 'Officer':
         // updateData[`data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 8 };
+        updateData[`data.general.career`] = { value: '8' };
 
         // updateData[`data.general.career.value`] = { value: 8 };
         break;
       case 'Pilot':
         // updateData[`data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 9 };
+        updateData[`data.general.career`] = { value: '9' };
 
         // updateData[`data.general.career.value`] = { value: 9 };
         break;
       case 'Roughneck':
         // updateData[`data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 10 };
+        updateData[`data.general.career`] = { value: '10' };
 
         // updateData[`data.general.career.value`] = { value: 10 };
         break;
       case 'Scientist':
         // updateData[`data.general.career.-=value`] = null;
-        updateData[`data.general.career`] = { value: 11 };
+        updateData[`data.general.career`] = { value: '11' };
 
         // updateData[`data.general.career.value`] = { value: 11 };
         break;

@@ -187,5 +187,16 @@
   "ALIENRPG.CreatureSkill": "Cette créature n'a pas cette compétence.",
   "ALIENRPG.AttackRoll": "Jet d'attaque",
   "ALIENRPG.AcidAttack": "Sang acide",
-  "ALIENRPG.AcidBlood": "Cette créature n'a pas de sang acide"
+  "ALIENRPG.AcidBlood": "Cette créature n'a pas de sang acide",
+  "ALIENRPG.Engaged": "Engagé",
+  "ALIENRPG.Short": "Court",
+  "ALIENRPG.Medium": "Moyen",
+  "ALIENRPG.Long": "Long",
+  "ALIENRPG.Extreme": "Extrême",
+  "ALIENRPG.Modifiers": "Modificateurs",
+  "ALIENRPG.Crew": "Équipage",
+  "ALIENRPG.GunnerName": "Nom de l'Artilleur",
+  "ALIENRPG.PilotName": "Nom du Pilote",
+  "ALIENRPG.Inactive": "Inactif",
+  "ALIENRPG.Active": "Actif"
 }

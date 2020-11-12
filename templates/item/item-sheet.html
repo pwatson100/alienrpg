@@ -40,7 +40,12 @@
   <section class="sheet-body">
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
-      {{#ife data.header.type.value '7'}}
+      {{#ife data.header.type.value '4'}}
+      <div class="grid-Char-Att">
+        <h3 class="resource-label gCol1">{{localize "ALIENRPG.Power"}}</h3>
+        <input type="text" name="data.attributes.power.value" class="maxboxsize gCol2" value="{{data.attributes.power.value}}" data-dtype="Number" />
+      </div>
+      {{/ife}} {{#ife data.header.type.value '7'}}
       <div class="grid-Char-Att">
         <h3 class="resource-label gCol1">{{localize "ALIENRPG.Food"}}</h3>
         <input type="text" name="data.attributes.food.value" class="maxboxsize gCol2" value="{{data.attributes.food.value}}" data-dtype="Number" />

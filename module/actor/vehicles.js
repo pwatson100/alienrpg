@@ -220,18 +220,11 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
   _inlineedit(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
-    // console.log('alienrpgActorSheet -> _inlineedit ->  dataset.element', event);
-
+    console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
-    // console.log('alienrpgActorSheet -> _inlineedit -> itemId', itemId);
-
     let item = this.actor.getOwnedItem(itemId);
-    // console.log('alienrpgActorSheet -> _inlineedit -> item', item);
-
     let field = dataset.name;
-    console.log('alienrpgActorSheet -> _inlineedit -> field', field);
-
-    return item.update({ [field]: dataset.value });
+    return item.update({ [field]: dataset.value }, {});
   }
 
   /**
@@ -317,10 +310,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
         // console.warn('inventory', inventory);
 
         // Classify items into types
-        if (item.type === 'spell') arr[1].push(item);
-        else if (item.type === 'feat') arr[2].push(item);
-        else if (item.type === 'class') arr[3].push(item);
-        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+        if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
         return arr;
       },
       [[], [], [], []]

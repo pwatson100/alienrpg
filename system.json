@@ -62,7 +62,7 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "stress",
   "url": "https://github.com/pwatson100/alienrpg",
-  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/1.2.9/system.json",
-  "download": "https://github.com/pwatson100/alienrpg/releases/download/1.2.9/master.zip",
+  "manifest": "https://github.com/pwatson100/alienrpg/releases/latest/download/system.json",
+  "download": "https://github.com/pwatson100/alienrpg/releases//latest/download/master.zip",
   "socket": true
 }

@@ -520,7 +520,8 @@
         "type": {
           "value": "",
           "label": "Text"
-        }
+        },
+        "active": false
       },
       "attributes": {
         "weight": {
@@ -534,6 +535,18 @@
         "comment": {
           "value": "",
           "label": "Text"
+        },
+        "food": {
+          "value": 0,
+          "label": "Number"
+        },
+        "water": {
+          "value": 0,
+          "label": "Number"
+        },
+        "power": {
+          "value": 0,
+          "label": "Stress"
         },
         "notes": {
           "notes": ""
@@ -626,10 +639,6 @@
             "value": 0,
             "label": "Comtech",
             "ability": "wit"
-          },
-          "power": {
-            "value": 0,
-            "label": "Stress"
           }
         }
       }
@@ -639,7 +648,8 @@
         "type": {
           "value": "",
           "label": "Text"
-        }
+        },
+        "active": false
       },
       "attributes": {
         "bonus": {
@@ -684,6 +694,9 @@
       }
     },
     "armor": {
+      "header": {
+        "active": false
+      },
       "attributes": {
         "weight": {
           "value": 0,

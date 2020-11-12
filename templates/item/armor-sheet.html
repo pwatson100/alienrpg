@@ -23,6 +23,7 @@
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="attributes">{{localize "ALIENRPG.Attributes"}}</a>
     <a class="item" data-tab="notes">{{localize "ALIENRPG.Notes"}}</a>
+    <a class="item" data-tab="modifiers">{{localize "ALIENRPG.Modifiers"}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -31,6 +32,18 @@
     <div class="tab attributes" data-group="primary" data-tab="attributes">
       <h2 class="resource-label">{{localize "ALIENRPG.Comment"}}</h2>
       <textarea name="data.attributes.comment.value" rows="10" data-dtype="String">{{data.attributes.comment.value}}</textarea>
+    </div>
+
+    <div class="tab modifiers" data-group="primary" data-tab="modifiers">
+      <h2 class="resource-label">{{localize "ALIENRPG.Attributes"}}</h2>
+      <div class="grid-2col">
+        {{#each data.modifiers as |attributes key|}}
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.{{key}}.value" class="resource-label">{{attributes.label}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.{{key}}.value" value="{{attributes.value}}" data-dtype="Number" />
+        </div>
+        {{/each}}
+      </div>
     </div>
 
     {{!-- Notes Tab --}}

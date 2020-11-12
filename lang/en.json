@@ -193,5 +193,12 @@
   "ALIENRPG.Medium": "Medium",
   "ALIENRPG.Long": "Long",
   "ALIENRPG.Extreme": "Extreme",
-  "ALIENRPG.Modifiers": "Modifiers"
+  "ALIENRPG.Modifiers": "Modifiers",
+  "ALIENRPG.Crew": "Crew",
+  "ALIENRPG.GunnerName": "Gunner Name",
+  "ALIENRPG.PilotName": "Pilot Name",
+  "ALIENRPG.Dam": "Dam",
+  "ALIENRPG.Rds": "Rds",
+  "ALIENRPG.Inactive": "Inactive",
+  "ALIENRPG.Active": "Active"
 }

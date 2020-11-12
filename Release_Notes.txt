@@ -133,12 +133,30 @@ Phase 3 de la traduction française terminée, juste les boîtes de dialogue à 
 Si vous voyez quelque chose d'anormal ou de manquant, veuillez me le faire savoir car je compte sur Google Traduction pour les parties finales.
 
 Version 1.2.8
-Backed out package loaded fonts as "The Forge" tries to get hem from the Bazaar rather than the defined source location.
+Backed out package loaded fonts as "The Forge" tries to get hem from the Bazaar rather than the defined source location. 
+EDIT:  This was actually caused because my release action on Github did not include the font's directory.  
 
 Version 1.2.9
 Add a context sensitive menu to items lists.  Right click on the edit icon to get edit or delete options.
-Added a Rounds box to the character sheet inventory for ranged weapons.  
-  This is editable in-line and updates the characters item so it's easier for players to track Rounds.
+Range box on weapons sheets is now a dropdown.  Will default to "Engaged" for Melee weapons.
+Stress roll mod (right click) now only allows stress dice to be added or subtracted.   
+Added a Rounds (for ranged weapons), Food and water (for Items) boxes to the character sheet inventory.  
+- These is editable in-line and updates the characters item so it's easier for players to track Rounds and update Food and Water.
+Items with Food, Water and Air will automatically update the consumables boxes.        
+Consumable boxes now total the type for multiple Items so show total Air, Food, Water and Power.  
+- Checks can be rolled to test for depletion and failures are removed from the item(s) sheet.  
+ - Note: This is sequential so once an item is depleted it will just move on to the next available item with that resource.   
+Added Power box to the Weapons sheet. This will automatically update the power consumable box.
 Tidied up the systems list presentation on the Territories sheet. 
+
+..........And the big one.........
+Added new tab to Items sheets to allow any mods to be added as required.  
+For Weapons and vehicles added relvent stat mod options (as per the rule book)
+- System will now recognise these and add or subtract those modifiers from Attribute, Skill and Weapon rolls as required.   
+Added Crew tab to Vehicles.  Which allow you to add the name of the "Gunner" and "Pilot" as well as their ranged combat and piloting skill values.   
+Items now have an active/in-active flag which is toggled by left/right clicking on the image in the inventory list.  
+* Weapons can only be used if active.
+* Item mods are only applied when the item is active.  
+* Food, Water, Power, Air and Armor are applied to consumables even if in-active.
 
   

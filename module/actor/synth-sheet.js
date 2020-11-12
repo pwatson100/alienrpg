@@ -23,7 +23,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'synth-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
-      width: 650,
+      width: 670,
       height: 710,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
@@ -57,6 +57,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // The Actor and its Items
     data.actor = duplicate(this.actor.data);
+
     data.items = this.actor.items.map((i) => {
       i.data.labels = i.labels;
       return i.data;
@@ -65,16 +66,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.data = data.actor.data;
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
-
-    // Ability Scores
-    for (let [a, abl] of Object.entries(data.actor.data.attributes)) {
-      abl.label = CONFIG.ALIENRPG.attributes[a];
-    }
-
-    // Update skill labels
-    for (let [s, skl] of Object.entries(data.actor.data.skills)) {
-      skl.label = CONFIG.ALIENRPG.skills[s];
-    }
 
     data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
     data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
@@ -136,10 +127,11 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
 
         // Classify items into types
-        if (item.type === 'spell') arr[1].push(item);
-        else if (item.type === 'feat') arr[2].push(item);
-        else if (item.type === 'feature') arr[3].push(item);
-        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+        // console.log('alienrpgActorSheet -> _prepareItems -> item', item);
+        // if (item.type === 'talent') arr[1].push(item);
+        // else if (item.type === 'feat') arr[2].push(item);
+        // else if (item.type === 'feature') arr[3].push(item);
+        if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
         return arr;
       },
       [[], [], [], []]
@@ -160,19 +152,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       }
     }
 
-    // Loop through the items and update the actors AC
-    let totalAc = 0;
-    for (let i of items) {
-      try {
-        i.data.attributes.armorrating.value === true;
-        i.data.attributes.armorrating.value = i.data.attributes.armorrating.value || 0;
-        i.totalAc = parseInt(i.data.attributes.armorrating.value, 10);
-        totalAc += i.totalAc;
-        data.data.general.armor.value = totalAc;
-      } catch {
-        data.data.general.armor.value = totalAc;
-      }
-    }
+    // console.warn('totalAc', i.totalAc, totalAc);
 
     data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
 
@@ -212,29 +192,29 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       const data = item.data;
 
       // Action usage
-      for (let f of ['action', 'bonus', 'reaction']) {
-        if (filters.has(f)) {
-          if (data.activation && data.activation.type !== f) return false;
-        }
-      }
+      // for (let f of ['action', 'bonus', 'reaction']) {
+      //   if (filters.has(f)) {
+      //     if (data.activation && data.activation.type !== f) return false;
+      //   }
+      // }
 
-      // Spell-specific filters
-      if (filters.has('ritual')) {
-        if (data.components.ritual !== true) return false;
-      }
-      if (filters.has('concentration')) {
-        if (data.components.concentration !== true) return false;
-      }
-      if (filters.has('prepared')) {
-        if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
-        if (this.actor.data.type === 'npc') return true;
-        return data.preparation.prepared;
-      }
+      // // Spell-specific filters
+      // if (filters.has('ritual')) {
+      //   if (data.components.ritual !== true) return false;
+      // }
+      // if (filters.has('concentration')) {
+      //   if (data.components.concentration !== true) return false;
+      // }
+      // if (filters.has('prepared')) {
+      //   if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
+      //   if (this.actor.data.type === 'npc') return true;
+      //   return data.preparation.prepared;
+      // }
 
-      // Equipment-specific filters
-      if (filters.has('equipped')) {
-        if (data.equipped !== true) return false;
-      }
+      // // Equipment-specific filters
+      // if (filters.has('equipped')) {
+      //   if (data.equipped !== true) return false;
+      // }
       return true;
     });
   }
@@ -242,10 +222,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
-
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
-
     const itemContextMenu = [
       {
         name: game.i18n.localize('ALIENRPG.EditItem'),
@@ -266,6 +244,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
+
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
     // // Update Inventory Item
@@ -306,16 +285,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
     }
 
-    // // Rollable abilities.
-    // html.find('.rollable').click(this._onRoll.bind(this));
-
-    // html.find('.rollable').contextmenu(this._onRollMod.bind(this));
-
-    // // Rollable Items.
-    // html.find('.rollItem').click(this._rollItem.bind(this));
-
-    // html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
-
     // minus from health and stress
     html.find('.minus-btn').click(this._plusMinusButton.bind(this));
 
@@ -329,6 +298,11 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     html.find('.stunt-btn').click(this._stuntBtn.bind(this));
 
     html.find('.talent-btn').click(this._talentBtn.bind(this));
+
+    html.find('.inline-edit').change(this._inlineedit.bind(this));
+
+    html.find('.activate').click(this._activate.bind(this));
+    html.find('.activate').contextmenu(this._deactivate.bind(this));
 
     // Drag events for macros.
     if (this.actor.owner) {
@@ -379,8 +353,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.getOwnedItem(itemId);
     let field = dataset.name;
-    console.log('alienrpgActorSheet -> _inlineedit -> field', field);
-    return item.update({ [field]: dataset.value });
+    // console.log('alienrpgActorSheet -> _inlineedit -> field', field);
+    return item.update({ [field]: dataset.value }, {});
   }
 
   /**
@@ -414,11 +388,28 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     this.actor.nowRollItem(item);
   }
 
+  _activate(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    let itemId = dataset.parentElement.dataset.itemId;
+    let item = this.actor.getOwnedItem(itemId);
+
+    return item.update({ 'data.header.active': true }, {});
+  }
+  _deactivate(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    let itemId = dataset.parentElement.dataset.itemId;
+    let item = this.actor.getOwnedItem(itemId);
+
+    return item.update({ 'data.header.active': false }, {});
+  }
+
   _plusMinusButton(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
+    // console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
     this.actor.stressChange(this.actor, dataset);
   }
 
@@ -523,8 +514,51 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
     const consUme = dataset.spbutt.toLowerCase();
+    let mItems = this.actor.items;
+    let numbers = [];
+    let temp = [];
+    for (let index = 0; index < mItems.entries.length; index++) {
+      let spanner = mItems.entries[index].data;
+      if (spanner.totalAir || spanner.totalFood || spanner.totalWat || spanner.totalPower) {
+        switch (spanner.type) {
+          case 'item':
+            temp = [
+              {
+                name: spanner.name,
+                item: spanner._id,
+                food: spanner.data.attributes.food.value,
+                water: spanner.data.attributes.water.value,
+              },
+            ];
+            numbers.push(temp);
+            break;
+          case 'armor':
+            temp = [
+              {
+                name: spanner.name,
+                item: spanner._id,
+                air: spanner.data.attributes.airsupply.value,
+              },
+            ];
+            numbers.push(temp);
+            break;
+          case 'weapon':
+            temp = [
+              {
+                name: spanner.name,
+                item: spanner._id,
+                power: spanner.data.attributes.power.value,
+              },
+            ];
+            numbers.push(temp);
+            break;
 
-    this.actor.consumablesCheck(this.actor, consUme, label);
+          default:
+            break;
+        }
+      }
+    }
+    this.actor.consumablesCheck(this.actor, consUme, label, numbers);
   }
 }
 export default alienrpgSynthActorSheet;

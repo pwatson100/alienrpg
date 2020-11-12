@@ -30,6 +30,7 @@
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
     <a class="item" data-tab="inventory">{{localize "ALIENRPG.Inventory"}}</a>
+    <a class="item" data-tab="crew">{{localize "ALIENRPG.Crew"}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -43,6 +44,23 @@
       <br />
       <h3 class="resource-label">{{localize "ALIENRPG.Description"}}</h3>
       <textarea name="data.attributes.comment.value" rows="14" data-dtype="String">{{data.attributes.comment.value}}</textarea>
+    </div>
+
+    <div class="tab crew" data-group="primary" data-tab="crew">
+      <h2 class="resource-label">{{localize "ALIENRPG.Crew"}}</h2>
+      <!-- <div class="grid-2col"> -->
+      <div class="modifiers">
+        <label class="resource-label">{{localize "ALIENRPG.GunnerName"}}</label>
+        <input type="text" class="textbox" name="data.modifiers.gunnerName" value="{{data.modifiers.gunnerName}}" data-dtype="text" />
+        <label class="resource-label">{{localize "ALIENRPG.SkillRangedCbt"}}</label>
+        <input type="text" class="maxboxsize" name="data.modifiers.rangedCbt.value" value="{{data.modifiers.rangedCbt.value}}" data-dtype="Number" />
+        <br />
+        <label class="resource-label">{{localize "ALIENRPG.PilotName"}}</label>
+        <input type="text" class="textbox" name="data.modifiers.pilotName" value="{{data.modifiers.pilotName}}" data-dtype="text" />
+        <label class="resource-label">{{localize "ALIENRPG.SkillPiloting"}}</label>
+        <input type="text" class="maxboxsize" name="data.modifiers.piloting.value" value="{{data.modifiers.piloting.value}}" data-dtype="Number" />
+      </div>
+      <!-- </div> -->
     </div>
 
     {{!-- Owned Items Tab --}}
