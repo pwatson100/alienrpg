@@ -81,30 +81,6 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       const data = item.data;
 
       // Action usage
-      for (let f of ['action', 'bonus', 'reaction']) {
-        if (filters.has(f)) {
-          if (data.activation && data.activation.type !== f) return false;
-        }
-      }
-
-      // Spell-specific filters
-      if (filters.has('ritual')) {
-        if (data.components.ritual !== true) return false;
-      }
-      if (filters.has('concentration')) {
-        if (data.components.concentration !== true) return false;
-      }
-      if (filters.has('prepared')) {
-        if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
-        if (this.actor.data.type === 'npc') return true;
-        return data.preparation.prepared;
-      }
-
-      // Equipment-specific filters
-      if (filters.has('equipped')) {
-        if (data.equipped !== true) return false;
-      }
-      return true;
     });
   }
 
@@ -148,230 +124,35 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  _onItemCreate(event) {
-    event.preventDefault();
-    const header = event.currentTarget;
-    // Get the type of item to create.
-    const type = header.dataset.type;
-    // Grab any data associated with this control.
-    const data = duplicate(header.dataset);
-    // Initialize a default name.
-    const name = `New ${type.capitalize()}`;
-    // Prepare the item object.
-    const itemData = {
-      name: name,
-      type: type,
-      data: data,
-    };
-    // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.data['type'];
-
-    // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
-  }
-
-  /**
    * Handle clickable rolls.
    * @param {Event} event   The originating click event
    * @private
    */
   _onRoll(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    let label = dataset.label;
-    game.alienrpg.rollArr.sCount = 0;
-    if (dataset.roll != '-') {
-      let r1Data = parseInt(dataset.roll || 0);
-      let r2Data = 0;
-      let reRoll = false;
-      let hostile = 'creature';
-      let blind = true;
-      if (dataset.spbutt === 'armor' && r1Data < 1) {
-        return;
-      } else if (dataset.spbutt === 'armor') {
-        label = 'Armor';
-        r2Data = 0;
-      }
-      if (this.actor.data.token.disposition === -1) {
-        blind = true;
-        reRoll = true;
-      }
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.r3Six;
-    } else {
-      // Roll against the panic table and push the roll to the chat log.
-      let chatMessage = '';
-      chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.NoSkill') + '</h2>';
-      chatMessage += `<h4><i>` + game.i18n.localize('ALIENRPG.CreatureSkill') + `</i></h4>`;
-      ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
-    }
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollAbility(this.actor, dataset);
   }
+
   _onRollMod(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    let label = dataset.label;
-    game.alienrpg.rollArr.sCount = 0;
-
-    let r1Data = parseInt(dataset.roll || 0);
-    let r2Data = 0;
-    let reRoll = true;
-    let hostile = 'creature';
-    let blind = false;
-    if (dataset.spbutt === 'armor' && r1Data < 1) {
-      return;
-    } else if (dataset.spbutt === 'armor') {
-      label = 'Armor';
-      r2Data = 0;
-    }
-
-    if (this.actor.data.token.disposition === -1) {
-      // hostile = true;
-      blind = true;
-    }
-
-    // callpop upbox here to get any mods then update r1Data or rData as appropriate.
-    let confirmed = false;
-    new Dialog({
-      title: `Roll Modified ${label} check`,
-      content: `
-       <p>Please enter your modifier.</p>
-       <form>
-        <div class="form-group">
-         <label>Base Modifier:</label>
-           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-           </div>
-       </form>
-       `,
-      buttons: {
-        one: {
-          icon: '<i class="fas fa-check"></i>',
-          label: 'Roll!',
-          callback: () => (confirmed = true),
-        },
-        two: {
-          icon: '<i class="fas fa-times"></i>',
-          label: 'Cancel',
-          callback: () => (confirmed = false),
-        },
-      },
-      default: 'one',
-      close: (html) => {
-        if (confirmed) {
-          let modifier = parseInt(html.find('[name=modifier]')[0].value);
-          r1Data = r1Data + modifier;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-        }
-      },
-    }).render(true);
+    this.actor.rollAbilityMod(this.actor, dataset);
   }
 
   _creatureAcidRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    let label = dataset.label;
-    let r1Data = parseInt(dataset.roll || 0);
-    let r2Data = 0;
-    let reRoll = true;
-    let hostile = 'creature';
-    let blind = false;
-    if (dataset.roll != '-') {
-      if (dataset.spbutt === 'armor' && r1Data < 1) {
-        return;
-      } else if (dataset.spbutt === 'armor') {
-        label = 'Armor';
-        r2Data = 0;
-      }
-
-      if (this.actor.data.token.disposition === -1) {
-        // hostile = true;
-        blind = true;
-      }
-
-      // callpop upbox here to get any mods then update r1Data or rData as appropriate.
-      let confirmed = false;
-      new Dialog({
-        title: `Roll ${label} Damage`,
-        content: `
-       <p>Please enter the damage inflicted on the Xeno.</p>
-       <form>
-        <div class="form-group">
-         <label>Damage:</label>
-           <input type="text" id="damage" name="damage" value="0" autofocus="autofocus" >
-        </div>
-       </form>
-       `,
-        buttons: {
-          one: {
-            icon: '<i class="fas fa-check"></i>',
-            label: 'Roll!',
-            callback: () => (confirmed = true),
-          },
-          two: {
-            icon: '<i class="fas fa-times"></i>',
-            label: 'Cancel',
-            callback: () => (confirmed = false),
-          },
-        },
-        default: 'one',
-        close: (html) => {
-          if (confirmed) {
-            let modifier = parseInt(html.find('[name=damage]')[0].value);
-            r1Data = r1Data + modifier;
-            yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
-          }
-        },
-      }).render(true);
-    } else {
-      // Roll against the panic table and push the roll to the chat log.
-      let chatMessage = '';
-      chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AcidAttack') + '</h2>';
-      chatMessage += `<h4><i>` + game.i18n.localize('ALIENRPG.AcidBlood') + `</i></h4>`;
-      ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
-    }
+    this.actor.creatureAcidRoll(this.actor, dataset);
   }
 
   _creatureAttackRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    let chatMessage = '';
-    const targetTable = dataset.atttype;
-    const table = game.tables.entities.find((b) => b.name === targetTable);
-    const roll = new Roll('1d6');
-
-    const customResults = table.roll({ roll });
-    chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
-    chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-    chatMessage += `${customResults.results[0].text}`;
-    ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.WHISPER });
-  }
-
-  _onClickStatLevel(event) {
-    event.preventDefault();
-
-    const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    const max = field.data('max') == undefined ? 4 : field.data('max');
-    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
-    const level = parseFloat(field.val());
-    let newLevel = ''; // Toggle next level - forward on click, backwards on right
-
-    if (event.type === 'click') {
-      newLevel = Math.clamped(level + 1, 0, max);
-    } else if (event.type === 'contextmenu') {
-      newLevel = Math.clamped(level - 1, 0, max);
-    } // Update the field value and save the form
-
-    field.val(newLevel);
-
-    this._onSubmit(event);
+    this.actor.creatureAttackRoll(this.actor, dataset);
   }
 }
 export default ActorSheetAlienRPGCreat;

@@ -126,11 +126,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         item.img = item.img || DEFAULT_TOKEN;
         item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
 
-        // Classify items into types
-        // console.log('alienrpgActorSheet -> _prepareItems -> item', item);
-        // if (item.type === 'talent') arr[1].push(item);
-        // else if (item.type === 'feat') arr[2].push(item);
-        // else if (item.type === 'feature') arr[3].push(item);
         if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
         return arr;
       },
@@ -151,8 +146,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         totalWeight += i.totalWeight;
       }
     }
-
-    // console.warn('totalAc', i.totalAc, totalAc);
 
     data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
 
@@ -191,30 +184,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     return items.filter((item) => {
       const data = item.data;
 
-      // Action usage
-      // for (let f of ['action', 'bonus', 'reaction']) {
-      //   if (filters.has(f)) {
-      //     if (data.activation && data.activation.type !== f) return false;
-      //   }
-      // }
-
-      // // Spell-specific filters
-      // if (filters.has('ritual')) {
-      //   if (data.components.ritual !== true) return false;
-      // }
-      // if (filters.has('concentration')) {
-      //   if (data.components.concentration !== true) return false;
-      // }
-      // if (filters.has('prepared')) {
-      //   if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
-      //   if (this.actor.data.type === 'npc') return true;
-      //   return data.preparation.prepared;
-      // }
-
-      // // Equipment-specific filters
-      // if (filters.has('equipped')) {
-      //   if (data.equipped !== true) return false;
-      // }
       return true;
     });
   }
@@ -244,22 +213,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
-
-    html.find('.item-create').click(this._onItemCreate.bind(this));
-
-    // // Update Inventory Item
-    // html.find('.item-edit').click((ev) => {
-    //   const li = $(ev.currentTarget).parents('.item');
-    //   const item = this.actor.getOwnedItem(li.data('itemId'));
-    //   item.sheet.render(true);
-    // });
-
-    // // Delete Inventory Item
-    // html.find('.item-delete').click((ev) => {
-    //   const li = $(ev.currentTarget).parents('.item');
-    //   this.actor.deleteOwnedItem(li.data('itemId'));
-    //   li.slideUp(200, () => this.render(false));
-    // });
 
     if (game.settings.get('alienrpg', 'switchMouseKeys')) {
       // Right to Roll and left to mod
@@ -319,33 +272,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
   }
 
   /* -------------------------------------------- */
-
-  /**
-   * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  _onItemCreate(event) {
-    event.preventDefault();
-    const header = event.currentTarget;
-    // Get the type of item to create.
-    const type = header.dataset.type;
-    // Grab any data associated with this control.
-    const data = duplicate(header.dataset);
-    // Initialize a default name.
-    const name = `New ${type.capitalize()}`;
-    // Prepare the item object.
-    const itemData = {
-      name: name,
-      type: type,
-      data: data,
-    };
-    // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.data['type'];
-
-    // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
-  }
 
   _inlineedit(event) {
     event.preventDefault();

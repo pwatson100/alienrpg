@@ -69,7 +69,6 @@ export class alienrpgActor extends Actor {
   _prepareCharacterData(actorData) {
     super.prepareDerivedData();
     const data = actorData.data;
-    // // console.log('alienrpgActor -> _prepareCharacterData -> data', actorData);
     var attrMod = {
       str: 0,
       agl: 0,
@@ -274,8 +273,8 @@ export class alienrpgActor extends Actor {
       }
     }
   }
+
   async rollAbility(actor, dataset) {
-    // // console.log('alienrpgActor -> rollAbility -> dataset', dataset);
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
@@ -314,8 +313,6 @@ export class alienrpgActor extends Actor {
         const table = game.tables.getName('Panic Table');
         // let aStress = actor.getRollData().stress;
         let aStress = actor.getRollData().stress + parseInt(actor.data.data.header.stress.mod);
-        // // console.log('alienrpgActor -> rollAbility -> actor.data.data.header.stress.mod.value', actor.data.data.header.stress.mod);
-        // // console.log('alienrpgActor -> rollAbility -> aStress', aStress);
         let modRoll = 'd6' + '+' + parseInt(aStress || 0);
         const roll = new Roll(modRoll);
 
@@ -326,47 +323,39 @@ export class alienrpgActor extends Actor {
           actor.update({ 'data.general.panic.value': actor.data.data.general.panic.value + 1 });
         }
 
-        chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >Panic Condition</h2>';
+        chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + '</h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-
         let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
         let pCheck = oldPanic + 1;
         if (actor.data.data.general.panic.value && mPanic) {
           actor.update({ 'data.general.panic.lastRoll': pCheck });
 
-          chatMessage += `<h4  style="color: #f71403;font-weight: bolder"><i><b>Roll ${customResults.roll.total}   More Panic.</b> </i></h4>`;
-          chatMessage += `<h4><i>PC's Panic level has increased by one step to <b style="color: #f71403;">Level ${pCheck}</b> (See page 104 of the Alien rule book.)</i></h4>`;
-          switch (pCheck) {
-            case 8:
-              chatMessage += `<b>TREMBLE:</b>  You start to tremble uncontrollably. All skill rolls using AGILITY suffer a –2 modification until your panic stops.`;
-              break;
-            case 9:
-              chatMessage += `<b>DROP ITEM:</b>  Whether by stress, confusion or the realization that you’re all going to die anyway, you drop a weapon or other important item—the GM decides which one. Your STRESS LEVEL increases by one.`;
-              break;
-            case 10:
-              chatMessage += `<b>FREEZE:</b>  You’re frozen by fear or stress for one Round, losing your next slow action. Your STRESS LEVEL, and the STRESS LEVEL of all friendly PCs in SHORT range of you, increases by one`;
-              break;
-            case 11:
-              chatMessage += `<b>SEEK COVER:</b>  You must use your next action to move away from danger and find a safe spot if possible. You are allowed to make a retreat roll (see page 93) if you have an enemy at ENGAGED range. Your STRESS LEVEL is decreased by one, but the STRESS LEVEL of all friendly PCs in SHORT range increases by one. After one Round, you can act normally.`;
-              break;
-            case 12:
-              chatMessage += `<b>SCREAM:</b> You scream your lungs out for one Round, losing your next slow action. Your STRESS LEVEL is decreased by one, but every friendly character who hears your scream must make an immediate Panic Roll.`;
-              break;
-            case 13:
-              chatMessage += `<b>FLEE:</b>  You just can’t take it anymore. You must flee to a safe place and refuse to leave it. You won’t attack anyone and won’t attempt anything dangerous. You are not allowed to make a retreat roll (see page 93) if you have an enemy at ENGAGED range when you flee. Your STRESS LEVEL is decreased by one, but every friendly character who sees you run must make an immediate Panic Roll.`;
-              break;
-            case 14:
-              chatMessage += `<b>BERSERK:</b>  You must immediately attack the nearest person or creature, friendly or not. You won’t stop until you or the target is Broken. Every friendly character who witnesses your rampage must make an immediate Panic Roll`;
-              break;
-            default:
-              chatMessage += `<b>CATATONIC:</b>  You collapse to the floor and can’t talk or move, staring blankly into oblivion.`;
-              break;
-          }
+          chatMessage +=
+            '<h4 style="color: #f71403;font-weight: bolder"><i><b>' +
+            game.i18n.localize('ALIENRPG.PanicCondition') +
+            ' ' +
+            `${customResults.roll.total}` +
+            ' ' +
+            game.i18n.localize('ALIENRPG.MorePanic') +
+            '</b></i></h4>';
+
+          chatMessage +=
+            '<h4><i>' +
+            game.i18n.localize('ALIENRPG.PCPanicLevel') +
+            '<b style="color: #f71403;">' +
+            game.i18n.localize('ALIENRPG.Level') +
+            ' ' +
+            `${pCheck}` +
+            ' ' +
+            game.i18n.localize('ALIENRPG.Seepage104') +
+            '</b></i></h4>';
+
+          chatMessage += this.morePanic(pCheck);
         } else {
           actor.update({ 'data.general.panic.lastRoll': customResults.roll.total });
 
-          chatMessage += `<h4><i><b>Roll ${customResults.roll.total} </b></i></h4>`;
-          chatMessage += `${customResults.results[0].text}`;
+          chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.DialRoll') + ' ' + `${customResults.roll.total}` + ' </b></i></h4>';
+          chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
           if (customResults.roll.total >= 7) {
             chatMessage +=
               `<h4 style="color: #f71403;"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${customResults.roll.total}</b></i></h4>`;
@@ -381,20 +370,11 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  async nowRollItem(item, event) {
-    if (item.type === 'weapon' || item.type === 'armor') {
-      // console.log('alienrpgActor -> rollItemMod -> event', event);
-
-      // Trigger the item roll
-      return item.roll(false);
-    }
-  }
-
   async rollAbilityMod(actor, dataset) {
-    // // console.log('alienrpgActor -> rollAbilityMod -> actor, dataset', actor, dataset);
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
+    let template = 'systems/alienrpg/templates/dialog/roll-all-dialog.html';
     game.alienrpg.rollArr.sCount = 0;
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0) + parseInt(dataset.mod || 0);
@@ -424,224 +404,200 @@ export class alienrpgActor extends Actor {
 
       // callpop upbox here to get any mods then update r1Data or rData as appropriate.
       let confirmed = false;
+      // Construct dialog data
+
       if (actor.data.type === 'character') {
-        new Dialog({
-          title: `Roll Modified ${label} check`,
-          content: `
-       <p>Please enter your modifier.</p>
-       <form>
-        <div class="form-group">
-         <label>Base Modifier:</label>
-           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-           </div>
-           <div class="form-group">
-           <label>Stress Modifier:</label>
-           <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus">
-        </div>
-       </form>
-       `,
-          buttons: {
-            one: {
-              icon: '<i class="fas fa-check"></i>',
-              label: 'Roll!',
-              callback: () => (confirmed = true),
+        renderTemplate(template).then((dlg) => {
+          new Dialog({
+            title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+            content: dlg,
+            buttons: {
+              one: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize('ALIENRPG.DialRoll'),
+                callback: () => (confirmed = true),
+              },
+              two: {
+                icon: '<i class="fas fa-times"></i>',
+                label: game.i18n.localize('ALIENRPG.DialCancel'),
+                callback: () => (confirmed = false),
+              },
             },
-            two: {
-              icon: '<i class="fas fa-times"></i>',
-              label: 'Cancel',
-              callback: () => (confirmed = false),
+            default: 'one',
+            close: (html) => {
+              if (confirmed) {
+                let modifier = parseInt(html.find('[name=modifier]')[0].value);
+                let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
+                r1Data = r1Data + modifier;
+                r2Data = r2Data + stressMod;
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+                game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+              }
             },
-          },
-          default: 'one',
-          close: (html) => {
-            if (confirmed) {
-              let modifier = parseInt(html.find('[name=modifier]')[0].value);
-              let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
-              r1Data = r1Data + modifier;
-              r2Data = r2Data + stressMod;
-              yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
-              game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-            }
-          },
-        }).render(true);
+          }).render(true);
+        });
       } else if (actor.data.type === 'synthetic') {
-        new Dialog({
-          title: `Roll Modified ${label} check`,
-          content: `
-       <p>Please enter your modifier.</p>
-       <form>
-        <div class="form-group">
-         <label>Base Modifier:</label>
-           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-           </div>
-       </form>
-       `,
-          buttons: {
-            one: {
-              icon: '<i class="fas fa-check"></i>',
-              label: 'Roll!',
-              callback: () => (confirmed = true),
+        template = 'systems/alienrpg/templates/dialog/roll-base-dialog.html';
+        renderTemplate(template).then((dlg) => {
+          new Dialog({
+            title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+            content: dlg,
+            buttons: {
+              one: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize('ALIENRPG.DialRoll'),
+                callback: () => (confirmed = true),
+              },
+              two: {
+                icon: '<i class="fas fa-times"></i>',
+                label: game.i18n.localize('ALIENRPG.DialCancel'),
+                callback: () => (confirmed = false),
+              },
             },
-            two: {
-              icon: '<i class="fas fa-times"></i>',
-              label: 'Cancel',
-              callback: () => (confirmed = false),
+            default: 'one',
+            close: (html) => {
+              if (confirmed) {
+                let modifier = parseInt(html.find('[name=modifier]')[0].value);
+                r1Data = r1Data + modifier;
+                r2Data = 0;
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+                game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+              }
             },
-          },
-          default: 'one',
-          close: (html) => {
-            if (confirmed) {
-              let modifier = parseInt(html.find('[name=modifier]')[0].value);
-              r1Data = r1Data + modifier;
-              r2Data = 0;
-              yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
-              game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-            }
-          },
-        }).render(true);
+          }).render(true);
+        });
+      } else {
+        template = 'systems/alienrpg/templates/dialog/roll-base-dialog.html';
+        renderTemplate(template).then((dlg) => {
+          new Dialog({
+            title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+            content: dlg,
+            buttons: {
+              one: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize('ALIENRPG.DialRoll'),
+                callback: () => (confirmed = true),
+              },
+              two: {
+                icon: '<i class="fas fa-times"></i>',
+                label: game.i18n.localize('ALIENRPG.DialCancel'),
+                callback: () => (confirmed = false),
+              },
+            },
+            default: 'one',
+            default: 'one',
+            close: (html) => {
+              if (confirmed) {
+                let modifier = parseInt(html.find('[name=modifier]')[0].value);
+                r1Data = r1Data + modifier;
+                r2Data = 0;
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+                game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+              }
+            },
+          }).render(true);
+        });
       }
     } else if (dataset.panicroll) {
       // Roll against the panic table and push the roll to the chat log.
+      template = 'systems/alienrpg/templates/dialog/roll-stress-dialog.html';
+
       let confirmed = false;
-      new Dialog({
-        title: `Roll Modified ${label} check`,
-        content: `
-         <p>Please enter your modifier.</p>
-         <form>
-          <div class="form-group">
-             <div class="form-group">
-             <label>Stress Modifier:</label>
-             <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus">
-          </div>
-         </form>
-         `,
-        buttons: {
-          one: {
-            icon: '<i class="fas fa-check"></i>',
-            label: 'Roll!',
-            callback: () => (confirmed = true),
+      renderTemplate(template).then((dlg) => {
+        new Dialog({
+          title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+          content: dlg,
+          buttons: {
+            one: {
+              icon: '<i class="fas fa-check"></i>',
+              label: game.i18n.localize('ALIENRPG.DialRoll'),
+              callback: () => (confirmed = true),
+            },
+            two: {
+              icon: '<i class="fas fa-times"></i>',
+              label: game.i18n.localize('ALIENRPG.DialCancel'),
+              callback: () => (confirmed = false),
+            },
           },
-          two: {
-            icon: '<i class="fas fa-times"></i>',
-            label: 'Cancel',
-            callback: () => (confirmed = false),
-          },
-        },
-        default: 'one',
-        close: (html) => {
-          if (confirmed) {
-            let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
-            let chatMessage = '';
-            const table = game.tables.getName('Panic Table');
-            let aStress = actor.getRollData().stress + parseInt(actor.data.data.header.stress.mod);
-            let modRoll = 'd6' + '+' + (parseInt(stressMod || 0) + parseInt(aStress || 0));
-            const roll = new Roll(modRoll);
-            const customResults = table.roll({ roll });
-            let oldPanic = actor.data.data.general.panic.lastRoll;
-            if (customResults.roll.total >= 7 && actor.data.data.general.panic.value === 0) {
-              actor.update({ 'data.general.panic.value': actor.data.data.general.panic.value + 1 });
-            }
-
-            chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >Panic Condition</h2>';
-            chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-
-            let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
-            let pCheck = oldPanic + 1;
-            if (actor.data.data.general.panic.value && mPanic) {
-              actor.update({ 'data.general.panic.lastRoll': pCheck });
-
-              chatMessage += `<h4  style="color: #f71403;font-weight: bolder"><i><b>Roll ${customResults.roll.total}   More Panic.</b> </i></h4>`;
-              chatMessage += `<h4><i>PC's Panic level has increased by one step to <b style="color: #f71403;">Level ${pCheck}</b> (See page 104 of the Alien rule book.)</i></h4>`;
-              switch (pCheck) {
-                case 8:
-                  chatMessage += `<b>TREMBLE:</b>  You start to tremble uncontrollably. All skill rolls using AGILITY suffer a –2 modification until your panic stops.`;
-                  break;
-                case 9:
-                  chatMessage += `<b>DROP ITEM:</b>  Whether by stress, confusion or the realization that you’re all going to die anyway, you drop a weapon or other important item—the GM decides which one. Your STRESS LEVEL increases by one.`;
-                  break;
-                case 10:
-                  chatMessage += `<b>FREEZE:</b>  You’re frozen by fear or stress for one Round, losing your next slow action. Your STRESS LEVEL, and the STRESS LEVEL of all friendly PCs in SHORT range of you, increases by one`;
-                  break;
-                case 11:
-                  chatMessage += `<b>SEEK COVER:</b>  You must use your next action to move away from danger and find a safe spot if possible. You are allowed to make a retreat roll (see page 93) if you have an enemy at ENGAGED range. Your STRESS LEVEL is decreased by one, but the STRESS LEVEL of all friendly PCs in SHORT range increases by one. After one Round, you can act normally.`;
-                  break;
-                case 12:
-                  chatMessage += `<b>SCREAM:</b> You scream your lungs out for one Round, losing your next slow action. Your STRESS LEVEL is decreased by one, but every friendly character who hears your scream must make an immediate Panic Roll.`;
-                  break;
-                case 13:
-                  chatMessage += `<b>FLEE:</b>  You just can’t take it anymore. You must flee to a safe place and refuse to leave it. You won’t attack anyone and won’t attempt anything dangerous. You are not allowed to make a retreat roll (see page 93) if you have an enemy at ENGAGED range when you flee. Your STRESS LEVEL is decreased by one, but every friendly character who sees you run must make an immediate Panic Roll.`;
-                  break;
-                case 14:
-                  chatMessage += `<b>BERSERK:</b>  You must immediately attack the nearest person or creature, friendly or not. You won’t stop until you or the target is Broken. Every friendly character who witnesses your rampage must make an immediate Panic Roll`;
-                  break;
-                default:
-                  chatMessage += `<b>CATATONIC:</b>  You collapse to the floor and can’t talk or move, staring blankly into oblivion.`;
-                  break;
+          default: 'one',
+          close: (html) => {
+            if (confirmed) {
+              let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
+              let chatMessage = '';
+              const table = game.tables.getName('Panic Table');
+              let aStress = actor.getRollData().stress + parseInt(actor.data.data.header.stress.mod);
+              let modRoll = 'd6' + '+' + (parseInt(stressMod || 0) + parseInt(aStress || 0));
+              const roll = new Roll(modRoll);
+              const customResults = table.roll({ roll });
+              let oldPanic = actor.data.data.general.panic.lastRoll;
+              if (customResults.roll.total >= 7 && actor.data.data.general.panic.value === 0) {
+                actor.update({ 'data.general.panic.value': actor.data.data.general.panic.value + 1 });
               }
-            } else {
-              actor.update({ 'data.general.panic.lastRoll': customResults.roll.total });
 
-              chatMessage += `<h4><i><b>Roll ${customResults.roll.total} </b></i></h4>`;
-              chatMessage += `${customResults.results[0].text}`;
-              if (customResults.roll.total >= 7) {
+              chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + '</h2>';
+              chatMessage += `<h4><i>${table.data.description}</i></h4>`;
+
+              let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
+              let pCheck = oldPanic + 1;
+              if (actor.data.data.general.panic.value && mPanic) {
+                actor.update({ 'data.general.panic.lastRoll': pCheck });
+
                 chatMessage +=
-                  `<h4 style="color: #f71403;"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${customResults.roll.total}</b></i></h4>`;
+                  '<h4 style="color: #f71403;font-weight: bolder"><i><b>' +
+                  game.i18n.localize('ALIENRPG.PanicCondition') +
+                  ' ' +
+                  `${customResults.roll.total}` +
+                  ' ' +
+                  game.i18n.localize('ALIENRPG.MorePanic') +
+                  '</b></i></h4>';
+
+                chatMessage +=
+                  '<h4><i>' +
+                  game.i18n.localize('ALIENRPG.PCPanicLevel') +
+                  '<b style="color: #f71403;">' +
+                  game.i18n.localize('ALIENRPG.Level') +
+                  ' ' +
+                  `${pCheck}` +
+                  ' ' +
+                  game.i18n.localize('ALIENRPG.Seepage104') +
+                  '</b></i></h4>';
+
+                chatMessage += this.morePanic(pCheck);
+              } else {
+                actor.update({ 'data.general.panic.lastRoll': customResults.roll.total });
+                chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.DialRoll') + ' ' + `${customResults.roll.total}` + ' </b></i></h4>';
+                chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
+                if (customResults.roll.total >= 7) {
+                  chatMessage +=
+                    `<h4 style="color: #f71403;"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${customResults.roll.total}</b></i></h4>`;
+                }
               }
+              let trauma = customResults.roll.total >= 13 || pCheck >= 13;
+              if (trauma) {
+                chatMessage += `<h4><b>` + game.i18n.localize('ALIENRPG.PermanantTrauma') + `<i>(` + game.i18n.localize('ALIENRPG.Seepage106') + `) </i></h4></b>`;
+              }
+              ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
             }
-            let trauma = customResults.roll.total >= 13 || pCheck >= 13;
-            if (trauma) {
-              chatMessage += `<h4><b>` + game.i18n.localize('ALIENRPG.PermanantTrauma') + `<i>(` + game.i18n.localize('ALIENRPG.Seepage106') + `) </i></h4></b>`;
-            }
-            ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
-          }
-        },
-      }).render(true);
-    } else {
-      new Dialog({
-        title: `Roll Modified ${label} check`,
-        content: `
-       <p>Please enter your modifier.</p>
-       <form>
-        <div class="form-group">
-         <label>Base Modifier:</label>
-           <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-           </div>
-       </form>
-       `,
-        buttons: {
-          one: {
-            icon: '<i class="fas fa-check"></i>',
-            label: 'Roll!',
-            callback: () => (confirmed = true),
           },
-          two: {
-            icon: '<i class="fas fa-times"></i>',
-            label: 'Cancel',
-            callback: () => (confirmed = false),
-          },
-        },
-        default: 'one',
-        close: (html) => {
-          if (confirmed) {
-            let modifier = parseInt(html.find('[name=modifier]')[0].value);
-            r1Data = r1Data + modifier;
-            r2Data = 0;
-            yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
-            game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-          }
-        },
-      }).render(true);
+        }).render(true);
+      });
+    }
+  }
+
+  async nowRollItem(item, event) {
+    if (item.type === 'weapon' || item.type === 'armor') {
+      // Trigger the item roll
+      return item.roll(false);
     }
   }
 
   async rollItemMod(item, event) {
     if (item.type === 'weapon') {
-      // console.log('alienrpgActor -> rollItemMod -> event', event);
-
       // Trigger the item roll
       return item.roll(true);
     }
   }
+
   async stressChange(actor, dataset) {
     switch (dataset.pmbut) {
       case 'minusStress':
@@ -664,7 +620,6 @@ export class alienrpgActor extends Actor {
 
   async checkMarks(actor, event) {
     const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    // // console.log('alienrpgActor -> checkMarks -> field', field);
     const max = field.data('max') == undefined ? 4 : field.data('max');
     const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
     const level = parseFloat(field.val());
@@ -731,6 +686,108 @@ export class alienrpgActor extends Actor {
       // console.warn('alienrpgActorSheet -> showme -> ', consumables[0][consUme] >= 1);
       return consumables[0][consUme] >= 1;
     }
+  }
+
+  async creatureAcidRoll(actor, dataset) {
+    let template = 'systems/alienrpg/templates/dialog/roll-base-xeno-dialog.html';
+    let label = dataset.label;
+    let r1Data = parseInt(dataset.roll || 0);
+    let r2Data = 0;
+    let reRoll = true;
+    let hostile = 'creature';
+    let blind = false;
+    if (dataset.roll != '-') {
+      if (dataset.spbutt === 'armor' && r1Data < 1) {
+        return;
+      } else if (dataset.spbutt === 'armor') {
+        label = 'Armor';
+        r2Data = 0;
+      }
+
+      if (actor.data.token.disposition === -1) {
+        // hostile = true;
+        blind = true;
+      }
+
+      // callpop upbox here to get any mods then update r1Data or rData as appropriate.
+      let confirmed = false;
+      renderTemplate(template).then((dlg) => {
+        new Dialog({
+          title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+          content: dlg,
+          buttons: {
+            one: {
+              icon: '<i class="fas fa-check"></i>',
+              label: game.i18n.localize('ALIENRPG.DialRoll'),
+              callback: () => (confirmed = true),
+            },
+            two: {
+              icon: '<i class="fas fa-times"></i>',
+              label: game.i18n.localize('ALIENRPG.DialCancel'),
+              callback: () => (confirmed = false),
+            },
+          },
+          default: 'one',
+          close: (html) => {
+            if (confirmed) {
+              let modifier = parseInt(html.find('[name=damage]')[0].value);
+              r1Data = r1Data + modifier;
+              yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+            }
+          },
+        }).render(true);
+      });
+    } else {
+      // Roll against the panic table and push the roll to the chat log.
+      let chatMessage = '';
+      chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AcidAttack') + '</h2>';
+      chatMessage += `<h4><i>` + game.i18n.localize('ALIENRPG.AcidBlood') + `</i></h4>`;
+      ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
+    }
+  }
+
+  async creatureAttackRoll(actor, dataset) {
+    let chatMessage = '';
+    const targetTable = dataset.atttype;
+    const table = game.tables.entities.find((b) => b.name === targetTable);
+    const roll = new Roll('1d6');
+
+    const customResults = table.roll({ roll });
+    chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
+    chatMessage += `<h4><i>${table.data.description}</i></h4>`;
+    chatMessage += `${customResults.results[0].text}`;
+    ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.WHISPER });
+  }
+
+  morePanic(pCheck) {
+    let con = '';
+    switch (pCheck) {
+      case 8:
+        con = game.i18n.localize('ALIENRPG.Panic8');
+        break;
+      case 9:
+        con = game.i18n.localize('ALIENRPG.Panic9');
+        break;
+      case 10:
+        con = game.i18n.localize('ALIENRPG.Panic10');
+        break;
+      case 11:
+        con = game.i18n.localize('ALIENRPG.Panic11');
+        break;
+      case 12:
+        con = game.i18n.localize('ALIENRPG.Panic12');
+        break;
+      case 13:
+        con = game.i18n.localize('ALIENRPG.Panic13');
+        break;
+      case 14:
+        con = game.i18n.localize('ALIENRPG.Panic14');
+        break;
+      default:
+        con = game.i18n.localize('ALIENRPG.Panic15');
+        break;
+    }
+    return con;
   }
 }
 export default alienrpgActor;

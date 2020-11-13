@@ -243,7 +243,7 @@ export class alienrpgActorSheet extends ActorSheet {
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
 
-    html.find('.item-create').click(this._onItemCreate.bind(this));
+    // html.find('.item-create').click(this._onItemCreate.bind(this));
 
     // // Update Inventory Item
     // html.find('.item-edit').click((ev) => {
@@ -313,53 +313,8 @@ export class alienrpgActorSheet extends ActorSheet {
         li.setAttribute('draggable', true);
         li.addEventListener('dragstart', handler, false);
       });
-      // return this._onSubmit(event);
     }
   }
-
-  // /** @override */
-  // async _onDropItemCreate(itemData) {
-  //   console.log('alienrpgActorSheet -> _onDropItemCreate -> itemData', itemData);
-  //   const actorData = this.actor.data;
-  //   const data = actorData.data;
-  //   // this.actor.update(data);
-  //   _prepareItems(data);
-  //   super._onDropItemCreate(itemData);
-  //   // // console.log('alienrpgActor -> _prepareCharacterData -> data', actorData);
-
-  //   // let addLevel = false;
-
-  //   // // Upgrade the number of class levels a character has and add features
-  //   // if ( itemData.type === "class" ) {
-  //   //   const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
-  //   //   let priorLevel = cls?.data.data.levels ?? 0;
-  //   //   const hasClass = !!cls;
-
-  //   //   // Increment levels instead of creating a new item
-  //   //   if ( hasClass ) {
-  //   //     const next = Math.min(priorLevel + 1, 20 + priorLevel - this.actor.data.data.details.level);
-  //   //     if ( next > priorLevel ) {
-  //   //       itemData.levels = next;
-  //   //       await cls.update({"data.levels": next});
-  //   //       addLevel = true;
-  //   //     }
-  //   //   }
-
-  //   //   // Add class features
-  //   //   if ( !hasClass || addLevel ) {
-  //   //     const features = await Actor5e.getClassFeatures({
-  //   //       className: itemData.name,
-  //   //       subclassName: itemData.data.subclass,
-  //   //       level: itemData.levels,
-  //   //       priorLevel: priorLevel
-  //   //     });
-  //   //     await this.actor.createEmbeddedEntity("OwnedItem", features);
-  //   //   }
-  //   // }
-
-  //   // Default drop handling if levels were not added
-  //   // if ( !addLevel ) super._onDropItemCreate(itemData);
-  // }
 
   /* -------------------------------------------- */
   /**

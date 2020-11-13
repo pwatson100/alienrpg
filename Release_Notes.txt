@@ -137,6 +137,7 @@ Backed out package loaded fonts as "The Forge" tries to get hem from the Bazaar 
 EDIT:  This was actually caused because my release action on Github did not include the font's directory.  
 
 Version 1.2.9
+Added Chinese language support with thanks to Tian#7972
 Add a context sensitive menu to items lists.  Right click on the edit icon to get edit or delete options.
 Range box on weapons sheets is now a dropdown.  Will default to "Engaged" for Melee weapons.
 Stress roll mod (right click) now only allows stress dice to be added or subtracted.   
@@ -149,9 +150,9 @@ Consumable boxes now total the type for multiple Items so show total Air, Food, 
 Added Power box to the Weapons sheet. This will automatically update the power consumable box.
 Tidied up the systems list presentation on the Territories sheet. 
 
-..........And the big one.........
+********   And the big one    **********  (well forme anyway!)
 Added new tab to Items sheets to allow any mods to be added as required.  
-For Weapons and vehicles added relvent stat mod options (as per the rule book)
+For Weapons and vehicles added relevant stat mod options (as per the rule book)
 - System will now recognise these and add or subtract those modifiers from Attribute, Skill and Weapon rolls as required.   
 Added Crew tab to Vehicles.  Which allow you to add the name of the "Gunner" and "Pilot" as well as their ranged combat and piloting skill values.   
 Items now have an active/in-active flag which is toggled by left/right clicking on the image in the inventory list.  

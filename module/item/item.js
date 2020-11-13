@@ -27,6 +27,7 @@ export class alienrpgItem extends Item {
     const actorData = this.actor ? this.actor.data.data : {};
     const itemData = item.data;
     game.alienrpg.rollArr.sCount = 0;
+    let template = 'systems/alienrpg/templates/dialog/roll-all-dialog.html';
     // let roll;
     let r2Data = 0;
     let reRoll = false;
@@ -53,88 +54,28 @@ export class alienrpgItem extends Item {
       // call pop upbox here to get any mods then update r1Data or rData as appropriate.
       let confirmed = false;
       if (this.actor.data.type === 'character') {
-        new Dialog({
-          title: `Roll Modified ${label} check`,
-          content: `
-        <p>Please enter your modifier.</p>
-        <form>
-         <div class="form-group">
-          <label>Base Modifier:</label>
-            <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-            </div>
-            <div class="form-group">
-            <label>Stress Modifier:</label>
-            <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus">
-         </div>
-        </form>
-        `,
-          buttons: {
-            one: {
-              icon: '<i class="fas fa-check"></i>',
-              label: 'Roll!',
-              callback: () => (confirmed = true),
+        renderTemplate(template).then((dlg) => {
+          new Dialog({
+            title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+            content: dlg,
+            buttons: {
+              one: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize('ALIENRPG.DialRoll'),
+                callback: () => (confirmed = true),
+              },
+              two: {
+                icon: '<i class="fas fa-times"></i>',
+                label: game.i18n.localize('ALIENRPG.DialCancel'),
+                callback: () => (confirmed = false),
+              },
             },
-            two: {
-              icon: '<i class="fas fa-times"></i>',
-              label: 'Cancel',
-              callback: () => (confirmed = false),
-            },
-          },
-          default: 'one',
-          close: (html) => {
-            if (confirmed) {
-              let modifier = parseInt(html.find('[name=modifier]')[0].value);
-              let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
+            default: 'one',
+            close: (html) => {
+              if (confirmed) {
+                let modifier = parseInt(html.find('[name=modifier]')[0].value);
+                let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
 
-              // Define the roll formula.
-              if (item.data.header.type.value === '1') {
-                let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
-                r2Data = r2Data + stressMod;
-                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
-                game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-              } else if (item.data.header.type.value === '2') {
-                let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
-                r2Data = r2Data + stressMod;
-                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
-                game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-              } else {
-                console.warn('No type on item');
-              }
-            }
-          },
-        }).render(true);
-      } else {
-        // Its not got stress so don't display the stress mod box
-        new Dialog({
-          title: `Roll Modified ${label} check`,
-          content: `
-        <p>Please enter your modifier.</p>
-        <form>
-         <div class="form-group">
-          <label>Base Modifier:</label>
-            <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus">
-            </div>
-        </form>
-        `,
-          buttons: {
-            one: {
-              icon: '<i class="fas fa-check"></i>',
-              label: 'Roll!',
-              callback: () => (confirmed = true),
-            },
-            two: {
-              icon: '<i class="fas fa-times"></i>',
-              label: 'Cancel',
-              callback: () => (confirmed = false),
-            },
-          },
-          default: 'one',
-          close: (html) => {
-            if (confirmed) {
-              let modifier = parseInt(html.find('[name=modifier]')[0].value);
-              let stressMod = 0;
-              if (this.actor.data.type != 'vehicles') {
-                // it's not a vehicle so add the correct attribute bonus
                 // Define the roll formula.
                 if (item.data.header.type.value === '1') {
                   let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
@@ -149,26 +90,71 @@ export class alienrpgItem extends Item {
                 } else {
                   console.warn('No type on item');
                 }
-              } else {
-                // it's a vehicle so no attribute bonus
-
-                if (item.data.header.type.value === '1') {
-                  let r1Data = itemData.attributes.bonus.value + modifier;
-                  r2Data = r2Data + stressMod;
-                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
-                  game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-                } else if (item.data.header.type.value === '2') {
-                  let r1Data = itemData.attributes.bonus.value + modifier;
-                  r2Data = r2Data + stressMod;
-                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
-                  game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+              }
+            },
+          }).render(true);
+        });
+      } else {
+        // Its not got stress so don't display the stress mod box
+        template = 'systems/alienrpg/templates/dialog/roll-base-dialog.html';
+        renderTemplate(template).then((dlg) => {
+          new Dialog({
+            title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+            content: dlg,
+            buttons: {
+              one: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize('ALIENRPG.DialRoll'),
+                callback: () => (confirmed = true),
+              },
+              two: {
+                icon: '<i class="fas fa-times"></i>',
+                label: game.i18n.localize('ALIENRPG.DialCancel'),
+                callback: () => (confirmed = false),
+              },
+            },
+            default: 'one',
+            close: (html) => {
+              if (confirmed) {
+                let modifier = parseInt(html.find('[name=modifier]')[0].value);
+                let stressMod = 0;
+                if (this.actor.data.type != 'vehicles') {
+                  // it's not a vehicle so add the correct attribute bonus
+                  // Define the roll formula.
+                  if (item.data.header.type.value === '1') {
+                    let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
+                    r2Data = r2Data + stressMod;
+                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+                    game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+                  } else if (item.data.header.type.value === '2') {
+                    let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
+                    r2Data = r2Data + stressMod;
+                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+                    game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+                  } else {
+                    console.warn('No type on item');
+                  }
                 } else {
-                  console.warn('No type on item');
+                  // it's a vehicle so no attribute bonus
+
+                  if (item.data.header.type.value === '1') {
+                    let r1Data = itemData.attributes.bonus.value + modifier;
+                    r2Data = r2Data + stressMod;
+                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+                    game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+                  } else if (item.data.header.type.value === '2') {
+                    let r1Data = itemData.attributes.bonus.value + modifier;
+                    r2Data = r2Data + stressMod;
+                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+                    game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+                  } else {
+                    console.warn('No type on item');
+                  }
                 }
               }
-            }
-          },
-        }).render(true);
+            },
+          }).render(true);
+        });
       }
     } else {
       // ************************************
@@ -177,14 +163,11 @@ export class alienrpgItem extends Item {
       // Define the roll formula.
       if (this.actor.data.type != 'vehicles') {
         // it's not a vehicle so add the correct attribute bonus
-        // // console.log('alienrpgItem -> roll -> item.data.header.type.value', item.data.header.type.value);
         if (item.data.header.type.value === '1') {
           let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
-          // console.log('alienrpgItem -> roll -> actorData.skills.rangedCbt.mod', actorData.skills.rangedCbt.mod, itemData.attributes.bonus.value);
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         } else if (item.data.header.type.value === '2') {
-          // // console.log('alienrpgItem -> roll -> this.actor.data.data.skills.closeCbt.mod', this.actor.data.data.skills.closeCbt.mod);
           let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
@@ -208,6 +191,4 @@ export class alienrpgItem extends Item {
       }
     }
   }
-  // async nowActivate(event){
-  // }
 }

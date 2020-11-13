@@ -79,30 +79,6 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     return items.filter((item) => {
       const data = item.data;
 
-      // Action usage
-      for (let f of ['action', 'bonus', 'reaction']) {
-        if (filters.has(f)) {
-          if (data.activation && data.activation.type !== f) return false;
-        }
-      }
-
-      // Spell-specific filters
-      if (filters.has('ritual')) {
-        if (data.components.ritual !== true) return false;
-      }
-      if (filters.has('concentration')) {
-        if (data.components.concentration !== true) return false;
-      }
-      if (filters.has('prepared')) {
-        if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
-        if (this.actor.data.type === 'npc') return true;
-        return data.preparation.prepared;
-      }
-
-      // Equipment-specific filters
-      if (filters.has('equipped')) {
-        if (data.equipped !== true) return false;
-      }
       return true;
     });
   }
@@ -135,20 +111,6 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     new ContextMenu(html, '.item-edit', itemContextMenu);
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
-    // // Update Inventory Item
-    // html.find('.item-edit').click((ev) => {
-    //   const li = $(ev.currentTarget).parents('.item');
-    //   const item = this.actor.getOwnedItem(li.data('itemId'));
-    //   item.sheet.render(true);
-    // });
-
-    // // Delete Inventory Item
-    // html.find('.item-delete').click((ev) => {
-    //   const li = $(ev.currentTarget).parents('.item');
-    //   this.actor.deleteOwnedItem(li.data('itemId'));
-    //   li.slideUp(200, () => this.render(false));
-    // });
-
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
 
@@ -160,16 +122,6 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
 
     html.find('.inline-edit').change(this._inlineedit.bind(this));
-
-    // minus from health and stress
-    // html.find('.minus-btn').click(this._minusButton.bind(this));
-
-    // plus tohealth and stress
-    // html.find('.plus-btn').click(this._plusButton.bind(this));
-
-    // html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle Dying Wounded
-
-    // html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
     // Roll handlers, click handlers, etc. would go here.
     html.find('.currency').on('change', this._currencyField.bind(this));
@@ -190,33 +142,6 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
 
   /* -------------------------------------------- */
 
-  /**
-   * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  _onItemCreate(event) {
-    event.preventDefault();
-    const header = event.currentTarget;
-    // Get the type of item to create.
-    const type = header.dataset.type;
-    // Grab any data associated with this control.
-    const data = duplicate(header.dataset);
-    // Initialize a default name.
-    const name = `New ${type.capitalize()}`;
-    // Prepare the item object.
-    const itemData = {
-      name: name,
-      type: type,
-      data: data,
-    };
-    // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.data['type'];
-
-    // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
-  }
-
   _inlineedit(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
@@ -235,7 +160,6 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
   _onRoll(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
-
     this.actor.rollAbility(this.actor, dataset);
   }
 
@@ -243,14 +167,12 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-
     this.actor.rollAbilityMod(this.actor, dataset);
   }
 
   _rollItem(event) {
     // console.log('alienrpgActorSheet -> _rollItem -> event', event);
     event.preventDefault();
-
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.getOwnedItem(itemId);
     this.actor.nowRollItem(item);
@@ -266,9 +188,6 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
   _currencyField(event) {
     event.preventDefault();
     const element = event.currentTarget;
-
-    // console.warn(element.dataset);
-
     const currency = 'USD'; // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
 
     // format inital value
