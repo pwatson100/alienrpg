@@ -97,6 +97,11 @@ Hooks.once('init', async function () {
     if (v1 === v2) return options.fn(this);
     else return options.inverse(this);
   });
+  // if equal
+  Handlebars.registerHelper('ifgt', function (v1, v2, options) {
+    if (v1 > v2) return options.fn(this);
+    else return options.inverse(this);
+  });
 
   // Register system settings
   game.settings.register('alienrpg', 'macroShorthand', {
@@ -332,27 +337,69 @@ Hooks.on('preCreateActor', (actor, dir) => {
       'token.name': actor.name, // Set token name to actor name
     }); // Default characters to HasVision = true and Link Data = true
 
-    if (actor.type === 'character') {
-      mergeObject(actor, {
-        'token.bar1': {
-          attribute: 'header.stress.value',
-        },
-      });
-      actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-      actor.token.vision = true;
-      actor.token.actorLink = true;
-    } else if (actor.type === 'vehicles') {
-      actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-      actor.token.vision = true;
-      actor.token.actorLink = true;
-    } else if (actor.type === 'creature') {
-      actor.token.vision = true;
-      actor.token.actorLink = false;
-    } else if (actor.type === 'synthetic') {
-      actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-      actor.token.vision = true;
-      actor.token.actorLink = true;
+    switch (actor.type) {
+      case 'character':
+        mergeObject(actor, {
+          'token.bar1': {
+            attribute: 'header.stress.value',
+          },
+        });
+        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+        actor.token.vision = true;
+        actor.token.actorLink = true;
+        break;
+      case 'vehicles':
+        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+        actor.token.vision = true;
+        actor.token.actorLink = true;
+        break;
+      case 'creature':
+        actor.token.vision = true;
+        actor.token.actorLink = false;
+        break;
+      case 'synthetic':
+        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+        actor.token.vision = true;
+        actor.token.actorLink = true;
+        break;
+      case 'territory':
+        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+        actor.token.vision = true;
+        actor.token.actorLink = true;
+        break;
+
+      default:
+        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+        actor.token.vision = true;
+        actor.token.actorLink = true;
+        break;
     }
+
+    // if (actor.type === 'character') {
+    //   mergeObject(actor, {
+    //     'token.bar1': {
+    //       attribute: 'header.stress.value',
+    //     },
+    //   });
+    //   actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+    //   actor.token.vision = true;
+    //   actor.token.actorLink = true;
+    // } else if (actor.type === 'vehicles') {
+    //   actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+    //   actor.token.vision = true;
+    //   actor.token.actorLink = true;
+    // } else if (actor.type === 'creature') {
+    //   actor.token.vision = true;
+    //   actor.token.actorLink = false;
+    // } else if (actor.type === 'synthetic') {
+    //   actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+    //   actor.token.vision = true;
+    //   actor.token.actorLink = true;
+    // } else if (actor.type === 'territory') {
+    //   actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+    //   actor.token.vision = true;
+    //   actor.token.actorLink = true;
+    // }
   }
 });
 

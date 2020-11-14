@@ -204,60 +204,56 @@ export class alienrpgActor extends Actor {
       try {
         //  Update armor value fron items
         i.data.attributes.armorrating.value === true;
-        i.data.attributes.armorrating.value = i.data.attributes.armorrating.value || 0;
-        i.totalAc = parseInt(i.data.attributes.armorrating.value, 10);
-        totalAc += i.totalAc;
-        // data.actor.data.general.armor.value = totalAc;
-      } catch {
-        // data.actor.data.general.armor.value = totalAc;
-      }
+        if (i.data.header.active) {
+          i.data.attributes.armorrating.value && i.data.header;
+          i.data.attributes.armorrating.value = i.data.attributes.armorrating.value || 0;
+          i.totalAc = parseInt(i.data.attributes.armorrating.value, 10);
+          totalAc += i.totalAc;
+        }
+      } catch {}
 
       try {
         //  Update water value fron items
         i.data.attributes.water.value === true;
-        i.data.attributes.water.value = i.data.attributes.water.value || 0;
-        i.totalWat = parseInt(i.data.attributes.water.value, 10);
-        totalWat += i.totalWat;
-        // data.actor.data.consumables.water.value = totalWat;
-      } catch {
-        // data.actor.data.consumables.water.value = totalWat;
-      }
+        if (i.data.header.active) {
+          i.data.attributes.water.value = i.data.attributes.water.value || 0;
+          i.totalWat = parseInt(i.data.attributes.water.value, 10);
+          totalWat += i.totalWat;
+        }
+      } catch {}
       try {
         //  Update food value fron items
         i.data.attributes.food.value === true;
-        i.data.attributes.food.value = i.data.attributes.food.value || 0;
-        i.totalFood = parseInt(i.data.attributes.food.value, 10);
-        totalFood += i.totalFood;
-        // data.actor.data.consumables.food.value = totalFood;
-      } catch {
-        // data.actor.data.consumables.food.value = totalFood;
-      }
+        if (i.data.header.active) {
+          i.data.attributes.food.value = i.data.attributes.food.value || 0;
+          i.totalFood = parseInt(i.data.attributes.food.value, 10);
+          totalFood += i.totalFood;
+        }
+      } catch {}
       try {
         //  Update air value fron items
         i.data.attributes.airsupply.value === true;
-        i.data.attributes.airsupply.value = i.data.attributes.airsupply.value || 0;
-        i.totalAir = parseInt(i.data.attributes.airsupply.value, 10);
-        totalAir += i.totalAir;
-        // data.actor.data.consumables.air.value = totalAir;
-      } catch {
-        // data.actor.data.consumables.air.value = totalAir;
-      }
+        if (i.data.header.active) {
+          i.data.attributes.airsupply.value = i.data.attributes.airsupply.value || 0;
+          i.totalAir = parseInt(i.data.attributes.airsupply.value, 10);
+          totalAir += i.totalAir;
+        }
+      } catch {}
       try {
         //  Update air value fron items
         i.data.attributes.power.value === true;
-        i.data.attributes.power.value = i.data.attributes.power.value || 0;
-        i.totalPower = parseInt(i.data.attributes.power.value, 10);
-        totalPower += i.totalPower;
-        // data.actor.data.consumables.power.value = totalPower;
-      } catch {
-        // data.actor.data.consumables.power.value = totalPower;
-      }
+        if (i.data.header.active) {
+          i.data.attributes.power.value = i.data.attributes.power.value || 0;
+          i.totalPower = parseInt(i.data.attributes.power.value, 10);
+          totalPower += i.totalPower;
+        }
+      } catch {}
     }
 
-    setProperty(actorData, 'data.consumables.water.value', (data.general.armor.value = totalWat));
-    setProperty(actorData, 'data.consumables.food.value', (data.general.armor.value = totalFood));
-    setProperty(actorData, 'data.consumables.air.value', (data.general.armor.value = totalAir));
-    setProperty(actorData, 'data.consumables.power.value', (data.general.armor.value = totalPower));
+    setProperty(actorData, 'data.consumables.water.value', (data.consumables.water.value = totalWat));
+    setProperty(actorData, 'data.consumables.food.value', (data.consumables.food.value = totalFood));
+    setProperty(actorData, 'data.consumables.air.value', (data.consumables.air.value = totalAir));
+    setProperty(actorData, 'data.consumables.power.value', (data.consumables.power.value = totalPower));
     setProperty(actorData, 'data.general.armor.value', (data.general.armor.value = totalAc));
     // actorData.data.general.armor.value = totalAc;
   }

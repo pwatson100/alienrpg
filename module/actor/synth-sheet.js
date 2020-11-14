@@ -347,7 +347,10 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const dataset = event.currentTarget.dataset;
     let item = game.items.getName(dataset.pmbut);
     let chatData = '';
-    let temp1 = 'ALIENRPG.' + [item.name];
+    let str = item.name;
+    console.log('alienrpgActorSheet -> _stuntBtn -> str', str);
+    var newStr = str.replace(/\s+/g, '');
+    let temp1 = 'ALIENRPG.' + [newStr];
 
     chatData = game.i18n.localize(temp1);
     if (chatData.length < 25) {
@@ -372,7 +375,17 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     const dataset = event.currentTarget.dataset;
     let item = this.actor.getOwnedItem(dataset.pmbut);
-    let chatData = item.data.data.general.comment.value;
+    let chatData = '';
+    let str = item.name;
+    var newStr = str.replace(/\s+/g, '');
+    let temp1 = 'ALIENRPG.' + [newStr];
+
+    chatData = game.i18n.localize(temp1);
+    if (chatData.length < 25) {
+      chatData = item.data.data.general.comment.value;
+    }
+
+    // let chatData = item.data.data.general.comment.value;
     let div = $(`<div class="panel Col3">${chatData}</div>`);
 
     // Toggle summary

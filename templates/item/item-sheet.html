@@ -22,6 +22,7 @@
             <option value="5">{{localize "ALIENRPG.MedicalSupplies"}}</option>
             <option value="6">{{localize "ALIENRPG.Pharmaceuticals"}}</option>
             <option value="7">{{localize "ALIENRPG.FoodDrink"}}</option>
+            <option value="8">{{localize "ALIENRPG.Power"}}</option>
             {{/select}}
           </select>
         </div>
@@ -52,7 +53,12 @@
         <h3 class="resource-label gCol3">{{localize "ALIENRPG.Water"}}</h3>
         <input type="text" name="data.attributes.water.value" class="maxboxsize gCol4" value="{{data.attributes.water.value}}" data-dtype="Number" />
       </div>
+      {{/ife}} {{#ife data.header.type.value '8'}}
+
+      <label class="resource-label wCol11">{{localize "ALIENRPG.Power"}}</label>
+      <input type="text" class="maxboxsize wCol12" name="data.attributes.power.value" value="{{data.attributes.power.value}}" data-dtype="Number" />
       {{/ife}}
+
       <h2 class="resource-label">{{localize "ALIENRPG.Comment"}}</h2>
       <textarea name="data.attributes.comment.value" rows="12" data-dtype="String">{{data.attributes.comment.value}}</textarea>
     </div>
