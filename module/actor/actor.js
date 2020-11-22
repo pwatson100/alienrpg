@@ -329,7 +329,7 @@ export class alienrpgActor extends Actor {
 
           chatMessage +=
             '<h4 style="font-weight: bolder"><i><b>' +
-            game.i18n.localize('ALIENRPG.DialRoll') +
+            game.i18n.localize('ALIENRPG.Roll') +
             ' ' +
             `${customResults.roll.total}` +
             ' ' +
@@ -352,7 +352,7 @@ export class alienrpgActor extends Actor {
         } else {
           actor.update({ 'data.general.panic.lastRoll': customResults.roll.total });
           pCheck = customResults.roll.total;
-          chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.DialRoll') + ' ' + `${pCheck}` + ' </b></i></h4>';
+          chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.Roll') + ' ' + `${pCheck}` + ' </b></i></h4>';
           // chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
           chatMessage += this.morePanic(pCheck);
           if (customResults.roll.total >= 7) {
@@ -544,7 +544,7 @@ export class alienrpgActor extends Actor {
 
                 chatMessage +=
                   '<h4 style="font-weight: bolder"><i><b>' +
-                  game.i18n.localize('ALIENRPG.DialRoll') +
+                  game.i18n.localize('ALIENRPG.Roll') +
                   ' ' +
                   `${customResults.roll.total}` +
                   ' ' +

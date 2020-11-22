@@ -56,6 +56,7 @@
   grid-area: Item1;
   border: 1px solid var(--aliengreen);
   padding: 5px;
+  text-align: center;
 }
 .Item2 {
   grid-area: Item2;
@@ -126,7 +127,7 @@
   // border: 2px solid var(--aliengreen);
   grid-template-areas: 'Col1 Col2 ' 'Col3 Col3';
   grid-template-rows: 1fr;
-  grid-template-columns: 335px 1fr;
+  grid-template-columns: 370px 1fr;
 }
 .Col1 {
   grid-area: Col1;
@@ -155,7 +156,7 @@
   align-items: center;
   border: 1px solid var(--aliengreen);
   grid-template-areas: 'Attr1 Attr2 Attr3';
-  grid-template-columns: 260px 35px 30px;
+  grid-template-columns: 300px 35px 30px;
 }
 
 .Attr1 {
@@ -385,7 +386,7 @@
     'lCol5 lCol6 lCol12 lCol9 lCol7 lCol8';
   padding-bottom: 2px;
   //                      l1     l2  l3     l4    l5    l6
-  grid-template-columns: 2em 25em 5em 5em 4em 2em;
+  grid-template-columns: 2em 30em 5em 5em 4em 2em;
   // grid-template-columns: 25px 410px 60px 60px 60px 20px;
   align-items: center;
 }

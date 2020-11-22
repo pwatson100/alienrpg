@@ -52,14 +52,14 @@
       "path": "lang/fr.json"
     },
     {
-      "lang": "swe",
-      "name": "Svenska",
-      "path": "lang/swe.json"
-    },
-    {
       "lang": "cn",
       "name": "中文",
       "path": "lang/cn.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsche",
+      "path": "lang/de.json"
     }
   ],
   "gridDistance": 5,

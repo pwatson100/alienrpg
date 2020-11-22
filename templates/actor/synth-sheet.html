@@ -4,7 +4,7 @@
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
-      <div class="resources grid grid-4col">
+   <div class="resources grid grid-4col">
         {{!-- Health and Stress --}}
           <h2 for="data.health.value" class="resource-label">{{ localize "ALIENRPG.Health"}}</h2>
           <div class="resource-content">
@@ -12,8 +12,8 @@
             <input type="text" class="maxboxsize" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
             <button class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
           </div>
-          <h2>{{ localize "ALIENRPG.Synthetic"}}</h2>
-          <h3>{{ localize "ALIENRPG.NoStress"}}</h3>
+          <h3>{{ localize "ALIENRPG.Synthetic"}}</h3>
+          <h3 style="text-align: center;">{{ localize "ALIENRPG.NoStress"}}</h3>
 
       {{!-- Attributes --}}
       <div class="abilities grid-Char-Att">

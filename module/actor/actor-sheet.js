@@ -23,8 +23,8 @@ export class alienrpgActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
-      width: 670,
-      height: 725,
+      width: 740,
+      height: 741,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
