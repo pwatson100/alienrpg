@@ -23,6 +23,7 @@
             <option value="6">{{localize "ALIENRPG.Pharmaceuticals"}}</option>
             <option value="7">{{localize "ALIENRPG.FoodDrink"}}</option>
             <option value="8">{{localize "ALIENRPG.Power"}}</option>
+            <option value="9">{{localize "ALIENRPG.ComputerMainframes"}}</option>
             {{/select}}
           </select>
         </div>
@@ -41,7 +42,12 @@
   <section class="sheet-body">
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
-      {{#ife data.header.type.value '4'}}
+      {{#ife data.header.type.value '3'}}
+      <div class="grid-Char-Att">
+        <h3 class="resource-label gCol1">{{localize "ALIENRPG.Power"}}</h3>
+        <input type="text" name="data.attributes.power.value" class="maxboxsize gCol2" value="{{data.attributes.power.value}}" data-dtype="Number" />
+      </div>
+      {{/ife}} {{#ife data.header.type.value '4'}}
       <div class="grid-Char-Att">
         <h3 class="resource-label gCol1">{{localize "ALIENRPG.Power"}}</h3>
         <input type="text" name="data.attributes.power.value" class="maxboxsize gCol2" value="{{data.attributes.power.value}}" data-dtype="Number" />
@@ -54,9 +60,27 @@
         <input type="text" name="data.attributes.water.value" class="maxboxsize gCol4" value="{{data.attributes.water.value}}" data-dtype="Number" />
       </div>
       {{/ife}} {{#ife data.header.type.value '8'}}
-
       <label class="resource-label wCol11">{{localize "ALIENRPG.Power"}}</label>
       <input type="text" class="maxboxsize wCol12" name="data.attributes.power.value" value="{{data.attributes.power.value}}" data-dtype="Number" />
+      {{/ife}} {{#ife data.header.type.value '9'}}
+      <div class="grid-2col">
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.comtech.value" class="resource-label">{{localize "ALIENRPG.SkillComtech"}} ({{data.modifiers.skills.comtech.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.comtech.value" value="{{data.modifiers.skills.comtech.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.piloting.value" class="resource-label">{{localize "ALIENRPG.SkillPiloting"}} ({{data.modifiers.skills.piloting.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.piloting.value" value="{{data.modifiers.skills.piloting.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.observation.value" class="resource-label">{{localize "ALIENRPG.SkillObservation"}} ({{data.modifiers.skills.observation.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.observation.value" value="{{data.modifiers.skills.observation.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.rangedCbt.value" class="resource-label">{{localize "ALIENRPG.SkillRangedCbt"}} ({{data.modifiers.skills.rangedCbt.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.rangedCbt.value" value="{{data.modifiers.skills.rangedCbt.value}}" data-dtype="Number" />
+        </div>
+      </div>
       {{/ife}}
 
       <h2 class="resource-label">{{localize "ALIENRPG.Comment"}}</h2>
@@ -64,6 +88,7 @@
     </div>
 
     <div class="tab modifiers" data-group="primary" data-tab="modifiers">
+      {{#ifne data.header.type.value '9'}}
       <h2 class="resource-label">{{localize "ALIENRPG.Attributes"}}</h2>
       <div class="grid-2col">
         <div class="modifiers flexrow flex-group-center">
@@ -91,6 +116,8 @@
           <input type="text" class="maxboxsize" name="data.modifiers.attributes.emp.value" value="{{data.modifiers.attributes.emp.value}}" data-dtype="Number" />
         </div>
       </div>
+      {{/ifne}}
+
       <h2 class="resource-label">{{localize "ALIENRPG.Skills"}}</h2>
       <div class="grid-2col">
         <div class="modifiers flexrow flex-group-center">
@@ -105,18 +132,22 @@
           <label for="data.modifiers.skills.stamina.value" class="resource-label">{{localize "ALIENRPG.SkillStamina"}} ({{data.modifiers.skills.stamina.ability}})</label>
           <input type="text" class="maxboxsize" name="data.modifiers.skills.stamina.value" value="{{data.modifiers.skills.stamina.value}}" data-dtype="Number" />
         </div>
+        {{#ifne data.header.type.value '9'}}
         <div class="modifiers flexrow flex-group-center">
           <label for="data.modifiers.skills.rangedCbt.value" class="resource-label">{{localize "ALIENRPG.SkillRangedCbt"}} ({{data.modifiers.skills.rangedCbt.ability}})</label>
           <input type="text" class="maxboxsize" name="data.modifiers.skills.rangedCbt.value" value="{{data.modifiers.skills.rangedCbt.value}}" data-dtype="Number" />
         </div>
+        {{/ifne}}
         <div class="modifiers flexrow flex-group-center">
           <label for="data.modifiers.skills.mobility.value" class="resource-label">{{localize "ALIENRPG.SkillMobility"}} ({{data.modifiers.skills.mobility.ability}})</label>
           <input type="text" class="maxboxsize" name="data.modifiers.skills.mobility.value" value="{{data.modifiers.skills.mobility.value}}" data-dtype="Number" />
         </div>
+        {{#ifne data.header.type.value '9'}}
         <div class="modifiers flexrow flex-group-center">
           <label for="data.modifiers.skills.piloting.value" class="resource-label">{{localize "ALIENRPG.SkillPiloting"}} ({{data.modifiers.skills.piloting.ability}})</label>
           <input type="text" class="maxboxsize" name="data.modifiers.skills.piloting.value" value="{{data.modifiers.skills.piloting.value}}" data-dtype="Number" />
         </div>
+        {{/ifne}}
         <div class="modifiers flexrow flex-group-center">
           <label for="data.modifiers.skills.command.value" class="resource-label">{{localize "ALIENRPG.SkillCommand"}} ({{data.modifiers.skills.command.ability}})</label>
           <input type="text" class="maxboxsize" name="data.modifiers.skills.command.value" value="{{data.modifiers.skills.command.value}}" data-dtype="Number" />
@@ -129,18 +160,22 @@
           <label for="data.modifiers.skills.medicalAid.value" class="resource-label">{{localize "ALIENRPG.SkillMedicalAid"}} ({{data.modifiers.skills.medicalAid.ability}})</label>
           <input type="text" class="maxboxsize" name="data.modifiers.skills.medicalAid.value" value="{{data.modifiers.skills.medicalAid.value}}" data-dtype="Number" />
         </div>
+        {{#ifne data.header.type.value '9'}}
         <div class="modifiers flexrow flex-group-center">
           <label for="data.modifiers.skills.observation.value" class="resource-label">{{localize "ALIENRPG.SkillObservation"}} ({{data.modifiers.skills.observation.ability}})</label>
           <input type="text" class="maxboxsize" name="data.modifiers.skills.observation.value" value="{{data.modifiers.skills.observation.value}}" data-dtype="Number" />
         </div>
+        {{/ifne}}
         <div class="modifiers flexrow flex-group-center">
           <label for="data.modifiers.skills.survival.value" class="resource-label">{{localize "ALIENRPG.SkillSurvival"}} ({{data.modifiers.skills.survival.ability}})</label>
           <input type="text" class="maxboxsize" name="data.modifiers.skills.survival.value" value="{{data.modifiers.skills.survival.value}}" data-dtype="Number" />
         </div>
+        {{#ifne data.header.type.value '9'}}
         <div class="modifiers flexrow flex-group-center">
           <label for="data.modifiers.skills.comtech.value" class="resource-label">{{localize "ALIENRPG.SkillComtech"}} ({{data.modifiers.skills.comtech.ability}})</label>
           <input type="text" class="maxboxsize" name="data.modifiers.skills.comtech.value" value="{{data.modifiers.skills.comtech.value}}" data-dtype="Number" />
         </div>
+        {{/ifne}}
       </div>
     </div>
 

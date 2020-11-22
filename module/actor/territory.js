@@ -133,7 +133,7 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
 
     // Drag events for macros.
     if (this.actor.owner) {
-      let handler = (ev) => this._onDragItemStart(ev);
+      let handler = (ev) => this._onDragStart(ev);
       // Find all items on the character sheet.
       html.find('li.item').each((i, li) => {
         // Ignore for the header row.

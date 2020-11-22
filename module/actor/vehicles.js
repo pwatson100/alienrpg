@@ -49,9 +49,11 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
       isCharacter: this.entity.data.type === 'character',
+      isSynthetic: this.entity.data.type === 'synthetic',
       isVehicles: this.entity.data.type === 'vehicles',
       isCreature: this.entity.data.type === 'creature',
-
+      isNPC: this.entity.data.data.header.npc,
+      isGM: game.user.isGM,
       config: CONFIG.ALIENRPG,
     };
 
@@ -70,6 +72,58 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     this._prepareItems(data); // Return data to the sheet
 
     return data;
+  }
+  /*
+   * Organize and classify Owned Items for Character sheets
+   * @private
+   */
+  _prepareItems(data) {
+    // Initialize containers.
+
+    const weapons = [];
+
+    // Iterate through items, allocating to containers
+    // let totalWeight = 0;
+    for (let i of data.items) {
+      let item = i.data;
+      // Append to gear.
+      if (i.type === 'weapon') {
+        weapons.push(i);
+      }
+    }
+
+    // Assign and return
+    data.weapons = weapons;
+
+    // // Categorize items as inventory, spellbook, features, and classes
+    // const inventory = {
+    //   weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },
+    //   item: { label: 'Items', items: [], dataset: { type: 'item' } },
+    //   armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
+    // };
+    // // Partition items by category
+    // let [items, spells, feats, classes, talent] = data.items.reduce(
+    //   (arr, item) => {
+    //     // Item details
+    //     item.img = item.img || DEFAULT_TOKEN;
+    //     item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
+
+    //     // Classify items into types
+    //     // console.log('alienrpgActorSheet -> _prepareItems -> item', item);
+    //     // if (item.type === 'talent') arr[1].push(item);
+    //     // else if (item.type === 'feat') arr[2].push(item);
+    //     // else if (item.type === 'feature') arr[3].push(item);
+    //     if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+    //     return arr;
+    //   },
+    //   [[], [], [], []]
+    // );
+
+    // // Apply active item filters
+    // items = this._filterItems(items, this._filters.inventory);
+
+    // // Assign and return
+    // data.inventory = Object.values(inventory);
   }
 
   _findActiveList() {
@@ -109,23 +163,38 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
 
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
-    html.find('.item-create').click(this._onItemCreate.bind(this));
 
-    // Rollable abilities.
-    html.find('.rollable').click(this._onRoll.bind(this));
+    if (game.settings.get('alienrpg', 'switchMouseKeys')) {
+      // Right to Roll and left to mod
+      // Rollable abilities.
+      html.find('.rollable').contextmenu(this._onRoll.bind(this));
 
-    html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+      html.find('.rollable').click(this._onRollMod.bind(this));
 
-    // Rollable Items.
-    html.find('.rollItem').click(this._rollItem.bind(this));
+      // Rollable Items.
+      html.find('.rollItem').contextmenu(this._rollItem.bind(this));
 
-    html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
+      html.find('.rollItem').click(this._onRollItemMod.bind(this));
+    } else {
+      // Left to Roll and Right toMod
+      // Rollable abilities.
+      html.find('.rollable').click(this._onRoll.bind(this));
+
+      html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
+      // Rollable Items.
+      html.find('.rollItem').click(this._rollItem.bind(this));
+
+      html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
+    }
 
     html.find('.inline-edit').change(this._inlineedit.bind(this));
 
     // Roll handlers, click handlers, etc. would go here.
     html.find('.currency').on('change', this._currencyField.bind(this));
 
+    html.find('.activate').click(this._activate.bind(this));
+    html.find('.activate').contextmenu(this._deactivate.bind(this));
     // Drag events for macros.
     if (this.actor.owner) {
       let handler = (ev) => this._onDragStart(ev);
@@ -141,11 +210,37 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
   }
 
   /* -------------------------------------------- */
+  /**
+   * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  _onItemCreate(event) {
+    event.preventDefault();
+    const header = event.currentTarget;
+    // Get the type of item to create.
+    const type = header.dataset.type;
+    // Grab any data associated with this control.
+    const data = duplicate(header.dataset);
+    // Initialize a default name.
+    const name = `New ${type.capitalize()}`;
+    // Prepare the item object.
+    const itemData = {
+      name: name,
+      type: type,
+      data: data,
+    };
+    // Remove the type from the dataset since it's in the itemData.type prop.
+    delete itemData.data['type'];
+
+    // Finally, create the item!
+    return this.actor.createOwnedItem(itemData);
+  }
 
   _inlineedit(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
-    console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
+    // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.getOwnedItem(itemId);
     let field = dataset.name;
@@ -185,6 +280,23 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     this.actor.rollItemMod(item);
   }
 
+  _activate(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    let itemId = dataset.parentElement.dataset.itemId;
+    let item = this.actor.getOwnedItem(itemId);
+
+    return item.update({ 'data.header.active': true }, {});
+  }
+  _deactivate(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    let itemId = dataset.parentElement.dataset.itemId;
+    let item = this.actor.getOwnedItem(itemId);
+
+    return item.update({ 'data.header.active': false }, {});
+  }
+
   _currencyField(event) {
     event.preventDefault();
     const element = event.currentTarget;
@@ -210,46 +322,6 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
       e.target.value = value ? localStringToNumber(value).toLocaleString(undefined, options) : '';
       // console.warn(e.target.value);
     }
-  }
-
-  _prepareItems(data) {
-    // Categorize items as inventory, spellbook, features, and classes
-    const inventory = {
-      weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },
-      item: { label: 'Items', items: [], dataset: { type: 'item' } },
-      armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
-    };
-    // Partition items by category
-    let [items, spells, feats, classes] = data.items.reduce(
-      (arr, item) => {
-        // Item details
-        item.img = item.img || DEFAULT_TOKEN;
-        item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
-
-        // console.warn('inventory', inventory);
-
-        // Classify items into types
-        if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
-        return arr;
-      },
-      [[], [], [], []]
-    );
-
-    // Apply active item filters
-    items = this._filterItems(items, this._filters.inventory);
-
-    // Organize Inventory
-    let totalWeight = 0;
-    for (let i of items) {
-      //  i.data.quantity = i.data.quantity || 0;
-      i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-      i.totalWeight = i.data.attributes.weight.value;
-      inventory[i.type].items.push(i);
-      totalWeight += i.totalWeight;
-    }
-
-    // Assign and return
-    data.inventory = Object.values(inventory);
   }
 }
 export default ActorSheetAlienRPGVehicle;

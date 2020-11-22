@@ -467,6 +467,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
                 item: spanner._id,
                 food: spanner.data.attributes.food.value,
                 water: spanner.data.attributes.water.value,
+                power: spanner.data.attributes.power.value,
               },
             ];
             numbers.push(temp);

@@ -224,5 +224,6 @@
   "ALIENRPG.SynthDontNeed": "Les êtres synthétiques n'ont besoin ni d'air, ni de nourriture, ni d'eau, ni de sommeil. Ils sont immunisés contre le vide, le froid et la maladie.",
   "ALIENRPG.Seepage104": "See page 104 of the Alien rule book.",
   "ALIENRPG.PCPanicLevel": "Le niveau de Panique du PJ augmente d'un cran ",
-  "ALIENRPG.YourPanicLevel": "Votre niveau de panique a augmenté d'un cran pour atteindre "
+  "ALIENRPG.YourPanicLevel": "Votre niveau de panique a augmenté d'un cran pour atteindre ",
+  "ALIENRPG.ComputerMainframes": "Mainframes d'ordinateur"
 }

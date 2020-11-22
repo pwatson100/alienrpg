@@ -1,4 +1,3 @@
-import { createPanicTable } from './alienrpg-panictable.js';
 export class AlienRPGSetup {
   static async setup() {
     console.warn('***************************************************************');

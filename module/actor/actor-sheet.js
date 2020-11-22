@@ -347,7 +347,7 @@ export class alienrpgActorSheet extends ActorSheet {
   _inlineedit(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
-    console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
+    // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.getOwnedItem(itemId);
     let field = dataset.name;
@@ -538,6 +538,7 @@ export class alienrpgActorSheet extends ActorSheet {
                 item: spanner._id,
                 food: spanner.data.attributes.food.value,
                 water: spanner.data.attributes.water.value,
+                power: spanner.data.attributes.power.value,
               },
             ];
             numbers.push(temp);

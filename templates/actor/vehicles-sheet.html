@@ -48,24 +48,24 @@
 
     <div class="tab crew" data-group="primary" data-tab="crew">
       <h2 class="resource-label">{{localize "ALIENRPG.Crew"}}</h2>
-      <!-- <div class="grid-2col"> -->
-      <div class="modifiers">
-        <label class="resource-label">{{localize "ALIENRPG.GunnerName"}}</label>
-        <input type="text" class="textbox" name="data.modifiers.gunnerName" value="{{data.modifiers.gunnerName}}" data-dtype="text" />
-        <label class="resource-label">{{localize "ALIENRPG.SkillRangedCbt"}}</label>
-        <input type="text" class="maxboxsize" name="data.modifiers.rangedCbt.value" value="{{data.modifiers.rangedCbt.value}}" data-dtype="Number" />
-        <br />
-        <label class="resource-label">{{localize "ALIENRPG.PilotName"}}</label>
-        <input type="text" class="textbox" name="data.modifiers.pilotName" value="{{data.modifiers.pilotName}}" data-dtype="text" />
-        <label class="resource-label">{{localize "ALIENRPG.SkillPiloting"}}</label>
-        <input type="text" class="maxboxsize" name="data.modifiers.piloting.value" value="{{data.modifiers.piloting.value}}" data-dtype="Number" />
+      <div class="grid-4col">
+        <div class="modifiers">
+          <label class="resource-label">{{localize "ALIENRPG.GunnerName"}}</label>
+          <input type="text" class="textbox" name="data.modifiers.gunnerName" value="{{data.modifiers.gunnerName}}" data-dtype="text" />
+          <label class="resource-label">{{localize "ALIENRPG.SkillRangedCbt"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.rangedCbt.value" value="{{data.modifiers.rangedCbt.value}}" data-dtype="Number" />
+          <br />
+          <label class="resource-label">{{localize "ALIENRPG.PilotName"}}</label>
+          <input type="text" class="textbox" name="data.modifiers.pilotName" value="{{data.modifiers.pilotName}}" data-dtype="text" />
+          <label class="resource-label">{{localize "ALIENRPG.SkillPiloting"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.piloting.value" value="{{data.modifiers.piloting.value}}" data-dtype="Number" />
+        </div>
       </div>
-      <!-- </div> -->
     </div>
 
     {{!-- Owned Items Tab --}}
     <!-- INVENTORY -->
-    <div class="tab inventory" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/tabs/actor-inventory.html" sections=inventory}}</div>
+    <div class="tab inventory" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/tabs/vehicle-inventory.html" sections=inventory}}</div>
   </section>
   {{log "CONTEXT!!!!"}} {{log this}}
 </form>

@@ -68,7 +68,9 @@
         <input type="text" class="maxboxsize wCol10" name="data.attributes.rounds.value" value="{{data.attributes.rounds.value}}" data-dtype="Number" />
         <label class="resource-label wCol11">{{localize "ALIENRPG.Power"}}</label>
         <input type="text" class="maxboxsize wCol12" name="data.attributes.power.value" value="{{data.attributes.power.value}}" data-dtype="Number" />
-
+        {{/ife}} {{#ife data.header.type.value '2'}}
+        <label class="resource-label wCol11">{{localize "ALIENRPG.Power"}}</label>
+        <input type="text" class="maxboxsize wCol12" name="data.attributes.power.value" value="{{data.attributes.power.value}}" data-dtype="Number" />
         {{/ife}}
       </div>
       <h2 class="resource-label">{{localize "ALIENRPG.Comment"}}</h2>

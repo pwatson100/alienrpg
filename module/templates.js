@@ -8,6 +8,7 @@ export const preloadHandlebarsTemplates = async function () {
   const templatePaths = [
     // Actor Sheet Partials
     'systems/alienrpg/templates/actor/tabs/actor-inventory.html',
+    'systems/alienrpg/templates/actor/tabs/vehicle-inventory.html',
     'systems/alienrpg/templates/actor/tabs/actor-systems.html',
   ];
 

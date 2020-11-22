@@ -58,7 +58,7 @@ export class alienrpgActor extends Actor {
 
     if (actorData.type === 'character') this._prepareCharacterData(actorData);
     else if (actorData.type === 'synthetic') this._prepareCharacterData(actorData);
-    else if (actorData.type === 'vehicle') this._prepareVehicleData(data);
+    else if (actorData.type === 'vehicles') this._prepareVehicleData(data);
     else if (actorData.type === 'creature') this._prepareCreatureData(data);
     else if (actorData.type === 'territory') this._prepareTeritoryData(data);
   }
@@ -322,18 +322,20 @@ export class alienrpgActor extends Actor {
         chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + '</h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
         let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
+
         let pCheck = oldPanic + 1;
         if (actor.data.data.general.panic.value && mPanic) {
           actor.update({ 'data.general.panic.lastRoll': pCheck });
 
           chatMessage +=
-            '<h4 style="color: #f71403;font-weight: bolder"><i><b>' +
-            game.i18n.localize('ALIENRPG.PanicCondition') +
+            '<h4 style="font-weight: bolder"><i><b>' +
+            game.i18n.localize('ALIENRPG.DialRoll') +
             ' ' +
             `${customResults.roll.total}` +
             ' ' +
+            '<span style="color: #f71403;font-weight: bolder"><i><b>' +
             game.i18n.localize('ALIENRPG.MorePanic') +
-            '</b></i></h4>';
+            '</span></b></i></span></h4>';
 
           chatMessage +=
             '<h4><i>' +
@@ -349,12 +351,12 @@ export class alienrpgActor extends Actor {
           chatMessage += this.morePanic(pCheck);
         } else {
           actor.update({ 'data.general.panic.lastRoll': customResults.roll.total });
-
-          chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.DialRoll') + ' ' + `${customResults.roll.total}` + ' </b></i></h4>';
-          chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
+          pCheck = customResults.roll.total;
+          chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.DialRoll') + ' ' + `${pCheck}` + ' </b></i></h4>';
+          // chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
+          chatMessage += this.morePanic(pCheck);
           if (customResults.roll.total >= 7) {
-            chatMessage +=
-              `<h4 style="color: #f71403;"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${customResults.roll.total}</b></i></h4>`;
+            chatMessage += `<h4 style="color: #f71403;"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${pCheck}</b></i></h4>`;
           }
         }
         let trauma = customResults.roll.total >= 13 || pCheck >= 13;
@@ -524,28 +526,31 @@ export class alienrpgActor extends Actor {
               let aStress = actor.getRollData().stress + parseInt(actor.data.data.header.stress.mod);
               let modRoll = 'd6' + '+' + (parseInt(stressMod || 0) + parseInt(aStress || 0));
               const roll = new Roll(modRoll);
+
               const customResults = table.roll({ roll });
               let oldPanic = actor.data.data.general.panic.lastRoll;
+
               if (customResults.roll.total >= 7 && actor.data.data.general.panic.value === 0) {
                 actor.update({ 'data.general.panic.value': actor.data.data.general.panic.value + 1 });
               }
 
               chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + '</h2>';
               chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-
               let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
+
               let pCheck = oldPanic + 1;
               if (actor.data.data.general.panic.value && mPanic) {
                 actor.update({ 'data.general.panic.lastRoll': pCheck });
 
                 chatMessage +=
-                  '<h4 style="color: #f71403;font-weight: bolder"><i><b>' +
-                  game.i18n.localize('ALIENRPG.PanicCondition') +
+                  '<h4 style="font-weight: bolder"><i><b>' +
+                  game.i18n.localize('ALIENRPG.DialRoll') +
                   ' ' +
                   `${customResults.roll.total}` +
                   ' ' +
+                  '<span style="color: #f71403;font-weight: bolder"><i><b>' +
                   game.i18n.localize('ALIENRPG.MorePanic') +
-                  '</b></i></h4>';
+                  '</span></b></i></span></h4>';
 
                 chatMessage +=
                   '<h4><i>' +
@@ -561,8 +566,10 @@ export class alienrpgActor extends Actor {
                 chatMessage += this.morePanic(pCheck);
               } else {
                 actor.update({ 'data.general.panic.lastRoll': customResults.roll.total });
+                pCheck = customResults.roll.total;
                 chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.DialRoll') + ' ' + `${customResults.roll.total}` + ' </b></i></h4>';
-                chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
+                // chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
+                chatMessage += this.morePanic(pCheck);
                 if (customResults.roll.total >= 7) {
                   chatMessage +=
                     `<h4 style="color: #f71403;"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${customResults.roll.total}</b></i></h4>`;
@@ -758,6 +765,17 @@ export class alienrpgActor extends Actor {
   morePanic(pCheck) {
     let con = '';
     switch (pCheck) {
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+        con = game.i18n.localize('ALIENRPG.Panic1');
+        break;
+      case 7:
+        con = game.i18n.localize('ALIENRPG.Panic7');
+        break;
       case 8:
         con = game.i18n.localize('ALIENRPG.Panic8');
         break;

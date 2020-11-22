@@ -1,0 +1,32 @@
+<ol class="items-list">
+  <!-- Display Active Items -->
+  <li class="grid-items item-header">
+    <div class="item-name lCol1">{{section.label}}</div>
+    <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
+    <!-- <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div> -->
+    <div class="item-detail lCol10">{{localize "ALIENRPG.Dam"}}</div>
+    <div class="item-detail item-weight lCol11">{{localize "ALIENRPG.Rds"}}</div>
+    <div class="item-detail item-weight lCol3">{{localize "ALIENRPG.Power"}}</div>
+  </li>
+
+  {{#each weapons as |item iid|}}
+  <li class="item grid-items" data-item-id="{{item._id}}">
+    <div class="item-image lCol5 activate"><img src="{{item.img}}" data-item="{{item.data.header.active}}" title="{{item.name}}" width="24" height="24" /></div>
+    <span class="item-detail rollItem lCol6" data-item="{{item.name}}" data-mod="{{data.skills.rangedCbt.mod}}">{{item.name~}}</span>
+    <input
+      type="text"
+      class="item-detail maxboxsize lCol12 inline-edit"
+      data-value="data.attributes.rounds.value"
+      name="data.attributes.rounds.value"
+      value="{{data.attributes.rounds.value}}"
+      data-dtype="String"
+    />
+    <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
+
+    <div class="item-controls lCol8">
+      <a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+      <!-- <a class="item-control item-delete" title="{{localize "ALIENRPG.DeleteItem"}}"><i class="fas fa-trash"></i></a> -->
+    </div>
+  </li>
+  {{/each}}
+</ol>
