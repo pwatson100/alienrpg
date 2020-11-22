@@ -198,7 +198,7 @@
   "ALIENRPG.GunnerName": "Schütze",
   "ALIENRPG.PilotName": "Pilot",
   "ALIENRPG.Dam": "Sch.",
-  "ALIENRPG.Rds": "Rds",
+  "ALIENRPG.Rds": "Mun",
   "ALIENRPG.Inactive": "Inaktiv",
   "ALIENRPG.Active": "Aktiv",
   "ALIENRPG.DialTitle1": "Wurf modifiziert",
@@ -227,5 +227,11 @@
   "ALIENRPG.SynthDontNeed": "Synthetische brauchen keine Luft, Nahrung, kein Wasser und keinen Schlaf. Sie sind immun gegen Vakuum, Kälte und Krankheit. Androide sind normalerweise unbeeinträchtigt von den Alien-Pathogenen.",
   "ALIENRPG.Seepage104": "Siehe Seite 106 im Alien Regelwerk.",
   "ALIENRPG.PCPanicLevel": "SC's Panikstufe steigt um einen Schritt auf ",
-  "ALIENRPG.YourPanicLevel": "Deine Panikstufe steigt um einen Schritt auf "
+  "ALIENRPG.YourPanicLevel": "Deine Panikstufe steigt um einen Schritt auf ",
+  "ALIENRPG.keyResources": "Wichtige Ressourcen",
+  "ALIENRPG.colonies": "Kolonien",
+  "ALIENRPG.terrain": "Terrain",
+  "ALIENRPG.climate": "Klima",
+  "ALIENRPG.meanTemperature": "Durchschnittstemperatur",
+  "ALIENRPG.population": "Bevölkerung"
 }

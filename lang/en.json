@@ -228,5 +228,11 @@
   "ALIENRPG.Seepage104": "See page 104 of the Alien rule book.",
   "ALIENRPG.PCPanicLevel": "PC's Panic level has increased by one step to ",
   "ALIENRPG.YourPanicLevel": "Your Panic level has increased by one step to ",
-  "ALIENRPG.ComputerMainframes": "Computer Mainframes"
+  "ALIENRPG.ComputerMainframes": "Computer Mainframes",
+  "ALIENRPG.keyResources": "Key Resources",
+  "ALIENRPG.colonies": "Colonies",
+  "ALIENRPG.terrain": "Terrain",
+  "ALIENRPG.climate": "Climate",
+  "ALIENRPG.meanTemperature": "Mean Temperature",
+  "ALIENRPG.population": "Population"
 }

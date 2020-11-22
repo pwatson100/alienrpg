@@ -226,5 +226,11 @@
   "ALIENRPG.Seepage104": "See page 104 of the Alien rule book.",
   "ALIENRPG.PCPanicLevel": "Le niveau de Panique du PJ augmente d'un cran ",
   "ALIENRPG.YourPanicLevel": "Votre niveau de panique a augmenté d'un cran pour atteindre ",
-  "ALIENRPG.ComputerMainframes": "Mainframes d'ordinateur"
+  "ALIENRPG.ComputerMainframes": "Mainframes d'ordinateur",
+  "ALIENRPG.keyResources": "Principales ressources",
+  "ALIENRPG.colonies": "Colonies",
+  "ALIENRPG.terrain": "Terrain",
+  "ALIENRPG.climate": "Climat",
+  "ALIENRPG.meanTemperature": "empérature Moyenne",
+  "ALIENRPG.population": "Population"
 }
