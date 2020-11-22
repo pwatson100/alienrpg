@@ -161,3 +161,7 @@ Items now have an active/in-active flag which is toggled by left/right clicking 
 * Items with Food, Water and Air will automatically update the consumables boxes ONLY if Active.        
 
   
+Version 1.2.10
+Added some language tags I missed on the Systems sheet.
+Corrected the Talents table so Talents use the new context menu and can now be deleted and Edited.
+Added Mother Instructions in German with thanks to Raldanash#6529
