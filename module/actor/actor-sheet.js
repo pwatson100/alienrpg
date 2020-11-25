@@ -428,8 +428,8 @@ export class alienrpgActorSheet extends ActorSheet {
       temp2 = item.data.data.description;
       if (temp2 != null) {
         chatData = item.data.data.description;
-      }
-      if (chatData.includes('No Stunts Entered')) {
+      } 
+      if (chatData.includes('No Stunts Entered') || chatData.length <= 0) {
         item = dataset.pmbut;
         str = item;
         var newStr = str.replace(/\s+/g, '');
@@ -487,7 +487,6 @@ export class alienrpgActorSheet extends ActorSheet {
       var newStr = str.replace(/\s+/g, '');
       temp1 = 'ALIENRPG.' + [newStr];
       temp3 = game.i18n.localize(temp1);
-      console.log('🚀 ~ file: actor-sheet.js ~ line 485 ~ alienrpgActorSheet ~ _talentBtn ~ temp3', temp3);
       if (temp3.startsWith('<p>')) {
         chatData = temp3;
       } else {
