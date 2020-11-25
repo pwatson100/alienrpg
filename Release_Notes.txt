@@ -165,3 +165,6 @@ Version 1.2.10
 Added some language tags I missed on the Systems sheet.
 Corrected the Talents table so Talents use the new context menu and can now be deleted and Edited.
 Added Mother Instructions in German with thanks to Raldanash#6529
+
+Version 1.2.11
+Corrected minor bug in the Skill Stunt dropdown. 
