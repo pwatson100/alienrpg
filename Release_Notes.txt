@@ -168,3 +168,6 @@ Added Mother Instructions in German with thanks to Raldanash#6529
 
 Version 1.2.11
 Corrected minor bug in the Skill Stunt dropdown. 
+
+Version 1.2.12
+Corrected error with the system triggering the migration script when it was not needed. Sorry folks! 
