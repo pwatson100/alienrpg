@@ -35,7 +35,7 @@ export class alienrpgActor extends Actor {
       let key = i.name.slugify({ strict: true });
       let itemData = duplicate(i.data);
       if (!!shorthand) {
-        for (let [k, v] of Object.entries(itemData.attributes)) {
+        for (let [k, v] of Object.entries(itemData)) {
           if (!(k in itemData)) itemData[k] = v.value;
         }
         delete itemData['attributes'];
