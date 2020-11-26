@@ -174,10 +174,10 @@ export class yze {
     if (hostile != 'supply') {
       if (succEss === 1) {
         chatMessage +=
-          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.youHave') + ' ' + succEss + ' ' + game.i18n.localize('ALIENRPG.sucess') + ' </div>';
+          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.youHave') + ' ' + succEss + ' ' + game.i18n.localize('ALIENRPG.success') + ' </div>';
       } else {
         chatMessage +=
-          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.youHave') + ' ' + succEss + ' ' + game.i18n.localize('ALIENRPG.sucesses') + '</div>';
+          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.youHave') + ' ' + succEss + ' ' + game.i18n.localize('ALIENRPG.successes') + '</div>';
       }
     }
 
@@ -196,7 +196,7 @@ export class yze {
           ' ' +
           sTotal +
           ' ' +
-          game.i18n.localize('ALIENRPG.sucess') +
+          game.i18n.localize('ALIENRPG.success') +
           ' </div>';
       } else {
         chatMessage +=
@@ -207,7 +207,7 @@ export class yze {
           ' ' +
           sTotal +
           ' ' +
-          game.i18n.localize('ALIENRPG.sucesses') +
+          game.i18n.localize('ALIENRPG.successes') +
           '</div>';
       }
     }
