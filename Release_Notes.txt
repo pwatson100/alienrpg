@@ -171,3 +171,8 @@ Corrected minor bug in the Skill Stunt dropdown.
 
 Version 1.2.12
 Corrected error with the system triggering the migration script when it was not needed. Sorry folks! 
+
+Version 1.2.13
+Corrected another bug with Skill-Stunts not displaying properly.
+GM's NOTE: Set the user permissions of the Skill-Stunts folder to "All Players" None.  
+This will still allow the pop up to appear but will prevent players from dragging the skills on to their Actor which corrupts the data.  

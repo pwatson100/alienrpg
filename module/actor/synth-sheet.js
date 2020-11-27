@@ -343,19 +343,37 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     let li = $(event.currentTarget).parents('.grid-container');
     let li2 = li.children('#panel');
-
-    const dataset = event.currentTarget.dataset;
-    let item = game.items.getName(dataset.pmbut);
+    let item = '';
+    let str = '';
     let chatData = '';
-    let str = item.name;
-    console.log('alienrpgActorSheet -> _stuntBtn -> str', str);
-    var newStr = str.replace(/\s+/g, '');
-    let temp1 = 'ALIENRPG.' + [newStr];
+    let temp2 = '';
+    let temp3 = '';
+    const dataset = event.currentTarget.dataset;
+    let langItem = dataset.pmbut;
+    let langStr = langItem;
 
-    chatData = game.i18n.localize(temp1);
-    if (chatData.length < 25) {
-      chatData = item.data.data.description;
+    var newLangStr = langStr.replace(/\s+/g, '');
+    let langTemp = 'ALIENRPG.' + [newLangStr];
+    temp3 = game.i18n.localize(langTemp);
+
+    try {
+      item = game.items.getName(dataset.pmbut);
+      str = item.name;
+      temp2 = item.data.data.description;
+      if (temp2 != null || temp2.length) {
+        chatData = item.data.data.description;
+      }
+      if (temp3.startsWith('<ol>') && chatData.startsWith('<h2>No Stunts Entered</h2>')) {
+        chatData = temp3;
+      }
+    } catch {
+      if (temp3.startsWith('<ol>')) {
+        chatData = temp3;
+      } else {
+        chatData = '<h2>No Stunts Entered</h2>';
+      }
     }
+
     let div = $(`<div class="panel Col3">${chatData}</div>`);
     // Toggle summary
     if (li2.hasClass('expanded')) {
@@ -372,17 +390,30 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     let li = $(event.currentTarget).parents('.grid-container');
     let li2 = li.children('#panel');
-
-    const dataset = event.currentTarget.dataset;
-    let item = this.actor.getOwnedItem(dataset.pmbut);
+    let item = '';
+    let str = '';
+    let temp1 = '';
+    let temp2 = '';
+    let temp3 = '';
     let chatData = '';
-    let str = item.name;
-    var newStr = str.replace(/\s+/g, '');
-    let temp1 = 'ALIENRPG.' + [newStr];
+    const dataset = event.currentTarget.dataset;
 
-    chatData = game.i18n.localize(temp1);
-    if (chatData.length < 25) {
+    item = this.actor.getOwnedItem(dataset.pmbut);
+    str = item.name;
+    temp2 = item.data.data.general.comment.value;
+    if (temp2 != null && temp2.length > 0) {
       chatData = item.data.data.general.comment.value;
+    } else {
+      // item = dataset.pmbut;
+      // str = item;
+      var newStr = str.replace(/\s+/g, '');
+      temp1 = 'ALIENRPG.' + [newStr];
+      temp3 = game.i18n.localize(temp1);
+      if (temp3.startsWith('<p>')) {
+        chatData = temp3;
+      } else {
+        chatData = '<p style="font-size: xx-large;">👾</p>';
+      }
     }
 
     // let chatData = item.data.data.general.comment.value;

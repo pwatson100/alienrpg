@@ -417,38 +417,31 @@ export class alienrpgActorSheet extends ActorSheet {
     let item = '';
     let str = '';
     let chatData = '';
-    let temp1 = '';
     let temp2 = '';
     let temp3 = '';
     const dataset = event.currentTarget.dataset;
+    let langItem = dataset.pmbut;
+    let langStr = langItem;
+
+    var newLangStr = langStr.replace(/\s+/g, '');
+    let langTemp = 'ALIENRPG.' + [newLangStr];
+    temp3 = game.i18n.localize(langTemp);
 
     try {
       item = game.items.getName(dataset.pmbut);
       str = item.name;
       temp2 = item.data.data.description;
-      if (temp2 != null) {
+      if (temp2 != null || temp2.length) {
         chatData = item.data.data.description;
-      } 
-      if (chatData.includes('No Stunts Entered') || chatData.length <= 0) {
-        item = dataset.pmbut;
-        str = item;
-        var newStr = str.replace(/\s+/g, '');
-        temp1 = 'ALIENRPG.' + [newStr];
-        temp3 = game.i18n.localize(temp1);
-        if (temp3) {
-          chatData = game.i18n.localize(temp1);
-        }
+      }
+      if (temp3.startsWith('<ol>') && chatData.startsWith('<h2>No Stunts Entered</h2>')) {
+        chatData = temp3;
       }
     } catch {
-      item = dataset.pmbut;
-      str = item;
-      var newStr = str.replace(/\s+/g, '');
-      temp1 = 'ALIENRPG.' + [newStr];
-      temp3 = game.i18n.localize(temp1);
       if (temp3.startsWith('<ol>')) {
         chatData = temp3;
       } else {
-        chatData = '<p style="font-size: xx-large;">👾</p>';
+        chatData = '<h2>No Stunts Entered</h2>';
       }
     }
 
