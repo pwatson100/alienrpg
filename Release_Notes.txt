@@ -175,4 +175,7 @@ Corrected error with the system triggering the migration script when it was not 
 Version 1.2.13
 Corrected another bug with Skill-Stunts not displaying properly.
 GM's NOTE: Set the user permissions of the Skill-Stunts folder to "All Players" None.  
-This will still allow the pop up to appear but will prevent players from dragging the skills on to their Actor which corrupts the data.  
+This will still allow the pop up to appear but will prevent players from dragging the skills on to their Actor which corrupts the data.
+
+Version 1.2.14
+Corrected bug with the description not displaying correctly on Character and Synthetic sheets.  
