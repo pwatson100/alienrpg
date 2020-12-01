@@ -34,7 +34,10 @@ export class alienrpgActor extends Actor {
     data.items = this.data.items.reduce((obj, i) => {
       let key = i.name.slugify({ strict: true });
       let itemData = duplicate(i.data);
-      if (!!shorthand) {
+      if (itemData.skill) {
+        return;
+      }
+      if (!!shorthand && !!itemData.skill) {
         for (let [k, v] of Object.entries(itemData.attributes)) {
           if (!(k in itemData)) itemData[k] = v.value;
         }
