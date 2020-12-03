@@ -4,14 +4,16 @@
     "character": {
       "header": {
         "health": {
-          "value": 10,
+          "value": 0,
           "label": "Health",
-          "mod": 0
+          "mod": 0,
+          "max": 0
         },
         "stress": {
           "value": 0,
           "label": "Stress",
-          "mod": 0
+          "mod": 0,
+          "max": 10
         },
         "npc": false
       },
@@ -164,7 +166,8 @@
           "value": ""
         },
         "armor": {
-          "value": 0
+          "value": 0,
+          "max": 10
         },
         "panic": {
           "value": 0,
@@ -199,8 +202,9 @@
     "synthetic": {
       "header": {
         "health": {
-          "value": 10,
-          "label": "Health"
+          "value": 0,
+          "label": "Health",
+          "max": 0
         },
         "npc": false
       },
@@ -350,7 +354,8 @@
           "value": ""
         },
         "armor": {
-          "value": 0
+          "value": 0,
+          "max": 10
         }
       },
       "consumables": {
@@ -383,7 +388,8 @@
       "header": {
         "health": {
           "value": 0,
-          "label": "Health"
+          "label": "Health",
+          "max": 0
         }
       },
       "attributes": {
@@ -393,7 +399,8 @@
         },
         "armorrating": {
           "value": 0,
-          "label": "Number"
+          "label": "Number",
+          "max": 10
         }
       },
       "general": {
@@ -441,7 +448,8 @@
         },
         "armorrating": {
           "value": 0,
-          "label": "Number"
+          "label": "Number",
+          "max": 10
         },
         "comment": {
           "value": "",

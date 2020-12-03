@@ -341,7 +341,10 @@ Hooks.on('preCreateActor', (actor, dir) => {
       case 'character':
         mergeObject(actor, {
           'token.bar1': {
-            attribute: 'header.stress.value',
+            attribute: 'header.health',
+          },
+          'token.bar2': {
+            attribute: 'header.stress',
           },
         });
         actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;

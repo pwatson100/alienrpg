@@ -183,7 +183,12 @@ Corrected bug with the description not displaying correctly on Character and Syn
 Version 1.2.15
 Corrected bug with the description not displaying correctly on Creature sheets.  
 
-Version 1.2.15
+Version 1.2.16
 Fixed the issue with Skill-Stunts corrupting Character sheets preventing rolls. 
 GM's NOTE: Set the user permissions of the Skill-Stunts folder to "All Players" None.  
-This will still allow the pop up to appear but will prevent players from dragging the skills on to their Actor which corrupts the data.    
+This will still allow the pop up to appear but will prevent players from dragging the skills on to their Actor which corrupts the data.  
+
+Version 1.2.17
+Improved Chinese language translation with thanks to Tian#7972
+Added stress and Health bars for Tokens (Stress at the top, Health at the bottom).
+

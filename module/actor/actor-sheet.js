@@ -57,6 +57,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // The Actor and its Items
     data.actor = duplicate(this.actor.data);
+    const actorData = data.actor.data;
 
     data.items = this.actor.items.map((i) => {
       i.data.labels = i.labels;
@@ -67,13 +68,28 @@ export class alienrpgActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-    data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
-    data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
-    data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
-    data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
-    data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
-    data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
-    data.actor.data.general.panic.calculatedMax = data.actor.data.general.panic.max; // Update
+    // data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
+    this.actor.update({ 'general.radiation.calculatedMax': data.actor.data.general.radiation.max });
+
+    // data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
+    this.actor.update({ 'general.xp.calculatedMax': data.actor.data.general.xp.max });
+
+    // data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
+    this.actor.update({ 'general.starving.calculatedMax': data.actor.data.general.starving.max });
+
+    // data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
+    this.actor.update({ 'general.dehydrated.calculatedMax': data.actor.data.general.dehydrated.max });
+
+    // data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
+    this.actor.update({ 'general.exhausted.calculatedMax': data.actor.data.general.exhausted.max });
+
+    // data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
+    this.actor.update({ 'general.freezing.calculatedMax': data.actor.data.general.freezing.max });
+
+    // data.actor.data.general.panic.calculatedMax = data.actor.data.general.panic.max; // Update
+    this.actor.update({ 'general.panic.calculatedMax': data.actor.data.general.panic.max });
+
+    this.actor.update({ 'data.header.health.max': actorData.attributes.str.value });
 
     data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
@@ -82,7 +98,6 @@ export class alienrpgActorSheet extends ActorSheet {
     data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
     data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
     data.actor.data.general.panic.icon = this._getContitionIcon(data.actor.data.general.panic.value, 'panic');
-
     // Prepare items.
     this._prepareItems(data); // Return data to the sheet
 
@@ -389,6 +404,10 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
+    // const atoken = this.actor.getActiveTokens(true)[0].id;
+    // console.log('🚀 ~ file: actor-sheet.js ~ line 385 ~ alienrpgActorSheet ~ _rollItem ~ atoken', atoken);
+    // atoken.refresh();
+
     let item = this.actor.getOwnedItem(itemId);
 
     return item.update({ 'data.header.active': true }, {});
@@ -397,6 +416,9 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
+    // const atoken = this.actor.getActiveTokens(true)[0].id;
+    // atoken.refresh();
+
     let item = this.actor.getOwnedItem(itemId);
 
     return item.update({ 'data.header.active': false }, {});
