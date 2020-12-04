@@ -232,5 +232,6 @@
   "ALIENRPG.terrain": "Terrain",
   "ALIENRPG.climate": "Climat",
   "ALIENRPG.meanTemperature": "empérature Moyenne",
-  "ALIENRPG.population": "Population"
+  "ALIENRPG.population": "Population",
+  "ALIENRPG.NoAttribute": "Aucun Attribut"
 }

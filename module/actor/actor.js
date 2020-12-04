@@ -312,7 +312,7 @@ export class alienrpgActor extends Actor {
         const table = game.tables.getName('Panic Table');
         // let aStress = actor.getRollData().stress;
         let aStress = actor.getRollData().stress + parseInt(actor.data.data.header.stress.mod);
-        let modRoll = 'd6' + '+' + parseInt(aStress || 0);
+        let modRoll = '1d6' + '+' + parseInt(aStress || 0);
         const roll = new Roll(modRoll);
 
         const customResults = table.roll({ roll });
@@ -527,7 +527,8 @@ export class alienrpgActor extends Actor {
               let chatMessage = '';
               const table = game.tables.getName('Panic Table');
               let aStress = actor.getRollData().stress + parseInt(actor.data.data.header.stress.mod);
-              let modRoll = 'd6' + '+' + (parseInt(stressMod || 0) + parseInt(aStress || 0));
+              let modRoll = '1d6' + '+' + (parseInt(stressMod || 0) + parseInt(aStress || 0));
+              console.log('🚀 ~ file: actor.js ~ line 532 ~ alienrpgActor ~ renderTemplate ~ modRoll', modRoll);
               const roll = new Roll(modRoll);
 
               const customResults = table.roll({ roll });

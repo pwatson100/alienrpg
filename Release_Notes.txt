@@ -192,3 +192,8 @@ Version 1.2.17
 Improved Chinese language translation with thanks to Tian#7972
 Added stress and Health bars for Tokens (Stress at the top, Health at the bottom).
 
+Version 1.2.18
+Update to Stress and dice rolls as I was useing 'd6' in my scripts which is no longer supported in FVTT V0.7.8
+
+
+

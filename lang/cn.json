@@ -228,5 +228,6 @@
   "ALIENRPG.Seepage104": "参考异形规则书的104面。",
   "ALIENRPG.PCPanicLevel": "角色的恐慌等级已经提升了一级，目前为",
   "ALIENRPG.YourPanicLevel": "你的恐慌等级已经提升一级，目前为",
-  "ALIENRPG.ComputerMainframes": "电脑主机"
+  "ALIENRPG.ComputerMainframes": "电脑主机",
+  "ALIENRPG.NoAttribute": "无属性"
 }

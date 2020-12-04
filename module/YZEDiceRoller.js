@@ -95,6 +95,9 @@ export class yze {
       results: [],
     };
 
+    if (!r1Dice && !r2Dice) {
+      return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoAttribute'));
+    }
     // *******************************************************
     // Handle Base Dice Roll
     // *******************************************************
@@ -106,7 +109,9 @@ export class yze {
         data.formula = r1Dice + 'd6';
       } else {
         roll1 = `${r1Dice}` + 'db';
+        console.log('🚀 ~ file: YZEDiceRoller.js ~ line 110 ~ yze ~ yzeRoll ~ roll1', roll1);
         if (r2Dice <= 0) {
+          console.log('🚀 ~ file: YZEDiceRoller.js ~ line 110 ~ yze ~ yzeRoll ~ roll1', roll1);
           mr = new Roll(`${roll1}`).roll();
           buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
           // console.log('yze -> yzeRoll -> mr', mr);
@@ -126,6 +131,7 @@ export class yze {
       } else {
         let roll2 = `${r2Dice}` + 'ds';
         let com;
+        console.log('🚀 ~ file: YZEDiceRoller.js ~ line 129 ~ yze ~ yzeRoll ~ roll2', roll2);
         if (hostile === 'supply') {
           // // console.log('yze -> yzeRoll -> hostile', hostile);
           com = `${roll2}`;
@@ -165,7 +171,6 @@ export class yze {
         chatMessage += '<div class="blink"; style="color: blue; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.supplyDecreases') + '</div>';
       }
     }
-
     // *******************************************************
     // Calulate the total successes and displayas long asit's not a Supply roll.
     // *******************************************************
