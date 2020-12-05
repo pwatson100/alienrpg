@@ -232,73 +232,73 @@
           "value": 0,
           "label": "Heavy Machinery",
           "ability": "str",
-          "description": ""
+          "description": "Heavy Machinery"
         },
         "closeCbt": {
           "value": 0,
           "label": "Close Combat",
           "ability": "str",
-          "description": ""
+          "description": "Close Combat"
         },
         "stamina": {
           "value": 0,
           "label": "Stamina",
           "ability": "str",
-          "description": ""
+          "description": "Stamina"
         },
         "rangedCbt": {
           "value": 0,
           "label": "Ranged Combat",
           "ability": "agl",
-          "description": ""
+          "description": "Ranged Combat"
         },
         "mobility": {
           "value": 0,
           "label": "Mobility",
           "ability": "agl",
-          "description": ""
+          "description": "Mobility"
         },
         "piloting": {
           "value": 0,
           "label": "Piloting",
           "ability": "agl",
-          "description": ""
+          "description": "Piloting"
         },
         "command": {
           "value": 0,
           "label": "Command",
           "ability": "emp",
-          "description": ""
+          "description": "Command"
         },
         "manipulation": {
           "value": 0,
           "label": "Manipulation",
           "ability": "emp",
-          "description": ""
+          "description": "Manipulation"
         },
         "medicalAid": {
           "value": 0,
           "label": "Medical Aid",
           "ability": "emp",
-          "description": ""
+          "description": "Medical Aid"
         },
         "observation": {
           "value": 0,
           "label": "Observation",
           "ability": "wit",
-          "description": ""
+          "description": "Observation"
         },
         "survival": {
           "value": 0,
           "label": "Survival",
           "ability": "wit",
-          "description": ""
+          "description": "Survival"
         },
         "comtech": {
           "value": 0,
           "label": "Comtech",
           "ability": "wit",
-          "description": ""
+          "description": "Comtech"
         }
       },
       "general": {
