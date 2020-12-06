@@ -60,6 +60,11 @@
       "lang": "de",
       "name": "Deutsche",
       "path": "lang/de.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
     }
   ],
   "gridDistance": 5,
