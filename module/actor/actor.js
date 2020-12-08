@@ -100,6 +100,7 @@ export class alienrpgActor extends Actor {
       if (Attrib.type === 'item') {
         if (Attrib.data.header.active) {
           let base = Attrib.data.modifiers.attributes;
+          console.log('🚀 ~ file: actor.js ~ line 104 ~ alienrpgActor ~ _prepareCharacterData ~ base', base);
           for (let [bkey, aAttrib] of Object.entries(base)) {
             switch (bkey) {
               case 'str':
@@ -174,6 +175,31 @@ export class alienrpgActor extends Actor {
         setProperty(actorData, 'data.header.health.mod', (data.header.health.mod = parseInt(attrMod.health || 0)));
         if (actorData.type === 'character') {
           setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod = parseInt(attrMod.stress || 0)));
+        }
+      }
+
+      if (Attrib.type === 'armor') {
+        if (Attrib.data.header.active) {
+          let base = Attrib.data.modifiers;
+          for (let [bkey, vAttrib] of Object.entries(base)) {
+            switch (bkey) {
+              case 'agl':
+                attrMod.agl = attrMod.agl += parseInt(vAttrib.value);
+                break;
+              case 'heavyMach':
+                sklMod.heavyMach = sklMod.heavyMach += parseInt(vAttrib.value);
+                break;
+              case 'closeCbt':
+                sklMod.closeCbt = sklMod.closeCbt += parseInt(vAttrib.value);
+                break;
+              case 'survival':
+                sklMod.survival = sklMod.survival += parseInt(vAttrib.value);
+                break;
+
+              default:
+                break;
+            }
+          }
         }
       }
     }
@@ -262,7 +288,15 @@ export class alienrpgActor extends Actor {
   }
 
   _prepareVehicleData(data) {}
-  _prepareCreatureData(data) {}
+  _prepareCreatureData(actorData) {
+    // super.prepareDerivedData();
+    // console.log('🚀 ~ file: actor.js ~ line 268 ~ alienrpgActor ~ _prepareCreatureData ~ data', actorData);
+    // // this.actor.update({ 'data.header.health.tmp': this.actor.data.data.header.health.value });
+    // if (actorData.header.health.max === 0 || actorData.header.health.value > actorData.header.health.max) {
+    //   // this.actor.update({ 'data.header.health.max': this.actor.data.data.header.health.value });
+    //   setProperty(actorData, 'actorData.health.max', (actorData.header.health.max = actorData.header.health.value));
+    // }
+  }
   _prepareTeritoryData(data) {}
 
   _prepareTokenImg() {

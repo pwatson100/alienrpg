@@ -944,8 +944,8 @@ button:focus {
 
 .grid-2 {
   display: grid;
-  grid-template-areas: 'box11 box21';
-  grid-template-columns: 195px 33px;
+  grid-template-areas: 'box11 box21 box23 box22';
+  grid-template-columns: 150px 33px 15px 33px;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -962,6 +962,17 @@ button:focus {
   grid-area: box21;
   justify-self: right;
   padding-right: 8px;
+}
+
+.box22 {
+  grid-area: box22;
+  justify-self: right;
+  padding-right: 8px;
+}
+
+.box23 {
+  grid-area: box23;
+  justify-self: center;
 }
 
 .grid-rTables {

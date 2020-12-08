@@ -502,9 +502,9 @@
 }
 .grid-2 {
   display: grid;
-  grid-template-areas: 'box11 box21';
+  grid-template-areas: 'box11 box21 box23 box22';
   // padding: 3px;
-  grid-template-columns: 195px 33px;
+  grid-template-columns: 150px 33px 15px 33px;
   align-items: center;
   margin: 1px;
   padding: 0;
@@ -521,6 +521,16 @@
   grid-area: box21;
   justify-self: right;
   padding-right: 8px;
+}
+.box22 {
+  grid-area: box22;
+  justify-self: right;
+  padding-right: 8px;
+}
+.box23 {
+  grid-area: box23;
+  justify-self: center;
+  // padding-right: 8px;
 }
 
 .grid-rTables {

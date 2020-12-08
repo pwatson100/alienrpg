@@ -357,6 +357,11 @@ Hooks.on('preCreateActor', (actor, dir) => {
         actor.token.actorLink = true;
         break;
       case 'creature':
+        mergeObject(actor, {
+          'token.bar1': {
+            attribute: 'header.health',
+          },
+        });
         actor.token.vision = true;
         actor.token.actorLink = false;
         break;
