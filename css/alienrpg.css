@@ -554,8 +554,7 @@ button:focus {
   display: grid;
   margin: 0;
   padding: 0;
-  grid-template-areas: 'Col1 Col2 ' 'Col3 Col3';
-  grid-template-rows: 1fr;
+  grid-template-areas: 'Col1 Col2 '  'Col1 Col2 '  'Col1 Col2 '  'Col1 Col4 '  'Col3 Col3';
   grid-template-columns: 370px 1fr;
 }
 
@@ -570,6 +569,10 @@ button:focus {
 
 .Col3 {
   grid-area: Col3;
+}
+
+.Col4 {
+  grid-area: Col4;
 }
 
 .grid-attr {

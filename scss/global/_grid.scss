@@ -125,8 +125,13 @@
   // align-items: center;
   // justify-items: first baseline;
   // border: 2px solid var(--aliengreen);
-  grid-template-areas: 'Col1 Col2 ' 'Col3 Col3';
-  grid-template-rows: 1fr;
+  grid-template-areas: 
+  'Col1 Col2 ' 
+  'Col1 Col2 ' 
+  'Col1 Col2 ' 
+  'Col1 Col4 ' 
+  'Col3 Col3';
+  // grid-template-rows: 1fr;
   grid-template-columns: 370px 1fr;
 }
 .Col1 {
@@ -143,6 +148,11 @@
 
 .Col3 {
   grid-area: Col3;
+  // justify-items: right;
+  // border: 2px solid white;
+}
+.Col4 {
+  grid-area: Col4;
   // justify-items: right;
   // border: 2px solid white;
 }
@@ -446,6 +456,7 @@
     'talTitle talTitle'
     'tal1 tal2'
     'tal3 tal4';
+    // grid-template-rows: 3fr;
 
   padding: 3px;
   grid-template-columns: 75% 25%;

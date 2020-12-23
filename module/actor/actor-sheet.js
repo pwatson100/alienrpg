@@ -129,6 +129,20 @@ export class alienrpgActorSheet extends ActorSheet {
     // Assign and return
     data.talents = talents;
 
+    const agendas = [];
+
+    // Iterate through items, allocating to containers
+    for (let i of data.items) {
+      let item = i.data;
+      // Append to gear.
+      if (i.type === 'agenda') {
+        agendas.push(i);
+      }
+    }
+
+    // Assign and return
+    data.agendas = agendas;
+
     // Categorize items as inventory, spellbook, features, and classes
     const inventory = {
       weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },

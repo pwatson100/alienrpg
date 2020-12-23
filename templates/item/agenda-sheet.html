@@ -1,0 +1,24 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="vehicle-header">
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    {{!-- Attributes Tab --}}
+    <div class="tab general" data-group="primary" data-tab="general">
+      <h2 class="resource-label">{{localize "ALIENRPG.Description"}}</h2>
+      <textarea name="data.general.comment.value" rows="12" data-dtype="String">{{data.general.comment.value}}</textarea>
+    </div>
+
+  </section>
+  {{log "CONTEXT!!!!"}} {{log this}} 
+</form>
