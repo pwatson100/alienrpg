@@ -201,7 +201,7 @@ Synth tokens will only display Health (as they don't have Stress)
 
 Version 1.2.20
 Added Spanish language translation with thanks to @lozalojo
-Corrected a bug modifiers not being aplied for armor.
+Corrected a bug modifiers not being applied for armor.
 Creature templates now have Health X/X for current/max which allows the token bar to operate properly.
 
 
