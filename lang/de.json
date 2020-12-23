@@ -234,5 +234,7 @@
   "ALIENRPG.climate": "Klima",
   "ALIENRPG.meanTemperature": "Durchschnittstemperatur",
   "ALIENRPG.population": "Bevölkerung",
-  "ALIENRPG.NoAttribute": "Kein Attribut"
+  "ALIENRPG.NoAttribute": "Kein Attribut",
+  "ALIENRPG.Agenda": "Motivation"
+
 }
