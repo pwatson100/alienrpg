@@ -209,5 +209,7 @@ Added a new Item type of Agenda.  This will display on the character sheet like 
 The idea is that the GM can create "secret" agendas for the players put them in a Compendium and make it visible only to the GM.  
 The GM can then drop the appropriate Agenda item on the PC sheet so they can see it.  
 
-Version 1.2.2
+Version 1.2.23
 Removed message to roll multiple stress dice when more than one facehugger is rolled.
+Added Armor Vs Fire attribute to the Creatures sheet as Xenos have different Armor against fire damage.
+Updated language files.

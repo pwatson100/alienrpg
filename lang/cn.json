@@ -103,6 +103,7 @@
   "ALIENRPG.Inventory": "物品",
   "ALIENRPG.CriticalInjuries": "重伤",
   "ALIENRPG.Armor": "护甲",
+  "ALIENRPG.ArmorVsFire": "护甲 V 火",
   "ALIENRPG.GeneralTalent": "通用天赋",
   "ALIENRPG.SpecialAbilities": "特殊能力",
   "ALIENRPG.SkillAcidSplash": "酸性血液",
@@ -231,5 +232,4 @@
   "ALIENRPG.ComputerMainframes": "电脑主机",
   "ALIENRPG.NoAttribute": "无属性",
   "ALIENRPG.Agenda": "议程"
-
 }

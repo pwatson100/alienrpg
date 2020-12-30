@@ -1,6 +1,12 @@
 {
   "Actor": {
-    "types": ["character", "synthetic", "vehicles", "creature", "territory"],
+    "types": [
+      "character",
+      "synthetic",
+      "vehicles",
+      "creature",
+      "territory"
+    ],
     "character": {
       "header": {
         "health": {
@@ -401,6 +407,11 @@
           "value": 0,
           "label": "Number",
           "max": 10
+        },
+        "armorvfire": {
+          "value": 0,
+          "label": "Number",
+          "max": 10
         }
       },
       "general": {
@@ -486,7 +497,6 @@
           "ability": "agl"
         }
       },
-
       "general": {
         "misc": {
           "value": ""
@@ -522,7 +532,15 @@
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor", "talent", "planet-system", "skill-stunts", "agenda"],
+    "types": [
+      "item",
+      "weapon",
+      "armor",
+      "talent",
+      "planet-system",
+      "skill-stunts",
+      "agenda"
+    ],
     "item": {
       "header": {
         "type": {

@@ -103,6 +103,7 @@
   "ALIENRPG.Inventory": "Inventar",
   "ALIENRPG.CriticalInjuries": "Kritische Verletzungen",
   "ALIENRPG.Armor": "Panzerung",
+  "ALIENRPG.ArmorVsFire": "Panzerung V Feuer",
   "ALIENRPG.GeneralTalent": "Allgemeine Talente",
   "ALIENRPG.SpecialAbilities": "Berufstalente",
   "ALIENRPG.SkillAcidSplash": "Säurespritzer",
@@ -236,5 +237,4 @@
   "ALIENRPG.population": "Bevölkerung",
   "ALIENRPG.NoAttribute": "Kein Attribut",
   "ALIENRPG.Agenda": "Motivation"
-
 }

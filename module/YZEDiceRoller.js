@@ -168,6 +168,7 @@ export class yze {
         //     game.i18n.localize('ALIENRPG.worstResult') +
         //     '</div>';
         // }
+        
       } else if (game.alienrpg.rollArr.r2One >= 1) {
         chatMessage += '<div class="blink"; style="color: blue; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.supplyDecreases') + '</div>';
       }

@@ -102,6 +102,7 @@
   "ALIENRPG.Filter": "Filter",
   "ALIENRPG.Inventory": "Inventory",
   "ALIENRPG.CriticalInjuries": "Critical Injuries",
+  "ALIENRPG.ArmorVsFire": "Armor V Fire",
   "ALIENRPG.Armor": "Armor",
   "ALIENRPG.GeneralTalent": "General Talent",
   "ALIENRPG.SpecialAbilities": "Special Abilities",
@@ -237,5 +238,4 @@
   "ALIENRPG.population": "Population",
   "ALIENRPG.NoAttribute": "No Attribute",
   "ALIENRPG.Agenda": "Agenda"
-
 }

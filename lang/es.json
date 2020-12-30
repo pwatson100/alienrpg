@@ -1,7 +1,6 @@
 {
   "I18N.LANGUAGE": "Español",
   "I18N.MAINTAINERS": "@Pluvium#2028",
-
   "ALIENRPG.Health": "Salud",
   "ALIENRPG.Stress": "Estrés",
   "ALIENRPG.Skills": "Habilidades",
@@ -106,6 +105,7 @@
   "ALIENRPG.Inventory": "Inventario",
   "ALIENRPG.CriticalInjuries": "Daños críticos",
   "ALIENRPG.Armor": "Armadura",
+  "ALIENRPG.ArmorVsFire": "Armadura V Fuego",
   "ALIENRPG.GeneralTalent": "Talento genérico",
   "ALIENRPG.SpecialAbilities": "Habilidades especiales",
   "ALIENRPG.SkillAcidSplash": "Salpicadura ácida",
@@ -240,5 +240,4 @@
   "ALIENRPG.population": "Población",
   "ALIENRPG.NoAttribute": "Sin atributo",
   "ALIENRPG.Agenda": "Agenda"
-
 }

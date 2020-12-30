@@ -103,6 +103,7 @@
   "ALIENRPG.Inventory": "Inventaire",
   "ALIENRPG.CriticalInjuries": "Blessures Critiques",
   "ALIENRPG.Armor": "Protection",
+  "ALIENRPG.ArmorVsFire": "Protection V Feu",
   "ALIENRPG.GeneralTalent": "Talent Principal",
   "ALIENRPG.SpecialAbilities": "Capacités Spéciales",
   "ALIENRPG.SkillAcidSplash": "Jet d'Acide",
@@ -235,5 +236,4 @@
   "ALIENRPG.population": "Population",
   "ALIENRPG.NoAttribute": "Aucun Attribut",
   "ALIENRPG.Agenda": "Objectif"
-
 }
