@@ -213,3 +213,8 @@ Version 1.2.23
 Removed message to roll multiple stress dice when more than one facehugger is rolled.
 Added Armor Vs Fire attribute to the Creatures sheet as Xenos have different Armor against fire damage.
 Updated language files.
+
+Version 1.2.24
+Talent and Agenda description fields converted to rich test editor so can now include links and graphics.
+Roll chat now displays the name of the character rather than the player. 
+Updated the "Alien - Player Ad-hoc YZE Dice Roller" macro to display actor name.  (You will need to reimport the macro)

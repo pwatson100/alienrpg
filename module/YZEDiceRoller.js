@@ -27,7 +27,7 @@ export class yze {
    * yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
    */
-  static async yzeRoll(hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2) {
+  static async yzeRoll(hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2,actorid) {
     // console.log('yze -> yzeRoll -> hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2', hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
 
     // *******************************************************
@@ -109,9 +109,7 @@ export class yze {
         data.formula = r1Dice + 'd6';
       } else {
         roll1 = `${r1Dice}` + 'db';
-        console.log('🚀 ~ file: YZEDiceRoller.js ~ line 110 ~ yze ~ yzeRoll ~ roll1', roll1);
         if (r2Dice <= 0) {
-          console.log('🚀 ~ file: YZEDiceRoller.js ~ line 110 ~ yze ~ yzeRoll ~ roll1', roll1);
           mr = new Roll(`${roll1}`).roll();
           buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
           // console.log('yze -> yzeRoll -> mr', mr);
@@ -131,7 +129,6 @@ export class yze {
       } else {
         let roll2 = `${r2Dice}` + 'ds';
         let com;
-        console.log('🚀 ~ file: YZEDiceRoller.js ~ line 129 ~ yze ~ yzeRoll ~ roll2', roll2);
         if (hostile === 'supply') {
           // // console.log('yze -> yzeRoll -> hostile', hostile);
           com = `${roll2}`;
@@ -263,6 +260,9 @@ export class yze {
       if (!blind) {
         ChatMessage.create({
           user: game.user._id,
+          speaker: {
+            actor: actorid,
+          },
           content: chatMessage,
           other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
           sound: CONFIG.sounds.dice,
@@ -273,6 +273,9 @@ export class yze {
       } else {
         ChatMessage.create({
           user: game.user._id,
+          speaker: {
+            actor: actorid,
+          },
           content: chatMessage,
           whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
           blind: true,

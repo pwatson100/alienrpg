@@ -100,7 +100,7 @@ export class alienrpgActor extends Actor {
       if (Attrib.type === 'item') {
         if (Attrib.data.header.active) {
           let base = Attrib.data.modifiers.attributes;
-          console.log('🚀 ~ file: actor.js ~ line 104 ~ alienrpgActor ~ _prepareCharacterData ~ base', base);
+          // console.log('🚀 ~ file: actor.js ~ line 104 ~ alienrpgActor ~ _prepareCharacterData ~ base', base);
           for (let [bkey, aAttrib] of Object.entries(base)) {
             switch (bkey) {
               case 'str':
@@ -308,6 +308,7 @@ export class alienrpgActor extends Actor {
   }
 
   async rollAbility(actor, dataset) {
+    // console.log("🚀 ~ file: actor.js ~ line 311 ~ alienrpgActor ~ rollAbility ~ actor", actor)
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
@@ -337,7 +338,7 @@ export class alienrpgActor extends Actor {
         // hostile = true;
         blind = true;
       }
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'),actor.id);
       game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
     } else {
       if (dataset.panicroll) {
@@ -400,7 +401,15 @@ export class alienrpgActor extends Actor {
         if (trauma) {
           chatMessage += `<h4><b>` + game.i18n.localize('ALIENRPG.PermanantTrauma') + `<i>(` + game.i18n.localize('ALIENRPG.Seepage106') + `) </i></h4></b>`;
         }
-        ChatMessage.create({ user: game.user._id, content: chatMessage, other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+        ChatMessage.create({ 
+          user: game.user._id, 
+          speaker: {
+            actor: actor.id,
+          },
+          content: chatMessage, 
+          other: game.users.entities.filter((u) => u.isGM).map((u) => u._id), 
+          type: CONST.CHAT_MESSAGE_TYPES.OTHER 
+        });
       }
     }
   }
@@ -465,7 +474,7 @@ export class alienrpgActor extends Actor {
                 let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
                 r1Data = r1Data + modifier;
                 r2Data = r2Data + stressMod;
-                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'),actor.id);
                 game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
               }
             },
@@ -495,7 +504,7 @@ export class alienrpgActor extends Actor {
                 let modifier = parseInt(html.find('[name=modifier]')[0].value);
                 r1Data = r1Data + modifier;
                 r2Data = 0;
-                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'),actor.id);
                 game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
               }
             },
@@ -526,7 +535,7 @@ export class alienrpgActor extends Actor {
                 let modifier = parseInt(html.find('[name=modifier]')[0].value);
                 r1Data = r1Data + modifier;
                 r2Data = 0;
-                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'),actor.id);
                 game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
               }
             },
@@ -562,7 +571,7 @@ export class alienrpgActor extends Actor {
               const table = game.tables.getName('Panic Table');
               let aStress = actor.getRollData().stress + parseInt(actor.data.data.header.stress.mod);
               let modRoll = '1d6' + '+' + (parseInt(stressMod || 0) + parseInt(aStress || 0));
-              console.log('🚀 ~ file: actor.js ~ line 532 ~ alienrpgActor ~ renderTemplate ~ modRoll', modRoll);
+              // console.log('🚀 ~ file: actor.js ~ line 532 ~ alienrpgActor ~ renderTemplate ~ modRoll', modRoll);
               const roll = new Roll(modRoll);
 
               const customResults = table.roll({ roll });
@@ -692,7 +701,7 @@ export class alienrpgActor extends Actor {
     if (r2Data <= 0) {
       return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSupplys'));
     } else {
-      yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'));
+      yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'),actor.id);
       if (game.alienrpg.rollArr.r2One) {
         let itemId = consumables.find(showme)[0].item;
         let itemVal = consumables.find(showme)[0][`${consUme}`];
@@ -773,7 +782,7 @@ export class alienrpgActor extends Actor {
             if (confirmed) {
               let modifier = parseInt(html.find('[name=damage]')[0].value);
               r1Data = r1Data + modifier;
-              yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');
+              yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress',actor.id);
             }
           },
         }).render(true);
@@ -783,7 +792,14 @@ export class alienrpgActor extends Actor {
       let chatMessage = '';
       chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AcidAttack') + '</h2>';
       chatMessage += `<h4><i>` + game.i18n.localize('ALIENRPG.AcidBlood') + `</i></h4>`;
-      ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), blind: true });
+      ChatMessage.create({ 
+        user: game.user._id, 
+        speaker: {
+          actor: actor.id,
+        },
+        content: chatMessage, 
+        whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), 
+        blind: true });
     }
   }
 
@@ -797,7 +813,15 @@ export class alienrpgActor extends Actor {
     chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
     chatMessage += `<h4><i>${table.data.description}</i></h4>`;
     chatMessage += `${customResults.results[0].text}`;
-    ChatMessage.create({ user: game.user._id, content: chatMessage, whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), type: CONST.CHAT_MESSAGE_TYPES.WHISPER });
+    ChatMessage.create({ 
+      user: game.user._id, 
+      speaker: {
+        actor: actor.id,
+      },
+      content: chatMessage, 
+      whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id), 
+      type: CONST.CHAT_MESSAGE_TYPES.WHISPER 
+    });
   }
 
   morePanic(pCheck) {
