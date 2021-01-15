@@ -1839,7 +1839,6 @@ button:focus {
 }
 
 .alienrpg .biog .editor-content {
-  width: 550px;
   word-wrap: break-word;
   font-family: var(--alienfont);
 }

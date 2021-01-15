@@ -68,28 +68,28 @@ export class alienrpgActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-    // data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
-    this.actor.update({ 'general.radiation.calculatedMax': data.actor.data.general.radiation.max });
+    // // data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
+    // this.actor.update({ 'general.radiation.calculatedMax': data.actor.data.general.radiation.max });
 
-    // data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
-    this.actor.update({ 'general.xp.calculatedMax': data.actor.data.general.xp.max });
+    // // data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
+    // this.actor.update({ 'general.xp.calculatedMax': data.actor.data.general.xp.max });
 
-    // data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
-    this.actor.update({ 'general.starving.calculatedMax': data.actor.data.general.starving.max });
+    // // data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
+    // this.actor.update({ 'general.starving.calculatedMax': data.actor.data.general.starving.max });
 
-    // data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
-    this.actor.update({ 'general.dehydrated.calculatedMax': data.actor.data.general.dehydrated.max });
+    // // data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
+    // this.actor.update({ 'general.dehydrated.calculatedMax': data.actor.data.general.dehydrated.max });
 
-    // data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
-    this.actor.update({ 'general.exhausted.calculatedMax': data.actor.data.general.exhausted.max });
+    // // data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
+    // this.actor.update({ 'general.exhausted.calculatedMax': data.actor.data.general.exhausted.max });
 
-    // data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
-    this.actor.update({ 'general.freezing.calculatedMax': data.actor.data.general.freezing.max });
+    // // data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
+    // this.actor.update({ 'general.freezing.calculatedMax': data.actor.data.general.freezing.max });
 
-    // data.actor.data.general.panic.calculatedMax = data.actor.data.general.panic.max; // Update
-    this.actor.update({ 'general.panic.calculatedMax': data.actor.data.general.panic.max });
+    // // data.actor.data.general.panic.calculatedMax = data.actor.data.general.panic.max; // Update
+    // this.actor.update({ 'general.panic.calculatedMax': data.actor.data.general.panic.max });
 
-    this.actor.update({ 'data.header.health.max': actorData.attributes.str.value });
+    // this.actor.update({ 'data.header.health.max': actorData.attributes.str.value });
 
     data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
@@ -373,13 +373,16 @@ export class alienrpgActorSheet extends ActorSheet {
     return this.actor.createOwnedItem(itemData);
   }
 
+
+
   _inlineedit(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
     // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.getOwnedItem(itemId);
-    let field = dataset.name;
+    let temp = dataset.name;
+    let field = temp.slice(5);
     return item.update({ [field]: dataset.value }, {});
   }
 

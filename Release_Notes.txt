@@ -218,3 +218,10 @@ Version 1.2.24
 Talent and Agenda description fields converted to rich test editor so can now include links and graphics.
 Roll chat now displays the name of the character rather than the player. 
 Updated the "Alien - Player Ad-hoc YZE Dice Roller" macro to display actor name.  (You will need to reimport the macro)
+
+Version 1.2.25
+Added Agenda list to Synthetic Skills tab.
+Performance improvements on character sheet loading. 
+Bug Fixes:
+Inline edit for ammo , food and water was not storing the information correctly.
+Description edit box on Character, Creature & Synthetic sheets was sized incorrectly.

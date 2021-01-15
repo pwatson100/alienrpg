@@ -68,32 +68,13 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-    // data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
-    this.actor.update({ 'general.radiation.calculatedMax': data.actor.data.general.radiation.max });
 
-    // data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
-    this.actor.update({ 'general.xp.calculatedMax': data.actor.data.general.xp.max });
-
-    // data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
-    this.actor.update({ 'general.starving.calculatedMax': data.actor.data.general.starving.max });
-
-    // data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
-    this.actor.update({ 'general.dehydrated.calculatedMax': data.actor.data.general.dehydrated.max });
-
-    // data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
-    this.actor.update({ 'general.exhausted.calculatedMax': data.actor.data.general.exhausted.max });
-
-    // data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
-    this.actor.update({ 'general.freezing.calculatedMax': data.actor.data.general.freezing.max });
-
-    this.actor.update({ 'data.header.health.max': actorData.attributes.str.value });
-
-    data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
+    // data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
-    data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
-    data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
-    data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
-    data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
+    // data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
+    // data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
+    // data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
+    // data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
 
     // this.actor.data.token.disposition = 1;
     // Prepare items.
@@ -126,6 +107,20 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // Assign and return
     data.talents = talents;
+
+    const agendas = [];
+
+    // Iterate through items, allocating to containers
+    for (let i of data.items) {
+      let item = i.data;
+      // Append to gear.
+      if (i.type === 'agenda') {
+        agendas.push(i);
+      }
+    }
+
+    // Assign and return
+    data.agendas = agendas;
 
     // Categorize items as inventory, spellbook, features, and classes
     const inventory = {

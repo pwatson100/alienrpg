@@ -183,10 +183,8 @@ Hooks.once('ready', async () => {
     }
     migrations.migrateWorld();
   }
-});
-
 // clear the minimum resolution message faster
-Hooks.once('ready', async function () {
+
   setTimeout(() => {
     $('.notification.error').each((index, item) => {
       if ($(item).text().includes('requires a minimum screen resolution')) {
@@ -194,19 +192,38 @@ Hooks.once('ready', async function () {
       }
     });
   }, 250);
+
+  var r = document.querySelector(':root');
+  r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
+  r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
+
+//   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
+  Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
+
 });
+
+// clear the minimum resolution message faster
+// Hooks.once('ready', async function () {
+//   setTimeout(() => {
+//     $('.notification.error').each((index, item) => {
+//       if ($(item).text().includes('requires a minimum screen resolution')) {
+//         $(item).remove();
+//       }
+//     });
+//   }, 250);
+// });
 
 // create/remove the quick access config button
 Hooks.once('renderSettings', () => {
   AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
 });
 
-Hooks.once('ready', () => {
-  // game.settings.get('alienrpg', 'fontColour');
-  var r = document.querySelector(':root');
-  r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
-  r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
-});
+// Hooks.once('ready', () => {
+//   // game.settings.get('alienrpg', 'fontColour');
+//   var r = document.querySelector(':root');
+//   r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
+//   r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
+// });
 
 // ***************************
 // DsN V3 Hooks
@@ -282,10 +299,10 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 });
 
 // Item Drag Hook
-Hooks.once('ready', async function () {
-  // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
-  Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
-});
+// Hooks.once('ready', async function () {
+//   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
+//   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
+// });
 
 //  Hook to watch for the Push button being pressed -   Need to refactor this so it does not fire all the time.
 //
