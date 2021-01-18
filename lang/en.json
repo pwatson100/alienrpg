@@ -237,5 +237,6 @@
   "ALIENRPG.meanTemperature": "Mean Temperature",
   "ALIENRPG.population": "Population",
   "ALIENRPG.NoAttribute": "No Attribute",
-  "ALIENRPG.Agenda": "Agenda"
+  "ALIENRPG.Agenda": "Agenda",
+  "ALIENRPG.AdHoc": "Ad Hoc"
 }

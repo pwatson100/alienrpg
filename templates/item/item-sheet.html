@@ -24,6 +24,7 @@
             <option value="7">{{localize "ALIENRPG.FoodDrink"}}</option>
             <option value="8">{{localize "ALIENRPG.Power"}}</option>
             <option value="9">{{localize "ALIENRPG.ComputerMainframes"}}</option>
+            <option value="10">{{localize "ALIENRPG.Consumables"}}</option>
             {{/select}}
           </select>
         </div>
@@ -60,8 +61,10 @@
         <input type="text" name="data.attributes.water.value" class="maxboxsize gCol4" value="{{data.attributes.water.value}}" data-dtype="Number" />
       </div>
       {{/ife}} {{#ife data.header.type.value '8'}}
-      <label class="resource-label wCol11">{{localize "ALIENRPG.Power"}}</label>
-      <input type="text" class="maxboxsize wCol12" name="data.attributes.power.value" value="{{data.attributes.power.value}}" data-dtype="Number" />
+      <div class="grid-Char-Att">
+      <h3 class="resource-label gCol1">{{localize "ALIENRPG.Power"}}</h3>
+      <input type="text" class="maxboxsize gCol2" name="data.attributes.power.value" value="{{data.attributes.power.value}}" data-dtype="Number" />
+      </div>
       {{/ife}} {{#ife data.header.type.value '9'}}
       <div class="grid-2col">
         <div class="modifiers flexrow flex-group-center">
@@ -80,6 +83,18 @@
           <label for="data.modifiers.skills.rangedCbt.value" class="resource-label">{{localize "ALIENRPG.SkillRangedCbt"}} ({{data.modifiers.skills.rangedCbt.ability}})</label>
           <input type="text" class="maxboxsize" name="data.modifiers.skills.rangedCbt.value" value="{{data.modifiers.skills.rangedCbt.value}}" data-dtype="Number" />
         </div>
+      </div>
+      {{/ife}}
+ {{#ife data.header.type.value '10'}}
+      <div class="grid-item-xtras">
+        <h3 class="resource-label xCol1">{{localize "ALIENRPG.Power"}}</h3>
+        <input type="text" name="data.attributes.power.value" class="maxboxsize xCol2" value="{{data.attributes.power.value}}" data-dtype="Number" />
+        <h3 class="resource-label xCol3">{{localize "ALIENRPG.Food"}}</h3>
+        <input type="text" name="data.attributes.food.value" class="maxboxsize xCol4" value="{{data.attributes.food.value}}" data-dtype="Number" />
+        <h3 class="resource-label xCol5">{{localize "ALIENRPG.Water"}}</h3>
+        <input type="text" name="data.attributes.water.value" class="maxboxsize xCol6" value="{{data.attributes.water.value}}" data-dtype="Number" />
+         <h3  class="resource-label xCol7">{{localize "ALIENRPG.AirSupply"}}</h3>
+         <input type="text" class="maxboxsize xCol8" name="data.attributes.airsupply.value" value="{{data.attributes.airsupply.value}}" data-dtype="Number" />
       </div>
       {{/ife}}
 

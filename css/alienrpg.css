@@ -277,6 +277,13 @@ a.inline-roll {
   cursor: pointer;
 }
 
+.openItem:hover, .openItem:focus {
+  text-shadow: 0 0 20px red;
+  font-size: 110%;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
 .talent-btn:hover, .talent-btn:focus {
   color: #288f00;
   text-shadow: 0 0 20px red;
@@ -1228,6 +1235,60 @@ button:focus {
   justify-self: center;
 }
 
+.grid-item-xtras {
+  display: grid;
+  grid-template-areas: 'xCol1 xCol2 xCol3 xCol4 xCol5 xCol6' '. xCol7 xCol7 xCol8 .  .';
+  padding-bottom: 4px;
+  padding-top: 5px;
+  padding-left: 30px;
+  grid-row-gap: 3px;
+  grid-column-gap: 10px;
+  grid-template-columns: 110px 50px 110px 50px 110px 50px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.xCol1 {
+  grid-area: xCol1;
+  justify-self: left;
+}
+
+.xCol2 {
+  grid-area: xCol2;
+  justify-self: left;
+}
+
+.xCol3 {
+  grid-area: xCol3;
+  justify-self: left;
+}
+
+.xCol4 {
+  grid-area: xCol4;
+  justify-self: center;
+}
+
+.xCol5 {
+  grid-area: xCol5;
+  justify-self: left;
+}
+
+.xCol6 {
+  grid-area: xCol6;
+  justify-self: center;
+}
+
+.xCol7 {
+  grid-area: xCol7;
+  justify-self: center;
+}
+
+.xCol8 {
+  grid-area: xCol8;
+  justify-self: center;
+}
+
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {
@@ -1675,7 +1736,7 @@ button:focus {
   color: inherit;
   justify-items: center;
   background-color: #000;
-  width: 200px;
+  width: 230px;
   padding: 0;
   margin-top: 1px;
   margin-bottom: 1px;

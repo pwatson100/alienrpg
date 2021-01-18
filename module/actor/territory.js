@@ -117,12 +117,12 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
 
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
-    // // Update Inventory Item
-    // html.find('.item-edit').click((ev) => {
-    //   const li = $(ev.currentTarget).parents('.item');
-    //   const item = this.actor.getOwnedItem(li.data('itemId'));
-    //   item.sheet.render(true);
-    // });
+    // Update Inventory Item
+    html.find('.openItem').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.getOwnedItem(li.data('itemId'));
+      item.sheet.render(true);
+    });
 
     // // Delete Inventory Item
     // html.find('.item-delete').click((ev) => {

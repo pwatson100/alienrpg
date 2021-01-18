@@ -572,6 +572,10 @@
           "value": 0,
           "label": "Stress"
         },
+        "airsupply": {
+          "value": 0,
+          "label": "Number"
+        },
         "notes": {
           "notes": ""
         }
