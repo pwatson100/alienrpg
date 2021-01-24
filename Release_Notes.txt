@@ -231,3 +231,7 @@ Territories sheet:  Planets will now load when clicked on on the systems tab.
 Planet/System sheet:   Description tab is now rich text editor. 
 Character/Synthetic Sheet: Item tab now has an Ad Hoc rich text box for recording small items (Socks, Cigarettes, Toothpaste etc.) 
 Added a new item type called "General" This will allow you to create ad hoc items with Air, Food, Water & Power (Air tanks etc.).
+
+Version 1.2.27
+New Chinese language translation with thanks to @Tian#7972
+Amended Agenda description to Agenda/Story Cards on the skills tab. 
