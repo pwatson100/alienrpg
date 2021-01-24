@@ -77,7 +77,7 @@
   "secondaryTokenAttribute": "stress",
   "initiative": "1d10",
   "url": "https://github.com/pwatson100/alienrpg",
-  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/1.2.26/system.json",
-  "download": "https://github.com/pwatson100/alienrpg/releases/download/1.2.26/master.zip",
+  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/1.2.27/system.json",
+  "download": "https://github.com/pwatson100/alienrpg/releases/download/1.2.27/master.zip",
   "socket": true
 }
