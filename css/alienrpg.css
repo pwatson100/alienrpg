@@ -458,6 +458,17 @@ button:focus {
   align-items: center;
 }
 
+.grid-2col-border {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: 1fr 1fr;
+  border-color: var(--aliengreen);
+  padding: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 .grid-3col {
   grid-column: span 3 / span 3;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1725,11 +1736,18 @@ button:focus {
   text-align: center;
 }
 
+.alienrpg .inputtext {
+  color: inherit;
+  background-color: #000;
+  
+}
+
+
 .alienrpg .textbox {
   color: inherit;
-  justify-items: center;
+  padding: 5px;
+  margin: 5px 5px 5px 5px; 
   background-color: #000;
-  width: 180px;
 }
 
 .alienrpg .textbox1 {
