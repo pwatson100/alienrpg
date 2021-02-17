@@ -342,7 +342,7 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  async checkAndEndPanic(actor){
+   static async checkAndEndPanic(actor){
     
     if(actor.data.type!="character") return;
 
@@ -362,7 +362,15 @@ export class alienrpgActor extends Actor {
     }
 
   };
+    
+   static async  causePanic(actor){
+       actor.update({ 'data.general.panic.value': actor.data.data.general.panic.value + 1 });
+           
+              actor.getActiveTokens().forEach(i => {
+                i.toggleEffect('icons/svg/terror.svg',{active:true,overlay:true });
+              });
 
+    }
 
 
   async rollAbility(actor, dataset) {
@@ -437,11 +445,7 @@ export class alienrpgActor extends Actor {
         let oldPanic = actor.data.data.general.panic.lastRoll;
 
         if (customResults.roll.total >= 7 && actor.data.data.general.panic.value === 0) {
-          actor.update({ 'data.general.panic.value': actor.data.data.general.panic.value + 1 });
-        
-           actor.getActiveTokens().forEach(i => { 
-             i.toggleEffect('icons/svg/terror.svg',{active:true,overlay:true });
-           }); 
+           alienrpgActor.causePanic(actor);
 
         }
 
@@ -534,7 +538,8 @@ export class alienrpgActor extends Actor {
           },
           
           content: chatMessage, 
-          whisper: whispertarget, 
+          whisper: whispertarget,
+          roll:customResults.roll,
           type: CONST.CHAT_MESSAGE_TYPES.ROLL,
           sound: CONFIG.sounds.dice,
           blind 
@@ -752,7 +757,7 @@ export class alienrpgActor extends Actor {
     } else if (event.type === 'contextmenu') {
       newLevel = Math.clamped(level - 1, 0, max);
       if (field[0].name === 'data.general.panic.value') {
-          actor.checkAndEndPanic(actor);
+          alienrpgActor.checkAndEndPanic(actor);
 
       }
     } // Update the field value and save the form
