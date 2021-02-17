@@ -42,7 +42,7 @@ if (item.type === "armor"){
       r2Data = 0;
       reRoll = true;
     }
-    let label = `${item.name}`;
+    let label = `${item.name} (` + game.i18n.localize("ALIENRPG.Damage") +` : ${item.data.attributes.damage.value})`   ;
     let hostile = this.actor.data.type;
     let blind = false;
 

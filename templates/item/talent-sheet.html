@@ -9,6 +9,7 @@
           <select class="select-css" name="data.general.career.value" data-dcareer="{{data.general.career.value}}">
             {{#select data.general.career.value}}
             <!-- <option value=""></option> -->
+            <option value="0"></option>
             <option value="1">{{localize "ALIENRPG.GeneralTalent"}}</option>
             <option value="2">{{localize "ALIENRPG.ColonialMarine"}}</option>
             <option value="3">{{localize "ALIENRPG.ColonialMarshal"}}</option>
@@ -44,5 +45,5 @@
     {{!-- Notes Tab --}}
     <div class="tab item" data-group="primary" data-tab="notes">{{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=editable}}</div>
   </section>
-  {{log "CONTEXT!!!!"}} {{log this}} 
+  {{log "CONTEXT!!!!"}} {{log this}}
 </form>

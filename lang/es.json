@@ -240,5 +240,9 @@
   "ALIENRPG.population": "Población",
   "ALIENRPG.NoAttribute": "Sin atributo",
   "ALIENRPG.AgendaStory": "Agenda/Tarjetas de historia",
-  "ALIENRPG.AdHoc": "Ad Hoc"
+  "ALIENRPG.AdHoc": "Ad Hoc",
+  "ALIENRPG.CloneActor": "Actor clon",
+  "ALIENRPG.CombatantUpdate": "Actualizar actor",
+  "ALIENRPG.CombatantReroll": "Iniciativa ReRoll",
+  "ALIENRPG.CombatantRemove": "Eliminar actor"
 }

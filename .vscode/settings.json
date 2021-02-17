@@ -6,16 +6,23 @@
       "savePath": "/css"
     },
     {
-      "extensionName": ".min.css",
-      "format": "compressed",
-      "savePath": "/dist/css"
+      "extensionName": ".css",
+      "format": "expanded",
+      "savePath": "/css"
     }
   ],
-  "liveSassCompile.settings.excludeList": ["**/node_modules/**", ".vscode/**"],
+  "liveSassCompile.settings.excludeList": [
+    "**/node_modules/**",
+    ".vscode/**",
+    ".github/**"
+  ],
   "liveSassCompile.settings.generateMap": true,
-  "liveSassCompile.settings.autoprefix": ["> 1%", "last 2 versions"],
-
+  "liveSassCompile.settings.autoprefix": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "files.associations": {
     "*.html": "handlebars"
-  }
+  },
+  "cSpell.language": "en-GB"
 }

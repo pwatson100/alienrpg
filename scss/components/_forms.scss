@@ -95,8 +95,10 @@ h1.charname {
 
 .textbox {
   color: inherit;
-  justify-items: center;
+  // justify-items: center;
   background-color: $c-black;
+  padding: 5px;
+  margin: 5px 5px 5px 5px;
   width: 180px;
 }
 .textbox1 {
