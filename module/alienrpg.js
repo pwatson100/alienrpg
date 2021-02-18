@@ -14,6 +14,8 @@ import { AlienRPGBaseDie } from './alienRPGBaseDice.js';
 import { AlienRPGStressDie } from './alienRPGBaseDice.js';
 import * as migrations from './migration.js';
 import { AlienConfig } from './alienRPGConfig.js';
+import AlienRPGCombat from './combat.js'; 
+import AlienRPGCTContext from './CBTracker.js'; 
 
 
 const euclidianDistances = function(segments, options={}) {
@@ -51,6 +53,7 @@ Hooks.once('init', async function () {
     AlienConfig,
     rollItemMacro,
     registerSettings,
+    AlienRPGCTContext,
   };
 
   // Set FVTT version constant
@@ -78,6 +81,10 @@ Hooks.once('init', async function () {
   CONFIG.ALIENRPG = ALIENRPG;
   CONFIG.Actor.entityClass = alienrpgActor;
   CONFIG.Item.entityClass = alienrpgItem;
+  CONFIG.Combat.entityClass = AlienRPGCombat;
+  CONFIG.CombatTracker = AlienRPGCTContext;
+  CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
+
   // CONFIG.Planet.entityClass = alienrpgPlanet;
 
   // Register sheet application classes
@@ -219,7 +226,7 @@ Hooks.once('ready', async () => {
     });
   }, 250);
 
-  var r = document.querySelector(':root');
+  let r = document.querySelector(':root');
   r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
   r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
 
@@ -228,28 +235,12 @@ Hooks.once('ready', async () => {
 
 });
 
-// clear the minimum resolution message faster
-// Hooks.once('ready', async function () {
-//   setTimeout(() => {
-//     $('.notification.error').each((index, item) => {
-//       if ($(item).text().includes('requires a minimum screen resolution')) {
-//         $(item).remove();
-//       }
-//     });
-//   }, 250);
-// });
 
 // create/remove the quick access config button
 Hooks.once('renderSettings', () => {
   AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
 });
 
-// Hooks.once('ready', () => {
-//   // game.settings.get('alienrpg', 'fontColour');
-//   var r = document.querySelector(':root');
-//   r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
-//   r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
-// });
 
 // ***************************
 // DsN V3 Hooks
@@ -380,6 +371,7 @@ Hooks.on('preCreateActor', (actor, dir) => {
       'token.name': actor.name, // Set token name to actor name
     }); // Default characters to HasVision = true and Link Data = true
 
+  
     switch (actor.type) {
       case 'character':
         mergeObject(actor, {
@@ -430,40 +422,18 @@ Hooks.on('preCreateActor', (actor, dir) => {
         actor.token.actorLink = true;
         break;
     }
-
-    // if (actor.type === 'character') {
-    //   mergeObject(actor, {
-    //     'token.bar1': {
-    //       attribute: 'header.stress.value',
-    //     },
-    //   });
-    //   actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-    //   actor.token.vision = true;
-    //   actor.token.actorLink = true;
-    // } else if (actor.type === 'vehicles') {
-    //   actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-    //   actor.token.vision = true;
-    //   actor.token.actorLink = true;
-    // } else if (actor.type === 'creature') {
-    //   actor.token.vision = true;
-    //   actor.token.actorLink = false;
-    // } else if (actor.type === 'synthetic') {
-    //   actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-    //   actor.token.vision = true;
-    //   actor.token.actorLink = true;
-    // } else if (actor.type === 'territory') {
-    //   actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-    //   actor.token.vision = true;
-    //   actor.token.actorLink = true;
+    // if (!createData.img) {
+    //   createData.img = 'icons/svg/cowled.svg';
     // }
+
   }
 });
 
 Hooks.on('preUpdateActor', (data, updatedData) => {
-  if (updatedData.img) {
-    updatedData['token.img'] = updatedData.img;
-    data.data.token.img = updatedData.img;
-  }
+  // if (updatedData.img) {
+  //   updatedData['token.img'] = updatedData.img;
+  //   data.data.token.img = updatedData.img;
+  // }
   if (updatedData.name) {
     updatedData['token.name'] = updatedData.name;
   }

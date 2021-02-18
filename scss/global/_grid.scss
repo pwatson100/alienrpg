@@ -116,6 +116,16 @@
   align-content: center;
   justify-content: center;
 }
+.grid-2col-border {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: 1fr 1fr;
+  border-color: var(--aliengreen);
+  padding: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
 
 .grid-container {
   display: grid;
@@ -125,12 +135,12 @@
   // align-items: center;
   // justify-items: first baseline;
   // border: 2px solid var(--aliengreen);
-  grid-template-areas: 
-  'Col1 Col2 ' 
-  'Col1 Col2 ' 
-  'Col1 Col2 ' 
-  'Col1 Col4 ' 
-  'Col3 Col3';
+  grid-template-areas:
+    'Col1 Col2'
+    'Col1 Col2'
+    'Col1 Col2'
+    'Col1 Col4'
+    'Col3 Col3';
   // grid-template-rows: 1fr;
   grid-template-columns: 370px 1fr;
 }
@@ -456,7 +466,7 @@
     'talTitle talTitle'
     'tal1 tal2'
     'tal3 tal4';
-    // grid-template-rows: 3fr;
+  // grid-template-rows: 3fr;
 
   padding: 3px;
   grid-template-columns: 75% 25%;
@@ -780,12 +790,12 @@
   grid-template-areas:
     'xCol1 xCol2 xCol3 xCol4 xCol5 xCol6'
     '. xCol7 xCol7 xCol8 .  .';
-    padding-bottom: 4px;
-    padding-top: 5px;
-    padding-left: 30px;
-    grid-row-gap: 3px;
-    grid-column-gap: 10px;
-    //                      l1  l2  l3   l4    l5    l6
+  padding-bottom: 4px;
+  padding-top: 5px;
+  padding-left: 30px;
+  grid-row-gap: 3px;
+  grid-column-gap: 10px;
+  //                      l1  l2  l3   l4    l5    l6
   grid-template-columns: 110px 50px 110px 50px 110px 50px;
   align-items: center;
 }
@@ -822,7 +832,6 @@
   grid-area: xCol8;
   justify-self: center;
 }
-
 
 .flex-group-center,
 .flex-group-left,

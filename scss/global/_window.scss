@@ -393,3 +393,445 @@ button:focus {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+.alienrpg .inputtext {
+  color: inherit;
+  background-color: #000;
+}
+
+/* Global styles */
+
+.journal-sheet form {
+  color: var(--aliengreen);
+  background: #000;
+  border: 1px solid var(--aliengreen);
+  border-radius: 1px;
+  background: #000000;
+  background-size: cover;
+  color: powderblue;
+}
+
+.headng {
+  text-align: center;
+  color: greenyellow;
+  font-size: xx-large;
+}
+.headng2 {
+  text-align: center;
+  color: greenyellow;
+  /* font-size: x-large; */
+}
+.headng3 {
+  color: greenyellow;
+}
+.spanner-icon {
+  display: inline-block;
+  width: 30px;
+  height: 25px;
+  padding: 0px;
+  margin: 1px;
+  background: url(../images/mother-instructions/spanner-icon.webp);
+}
+.character-header {
+  display: block;
+  width: 500px;
+  height: 152px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/character-header.webp);
+}
+.synthetic-header {
+  display: block;
+  width: 500px;
+  height: 155px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/synthetic-header.webp);
+}
+
+.agil-mod {
+  display: block;
+  width: 403px;
+  height: 162px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/agil-mod.webp);
+}
+.stress-mod {
+  display: block;
+  width: 400px;
+  height: 135px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/stress-mod.webp);
+}
+.character-details {
+  display: block;
+  width: 300px;
+  height: 295px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/character-details.webp);
+}
+
+.character-consumables {
+  display: inline-block;
+  width: 153px;
+  height: 300px;
+  margin-left: 25%;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/character-consumables.webp);
+}
+.synthetic-consumables {
+  display: inline-block;
+  width: 153px;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/synthetic-consumables.webp);
+}
+.talent-agenda {
+  display: block;
+  width: 300px;
+  height: 260px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/talent-agenda.webp);
+}
+.con-edit {
+  display: block;
+  width: 151px;
+  height: 109px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/con-edit.webp);
+}
+.enc {
+  display: block;
+  width: 600px;
+  height: 71px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/enc.webp);
+}
+.enc-warn {
+  display: block;
+  width: 462px;
+  height: 49px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/enc-warn.webp);
+}
+.inv-inact {
+  display: block;
+  width: 600px;
+  height: 199px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/inv-inact.webp);
+}
+.moskills {
+  display: block;
+  width: 300px;
+  height: 254px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/skills.webp);
+}
+
+.creature-header {
+  display: block;
+  width: 500px;
+  height: 102px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/creature-header.webp);
+}
+.creature-attack-dropdown {
+  display: block;
+  width: 600px;
+  height: 330px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/creature-attack-dropdown.webp);
+}
+.acid-splash-popup {
+  display: block;
+  width: 400px;
+  height: 141px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/acid-splash-popup.webp);
+}
+.chat-roll {
+  display: block;
+  width: 300px;
+  height: 188px;
+  background: url(../images/mother-instructions/chat-roll.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.territories-general {
+  display: block;
+  width: 500px;
+  height: 498px;
+  background: url(../images/mother-instructions/territories-general.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.territories-systems {
+  display: block;
+  width: 500px;
+  height: 186px;
+  background: url(../images/mother-instructions/territories-systems.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.vehicle-general {
+  display: block;
+  width: 500px;
+  height: 342px;
+  background: url(../images/mother-instructions/vehicle-general.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.vehicle-inv {
+  display: block;
+  width: 500px;
+  height: 343px;
+  background: url(../images/mother-instructions/vehicle-inv.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.vehicle-crew {
+  display: block;
+  width: 500px;
+  height: 227px;
+  background: url(../images/mother-instructions/vehicle-crew.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.item-dropdown {
+  display: block;
+  width: 300px;
+  height: 263px;
+  background: url(../images/mother-instructions/item-dropdown.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.modifiers-img {
+  display: block;
+  width: 600px;
+  height: 417px;
+  background: url(../images/mother-instructions/modifiers-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.melee-img {
+  display: block;
+  width: 600px;
+  height: 417px;
+  background: url(../images/mother-instructions/melee-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.ranged-img {
+  display: block;
+  width: 600px;
+  height: 417px;
+  background: url(../images/mother-instructions/ranged-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.armor-img {
+  display: block;
+  width: 600px;
+  height: 415px;
+  background: url(../images/mother-instructions/armor-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.armor-mods {
+  display: block;
+  width: 600px;
+  height: 273px;
+  background: url(../images/mother-instructions/armor-mods.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.planet-system-img {
+  display: block;
+  width: 600px;
+  height: 562px;
+  background: url(../images/mother-instructions/planet-system-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.initiative-roll {
+  display: block;
+  width: 300px;
+  height: 277px;
+  background: url(../images/mother-instructions/initiative-roll.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.clone-actor {
+  display: inline-block;
+  width: 200px;
+  height: 119px;
+  background: url(../images/mother-instructions/clone-actor.webp);
+  margin-left: 25%;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.roll-clone {
+  display: inline-block;
+  width: 200px;
+  height: 207px;
+  background: url(../images/mother-instructions/roll-clone.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.init-chat-norm {
+  display: block;
+  width: 200px;
+  height: 388px;
+  background: url(../images/mother-instructions/init-chat-norm.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.init-chat-cards {
+  display: block;
+  width: 200px;
+  height: 378px;
+  background: url(../images/mother-instructions/init-chat-cards.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.gm-settings {
+  display: block;
+  width: 500px;
+  height: 367px;
+  background: url(../images/mother-instructions/gm-settings.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.player-settings {
+  display: block;
+  width: 500px;
+  height: 213px;
+  background: url(../images/mother-instructions/player-settings.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.style-settings {
+  display: block;
+  width: 400px;
+  height: 200px;
+  background: url(../images/mother-instructions/style-settings.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.style-button-settings {
+  display: block;
+  width: 300px;
+  height: 161px;
+  background: url(../images/mother-instructions/style-button-settings.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.font-picker-img {
+  display: inline-block;
+  width: 300px;
+  height: 272px;
+  background: url(../images/mother-instructions/font-picker-img.webp);
+  margin-left: 5%;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+.colour-picker-img {
+  display: inline-block;
+  width: 300px;
+  height: 206px;
+  background: url(../images/mother-instructions/colour-picker-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}

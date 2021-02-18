@@ -2,8 +2,8 @@
   "name": "alienrpg",
   "title": "Alien RPG",
   "description": "The Alien RPG system for Foundry VTT!",
-  "version": "1.2.27",
-  "minimumCoreVersion": "0.5.7",
+  "version": "1.2.28",
+  "minimumCoreVersion": "0.6.6",
   "compatibleCoreVersion": "0.7.9",
   "author": "Paul Watson",
   "templateVersion": 2,
@@ -72,12 +72,12 @@
     }
   ],
   "gridDistance": 5,
-  "gridUnits": "ft",
+  "gridUnits": "m",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "stress",
   "initiative": "1d10",
   "url": "https://github.com/pwatson100/alienrpg",
-  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/1.2.27/system.json",
-  "download": "https://github.com/pwatson100/alienrpg/releases/download/1.2.27/master.zip",
+  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/1.2.28/system.json",
+  "download": "https://github.com/pwatson100/alienrpg/releases/download/1.2.28/master.zip",
   "socket": true
 }

@@ -1,5 +1,14 @@
 {
   "compilerOptions": {
-    "types": ["foundry-pc-types"]
-  }
+    "types": [
+      "foundry-pc-types"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    "foundry.js",
+    "gulpfile.js",
+    "gmRollCreatureTables.js"
+  ]
 }

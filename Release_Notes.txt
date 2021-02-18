@@ -235,3 +235,11 @@ Added a new item type called "General" This will allow you to create ad hoc item
 Version 1.2.27
 New Chinese language translation with thanks to @Tian#7972
 Amended Agenda description to Agenda/Story Cards on the skills tab. 
+
+Version 1.2.28
+Combat Tracker Initiative now sorts lowest to highest.
+Right click on a Actor on the Combat Tracker will give an option to Clone the actor to give more actions in a turn.
+Initiative roll now shows a card for the initiative draw (See Mother Instructions for more details).
+Big thanks to @Mougli (Cédric Hauteville) for his videos which inspired me to make this change. 
+Item tab now shows Armor Rating and Air (editable) for Armor.
+Updated and reformatted the Mother Instructions.

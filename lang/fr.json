@@ -236,5 +236,9 @@
   "ALIENRPG.population": "Population",
   "ALIENRPG.NoAttribute": "Aucun Attribut",
   "ALIENRPG.AgendaStory": "Objectif/Cartes d'histoire",
-  "ALIENRPG.AdHoc": "Ad Hoc"
+  "ALIENRPG.AdHoc": "Ad Hoc",
+  "ALIENRPG.CloneActor": "Acteur clone",
+  "ALIENRPG.CombatantUpdate": "Mettre à jour l'acteur",
+  "ALIENRPG.CombatantReroll": "Initiative ReRoll",
+  "ALIENRPG.CombatantRemove": "Supprimer l'acteur"
 }

@@ -18,7 +18,7 @@ export default function () {
   game.settings.register('alienrpg', 'switchMouseKeys', {
     name: 'ALIENRPG.SwitchKeys',
     hint: 'ALIENRPG.SwitchKeysHint',
-    scope: 'world',
+    scope: 'client',
     type: Boolean,
     default: false,
     config: true,

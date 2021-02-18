@@ -1,31 +1,28 @@
 @font-face {
-  font-family: 'Changa';
+  font-family: "Changa";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: local("Changa", sans-serif), url(https://fonts.gstatic.com/s/changa/v10/2-cm9JNi2YuVOUckZpy-.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
 @font-face {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   src: local("Roboto"), local("Roboto-Regular"), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format("woff2");
   unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
-
 @font-face {
-  font-family: 'Wallpoet';
+  font-family: "Wallpoet";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: local("Wallpoet"), url(https://fonts.gstatic.com/s/wallpoet/v12/f0X10em2_8RnXVVdUObp58Q.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
 @font-face {
-  font-family: 'Sansita Swashed';
+  font-family: "Sansita Swashed";
   font-style: normal;
   font-weight: 400;
   font-stretch: 25%;
@@ -33,9 +30,8 @@
   src: local("Sansita Swashed"), url(https://fonts.gstatic.com/s/sansitaswashed/v1/BXRzvFfZifTZgFlDDLgNkBydPKTH0r2z.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
 :root {
-  --alienfont: 'Wallpoet';
+  --alienfont: "Wallpoet";
   --fontsize: 15px;
 }
 
@@ -77,10 +73,10 @@
   background: #000;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
+      flex-wrap: nowrap;
   padding: 2px;
   overflow-y: scroll;
   overflow-x: auto;
@@ -93,7 +89,6 @@
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
 }
-
 .journal-sheet select {
   font-family: var(--alienfont);
   color: inherit;
@@ -102,18 +97,15 @@
   border: 1px solid #7a7971;
   border-radius: 3px;
   padding: 0 3px;
-  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   font-size: 16px;
 }
-
 .journal-sheet input {
   font-family: var(--alienfont);
   color: inherit;
   background: #000;
   border: var(--aliengreen) 3px;
 }
-
 .journal-sheet button {
   font-family: var(--alienfont);
   color: inherit;
@@ -125,7 +117,6 @@
   font-size: 14px;
   line-height: 28px;
 }
-
 .journal-sheet .tox .tox-editor-container {
   background-color: white;
 }
@@ -147,19 +138,15 @@
   background-position: center;
   color: inherit;
 }
-
 .chat-message .message-header .message-sender {
   color: var(--aliengreen);
 }
-
 .chat-message .message-metadata {
   color: var(--aliengreen);
 }
-
 .chat-message .flavor-text {
   color: var(--aliengreen);
 }
-
 .chat-message .table-draw .table-results .table-result {
   color: var(--aliengreen);
 }
@@ -187,12 +174,10 @@
   border-radius: 1px;
   background: #000;
 }
-
 .dice-tooltip .dice-rolls {
   color: inherit;
   background: #000;
 }
-
 .dice-tooltip .part-header {
   color: inherit;
   background: #000;
@@ -248,8 +233,8 @@ a.inline-roll {
 
 .resource-content button {
   -webkit-box-flex: 0;
-  -ms-flex: 0;
-  flex: 0;
+      -ms-flex: 0;
+          flex: 0;
   border: 0;
   width: 30px;
   font-size: 1.5rem;
@@ -337,7 +322,7 @@ a.inline-roll {
 button:hover,
 button:focus {
   -webkit-box-shadow: unset;
-  box-shadow: unset;
+          box-shadow: unset;
 }
 
 .alien-diceface-b0 {
@@ -424,7 +409,7 @@ button:focus {
 }
 
 .tooltip .tooltiptext::after {
-  content: ' ';
+  content: " ";
   position: absolute;
   top: 50%;
   left: 100%;
@@ -439,13 +424,494 @@ button:focus {
   visibility: visible;
 }
 
+.alienrpg .inputtext {
+  color: inherit;
+  background-color: #000;
+}
+
+/* Global styles */
+.journal-sheet form {
+  color: var(--aliengreen);
+  background: #000;
+  border: 1px solid var(--aliengreen);
+  border-radius: 1px;
+  background: #000000;
+  background-size: cover;
+  color: powderblue;
+}
+
+.headng {
+  text-align: center;
+  color: greenyellow;
+  font-size: xx-large;
+}
+
+.headng2 {
+  text-align: center;
+  color: greenyellow;
+  /* font-size: x-large; */
+}
+
+.headng3 {
+  color: greenyellow;
+}
+
+.spanner-icon {
+  display: inline-block;
+  width: 30px;
+  height: 25px;
+  padding: 0px;
+  margin: 1px;
+  background: url(../images/mother-instructions/spanner-icon.webp);
+}
+
+.character-header {
+  display: block;
+  width: 500px;
+  height: 152px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/character-header.webp);
+}
+
+.synthetic-header {
+  display: block;
+  width: 500px;
+  height: 155px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/synthetic-header.webp);
+}
+
+.agil-mod {
+  display: block;
+  width: 403px;
+  height: 162px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/agil-mod.webp);
+}
+
+.stress-mod {
+  display: block;
+  width: 400px;
+  height: 135px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/stress-mod.webp);
+}
+
+.character-details {
+  display: block;
+  width: 300px;
+  height: 295px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/character-details.webp);
+}
+
+.character-consumables {
+  display: inline-block;
+  width: 153px;
+  height: 300px;
+  margin-left: 25%;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/character-consumables.webp);
+}
+
+.synthetic-consumables {
+  display: inline-block;
+  width: 153px;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/synthetic-consumables.webp);
+}
+
+.talent-agenda {
+  display: block;
+  width: 300px;
+  height: 260px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/talent-agenda.webp);
+}
+
+.con-edit {
+  display: block;
+  width: 151px;
+  height: 109px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/con-edit.webp);
+}
+
+.enc {
+  display: block;
+  width: 600px;
+  height: 71px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/enc.webp);
+}
+
+.enc-warn {
+  display: block;
+  width: 462px;
+  height: 49px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/enc-warn.webp);
+}
+
+.inv-inact {
+  display: block;
+  width: 600px;
+  height: 199px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/inv-inact.webp);
+}
+
+.moskills {
+  display: block;
+  width: 300px;
+  height: 254px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/skills.webp);
+}
+
+.creature-header {
+  display: block;
+  width: 500px;
+  height: 102px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/creature-header.webp);
+}
+
+.creature-attack-dropdown {
+  display: block;
+  width: 600px;
+  height: 330px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/creature-attack-dropdown.webp);
+}
+
+.acid-splash-popup {
+  display: block;
+  width: 400px;
+  height: 141px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/acid-splash-popup.webp);
+}
+
+.chat-roll {
+  display: block;
+  width: 300px;
+  height: 188px;
+  background: url(../images/mother-instructions/chat-roll.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.territories-general {
+  display: block;
+  width: 500px;
+  height: 498px;
+  background: url(../images/mother-instructions/territories-general.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.territories-systems {
+  display: block;
+  width: 500px;
+  height: 186px;
+  background: url(../images/mother-instructions/territories-systems.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.vehicle-general {
+  display: block;
+  width: 500px;
+  height: 342px;
+  background: url(../images/mother-instructions/vehicle-general.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.vehicle-inv {
+  display: block;
+  width: 500px;
+  height: 343px;
+  background: url(../images/mother-instructions/vehicle-inv.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.vehicle-crew {
+  display: block;
+  width: 500px;
+  height: 227px;
+  background: url(../images/mother-instructions/vehicle-crew.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.item-dropdown {
+  display: block;
+  width: 300px;
+  height: 263px;
+  background: url(../images/mother-instructions/item-dropdown.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.modifiers-img {
+  display: block;
+  width: 600px;
+  height: 417px;
+  background: url(../images/mother-instructions/modifiers-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.melee-img {
+  display: block;
+  width: 600px;
+  height: 417px;
+  background: url(../images/mother-instructions/melee-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.ranged-img {
+  display: block;
+  width: 600px;
+  height: 417px;
+  background: url(../images/mother-instructions/ranged-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.armor-img {
+  display: block;
+  width: 600px;
+  height: 415px;
+  background: url(../images/mother-instructions/armor-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.armor-mods {
+  display: block;
+  width: 600px;
+  height: 273px;
+  background: url(../images/mother-instructions/armor-mods.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.planet-system-img {
+  display: block;
+  width: 600px;
+  height: 562px;
+  background: url(../images/mother-instructions/planet-system-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.initiative-roll {
+  display: block;
+  width: 300px;
+  height: 277px;
+  background: url(../images/mother-instructions/initiative-roll.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.clone-actor {
+  display: inline-block;
+  width: 200px;
+  height: 119px;
+  background: url(../images/mother-instructions/clone-actor.webp);
+  margin-left: 25%;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.roll-clone {
+  display: inline-block;
+  width: 200px;
+  height: 207px;
+  background: url(../images/mother-instructions/roll-clone.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.init-chat-norm {
+  display: block;
+  width: 200px;
+  height: 388px;
+  background: url(../images/mother-instructions/init-chat-norm.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.init-chat-cards {
+  display: block;
+  width: 200px;
+  height: 378px;
+  background: url(../images/mother-instructions/init-chat-cards.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.gm-settings {
+  display: block;
+  width: 500px;
+  height: 367px;
+  background: url(../images/mother-instructions/gm-settings.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.player-settings {
+  display: block;
+  width: 500px;
+  height: 213px;
+  background: url(../images/mother-instructions/player-settings.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.style-settings {
+  display: block;
+  width: 400px;
+  height: 200px;
+  background: url(../images/mother-instructions/style-settings.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.style-button-settings {
+  display: block;
+  width: 300px;
+  height: 161px;
+  background: url(../images/mother-instructions/style-button-settings.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.font-picker-img {
+  display: inline-block;
+  width: 300px;
+  height: 272px;
+  background: url(../images/mother-instructions/font-picker-img.webp);
+  margin-left: 5%;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.colour-picker-img {
+  display: inline-block;
+  width: 300px;
+  height: 206px;
+  background: url(../images/mother-instructions/colour-picker-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
 .grid {
   display: grid;
-  grid-column: span 2 / span 2;
+  grid-column: span 2/span 2;
   padding: 0;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .grid-2col {
@@ -454,8 +920,8 @@ button:focus {
   grid-template-columns: 1fr 1fr;
   padding: 0;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .grid-2col-border {
@@ -470,7 +936,7 @@ button:focus {
 }
 
 .grid-3col {
-  grid-column: span 3 / span 3;
+  grid-column: span 3/span 3;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border-color: var(--aliengreen);
   justify-items: center;
@@ -478,7 +944,7 @@ button:focus {
 }
 
 .grid-4col {
-  grid-column: span 4 / span 4;
+  grid-column: span 4/span 4;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border-color: var(--aliengreen);
   border-style: double;
@@ -487,7 +953,7 @@ button:focus {
 
 .grid-genPage {
   display: grid;
-  grid-template-areas: 'Item1 Item2 Item2' 'Item1 Item4 Item4' 'Item8 Item5 Item5' 'Item8 Item3 Item3' 'Item9 Item6 Item6' 'Item9 Item7 Item7' 'Item11 Item10 Item10' 'Item11 Item10 Item10';
+  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item8 Item5 Item5" "Item8 Item3 Item3" "Item9 Item6 Item6" "Item9 Item7 Item7" "Item11 Item10 Item10" "Item11 Item10 Item10";
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -562,17 +1028,28 @@ button:focus {
   padding: 4px;
   padding-left: 24px;
   -ms-flex-line-pack: center;
-  align-content: center;
+      align-content: center;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.grid-2col-border {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: 1fr 1fr;
+  border-color: var(--aliengreen);
+  padding: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .grid-container {
   display: grid;
   margin: 0;
   padding: 0;
-  grid-template-areas: 'Col1 Col2 '  'Col1 Col2 '  'Col1 Col2 '  'Col1 Col4 '  'Col3 Col3';
+  grid-template-areas: "Col1 Col2" "Col1 Col2" "Col1 Col2" "Col1 Col4" "Col3 Col3";
   grid-template-columns: 370px 1fr;
 }
 
@@ -599,10 +1076,10 @@ button:focus {
   padding: 0;
   padding-left: 5px;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   border: 1px solid var(--aliengreen);
-  grid-template-areas: 'Attr1 Attr2 Attr3';
+  grid-template-areas: "Attr1 Attr2 Attr3";
   grid-template-columns: 300px 35px 30px;
 }
 
@@ -626,7 +1103,7 @@ button:focus {
 
 .grid-Consumables {
   display: grid;
-  grid-template-areas: 'Heading Heading ' 'Air1 Air2' 'Food1 Food2' 'Power1 Power2' 'Water1 Water2';
+  grid-template-areas: "Heading Heading " "Air1 Air2" "Food1 Food2" "Power1 Power2" "Water1 Water2";
   grid-template-columns: 1fr 1fr;
 }
 
@@ -638,8 +1115,8 @@ button:focus {
 .Air1 {
   grid-area: Air1;
   -webkit-box-pack: left;
-  -ms-flex-pack: left;
-  justify-content: left;
+      -ms-flex-pack: left;
+          justify-content: left;
 }
 
 .Air2 {
@@ -676,14 +1153,14 @@ button:focus {
 .grid-vehicle-header {
   display: grid;
   border: 2px solid var(--aliengreen);
-  grid-template-areas: 'vChar vChar';
+  grid-template-areas: "vChar vChar";
   grid-template-columns: auto;
 }
 
 .grid-vehicle {
   display: grid;
   border: 2px solid var(--aliengreen);
-  grid-template-areas: 'vItem1 vItem2 vItem3 vItem4' 'vItem5 vItem6 vItem7 vItem8';
+  grid-template-areas: "vItem1 vItem2 vItem3 vItem4" "vItem5 vItem6 vItem7 vItem8";
   grid-template-columns: auto;
 }
 
@@ -726,11 +1203,11 @@ button:focus {
 .grid-weapon {
   display: grid;
   border: 2px solid var(--aliengreen);
-  grid-template-areas: 'wItem1 wItem2 wItem3 wItem4' 'wItem5 wItem6 wItem7 wItem7';
+  grid-template-areas: "wItem1 wItem2 wItem3 wItem4" "wItem5 wItem6 wItem7 wItem7";
   grid-template-columns: auto;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-bottom: 2px;
 }
 
@@ -764,12 +1241,12 @@ button:focus {
 
 .grid-weapon-body {
   display: grid;
-  grid-template-areas: 'wCol1 wCol2 wCol3 wCol4 wCol5 wCol6' 'wCol7 wCol8 wCol9 wCol10 wCol11 wCol12';
+  grid-template-areas: "wCol1 wCol2 wCol3 wCol4 wCol5 wCol6" "wCol7 wCol8 wCol9 wCol10 wCol11 wCol12";
   padding-bottom: 2px;
   grid-template-columns: 1fr 1.2fr 0.81fr 0.5fr 0.5fr 1fr;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .wCol1 {
@@ -834,12 +1311,12 @@ button:focus {
 
 .grid-items {
   display: grid;
-  grid-template-areas: 'lCol1 lCol2 lCol11 lCol10 lCol3 lCol4' 'lCol5 lCol6 lCol12 lCol9 lCol7 lCol8';
+  grid-template-areas: "lCol1 lCol2 lCol11 lCol10 lCol3 lCol4" "lCol5 lCol6 lCol12 lCol9 lCol7 lCol8";
   padding-bottom: 2px;
   grid-template-columns: 2em 30em 5em 5em 4em 2em;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .lCol1 {
@@ -904,12 +1381,12 @@ button:focus {
 
 .grid-talents {
   display: grid;
-  grid-template-areas: 'talTitle talTitle' 'tal1 tal2' 'tal3 tal4';
+  grid-template-areas: "talTitle talTitle" "tal1 tal2" "tal3 tal4";
   padding: 3px;
   grid-template-columns: 75% 25%;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .tal1 {
@@ -943,12 +1420,12 @@ button:focus {
 
 .grid-two {
   display: grid;
-  grid-template-areas: 'box1 box2';
+  grid-template-areas: "box1 box2";
   padding: 3px;
   grid-template-columns: 25% 75%;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .box1 {
@@ -965,11 +1442,11 @@ button:focus {
 
 .grid-2 {
   display: grid;
-  grid-template-areas: 'box11 box21 box23 box22';
+  grid-template-areas: "box11 box21 box23 box22";
   grid-template-columns: 150px 33px 15px 33px;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 1px;
   padding: 0;
 }
@@ -998,11 +1475,11 @@ button:focus {
 
 .grid-rTables {
   display: grid;
-  grid-template-areas: 'rTable1 rTable2';
+  grid-template-areas: "rTable1 rTable2";
   grid-template-columns: 1fr 0.5fr;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 0;
   padding: 0;
 }
@@ -1021,7 +1498,7 @@ button:focus {
 .grid-creature {
   display: grid;
   border: 2px solid var(--aliengreen);
-  grid-template-areas: 'vCre1 vCre2 ' 'vCre3 vCre4 ' 'vCre5 vCre6 ' 'vCre7 vCre8';
+  grid-template-areas: "vCre1 vCre2 " "vCre3 vCre4 " "vCre5 vCre6 " "vCre7 vCre8";
 }
 
 .vCre1 {
@@ -1059,11 +1536,11 @@ button:focus {
 .grid-planet-header {
   display: grid;
   border: 2px solid var(--aliengreen);
-  grid-template-areas: 'hplan1 hplan2 ' 'hplan3 hplan4' 'hplan5 hplan6 ' 'hplan7 hplan8';
+  grid-template-areas: "hplan1 hplan2 " "hplan3 hplan4" "hplan5 hplan6 " "hplan7 hplan8";
   grid-template-columns: auto;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-bottom: 2px;
 }
 
@@ -1131,7 +1608,7 @@ button:focus {
 .grid-systems {
   display: grid;
   padding: 3px;
-  grid-template-areas: 'sys1 sys2 sys3 sys4' 'sys5 sys6 sys7 sys8';
+  grid-template-areas: "sys1 sys2 sys3 sys4" "sys5 sys6 sys7 sys8";
   grid-template-columns: 14em 15em 10em 2em;
   border-color: var(--aliengreen);
   border-bottom: double;
@@ -1186,9 +1663,9 @@ button:focus {
   grid-column-gap: 10px;
   border-color: var(--aliengreen);
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  grid-template-areas: 'gCol1 gCol2 gCol3 gCol4 gCol5' 'gCol6 gCol7 gCol8 gCol9 gCol10';
+      -ms-flex-align: center;
+          align-items: center;
+  grid-template-areas: "gCol1 gCol2 gCol3 gCol4 gCol5" "gCol6 gCol7 gCol8 gCol9 gCol10";
   grid-template-columns: 110px 50px 110px 50px 65px;
 }
 
@@ -1248,7 +1725,7 @@ button:focus {
 
 .grid-item-xtras {
   display: grid;
-  grid-template-areas: 'xCol1 xCol2 xCol3 xCol4 xCol5 xCol6' '. xCol7 xCol7 xCol8 .  .';
+  grid-template-areas: "xCol1 xCol2 xCol3 xCol4 xCol5 xCol6" ". xCol7 xCol7 xCol8 .  .";
   padding-bottom: 4px;
   padding-top: 5px;
   padding-left: 30px;
@@ -1256,8 +1733,8 @@ button:focus {
   grid-column-gap: 10px;
   grid-template-columns: 110px 50px 110px 50px 110px 50px;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .xCol1 {
@@ -1304,11 +1781,11 @@ button:focus {
 .flex-group-left,
 .flex-group-right {
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-align: center;
   padding: 0;
   border: 1px solid #999;
@@ -1316,33 +1793,33 @@ button:focus {
 
 .flex-group-left {
   -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   text-align: left;
 }
 
 .flex-group-right {
   -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   text-align: right;
 }
 
 .flex-center {
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
   padding: 0;
 }
 
 .flex-between {
   -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .alienrpg .flexcol {
@@ -1351,40 +1828,40 @@ button:focus {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 
 .alienrpg .flexcol > * {
   -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .alienrpg .flexcol .flex1 {
   -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .alienrpg .flexcol .flex2 {
   -webkit-box-flex: 2;
-  -ms-flex: 2;
-  flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 
 .alienrpg .flexcol .flex3 {
   -webkit-box-flex: 3;
-  -ms-flex: 3;
-  flex: 3;
+      -ms-flex: 3;
+          flex: 3;
 }
 
 .alienrpg .alienrpg .flexcol .flex4 {
   -webkit-box-flex: 4;
-  -ms-flex: 4;
-  flex: 4;
+      -ms-flex: 4;
+          flex: 4;
 }
 
 .alienrpg .flexrow {
@@ -1393,43 +1870,43 @@ button:focus {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .alienrpg .flexrow > * {
   -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .alienrpg .flexrow .flex1 {
   -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .alienrpg .flexrow .flex2 {
   -webkit-box-flex: 2;
-  -ms-flex: 2;
-  flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 
 .alienrpg .flexrow .flex3 {
   -webkit-box-flex: 3;
-  -ms-flex: 3;
-  flex: 3;
+      -ms-flex: 3;
+          flex: 3;
 }
 
 .alienrpg .flexrow .flex4 {
   -webkit-box-flex: 4;
-  -ms-flex: 4;
-  flex: 4;
+      -ms-flex: 4;
+          flex: 4;
 }
 
 .alienrpg.actor .encumbrance {
@@ -1524,7 +2001,6 @@ button:focus {
     opacity: 0;
   }
 }
-
 @keyframes blink {
   0% {
     opacity: 1;
@@ -1539,7 +2015,6 @@ button:focus {
     opacity: 0;
   }
 }
-
 /* @end */
 /* class applies to select element itself, not a wrapper element */
 .select-css {
@@ -1552,21 +2027,20 @@ button:focus {
   max-width: 90%;
   /* useful when width is set to anything other than 100% */
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   margin: 0;
   border: 1px solid var(--aliengreen);
   -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
   border-radius: 0.5em;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
   /* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 
-		for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
-		
-	*/
+  	for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
+
+  */
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ADFF2F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -webkit-gradient(linear, left top, left bottom, from(black), to(black));
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ADFF2F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -o-linear-gradient(top, black 0%, black 100%);
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ADFF2F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, black 0%, black 100%);
   background-repeat: no-repeat, repeat;
   /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
@@ -1590,7 +2064,7 @@ button:focus {
   color: inherit;
   /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
   -webkit-box-shadow: 0 0 1px 1px var(--aliengreen);
-  box-shadow: 0 0 1px 1px var(--aliengreen);
+          box-shadow: 0 0 1px 1px var(--aliengreen);
   box-shadow: 0 0 0 1px -moz-mac-focusring var(--aliengreen);
   color: inherit;
   outline: none;
@@ -1603,7 +2077,7 @@ button:focus {
 }
 
 /* Support for rtl text, explicit support for Arabic and Hebrew */
-*[dir='rtl'] .select-css,
+*[dir=rtl] .select-css,
 :root:lang(ar) .select-css,
 :root:lang(iw) .select-css {
   background-position: left 0.7em top 50%, 0 0;
@@ -1612,15 +2086,14 @@ button:focus {
 
 /* Disabled styles */
 .select-css:disabled,
-.select-css[aria-disabled='true'] {
+.select-css[aria-disabled=true] {
   color: var(--aliengreen);
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -webkit-gradient(linear, left top, left bottom, from(black), to(black));
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -o-linear-gradient(top, black 0%, black 100%);
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, black 0%, black 100%);
 }
 
 .select-css:disabled:hover,
-.select-css[aria-disabled='true'] {
+.select-css[aria-disabled=true] {
   border-color: #aaa;
 }
 
@@ -1629,28 +2102,26 @@ button:focus {
   font-family: var(--alienfont);
   background: #000;
 }
-
 .alienrpg .actor-header {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 180px;
-  flex: 0 0 180px;
+      -ms-flex: 0 0 180px;
+          flex: 0 0 180px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   margin-bottom: 1px;
   background-color: #000;
 }
-
 .alienrpg .vehicle-header {
   overflow: hidden;
   display: -webkit-box;
@@ -1659,65 +2130,55 @@ button:focus {
   margin-bottom: 1px;
   background-color: #000;
 }
-
 .alienrpg .profile-img {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 100px;
-  flex: 0 0 100px;
+      -ms-flex: 0 0 100px;
+          flex: 0 0 100px;
   height: 150px;
   width: auto;
 }
-
 .alienrpg .profile-img-item {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 100px;
-  flex: 0 0 100px;
+      -ms-flex: 0 0 100px;
+          flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
   width: 150px;
 }
-
 .alienrpg .header-fields {
   -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
-
 .alienrpg h1.charname {
   height: 50px;
   padding: 0px;
   margin: 0 5px 5px 5px;
   border-bottom: 0;
 }
-
 .alienrpg h1.charname input {
   width: 100%;
   height: 100%;
   margin: 0;
   color: inherit;
 }
-
 .alienrpg .sheet-tabs {
   -webkit-box-flex: 0;
-  -ms-flex: 0;
-  flex: 0;
+      -ms-flex: 0;
+          flex: 0;
 }
-
 .alienrpg .alienrpg .sheet-body,
 .alienrpg .tab,
 .alienrpg .editor {
   height: 100%;
   background-color: #000;
 }
-
 .alienrpg .tox .tox-editor-container {
   background: #fff;
 }
-
 .alienrpg .tox .tox-edit-area {
   padding: 0 8px;
 }
-
 .alienrpg .maxboxsize {
   max-width: 40px;
   color: inherit;
@@ -1727,7 +2188,6 @@ button:focus {
   margin: 1px;
   text-align: center;
 }
-
 .alienrpg .cashboxsize {
   max-width: 150px;
   color: inherit;
@@ -1742,14 +2202,14 @@ button:focus {
   
 }
 
-
 .alienrpg .textbox {
   color: inherit;
-  padding: 5px;
-  margin: 5px 5px 5px 5px; 
   background-color: #000;
-}
+  padding: 5px;
+  margin: 5px 5px 5px 5px;
+  width: 180px;
 
+}
 .alienrpg .textbox1 {
   color: inherit;
   justify-items: center;
@@ -1759,7 +2219,6 @@ button:focus {
   margin-top: 1px;
   margin-bottom: 1px;
 }
-
 .alienrpg .textbox2 {
   color: inherit;
   justify-items: center;
@@ -1769,22 +2228,20 @@ button:focus {
   margin-top: 1px;
   margin-bottom: 1px;
 }
-
 .alienrpg textarea {
   resize: none;
   padding: 2;
   color: inherit;
   border: 1px solid var(--aliengreen);
 }
-
 .alienrpg form .sheet-content .click-stat-level {
   height: 18px;
   padding: 8px;
   background: black;
   border-radius: 2px;
   -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
-  font-family: 'Roboto', system, -apple-system, sans-serif;
+          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  font-family: "Roboto", system, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 700;
   line-height: 1;
@@ -1794,21 +2251,20 @@ button:focus {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
 }
-
 .alienrpg .click-stat-level .fas {
   display: none;
   padding: 2px 4px;
   border-radius: 2px;
   -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
-  font-family: 'Roboto', system, -apple-system, sans-serif;
+          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  font-family: "Roboto", system, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 700;
   line-height: 1;
@@ -1818,14 +2274,13 @@ button:focus {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
 }
-
 .alienrpg .dots {
   cursor: pointer;
   display: -webkit-box;
@@ -1833,29 +2288,26 @@ button:focus {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-right: 8px;
   font-weight: 700;
   font-size: 15px;
 }
-
 .alienrpg .resource-label {
   font-family: var(--alienfont);
   text-transform: uppercase;
   padding-left: 5px;
   justify-self: center;
   -webkit-box-flex: 1;
-  -ms-flex: auto;
-  flex: auto;
+      -ms-flex: auto;
+          flex: auto;
 }
-
 .alienrpg .attr-label {
   font-weight: bold;
   text-transform: uppercase;
   padding-right: 5px;
 }
-
 .alienrpg .tabs {
   height: 30px;
   border-top: 1px solid #aaa;
@@ -1863,18 +2315,15 @@ button:focus {
   color: inherit;
   background-color: #000;
 }
-
 .alienrpg .tabs .item {
   line-height: 30px;
   font-weight: bold;
   color: inherit;
 }
-
 .alienrpg .tabs .item.active {
   text-decoration: underline;
   text-shadow: none;
 }
-
 .alienrpg .items-list {
   list-style: none;
   padding-left: 5px;
@@ -1882,19 +2331,15 @@ button:focus {
   padding-top: 0px;
   padding-bottom: 0px;
 }
-
 .alienrpg .item-header {
   background-color: #2c2828;
 }
-
 .alienrpg .item-name {
   margin: 0;
 }
-
 .alienrpg .item-controls {
   text-align: right;
 }
-
 .alienrpg .item-label {
   font-family: var(--alienfont);
   font-size: small;
@@ -1902,26 +2347,22 @@ button:focus {
   padding-right: 5px;
   padding-left: 5px;
 }
-
 .alienrpg .biog {
   height: 300px;
   padding: 3px 0;
   width: 1fr;
   font-family: var(--alienfont);
 }
-
 .alienrpg .biog .biog-image {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 24px;
-  flex: 0 0 24px;
+      -ms-flex: 0 0 24px;
+          flex: 0 0 24px;
   margin-right: 5px;
 }
-
 .alienrpg .biog .editor-content {
   word-wrap: break-word;
   font-family: var(--alienfont);
 }
-
 .alienrpg .biog img {
   display: block;
-}
+}/*# sourceMappingURL=alienrpg.css.map */
