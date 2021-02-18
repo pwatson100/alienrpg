@@ -173,47 +173,31 @@ export class yze {
     // *******************************************************
     // Calulate the total successes and displayas long asit's not a Supply roll.
     // *******************************************************
-    let succEss = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount;
+
+   function localizedCountOfSuccesses(sTotal){
+           if (sTotal === 1)
+             return  '1 ' + game.i18n.localize('ALIENRPG.sucess');
+           else
+             return  sTotal + ' ' + game.i18n.localize('ALIENRPG.sucesses');
+   }
+      
 
     if (hostile != 'supply') {
-      if (succEss === 1) {
         chatMessage +=
-          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.youHave') + ' ' + succEss + ' ' + game.i18n.localize('ALIENRPG.sucess') + ' </div>';
-      } else {
-        chatMessage +=
-          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.youHave') + ' ' + succEss + ' ' + game.i18n.localize('ALIENRPG.sucesses') + '</div>';
-      }
+          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.youHave') + ' ' +
+             localizedCountOfSuccesses( game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount)  + ' </div>';
     }
 
     // *******************************************************
     //  If it's a Push roll and dispaly the total for both rolls.
     // *******************************************************
     if (reRoll && spud && hostile === 'character') {
-      chatMessage += '<hr>';
-      let sTotal = oldRoll + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-      if (sTotal === 1) {
-        chatMessage +=
-          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
-          game.i18n.localize('ALIENRPG.followingPush') +
-          '<br>' +
-          game.i18n.localize('ALIENRPG.totalOf') +
-          ' ' +
-          sTotal +
-          ' ' +
-          game.i18n.localize('ALIENRPG.sucess') +
-          ' </div>';
-      } else {
-        chatMessage +=
-          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
-          game.i18n.localize('ALIENRPG.followingPush') +
-          '<br> ' +
-          game.i18n.localize('ALIENRPG.totalOf') +
-          ' ' +
-          sTotal +
-          ' ' +
-          game.i18n.localize('ALIENRPG.sucesses') +
-          '</div>';
-      }
+      chatMessage += '<hr>' +
+         '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+         game.i18n.localize('ALIENRPG.followingPush') +
+         '<br>' +
+         game.i18n.localize('ALIENRPG.totalOf') +
+       ' '   + localizedCountOfSuccesses(oldRoll + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six) + ' </div>';
     }
 
     // *******************************************************

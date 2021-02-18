@@ -173,6 +173,23 @@ export class alienrpgActorSheet extends ActorSheet {
     // Organize Inventory
     let totalWeight = 0;
     for (let i of items) {
+      if (i.type=='weapon'){
+
+        console.log('alienrpgActorSheet -> Organize Inventory', i); 
+        let ammoweight = 0.25;
+        if(i.data.attributes.class.value=="RPG" || (i.name.includes(" RPG ") || i.name.startsWith("RPG") ||  i.name.endsWith("RPG")))
+        {
+          ammoweight = 0.5; 
+        }
+
+        i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+        i.totalWeight = i.data.attributes.weight.value + (i.data.attributes.rounds.value * ammoweight);
+        inventory[i.type].items.push(i);
+
+        totalWeight += i.totalWeight;
+     
+      } 
+      else
       if (i.type != 'talent') {
         i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
         i.totalWeight = i.data.attributes.weight.value;
