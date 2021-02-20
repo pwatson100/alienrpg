@@ -237,9 +237,19 @@ New Chinese language translation with thanks to @Tian#7972
 Amended Agenda description to Agenda/Story Cards on the skills tab. 
 
 Version 1.2.28
+Updated and reformatted the MO/TH/ER (EN) Instructions so please check them out (Compendium> JournalEntry>Mother Instructions).
 Combat Tracker Initiative now sorts lowest to highest.
 Right click on a Actor on the Combat Tracker will give an option to Clone the actor to give more actions in a turn.
 Initiative roll now shows a card for the initiative draw (See Mother Instructions for more details).
 Big thanks to @Mougli (Cédric Hauteville) for his videos which inspired me to make this change. 
 Item tab now shows Armor Rating and Air (editable) for Armor.
-Updated and reformatted the Mother Instructions.
+
+Lastly a big thank you to @DM9290 for the following excellent enhancements/fixes:
+Inventory - Adding ammo to an RPG (must have RPG in the name) will increase the weight by 0.5kg
+Character Sheet - PANICKED condition when active now shows the current panic level of the PC.
+ENHANCEMENT- Make SquareGrid calculate distances using euclidean distance to the nearest cm.
+BUGFIX - Fix a bug where PUSHing a skill roll gives stress to the selected token rather than the original actor. 
+ENHANCEMENT- Now synthetics can  make panic checks by clicking on "No Stress"- synthetics never actually panic, but the result shows up as if they Keep it Together. 
+ENHANCEMENT- When actors become panicked their Token now shows the 'fear' overlay. When they stop being panicked their fear overlay vanishes.  
+BUGFIX - fixed a bug where skill checks were not properly respecting the visibility of rolls. 
+He also cleaned up some of my code which I really appreciate. 

@@ -17,6 +17,32 @@ import { AlienConfig } from './alienRPGConfig.js';
 import AlienRPGCombat from './combat.js'; 
 import AlienRPGCTContext from './CBTracker.js'; 
 
+
+const euclidianDistances = function(segments, options={}) {
+
+  const canvasSize = canvas.dimensions.size;
+  const gridDistance =canvas.scene.data.gridDistance;
+
+  return segments.map(s => {
+    let ray = s.ray;
+
+    // Determine the total distance traveled
+    let x = Math.abs(Math.ceil(ray.dx / canvasSize));
+    let y = Math.abs(Math.ceil(ray.dy / canvasSize));
+
+    return Math.hypot(x, y) * gridDistance;
+  }
+
+);
+};
+
+Hooks.on("canvasInit", function() {
+
+  SquareGrid.prototype.measureDistances = euclidianDistances;
+
+});
+
+
 Hooks.once('init', async function () {
   console.warn(`Initializing Alien RPG`);
   game.alienrpg = {
@@ -303,12 +329,12 @@ Hooks.on('renderChatMessage', (message, html, data) => {
   html.find('button.alien-Push-button').each((i, li) => {
     // console.warn(li);
     li.addEventListener('click', function (ev) {
-      // console.warn(ev);
+  
       if (ev.target.classList.contains('alien-Push-button')) {
         // do stuff
-        let actor = game.actors.get(ChatMessage.getSpeaker().actor);
+        let actor = game.actors.get(message.data.speaker.actor);
         if (!actor) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoToken'));
-        let token = game.actors.get(ChatMessage.getSpeaker().token);
+
         let reRoll = true;
         let hostile = actor.data.type;
         let blind = false;

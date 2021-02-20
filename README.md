@@ -1,4 +1,4 @@
-[![foundry-shield-066]][foundry-url] [![foundry-shield-078]][foundry-url] [![All Release Downloads](https://img.shields.io/github/downloads/pwatson100/alienrpg/total.svg)]()
+[![foundry-shield-066]][foundry-url] [![foundry-shield-079]][foundry-url] [![All Release Downloads](https://img.shields.io/github/downloads/pwatson100/alienrpg/total.svg)]()
 
 # Alien RPG System
 
@@ -66,5 +66,5 @@ Support our game creators and publishers.
 - Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
 
 [foundry-shield-066]: https://img.shields.io/badge/Foundry-v0.6.6-informational
-[foundry-shield-078]: https://img.shields.io/badge/Foundry-v0.7.8-informational
+[foundry-shield-079]: https://img.shields.io/badge/Foundry-v0.7.9-informational
 [foundry-url]: https://foundryvtt.com/

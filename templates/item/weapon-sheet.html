@@ -9,7 +9,7 @@
         <input type="text" name="data.attributes.weight.value" class="maxboxsize wItem2" value="{{data.attributes.weight.value}}" data-dtype="Number" />
 
         <h3 class="resource-label wItem3">{{localize "ALIENRPG.Class"}}</h3>
-        <input type="text" class="wItem4 textbox" name="data.attributes.class.value" value="{{data.attributes.class.value}}" data-dtype="text" />
+        <input type="text" class="wItem4 textbox3" name="data.attributes.class.value" value="{{data.attributes.class.value}}" data-dtype="text" />
 
         <h3 class="wItem6 resource-label">{{localize "ALIENRPG.Type"}}</h3>
         <div class="selectBox wItem7">
@@ -46,9 +46,6 @@
         <label class="resource-label wCol1">{{localize "ALIENRPG.Cost"}}</label>
         <input type="text" class="cashboxsize currency wCol2" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
         <br />
-        <!-- <label class="resource-label">{{localize "ALIENRPG.Range"}}</label> -->
-        <!-- <input type="text" class="textbox" name="data.attributes.range.value" value="{{data.attributes.range.value}}" data-dtype="String" /> -->
-        <!-- <div class="grid-two"> -->
         <label class="resource-label wCol7">{{localize "ALIENRPG.Range"}}</label>
         <select class="select-css wCol8" name="data.attributes.range.value" data-dtype="{{data.attributes.range.value}}">
           {{#ife data.header.type.value '2'}} {{#select data.attributes.range.value}}

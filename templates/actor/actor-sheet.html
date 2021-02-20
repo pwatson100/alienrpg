@@ -12,7 +12,7 @@
             <input type="text" class="maxboxsize" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
             <button class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
           </div>
-          <h2 for="data.header.stress.value" class="resource-label rollable" data-panicroll="{{data.header.stress.value}}"data-mod="{{data.header.stress.mod}}">{{localize "ALIENRPG.Stress"}}</h2>
+          <h2 for="data.header.stress.value" class="resource-label rollable" data-panicroll="{{data.header.stress.value}}"data-mod="{{data.header.stress.mod}}" data-label="{{localize "ALIENRPG.Stress"}}">{{localize "ALIENRPG.Stress"}}</h2>
           <div class="resource-content">
             <button class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
             <input type="text" class="maxboxsize" name="data.header.stress.value" value="{{data.header.stress.value}}" data-dtype="Number" />
@@ -176,7 +176,8 @@
               <div class="dots panic ">
                 <input type="hidden" name="data.general.panic.value" data-max="{{data.general.panic.max}}" value="{{{data.general.panic.value}}}" data-dtype="Number">
                 {{#if data.general.panic.value}}
-                <h4 class="click-stat-level resource-label blink" style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}}
+                <h4 class="click-stat-level resource-label " style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}}
+                        <input type="text" class="maxboxsize" name="data.general.panic.lastRoll"  value="{{data.general.panic.lastRoll}}" data-dtype="Number">            
                 </h4>
                 {{else}}
                 <h4 class="click-stat-level resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}} </h4>
@@ -215,6 +216,12 @@
                     
                   </div>
 
+                  <hr class="Item9">
+                  <span class="grid-2col-border">
+             	    <label class="   resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}  </label>
+		            <input type="text" class="maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number">
+                 </span>
+  
                 </div>
                 
                 <!-- Col 2 -->
@@ -248,40 +255,33 @@
         
         <div class="Item5">
           <label class="resource-label">{{ localize "ALIENRPG.SignatureItem"}}</label>
-          <textarea name="data.general.sigItem.value" rows="1"data-dtype="String">{{data.general.sigItem.value}}</textarea>
+          <input type="text" class="textbox" name="data.general.sigItem.value" value="{{data.general.sigItem.value}}"  rows="1"data-dtype="String"></textarea>
 
         </div>
         
         <div class="Item3">
           <label class="resource-label">{{ localize "ALIENRPG.PersonalAgenda"}}</label> 
-          <textarea name="data.general.agenda.value" rows="1"data-dtype="String">{{data.general.agenda.value}}</textarea>
+          <textarea name="data.general.agenda.value" rows="6"data-dtype="String">{{data.general.agenda.value}}</textarea>
         </div>
         
         <div class="Item6">
           <label class="resource-label">{{ localize "ALIENRPG.Relationships"}}</label> 
           <br>
           <label class="resource-label" style="font-size: smaller;">{{ localize "ALIENRPG.relOne"}}</label>
-          <textarea name="data.general.relOne.value" rows="1"data-dtype="String">{{data.general.relOne.value}}</textarea>
+          <input type="text" class="textbox" name="data.general.relOne.value" value="{{data.general.relOne.value}}" rows="1"data-dtype="String"></textarea>
+
+      
+          <label class="resource-label" style="font-size: smaller;">{{ localize "ALIENRPG.relTwo"}}</label>
+          <input type="text" class="textbox" name="data.general.relTwo.value"  value="{{data.general.relTwo.value}}" rows="1"data-dtype="String"></textarea>
 
         </div>
         
         <div class="Item7">
-          <label class="resource-label" style="font-size: smaller;">{{ localize "ALIENRPG.relTwo"}}</label>
-          <textarea name="data.general.relTwo.value" rows="1"data-dtype="String">{{data.general.relTwo.value}}</textarea>
-
-        </div>
-        
-        <div class="Item10">
           <label class="resource-label">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
           <textarea name="data.general.critInj.value" rows="2"data-dtype="String">{{data.general.critInj.value}}</textarea>
         </div>
         
-        <div class="Item11">
-          <span class="grid-2col">
-          <label class="   resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}  </label>
-        <input type="text" class=" maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number">
-      </span>
-      </div>
+       
   </div>
 
       </div>
