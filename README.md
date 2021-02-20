@@ -1,6 +1,3 @@
---- THIS REPOSITORY IS A FORK --- ITS NOT EVEN UNOFFICIAL ---
-The comments below are from the original pwatson100/alienrpg repository it was forked from.
-
 [![foundry-shield-066]][foundry-url] [![foundry-shield-078]][foundry-url] [![All Release Downloads](https://img.shields.io/github/downloads/pwatson100/alienrpg/total.svg)]()
 
 # Alien RPG System
