@@ -253,3 +253,6 @@ ENHANCEMENT- Now synthetics can  make panic checks by clicking on "No Stress"- s
 ENHANCEMENT- When actors become panicked their Token now shows the 'fear' overlay. When they stop being panicked their fear overlay vanishes.  
 BUGFIX - fixed a bug where skill checks were not properly respecting the visibility of rolls. 
 He also cleaned up some of my code which I really appreciate. 
+
+Version 1.2.29
+Having the Pack Mule Talent now increases encumbered from 50% to 75%

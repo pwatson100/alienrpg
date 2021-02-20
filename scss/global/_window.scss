@@ -138,14 +138,23 @@
 
   .dice-rolls {
     color: inherit;
-    //  color: $c-green;
     background: $c-black;
   }
+
   .part-header {
     color: inherit;
     //  color: $c-green;
     background: $c-black;
   }
+}
+.dice-tooltip .dice-rolls .roll {
+  filter: none;
+}
+.dice-tooltip .dice-rolls .roll.max {
+  filter: none;
+}
+.dice-tooltip .dice-rolls .roll.min {
+  filter: none;
 }
 
 .inline-roll .dice-tooltip {

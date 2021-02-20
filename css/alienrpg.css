@@ -185,6 +185,21 @@
   background: #000;
 }
 
+.dice-tooltip .dice-rolls .roll {
+  -webkit-filter: none;
+          filter: none;
+}
+
+.dice-tooltip .dice-rolls .roll.max {
+  -webkit-filter: none;
+          filter: none;
+}
+
+.dice-tooltip .dice-rolls .roll.min {
+  -webkit-filter: none;
+          filter: none;
+}
+
 .inline-roll .dice-tooltip {
   color: inherit;
   background: #000;
