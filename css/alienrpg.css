@@ -85,9 +85,11 @@
 
 .journal-sheet form {
   color: var(--aliengreen);
-  background: #000;
+  background: url(../images/mother-instructions/indbackground2.png) no-repeat top left;
+  background-size: cover;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
+  color: powderblue;
 }
 .journal-sheet select {
   font-family: var(--alienfont);
@@ -430,16 +432,6 @@ button:focus {
 }
 
 /* Global styles */
-.journal-sheet form {
-  color: var(--aliengreen);
-  background: #000;
-  border: 1px solid var(--aliengreen);
-  border-radius: 1px;
-  background: #000000;
-  background-size: cover;
-  color: powderblue;
-}
-
 .headng {
   text-align: center;
   color: greenyellow;
@@ -463,6 +455,28 @@ button:focus {
   padding: 0px;
   margin: 1px;
   background: url(../images/mother-instructions/spanner-icon.webp);
+}
+
+.character-sheet-img {
+  display: block;
+  width: 500px;
+  height: 493px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/character-sheet-img.webp);
+}
+
+.creature-sheet-img {
+  display: block;
+  width: 500px;
+  height: 477px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/creature-sheet-img.webp);
 }
 
 .character-header {
@@ -501,7 +515,7 @@ button:focus {
 .stress-mod {
   display: block;
   width: 400px;
-  height: 135px;
+  height: 136px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -520,11 +534,22 @@ button:focus {
   background: url(../images/mother-instructions/character-details.webp);
 }
 
+.synthetic-details {
+  display: block;
+  width: 300px;
+  height: 270px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/synthetic-details.webp);
+}
+
 .character-consumables {
-  display: inline-block;
+  display: block;
   width: 153px;
   height: 300px;
-  margin-left: 25%;
+  margin-left: auto;
   margin-right: auto;
   background-size: 100%;
   border: 0;
@@ -532,7 +557,7 @@ button:focus {
 }
 
 .synthetic-consumables {
-  display: inline-block;
+  display: block;
   width: 153px;
   height: 300px;
   margin-left: auto;
@@ -899,6 +924,28 @@ button:focus {
   width: 300px;
   height: 206px;
   background: url(../images/mother-instructions/colour-picker-img.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.character-token {
+  display: block;
+  width: 230px;
+  height: 234px;
+  background: url(../images/mother-instructions/character-token.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.creature-token {
+  display: block;
+  width: 230px;
+  height: 235px;
+  background: url(../images/mother-instructions/creature-token.webp);
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;

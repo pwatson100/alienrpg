@@ -1,500 +1,520 @@
 <div class="alienrpg a.entity-link">
-    <p>This is a guide to using the core Alien RPG system. <br>
-        Alien RPG is an UNOFFICIAL system for playing Alien RPG on Foundry VTT.
-        <br><br>
-        This system only provides support for character, creature, items, system, talent and character sheets.
-        <br>
-        There is no game content or images in this system.
-        <br>
-        Should you wish to populate the system with game content for your own use please purchase the rules from Free League Publishing: https://frialigan.se/en/games/alien/
-        <br>
-        My intention is to enable people to play Alien RPG remotely and not to create a fully enabled/automated system. Mother will still need to do some work.
-        <br>
-        Please do not ask me to provide content. <b> Buy the system from Free League !</b>
-    </p>
+  Official system for playing the ENNIE award winning Alien RPG by Free League on Foundry VTT.
+  <br /><br />
 
-
-    <h1 class="headng"><span>Actors</span></h1>
-    <p>
-    There are three main types of Actors available in the system:
+  Free League have now officially endorsed the system and we have been working to provide official content to enhance the system (see below). <br />
+  Created by Paul Watson
+  <br /><br />
+  The core system provides support for:
+  <ul>
+    <li>Character and Synthetic sheets.</li>
     <ul>
-        <li>Characters</li>
-        <li>Synthetics</li>
-        <li>Creatures</li>
+      <li>Including the ability to drag and drop Items, Talents, Agendas and Story Cards.</li>
+      <li>Integrated consumables roll mechanics.</li>
+      <li>Stress rolls from the character sheet.</li>
     </ul>
-    In this section I will go over the common areas of the Character and Synthetic sheets.
-    </p>
-    <br><br>
+    <li>Creature sheets.</li>
+    <ul>
+      <li>Dropdown to allow the GM to select from a list of rolltalbes for attacks.</li>
+    </ul>
+    <li>Territories and Vehicle sheets.</li>
+    <li>Items:</li>
+    <ul>
+      <li>Item - General equipment</li>
+      <li>Weapon - Personal and Vehicle weapons</li>
+      <li>Armor - Personal armor</li>
+      <li>Talent - Talents for use within the system</li>
+      <li>Planet-System - Details of planetary systems</li>
+      <li>Agenda - PC Agenda and Story cards</li>
+    </ul>
+    <li>Customisable Fonts and text colours.</li>
+    <li>2 sets of custom Alien RPG 3D dice are integrated if using the "Dice So Nice" module.</li>
+  </ul>
+  <br />
+  Should you wish to populate the system with game content for your own use please purchase the rules from Free League Publishing: https://frialigan.se/en/games/alien/ or better still purchase the
+  Starter Set or Core Rules modules.
+  <br /><br />
+  My intention is to enable people to play Alien RPG remotely and not to create a fully enabled/automated system. MO/TH/ER will still need to do some work.
+  <br />
+  <h3 class="headng2"><span>Official Modules</span></h3>
+  Save the effort of inputting all the data from the books by purchasing the official modules from Free League: <br />
+  Alien RPG Starter Set <br />
+  Alien RPG Core Rule Book <br />
+  Destroyer of Worlds Scenario <br />
+  <br /><br />
 
-    <h2 class="headng"><span>Characters and Synthetics</span></h2>
+  <b>Top Tips</b> <br />
+  Right Click is used quite a bit in the system. If in doubt, try it out. <br />
+  Examples are: <br />
+  <ul>
+    <li>Right click an edit button to choose delete / edit</li>
+    <li>Right click to clear radio buttons</li>
+    <li>Right click a “roll” to enter modifiers before a roll</li>
+  </ul>
+  <br /><br />
 
-    <h2 class="headng2"><span>General Tab</span></h2>
-    <p>
-    If a player is using a "Secret Android" they should use the Character sheet and roleplay as a normal PC just ignoring any Stress (just reset it to 0 if they get any), Radiation or Condition effects. <br>
-    This will enable them to keep up the pretence that they are a normal PC until the big reveal.
-    At which point they can increase their stats in line with the rules for Synthetics.
-    Otherwise, they should use the Synthetic sheet which dispenses with any stats, conditions etc that do not effect them.
-    <br><br>
-    The header sections for the Character and Synthetic sheets are very similar with the exception that the Synthetic sheet does not have Stress.
-    <br>
-    &nbsp;<span class="character-header">&nbsp;</span>&nbsp;
-    &nbsp;<span class="synthetic-header">&nbsp;</span>&nbsp;
-    <br>
-    For Strength, Agility, Wits and Empathy rolls a Left mouse click will roll the value and Right mouse click will display a modifier box allowing additional dice to be added or subtracted as indicated by the GM.
-    <br>
-    &nbsp;<span class="agil-mod">&nbsp;</span>&nbsp;
-    <br><br>
-    In the system health is not automatically calculated so needs to be updated manually as per the rules.
-        <br><br>
-    Stress is automatically added on a push (see Rolls below) but any other adjustments to a characters Stress need to be made manually.
-        <br><br>
-    The Stress value is taken into account on all dice rolls.    <br>
-    For Panic rolls the player Left clicks on "Stress" and the result is displayed in the chat window.
-    Right Clicking on "Stress" will display a modifier box to add or remove stress to the roll. <br>
-    This will add/subtract the entered value (+x or -x) to the roll not effecting the number of dice.
-    <br>
-    &nbsp;<span class="stress-mod">&nbsp;</span>&nbsp;
-    <br>
-    For the GM only an NPC box is visible. If this is checked when the actor is dragged on to the Scene the Token will be set to Unlinked and Hostile.
-    Unchecking the NPC box will not affect existing tokens.
-    <br>
-    In the Career dropdown you can select the appropriate career for the PC.<br>
-    The details boxes are text fields to record short details about the PC's. 
-    <br><br>
-    As per the rules the Synthetics do not have Signature Items.
-    <br>
-    &nbsp;<span class="character-details">&nbsp;</span>&nbsp;
-    <br>
-    The left sidebar tracks Experience, Radiation, Conditions, Consumables and Armor. 
-    <br><br>
-    &nbsp;<span class="character-consumables">&nbsp;</span>&nbsp;&nbsp;<span class="synthetic-consumables">&nbsp;</span>&nbsp;
-    <br><br>
-    Experience, Radiation and Conditions are check boxes, Left mouse click to set and Right mouse click to unset. <br>
-    The "Panicked" condition will automatically set following panic rolls of 7+. This triggers the "More Panic" mechanics in the system. <br>
-    To remove the Panicked condition just right click on the dot. <br>
-    This will reset the PC's panic level to 0.<br>
-    As they are not used Synthetics do not have Radiation or Condition check boxes. <br><br>
-    <b>NOTE:</b> This does not effect their Stress level. <br>
+  <h1 class="headng"><span>Actors</span></h1>
+  There are three main types of Actors available in the system:
+  <ul>
+    <li>Characters</li>
+    <li>Synthetics</li>
+    <li>Creatures</li>
+  </ul>
+  In this section I will go over the common areas of the Character and Synthetic sheets.
+  <br /><br />
 
-    <br>
-    The consumables and Armor values are updated automatically based on the "Active" items in the PC's Inventory (See Inventory for more details.)<br>
-    Supply rolls are made by clicking on the parachute icon.<br>
-    Any failures (6's) will automatically be deducted from the total and the items giving that value will be decremented.<br><br>
-    In the system all the items "Active" consumable values are combined to give these totals.
-    While not strictly as per the rules it is the most effective way to manage these assets so some manual intervention may be required by the player/GM.
-    <br>
-    For Armor rolls the player just clicks on "Armor" and the appropriate number of dice are rolled with the result appearing in the character window.
-    <br><br>
-</p>
-    <h2 class="headng2"><span>Skills Tab</span></h2>
-    <p>
-        The Skills tab lists the skills available to players. These are updated by the player during character creation.
-        <br>
-        &nbsp;<span class="moskills">&nbsp;</span>&nbsp; <br>
-        Left mouse click will roll the value and Right mouse click will display a modifier dialogue box and add/subtract base and/or stress dice for Characters and just base dice for Synthetics.
-        Skill rolls are combined with the associated attribute values when making rolls.
-        <br>
-        Clicking on the spanner icon&nbsp;<span class="spanner-icon">&nbsp;</span>&nbsp;next to a skill will display the appropriate stunts for that skill at the bottom of the sheet, a second click hides the description.
-        (See Skill Stunts below).
-        <br>
+  <h2 class="headng"><span>Characters</span></h2>
+  &nbsp;<span class="character-sheet-img">&nbsp;</span>&nbsp;
 
-        &nbsp;<span class="talent-agenda">&nbsp;</span>&nbsp;
-        The Talents and Agenda/Story Cards sections allow the player/GM to drop talent and agenda items (See below) onto the characters sheet.
-        Clicking on the name will display the items description at the bottom of the sheet.
-        A second click hides the description.
-        Right Clicking on the edit icon to the right will display a context menu allowing the PCs version of the item to be edited or deleted.
-        <br>
-        &nbsp;<span class="con-edit">&nbsp;</span>&nbsp;
+  <h2 class="headng"><span>General Tab</span></h2>
+  <br />
 
-    </p>
+  <h3 class="headng2"><span>Header (1)</span></h3>
+  &nbsp;<span class="character-header">&nbsp;</span>&nbsp; <br />
+  Health is not automatically calculated so needs to be updated manually as per the rules.
+  <br />
+  <br />
+  For the GM, an NPC tick box is visible which changes the Token settings for the actor (see Tokens section).
+  <br /><br />
 
-    <h2 class="headng2"><span>Inventory Tab</span></h2>
-    <p>
-        At the top of the tab is the Encumbrance meter. This shows the "Total Carried / Maximum Encumbrance" where Maximum Encumbrance is Str *4.
-        The two arrows on the Encumbrance show the point at which the PC should be taking penalties for being over encumbered.
-        <br>
-        &nbsp;<span class="enc">&nbsp;</span>&nbsp;
+  <h3 class="headng2"><span>Details (2)</span></h3>
+  In the Career dropdown you can select the appropriate career for the PC. <br />
+  The details boxes are text fields to record short details about the PC's. &nbsp;<span class="character-details">&nbsp;</span>&nbsp;
 
-        When the carried items exceed this point the bar will turn red and flash.
-        <br>
-        &nbsp;<span class="enc-warn">&nbsp;</span>&nbsp;
-        <br><br>
-        Items are dragged on to the sheet from item folders or Compendiums.
-        By default, they will appear on the sheet as Inactive.
-        Inactive items can be considered as being in a backpack/pocket/slung and do not contribute to Consumables, but they do contribute to Encumbrance.
-        For gear owned but stored elsewhere (locker/room etc.) use the "Ad Hoc" text area at the bottom of the sheet the Quick-Insert module can be used to create a link (see Recommended Add-on Modules).
-        Weapons cannot be fired when Inactive.
-    <br>
-        &nbsp;<span class="inv-inact">&nbsp;</span>&nbsp;
-    <br>
-        Left clicking on the items image (1) will Activate the item.
-        When Active right clicking on the item image will make it Inactive.
-        Only Active weapons can be clicked on for rolls.  
-    <br><br>
-        Items can be edited or deleted by right clicking on the edit icon (2) which will display a context menu with edit/delete options.
-    <br><br>
-        Some items have inline edit boxes (3) which enable you to edit some quantities (Rounds, Food, Water, Air) without the need to open the item.
-        <br>
-        <b>NOTE: </b>Items can be dropped on to the macro bar, though only Weapons will roll, so when using inline edit click on the number in the box, delete or backspace then enter the new number.
-        Trying to highlight the number to edit will drag the entire item.
-        <br><br>
+  <h3 class="headng2"><span>Tracking (3)</span></h3>
+  The left sidebar enables the player to track Experience, Radiation, Conditions, Consumables and Armor. <br />
+  &nbsp;<span class="character-consumables">&nbsp;</span>&nbsp; <br />
+  Experience, Radiation and Conditions are radio buttons. Left mouse click to set and Right mouse click to unset.
+  <br /><br />
+  The "Panicked" condition will automatically set following panic rolls of 7+. This triggers the "More Panic" mechanics in the system. To remove the Panicked condition right click on “PANICKED”. This
+  will reset the PC's panic level to 0. When active it will also display the “Panic Level” to the player to show how near breaking they are.
+  <br /><br />
+  <b> NOTE:</b> <i>This does not affect their Stress level.</i> <br /><br />
+  The consumables and Armor values are updated automatically based on the "Active" items in the PC's Inventory (See Inventory for more details.)
+  <br /><br />
+  In the system all the items "Active" consumable values are combined to give these totals. While not strictly as per the rules it is the most efficient way to manage these assets so some manual
+  intervention may be required by the player/GM. Any adjustments need to be done in the detailed entry on the inventory tab.
+  <br /><br />
 
-    </p>
+  <h2 class="headng"><span>Skills Tab (4)</span></h2>
+  The Skills tab lists the skills available to players. These are updated by the player during character creation. <br />
+  &nbsp;<span class="moskills">&nbsp;</span>&nbsp; <br />
+  Left mouse click will roll the value, taking into account current stress dice. <br />
+  A Right mouse click will display a modifier dialogue box allowing you to add or subtract Base and Stress dice to the roll. <br />
+  For instance, having the Field Surgeon Talent gives a +2 modification to Medical Aid, so you would add 2 to the base dice in the modifier box.
+  <br /><br />
+  Skill rolls are combined with the associated attribute values and Stress dice when making rolls.
+  <br /><br />
+  Clicking on the spanner icon&nbsp;<span class="spanner-icon">&nbsp;</span>&nbsp;next to a skill will display the appropriate stunts for that skill at the bottom of the sheet, a second click hides
+  the description. (See Skill Stunts below). <br /><br />
+  &nbsp;<span class="talent-agenda">&nbsp;</span>&nbsp;
+  <br />
+  The Talents and Agenda/Story Cards sections allow the player/GM to drop talent and agenda items (see below) onto the characters sheet. Clicking on the item’s name will display the items description
+  at the bottom of the sheet. A second click hides the description.
+  <br /><br />
+  Right Clicking on the edit icon to the right will display a context menu allowing the PCs version of the item to be edited or deleted. &nbsp;<span class="con-edit">&nbsp;</span>&nbsp; <br /><br />
 
-    <h2 class="headng"><span>Creature Sheets</span></h2>
-    <p>
-        When a Creature dragged on to a Scene the Token will be set to Unlinked and Hostile.
-    <br><br>
-        &nbsp;<span class="creature-header">&nbsp;</span>&nbsp;
-        <br>
-        By default so values are entered for Mobility, Observation and Acid Splash as not all creatures have these stats.  <br><br>
-        For Mobility, Armor, Armor Vs Fire, Observation and Acid Splash rolls, a Left mouse click will roll the value and Right mouse click (on all but Acid Splash) will display a modifier box allowing additional dice to be added or subtracted as indicated by the GM.
-        As some creatures have a different armor stat against fire damage this is shown as a separate field.
-        Where creatures have the "Acid Splash" ability the damage to be inflicted can entered in to the field.  
-        <br><br>
-        When the roll is made a pop up will appear requesting the damage inflicted on the creature by the PC.  
-        <br> 
-        &nbsp;<span class="acid-splash-popup">&nbsp;</span>&nbsp;
-        <br>
-        The result of the combined dice will be displayed in the chat window.  
-        <br>
-        Clicking on the Attack Table drop down will show a list of any attack tables that you have created in the "Alien Tables> Alien Creature Tables" folder.
-        Once selected the table can be rolled against by clicking on the "Roll Attack" button.  
-        <br>
-        &nbsp;<span class="creature-attack-dropdown">&nbsp;</span>&nbsp;
-        <br>
-        The result appears in the chat window as a GM only message so the GM can narrate the action and add more flair and detail if required.  
-        <br>
-        As with all chat messages the result of any damage rolls can be seen by clicking on the dice icon in the chat window.
-        <br>
-        &nbsp;<span class="chat-roll">&nbsp;</span>&nbsp;
-        <br>
-        The Special Abilities section allows quick notes to be added with respect to the Creature or situation.  
-        More detailed notes can be added on the Notes tab in the rich text editor.  
-    </p>
-    <br><br>
+  <h2 class="headng"><span>Inventory Tab (5)</span></h2>
+  At the top of the tab is the Encumbrance meter. This shows the "Total Carried / Maximum Encumbrance" where Maximum Encumbrance is Str *4. The two arrows on the Encumbrance show the point at which
+  the PC should be taking penalties for being over encumbered.
+  <br />
+  &nbsp;<span class="enc">&nbsp;</span>&nbsp; 
+  <br>
+  When the carried items exceed this point the bar will turn red and flash.
+  <br />
+  &nbsp;<span class="enc-warn">&nbsp;</span>&nbsp; <br />
+  <br />
+  Items are dragged on to the sheet from item folders or Compendiums and by default, they will appear on the sheet as Inactive.
+  <br /><br />
+  Inactive items can be considered as being in a backpack/pocket/slung and do not contribute to Consumables, but they do contribute to Encumbrance.
+  <br /><br />
+  For gear owned but stored elsewhere (locker/room etc.) use the "Ad Hoc" text area at the bottom of the sheet. The Quick-Insert module can be used to create a link (see Recommended Add-on Modules).
+  Weapons cannot be fired when Inactive.
+  <br />
+  &nbsp;<span class="inv-inact">&nbsp;</span>&nbsp;
+  <br />
+  Left clicking on the items image (1) will Activate the item. When Active right clicking on the item image will make it Inactive. Only Active weapons can be clicked on for rolls.
+  <br /><br />
+  Items can be edited or deleted by right clicking on the edit icon (2) which will display a context menu with edit/delete options.
+  <br /><br />
+  Some items have inline edit boxes (3) which enable you to edit some quantities (Rounds, Food, Water, Air) without the need to open the item.
+  <br /><br />
+  <b>NOTE:</b>  As Items can be dropped on to the macro bar (though only Weapons will trigger a roll). When using inline edit click on the number in the box, delete or backspace then enter the new
+  number. Trying to highlight the number to edit will drag the entire item.
 
-    <h2 class="headng"><span>Territories</span></h2>
-    <p>
-        The territories sheet allows you to create details about each of the sectors in space which you can share with the players.  
-        <br>
-        &nbsp;<span class="territories-general">&nbsp;</span>&nbsp;
-        <br>
-        On the Systems tab you can drag systems (created as Items), clicking on the system name will open the associated sheet.  <br>
-        The context menu can be used to edit and delete the system attached to that sector.  
-        <br>
-        &nbsp;<span class="territories-systems">&nbsp;</span>&nbsp;
-    </p>
-    <br><br>
+  <br /><br />
+  <h2 class="headng"><span>Synthetics</span></h2>
+  If a player is using a "Secret Android" they should use the Character sheet and roleplay as a normal PC just ignoring any Stress Radiation or Condition effects. The GM can easily create a Character
+  and Synthetic sheet for the player, this will enable them to keep up the pretence that they are a normal PC until the big reveal, at which point they can switch to the Synthetic sheet at the
+  appropriate time.
+  <br />
+  Otherwise, they should use the Synthetic sheet which dispenses with any stats, conditions etc that do not affect them.
+  <br /><br />
+  Much of the Synthetic sheet is the same as the normal Character sheet so here I will outline the major differences.
+  <br /><br />
+  <h3 class="headng2"><span>Header (1)</span></h3>
+  &nbsp;<span class="synthetic-header">&nbsp;</span>&nbsp; <br />
 
-    <h2 class="headng"><span>Vehicles</span></h2>
-    <p>
-        Though not used very much within the game the Vehicles template allows you to create vehicles within the system. 
-         <br>
-    These actors are designed as templates to allow vehicles to be incorporated into your games.  
-    As many of the stats are not rollable on the sheet.  
-    They should be used as modifiers for the PC making the test.  
-    <br>
-        &nbsp;<span class="vehicle-general">&nbsp;</span>&nbsp;
-        <br><br>
-        
-        The Inventory tab allows the PCs to roll for the weapons on that vehicle.  
-        The GM should make all the players "Owners" of the vehicle in order for them to interact with it.  
-        They should right click to activate the modifier box and add the appropriate number of attribute, skill and stress dice for the test.   
-        <br>
-        &nbsp;<span class="vehicle-inv">&nbsp;</span>&nbsp;
-        <br>
-        The Crew tab allows the GM/Players to record the Pilot and Gunner for the ship and the total of their attribute, skill and stress dice for reference.
-        <br>
-        &nbsp;<span class="vehicle-crew">&nbsp;</span>&nbsp;
-    </p>
-    <br><br>
-    <h1 class="headng"><span>Items/Item Types</span></h1>
-    <p>
-There are a number of Item types that can be created for use within the system:   
+  As Synthetics do not suffer from Stress that is omitted from their sheet. <br />
+  If the player is using the Synthetic sheet as a “Secret Android” the can click on “No Stress” to make a stress roll. This will always be a 1d6 roll so always shows as “Keeping it Together”.
+  <br /><br />
+  <h3 class="headng2"><span>Details (2)</span></h3>
+  The main section of the General tab has the same fields as the Character sheet except for Signature Item as per the rules Synthetics do not have them. <br />
+  &nbsp;<span class="synthetic-details">&nbsp;</span>&nbsp; <br /><br />
+  <h3 class="headng2"><span>Tracking (3)</span></h3>
+  Synthetics do not suffer from Radiation or Conditions, so these are omitted from the left sidebar. <br /><br />
+  While the rules state they do not have consumables, I have left Power for them as I am sure they use items that consume power which should be tracked.
+  <br />
+  &nbsp;<span class="synthetic-consumables">&nbsp;</span>&nbsp; <br /><br />
+  The Skills and Inventory tabs operate the same as for a Character sheet
+  <br /><br />
+  <h2 class="headng"><span>Creature Sheets</span></h2>
+  &nbsp;<span class="creature-sheet-img">&nbsp;</span>&nbsp;
+  <br />
+  <h3 class="headng2"><span>Header (1)</span></h3>
+  &nbsp;<span class="creature-header">&nbsp;</span>&nbsp; <br />
+  When creating a Creature, the Health is represented as [current health]/[total health], i.e. 6/6. When the creature is injured the [current health] value should be manually reduced. These values are
+  used in the token health bar for the creatures (See Tokens).
 
-            <ul>
-            <li>Item - General equipment</li>
-            <li>Weapon - Personal and Vehicle weapons</li>
-            <li>Armor - Personal armor</li>
-            <li>Talent - Talents for use within the system</li>
-            <li>Planet-System - Details of planetary systems</li>
-            <li>Skill-Stunt - Place holders that drive the Skill-Stunts pop up on character sheets</li>
-            <li>Agenda - PC Agenda and Story cards</li>
-            </ul>
-    </p>
-    <br><br>
-    <h2 class="headng2"><span>Item</span></h2>
-    <p>
-        The item sheet is for generic items for use within the game. 
-    When a new item is created the type dropdown will dynamically change the sheet to include ant relevant stats for that item type on the Attributes tab.
-    <br>
-        &nbsp;<span class="item-dropdown">&nbsp;</span>&nbsp;
-    <br>
-    Any stats entered for the item will have an in-system effect once the item is "Active".  
-    <br>
-    The Consumables type is a general item that includes stats for Power, Food, Water and Air Supply for any homebrew items.  
-    <br><br>
-    The modifiers tab allows you to add any +/- effects using the item may have on the PCs attributes or skills.
-        <br>
-            &nbsp;<span class="modifiers-img">&nbsp;</span>&nbsp;
-    <br>
-    Modifiers also have an in-system effect once the item is "Active".  
+  <br /><br />
+  By default, values are not entered for Mobility, Observation and Acid Splash as not all creatures have these abilities.
+  <br /><br />
 
-    </p>
-    <br><br>
-    <h2 class="headng2"><span>Weapon</span></h2>
-    <p>
-        Select the type on the sheet (Ranged or Melee) and the sheet will dynamically change to present the relevant stats for that weapon type. 
-        The Class field is a text field which allow you to classify the weapon. This is not a required field and can be left blank.  
-    <br>
-        &nbsp;<span class="melee-img">&nbsp;</span>&nbsp;
-    <br>
-        &nbsp;<span class="ranged-img">&nbsp;</span>&nbsp;
-    <br>
+  <h3 class="headng2"><span>Attack Table (2)</span></h3>
+  Clicking on the Attack Table drop down will show a list of any attack tables that you have created in the "Alien Tables> Alien Creature Tables" folder. Once selected the table can be rolled against
+  by clicking on the "Roll Attack" button.
+  <br />
+  &nbsp;<span class="creature-attack-dropdown">&nbsp;</span>&nbsp;
+  <br />
+  The result appears in the chat window as a GM only message, so the GM can narrate the action and add more flair and detail.
+  <br /><br />
+  As with all chat messages, the detailed dice break down of any damage rolls can be seen by clicking on the dice icon in the chat window.
+  <br />
+  &nbsp;<span class="chat-roll">&nbsp;</span>&nbsp; <br /><br />
+  The Special Abilities section allows quick notes to be added with respect to the Creature or situation. More detailed notes can be added on the Notes tab in the rich text editor.
+  <br /><br />
+  <h2 class="headng"><span>Territories</span></h2>
 
-    For a Melee weapon the range will be set to Engaged, for Ranged weapons select the appropriate range from the dropdown list. 
-    The Cost field will convert the input to a currency so all you ned to enter is the number e.g., 15000 and it will reformat as US$15,000.00. 
-    <br><br>
-    The stats on the sheet will be used in rolls when the weapon is "Active".  
-    </p>
-    <br><br>
+  The territories sheet allows you to create details about each of the sectors in space which you can share with the players.
+  <br />
+  &nbsp;<span class="territories-general">&nbsp;</span>&nbsp;
+  <br />
+  On the Systems tab you can drag systems (created as Items), clicking on the system name will open the associated sheet. <br />
+  A right click on the Edit icon brings up the context menu to edit and delete the system attached to that sector.
+  <br />
+  &nbsp;<span class="territories-systems">&nbsp;</span>&nbsp;
 
-    <h2 class="headng2"><span>Armor</span></h2>
-    <p>
-        Setting up different armor types is simple as there are only two main stats to be considered, Armor Rating and Air Supply. 
-    <br>
-        &nbsp;<span class="armor-img">&nbsp;</span>&nbsp;
-    <br>
-    The additional modifiers some armor can have on attributes and abilities can be found on the Modifiers tab. 
-    <br>
-        &nbsp;<span class="armor-mods">&nbsp;</span>&nbsp;
-    <br><br>
-    The stats and modifiers on the sheet will be used in rolls when the weapon is "Active".  
+  <br /><br />
 
+  <h2 class="headng"><span>Vehicles</span></h2>
 
-    </p>
-    <br><br>
-    <h2 class="headng2"><span>Planet-System</span></h2>
-    <p>
-        The Planet-System sheet provides a method of documenting any planets the party might encounter during their missions.  
-        The fields are basic text and are intended to contain summaries.  
-        Where more detail is required use the Rich Text editor in the Description tab.  
-        Once created these can be dragged on to the Territories sheet as previously mentioned.  
-    <br>
-        &nbsp;<span class="planet-system-img">&nbsp;</span>&nbsp;
-    <br>
+  Though not used very much within the game the Vehicles template allows you to create vehicles within the system.
+  <br />
+  These actors are designed as templates to allow vehicles to be incorporated into your games. <br />
+  As yet the Vehicle sheet is not automated as are the character and Synthetic sheets so many of the stats are not rollable and they should be used as modifiers using the appropriate skills on the PC
+  sheet.
 
-    </p>
-    <br><br>
-    <h2 class="headng2"><span>Agenda</span></h2>
-    <p>
-        The Agenda item provides a rich text field which can be used to provide additional scenario based narrative/motivations for the players.  
-        These can be used as Agenda or Story cards.  
-        Once created they can be dragged on to the PCs sheet where they appear on the Skills tab and can be viewed by the player by clicking on the name. 
-    </p>
+  <br />
+  &nbsp;<span class="vehicle-general">&nbsp;</span>&nbsp; <br /><br />
 
-    <br><br>
-    <h2 class="headng2"><span>Talent</span></h2>
-    <p>
-        This enable you to create talents for your game either homebrew or from the rulebook by adding narrative to the rich test field.
-         When dragged on to a PCs sheet these will appear on the Skills tab and can be viewed by the player by clicking on the name. 
-    <br><br>
-    <b>NOTE:</b> <br>
-        Talents do not currently have an effect in the system so any impact deriving from a Talent needs to be applied manually during the game.  <br>
-        For instance, the Compassion (Medic Talent) allows the PC to push their roll multiple times but the system will by default only allow a roll to be pushed once.  
-        In this situation the player should be allowed to re-roll normally and manually increase their Stress.  
-    </p>
+  The Inventory tab allows the PCs to roll for the weapons on that vehicle. The GM should make all the players "Owners" of the vehicle in order for them to interact with it. They should right click to
+  activate the modifier box and add the appropriate number of attribute, skill and stress dice for the test.
+  <br />
+  &nbsp;<span class="vehicle-inv">&nbsp;</span>&nbsp;
+  <br />
+  The Crew tab allows the GM/Players to record the Pilot and Gunner for the ship and the total of their attribute, skill and stress dice for reference.
+  <br />
+  &nbsp;<span class="vehicle-crew">&nbsp;</span>&nbsp;
 
-    <br><br>
-    <h2 class="headng2"><span>Skill-Stunt</span></h2>
-    <p>
-    Skill-stunt items contain a rich text field that can be populated with the Stunt data from the rulebook for each of the skills.  
-    <br>
-    If any of the official modules (Starter Set or Core Rules) are installed the text in these items will be ignored but the items should not be deleted, or the system will malfunction. 
-    </p>
+  <br /><br />
+  <h1 class="headng"><span>Items/Item Types</span></h1>
+  There are a number of Item types that can be created for use within the system:
 
+  <ul>
+    <li>Item - General equipment</li>
+    <li>Weapon - Personal and Vehicle weapons</li>
+    <li>Armor - Personal armor</li>
+    <li>Talent - Talents for use within the system</li>
+    <li>Planet-System - Details of planetary systems</li>
+    <li>Skill-Stunt - Place holders that drive the Skill-Stunts pop up on character sheets</li>
+    <li>Agenda - PC Agenda and Story cards</li>
+  </ul>
+  <br /><br />
+  <h2 class="headng"><span>Item</span></h2>
+  The item sheet is for generic items for use within the game. When a new item is created, choose the relevant item sub category from the dropdown. This will dynamically change the sheet to include
+  any relevant stats for that item type on its Attributes tab.
+  <br />
+  &nbsp;<span class="item-dropdown">&nbsp;</span>&nbsp;
+  <br />
+  Any stats entered for the item will have an in-system effect once the item is "Active".
+  <br />
+  The Consumables type is a general item that includes stats for Power, Food, Water and Air Supply for any homebrew items.
+  <br /><br />
+  The modifiers tab allows you to add any +/- effects using the item may have on the PCs attributes or skills.
+  <br />
+  &nbsp;<span class="modifiers-img">&nbsp;</span>&nbsp;
+  <br />
+  Modifiers also have an in-system effect once the item is "Active".
+  <br /><br />
+  <h2 class="headng"><span>Weapon</span></h2>
 
-    <br><br>
-    <h1 class="headng"><span>Rolling Dice</span></h1>
-    <p>
-            Rolls can be pushed for "Human" PCs by clicking on the Push icon in the chat window. <br>
-            If the initial roll includes a Facehugger the "Push" button will not be displayed.  
-            When a roll is pushed the PC's Stress level will automatically be increased by 1. 
-            <br>
-            On a Pushed roll the second chat message will show the total successes for both rolls. 
-            <br><br>
-            <b>NOTE: </b><i>The PC/Creature token needs to be selected for all rolls.</i>
-            <br><br>
-            Alien RPG system uses custom dice notation for the Base and Stress dice.  
-            <br>
-            If you want to roll ad-hoc dice and don't want to use the macros (See below). 
-            You can roll using:
-            <br>
-            /r xdb  - for Base dice <br>
-            /r xds  - for Stress dice <br> 
-            where x is the number of dice.  
-            <br>
-            For both just put  /r 4db + 2ds
+  Select the type on the sheet (Ranged or Melee) and the sheet will dynamically change to the relevant stats for that weapon type. The Class field is a text field which allow you to classify the
+  weapon. This is not a required field and can be left blank.
+  <br />
+  &nbsp;<span class="melee-img">&nbsp;</span>&nbsp;
+  <br />
+  &nbsp;<span class="ranged-img">&nbsp;</span>&nbsp;
+  <br />
 
-    </p>
-    <br><br>
-    <h1 class="headng"><span>Combat Tracker</span></h1>
-    <p>
-        When rolling for initiative in the combat tracker the combatants will now be sorted in ascending order.  
+  For a Melee weapon the range will be set to Engaged, for Ranged weapons select the appropriate range from the dropdown list. The Cost field will convert the input to a currency so all you need to
+  enter is the number e.g., 15000 and it will reformat as US$15,000.00.
+  <br /><br />
+  The stats on the sheet will be used in rolls when the weapon is "Active".
 
-    <br>
-        &nbsp;<span class="initiative-roll">&nbsp;</span>&nbsp;
-    <br><br>
-    By right clicking on an actor in the combat tracker you will see "Clone Actor" option appear.  
-    This will create a clone of the selected actor to allow the GM to give a Creature multiple initiative rolls. 
-    <br><br>
-        &nbsp;<span class="clone-actor">&nbsp;</span>&nbsp;
-        &nbsp;<span class="roll-clone">&nbsp;</span>&nbsp;
-    <br>
-    Additionally, in the chat window an initiative card will be displayed.
-    If you wish to modify these images you can by creating yor own images (250x349px) png files and storing them in the \images\cards directory. 
-    Name the images in ascending order card-1.png to card-10.png.
-    <br>
-        &nbsp;<span class="init-chat-norm">&nbsp;</span>&nbsp;
-            <br><br>
-            If you have purchased either the Starter Set or Core Rules these will automatically be replaced with the official Initiative cards.  
-    <br>
+  <br /><br />
 
-        &nbsp;<span class="init-chat-cards">&nbsp;</span>&nbsp;
-    <br><br>
+  <h2 class="headng"><span>Armor</span></h2>
 
-    There are only 10 initiative cards so if you have a combat with more than 10 actors and roll initiative the system will show a warning and only make rolls for 10 of the actors. <br>
-    You will still be able to roll for the extra actors manually but they will have duplicate initiatives with the existing actors.  <br><br>
-    Alternatively, you can split the party in to two encounters, though I think it's easier to manage with a few duplicates.
+  Setting up different armor types is simple as there are only two main stats to be considered, Armor Rating and Air Supply.
+  <br />
+  &nbsp;<span class="armor-img">&nbsp;</span>&nbsp;
+  <br />
+  The additional modifiers some armor can have on attributes and abilities can be found on the Modifiers tab.
+  <br />
+  &nbsp;<span class="armor-mods">&nbsp;</span>&nbsp; <br /><br />
+  The stats and modifiers on the sheet will be used in rolls when the weapon is "Active".
 
-    </p>
-    <br><br>
-    <h1 class="headng"><span>Tables</span></h1>
-    <p>
-        When the system is installed it will create the following folder structure:
-            <table style="width: 43%;" border="0">
-            <tbody>
-            <tr>
-            <td style="width: 30%;">Alien Tables -&gt;</td>
-            <td style="width: 50%;">Alien Creature Tables&nbsp;</td>
-            </tr>
-            <tr>
-            <td style="width: 30%;">&nbsp;</td>
-            <td style="width: 50%;">Alien Mother Tables</td>
-            </tr>
-            </tbody>
-            </table>
-        This structure is used by the Creature sheet and two "roll on table" macros (See Macros) which are searched to display only the rolltables in those folders.   <br>
-        Free League have given me permission to include the Panic Table which can be found in the Alien Mother Tables.  
-        <br><br>
-        If you want to create your own rolltables you should do so in the appropriate folder.  <br><br>
-        When entering the tables from the rulebook for D66 tables use 10*1d6+1d6 as the roll table formula and you will be able to import the ranges as per the book.  
+  <br /><br />
+  <h2 class="headng"><span>Planet-System</span></h2>
 
-    </p>
-    <br><br>
-    <h1 class="headng"><span>System Configuration Options</span></h1>
-    <p>
-        There are a number of system configuration options available to GM and players under Configuration Settings>System Settings:
+  The Planet-System sheet provides a method of documenting any planets the party might encounter during their missions. The fields are basic text and are intended to contain summaries. Where more
+  detail is required, use the Rich Text editor in the Description tab. Once created these can be dragged onto the Territories sheet as previously mentioned.
+  <br />
+  &nbsp;<span class="planet-system-img">&nbsp;</span>&nbsp;
+  <br />
 
-    <br>
-        <h3 class="headng2"><span>GM Configuration Options</span></h3>
+  <br /><br />
+  <h2 class="headng"><span>Agenda</span></h2>
 
-        &nbsp;<span class="gm-settings">&nbsp;</span>&nbsp;
-            <br><br>
-            Hopefully, most of the settings are self explanatory.  <br><br> 
-Enabling the "Add Settings Button" will place a quick access button on the Configure Settings sidebar to quickly allow the GM and Players to change fonts and text colours. 
-    <br>
-        &nbsp;<span class="style-button-settings">&nbsp;</span>&nbsp;
-            <br><br>
+  The Agenda item provides a rich text field which can be used to provide additional scenario-based narrative/motivations for the players. These can be used as Agenda or Story cards. Once created,
+  they can be dragged onto the PCs sheet where they appear on the Skills tab and can be viewed by the player by clicking on the name.
+  <br /><br />
+  <h2 class="headng"><span>Talent</span></h2>
 
-    <br>
-            <h3 class="headng2"><span>Player Configuration Options</span></h3>
+  This item type enables you to create talents for your game either homebrew or from the rulebook by adding descriptions to the rich test field. When dragged on to a PCs sheet, these will appear on
+  the Skills tab and can be viewed by the player by clicking on the name.
+  <br /><br />
+  <b> NOTE:</b><br />
+  Talents do not currently have an effect in the system so any impact deriving from a Talent needs to be applied manually during the game.
+  <br /><br />
+  For instance, the Compassion (Medic Talent) allows the PC to push their roll multiple times but the system will by default only allow a roll to be pushed once. In this situation the player should be
+  allowed to re-roll normally and manually increase their Stress.
 
-        &nbsp;<span class="player-settings">&nbsp;</span>&nbsp;
-            <br><br>
+  <br /><br />
+  <h2 class="headng"><span>Skill-Stunt</span></h2>
 
-            <h3 class="headng2"><span>Font and Colour Configuration Options</span></h3>
-    When I first created the system I wanted to give the feel of the old CRT monitors you see in the films.  
-    While this initially looks good after playing for a while the text style and colour can be a little intense. 
-    Additionally, having the text colour green can cause issues for people with sight problems.  <br><br>
-    In order to make the system more accessible there are configuration options available to change these settings for individual players.  
-    <br>
-        &nbsp;<span class="style-settings">&nbsp;</span>&nbsp;
-            <br><br>
-    <br>
-        &nbsp;<span class="font-picker-img">&nbsp;</span>&nbsp;
-        &nbsp;<span class="colour-picker-img">&nbsp;</span>&nbsp;
-            <br><br>
-Clicking the Reset button will return the system to the defaults.  
-    </p>
-    <br><br>
-    <h1 class="headng"><span>Macros</span></h1>
+  Skill-Stunt items contain a rich text field that can be populated with the Stunt data from the rulebook for each of the skills.
+  <br /><br />
+  If any of the official modules (Starter Set or Core Rules) are installed, the text in these items will be ignored but the items should not be deleted or the system will malfunction.
+ <br><br>
+ 
+  <h1 class="headng"><span>Tokens</span></h1>
 
-    <p>
+  When a Character actor is dragged onto a Scene the token will show resource bars for Stress and Health when the cursor is hovered over the token:
+  <br />
+  &nbsp;<span class="character-token">&nbsp;</span>&nbsp; <br /><br />
+  For Creatures, the Health resource bar is shown:
+  <br />
+  &nbsp;<span class="creature-token">&nbsp;</span>&nbsp; <br /><br />
+  By default, NPCs and Creature tokens are set as Hostile and Unlinked.
+  <br /><br />
+  <br /><br />
+  <h1 class="headng"><span>Rolling Dice</span></h1>
+  <b> NOTE:</b> <i> The PC/Creature token needs to be selected for all rolls.</i> <br /><br />
+  <h2 class="headng2"><span>Characters and NPCs</span></h2>
+  For Strength, Agility, Wits and Empathy rolls a Left mouse click will roll the value and Right mouse click will display a modifier box allowing additional dice to be added or subtracted as indicated
+  by the GM.
+  <br />
+  &nbsp;<span class="agil-mod">&nbsp;</span>&nbsp; <br /><br />
+  <br />
+  Stress is automatically added on a Push (see Rolls below) but any other adjustments to a characters Stress need to be made manually. The Stress value is taken into account on all dice rolls.
+  <br /><br />
+  For Panic rolls, the player Left clicks on "Stress" and the result is displayed in the chat window. Right Clicking on "Stress" will display a modifier box to add or remove stress to the roll.
+  <br /><br />
+  This will add/subtract the entered value (+x or -x) to the roll nad does not change the number of dice rolled.
+  <br />
+  &nbsp;<span class="stress-mod">&nbsp;</span>&nbsp; &nbsp; <br /><br />
+  Supply rolls are made by clicking on the parachute icon. Any failures (1's) will automatically be deducted from the total and the items giving that value will be decremented.
+  <br /><br />
+  For Armor rolls the player just clicks on "Armor" and the appropriate number of dice are rolled with the result appearing in the character window. As before, the value depends on the equipped armor
+  on the Inventory tab. Any reduction in armor value needs to be done in the detailed entry there.
+  <br /><br />
+  Rolls can be pushed for "Human" PCs by clicking on the Push icon in the chat window. If the initial roll includes a Facehugger (1), the "Push" button will not be displayed. When a roll is pushed,
+  the PC's Stress level will automatically be increased by 1. <br /><br />
+  On a Pushed roll the second chat message will show the total successes for both rolls.
+  <br /><br />
+  <h2 class="headng2"><span>Creatures</span></h2>
+  For Mobility, Armor, Armor Vs Fire and Observation rolls, a Left mouse click will roll the value and Right mouse click will display a modifier box allowing additional dice to be added or subtracted
+  as necessary. As some creatures have a different armor stat against fire damage this is shown as a separate field.
+  <br /><br />
+  Where creatures have the "Acid Splash" ability, a left click will display a dialogue box requesting the amount of damage the PC inflicted on the creature.
+  <br />
+  &nbsp;<span class="acid-splash-popup">&nbsp;</span>&nbsp;
+  <br />
+  This is added to the creatures “Acid Attack” value and the corresponding number of base dice are rolled with the result displayed in the chat window. For each success, the PC suffers the appropriate
+  amount of damage as outlined in the core rules which should be manually applied by the player.
+  <br /><br />
+  <h2 class="headng2"><span>Ad Hoc Rolls</span></h2>
 
-        The Alien system comes with 4 macros that will help you run the game smoothly. <br><br>
-        These can be found in the Compendium under Macro>Alien. I suggest you right click and do an "Import All Content" to get them into your library.
-    <ol>
-        <li style="padding-bottom: 2%;"><strong style="color: deepskyblue">Alien - GM Dice Roller:</strong> Allows you to perform ad-hoc dice rolls. Uncheck the GM Only box to make the rolls public.</li>
-        <li style="padding-bottom: 2%;"><strong style="color: deepskyblue">Alien - Player Ad-hoc YZE Dice Roller: </strong>Make this available to your players. They need to have a token selected before running the macro.</li>
-        <li style="padding-bottom: 2%;"><strong style="color: deepskyblue">Alien - Roll on selected Mother table:</strong> provides a drop down listing all the Mother Tables available. Allows multiple rolls against the table and modifiers (+/- x to roll not additional dice).</li>
-        <li style="padding-bottom: 2%;"><strong style="color: deepskyblue">Alien - Roll on selected Creature table: </strong>same as above for Creature tables but no modifiers and all rolls are private to the GM.</li>
+  Alien RPG system uses custom dice notation for the Base and Stress dice.
+  <br />
+  If you want to roll ad-hoc dice and don't want to use the macros (See below). You can roll using:
+  <br />
+  /r xdb - for Base dice <br />
+  /r xds - for Stress dice <br />
+  where x is the number of dice.
+  <br />
+  For both just put /r 4db + 2ds
 
-    </ol>
+  <br /><br />
+  <h1 class="headng"><span>Combat Tracker</span></h1>
 
-    If you want to write your own macros these are the @ tags.  
-    <br>
-    For Attributes:
-    <ul style="list-style-type: none;">
+  When rolling for initiative in the combat tracker the combatants will now be sorted in ascending order.
+
+  <br />
+  &nbsp;<span class="initiative-roll">&nbsp;</span>&nbsp; <br /><br />
+  By right clicking on an actor in the combat tracker you will see "Clone Actor" option appear. This will create a clone of the selected actor to allow the GM to give a Creature multiple initiative
+  rolls. An actors initiative can be manually adjusted by selecting "Update Actor".
+  <br /><br />
+  &nbsp;<span class="clone-actor">&nbsp;</span>&nbsp; &nbsp;<span class="roll-clone">&nbsp;</span>&nbsp;
+  <br />
+  Additionally, in the chat window an initiative card will be displayed. If you wish to modify these images you can by creating your own images (250x349px) png files and storing them in the
+  \images\cards directory. Name the images in ascending order card-1.png to card-10.png. <br />
+  &nbsp;<span class="init-chat-norm">&nbsp;</span>&nbsp; <br /><br />
+  If you have purchased either the Starter Set or Core Rules these will automatically be replaced with the official Initiative cards.
+  <br />
+
+  &nbsp;<span class="init-chat-cards">&nbsp;</span>&nbsp; <br /><br />
+
+  There are only 10 initiative cards, so if you have a combat with more than 10 actors and roll initiative the system will show a warning and only make rolls for 10 of the actors.
+  <br /><br />
+  You will still be able to roll for the extra actors manually, but they will have duplicate initiatives with the existing actors.
+  <br /><br />
+  Alternatively, you can split the party in to two encounters, though I think it's easier to manage with a few duplicates.
+
+  <br /><br />
+  <h1 class="headng"><span>Tables</span></h1>
+  When the system is installed it will create the following folder structure:
+  <table style="width: 43%" border="0">
+    <tbody>
+      <tr>
+        <td style="width: 30%">Alien Tables -&gt;</td>
+        <td style="width: 50%">Alien Creature Tables&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="width: 30%">&nbsp;</td>
+        <td style="width: 50%">Alien Mother Tables</td>
+      </tr>
+    </tbody>
+  </table>
+  This structure is used by the Creature sheet and the two "roll on table" macros (See Macros) which are set up to display only the rollable tables in those folders.
+  <br />
+  Free League have given me permission to include the Panic Table in the core system, which can be found in the Alien Mother Tables.
+  <br /><br />
+  If you want to create your own rollable tables, you should do so in the appropriate folder.
+  <br /><br />
+  When entering the tables from the rulebook for D66 tables use 10*1d6+1d6 as the roll table formula and you will be able to import the ranges as per the book.
+
+  <br /><br />
+  <h1 class="headng"><span>System Configuration Options</span></h1>
+  There are a number of system configuration options available to GM and players under Configuration Settings>System Settings:
+  <br />
+  <h3 class="headng2"><span>GM Configuration Options</span></h3>
+
+  &nbsp;<span class="gm-settings">&nbsp;</span>&nbsp; <br /><br />
+  Hopefully, most of the settings are self-explanatory.
+  <br /><br />
+  Enabling the "Add Settings Button" will place a quick access button on the Configure Settings sidebar to quickly allow the GM and Players to change fonts and text colours.
+  <br />
+  &nbsp;<span class="style-button-settings">&nbsp;</span>&nbsp; <br /><br />
+
+  <br />
+  <h3 class="headng2"><span>Player Configuration Options</span></h3>
+
+  &nbsp;<span class="player-settings">&nbsp;</span>&nbsp; <br /><br />
+
+  <h3 class="headng2"><span>Font and Colour Configuration Options</span></h3>
+  When I first created the system, I wanted to give the feel of the old CRT monitors you see in the films. While this initially looks good after playing for a while the text style and colour can be a
+  little intense. <br />
+  Additionally, having the text colour green can cause issues for people with sight problems.
+  <br /><br />
+  In order to make the system more accessible, there are configuration options available to change these settings for individual players. &nbsp;<span class="style-settings">&nbsp;</span>&nbsp;
+  <br /><br />
+  <br />
+  &nbsp;<span class="font-picker-img">&nbsp;</span>&nbsp; &nbsp;<span class="colour-picker-img">&nbsp;</span>&nbsp; <br /><br />
+  Clicking the Reset button will return the system to the defaults.
+  <br /><br />
+  <h1 class="headng"><span>Macros</span></h1>
+
+  The Alien system comes with 4 macros that will help you run the game smoothly. <br /><br />
+  These can be found in the Compendium under Macro>Alien. I suggest you right click and do an "Import All Content" to get them into your library.
+  <ol>
+    <li style="padding-bottom: 2%"><strong style="color: deepskyblue">Alien - GM Dice Roller:</strong> Allows you to perform ad-hoc dice rolls. Uncheck the GM Only box to make the rolls public.</li>
+    <li style="padding-bottom: 2%">
+      <strong style="color: deepskyblue">Alien - Player Ad-hoc YZE Dice Roller: </strong>Make this available to your players. They need to have a token selected before running the macro.
+    </li>
+    <li style="padding-bottom: 2%">
+      <strong style="color: deepskyblue">Alien - Roll on selected Mother table:</strong> provides a drop down listing all the Mother Tables available. Allows multiple rolls against the table and
+      modifiers (+/- x to roll not additional dice).
+    </li>
+    <li style="padding-bottom: 2%">
+      <strong style="color: deepskyblue">Alien - Roll on selected Creature table: </strong>same as above for Creature tables but no modifiers and all rolls are private to the GM.
+    </li>
+  </ol>
+
+  If you want to write your own macros these are the @ tags.
+  <br />
+  For Attributes:
+  <ul style="list-style-type: none">
     <li>@str</li>
     <li>@agl</li>
     <li>@wit</li>
     <li>@emp</li>
     <li>@stress</li>
-    </ul>
-    <br>
-    For Skills:
-     <ul style="list-style-type: none;">
-        <li>@heavyMach</li>
-        <li>@closeCbt</li>
-        <li>@stamina</li>
-        <li>@rangedCbt</li>
-        <li>@mobility</li>
-        <li>@piloting</li>
-        <li>@command</li>
-        <li>@manipulation</li>
-        <li>@medicalAid</li>
-        <li>@observation</li>
-        <li>@survival</li>
-        <li>@comtech</li>
-    </ul>
-    <br>
-    So to roll for comtech with stress would be: <br> 
-    /r (@wit)db + (@comtech)db + (@stress)ds
-    <br><br>
-   <i>Please note that rolling dice from a macro or in chat will not trigger the "Push" or Stress automation.</i>  
-    </p>
-    <br><br>
-    <h1 class="headng"><span>Recommended Add-on Modules</span></h1>
-    <p>
-        While not necessary to use the Alien system of this module I would recommend installing the following Add-on modules as they make the GM's job a lot easier: <br>
-    <ul>
-        <li style="padding-bottom: 2%;"><strong style="color: deepskyblue">Dice So Nice:</strong>
-            <br>Alien RPG supports 2 dice face types.
-            <br>There is an issue with DsN where the dice do not pick of the correct colour when first used. Just go into the DsN settings and select Black for the Theme and save.  All participants will need to do this. 
-        </li>
-        <li style="padding-bottom: 2%;"><strong style="color: deepskyblue">Cursor Hider:</strong>
-            <br>Stops GM and players seeing cursors moving around the screen.
-        </li>
-        <li style="padding-bottom: 2%;"><strong style="color: deepskyblue">PnP - Pointer and Pings:</strong>
-            <br>Useful for pointing things out to the players and pulling their map focus to where you want it.
-        </li>
-        <li style="padding-bottom: 2%;"><strong style="color: deepskyblue">Quick Insert - Search Widget:</strong>
-            <br>Allows you to quickly search for assets and drag them directly on to the scene.
-        </li>
-    </ul>
-
-    </p>
-
+  </ul>
+  <br />
+  For Skills:
+  <ul style="list-style-type: none">
+    <li>@heavyMach</li>
+    <li>@closeCbt</li>
+    <li>@stamina</li>
+    <li>@rangedCbt</li>
+    <li>@mobility</li>
+    <li>@piloting</li>
+    <li>@command</li>
+    <li>@manipulation</li>
+    <li>@medicalAid</li>
+    <li>@observation</li>
+    <li>@survival</li>
+    <li>@comtech</li>
+  </ul>
+  <br />
+  So to roll for comtech with stress would be: <br />
+  /r (@wit)db + (@comtech)db + (@stress)ds
+  <br /><br />
+  <i>Please note that rolling dice from a macro or in chat will not trigger the "Push" or Stress automation.</i>
+  <br /><br />
+  <h1 class="headng"><span>Recommended Add-on Modules</span></h1>
+  While not necessary to use the Alien system of this module I would recommend installing the following Add-on modules as they make the GM's job a lot easier: <br />
+  <ul>
+    <li style="padding-bottom: 2%">
+      <strong style="color: deepskyblue">Dice So Nice:</strong> <br />Alien RPG supports 2 dice face types. <br />There is an issue with DsN where the dice do not pick of the correct colour when first
+      used. Just go into the DsN settings and select Black for the Theme and save. All participants will need to do this.
+    </li>
+    <li style="padding-bottom: 2%"><strong style="color: deepskyblue">Cursor Hider:</strong> <br />Stops GM and players seeing cursors moving around the screen.</li>
+    <li style="padding-bottom: 2%">
+      <strong style="color: deepskyblue">PnP - Pointer and Pings:</strong> <br />Useful for pointing things out to the players and pulling their map focus to where you want it.
+    </li>
+    <li style="padding-bottom: 2%"><strong style="color: deepskyblue">Quick Insert - Search Widget:</strong> <br />Allows you to quickly search for assets and drag them directly on to the scene.</li>
+  </ul>
 </div>
