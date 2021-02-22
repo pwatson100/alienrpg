@@ -241,5 +241,6 @@
   "ALIENRPG.CloneActor": "Schauspieler klonen",
   "ALIENRPG.CombatantUpdate": "Schauspieler aktualisieren",
   "ALIENRPG.CombatantReroll": "ReRoll Initiative",
-  "ALIENRPG.CombatantRemove": "Entfernen Sie Schauspieler"
+  "ALIENRPG.CombatantRemove": "Entfernen Sie Schauspieler",
+  "ALIENRPG.MultiPush": "Multi-Push zulassen"
 }

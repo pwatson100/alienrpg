@@ -219,7 +219,7 @@ export class alienrpgActorSheet extends ActorSheet {
     enc.pct = Math.min((enc.value * 100) / enc.max, 99);
     enc.encumbered = enc.pct > 50;
     for (let i of actorData.talents) {
-      if (i.name === 'Pack Mule') {
+      if (i.name.toUpperCase() === 'PACK MULE') {
         enc.encumbered = enc.pct > 75;
       }
     }
