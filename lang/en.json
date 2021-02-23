@@ -242,5 +242,6 @@
   "ALIENRPG.CloneActor": "Clone Actor",
   "ALIENRPG.CombatantUpdate": "Update Actor",
   "ALIENRPG.CombatantReroll": "ReRoll Initiative",
-  "ALIENRPG.CombatantRemove": "Remove Actor"
+  "ALIENRPG.CombatantRemove": "Remove Actor",
+  "ALIENRPG.MultiPush": "Allow multi-push"
 }

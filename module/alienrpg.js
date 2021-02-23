@@ -14,16 +14,14 @@ import { AlienRPGBaseDie } from './alienRPGBaseDice.js';
 import { AlienRPGStressDie } from './alienRPGBaseDice.js';
 import * as migrations from './migration.js';
 import { AlienConfig } from './alienRPGConfig.js';
-import AlienRPGCombat from './combat.js'; 
-import AlienRPGCTContext from './CBTracker.js'; 
+import AlienRPGCombat from './combat.js';
+import AlienRPGCTContext from './CBTracker.js';
 
-
-const euclidianDistances = function(segments, options={}) {
-
+const euclidianDistances = function (segments, options = {}) {
   const canvasSize = canvas.dimensions.size;
-  const gridDistance =canvas.scene.data.gridDistance;
+  const gridDistance = canvas.scene.data.gridDistance;
 
-  return segments.map(s => {
+  return segments.map((s) => {
     let ray = s.ray;
 
     // Determine the total distance traveled
@@ -31,50 +29,13 @@ const euclidianDistances = function(segments, options={}) {
     let y = Math.abs(Math.ceil(ray.dy / canvasSize));
 
     return Math.hypot(x, y) * gridDistance;
-  }
-
-);
+  });
 };
 
-Hooks.on("canvasInit", function() {
-
+Hooks.on('canvasInit', function () {
   SquareGrid.prototype.measureDistances = euclidianDistances;
-
 });
 
-
- Hooks.on('createCombatant',(combat,combatant , options, someID)=>{
-          // right now this code assumes only tokens from the canvas can be added to combat
-          let token = canvas.tokens.placeables.find(i=>i.data._id==combatant.tokenId);
-          if (token == null) return; // should probably trow an exception message instead.
-          
-          if(token.inCombat==false){
-            // not yet in combat so we should create extra combatants for each point of speed > 1.
-          
-            let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
-            if (ACTOR==null) ACTOR= Actor.createTokenActor(token.actor,token);
-          
-            // only creatures have speed right now.  Probably a getter method should be created like
-            // Actor.combatSpeed() to create a unified API to get the speed regardless of underlying
-            // actor type
-          
-            if (ACTOR.data.type != 'creature') return;
-            if ((ACTOR.data.data.attributes?.speed?.value) >1){
-              const tokens = [];
-              var x;
-              for(x = 1;x< ACTOR.data.data.attributes.speed.value;x++){
-                tokens.push(token);
-              }
-              // Add extra tokens to the Combat encounter for the actors heightened speed
-              const createData = tokens.map(t => {return {tokenId: t.id, hidden: t.data.hidden}});
-              combat.createEmbeddedEntity("Combatant", createData);
-            }
-          }
- });
-                     
-                     
-                     
-                     
 Hooks.once('init', async function () {
   console.warn(`Initializing Alien RPG`);
   game.alienrpg = {
@@ -92,10 +53,10 @@ Hooks.once('init', async function () {
   const is07x = game.data.version.split('.')[1] === '7';
 
   // Global define for this so the roll data can be read by the reroll method.
-  game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, tLabel: '', sCount: 0 };
+  game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, tLabel: '', sCount: 0, multiPush: 0 };
   // console.warn('sCount init', game.alienrpg.rollArr.sCount);
 
-  /**
+  /**s
    * Set an initiative formula for the system
    * @type {String}
    */
@@ -121,7 +82,7 @@ Hooks.once('init', async function () {
 
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts',"agenda"], makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda'], makeDefault: false });
   Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
   registerSettings();
   registerActors();
@@ -248,7 +209,7 @@ Hooks.once('ready', async () => {
     }
     migrations.migrateWorld();
   }
-// clear the minimum resolution message faster
+  // clear the minimum resolution message faster
 
   setTimeout(() => {
     $('.notification.error').each((index, item) => {
@@ -262,17 +223,14 @@ Hooks.once('ready', async () => {
   r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
   r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
 
-//   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
+  //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
-
 });
-
 
 // create/remove the quick access config button
 Hooks.once('renderSettings', () => {
   AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
 });
-
 
 // ***************************
 // DsN V3 Hooks
@@ -361,13 +319,20 @@ Hooks.on('renderChatMessage', (message, html, data) => {
   html.find('button.alien-Push-button').each((i, li) => {
     // console.warn(li);
     li.addEventListener('click', function (ev) {
-  
+      // console.log('🚀 ~ file: alienrpg.js ~ line 332 ~ ev', ev);
+      let tarG = ev.target.previousElementSibling.checked;
+      console.log('multi', tarG);
+
       if (ev.target.classList.contains('alien-Push-button')) {
         // do stuff
         let actor = game.actors.get(message.data.speaker.actor);
         if (!actor) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoToken'));
-
         let reRoll = true;
+
+        if (tarG) {
+          reRoll = 'mPush';
+          // game.alienrpg.rollArr.multiPush += game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+        }
         let hostile = actor.data.type;
         let blind = false;
         //  Initialse the chat message
@@ -381,7 +346,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         }
         const reRoll1 = game.alienrpg.rollArr.r1Dice - game.alienrpg.rollArr.r1Six;
         const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
-        yze.yzeRoll(hostile, blind, reRoll, game.alienrpg.rollArr.tLabel, reRoll1, game.i18n.localize('ALIENRPG.Black'), reRoll2, game.i18n.localize('ALIENRPG.Yellow'),actor.id);
+        yze.yzeRoll(hostile, blind, reRoll, game.alienrpg.rollArr.tLabel, reRoll1, game.i18n.localize('ALIENRPG.Black'), reRoll2, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
       }
     });
   });
@@ -403,7 +368,6 @@ Hooks.on('preCreateActor', (actor, dir) => {
       'token.name': actor.name, // Set token name to actor name
     }); // Default characters to HasVision = true and Link Data = true
 
-  
     switch (actor.type) {
       case 'character':
         mergeObject(actor, {
@@ -457,7 +421,6 @@ Hooks.on('preCreateActor', (actor, dir) => {
     // if (!createData.img) {
     //   createData.img = 'icons/svg/cowled.svg';
     // }
-
   }
 });
 

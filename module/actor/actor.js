@@ -347,36 +347,27 @@ export class alienrpgActor extends Actor {
     }
   }
 
-   static async checkAndEndPanic(actor){
-    
-    if(actor.data.type!="character") return;
+  static async checkAndEndPanic(actor) {
+    if (actor.data.type != 'character') return;
 
-    if( (actor.data.data.general.panic.lastRoll>0)) {
-        actor.update({ 'data.general.panic.lastRoll': 0 });
-   
-        actor.getActiveTokens().forEach(i => { 
-                i.toggleEffect('icons/svg/terror.svg',{active:false,overlay:true });
-           });
+    if (actor.data.data.general.panic.lastRoll > 0) {
+      actor.update({ 'data.general.panic.lastRoll': 0 });
 
-        ChatMessage.create({  speaker: { actor: actor.id },
-                              content: "Panic is over",
-                              type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-                           }
-                     );
+      actor.getActiveTokens().forEach((i) => {
+        i.toggleEffect('icons/svg/terror.svg', { active: false, overlay: true });
+      });
 
+      ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
     }
+  }
 
-  };
-    
-   static async  causePanic(actor){
-       actor.update({ 'data.general.panic.value': actor.data.data.general.panic.value + 1 });
-           
-              actor.getActiveTokens().forEach(i => {
-                i.toggleEffect('icons/svg/terror.svg',{active:true,overlay:true });
-              });
+  static async causePanic(actor) {
+    actor.update({ 'data.general.panic.value': actor.data.data.general.panic.value + 1 });
 
-    }
-
+    actor.getActiveTokens().forEach((i) => {
+      i.toggleEffect('icons/svg/terror.svg', { active: true, overlay: true });
+    });
+  }
 
   async rollAbility(actor, dataset) {
     // console.log("🚀 ~ file: actor.js ~ line 311 ~ alienrpgActor ~ rollAbility ~ actor", actor)
@@ -384,6 +375,8 @@ export class alienrpgActor extends Actor {
     let r2Data = 0;
     let reRoll = false;
     game.alienrpg.rollArr.sCount = 0;
+    game.alienrpg.rollArr.multiPush = 0;
+
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0) + parseInt(dataset.mod || 0);
       if (dataset.attr) {
@@ -418,43 +411,37 @@ export class alienrpgActor extends Actor {
         const table = game.tables.getName('Panic Table');
         // let aStress = actor.getRollData().stress;
 
-        let rollModifier = parseInt(dataset.mod??0);
+        let rollModifier = parseInt(dataset.mod ?? 0);
         function panicConditionTitleString(rollModifier) {
-           let title = game.i18n.localize('ALIENRPG.PanicCondition');
-            if(rollModifier>0) {
-               title = title+"+"+rollModifier.toString();
-            } else
-            if(rollModifier<0){
-               title = title+rollModifier.toString();  
-            }
-            return title;
-        };
-
+          let title = game.i18n.localize('ALIENRPG.PanicCondition');
+          if (rollModifier > 0) {
+            title = title + '+' + rollModifier.toString();
+          } else if (rollModifier < 0) {
+            title = title + rollModifier.toString();
+          }
+          return title;
+        }
 
         let aStress = 0;
 
-        if(actor.data.type==='synthetic'){
-          actor.data.data.header.stress=new Object({"mod":"0"});        
-          actor.data.data.general.panic=new Object({"lastRoll":"0","value":"0"});
-          aStress=0;  
-        } else
-        aStress = actor.getRollData().stress +  rollModifier + parseInt(actor.data.data.header.stress.mod);
-     
-        
-        
+        if (actor.data.type === 'synthetic') {
+          actor.data.data.header.stress = new Object({ mod: '0' });
+          actor.data.data.general.panic = new Object({ lastRoll: '0', value: '0' });
+          aStress = 0;
+        } else aStress = actor.getRollData().stress + rollModifier + parseInt(actor.data.data.header.stress.mod);
+
         let modRoll = '1d6' + '+' + parseInt(aStress);
-        console.warn('rolling stress',modRoll);
+        console.warn('rolling stress', modRoll);
         const roll = new Roll(modRoll);
 
         const customResults = table.roll({ roll });
         let oldPanic = actor.data.data.general.panic.lastRoll;
 
         if (customResults.roll.total >= 7 && actor.data.data.general.panic.value === 0) {
-           alienrpgActor.causePanic(actor);
-
+          alienrpgActor.causePanic(actor);
         }
 
-        chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >' +  panicConditionTitleString(rollModifier)  + '</h2>';
+        chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >' + panicConditionTitleString(rollModifier) + '</h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
         let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
 
@@ -499,61 +486,43 @@ export class alienrpgActor extends Actor {
           chatMessage += `<h4><b>` + game.i18n.localize('ALIENRPG.PermanantTrauma') + `<i>(` + game.i18n.localize('ALIENRPG.Seepage106') + `) </i></h4></b>`;
         }
 
-      
         let rollMode = game.settings.get('core', 'rollMode');
         let whispertarget = [];
 
-        if (rollMode=='gmroll' || rollMode =='blindroll' ){
-           whispertarget = game.users.entities.filter((u) => u.isGM).map((u) => u._id);
-        }
-        else if (rollMode=='selfroll') {
-           whispertarget = game.users.entities.filter((u) => u.isGM).map((u) => u._id);
-           whispertarget.push(game.user._id);     
-        };
-        
-        let blind=false;  
-        if (rollMode=='blindroll'){
-              blind=true;
-              if (!game.user.isGM){
-                 function SelfMessage(content, sound){
-
-                    let selftarget = [];
-                    selftarget.push(game.user._id);
-                 
-                     ChatMessage.create({  speaker: { actor: actor.id },
-                              content,
-                              whisper:selftarget,
-                              type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-                              sound ,
-                              blind: false}
-                     );
-
-                 };
-
-                   SelfMessage( '<h2 style=" color: #f71403; font-weight: bold;" >' +
-                                        panicConditionTitleString(rollModifier)  +
-                                       " ???</h2>", CONFIG.sounds.dice);
-
-             }
+        if (rollMode == 'gmroll' || rollMode == 'blindroll') {
+          whispertarget = game.users.entities.filter((u) => u.isGM).map((u) => u._id);
+        } else if (rollMode == 'selfroll') {
+          whispertarget = game.users.entities.filter((u) => u.isGM).map((u) => u._id);
+          whispertarget.push(game.user._id);
         }
 
-     
-        ChatMessage.create({ 
+        let blind = false;
+        if (rollMode == 'blindroll') {
+          blind = true;
+          if (!game.user.isGM) {
+            function SelfMessage(content, sound) {
+              let selftarget = [];
+              selftarget.push(game.user._id);
+
+              ChatMessage.create({ speaker: { actor: actor.id }, content, whisper: selftarget, type: CONST.CHAT_MESSAGE_TYPES.OTHER, sound, blind: false });
+            }
+
+            SelfMessage('<h2 style=" color: #f71403; font-weight: bold;" >' + panicConditionTitleString(rollModifier) + ' ???</h2>', CONFIG.sounds.dice);
+          }
+        }
+
+        ChatMessage.create({
           speaker: {
             actor: actor.id,
           },
-          
-          content: chatMessage, 
+
+          content: chatMessage,
           whisper: whispertarget,
-          roll:customResults.roll,
+          roll: customResults.roll,
           type: CONST.CHAT_MESSAGE_TYPES.ROLL,
           sound: CONFIG.sounds.dice,
-          blind 
-          
-
-
+          blind,
         });
-
       }
     }
   }
@@ -564,6 +533,8 @@ export class alienrpgActor extends Actor {
     let reRoll = false;
     let template = 'systems/alienrpg/templates/dialog/roll-all-dialog.html';
     game.alienrpg.rollArr.sCount = 0;
+    game.alienrpg.rollArr.multiPush = 0;
+
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0) + parseInt(dataset.mod || 0);
       if (dataset.attr) {
@@ -710,8 +681,8 @@ export class alienrpgActor extends Actor {
           default: 'one',
           close: (html) => {
             if (confirmed) {
-                 let mod =  parseInt(html.find('[name=stressMod]')[0].value);
-                 actor.rollAbility(actor,{panicroll:dataset.panicroll,mod });
+              let mod = parseInt(html.find('[name=stressMod]')[0].value);
+              actor.rollAbility(actor, { panicroll: dataset.panicroll, mod });
             }
           },
         }).render(true);
@@ -765,8 +736,7 @@ export class alienrpgActor extends Actor {
     } else if (event.type === 'contextmenu') {
       newLevel = Math.clamped(level - 1, 0, max);
       if (field[0].name === 'data.general.panic.value') {
-          alienrpgActor.checkAndEndPanic(actor);
-
+        alienrpgActor.checkAndEndPanic(actor);
       }
     } // Update the field value and save the form
     field.val(newLevel);
