@@ -398,7 +398,7 @@ export class alienrpgActor extends Actor {
         reRoll = true;
         r2Data = 0;
       }
-      let hostile = actor.data.data.type;
+
       let blind = false;
       if (dataset.spbutt === 'armor' && r1Data < 1) {
         return;
@@ -408,11 +408,10 @@ export class alienrpgActor extends Actor {
         reRoll = true;
       }
       if (actor.data.token.disposition === -1) {
-        // hostile = true;
-        blind = true;
+          blind = true;
       }
      
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
+      yze.yzeRoll(actor.data.data.type, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
       game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
     } else {
       if (dataset.panicroll) {
