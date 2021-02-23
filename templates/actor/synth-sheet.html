@@ -13,8 +13,11 @@
             <button class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
           </div>
           <h3>{{ localize "ALIENRPG.Synthetic"}}</h3>
+          {{#if data.header.synthstress}}
         <h3 for="0" class="resource-label rollable" data-panicroll="0"data-mod="0">{{localize "ALIENRPG.NoStress"}}</h3>
-
+         {{else}}
+         <h3 for="0" class="resource-label " data-panicroll="0"data-mod="0">{{localize "ALIENRPG.NoStress"}}</h3>
+         {{/if}}
       {{!-- Attributes --}}
       <div class="abilities grid-Char-Att">
 
@@ -145,6 +148,11 @@
                    {{!-- <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.radiation.icon}}} --}}
                   {{!-- </span> --}}
                 {{!-- </div> --}}
+           
+                     <h3 >{{localize "ALIENRPG.SynthStress"}}</h3>
+                      <input name="data.header.synthstress" type="checkbox" {{checked data.header.synthstress}} />
+                 
+                  
               </div>
         
               <div class="Item8">

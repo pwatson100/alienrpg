@@ -372,9 +372,9 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         if (actor.data.token.disposition === -1) {
           blind = true;
         }
-        if (actor.data.type != 'creature') {
+        if (actor.data.type == 'character') {
           actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
-        }
+        } else return;
         const reRoll1 = game.alienrpg.rollArr.r1Dice - game.alienrpg.rollArr.r1Six;
         const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
         yze.yzeRoll(hostile, blind, reRoll, game.alienrpg.rollArr.tLabel, reRoll1, game.i18n.localize('ALIENRPG.Black'), reRoll2, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
