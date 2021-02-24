@@ -106,17 +106,17 @@ export class yze {
     chatMessage += '<h2 style="color:  #fff">' + rType + ' ' + label + ' </h2>';
     if (r1Dice >= 1) {
       // chatMessage += '<div>' + col1 + '  ' + r1Dice + ' Dice</div>';
-      if (sysVer < '0.7.3') {
-        yzeDRoll('r1Dice', r1Dice, 'r1Six', 'r1One');
-        data.formula = r1Dice + 'd6';
-      } else {
-        roll1 = `${r1Dice}` + 'db';
-        if (r2Dice <= 0) {
-          mr = new Roll(`${roll1}`).roll();
-          buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
-          // console.log('yze -> yzeRoll -> mr', mr);
-        }
+      // if (sysVer < '0.7.3') {
+      //   yzeDRoll('r1Dice', r1Dice, 'r1Six', 'r1One');
+      //   data.formula = r1Dice + 'd6';
+      // } else {
+      roll1 = `${r1Dice}` + 'db';
+      if (r2Dice <= 0) {
+        mr = new Roll(`${roll1}`).roll();
+        buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
+        // console.log('yze -> yzeRoll -> mr', mr);
       }
+      // }
     }
 
     // *******************************************************
@@ -125,23 +125,23 @@ export class yze {
 
     if (r2Dice >= 1) {
       // chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' Dice</div>';
-      if (sysVer < '0.7.3') {
-        yzeDRoll('r2Dice', r2Dice, 'r2Six', 'r2One');
-        data.formula = r1Dice + r2Dice + 'd6';
+      // if (sysVer < '0.7.3') {
+      //   yzeDRoll('r2Dice', r2Dice, 'r2Six', 'r2One');
+      //   data.formula = r1Dice + r2Dice + 'd6';
+      // } else {
+      let roll2 = `${r2Dice}` + 'ds';
+      let com;
+      if (hostile === 'supply') {
+        // // console.log('yze -> yzeRoll -> hostile', hostile);
+        com = `${roll2}`;
       } else {
-        let roll2 = `${r2Dice}` + 'ds';
-        let com;
-        if (hostile === 'supply') {
-          // // console.log('yze -> yzeRoll -> hostile', hostile);
-          com = `${roll2}`;
-        } else {
-          com = `${roll1}` + '+' + `${roll2}`;
-          // mr = '';
-        }
-        mr = new Roll(`${com}`).roll();
-        // // console.log('yze -> yzeRoll -> mr', mr);
-        buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Stress'));
+        com = `${roll1}` + '+' + `${roll2}`;
+        // mr = '';
       }
+      mr = new Roll(`${com}`).roll();
+      // // console.log('yze -> yzeRoll -> mr', mr);
+      buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Stress'));
+      // }
 
       // *******************************************************
       // Set reroll
@@ -221,128 +221,128 @@ export class yze {
     // *******************************************************
     // Only if Dice So Nice V2 is enabled.  For V3 weare using the chat hook.
     // *******************************************************
-    if (niceDice && !blind && sysVer < '0.7.3') {
-      game.dice3d.show(data, game.user, true, null, false).then((displayed) => {});
-    }
+    // if (niceDice && !blind && sysVer < '0.7.3') {
+    //   game.dice3d.show(data, game.user, true, null, false).then((displayed) => {});
+    // }
 
     // *******************************************************
     // For FVTT v0.6.6 and DsN v2 set the appropriate chat config
     // *******************************************************
 
-    if (sysVer < '0.7.3') {
-      if (!blind) {
-        ChatMessage.create({
-          user: game.user._id,
-          content: chatMessage,
-          other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
-          sound: CONFIG.sounds.dice,
-        });
-      } else {
-        ChatMessage.create({
-          user: game.user._id,
-          content: chatMessage,
-          whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
-          blind: true,
-        });
-      }
-    } else {
-      // *******************************************************
-      // For FVTT v0.7.x and DsN V3 set the appropriate chat config
-      // *******************************************************
+    // if (sysVer < '0.7.3') {
+    //   if (!blind) {
+    //     ChatMessage.create({
+    //       user: game.user._id,
+    //       content: chatMessage,
+    //       other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+    //       sound: CONFIG.sounds.dice,
+    //     });
+    //   } else {
+    //     ChatMessage.create({
+    //       user: game.user._id,
+    //       content: chatMessage,
+    //       whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+    //       blind: true,
+    //     });
+    //   }
+    // } else {
+    // *******************************************************
+    // For FVTT v0.7.x and DsN V3 set the appropriate chat config
+    // *******************************************************
 
-      if (!blind) {
-        ChatMessage.create({
-          user: game.user._id,
-          speaker: {
-            actor: actorid,
-          },
-          content: chatMessage,
-          other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
-          sound: CONFIG.sounds.dice,
-          type: CHAT_MESSAGE_TYPES.ROLL,
-          roll: mr,
-          rollMode: game.settings.get('core', 'rollMode'),
-        });
-      } else {
-        ChatMessage.create({
-          user: game.user._id,
-          speaker: {
-            actor: actorid,
-          },
-          content: chatMessage,
-          whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
-          blind: true,
-          type: CHAT_MESSAGE_TYPES.ROLL,
-          roll: mr,
-          rollMode: game.settings.get('core', 'rollMode'),
-        });
-      }
+    if (!blind) {
+      ChatMessage.create({
+        user: game.user._id,
+        speaker: {
+          actor: actorid,
+        },
+        content: chatMessage,
+        other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        sound: CONFIG.sounds.dice,
+        type: CHAT_MESSAGE_TYPES.ROLL,
+        roll: mr,
+        rollMode: game.settings.get('core', 'rollMode'),
+      });
+    } else {
+      ChatMessage.create({
+        user: game.user._id,
+        speaker: {
+          actor: actorid,
+        },
+        content: chatMessage,
+        whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        blind: true,
+        type: CHAT_MESSAGE_TYPES.ROLL,
+        roll: mr,
+        rollMode: game.settings.get('core', 'rollMode'),
+      });
     }
+    // }
 
     // *******************************************************
     // Function to roll dice using the DsN v2 method and data structure
     // *******************************************************
-    function yzeDRoll(sLot, numDie, yzeR6, yzeR1) {
-      let i;
-      let numbers = [];
-      let mArr = {};
-      if (sysVer < '0.7.3') {
-        // Foundry v0.6.6 code
-        let die = new Die(6);
-        die.roll(numDie);
-        game.alienrpg.rollArr[sLot] = numDie;
-        die.results.forEach((el) => {
-          data.results.push(el);
-        });
+    // function yzeDRoll(sLot, numDie, yzeR6, yzeR1) {
+    //   let i;
+    //   let numbers = [];
+    //   let mArr = {};
+    //   if (sysVer < '0.7.3') {
+    //     // Foundry v0.6.6 code
+    //     let die = new Die(6);
+    //     die.roll(numDie);
+    //     game.alienrpg.rollArr[sLot] = numDie;
+    //     die.results.forEach((el) => {
+    //       data.results.push(el);
+    //     });
 
-        game.alienrpg.rollArr.tLabel = label;
-        die.countSuccess(6, '=');
-        game.alienrpg.rollArr[yzeR6] = die.total;
-        die.countSuccess(1, '=');
-        game.alienrpg.rollArr[yzeR1] = die.total;
+    //     game.alienrpg.rollArr.tLabel = label;
+    //     die.countSuccess(6, '=');
+    //     game.alienrpg.rollArr[yzeR6] = die.total;
+    //     die.countSuccess(1, '=');
+    //     game.alienrpg.rollArr[yzeR1] = die.total;
 
-        let numOf6s = game.alienrpg.rollArr[yzeR6];
-        let numOf1s = game.alienrpg.rollArr[yzeR1];
+    //     let numOf6s = game.alienrpg.rollArr[yzeR6];
+    //     let numOf1s = game.alienrpg.rollArr[yzeR1];
 
-        if (sLot === 'r1Dice') {
-          chatMessage += '<div>' + col1 + '  ' + r1Dice + ' Dice</div>';
-          chatMessage += '<span style="color: green ">  Sixes: </span>';
-          chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
-          chatMessage += '<div>';
+    //     if (sLot === 'r1Dice') {
+    //       chatMessage += '<div>' + col1 + '  ' + r1Dice + ' Dice</div>';
+    //       chatMessage += '<span style="color: green ">  Sixes: </span>';
+    //       chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
+    //       chatMessage += '<div>';
 
-          // added by Steph (for loop, and moved div close)
-          for (var _d = 0; _d < numDie; _d++) {
-            if (numOf6s > 0) {
-              chatMessage += "<span class='alien-diceface-b6'></span>";
-              numOf6s--;
-            } else {
-              chatMessage += "<span class='alien-diceface-b0'></span>";
-            }
-          }
-          chatMessage += '</div>';
-        } else {
-          chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' Dice</div>';
-          chatMessage += '<span style="color: red">Ones: </span>';
-          chatMessage += `<span>${game.alienrpg.rollArr[yzeR1]}</span>`;
-          chatMessage += '<span style="color: green">  Sixes: </span>';
-          chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
-          chatMessage += '<div>';
+    //       // added by Steph (for loop, and moved div close)
+    //       for (var _d = 0; _d < numDie; _d++) {
+    //         if (numOf6s > 0) {
+    //           chatMessage += "<span class='alien-diceface-b6'></span>";
+    //           numOf6s--;
+    //         } else {
+    //           chatMessage += "<span class='alien-diceface-b0'></span>";
+    //         }
+    //       }
+    //       chatMessage += '</div>';
+    //     } else {
+    //       chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' Dice</div>';
+    //       chatMessage += '<span style="color: red">Ones: </span>';
+    //       chatMessage += `<span>${game.alienrpg.rollArr[yzeR1]}</span>`;
+    //       chatMessage += '<span style="color: green">  Sixes: </span>';
+    //       chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
+    //       chatMessage += '<div>';
 
-          // added by Steph (for loops, and moved div close)
-          for (var _d = 0; _d < numOf6s; _d++) {
-            chatMessage += "<span class='alien-diceface-y6'></span>";
-          }
-          for (var _d = 0; _d < numOf1s; _d++) {
-            chatMessage += "<span class='alien-diceface-y1'></span>";
-          }
-          let _theRest = numDie - (numOf6s + numOf1s);
-          for (var _d = 0; _d < _theRest; _d++) {
-            chatMessage += "<span class='alien-diceface-y0'></span>";
-          }
-          chatMessage += '</div>';
-        }
-      }
-    }
+    //       // added by Steph (for loops, and moved div close)
+    //       for (var _d = 0; _d < numOf6s; _d++) {
+    //         chatMessage += "<span class='alien-diceface-y6'></span>";
+    //       }
+    //       for (var _d = 0; _d < numOf1s; _d++) {
+    //         chatMessage += "<span class='alien-diceface-y1'></span>";
+    //       }
+    //       let _theRest = numDie - (numOf6s + numOf1s);
+    //       for (var _d = 0; _d < _theRest; _d++) {
+    //         chatMessage += "<span class='alien-diceface-y0'></span>";
+    //       }
+    //       chatMessage += '</div>';
+    //     }
+    //   }
+    // }
 
     // *******************************************************
     // Function to build chat and dice for DsN V3

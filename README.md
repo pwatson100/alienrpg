@@ -1,70 +1,43 @@
-[![foundry-shield-066]][foundry-url] [![foundry-shield-079]][foundry-url] [![All Release Downloads](https://img.shields.io/github/downloads/pwatson100/alienrpg/total.svg)]()
+<h1>Alien RPG System</h1>
+Official system for playing the ENNIE award winning Alien RPG by Free League on Foundry VTT. <br /><br />
+Free League have now officially endorsed the system and we have been working to provide official content to enhance the system (see below).
+<br />
+Created by Paul Watson
+<br /><br />
+See the Journal Entry "MO/TH/ER Instructions" for an overview on how to use the system and it's features.
+<br /><br />
+The core system provides support for:
+<ul>
+  <li>Character and Synthetic sheets.</li>
+  <ul>
+    <li>Including the ability to drag and drop Items, Talents, Agendas and Story Cards.</li>
+    <li>Integrated consumables roll mechanics.</li>
+    <li>Stress rolls from the character sheet.</li>
+  </ul>
 
-# Alien RPG System
+  <li>Creature sheets.</li>
+  <ul>
+    <li>Dropdown to allow the GM to select from a list of rolltalbes for attacks.</li>
+  </ul>
 
-An UNOFFICIAL system for playing Alien RPG on Foundry VTT.
+  <li>Territories and Vehicle sheets.</li>
 
-This system only provides support for character, creature, items, system, talent and character sheets.
+  <li>Items:</li>
+  <ul>
+    <li>Item - General equipment</li>
+    <li>Weapon - Personal and Vehicle weapons</li>
+    <li>Armor - Personal armor</li>
+    <li>Talent - Talents for use within the system</li>
+    <li>Planet-System - Details of planetary systems</li>
+    <li>Agenda - PC Agenda and Story cards</li>
+  </ul>
 
-There is no game content or images in this system.
+  <li>Customisable Fonts and text colours.</li>
+  <li>2 sets of custom Alien RPG 3D dice are integrated if using the "Dice So Nice" module.</li>
+</ul>
 
-Should you wish to populate the system with game content for your own use please purchase the rules from Free League Publishing: https://frialigan.se/en/games/alien/
+Should you wish to populate the system with game content for your own use please purchase the rules from Free League Publishing: <a href="https://frialigan.se/en/games/alien/">Free League - Alien RPG</a> or better still purchase the Starter Set or Core Rules modules. <br /><br />
 
-My intention is to enable people to play Alien RPG remotely and not to create a fully enabled/automated system. Mother will still need to do some work.  
-Please do not ask me to provide content. Buy the system from Free League !
+My intention is to enable people to play Alien RPG remotely and not to create a fully enabled/automated system. MO/TH/ER will still need to do some work. <br /><br /> <b>Official Modules:</b><br /> Save the effort of inputting all the data from the books by purchasing the official modules from Free League: <br />
 
-See the Journal Entry "Mother Instructions" for an overview on how the sheets work.
-
-### System Version
-
-This is community created game system to run Alien RPG games on virtual table top platforms.
-
-Please Note:
-
-- If you find any issues or have any feedback please let me know.
-- I have added limited language support for Swedish and German.
-
-### VTT Support:
-
-Tested with the following virtual table top platforms:
-
-- Foundry VTT v0.6.6 & v0.7.5.
-
-### Note: Dice so Nice is no longer required for this system but it fully supports DsN and is recommended:
-
-- Foundry VTT Dice So nice https://gitlab.com/riccisi/foundryvtt-dice-so-nice.
-
-### Shoutouts
-
-A huge thanks to:
-
-- @Mikasaz#3063 for his help and support in developing and testing the system.
-- @shteff#8724 for the improved dice chat and macros.
-- @asacolips#1867 for creating a great base system to kickstart new developments.
-- @NickEast#1131 for his development guides and base system.
-- @hooking [UTC+12]#0492 for his excellent PF2e which has provided many insights into how to build systems.
-- Carter#2703 and Isma#1088 for thir help with French language support.
-- And all the devs on Discord who know more than me for their various contributions.
-
-### Feedback
-
-If you have any suggestions or feedback, please contact me on discord (Paul Watson#0965)
-
-### Licenses
-
-Project Licensing:
-
-- All HTML, CSS and Javascript in this project is licensed under the Apache License v2.
-
-### Content Usage and Licensing:
-
-Please get yourself a copy of Alien RPG by Free League. It's a fantaistic system with endless possibilities.  
-Support our game creators and publishers.
-
-### Virtual Table Top Platform Licenses:
-
-- Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
-
-[foundry-shield-066]: https://img.shields.io/badge/Foundry-v0.6.6-informational
-[foundry-shield-079]: https://img.shields.io/badge/Foundry-v0.7.9-informational
-[foundry-url]: https://foundryvtt.com/
+<a href="https://foundryvtt.com/packages/alienrpg-starterset/">Alien RPG Starter Set</a> <br /> <a href="https://foundryvtt.com/packages/alienrpg-corerules/">Alien RPG Core Rule Book</a> <br /> <a href="https://foundryvtt.com/packages/alienrpg-destroyerofworlds/">Destroyer of Worlds Scenario</a><br /> <br /><br />

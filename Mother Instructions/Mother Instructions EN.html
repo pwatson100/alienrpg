@@ -118,8 +118,8 @@
   At the top of the tab is the Encumbrance meter. This shows the "Total Carried / Maximum Encumbrance" where Maximum Encumbrance is Str *4. The two arrows on the Encumbrance show the point at which
   the PC should be taking penalties for being over encumbered.
   <br />
-  &nbsp;<span class="enc">&nbsp;</span>&nbsp; 
-  <br>
+  &nbsp;<span class="enc">&nbsp;</span>&nbsp;
+  <br />
   When the carried items exceed this point the bar will turn red and flash.
   <br />
   &nbsp;<span class="enc-warn">&nbsp;</span>&nbsp; <br />
@@ -139,7 +139,7 @@
   <br /><br />
   Some items have inline edit boxes (3) which enable you to edit some quantities (Rounds, Food, Water, Air) without the need to open the item.
   <br /><br />
-  <b>NOTE:</b>  As Items can be dropped on to the macro bar (though only Weapons will trigger a roll). When using inline edit click on the number in the box, delete or backspace then enter the new
+  <b>NOTE:</b> As Items can be dropped on to the macro bar (though only Weapons will trigger a roll). When using inline edit click on the number in the box, delete or backspace then enter the new
   number. Trying to highlight the number to edit will drag the entire item.
 
   <br /><br />
@@ -316,8 +316,8 @@
   Skill-Stunt items contain a rich text field that can be populated with the Stunt data from the rulebook for each of the skills.
   <br /><br />
   If any of the official modules (Starter Set or Core Rules) are installed, the text in these items will be ignored but the items should not be deleted or the system will malfunction.
- <br><br>
- 
+  <br /><br />
+
   <h1 class="headng"><span>Tokens</span></h1>
 
   When a Character actor is dragged onto a Scene the token will show resource bars for Stress and Health when the cursor is hovered over the token:
@@ -349,10 +349,29 @@
   For Armor rolls the player just clicks on "Armor" and the appropriate number of dice are rolled with the result appearing in the character window. As before, the value depends on the equipped armor
   on the Inventory tab. Any reduction in armor value needs to be done in the detailed entry there.
   <br /><br />
+  <h2 class="headng2"><span>PUSHing Rolls</span></h2>
+
   Rolls can be pushed for "Human" PCs by clicking on the Push icon in the chat window. If the initial roll includes a Facehugger (1), the "Push" button will not be displayed. When a roll is pushed,
   the PC's Stress level will automatically be increased by 1. <br /><br />
   On a Pushed roll the second chat message will show the total successes for both rolls.
   <br /><br />
+  Some Talents enable PCs to push a roll twice. As these are situational (+2 Wits when doing X) they are very hard to code into the system. <br />
+  To allow players to make multiple PUSHes there is a check box in the chat window "Allow multi-push". <br />
+  When the situation complies with the Talent criteria the player checks the box, <b>before pushing the roll</b>, they then PUSH as normal and a Stress point is added to their sheet.
+  <br />
+  &nbsp;<span class="mpush1">&nbsp;</span>&nbsp; &nbsp; <br /><br />
+  <br />
+  The results of the PUSH will display along with the total to that point and a second PUSH button will show (as long as there are no Facehuggers).
+  <br />
+  &nbsp;<span class="mpush2">&nbsp;</span>&nbsp; &nbsp; <br /><br />
+  <br />
+  If the results of the second push are sufficient they just inform the GM of the result and continue playing using those results.
+  <br /><br />
+  If there are still not enough successes to complete the task the player can push the roll a second time and an additional Stress point is added to the sheet.
+  <br />
+  &nbsp;<span class="mpush3">&nbsp;</span>&nbsp; &nbsp; <br /><br />
+  <br />
+  Once again the total number of successes will be displayed for all three rolls. <br /><br />
   <h2 class="headng2"><span>Creatures</span></h2>
   For Mobility, Armor, Armor Vs Fire and Observation rolls, a Left mouse click will roll the value and Right mouse click will display a modifier box allowing additional dice to be added or subtracted
   as necessary. As some creatures have a different armor stat against fire damage this is shown as a separate field.
@@ -383,8 +402,11 @@
 
   <br />
   &nbsp;<span class="initiative-roll">&nbsp;</span>&nbsp; <br /><br />
-  By right clicking on an actor in the combat tracker you will see "Clone Actor" option appear. This will create a clone of the selected actor to allow the GM to give a Creature multiple initiative
-  rolls. An actors initiative can be manually adjusted by selecting "Update Actor".
+  When adding Creatures if their speed is greater than 1, clones will automatically be created equal to their speed. <br />
+  If not required the GM can remove them by using the context menu.
+  <br /><br />
+  You can manually clone NPCs/Creatures by right clicking on an actor in the combat tracker you will see "Clone Actor" option appear. This will create a clone of the selected actor to allow the GM to
+  give a Creature multiple initiative rolls. An actors initiative can be manually adjusted by selecting "Update Actor".
   <br /><br />
   &nbsp;<span class="clone-actor">&nbsp;</span>&nbsp; &nbsp;<span class="roll-clone">&nbsp;</span>&nbsp;
   <br />
