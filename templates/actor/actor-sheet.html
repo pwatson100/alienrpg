@@ -8,15 +8,15 @@
         {{!-- Health and Stress --}}
           <h2 for="data.health.value" class="resource-label">{{ localize "ALIENRPG.Health"}}</h2>
           <div class="resource-content">
-            <button class="minus-btn" data-pmbut="minusHealth"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
+            <button type="button" class="minus-btn" data-pmbut="minusHealth"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
             <input type="text" class="maxboxsize" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
-            <button class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
+            <button type="button" class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
           </div>
           <h2 for="data.header.stress.value" class="resource-label rollable" data-panicroll="{{data.header.stress.value}}"data-mod="{{data.header.stress.mod}}" data-label="{{localize "ALIENRPG.Stress"}}">{{localize "ALIENRPG.Stress"}}</h2>
           <div class="resource-content">
-            <button class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
+            <button type="button" class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
             <input type="text" class="maxboxsize" name="data.header.stress.value" value="{{data.header.stress.value}}" data-dtype="Number" />
-            <button class="plus-btn" data-pmbut="plusStress"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
+            <button type="button" class="plus-btn" data-pmbut="plusStress"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
       </div>
       {{!-- Attributes --}}
       <div class="abilities grid-Char-Att">
@@ -67,7 +67,7 @@
             <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}"  data-label="{{skill.label}}">{{skill.label}}  ({{skill.ability}})</h3>
             <input type="text" class="maxboxsize Attr2" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
             <div class="resource-content">
-              <button class="stunt-btn Attr3" data-pmbut="{{skill.description}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>
+              <button type="button" class="stunt-btn Attr3" data-pmbut="{{skill.description}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>
             </div>
           </span>
           {{/each}}
@@ -192,25 +192,25 @@
                   <h3 class="Air1 resource-label">{{localize "ALIENRPG.Air"}}</h3>
                     <div class="resource-content">
                       <input type="text" class="maxboxsize" name="data.consumables.air.value" value="{{data.consumables.air.value}}" data-dtype="Number" />
-                      <button class="supply-btn Air2" data-spbutt="Air"  ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
+                      <button type="button" class="supply-btn Air2" data-spbutt="Air"  ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
                     
                   <h3 class="Food1 resource-label">{{localize "ALIENRPG.Food"}}</h3>
                     <div class="resource-content">
                       <input type="text" class="maxboxsize" name="data.consumables.food.value" value="{{data.consumables.food.value}}" data-dtype="Number" />
-                      <button class="supply-btn Food2" data-spbutt="Food" ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
+                      <button type="button" class="supply-btn Food2" data-spbutt="Food" ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
                     
                     <h3 class="Power1 resource-label">{{localize "ALIENRPG.Power"}}</h3>
                     <div class="resource-content">
                       <input type="text" class="maxboxsize" name="data.consumables.power.value" value="{{data.consumables.power.value}}" data-dtype="Number" />
-                      <button class="supply-btn Power2" data-spbutt="Power"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
+                      <button type="button" class="supply-btn Power2" data-spbutt="Power"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
                     
                     <h3 class="Water1 resource-label">{{localize "ALIENRPG.Water"}}</h3>
                     <div class="resource-content">
                       <input type="text" class="maxboxsize" name="data.consumables.water.value" value="{{data.consumables.water.value}}" data-dtype="Number" />
-                      <button class="supply-btn Water2" data-spbutt="Water"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
+                      <button type="button" class="supply-btn Water2" data-spbutt="Water"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
                     
                     
