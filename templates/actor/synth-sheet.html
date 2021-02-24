@@ -174,6 +174,13 @@
                     
                </div>
 
+              <hr class="Item9">
+               <span class="grid-2col-border">
+                 <label class="   resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}  </label>
+                 <input type="text" class="maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number">
+              </span>
+              
+              
                 </div>
                 
                 <!-- Col 2 -->
@@ -208,32 +215,34 @@
         
         <div class="Item5">
           <label class="resource-label">{{ localize "ALIENRPG.PersonalAgenda"}}</label> 
-          <textarea name="data.general.agenda.value" rows="2"data-dtype="String">{{data.general.agenda.value}}</textarea>
+          <textarea name="data.general.agenda.value" rows="6"data-dtype="String">{{data.general.agenda.value}}</textarea>
         </div>
         
-        <div class="Item3">
+        <div class="Item6">
           <label class="resource-label">{{ localize "ALIENRPG.Relationships"}}</label> 
           <br>
           <label class="resource-label" style="font-size: smaller;">{{ localize "ALIENRPG.relOne"}}</label>
-          <textarea name="data.general.relOne.value" rows="1"data-dtype="String">{{data.general.relOne.value}}</textarea>
+          <input type="text" class="textbox" name="data.general.relOne.value"
+              value="{{data.general.relOne.value}}"
+              rows="1"data-dtype="String"></input>
+       
+          <label class="resource-label" style="font-size: smaller;">{{ localize "ALIENRPG.relTwo"}}</label>
+          <input type="text" class="textbox"  name="data.general.relTwo.value"
+              value="{{data.general.relTwo.value}}"
+              rows="1"data-dtype="String"></input>
         </div>
         
         <div class="Item7">
-          <label class="resource-label" style="font-size: smaller;">{{ localize "ALIENRPG.relTwo"}}</label>
-          <textarea name="data.general.relTwo.value" rows="1"data-dtype="String">{{data.general.relTwo.value}}</textarea>
-        </div>
-        
-        <div class="Item10">
           <label class="resource-label">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
           <textarea name="data.general.critInj.value" rows="2"data-dtype="String">{{data.general.critInj.value}}</textarea>
         </div>
         
-        <div class="Item11">
+     <!--    <div class="Item11">
           <span class="grid-2col">
           <label class="resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}  </label>
         <input type="text" class=" maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number">
       </span>
-      </div>
+      </div> -->
     </div>
 </div>
     </section>
