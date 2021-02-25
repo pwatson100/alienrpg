@@ -135,8 +135,23 @@ export class yze {
         // // console.log('yze -> yzeRoll -> hostile', hostile);
         com = `${roll2}`;
       } else {
+<<<<<<< HEAD
         com = `${roll1}` + '+' + `${roll2}`;
         // mr = '';
+=======
+        let roll2 = `${r2Dice}` + 'ds';
+        let com;
+        if (hostile === 'supply') {
+          // // console.log('yze -> yzeRoll -> hostile', hostile);
+          com = `${roll2}`;
+        } else {
+          com = `${roll1}` + '+' + `${roll2}`;
+          // mr = '';
+        }
+        mr = new Roll(`${com}`).roll();
+        // // console.log('yze -> yzeRoll -> mr', mr);
+        buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Stress'));
+>>>>>>> parent of b21da48 (Merge pull request #43 from David-Zvekic/master)
       }
       mr = new Roll(`${com}`).roll();
       // // console.log('yze -> yzeRoll -> mr', mr);
