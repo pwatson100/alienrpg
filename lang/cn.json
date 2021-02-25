@@ -243,6 +243,5 @@
   "ALIENRPG.CombatantUpdate": "更新演员",
   "ALIENRPG.CombatantReroll": "重新启动计划",
   "ALIENRPG.CombatantRemove": "删除演员",
-  "ALIENRPG.MultiPush": "允许多次推送",
-  "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button"
+  "ALIENRPG.MultiPush": "允许多次推送"
 }
