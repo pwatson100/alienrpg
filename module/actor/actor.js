@@ -378,14 +378,14 @@ export class alienrpgActor extends Actor {
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
 
-    let modifier=parseInt(dataset?.mod??0);
+    let modifier=parseInt(dataset?.mod??0) +parseInt(dataset?.modifier??0);
     let stressMod=parseInt(dataset?.stressMod??0);
      
     // the dataset value is returned to the DOM so it should be set to 0 in case a future roll is made without the
     // modifier dialog.
       
-    dataset.mod=0;
-    dataset.stressMod=0;
+      dataset.modifier=0;
+      dataset.stressMod=0;
       
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0) + parseInt(modifier);
@@ -575,15 +575,15 @@ export class alienrpgActor extends Actor {
                        default: 'one',
                        close: (html) => {
                          if (confirmed) {
-                           let mod = parseInt(html.find('[name=modifier]')[0]?.value);
+                           let modifier = parseInt(html.find('[name=modifier]')[0]?.value);
                            let stressMod = html.find('[name=stressMod]')[0]?.value;
                            
                             if (stressMod == 'undefined') {stressMod=0;} else stressMod=parseInt(stressMod);
-                            if (mod == 'undefined') {mod=0;} else mod=parseInt(mod);
-                            if (isNaN(mod)) mod = 0;
+                            if (modifier == 'undefined') {modifier=0;} else modifier=parseInt(modifier);
+                            if (isNaN(modifier)) modifier = 0;
                             if (isNaN(stressMod)) stressMod=0;
                                 
-                            dataset.mod = mod;
+                            dataset.modifier = modifier;
                             dataset.stressMod = stressMod;
                             actor.rollAbility(actor, dataset);
                          }
