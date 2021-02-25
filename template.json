@@ -212,8 +212,7 @@
           "label": "Health",
           "max": 0
         },
-        "npc": false,
-        "synthstress":false
+        "npc": false
       },
       "attributes": {
         "str": {

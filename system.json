@@ -61,11 +61,6 @@
       "path": "lang/cn.json"
     },
     {
-      "lang": "zh-tw",
-      "name": "正體中文",
-      "path": "lang/zh-tw.json"
-    },
-    {
       "lang": "de",
       "name": "Deutsche",
       "path": "lang/de.json"
