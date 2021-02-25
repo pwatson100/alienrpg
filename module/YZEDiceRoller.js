@@ -3,7 +3,7 @@ export class yze {
    * YZEDice RollFunction.
    * Param for number of dice to roll for each die type/rolls
    * @param {Text} actor - Passed actor data
-   * @param {Text} hostile - Passed actor type
+   * @param {Text} actortype - Passed actor type
    * @param {Boolean} blind - True or False
    * @param {Boolean} reRoll - True or False
    * @param {Text} label - The skill/item being rolled against
@@ -24,11 +24,11 @@ export class yze {
    * let r1Data = parseInt(dataset.roll || 0);
    * let r2Data = this.actor.getRollData().stress;
    * let reRoll = false;
-   * yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
+   * yze.yzeRoll(actortype, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
    */
-  static async yzeRoll(hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid) {
-    // console.log('yze -> yzeRoll -> hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2', hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
+  static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid) {
+    // console.log('yze -> yzeRoll -> actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2', actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
 
     // *******************************************************
     // Store the version number of FVTT
@@ -64,7 +64,7 @@ export class yze {
     // *******************************************************
     let rType = '';
     // if (reRoll && (hostile === true) === 'character') {
-    if ((reRoll && hostile === 'character') || reRoll === 'mPush') {
+    if ((reRoll && actortype === 'character') || reRoll === 'mPush') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
       rType = game.i18n.localize('ALIENRPG.Rolling');
@@ -131,8 +131,8 @@ export class yze {
       } else {
         let roll2 = `${r2Dice}` + 'ds';
         let com;
-        if (hostile === 'supply') {
-          // // console.log('yze -> yzeRoll -> hostile', hostile);
+        if (actortype === 'supply') {
+          // // console.log('yze -> yzeRoll -> actortype', actortype);
           com = `${roll2}`;
         } else {
           com = `${roll1}` + '+' + `${roll2}`;
@@ -154,7 +154,7 @@ export class yze {
       // *******************************************************
       // Display message if there is a 1> on the stress dice.  Display appropriate message if its a Supply roll.
       // *******************************************************
-      if (hostile != 'supply') {
+      if (actortype != 'supply') {
         if (game.alienrpg.rollArr.r2One >= 1) {
           chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.rollStress') + '</div>';
         }
@@ -180,7 +180,7 @@ export class yze {
       else return sTotal + ' ' + game.i18n.localize('ALIENRPG.sucesses');
     }
 
-    if (hostile != 'supply') {
+    if (actortype != 'supply') {
       chatMessage +=
         '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
         game.i18n.localize('ALIENRPG.youHave') +
@@ -192,7 +192,7 @@ export class yze {
     // *******************************************************
     //  If it's a Push roll and display the total for both rolls.
     // *******************************************************
-    if (reRoll && hostile === 'character') {
+    if (reRoll && actortype === 'character') {
       chatMessage +=
         '<hr>' +
         '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
@@ -203,7 +203,7 @@ export class yze {
         localizedCountOfSuccesses(oldRoll + game.alienrpg.rollArr.multiPush + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six) +
         ' </div>';
       game.alienrpg.rollArr.multiPush = oldRoll;
-      console.log('spud');
+     // console.log('spud');
     }
 
     // *******************************************************
@@ -386,7 +386,7 @@ export class yze {
         }
         chatMessage += '</div>';
       } else {
-        if (hostile != 'supply') {
+        if (actortype != 'supply') {
           for (let index = 0; index < mr.terms[0].results.length; index++) {
             let spanner = flattenObj(mr.terms[0].results[index]);
             numbers.push(spanner.result);
@@ -414,7 +414,7 @@ export class yze {
           }
           chatMessage += '</div>';
         }
-        if (hostile === 'supply') {
+        if (actortype === 'supply') {
           for (let index = 0; index < mr.terms[0].results.length; index++) {
             let spanner = flattenObj(mr.terms[0].results[index]);
             numbers.push(spanner.result);
