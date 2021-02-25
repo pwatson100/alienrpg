@@ -213,7 +213,7 @@
           "max": 0
         },
         "npc": false,
-        "synthstress":false
+        "synthstress": false
       },
       "attributes": {
         "str": {
