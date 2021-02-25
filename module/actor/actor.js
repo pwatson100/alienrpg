@@ -374,6 +374,7 @@ export class alienrpgActor extends Actor {
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
+    let effectiveActorType = actor.data.type ;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
 
@@ -391,14 +392,21 @@ export class alienrpgActor extends Actor {
       if (dataset.attr) {
         r1Data = parseInt(modifier);
       }
+        
+      reRoll = true;
+      r2Data = 0;
+        
       if (actor.data.type === 'character') {
         reRoll = false;
-        r2Data = actor.getRollData().stress + parseInt(stressMod );;
-      } else {
-        reRoll = true;
-        r2Data = 0;
+        r2Data = actor.getRollData().stress + parseInt(stressMod );
+      } else
+      if (actor.data.type === 'synthetic') {
+          if (actor.data.data.header.synthstress){
+            effectiveActorType='character'; // make rolls look human
+            reRoll = false;
+          }
       }
-      let hostile = actor.data.data.type;
+
       let blind = false;
       if (dataset.spbutt === 'armor' && r1Data < 1) {
         return;
@@ -408,11 +416,10 @@ export class alienrpgActor extends Actor {
         reRoll = true;
       }
       if (actor.data.token.disposition === -1) {
-        // hostile = true;
-        blind = true;
+          blind = true;
       }
      
-      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
+      yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
       game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
     } else {
       if (dataset.panicroll) {
@@ -437,6 +444,8 @@ export class alienrpgActor extends Actor {
         let aStress = 0;
 
         if (actor.data.type === 'synthetic') {
+            if (!actor.data.data.header.synthstress) return;
+            
           actor.data.data.header.stress = new Object({ mod: '0' });
           actor.data.data.general.panic = new Object({ lastRoll: '0', value: '0' });
           aStress = 0;
