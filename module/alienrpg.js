@@ -36,37 +36,37 @@ Hooks.on('canvasInit', function () {
   SquareGrid.prototype.measureDistances = euclidianDistances;
 });
 
-Hooks.on('createCombatant',(combat,combatant , options, someID)=>{
-      // right now this code assumes only tokens from the canvas can be added to combat
-      let token = canvas.tokens.placeables.find(i=>i.data._id==combatant.tokenId);
-      if (token == null) return; // should probably trow an exception message instead.
-      
-      if(token.inCombat==false){
-        // not yet in combat so we should create extra combatants for each point of speed > 1.
-      
-        let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
-        if (ACTOR==null) ACTOR= Actor.createTokenActor(token.actor,token);
-      
-        // only creatures have speed right now.  Probably a getter method should be created like
-        // Actor.combatSpeed() to create a unified API to get the speed regardless of underlying
-        // actor type
-      
-        if (ACTOR.data.type != 'creature') return;
-        if ((ACTOR.data.data.attributes?.speed?.value) >1){
-          const tokens = [];
-          var x;
-          for(x = 1;x< ACTOR.data.data.attributes.speed.value;x++){
-            tokens.push(token);
-          }
-          // Add extra tokens to the Combat encounter for the actors heightened speed
-          const createData = tokens.map(t => {return {tokenId: t.id, hidden: t.data.hidden}});
-          combat.createEmbeddedEntity("Combatant", createData);
-        }
+Hooks.on('createCombatant', (combat, combatant, options, someID) => {
+  // right now this code assumes only tokens from the canvas can be added to combat
+  let token = canvas.tokens.placeables.find((i) => i.data._id == combatant.tokenId);
+  if (token == null) return; // should probably trow an exception message instead.
+
+  if (token.inCombat == false) {
+    // not yet in combat so we should create extra combatants for each point of speed > 1.
+
+    let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
+    if (ACTOR == null) ACTOR = Actor.createTokenActor(token.actor, token);
+
+    // only creatures have speed right now.  Probably a getter method should be created like
+    // Actor.combatSpeed() to create a unified API to get the speed regardless of underlying
+    // actor type
+
+    if (ACTOR.data.type != 'creature') return;
+    if (ACTOR.data.data.attributes?.speed?.value > 1) {
+      const tokens = [];
+      var x;
+      for (x = 1; x < ACTOR.data.data.attributes.speed.value; x++) {
+        tokens.push(token);
       }
+      // Add extra tokens to the Combat encounter for the actors heightened speed
+      const createData = tokens.map((t) => {
+        return { tokenId: t.id, hidden: t.data.hidden };
+      });
+      combat.createEmbeddedEntity('Combatant', createData);
+    }
+  }
 });
-                     
-                     
-                     
+
 Hooks.once('init', async function () {
   console.warn(`Initializing Alien RPG`);
   game.alienrpg = {
@@ -372,9 +372,9 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         if (actor.data.token.disposition === -1) {
           blind = true;
         }
-        if (actor.data.type != 'creature') {
+        if (actor.data.type == 'character') {
           actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
-        }
+        } else return;
         const reRoll1 = game.alienrpg.rollArr.r1Dice - game.alienrpg.rollArr.r1Six;
         const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
         yze.yzeRoll(hostile, blind, reRoll, game.alienrpg.rollArr.tLabel, reRoll1, game.i18n.localize('ALIENRPG.Black'), reRoll2, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
