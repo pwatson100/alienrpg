@@ -1,4 +1,6 @@
 import { yze } from '../YZEDiceRoller.js';
+import {addSign} from '../utils.js';
+
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
@@ -431,16 +433,6 @@ export class alienrpgActor extends Actor {
 
         let rollModifier = parseInt(modifier) + parseInt(stressMod) ;
           
-        function panicConditionTitleString(rollModifier) {
-          let title = game.i18n.localize('ALIENRPG.PanicCondition');
-          if (rollModifier > 0) {
-            title = title + '+' + rollModifier.toString();
-          } else if (rollModifier < 0) {
-            title = title + rollModifier.toString();
-          }
-          return title;
-        }
-
         let aStress = 0;
 
         if (actor.data.type === 'synthetic') {
@@ -462,7 +454,7 @@ export class alienrpgActor extends Actor {
           alienrpgActor.causePanic(actor);
         }
 
-        chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >' + panicConditionTitleString(rollModifier) + '</h2>';
+        chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(rollModifier).toString() + '</h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
         let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
 
@@ -528,7 +520,7 @@ export class alienrpgActor extends Actor {
               ChatMessage.create({ speaker: { actor: actor.id }, content, whisper: selftarget, type: CONST.CHAT_MESSAGE_TYPES.OTHER, sound, blind: false });
             }
 
-            SelfMessage('<h2 style=" color: #f71403; font-weight: bold;" >' + panicConditionTitleString(rollModifier) + ' ???</h2>', CONFIG.sounds.dice);
+            SelfMessage('<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(rollModifier).toString() + ' ???</h2>', CONFIG.sounds.dice);
           }
         }
 
