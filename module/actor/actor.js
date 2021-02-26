@@ -804,7 +804,7 @@ export class alienrpgActor extends Actor {
       },
 	  roll:customResults.roll,
       content: chatMessage,
-      whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+     // whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
       type: CONST.CHAT_MESSAGE_TYPES.ROLL,
     });
   }
