@@ -30,6 +30,7 @@ export class alienrpgItem extends Item {
     const actorData = this.actor ? this.actor.data.data : {};
     const actorid = this.actor.id;
     const itemData = item.data;
+    const itemid = item._id;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
 
@@ -86,12 +87,12 @@ export class alienrpgItem extends Item {
                 if (item.data.header.type.value === '1') {
                   let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
                   r2Data = r2Data + stressMod;
-                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid);
+                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                 } else if (item.data.header.type.value === '2') {
                   let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
                   r2Data = r2Data + stressMod;
-                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid);
+                  yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                 } else {
                   console.warn('No type on item');
@@ -130,12 +131,12 @@ export class alienrpgItem extends Item {
                   if (item.data.header.type.value === '1') {
                     let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
                     r2Data = r2Data + stressMod;
-                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid);
+                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
                     game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                   } else if (item.data.header.type.value === '2') {
                     let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
                     r2Data = r2Data + stressMod;
-                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid);
+                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
                     game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                   } else {
                     console.warn('No type on item');
@@ -146,12 +147,12 @@ export class alienrpgItem extends Item {
                   if (item.data.header.type.value === '1') {
                     let r1Data = itemData.attributes.bonus.value + modifier;
                     r2Data = r2Data + stressMod;
-                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid);
+                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
                     game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                   } else if (item.data.header.type.value === '2') {
                     let r1Data = itemData.attributes.bonus.value + modifier;
                     r2Data = r2Data + stressMod;
-                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid);
+                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
                     game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                   } else {
                     console.warn('No type on item');
@@ -171,11 +172,11 @@ export class alienrpgItem extends Item {
         // it's not a vehicle so add the correct attribute bonus
         if (item.data.header.type.value === '1') {
           let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid);
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         } else if (item.data.header.type.value === '2') {
           let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid);
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         } else {
           console.warn('No type on item');
@@ -185,11 +186,11 @@ export class alienrpgItem extends Item {
 
         if (item.data.header.type.value === '1') {
           let r1Data = itemData.attributes.bonus.value;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid);
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         } else if (item.data.header.type.value === '2') {
           let r1Data = itemData.attributes.bonus.value;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid);
+          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
         } else {
           console.warn('No type on item');
