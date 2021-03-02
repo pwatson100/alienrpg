@@ -27,7 +27,7 @@ export class yze {
    * yze.yzeRoll(actortype, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
    */
-  static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid) {
+  static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid, itemid) {
     // console.log('yze -> yzeRoll -> actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2', actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
 
     // *******************************************************
@@ -51,7 +51,7 @@ export class yze {
     // *******************************************************
     //  Initialise the chat message
     // *******************************************************
-    let chatMessage = `<div class="chatBG">`;
+    let chatMessage = `<div class="chatBG" data-item-id="` + itemid + `" data-actor-id="` + actorid + `">`;
 
     // *******************************************************
     //  Data structure for DsN V3
@@ -96,7 +96,6 @@ export class yze {
       formula: '',
       results: [],
     };
-
     if (!r1Dice && !r2Dice) {
       return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoAttribute'));
     }
