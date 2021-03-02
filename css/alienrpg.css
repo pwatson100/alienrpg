@@ -185,6 +185,21 @@
   background: #000;
 }
 
+.dice-tooltip .dice-rolls .roll {
+  -webkit-filter: none;
+          filter: none;
+}
+
+.dice-tooltip .dice-rolls .roll.max {
+  -webkit-filter: none;
+          filter: none;
+}
+
+.dice-tooltip .dice-rolls .roll.min {
+  -webkit-filter: none;
+          filter: none;
+}
+
 .inline-roll .dice-tooltip {
   color: inherit;
   background: #000;
@@ -946,6 +961,39 @@ button:focus {
   width: 230px;
   height: 235px;
   background: url(../images/mother-instructions/creature-token.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.mpush1 {
+  display: block;
+  width: 300px;
+  height: 241px;
+  background: url(../images/mother-instructions/mpush1.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.mpush2 {
+  display: block;
+  width: 300px;
+  height: 340px;
+  background: url(../images/mother-instructions/mpush2.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.mpush3 {
+  display: block;
+  width: 300px;
+  height: 297px;
+  background: url(../images/mother-instructions/mpush3.webp);
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;

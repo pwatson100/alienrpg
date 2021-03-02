@@ -24,5 +24,10 @@
   "files.associations": {
     "*.html": "handlebars"
   },
-  "cSpell.language": "en-GB"
+  "cSpell.language": "en-GB",
+  "cSpell.words": [
+    "FVTT",
+    "colorset",
+    "reroll"
+  ]
 }

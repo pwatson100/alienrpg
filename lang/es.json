@@ -244,5 +244,7 @@
   "ALIENRPG.CloneActor": "Actor clon",
   "ALIENRPG.CombatantUpdate": "Actualizar actor",
   "ALIENRPG.CombatantReroll": "Iniciativa ReRoll",
-  "ALIENRPG.CombatantRemove": "Eliminar actor"
+  "ALIENRPG.CombatantRemove": "Eliminar actor",
+  "ALIENRPG.MultiPush": "Permitir empuje múltiple",
+  "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button"
 }

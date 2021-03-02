@@ -173,24 +173,19 @@ export class alienrpgActorSheet extends ActorSheet {
     // Organize Inventory
     let totalWeight = 0;
     for (let i of items) {
-      if (i.type=='weapon'){
-
-        console.log('alienrpgActorSheet -> Organize Inventory', i); 
+      if (i.type == 'weapon') {
+        // console.log('alienrpgActorSheet -> Organize Inventory', i);
         let ammoweight = 0.25;
-        if(i.data.attributes.class.value=="RPG" || (i.name.includes(" RPG ") || i.name.startsWith("RPG") ||  i.name.endsWith("RPG")))
-        {
-          ammoweight = 0.5; 
+        if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
+          ammoweight = 0.5;
         }
 
         i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-        i.totalWeight = i.data.attributes.weight.value + (i.data.attributes.rounds.value * ammoweight);
+        i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
         inventory[i.type].items.push(i);
 
         totalWeight += i.totalWeight;
-     
-      } 
-      else
-      if (i.type != 'talent') {
+      } else if (i.type != 'talent') {
         i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
         i.totalWeight = i.data.attributes.weight.value;
         inventory[i.type].items.push(i);
@@ -223,6 +218,11 @@ export class alienrpgActorSheet extends ActorSheet {
     };
     enc.pct = Math.min((enc.value * 100) / enc.max, 99);
     enc.encumbered = enc.pct > 50;
+    for (let i of actorData.talents) {
+      if (i.name.toUpperCase() === 'PACK MULE') {
+        enc.encumbered = enc.pct > 75;
+      }
+    }
     return enc;
   }
 
@@ -389,8 +389,6 @@ export class alienrpgActorSheet extends ActorSheet {
     // Finally, create the item!
     return this.actor.createOwnedItem(itemData);
   }
-
-
 
   _inlineedit(event) {
     event.preventDefault();

@@ -1,20 +1,20 @@
 export class yze {
   /**
    * YZEDice RollFunction.
-   * Paramfornumber of dice to roll for each die type/rolls
+   * Param for number of dice to roll for each die type/rolls
    * @param {Text} actor - Passed actor data
-   * @param {Text} hostile - Passed actor type
+   * @param {Text} actortype - Passed actor type
    * @param {Boolean} blind - True or False
    * @param {Boolean} reRoll - True or False
-   * @param {Text} label - The skill/item being rolled agains
+   * @param {Text} label - The skill/item being rolled against
    * @param {number} r1Dice - Number of dice
    * @param {Text} col1 - The Colour
    * @param {number} r2Dice  - Number of dice
    * @param {Text} col2 - The Colour
    * @param {Text} tLabel - Spare label for future use
-   * @param {number} sCount - Count of last number of sucesses to addtothe push reroll
+   * @param {number} sCount - Count of last number of successes to add to the push reroll
    *
-   * rollArr is a globally defined array to store all one'sand sixes and number of dice rolled for each type
+   * rollArr is a globally defined array to store all one's and sixes and number of dice rolled for each type
    *   game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, tLabel: '' , sCount: 0 };
    *
    * Call Example:
@@ -24,11 +24,11 @@ export class yze {
    * let r1Data = parseInt(dataset.roll || 0);
    * let r2Data = this.actor.getRollData().stress;
    * let reRoll = false;
-   * yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
+   * yze.yzeRoll(actortype, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
    */
-  static async yzeRoll(hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2,actorid) {
-    // console.log('yze -> yzeRoll -> hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2', hostile, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
+  static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid, itemid) {
+    // console.log('yze -> yzeRoll -> actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2', actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
 
     // *******************************************************
     // Store the version number of FVTT
@@ -49,9 +49,9 @@ export class yze {
     let spud = 'true';
 
     // *******************************************************
-    //  Initialse the chat message
+    //  Initialise the chat message
     // *******************************************************
-    let chatMessage = `<div class="chatBG">`;
+    let chatMessage = `<div class="chatBG" data-item-id="` + itemid + `" data-actor-id="` + actorid + `">`;
 
     // *******************************************************
     //  Data structure for DsN V3
@@ -60,19 +60,21 @@ export class yze {
     let roll1;
 
     // *******************************************************
-    // Set uptext for a roll or push
+    // Set up text for a roll or push
     // *******************************************************
     let rType = '';
-    if (reRoll && (hostile === true) === 'character') {
+    // if (reRoll && (hostile === true) === 'character') {
+    if ((reRoll && actortype === 'character') || reRoll === 'mPush') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
       rType = game.i18n.localize('ALIENRPG.Rolling');
     }
 
     // *******************************************************
-    // Save the sucesses from the last roll
+    // Save the successes from the last roll
     // *******************************************************
     let oldRoll = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+    // game.alienrpg.rollArr.multiPush += game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 
     // *******************************************************
     // Clear the global dice array
@@ -94,7 +96,6 @@ export class yze {
       formula: '',
       results: [],
     };
-
     if (!r1Dice && !r2Dice) {
       return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoAttribute'));
     }
@@ -103,17 +104,11 @@ export class yze {
     // *******************************************************
     chatMessage += '<h2 style="color:  #fff">' + rType + ' ' + label + ' </h2>';
     if (r1Dice >= 1) {
-      // chatMessage += '<div>' + col1 + '  ' + r1Dice + ' Dice</div>';
-      if (sysVer < '0.7.3') {
-        yzeDRoll('r1Dice', r1Dice, 'r1Six', 'r1One');
-        data.formula = r1Dice + 'd6';
-      } else {
-        roll1 = `${r1Dice}` + 'db';
-        if (r2Dice <= 0) {
-          mr = new Roll(`${roll1}`).roll();
-          buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
-          // console.log('yze -> yzeRoll -> mr', mr);
-        }
+      roll1 = `${r1Dice}` + 'db';
+      if (r2Dice <= 0) {
+        mr = new Roll(`${roll1}`).roll();
+        buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
+        // console.log('yze -> yzeRoll -> mr', mr);
       }
     }
 
@@ -122,29 +117,23 @@ export class yze {
     // *******************************************************
 
     if (r2Dice >= 1) {
-      // chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' Dice</div>';
-      if (sysVer < '0.7.3') {
-        yzeDRoll('r2Dice', r2Dice, 'r2Six', 'r2One');
-        data.formula = r1Dice + r2Dice + 'd6';
+      let roll2 = `${r2Dice}` + 'ds';
+      let com;
+      if (actortype === 'supply') {
+        // // console.log('yze -> yzeRoll -> hostile', hostile);
+        com = `${roll2}`;
       } else {
-        let roll2 = `${r2Dice}` + 'ds';
-        let com;
-        if (hostile === 'supply') {
-          // // console.log('yze -> yzeRoll -> hostile', hostile);
-          com = `${roll2}`;
-        } else {
-          com = `${roll1}` + '+' + `${roll2}`;
-          // mr = '';
-        }
-        mr = new Roll(`${com}`).roll();
-        // // console.log('yze -> yzeRoll -> mr', mr);
-        buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Stress'));
+        com = `${roll1}` + '+' + `${roll2}`;
+        // mr = '';
       }
+      mr = new Roll(`${com}`).roll();
+      // // console.log('yze -> yzeRoll -> mr', mr);
+      buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Stress'));
 
       // *******************************************************
       // Set reroll
       // *******************************************************
-      if (game.alienrpg.rollArr.r2One > 0 && !reRoll) {
+      if (game.alienrpg.rollArr.r2One > 0 && (!reRoll || reRoll === 'mPush')) {
         reRoll = true;
         spud = false;
       }
@@ -152,191 +141,96 @@ export class yze {
       // *******************************************************
       // Display message if there is a 1> on the stress dice.  Display appropriate message if its a Supply roll.
       // *******************************************************
-      if (hostile != 'supply') {
+      if (actortype != 'supply') {
         if (game.alienrpg.rollArr.r2One >= 1) {
           chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.rollStress') + '</div>';
-        } 
-        // else if (game.alienrpg.rollArr.r2One > 1) {
-        //   chatMessage +=
-        //     '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">' +
-        //     game.i18n.localize('ALIENRPG.rollStress') +
-        //     ' ' +
-        //     game.alienrpg.rollArr.r2One +
-        //     game.i18n.localize('ALIENRPG.worstResult') +
-        //     '</div>';
-        // }
-        
+        }
       } else if (game.alienrpg.rollArr.r2One >= 1) {
         chatMessage += '<div class="blink"; style="color: blue; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.supplyDecreases') + '</div>';
       }
     }
     // *******************************************************
-    // Calulate the total successes and displayas long asit's not a Supply roll.
+    // Calculate the total successes and display as long as it's not a Supply roll.
     // *******************************************************
 
-   function localizedCountOfSuccesses(sTotal){
-           if (sTotal === 1)
-             return  '1 ' + game.i18n.localize('ALIENRPG.sucess');
-           else
-             return  sTotal + ' ' + game.i18n.localize('ALIENRPG.sucesses');
-   }
-      
+    function localizedCountOfSuccesses(sTotal) {
+      if (sTotal === 1) return '1 ' + game.i18n.localize('ALIENRPG.sucess');
+      else return sTotal + ' ' + game.i18n.localize('ALIENRPG.sucesses');
+    }
 
-    if (hostile != 'supply') {
-        chatMessage +=
-          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.youHave') + ' ' +
-             localizedCountOfSuccesses( game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount)  + ' </div>';
+    if (actortype != 'supply') {
+      chatMessage +=
+        '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+        game.i18n.localize('ALIENRPG.youHave') +
+        ' ' +
+        localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+        ' </div>';
     }
 
     // *******************************************************
-    //  If it's a Push roll and dispaly the total for both rolls.
+    //  If it's a Push roll and display the total for both rolls.
     // *******************************************************
-    if (reRoll && spud && hostile === 'character') {
-      chatMessage += '<hr>' +
-         '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
-         game.i18n.localize('ALIENRPG.followingPush') +
-         '<br>' +
-         game.i18n.localize('ALIENRPG.totalOf') +
-       ' '   + localizedCountOfSuccesses(oldRoll + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six) + ' </div>';
+    if (reRoll && actortype === 'character') {
+      chatMessage +=
+        '<hr>' +
+        '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+        game.i18n.localize('ALIENRPG.followingPush') +
+        '<br>' +
+        game.i18n.localize('ALIENRPG.totalOf') +
+        ' ' +
+        localizedCountOfSuccesses(oldRoll + game.alienrpg.rollArr.multiPush + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six) +
+        ' </div>';
+      game.alienrpg.rollArr.multiPush = oldRoll;
+      console.log('spud');
     }
 
     // *******************************************************
     // Render the reroll button
     // *******************************************************
 
-    if (!reRoll) {
+    if (!reRoll || reRoll === 'mPush') {
+      if (reRoll != 'mPush') {
+        chatMessage += `<span>` + game.i18n.localize('ALIENRPG.MultiPush') + ` ` + `</span> <input class="multiPush" name="multiPush" type="checkbox" {{checked false}} /> `;
+      }
       chatMessage += `<button class="alien-Push-button" title="PUSH Roll?"></button>`;
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
     }
     // *******************************************************
-    // Only if Dice So Nice V2 is enabled.  For V3 weare using the chat hook.
-    // *******************************************************
-    if (niceDice && !blind && sysVer < '0.7.3') {
-      game.dice3d.show(data, game.user, true, null, false).then((displayed) => {});
-    }
-
-    // *******************************************************
-    // For FVTT v0.6.6 and DsN v2 set the appropriate chat config
+    // For FVTT v0.7.x and DsN V3 set the appropriate chat config
     // *******************************************************
 
-    if (sysVer < '0.7.3') {
-      if (!blind) {
-        ChatMessage.create({
-          user: game.user._id,
-          content: chatMessage,
-          other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
-          sound: CONFIG.sounds.dice,
-        });
-      } else {
-        ChatMessage.create({
-          user: game.user._id,
-          content: chatMessage,
-          whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
-          blind: true,
-        });
-      }
+    if (!blind) {
+      ChatMessage.create({
+        user: game.user._id,
+        speaker: {
+          actor: actorid,
+        },
+        content: chatMessage,
+        other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        sound: CONFIG.sounds.dice,
+        type: CHAT_MESSAGE_TYPES.ROLL,
+        roll: mr,
+        rollMode: game.settings.get('core', 'rollMode'),
+      });
     } else {
-      // *******************************************************
-      // For FVTT v0.7.x and DsN V3 set the appropriate chat config
-      // *******************************************************
-
-      if (!blind) {
-        ChatMessage.create({
-          user: game.user._id,
-          speaker: {
-            actor: actorid,
-          },
-          content: chatMessage,
-          other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
-          sound: CONFIG.sounds.dice,
-          type: CHAT_MESSAGE_TYPES.ROLL,
-          roll: mr,
-          rollMode: game.settings.get('core', 'rollMode'),
-        });
-      } else {
-        ChatMessage.create({
-          user: game.user._id,
-          speaker: {
-            actor: actorid,
-          },
-          content: chatMessage,
-          whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
-          blind: true,
-          type: CHAT_MESSAGE_TYPES.ROLL,
-          roll: mr,
-          rollMode: game.settings.get('core', 'rollMode'),
-        });
-      }
+      ChatMessage.create({
+        user: game.user._id,
+        speaker: {
+          actor: actorid,
+        },
+        content: chatMessage,
+        whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        blind: true,
+        type: CHAT_MESSAGE_TYPES.ROLL,
+        roll: mr,
+        rollMode: game.settings.get('core', 'rollMode'),
+      });
     }
+    // }
 
     // *******************************************************
-    // Function to rolldice using the DsN v2 method and data structure
-    // *******************************************************
-    function yzeDRoll(sLot, numDie, yzeR6, yzeR1) {
-      let i;
-      let numbers = [];
-      let mArr = {};
-      if (sysVer < '0.7.3') {
-        // Foundry v0.6.6 code
-        let die = new Die(6);
-        die.roll(numDie);
-        game.alienrpg.rollArr[sLot] = numDie;
-        die.results.forEach((el) => {
-          data.results.push(el);
-        });
-
-        game.alienrpg.rollArr.tLabel = label;
-        die.countSuccess(6, '=');
-        game.alienrpg.rollArr[yzeR6] = die.total;
-        die.countSuccess(1, '=');
-        game.alienrpg.rollArr[yzeR1] = die.total;
-
-        let numOf6s = game.alienrpg.rollArr[yzeR6];
-        let numOf1s = game.alienrpg.rollArr[yzeR1];
-
-        if (sLot === 'r1Dice') {
-          chatMessage += '<div>' + col1 + '  ' + r1Dice + ' Dice</div>';
-          chatMessage += '<span style="color: green ">  Sixes: </span>';
-          chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
-          chatMessage += '<div>';
-
-          // added by Steph (for loop, and moved div close)
-          for (var _d = 0; _d < numDie; _d++) {
-            if (numOf6s > 0) {
-              chatMessage += "<span class='alien-diceface-b6'></span>";
-              numOf6s--;
-            } else {
-              chatMessage += "<span class='alien-diceface-b0'></span>";
-            }
-          }
-          chatMessage += '</div>';
-        } else {
-          chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' Dice</div>';
-          chatMessage += '<span style="color: red">Ones: </span>';
-          chatMessage += `<span>${game.alienrpg.rollArr[yzeR1]}</span>`;
-          chatMessage += '<span style="color: green">  Sixes: </span>';
-          chatMessage += `${game.alienrpg.rollArr[yzeR6]}`;
-          chatMessage += '<div>';
-
-          // added by Steph (for loops, and moved div close)
-          for (var _d = 0; _d < numOf6s; _d++) {
-            chatMessage += "<span class='alien-diceface-y6'></span>";
-          }
-          for (var _d = 0; _d < numOf1s; _d++) {
-            chatMessage += "<span class='alien-diceface-y1'></span>";
-          }
-          let _theRest = numDie - (numOf6s + numOf1s);
-          for (var _d = 0; _d < _theRest; _d++) {
-            chatMessage += "<span class='alien-diceface-y0'></span>";
-          }
-          chatMessage += '</div>';
-        }
-      }
-    }
-
-    // *******************************************************
-    // Function to buildchat and dice for DsN V3
+    // Function to build chat and dice for DsN V3
     // *******************************************************
     function buildChat(mr, numDie, dType) {
       let numbers = [];
@@ -377,7 +271,7 @@ export class yze {
         }
         chatMessage += '</div>';
       } else {
-        if (hostile != 'supply') {
+        if (actortype != 'supply') {
           for (let index = 0; index < mr.terms[0].results.length; index++) {
             let spanner = flattenObj(mr.terms[0].results[index]);
             numbers.push(spanner.result);
@@ -405,7 +299,7 @@ export class yze {
           }
           chatMessage += '</div>';
         }
-        if (hostile === 'supply') {
+        if (actortype === 'supply') {
           for (let index = 0; index < mr.terms[0].results.length; index++) {
             let spanner = flattenObj(mr.terms[0].results[index]);
             numbers.push(spanner.result);
