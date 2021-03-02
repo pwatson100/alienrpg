@@ -260,7 +260,7 @@ Version 1.3.0
 Added Taiwanese Mandarin translation added thanks to @zeteticl
 Having the Pack Mule Talent now increases encumbered from 50% to 75%
 Added check box to the chat for rolls to enable multiple PUSHes for PCs with talents that allow rolls to be pushed twice.
-Updated README.md as the system is not official.
+Updated README.md as the system is now official.
 Updated MO/TH/ER Instructions  -  Please Read :) .
 Maestro Add-on sound effects should not work on items. 
 
@@ -268,9 +268,9 @@ More great enhancements by @DM9290:
 Combat Tracker - Adding creatures with a speed >1 to the combat tracker now automatically creates additional tokens (aka clones) in the combat tracker to represent multiple initiatives in a turn. 
 The clones can still be individually removed in the combat tracker if the GM needs to (for some reason), and all of them will go away if the actual token on the map is marked as no longer 'in combat' with the combat toggle HUD tool.
 The Armor mod dialogue box no longer prompts for stress.
-Creature attack roll visibility is now controlled by the GM hat roll privacy settings dropdown. 
+Creature attack roll visibility is now controlled by the GM Chat roll privacy settings dropdown. 
 Synthetics now control whether or not they can make fake panic rolls, or get a push button with an checkbox option on the character sheet to 'Imitate human stress and panic rolls'. 
-Open synthetics like Bishop or David or Working Joes turn it off and they wont panic even if rollAbility(panicroll) is executed. 
-Their skill rolls will not have a push button.
-Secret synths can have it turned on, and they can make fake panic rolls (never rolling above 6) and their skill and ability rolls will have a push button just like human characters. clicking push wont actually cause them to push. It just looks real.
+    Open synthetics like Bishop or David or Working Joes turn it off and they wont panic even if the Stress roll is executed. 
+    Their skill rolls will not have a push button.
+    Secret synths can have it turned on, and they can make fake panic rolls (never rolling above 6) and their skill and ability rolls will have a push button just like human characters. clicking push wont actually cause them to push. It just looks real.
 Corrected issue where pressing enter on an attribute field cause Health to decrease.
