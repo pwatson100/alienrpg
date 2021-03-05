@@ -274,3 +274,6 @@ Synthetics now control whether or not they can make fake panic rolls, or get a p
     Their skill rolls will not have a push button.
     Secret synths can have it turned on, and they can make fake panic rolls (never rolling above 6) and their skill and ability rolls will have a push button just like human characters. clicking push wont actually cause them to push. It just looks real.
 Corrected issue where pressing enter on an attribute field cause Health to decrease.
+
+Version 1.3.1
+Fixed bug with in-line edits causing food and water items not to update properly.
