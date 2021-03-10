@@ -193,6 +193,7 @@ Hooks.once('init', async function () {
     scope: 'client',
     type: String,
     config: false,
+    default: 'Wallpoet',
     onChange: () => {
       location.reload();
     },
