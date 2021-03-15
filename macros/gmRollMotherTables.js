@@ -1,7 +1,7 @@
 (async () => {
   let options = '';
   game.tables.entities.forEach((t) => {
-    if (t.folder.name === 'Alien Mother Tables') {
+    if (t.folder && t.folder.name === 'Alien Mother Tables') {
       options = options.concat(`<option value="${t.data._id}">${t.data.name}</option>`);
     }
   });
