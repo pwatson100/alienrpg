@@ -279,5 +279,4 @@ Version 1.3.1
 Fixed bug with in-line edits causing food and water items not to update properly.
 
 Version 1.3.2
-On a Synthetic sheet if "Imitate Human Panic..." box is checked right clicking will now display the full modifier box to allow the player to add stress dice.
-
+@DM9290 rooted out the bug that was causing extra (> than their speed) creature entries in the Combat Tracker.

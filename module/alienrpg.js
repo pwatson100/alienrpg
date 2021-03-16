@@ -52,7 +52,7 @@ Hooks.on('createCombatant', (combat, combatant, options, someID) => {
     // actor type
 
     if (ACTOR.data.type != 'creature') return;
-    if (ACTOR.data.data.attributes?.speed?.value > 1) {
+    if ((ACTOR.data.data.attributes?.speed?.value > 1) && (game.user.isGM)) {
       const tokens = [];
       var x;
       for (x = 1; x < ACTOR.data.data.attributes.speed.value; x++) {
@@ -193,6 +193,7 @@ Hooks.once('init', async function () {
     scope: 'client',
     type: String,
     config: false,
+    default: 'Wallpoet',
     onChange: () => {
       location.reload();
     },
