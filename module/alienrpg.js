@@ -41,7 +41,7 @@ Hooks.on('createCombatant', (combat, combatant, options, someID) => {
   let token = canvas.tokens.placeables.find((i) => i.data._id == combatant.tokenId);
   if (token == null) return; // should probably trow an exception message instead.
 
-  if (token.inCombat == false) {
+  if (token.inCombat == false && token._controlled) {
     // not yet in combat so we should create extra combatants for each point of speed > 1.
 
     let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
