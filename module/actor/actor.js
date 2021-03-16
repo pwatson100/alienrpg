@@ -652,7 +652,7 @@ export class alienrpgActor extends Actor {
     return event;
   }
 
-  async consumablesCheck(actor, consUme, label, consumables) {
+  async consumablesCheck(actor, consUme, label, consumables, tItem) {
     let r1Data = 0;
     let r2Data = 0;
     r2Data = actor.data.data.consumables[`${consUme}`].value;
@@ -671,6 +671,9 @@ export class alienrpgActor extends Actor {
         let itemId = consumables.find(showme)[0].item;
         let itemVal = consumables.find(showme)[0][`${consUme}`];
         let mitem = actor.getOwnedItem(itemId);
+        let pItem = actor.getOwnedItem(tItem);
+        let pValue = pItem.data.data.attributes.power.value;
+        // console.log('🚀 ~ file: actor.js ~ line 675 ~ alienrpgActor ~ consumablesCheck ~ pItem', pItem);
         let field = '';
         switch (consUme) {
           case 'air':
@@ -684,9 +687,15 @@ export class alienrpgActor extends Actor {
             await actor.update({ 'data.consumables.food.value': actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
             break;
           case 'power':
-            field = `data.attributes.${consUme}.value`;
-            await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
-            await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
+            field = `data.attributes.power.value`;
+            if (pValue - game.alienrpg.rollArr.r2One <= '0') {
+              await pItem.update({ [field]: '0' });
+              await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - pValue });
+            } else {
+              await pItem.update({ [field]: pValue - game.alienrpg.rollArr.r2One });
+              await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
+            }
+
             break;
           case 'water':
             field = `data.attributes.${consUme}.value`;

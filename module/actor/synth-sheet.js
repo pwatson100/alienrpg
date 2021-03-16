@@ -68,7 +68,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-
     // data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
     // data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
@@ -256,6 +255,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
 
     html.find('.supply-btn').click(this._supplyRoll.bind(this));
+
+    html.find('.pwr-btn').click(this._supplyRoll.bind(this));
 
     html.find('.stunt-btn').click(this._stuntBtn.bind(this));
 
@@ -490,7 +491,10 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
+    if (dataset.item === '0') return;
+    // console.log('🚀 ~ file: actor-sheet.js ~ line 611 ~ alienrpgActorSheet ~ _supplyRoll ~ dataset', dataset);
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
+    const tItem = dataset.id;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
     const consUme = dataset.spbutt.toLowerCase();
     let mItems = this.actor.items;
@@ -538,7 +542,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         }
       }
     }
-    this.actor.consumablesCheck(this.actor, consUme, label, numbers);
+    this.actor.consumablesCheck(this.actor, consUme, label, numbers, tItem);
   }
 }
 export default alienrpgSynthActorSheet;

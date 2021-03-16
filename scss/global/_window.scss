@@ -282,10 +282,21 @@ a.inline-roll {
   line-height: 20px;
   padding: 0;
 }
+
 .supply-btn {
   font-size: 5px;
   padding: 0;
   font-family: var(--alienfont);
+}
+
+.pwr-btn {
+  &:hover,
+  &:focus {
+    background-color: #da4035;
+    font-size: 120%;
+    font-weight: bolder;
+    cursor: pointer;
+  }
 }
 
 .stunt-btn {
