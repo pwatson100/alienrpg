@@ -42,7 +42,6 @@
   --white: #ffffff;
 }
 
-
 /* Global styles */
 .alienrpg ul ol {
   margin-left: 3px;
@@ -132,12 +131,6 @@ a.entity-link {
 .alienrpg a.entity-link {
   color: white;
   background: black;
-}
-
-a.entity-link {
-  color: white;
-  background: black;
-  
 }
 
 #chat .message {
