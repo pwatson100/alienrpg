@@ -1,8 +1,7 @@
 export function sendDevMessage() {
   if (game.user.isGM) {
-    debugger;
-    // let jqxhr = $.getJSON('https://raw.githubusercontent.com/pwatson100/alienrpg/master/msgdata/data.json', function (data) {
-    let jqxhr = $.getJSON('https://raw.githubusercontent.com/pwatson100/alienrpg/Release-Testing/msgdata/data.json', function (data) {
+    // debugger;
+    let jqxhr = $.getJSON('https://raw.githubusercontent.com/pwatson100/alienrpg/master/msgdata/data.json', function (data) {
       let latestVersion = game.settings.get('alienrpg', 'alienrpgDevMessageVersionNumber');
       if (isNaN(latestVersion)) {
         latestVersion = 0;

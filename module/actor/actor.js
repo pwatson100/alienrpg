@@ -668,11 +668,20 @@ export class alienrpgActor extends Actor {
     } else {
       yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
       if (game.alienrpg.rollArr.r2One) {
+        let pValue = '';
+        let pItem = '';
         let itemId = consumables.find(showme)[0].item;
+        console.log('🚀 ~ file: actor.js ~ line 674 ~ alienrpgActor ~ consumablesCheck ~ itemId', itemId);
         let itemVal = consumables.find(showme)[0][`${consUme}`];
         let mitem = actor.getOwnedItem(itemId);
-        let pItem = actor.getOwnedItem(tItem);
-        let pValue = pItem.data.data.attributes.power.value;
+        try {
+          pItem = actor.getOwnedItem(tItem);
+          console.log('🚀 ~ file: actor.js ~ line 675 ~ alienrpgActor ~ consumablesCheck ~ pItem', pItem);
+
+          pValue = pItem.data.data.attributes.power.value ?? 0;
+        } catch {}
+        // let pValue = pItem.data.data.attributes.power.value;
+
         // console.log('🚀 ~ file: actor.js ~ line 675 ~ alienrpgActor ~ consumablesCheck ~ pItem', pItem);
         let field = '';
         switch (consUme) {
@@ -707,7 +716,7 @@ export class alienrpgActor extends Actor {
     }
 
     function showme(consumables) {
-      // console.warn('alienrpgActorSheet -> showme -> ', consumables[0][consUme] >= 1);
+      console.warn('alienrpgActorSheet -> showme -> ', consumables[0][consUme] >= 1);
       return consumables[0][consUme] >= 1;
     }
   }

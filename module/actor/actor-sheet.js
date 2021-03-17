@@ -629,6 +629,7 @@ export class alienrpgActorSheet extends ActorSheet {
                 food: spanner.data.attributes.food.value,
                 water: spanner.data.attributes.water.value,
                 power: spanner.data.attributes.power.value,
+                air: spanner.data.attributes.airsupply.value,
               },
             ];
             numbers.push(temp);
