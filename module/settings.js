@@ -26,4 +26,13 @@ export default function () {
       location.reload();
     },
   });
+
+  game.settings.register('alienrpg', 'alienrpgDevMessageVersionNumber', {
+    name: 'Message from the devs',
+    hint: 'Used to track last message id from the Alien RPG devs',
+    scope: 'world',
+    config: false,
+    default: 0,
+    type: Number,
+  });
 }

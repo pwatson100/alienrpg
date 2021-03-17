@@ -16,6 +16,7 @@ import * as migrations from './migration.js';
 import { AlienConfig } from './alienRPGConfig.js';
 import AlienRPGCombat from './combat.js';
 import AlienRPGCTContext from './CBTracker.js';
+import { sendDevMessage } from './devmsg.js';
 
 const euclidianDistances = function (segments, options = {}) {
   const canvasSize = canvas.dimensions.size;
@@ -35,7 +36,6 @@ const euclidianDistances = function (segments, options = {}) {
 Hooks.on('canvasInit', function () {
   SquareGrid.prototype.measureDistances = euclidianDistances;
 });
-
 
 Hooks.once('init', async function () {
   console.warn(`Initializing Alien RPG`);
@@ -194,6 +194,7 @@ Hooks.once('init', async function () {
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
   await AlienRPGSetup.setup();
+  sendDevMessage();
 
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
@@ -228,68 +229,59 @@ Hooks.once('ready', async () => {
   //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
 
-   setupCombatantCloning();
- 
-
+  setupCombatantCloning();
 });
 
+function setupCombatantCloning() {
+  // this function replaces calls to Combat.createEmbeddedEntity to
+  // create additional combatants for xenos with a speed > 1.
+  // if relies on calling the original Combat.prototypecreateEmbeddedEntity so as long as this
+  // function is called late in the setup after any modules that want to override that function
+  // it should be compatable.
 
+  let originalCombatCreateEmbeddedEntity = Combat.prototype.createEmbeddedEntity;
 
-function setupCombatantCloning(){
-    // this function replaces calls to Combat.createEmbeddedEntity to
-    // create additional combatants for xenos with a speed > 1.
-    // if relies on calling the original Combat.prototypecreateEmbeddedEntity so as long as this
-    // function is called late in the setup after any modules that want to override that function
-    // it should be compatable.
+  Combat.prototype.createEmbeddedEntity = function (embeddedName, data, options) {
+    originalCombatCreateEmbeddedEntity.call(this, embeddedName, data, options); // create all the Primary combatants
 
-    let originalCombatCreateEmbeddedEntity = Combat.prototype.createEmbeddedEntity;
+    if (embeddedName != 'Combatant') return; // presumably embeddedName would always be "Combatant" but this preserves the base behavior if not.
 
-    Combat.prototype.createEmbeddedEntity = function(embeddedName, data, options){
-        	
-       originalCombatCreateEmbeddedEntity.call(this,embeddedName,data,options); // create all the Primary combatants
-	
-       if(embeddedName!="Combatant")return;   // presumably embeddedName would always be "Combatant" but this preserves the base behavior if not.
-		
-       // data will be an array when combatants are created by the combat token icon.
-       // therefore only call ExtraSpeedCombatants if data is an array.
-	   // this ensures cloning from inside the combattracker will make 1 clone only. 
-	   // toggling combat via the token can create extra speed combatants if needed.
-	   // the token combat toggle is only available if the token is not already in combat.
-	   
-	   if (Array.isArray(data))data.forEach((combatant)=>ExtraSpeedCombatants.call(this,combatant,options));
-	
-	
-       function ExtraSpeedCombatants(combatant,options) {
-         let token = canvas.tokens.placeables.find((i) => i.data._id == combatant.tokenId);
-         let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
-      
-	     if (ACTOR == null) ACTOR = Actor.createTokenActor(token.actor, token);
+    // data will be an array when combatants are created by the combat token icon.
+    // therefore only call ExtraSpeedCombatants if data is an array.
+    // this ensures cloning from inside the combattracker will make 1 clone only.
+    // toggling combat via the token can create extra speed combatants if needed.
+    // the token combat toggle is only available if the token is not already in combat.
 
-         // only creatures have speed right now.  Probably a getter method should be created like
-         // Actor.combatSpeed() to create a unified API to get the speed regardless of underlying
-         // actor type
+    if (Array.isArray(data)) data.forEach((combatant) => ExtraSpeedCombatants.call(this, combatant, options));
 
-         if (ACTOR.data.type != 'creature') return;
-  	     const creatureSpeed = ACTOR.data.data.attributes?.speed?.value; 
-         if ((creatureSpeed > 1)  ) {
-           const clones = [];
-           let x;
-           for (x = 1; x < creatureSpeed; x++) {
-             clones.push(token);
-           }
-           // Add extra clones to the Combat encounter for the actor's heightened speed
-           const creationData = clones.map( (v) => { return { tokenId: v.id, hidden: v.data.hidden }; });
-	  
-           originalCombatCreateEmbeddedEntity.call(this,embeddedName,creationData,options);
- 
+    function ExtraSpeedCombatants(combatant, options) {
+      let token = canvas.tokens.placeables.find((i) => i.data._id == combatant.tokenId);
+      let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
+
+      if (ACTOR == null) ACTOR = Actor.createTokenActor(token.actor, token);
+
+      // only creatures have speed right now.  Probably a getter method should be created like
+      // Actor.combatSpeed() to create a unified API to get the speed regardless of underlying
+      // actor type
+
+      if (ACTOR.data.type != 'creature') return;
+      const creatureSpeed = ACTOR.data.data.attributes?.speed?.value;
+      if (creatureSpeed > 1) {
+        const clones = [];
+        let x;
+        for (x = 1; x < creatureSpeed; x++) {
+          clones.push(token);
         }
-      };
- 
-    };
-	
+        // Add extra clones to the Combat encounter for the actor's heightened speed
+        const creationData = clones.map((v) => {
+          return { tokenId: v.id, hidden: v.data.hidden };
+        });
+
+        originalCombatCreateEmbeddedEntity.call(this, embeddedName, creationData, options);
+      }
+    }
+  };
 }
-
-
 
 // create/remove the quick access config button
 Hooks.once('renderSettings', () => {

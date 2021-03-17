@@ -1,0 +1,12 @@
+{
+    "messages": [
+        {
+            "version": 1,
+            "message": "<h1>Welcome to the Alien RPG system</h1><br />We are happy that you are using our system and wish you best of luck.<br/>If you want to give some feedback on the system, I am active on the Foundry Discord (channel #free-league).<br/> <a class="entity-link" draggable="false" data-pack="alienrpg.mother_instructions" data-id="2BMkytoBur58n13F">MO/TH/ER Instructions</a>"
+        },
+        {
+            "version": 2,
+            "message": "<h1>Head's up</h1><br />Foundry is going to release v0.8 in a couple of months - this is a big change and we will try to keep all users of the Alien RPG System up to date with our progress on making it compatible with the new version of Foundry. @JournalEntry[MO/TH/ER Instructions.]"
+        }
+    ]
+}
