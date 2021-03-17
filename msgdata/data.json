@@ -10,7 +10,7 @@
         },
         {
             "version": 4,
-            "message": "<h1>MO/TH/ER Instructions.</h1><br />@JournalEntry[MO/TH/ER Instructions.] <br/> <a class="entity-link" draggable="false" data-pack="alienrpg.mother_instructions" data-id="2BMkytoBur58n13F">Mother Instructions</a>"
+            "message": "<h1>MO/TH/ER Instructions.</h1><br />@JournalEntry[MO/TH/ER Instructions.] <br/> <a class='entity-link' draggable='false' data-pack='alienrpg.mother_instructions' data-id='2BMkytoBur58n13F'>Mother Instructions</a>"
         }
     ]
 }
