@@ -283,6 +283,8 @@ Version 1.3.2
 
 Version 1.3.3
 On a Synthetic sheet if "Imitate Human Panic..." box is checked right clicking will now display the full modifier box to allow the player to add stress dice.
-Power Consumables:   The supply roll button has been removed from the General tab.   
+Power Consumables:   The Power supply roll button has been removed from the General tab.   
     Power rolls are now carried out per item on the Inventory tab by clicking on the number under the "Pwr" heading.  
     As per the rules all available Power dice will be rolled but failures will only be removed from the power rating of that item.   
+MO/TH/ER Instructions now automatically imported and updated. PLEASE READ THEM.
+Thanks to @Bithir for allowing me to use hs messaging code. 

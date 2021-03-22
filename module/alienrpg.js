@@ -195,6 +195,19 @@ Hooks.once('init', async function () {
 Hooks.once('ready', async () => {
   await AlienRPGSetup.setup();
   sendDevMessage();
+  const newVer = '1';
+  if (game.journal.getName('MU/TH/ER Instructions.') !== null) {
+    if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
+      await game.journal.getName('MU/TH/ER Instructions.').delete();
+      await game.journal.importFromCollection('alienrpg.mother_instructions', `gDOi0tUAxKj7jlEW`);
+      await game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
+      console.log('New version of MU/TH/ER Instructions.');
+      await game.journal.getName('MU/TH/ER Instructions.').show();
+    }
+  } else {
+    await game.journal.importFromCollection('alienrpg.mother_instructions', `gDOi0tUAxKj7jlEW`);
+    await game.journal.getName('MU/TH/ER Instructions.').show();
+  }
 
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
