@@ -288,3 +288,7 @@ Power Consumables:   The Power supply roll button has been removed from the Gene
     As per the rules all available Power dice will be rolled but failures will only be removed from the power rating of that item.   
 MO/TH/ER Instructions now automatically imported and updated. PLEASE READ THEM.
 Thanks to @Bithir for allowing me to use hs messaging code. 
+
+Version 1.3.4
+Corrected error where the encumbrance bar was not showing on the Synthetic character sheet. 
+Corrected issue with the MU/TH/ER Instructions load causing an issue with players.  
