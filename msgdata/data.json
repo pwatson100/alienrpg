@@ -1,0 +1,12 @@
+{
+    "messages": [
+        {
+            "version": 1,
+            "message": "<h1>Welcome to the Alien RPG system</h1><br />I am happy that you are using our system and wish you best of luck.<br/>If you want to give some feedback on the system, I am active on the Foundry Discord (channel #free-league)."
+        },
+        {
+            "version": 2,
+            "message": "<h1>MO/TH/ER Instructions.</h1><br />Please read the @JournalEntry[MO/TH/ER Instructions.] to get the most benefit out of using the system and new features."
+        }
+    ]
+}

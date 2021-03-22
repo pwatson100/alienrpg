@@ -339,6 +339,8 @@ export class alienrpgActorSheet extends ActorSheet {
 
     html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
+    html.find('.pwr-btn').click(this._supplyRoll.bind(this));
+
     html.find('.stunt-btn').click(this._stuntBtn.bind(this));
 
     html.find('.talent-btn').click(this._talentBtn.bind(this));
@@ -606,7 +608,10 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
+    if (dataset.item === '0') return;
+    // console.log('🚀 ~ file: actor-sheet.js ~ line 611 ~ alienrpgActorSheet ~ _supplyRoll ~ dataset', dataset);
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
+    const tItem = dataset.id;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
     const consUme = dataset.spbutt.toLowerCase();
     let mItems = this.actor.items;
@@ -624,6 +629,7 @@ export class alienrpgActorSheet extends ActorSheet {
                 food: spanner.data.attributes.food.value,
                 water: spanner.data.attributes.water.value,
                 power: spanner.data.attributes.power.value,
+                air: spanner.data.attributes.airsupply.value,
               },
             ];
             numbers.push(temp);
@@ -654,7 +660,7 @@ export class alienrpgActorSheet extends ActorSheet {
         }
       }
     }
-    this.actor.consumablesCheck(this.actor, consUme, label, numbers);
+    this.actor.consumablesCheck(this.actor, consUme, label, numbers, tItem);
   }
 }
 export default alienrpgActorSheet;

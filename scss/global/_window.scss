@@ -79,6 +79,11 @@
   }
 }
 
+a.entity-link {
+  color: white;
+  background: black;
+}
+
 .alienrpg a.entity-link {
   color: white;
   background: black;
@@ -277,10 +282,21 @@ a.inline-roll {
   line-height: 20px;
   padding: 0;
 }
+
 .supply-btn {
   font-size: 5px;
   padding: 0;
   font-family: var(--alienfont);
+}
+
+.pwr-btn {
+  &:hover,
+  &:focus {
+    background-color: #da4035;
+    font-size: 120%;
+    font-weight: bolder;
+    cursor: pointer;
+  }
 }
 
 .stunt-btn {
@@ -540,7 +556,7 @@ button:focus {
 .synthetic-consumables {
   display: block;
   width: 153px;
-  height: 300px;
+  height: 289px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -927,4 +943,25 @@ button:focus {
   margin-right: auto;
   background-size: 100%;
   border: 0;
+}
+
+.pwr-supply {
+  display: block;
+  width: 600px;
+  height: 134px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/power.webp);
+}
+.synth-hum {
+  display: block;
+  width: 153px;
+  height: 87px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/synth-hum.webp);
 }

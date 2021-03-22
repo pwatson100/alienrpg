@@ -123,6 +123,11 @@
   background-color: white;
 }
 
+a.entity-link {
+  color: white;
+  background: black;
+}
+
 .alienrpg a.entity-link {
   color: white;
   background: black;
@@ -304,6 +309,13 @@ a.inline-roll {
   font-size: 5px;
   padding: 0;
   font-family: var(--alienfont);
+}
+
+.pwr-btn:hover, .pwr-btn:focus {
+  background-color: #da4035;
+  font-size: 120%;
+  font-weight: bolder;
+  cursor: pointer;
 }
 
 .stunt-btn {
@@ -574,7 +586,7 @@ button:focus {
 .synthetic-consumables {
   display: block;
   width: 153px;
-  height: 300px;
+  height: 289px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -1000,6 +1012,28 @@ button:focus {
   border: 0;
 }
 
+.pwr-supply {
+  display: block;
+  width: 600px;
+  height: 134px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/power.webp);
+}
+
+.synth-hum {
+  display: block;
+  width: 153px;
+  height: 87px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/synth-hum.webp);
+}
+
 .grid {
   display: grid;
   grid-column: span 2/span 2;
@@ -1223,6 +1257,7 @@ button:focus {
 
 .Power2 {
   grid-area: Power2;
+  margin-top: 5px;
 }
 
 .Water1 {
@@ -1395,9 +1430,9 @@ button:focus {
 
 .grid-items {
   display: grid;
-  grid-template-areas: "lCol1 lCol2 lCol11 lCol10 lCol3 lCol4" "lCol5 lCol6 lCol12 lCol9 lCol7 lCol8";
+  grid-template-areas: "lCol1 lCol2 lCol13 lCol11 lCol10 lCol3 lCol4" "lCol5 lCol6 lCol14 lCol12 lCol9 lCol7 lCol8";
   padding-bottom: 2px;
-  grid-template-columns: 2em 30em 5em 5em 4em 2em;
+  grid-template-columns: 2em 25em 5em 5em 5em 4em 2em;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1460,6 +1495,16 @@ button:focus {
 
 .lCol12 {
   grid-area: lCol12;
+  justify-self: center;
+}
+
+.lCol13 {
+  grid-area: lCol13;
+  justify-self: center;
+}
+
+.lCol14 {
+  grid-area: lCol14;
   justify-self: center;
 }
 

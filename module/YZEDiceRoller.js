@@ -64,7 +64,7 @@ export class yze {
     // *******************************************************
     let rType = '';
     // if (reRoll && (hostile === true) === 'character') {
-    if ((reRoll && actortype === 'character') || reRoll === 'mPush') {
+    if ((reRoll && actortype === 'character' && label != 'Armor') || reRoll === 'mPush') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
       rType = game.i18n.localize('ALIENRPG.Rolling');
@@ -170,7 +170,7 @@ export class yze {
     // *******************************************************
     //  If it's a Push roll and display the total for both rolls.
     // *******************************************************
-    if (reRoll && actortype === 'character') {
+    if (reRoll && actortype === 'character' && label != 'Armor') {
       chatMessage +=
         '<hr>' +
         '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +

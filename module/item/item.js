@@ -45,7 +45,7 @@ export class alienrpgItem extends Item {
       r2Data = 0;
       reRoll = true;
     }
-    let label = `${item.name} <br>(` + game.i18n.localize('ALIENRPG.Damage') + ` : ${item.data.attributes.damage.value})`;
+    let label = `${item.name} (` + game.i18n.localize('ALIENRPG.Damage') + ` : ${item.data.attributes.damage.value})`;
     let hostile = this.actor.data.type;
     let blind = false;
 
@@ -58,9 +58,10 @@ export class alienrpgItem extends Item {
       // Right Click Roll sodisplay modboxes
       // ************************************
 
-      // call pop upbox here to get any mods then update r1Data or rData as appropriate.
+      // call pop up box here to get any mods then update r1Data or rData as appropriate.
       let confirmed = false;
-      if (this.actor.data.type === 'character') {
+      // Check that is a character or a synth pretending to be a character.
+      if (this.actor.data.type === 'character' || this.actor.data.data.header.synthstress) {
         renderTemplate(template).then((dlg) => {
           new Dialog({
             title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),

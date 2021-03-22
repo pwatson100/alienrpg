@@ -1,5 +1,5 @@
 import { yze } from '../YZEDiceRoller.js';
-import {addSign} from '../utils.js';
+import { addSign } from '../utils.js';
 
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
@@ -376,37 +376,37 @@ export class alienrpgActor extends Actor {
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
-    let effectiveActorType = actor.data.type ;
+    let effectiveActorType = actor.data.type;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
 
-    let modifier=parseInt(dataset?.mod??0) +parseInt(dataset?.modifier??0);
-    let stressMod=parseInt(dataset?.stressMod??0);
-     
+    let modifier = parseInt(dataset?.mod ?? 0) + parseInt(dataset?.modifier ?? 0);
+    let stressMod = parseInt(dataset?.stressMod ?? 0);
+
     // the dataset value is returned to the DOM so it should be set to 0 in case a future roll is made without the
     // modifier dialog.
-      
-      dataset.modifier=0;
-      dataset.stressMod=0;
-      
+
+    dataset.modifier = 0;
+    dataset.stressMod = 0;
+
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0) + parseInt(modifier);
       if (dataset.attr) {
         r1Data = parseInt(modifier);
       }
-        
+
       reRoll = true;
       r2Data = 0;
-        
+
       if (actor.data.type === 'character') {
         reRoll = false;
-        r2Data = actor.getRollData().stress + parseInt(stressMod );
-      } else
-      if (actor.data.type === 'synthetic') {
-          if (actor.data.data.header.synthstress){
-            effectiveActorType='character'; // make rolls look human
-            reRoll = false;
-          }
+        r2Data = actor.getRollData().stress + parseInt(stressMod);
+      } else if (actor.data.type === 'synthetic') {
+        if (actor.data.data.header.synthstress) {
+          effectiveActorType = 'character'; // make rolls look human
+          r2Data = parseInt(stressMod);
+          reRoll = false;
+        }
       }
 
       let blind = false;
@@ -418,33 +418,32 @@ export class alienrpgActor extends Actor {
         reRoll = true;
       }
       if (actor.data.token.disposition === -1) {
-          blind = true;
+        blind = true;
       }
-     
+
       yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
       game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
     } else {
       if (dataset.panicroll) {
-
         // Roll against the panic table and push the roll to the chat log.
         let chatMessage = '';
         const table = game.tables.getName('Panic Table');
         // let aStress = actor.getRollData().stress;
 
-        let rollModifier = parseInt(modifier) + parseInt(stressMod) ;
-          
+        let rollModifier = parseInt(modifier) + parseInt(stressMod);
+
         let aStress = 0;
 
         if (actor.data.type === 'synthetic') {
-            if (!actor.data.data.header.synthstress) return;
-            
+          if (!actor.data.data.header.synthstress) return;
+
           actor.data.data.header.stress = new Object({ mod: '0' });
           actor.data.data.general.panic = new Object({ lastRoll: '0', value: '0' });
           aStress = 0;
         } else aStress = actor.getRollData().stress + rollModifier + parseInt(actor.data.data.header.stress.mod);
 
         let modRoll = '1d6' + '+' + parseInt(aStress);
-     //   console.warn('rolling stress', modRoll);
+        //   console.warn('rolling stress', modRoll);
         const roll = new Roll(modRoll);
 
         const customResults = table.roll({ roll });
@@ -541,71 +540,62 @@ export class alienrpgActor extends Actor {
   }
 
   async rollAbilityMod(actor, dataset) {
+    function myRenderTemplate(template) {
+      let confirmed = false;
+      renderTemplate(template).then((dlg) => {
+        new Dialog({
+          title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+          content: dlg,
+          buttons: {
+            one: {
+              icon: '<i class="fas fa-check"></i>',
+              label: game.i18n.localize('ALIENRPG.DialRoll'),
+              callback: () => (confirmed = true),
+            },
+            two: {
+              icon: '<i class="fas fa-times"></i>',
+              label: game.i18n.localize('ALIENRPG.DialCancel'),
+              callback: () => (confirmed = false),
+            },
+          },
+          default: 'one',
+          close: (html) => {
+            if (confirmed) {
+              let modifier = parseInt(html.find('[name=modifier]')[0]?.value);
+              let stressMod = html.find('[name=stressMod]')[0]?.value;
 
-      
- 
-          
-           
-      function myRenderTemplate(template){
-               let confirmed = false;
-               renderTemplate(template).then((dlg) => {
-                     new Dialog({
-                       title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
-                       content: dlg,
-                       buttons: {
-                         one: {
-                           icon: '<i class="fas fa-check"></i>',
-                           label: game.i18n.localize('ALIENRPG.DialRoll'),
-                           callback: () => (confirmed = true),
-                         },
-                         two: {
-                           icon: '<i class="fas fa-times"></i>',
-                           label: game.i18n.localize('ALIENRPG.DialCancel'),
-                           callback: () => (confirmed = false),
-                         },
-                       },
-                       default: 'one',
-                       close: (html) => {
-                         if (confirmed) {
-                           let modifier = parseInt(html.find('[name=modifier]')[0]?.value);
-                           let stressMod = html.find('[name=stressMod]')[0]?.value;
-                           
-                            if (stressMod == 'undefined') {stressMod=0;} else stressMod=parseInt(stressMod);
-                            if (modifier == 'undefined') {modifier=0;} else modifier=parseInt(modifier);
-                            if (isNaN(modifier)) modifier = 0;
-                            if (isNaN(stressMod)) stressMod=0;
-                                
-                            dataset.modifier = modifier;
-                            dataset.stressMod = stressMod;
-                            actor.rollAbility(actor, dataset);
-                         }
-                       },
-                     }).render(true);
-                   });
-               
-           };
-      
-      
+              if (stressMod == 'undefined') {
+                stressMod = 0;
+              } else stressMod = parseInt(stressMod);
+              if (modifier == 'undefined') {
+                modifier = 0;
+              } else modifier = parseInt(modifier);
+              if (isNaN(modifier)) modifier = 0;
+              if (isNaN(stressMod)) stressMod = 0;
+
+              dataset.modifier = modifier;
+              dataset.stressMod = stressMod;
+              actor.rollAbility(actor, dataset);
+            }
+          },
+        }).render(true);
+      });
+    }
+
     if (dataset.roll) {
-
-      // callpop upbox here to get any mods then use standard RollAbility()
-   
-     
-        if (actor.data.type === 'character' && (dataset.spbutt != 'armor')){
-            myRenderTemplate('systems/alienrpg/templates/dialog/roll-all-dialog.html');
-        }
-        else if (actor.data.type === 'synthetic') {
-            myRenderTemplate('systems/alienrpg/templates/dialog/roll-base-dialog.html');
-        } else
-        {
-            myRenderTemplate('systems/alienrpg/templates/dialog/roll-base-dialog.html');
-        }
-  
+      // call pop up box here to get any mods then use standard RollAbility()
+      // Check that is a character (and not armor) or a synth pretending to be a character.
+      if ((actor.data.type === 'character' && dataset.spbutt != 'armor') || actor.data.data.header.synthstress) {
+        myRenderTemplate('systems/alienrpg/templates/dialog/roll-all-dialog.html');
+      } else if (actor.data.type === 'synthetic') {
+        myRenderTemplate('systems/alienrpg/templates/dialog/roll-base-dialog.html');
+      } else {
+        myRenderTemplate('systems/alienrpg/templates/dialog/roll-base-dialog.html');
+      }
     } else if (dataset.panicroll) {
       // Roll against the panic table and push the roll to the chat log.
-  
-         myRenderTemplate('systems/alienrpg/templates/dialog/roll-stress-dialog.html');
- 
+
+      myRenderTemplate('systems/alienrpg/templates/dialog/roll-stress-dialog.html');
     }
   }
 
@@ -662,7 +652,7 @@ export class alienrpgActor extends Actor {
     return event;
   }
 
-  async consumablesCheck(actor, consUme, label, consumables) {
+  async consumablesCheck(actor, consUme, label, consumables, tItem) {
     let r1Data = 0;
     let r2Data = 0;
     r2Data = actor.data.data.consumables[`${consUme}`].value;
@@ -678,9 +668,21 @@ export class alienrpgActor extends Actor {
     } else {
       yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
       if (game.alienrpg.rollArr.r2One) {
+        let pValue = '';
+        let pItem = '';
         let itemId = consumables.find(showme)[0].item;
+        console.log('🚀 ~ file: actor.js ~ line 674 ~ alienrpgActor ~ consumablesCheck ~ itemId', itemId);
         let itemVal = consumables.find(showme)[0][`${consUme}`];
         let mitem = actor.getOwnedItem(itemId);
+        try {
+          pItem = actor.getOwnedItem(tItem);
+          console.log('🚀 ~ file: actor.js ~ line 675 ~ alienrpgActor ~ consumablesCheck ~ pItem', pItem);
+
+          pValue = pItem.data.data.attributes.power.value ?? 0;
+        } catch {}
+        // let pValue = pItem.data.data.attributes.power.value;
+
+        // console.log('🚀 ~ file: actor.js ~ line 675 ~ alienrpgActor ~ consumablesCheck ~ pItem', pItem);
         let field = '';
         switch (consUme) {
           case 'air':
@@ -694,9 +696,15 @@ export class alienrpgActor extends Actor {
             await actor.update({ 'data.consumables.food.value': actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
             break;
           case 'power':
-            field = `data.attributes.${consUme}.value`;
-            await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
-            await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
+            field = `data.attributes.power.value`;
+            if (pValue - game.alienrpg.rollArr.r2One <= '0') {
+              await pItem.update({ [field]: '0' });
+              await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - pValue });
+            } else {
+              await pItem.update({ [field]: pValue - game.alienrpg.rollArr.r2One });
+              await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
+            }
+
             break;
           case 'water':
             field = `data.attributes.${consUme}.value`;
@@ -708,7 +716,7 @@ export class alienrpgActor extends Actor {
     }
 
     function showme(consumables) {
-      // console.warn('alienrpgActorSheet -> showme -> ', consumables[0][consUme] >= 1);
+      console.warn('alienrpgActorSheet -> showme -> ', consumables[0][consUme] >= 1);
       return consumables[0][consUme] >= 1;
     }
   }
@@ -794,9 +802,9 @@ export class alienrpgActor extends Actor {
       speaker: {
         actor: actor.id,
       },
-	  roll:customResults.roll,
+      roll: customResults.roll,
       content: chatMessage,
-     // whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+      // whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
       type: CONST.CHAT_MESSAGE_TYPES.ROLL,
     });
   }

@@ -243,5 +243,6 @@
     "ALIENRPG.CombatantUpdate": "更新演員",
     "ALIENRPG.CombatantReroll": "重新啟動計劃",
     "ALIENRPG.CombatantRemove": "刪除演員",
-    "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button"
+    "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button",
+    "ALIENRPG.Pwr": "Pwr"
 }
