@@ -294,38 +294,24 @@ export class alienrpgActor extends Actor {
     setProperty(actorData, 'data.consumables.air.value', (data.consumables.air.value = totalAir));
     setProperty(actorData, 'data.consumables.power.value', (data.consumables.power.value = totalPower));
     setProperty(actorData, 'data.general.armor.value', (data.general.armor.value = totalAc));
-    // actorData.data.general.armor.value = totalAc;
 
-    // data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
-    // this.actor.update({ 'general.radiation.calculatedMax': data.actor.data.general.radiation.max });
     setProperty(actorData, 'general.radiation.calculatedMax', (data.general.radiation.calculatedMax = data.general.radiation.max));
 
-    // // data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
-    // this.actor.update({ 'general.xp.calculatedMax': data.actor.data.general.xp.max });
     setProperty(actorData, 'general.xp.calculatedMax', (data.general.xp.calculatedMax = data.general.xp.max));
 
-    // // data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
-    // this.actor.update({ 'general.starving.calculatedMax': data.actor.data.general.starving.max });
+    // setProperty(actorData, 'general.sp.calculatedMax', (data.general.sp.calculatedMax = data.general.sp.max));
+
     setProperty(actorData, 'general.starving.calculatedMax', (data.general.starving.calculatedMax = data.general.starving.max));
 
-    // // data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
-    // this.actor.update({ 'general.dehydrated.calculatedMax': data.actor.data.general.dehydrated.max });
     setProperty(actorData, 'general.dehydrated.calculatedMax', (data.general.dehydrated.calculatedMax = data.general.dehydrated.max));
 
-    // // data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
-    // this.actor.update({ 'general.exhausted.calculatedMax': data.actor.data.general.exhausted.max });
     setProperty(actorData, 'general.exhausted.calculatedMax', (data.general.exhausted.calculatedMax = data.general.exhausted.max));
 
-    // // data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
-    // this.actor.update({ 'general.freezing.calculatedMax': data.actor.data.general.freezing.max });
     setProperty(actorData, 'general.freezing.calculatedMax', (data.general.freezing.calculatedMax = data.general.freezing.max));
 
-    // // data.actor.data.general.panic.calculatedMax = data.actor.data.general.panic.max; // Update
-    // this.actor.update({ 'general.panic.calculatedMax': data.actor.data.general.panic.max });
     if (actorData.type === 'character') {
       setProperty(actorData, 'general.panic.calculatedMax', (data.general.panic.calculatedMax = data.general.panic.max));
     }
-    // this.actor.update({ 'data.header.health.max': actorData.attributes.str.value });
     setProperty(actorData, 'header.health.max', (data.header.health.max = data.attributes.str.value));
   }
 
@@ -417,9 +403,9 @@ export class alienrpgActor extends Actor {
         r2Data = 0;
         reRoll = true;
       }
-      if (actor.data.token.disposition === -1) {
-        blind = true;
-      }
+      // if (actor.data.token.disposition === -1) {
+      //   blind = true;
+      // }
 
       yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
       game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
@@ -765,7 +751,7 @@ export class alienrpgActor extends Actor {
             if (confirmed) {
               let modifier = parseInt(html.find('[name=damage]')[0].value);
               r1Data = r1Data + modifier;
-              yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress', actor.id);
+              yze.yzeRoll(hostile, false, reRoll, label, r1Data, 'Black', r2Data, 'Stress', actor.id);
             }
           },
         }).render(true);

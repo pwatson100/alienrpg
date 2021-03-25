@@ -70,31 +70,9 @@ export class alienrpgActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-    // // data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
-    // this.actor.update({ 'general.radiation.calculatedMax': data.actor.data.general.radiation.max });
-
-    // // data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
-    // this.actor.update({ 'general.xp.calculatedMax': data.actor.data.general.xp.max });
-
-    // // data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
-    // this.actor.update({ 'general.starving.calculatedMax': data.actor.data.general.starving.max });
-
-    // // data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
-    // this.actor.update({ 'general.dehydrated.calculatedMax': data.actor.data.general.dehydrated.max });
-
-    // // data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
-    // this.actor.update({ 'general.exhausted.calculatedMax': data.actor.data.general.exhausted.max });
-
-    // // data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
-    // this.actor.update({ 'general.freezing.calculatedMax': data.actor.data.general.freezing.max });
-
-    // // data.actor.data.general.panic.calculatedMax = data.actor.data.general.panic.max; // Update
-    // this.actor.update({ 'general.panic.calculatedMax': data.actor.data.general.panic.max });
-
-    // this.actor.update({ 'data.header.health.max': actorData.attributes.str.value });
-
     data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
+    // data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
     data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
     data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
     data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
@@ -331,6 +309,7 @@ export class alienrpgActorSheet extends ActorSheet {
       html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
     }
 
+    html.find('.currency').on('change', this._currencyField.bind(this));
     // minus from health and stress
     html.find('.minus-btn').click(this._plusMinusButton.bind(this));
 
@@ -663,6 +642,23 @@ export class alienrpgActorSheet extends ActorSheet {
       }
     }
     this.actor.consumablesCheck(this.actor, consUme, label, numbers, tItem);
+  }
+
+  _currencyField(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    // format initial value
+    onBlur({ target: event.currentTarget });
+
+    function localStringToNumber(s) {
+      return Number(String(s).replace(/[^0-9.-]+/g, ''));
+    }
+
+    function onBlur(e) {
+      let value = e.target.value;
+      e.target.value = value ? Intl.NumberFormat('en-EN', { maximumFractionDigits: 0, style: 'currency', currency: 'USD' }).format(value) : '';
+      // console.warn(e.target.value);
+    }
   }
 }
 export default alienrpgActorSheet;

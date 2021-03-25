@@ -292,3 +292,7 @@ Thanks to @Bithir for allowing me to use hs messaging code.
 Version 1.3.4
 Corrected error where the encumbrance bar was not showing on the Synthetic character sheet. 
 Corrected issue with the MU/TH/ER Instructions load causing an issue with players.  
+
+Version 1.3.5
+All GM rolls for Creatures or Hostile tokens are now public by default But can be made private by using the Chat dropdown and selecting "Private GM Roll"
+ 

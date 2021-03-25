@@ -1221,7 +1221,7 @@ button:focus {
 
 .grid-Consumables {
   display: grid;
-  grid-template-areas: "Heading Heading " "Air1 Air2" "Food1 Food2" "Power1 Power2" "Water1 Water2";
+  grid-template-areas: "Heading Heading " "Air1 Air2" "Food1 Food2" "Water1 Water2" "Power1 Power2";
   grid-template-columns: 1fr 1fr;
 }
 
@@ -1235,6 +1235,7 @@ button:focus {
   -webkit-box-pack: left;
       -ms-flex-pack: left;
           justify-content: left;
+  align-self: center;
 }
 
 .Air2 {
@@ -1244,6 +1245,7 @@ button:focus {
 .Food1 {
   grid-area: Food1;
   justify-self: left;
+  align-self: center;
 }
 
 .Food2 {
@@ -1253,16 +1255,17 @@ button:focus {
 .Power1 {
   grid-area: Power1;
   justify-self: left;
+  align-self: center;
 }
 
 .Power2 {
   grid-area: Power2;
-  margin-top: 5px;
 }
 
 .Water1 {
   grid-area: Water1;
   justify-self: left;
+  align-self: center;
 }
 
 .Water2 {

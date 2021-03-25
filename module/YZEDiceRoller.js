@@ -222,7 +222,7 @@ export class yze {
         content: chatMessage,
         whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
         blind: true,
-        type: CHAT_MESSAGE_TYPES.ROLL,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,
         rollMode: game.settings.get('core', 'rollMode'),
       });

@@ -245,5 +245,6 @@
   "ALIENRPG.CombatantRemove": "Remove Actor",
   "ALIENRPG.MultiPush": "Allow multi-push",
   "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button",
-  "ALIENRPG.Pwr": "Pwr"
+  "ALIENRPG.Pwr": "Pwr",
+  "ALIENRPG.Cash": "Cash"
 }
