@@ -244,5 +244,7 @@
     "ALIENRPG.CombatantReroll": "重新啟動計劃",
     "ALIENRPG.CombatantRemove": "刪除演員",
     "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button",
-    "ALIENRPG.Pwr": "Pwr"
+    "ALIENRPG.Pwr": "Pwr",
+    "ALIENRPG.Cash": "Cash",
+    "ALIENRPG.StoryPoints": "Story Points"
 }

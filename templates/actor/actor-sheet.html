@@ -140,15 +140,15 @@
                       <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.xp.icon}}}
                     </span>
                   </div>
-                  {{!-- <div class="dots experience"> --}}
-                  {{!-- <h4 class="resource-label">Story Points</h4> --}}
-                    {{!-- <input type="hidden" name="data.general.sp.value" data-max="{{data.general.sp.max}}" value="{{data.general.sp.value}}" data-dtype="Number"> --}}
-                      {{!-- <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.sp.icon}}} --}}
-                    {{!-- </span> --}}
-                  {{!-- </div> --}}
+                  <div class="dots experience" style="margin-top: 3px;" >
+                  <h4 class="resource-label">{{localize "ALIENRPG.StoryPoints"}}</h4>
+                    <input type="hidden" name="data.general.sp.value" data-max="{{data.general.sp.max}}" value="{{data.general.sp.value}}" data-dtype="Number">
+                      <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.sp.icon}}}</span>
+                  </div>
+                  <div style="margin-top: 6px;" >
                   <label class="resource-label">{{localize "ALIENRPG.Cash"}}</label>
                   <input type="text" class="cashboxsize currency" name="data.general.cash.value" value="{{data.general.cash.value}}" />
-
+                  </div>
               </div>
         
               <div class="Item8">

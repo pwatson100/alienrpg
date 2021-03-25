@@ -22,30 +22,30 @@ export const migrateWorld = async function () {
   }
 
   // Migrate World Items
-  for (let i of game.items.entities) {
-    try {
-      const updateData = migrateItemData(i.data);
-      if (!isObjectEmpty(updateData)) {
-        console.warn(`Migrating Item entity ${i.name}`, updateData);
-        await i.update(updateData, { enforceTypes: false });
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  // for (let i of game.items.entities) {
+  //   try {
+  //     const updateData = migrateItemData(i.data);
+  //     if (!isObjectEmpty(updateData)) {
+  //       console.warn(`Migrating Item entity ${i.name}`, updateData);
+  //       await i.update(updateData, { enforceTypes: false });
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
 
   // Migrate Actor Override Tokens
-  for (let s of game.scenes.entities) {
-    try {
-      const updateData = migrateSceneData(s.data);
-      if (!isObjectEmpty(updateData)) {
-        // console.log(`Migrating Scene entity ${s.name}`);
-        await s.update(updateData, { enforceTypes: false });
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  // for (let s of game.scenes.entities) {
+  //   try {
+  //     const updateData = migrateSceneData(s.data);
+  //     if (!isObjectEmpty(updateData)) {
+  //       // console.log(`Migrating Scene entity ${s.name}`);
+  //       await s.update(updateData, { enforceTypes: false });
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
 
   // Migrate World Compendium Packs
   const packs = game.packs.filter((p) => {
@@ -95,9 +95,9 @@ export const migrateCompendium = async function (pack) {
   for (let ent of content) {
     try {
       let updateData = null;
-      if (entity === 'Item') updateData = migrateItemData(ent.data);
-      else if (entity === 'Actor') updateData = migrateActorData(ent.data);
-      else if (entity === 'Scene') updateData = migrateSceneData(ent.data);
+      // if (entity === 'Item') updateData = migrateItemData(ent.data);
+      if (entity === 'Actor') updateData = migrateActorData(ent.data);
+      // else if (entity === 'Scene') updateData = migrateSceneData(ent.data);
       // console.warn('ent.data,updateData', ent.data, updateData);
       if (!isObjectEmpty(updateData)) {
         expandObject(updateData);
@@ -126,133 +126,137 @@ const migrateActorData = (actor) => {
   // console.log('migrateActorData -> actor', actor);
   const data = actor.data;
   const updateData = {};
-  if (actor.type === 'creature') {
-    if (actor.token.actorLink === true) {
-      actor.token.actorLink = false;
-    }
-  }
+  // if (actor.type === 'creature') {
+  //   if (actor.token.actorLink === true) {
+  //     actor.token.actorLink = false;
+  //   }
+  // }
   if (actor.type === 'character' || actor.type === 'synthetic') {
+    updateData[`data.general.sp.value`] = '0';
+    updateData[`data.general.sp.max`] = '3';
+    updateData[`data.general.cash.value`] = 0;
+
     // Loop through Skill scores, and add their attribute modifiers to our sheet output.
-    for (let [key, skill] of Object.entries(data.skills)) {
-      // Calculate the modifier using d20 rules.
-      const conAtt = skill.ability;
-      skill.mod = skill.value + data.attributes[conAtt].value;
-      // console.warn('skill.mod', skill.mod);
-    }
-    switch (data.general.career.value) {
-      case 'Colonial Marine':
-        updateData[`data.general.career.value`] = '1';
-        // data.general.career.value = 1;
-        break;
-      case 'Colonial Marshal':
-        updateData[`data.general.career.value`] = '2';
-        // data.general.career.value = 2;
-        break;
-      case 'Company Agent':
-        updateData[`data.general.career.value`] = '3';
-        // data.general.career.value = 3;
-        break;
-      case 'Kid':
-        updateData[`data.general.career.value`] = '4';
-        // data.general.career.value = 4;
-        break;
-      case 'Medic':
-        updateData[`data.general.career.value`] = '5';
-        // data.general.career.value = 5;
-        break;
-      case 'Mercenary':
-        updateData[`data.general.career.value`] = '6';
-        // data.general.career.value = 6;
-        break;
-      case 'Officer':
-        updateData[`data.general.career.value`] = '7';
-        // data.general.career.value = 7;
-        break;
-      case 'Pilot':
-        updateData[`data.general.career.value`] = '8';
-        // data.general.career.value = 8;
-        break;
-      case 'Roughneck':
-        updateData[`data.general.career.value`] = '9';
-        // data.general.career.value = 9;
-        break;
-      case 'Scientist':
-        updateData[`data.general.career.value`] = '10';
-        // data.general.career.value = 10;
-        break;
-      case 'Synthetic':
-        updateData[`data.general.career.value`] = '11';
-        // data.general.career.value = 11;
-        break;
+    // for (let [key, skill] of Object.entries(data.skills)) {
+    //   // Calculate the modifier using d20 rules.
+    //   const conAtt = skill.ability;
+    //   skill.mod = skill.value + data.attributes[conAtt].value;
+    // console.warn('skill.mod', skill.mod);
+    // }
+    // switch (data.general.career.value) {
+    //   case 'Colonial Marine':
+    //     updateData[`data.general.career.value`] = '1';
+    //     // data.general.career.value = 1;
+    //     break;
+    //   case 'Colonial Marshal':
+    //     updateData[`data.general.career.value`] = '2';
+    //     // data.general.career.value = 2;
+    //     break;
+    //   case 'Company Agent':
+    //     updateData[`data.general.career.value`] = '3';
+    //     // data.general.career.value = 3;
+    //     break;
+    //   case 'Kid':
+    //     updateData[`data.general.career.value`] = '4';
+    //     // data.general.career.value = 4;
+    //     break;
+    //   case 'Medic':
+    //     updateData[`data.general.career.value`] = '5';
+    //     // data.general.career.value = 5;
+    //     break;
+    //   case 'Mercenary':
+    //     updateData[`data.general.career.value`] = '6';
+    //     // data.general.career.value = 6;
+    //     break;
+    //   case 'Officer':
+    //     updateData[`data.general.career.value`] = '7';
+    //     // data.general.career.value = 7;
+    //     break;
+    //   case 'Pilot':
+    //     updateData[`data.general.career.value`] = '8';
+    //     // data.general.career.value = 8;
+    //     break;
+    //   case 'Roughneck':
+    //     updateData[`data.general.career.value`] = '9';
+    //     // data.general.career.value = 9;
+    //     break;
+    //   case 'Scientist':
+    //     updateData[`data.general.career.value`] = '10';
+    //     // data.general.career.value = 10;
+    //     break;
+    //   case 'Synthetic':
+    //     updateData[`data.general.career.value`] = '11';
+    //     // data.general.career.value = 11;
+    //     break;
 
-      default:
-        break;
-    }
+    //   default:
+    //     break;
+    // }
     // data.skills.heavyMach.description = 'Heavy Machinery';
-    updateData[`data.skills.heavyMach.description.-=value`] = null;
-    updateData[`data.skills.heavyMach`] = { description: 'Heavy Machinery' };
-    // data.skills.closeCbt.description = 'Close Combat';
-    updateData[`data.skills.closeCbt.description.-=value`] = null;
-    updateData[`data.skills.closeCbt`] = { description: 'Close Combat' };
+    // updateData[`data.skills.heavyMach.description.-=value`] = null;
+    // updateData[`data.skills.heavyMach`] = { description: 'Heavy Machinery' };
+    // // data.skills.closeCbt.description = 'Close Combat';
+    // updateData[`data.skills.closeCbt.description.-=value`] = null;
+    // updateData[`data.skills.closeCbt`] = { description: 'Close Combat' };
 
-    // data.skills.stamina.description = 'Stamina';
-    updateData[`data.skills.stamina.description.-=value`] = null;
-    updateData[`data.skills.stamina`] = { description: 'Stamina' };
+    // // data.skills.stamina.description = 'Stamina';
+    // updateData[`data.skills.stamina.description.-=value`] = null;
+    // updateData[`data.skills.stamina`] = { description: 'Stamina' };
 
-    // data.skills.rangedCbt.description = 'Ranged Combat';
-    updateData[`data.skills.rangedCbt.description.-=value`] = null;
-    updateData[`data.skills.rangedCbt`] = { description: 'Ranged Combat' };
+    // // data.skills.rangedCbt.description = 'Ranged Combat';
+    // updateData[`data.skills.rangedCbt.description.-=value`] = null;
+    // updateData[`data.skills.rangedCbt`] = { description: 'Ranged Combat' };
 
-    // data.skills.mobility.description = 'Mobility';
-    updateData[`data.skills.mobility.description.-=value`] = null;
-    updateData[`data.skills.mobility`] = { description: 'Mobility' };
+    // // data.skills.mobility.description = 'Mobility';
+    // updateData[`data.skills.mobility.description.-=value`] = null;
+    // updateData[`data.skills.mobility`] = { description: 'Mobility' };
 
-    // data.skills.piloting.description = 'Piloting';
-    updateData[`data.skills.piloting.description.-=value`] = null;
-    updateData[`data.skills.piloting`] = { description: 'Piloting' };
+    // // data.skills.piloting.description = 'Piloting';
+    // updateData[`data.skills.piloting.description.-=value`] = null;
+    // updateData[`data.skills.piloting`] = { description: 'Piloting' };
 
-    // data.skills.command.description = 'Command';
-    updateData[`data.skills.command.description.-=value`] = null;
-    updateData[`data.skills.command`] = { description: 'Command' };
+    // // data.skills.command.description = 'Command';
+    // updateData[`data.skills.command.description.-=value`] = null;
+    // updateData[`data.skills.command`] = { description: 'Command' };
 
-    // data.skills.manipulation.description = 'Manipulation';
-    updateData[`data.skills.manipulation.description.-=value`] = null;
-    updateData[`data.skills.manipulation`] = { description: 'Manipulation' };
+    // // data.skills.manipulation.description = 'Manipulation';
+    // updateData[`data.skills.manipulation.description.-=value`] = null;
+    // updateData[`data.skills.manipulation`] = { description: 'Manipulation' };
 
-    // data.skills.medicalAid.description = 'Medical Aid';
-    updateData[`data.skills.medicalAid.description.-=value`] = null;
-    updateData[`data.skills.medicalAid`] = { description: 'Medical Aid' };
+    // // data.skills.medicalAid.description = 'Medical Aid';
+    // updateData[`data.skills.medicalAid.description.-=value`] = null;
+    // updateData[`data.skills.medicalAid`] = { description: 'Medical Aid' };
 
-    // data.skills.observation.description = 'Observation';
-    updateData[`data.skills.observation.description.-=value`] = null;
-    updateData[`data.skills.observation`] = { description: 'Observation' };
+    // // data.skills.observation.description = 'Observation';
+    // updateData[`data.skills.observation.description.-=value`] = null;
+    // updateData[`data.skills.observation`] = { description: 'Observation' };
 
-    // data.skills.survival.description = 'Survival';
-    updateData[`data.skills.survival.description.-=value`] = null;
-    updateData[`data.skills.survival`] = { description: 'Survival' };
+    // // data.skills.survival.description = 'Survival';
+    // updateData[`data.skills.survival.description.-=value`] = null;
+    // updateData[`data.skills.survival`] = { description: 'Survival' };
 
-    // data.skills.comtech.description = 'Comtech';
-    updateData[`data.skills.comtech.description.-=value`] = null;
-    updateData[`data.skills.comtech`] = { description: 'Comtech' };
+    // // data.skills.comtech.description = 'Comtech';
+    // updateData[`data.skills.comtech.description.-=value`] = null;
+    // updateData[`data.skills.comtech`] = { description: 'Comtech' };
   }
 
   // Remove deprecated fields
-  _migrateRemoveDeprecated(actor, updateData);
+  // _migrateRemoveDeprecated(actor, updateData);
 
   // Migrate Owned Items
-  if (!actor.items) return updateData;
-  let hasItemUpdates = false;
-  const items = actor.items.map((i) => {
-    // Migrate the Owned Item
-    let itemUpdate = migrateItemData(i);
+  // if (!actor.items) return updateData;
+  // let hasItemUpdates = false;
+  // const items = actor.items.map((i) => {
+  //   // Migrate the Owned Item
+  //   let itemUpdate = migrateItemData(i);
 
-    // Update the Owned Item
-    if (!isObjectEmpty(itemUpdate)) {
-      hasItemUpdates = true;
-      return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
-    } else return i;
-  });
-  if (hasItemUpdates) updateData.items = items;
+  //   // Update the Owned Item
+  //   if (!isObjectEmpty(itemUpdate)) {
+  //     hasItemUpdates = true;
+  //     return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
+  //   } else return i;
+  // });
+  // if (hasItemUpdates) updateData.items = items;
   return updateData;
 };
 

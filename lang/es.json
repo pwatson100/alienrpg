@@ -247,5 +247,7 @@
   "ALIENRPG.CombatantRemove": "Eliminar actor",
   "ALIENRPG.MultiPush": "Permitir empuje múltiple",
   "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button",
-  "ALIENRPG.Pwr": "Ene"
+  "ALIENRPG.Pwr": "Ene",
+  "ALIENRPG.Cash": "Dinero",
+  "ALIENRPG.StoryPoints": "Puntos de historia"
 }

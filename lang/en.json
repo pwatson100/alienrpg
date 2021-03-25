@@ -244,7 +244,8 @@
   "ALIENRPG.CombatantReroll": "ReRoll Initiative",
   "ALIENRPG.CombatantRemove": "Remove Actor",
   "ALIENRPG.MultiPush": "Allow multi-push",
-  "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button",
+  "ALIENRPG.SynthStress": "Imitate Human Panic and Push",
   "ALIENRPG.Pwr": "Pwr",
-  "ALIENRPG.Cash": "Cash"
+  "ALIENRPG.Cash": "Cash",
+  "ALIENRPG.StoryPoints": "Story Points"
 }

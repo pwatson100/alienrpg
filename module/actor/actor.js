@@ -299,7 +299,7 @@ export class alienrpgActor extends Actor {
 
     setProperty(actorData, 'general.xp.calculatedMax', (data.general.xp.calculatedMax = data.general.xp.max));
 
-    // setProperty(actorData, 'general.sp.calculatedMax', (data.general.sp.calculatedMax = data.general.sp.max));
+    setProperty(actorData, 'general.sp.calculatedMax', (data.general.sp.calculatedMax = data.general.sp.max));
 
     setProperty(actorData, 'general.starving.calculatedMax', (data.general.starving.calculatedMax = data.general.starving.max));
 

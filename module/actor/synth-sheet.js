@@ -47,9 +47,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
       isCharacter: this.entity.data.type === 'character',
-      isEnc: this.entity.data.type === 'character',
       isSynthetic: this.entity.data.type === 'synthetic',
-      isEnc: this.entity.data.type === 'synthetic',
+      isEnc: this.entity.data.type === 'character' || this.entity.data.type === 'synthetic',
       isVehicles: this.entity.data.type === 'vehicles',
       isCreature: this.entity.data.type === 'creature',
       isNPC: this.entity.data.data.header.npc,
@@ -72,6 +71,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
+    data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
+
     // data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
     // data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
     // data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
@@ -241,6 +242,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       html.find('.rollable').click(this._onRoll.bind(this));
 
       html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
+      html.find('.currency').on('change', this._currencyField.bind(this));
 
       // Rollable Items.
       html.find('.rollItem').click(this._rollItem.bind(this));
@@ -545,6 +548,22 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       }
     }
     this.actor.consumablesCheck(this.actor, consUme, label, numbers, tItem);
+  }
+  _currencyField(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    // format initial value
+    onBlur({ target: event.currentTarget });
+
+    function localStringToNumber(s) {
+      return Number(String(s).replace(/[^0-9.-]+/g, ''));
+    }
+
+    function onBlur(e) {
+      let value = e.target.value;
+      e.target.value = value ? Intl.NumberFormat('en-EN', { maximumFractionDigits: 0, style: 'currency', currency: 'USD' }).format(value) : '';
+      // console.warn(e.target.value);
+    }
   }
 }
 export default alienrpgSynthActorSheet;

@@ -148,6 +148,10 @@
           "value": 0,
           "max": 10
         },
+        "sp": {
+          "value": 0,
+          "max": 3
+        },
         "radiation": {
           "value": 0,
           "max": 10
@@ -181,8 +185,7 @@
           "lastRoll": 0
         },
         "cash": {
-          "value": 0,
-          "label": "Number"
+          "value": 0
         }
       },
       "consumables": {
@@ -340,6 +343,10 @@
         "xp": {
           "value": 0,
           "max": 10
+        },
+        "sp": {
+          "value": 0,
+          "max": 3
         },
         "radiation": {
           "value": 0,

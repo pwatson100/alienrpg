@@ -47,9 +47,8 @@ export class alienrpgActorSheet extends ActorSheet {
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
       isCharacter: this.entity.data.type === 'character',
-      isEnc: this.entity.data.type === 'character',
+      isEnc: this.entity.data.type === 'character' || this.entity.data.type === 'synthetic',
       isSynthetic: this.entity.data.type === 'synthetic',
-      isEnc: this.entity.data.type === 'synthetic',
       isVehicles: this.entity.data.type === 'vehicles',
       isCreature: this.entity.data.type === 'creature',
       isNPC: this.entity.data.data.header.npc,
@@ -72,7 +71,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
-    // data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
+    data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
     data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
     data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
     data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
@@ -268,22 +267,6 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
-
-    // html.find('.item-create').click(this._onItemCreate.bind(this));
-
-    // // Update Inventory Item
-    // html.find('.item-edit').click((ev) => {
-    //   const li = $(ev.currentTarget).parents('.item');
-    //   const item = this.actor.getOwnedItem(li.data('itemId'));
-    //   item.sheet.render(true);
-    // });
-
-    // // Delete Inventory Item
-    // html.find('.item-delete').click((ev) => {
-    //   const li = $(ev.currentTarget).parents('.item');
-    //   this.actor.deleteOwnedItem(li.data('itemId'));
-    //   li.slideUp(200, () => this.render(false));
-    // });
 
     if (game.settings.get('alienrpg', 'switchMouseKeys')) {
       // Right to Roll and left to mod
