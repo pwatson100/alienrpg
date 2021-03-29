@@ -268,6 +268,13 @@ export class alienrpgActorSheet extends ActorSheet {
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
 
+    // Update Inventory Item
+    html.find('.item-edit').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.getOwnedItem(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
     if (game.settings.get('alienrpg', 'switchMouseKeys')) {
       // Right to Roll and left to mod
       // Rollable abilities.
@@ -310,6 +317,8 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.talent-btn').click(this._talentBtn.bind(this));
 
     html.find('.inline-edit').change(this._inlineedit.bind(this));
+
+    html.find('.rollCrit').click(this._rollCrit.bind(this));
 
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
@@ -396,6 +405,11 @@ export class alienrpgActorSheet extends ActorSheet {
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.getOwnedItem(itemId);
     this.actor.nowRollItem(item);
+  }
+  _rollCrit(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCrit(this.actor.data.type, dataset);
   }
 
   _activate(event) {
@@ -639,7 +653,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     function onBlur(e) {
       let value = e.target.value;
-      e.target.value = value ? Intl.NumberFormat('en-EN', { maximumFractionDigits: 0, style: 'currency', currency: 'USD' }).format(value) : '';
+      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
       // console.warn(e.target.value);
     }
   }

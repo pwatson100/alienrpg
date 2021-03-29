@@ -298,6 +298,16 @@ a.inline-roll {
   cursor: pointer;
 }
 
+.rollCrit {
+  margin-left: 25%;
+}
+.rollCrit:hover, .rollCrit:focus {
+  color: red;
+  text-shadow: 0 0 20px red;
+  font-size: 95%;
+  cursor: pointer;
+}
+
 .minus-btn .plus-btn {
   width: 10px;
   height: 10px;
@@ -1090,6 +1100,7 @@ button:focus {
 .Item3 {
   grid-area: Item3;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1097,6 +1108,7 @@ button:focus {
 .Item4 {
   grid-area: Item4;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1104,6 +1116,7 @@ button:focus {
 .Item5 {
   grid-area: Item5;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1111,6 +1124,7 @@ button:focus {
 .Item6 {
   grid-area: Item6;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1118,6 +1132,7 @@ button:focus {
 .Item7 {
   grid-area: Item7;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1131,6 +1146,7 @@ button:focus {
 .Item9 {
   grid-area: Item9;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
 }
 
 .Item10 {

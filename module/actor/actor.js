@@ -836,5 +836,29 @@ export class alienrpgActor extends Actor {
     }
     return con;
   }
+
+  async rollCrit(type, dataset) {
+    console.log('🚀 ~ file: actor.js ~ line 841 ~ alienrpgActor ~ rollCrit ~ type', type);
+    // let label = dataset.label;
+    let atable = '';
+    switch (type) {
+      case 'character':
+        atable = game.tables.getName('Critical injuries');
+
+        break;
+      case 'synthetic':
+        atable = game.tables.getName('Critical Injuries on Synthetics');
+        break;
+
+      default:
+        break;
+    }
+
+    const formula = atable.data.formula;
+
+    const roll = new Roll(formula);
+
+    atable.draw({ roll: roll });
+  }
 }
 export default alienrpgActor;

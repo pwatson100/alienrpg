@@ -68,7 +68,7 @@ export class alienrpgItemSheet extends ItemSheet {
 
     function onBlur(e) {
       let value = e.target.value;
-      e.target.value = value ? Intl.NumberFormat('en-EN', { maximumFractionDigits: 0, style: 'currency', currency: 'USD' }).format(value) : '';
+      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
       // console.warn(e.target.value);
     }
   }

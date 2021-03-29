@@ -276,6 +276,19 @@ a.inline-roll {
   }
 }
 
+.rollCrit {
+  // color: yellow;
+  margin-left: 25%;
+  &:hover,
+  &:focus {
+    // color: black;
+    color: red;
+    text-shadow: 0 0 20px red;
+    font-size: 95%;
+    cursor: pointer;
+  }
+}
+
 .minus-btn .plus-btn {
   width: 10px;
   height: 10px;
