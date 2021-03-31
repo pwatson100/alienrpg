@@ -212,6 +212,18 @@ export class alienrpgActor extends Actor {
           }
         }
       }
+
+      if (Attrib.type === 'talent') {
+        const talName = Attrib.name.toUpperCase();
+        switch (talName) {
+          case 'NERVES OF STEEL':
+            setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod -= 2));
+            break;
+
+          default:
+            break;
+        }
+      }
     }
 
     for (let [a, abl] of Object.entries(data.attributes)) {
@@ -367,7 +379,9 @@ export class alienrpgActor extends Actor {
     game.alienrpg.rollArr.multiPush = 0;
 
     let modifier = parseInt(dataset?.mod ?? 0) + parseInt(dataset?.modifier ?? 0);
+    // console.log('🚀 ~ file: actor.js ~ line 382 ~ alienrpgActor ~ rollAbility ~ modifier - CORRECT', modifier);
     let stressMod = parseInt(dataset?.stressMod ?? 0);
+    // console.log('🚀 ~ file: actor.js ~ line 383 ~ alienrpgActor ~ rollAbility ~ stressMod - CORRECT', stressMod);
 
     // the dataset value is returned to the DOM so it should be set to 0 in case a future roll is made without the
     // modifier dialog.
@@ -417,6 +431,7 @@ export class alienrpgActor extends Actor {
         // let aStress = actor.getRollData().stress;
 
         let rollModifier = parseInt(modifier) + parseInt(stressMod);
+        // console.log('🚀 ~ file: actor.js ~ line 432 ~ alienrpgActor ~ rollAbility ~ rollModifier', rollModifier);
 
         let aStress = 0;
 
@@ -426,12 +441,13 @@ export class alienrpgActor extends Actor {
           actor.data.data.header.stress = new Object({ mod: '0' });
           actor.data.data.general.panic = new Object({ lastRoll: '0', value: '0' });
           aStress = 0;
-        } else aStress = actor.getRollData().stress + rollModifier + parseInt(actor.data.data.header.stress.mod);
+        } else aStress = actor.getRollData().stress + rollModifier;
+        // } else aStress = actor.getRollData().stress + rollModifier + parseInt(actor.data.data.header.stress.mod);
+        // console.log('🚀 ~ file: actor.js ~ line 443 ~ alienrpgActor ~ rollAbility ~ aStress', aStress);
 
         let modRoll = '1d6' + '+' + parseInt(aStress);
         //   console.warn('rolling stress', modRoll);
         const roll = new Roll(modRoll);
-
         const customResults = table.roll({ roll });
         let oldPanic = actor.data.data.general.panic.lastRoll;
 
@@ -439,7 +455,19 @@ export class alienrpgActor extends Actor {
           alienrpgActor.causePanic(actor);
         }
 
-        chatMessage += '<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(rollModifier).toString() + '</h2>';
+        chatMessage +=
+          '<h2 style=" color: #f71403; font-weight: bold;" class="ctooltip">' +
+          game.i18n.localize('ALIENRPG.PanicCondition') +
+          ' ' +
+          addSign(aStress).toString() +
+          '<span class="ctooltiptext">' +
+          'Stress +' +
+          actor.getRollData().stress +
+          ' Modifiers + ' +
+          stressMod +
+          ' Talents ' +
+          modifier +
+          '</span></h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
         let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
 
@@ -505,7 +533,7 @@ export class alienrpgActor extends Actor {
               ChatMessage.create({ speaker: { actor: actor.id }, content, whisper: selftarget, type: CONST.CHAT_MESSAGE_TYPES.OTHER, sound, blind: false });
             }
 
-            SelfMessage('<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(rollModifier).toString() + ' ???</h2>', CONFIG.sounds.dice);
+            SelfMessage('<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(aStress).toString() + ' ???</h2>', CONFIG.sounds.dice);
           }
         }
 
@@ -558,6 +586,7 @@ export class alienrpgActor extends Actor {
               } else modifier = parseInt(modifier);
               if (isNaN(modifier)) modifier = 0;
               if (isNaN(stressMod)) stressMod = 0;
+              // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
 
               dataset.modifier = modifier;
               dataset.stressMod = stressMod;
@@ -657,12 +686,12 @@ export class alienrpgActor extends Actor {
         let pValue = '';
         let pItem = '';
         let itemId = consumables.find(showme)[0].item;
-        console.log('🚀 ~ file: actor.js ~ line 674 ~ alienrpgActor ~ consumablesCheck ~ itemId', itemId);
+        // console.log('🚀 ~ file: actor.js ~ line 674 ~ alienrpgActor ~ consumablesCheck ~ itemId', itemId);
         let itemVal = consumables.find(showme)[0][`${consUme}`];
         let mitem = actor.getOwnedItem(itemId);
         try {
           pItem = actor.getOwnedItem(tItem);
-          console.log('🚀 ~ file: actor.js ~ line 675 ~ alienrpgActor ~ consumablesCheck ~ pItem', pItem);
+          // console.log('🚀 ~ file: actor.js ~ line 675 ~ alienrpgActor ~ consumablesCheck ~ pItem', pItem);
 
           pValue = pItem.data.data.attributes.power.value ?? 0;
         } catch {}
@@ -838,7 +867,7 @@ export class alienrpgActor extends Actor {
   }
 
   async rollCrit(type, dataset) {
-    console.log('🚀 ~ file: actor.js ~ line 841 ~ alienrpgActor ~ rollCrit ~ type', type);
+    // console.log('🚀 ~ file: actor.js ~ line 841 ~ alienrpgActor ~ rollCrit ~ type', type);
     // let label = dataset.label;
     let atable = '';
     switch (type) {

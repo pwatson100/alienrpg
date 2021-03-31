@@ -394,7 +394,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
     li.addEventListener('click', function (ev) {
       // console.log('🚀 ~ file: alienrpg.js ~ line 332 ~ ev', ev);
       let tarG = ev.target.previousElementSibling.checked;
-      console.log('multi', tarG);
+      // console.log('multi', tarG);
 
       if (ev.target.classList.contains('alien-Push-button')) {
         // do stuff

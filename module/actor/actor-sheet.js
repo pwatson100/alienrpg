@@ -173,7 +173,7 @@ export class alienrpgActorSheet extends ActorSheet {
     }
 
     data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
-
+    this._computeHealth(data);
     // Assign and return
     data.inventory = Object.values(inventory);
   }
@@ -203,6 +203,14 @@ export class alienrpgActorSheet extends ActorSheet {
       }
     }
     return enc;
+  }
+  _computeHealth(actorData) {
+    // Compute Encumbrance percentage
+    for (let i of actorData.talents) {
+      if (i.name.toUpperCase() === 'TOUGH') {
+        setProperty(actorData, 'actorData.data.header.health.value', (actorData.data.header.health.value += 2));
+      }
+    }
   }
 
   /**

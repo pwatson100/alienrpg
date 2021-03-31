@@ -181,7 +181,7 @@ export class yze {
         localizedCountOfSuccesses(oldRoll + game.alienrpg.rollArr.multiPush + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six) +
         ' </div>';
       game.alienrpg.rollArr.multiPush = oldRoll;
-      console.log('spud');
+      // console.log('spud');
     }
 
     // *******************************************************
