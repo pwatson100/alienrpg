@@ -461,12 +461,18 @@ export class alienrpgActor extends Actor {
           ' ' +
           addSign(aStress).toString() +
           '<span class="ctooltiptext">' +
-          'Stress +' +
+          game.i18n.localize('ALIENRPG.Stress') +
+          ' + (' +
           actor.getRollData().stress +
-          ' Modifiers + ' +
+          ') <br>+ ' +
+          game.i18n.localize('ALIENRPG.StressMod') +
+          ' + (' +
           stressMod +
-          ' Talents ' +
+          ') <br>+ ' +
+          game.i18n.localize('ALIENRPG.Talents') +
+          ' + (' +
           modifier +
+          ')' +
           '</span></h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
         let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
@@ -731,7 +737,7 @@ export class alienrpgActor extends Actor {
     }
 
     function showme(consumables) {
-      console.warn('alienrpgActorSheet -> showme -> ', consumables[0][consUme] >= 1);
+      // console.warn('alienrpgActorSheet -> showme -> ', consumables[0][consUme] >= 1);
       return consumables[0][consUme] >= 1;
     }
   }

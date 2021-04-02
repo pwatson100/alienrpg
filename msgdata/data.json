@@ -6,9 +6,11 @@
         },
         {
             "version": 2,
-
             "message": "<h1>MU/TH/ER Instructions.</h1><br />Please read the @JournalEntry[MU/TH/ER Instructions.] to get the most benefit out of using the system and new features."
-
+        },
+        {
+            "version": 3,
+            "message": "<h1>Changes in this release.</h1><br /> There are a number of changes in this release which I hope will improve the overall experience. <br/><ol><li>All GM rolls for Creatures or Hostile tokens are now public by default. But can be made private by using the Chat dropdown and selecting 'Private GM Roll'.</li><li>Addded Story Points and Cash Trackers to the Character sheet.</li><li>Added 'Roll Crit' button for Characters and Synthetics.</li><li>On the Inventory tabs, left clicking on an item's context menu will open the item in edit mode. Right click still shows the context menu with edit and delete.</li><li>Changed the currency fields to just display a $ sign and no units (this will only show on new input).</li><li>A PC having the 'Tough' Talent will automatically add +2 to Health.</li><li>A PC having the 'Nerves of Steel' Talent will automatically add -2 to Stress rolls.</li><li>Chat message for stress rolls now shows the net modifier. A tooltip shows the individual modifiers.</li><li>On the Synthetic sheet, moved 'Imitate Human Panic and Push' to the bottom.</li><li>On the Character sheet, moved the Radiation tracker to the Conditions block.</li><li>Corrected a bug with the encumbrance bar no showing at all!</li><li>Corrected a bug in chat with the stress dice not showing for some languages.</li></ol> <br />Please read the @JournalEntry[MU/TH/ER Instructions.] to get the most benefit out of using the system and new features."
         }
     ]
 }

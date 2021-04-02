@@ -128,7 +128,7 @@ export class yze {
       }
       mr = new Roll(`${com}`).roll();
       // // console.log('yze -> yzeRoll -> mr', mr);
-      buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Stress'));
+      buildChat(mr, r1Dice, 'Stress');
 
       // *******************************************************
       // Set reroll

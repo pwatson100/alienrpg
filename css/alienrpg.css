@@ -1056,12 +1056,13 @@ button:focus {
   visibility: hidden;
   width: 150px;
   background-color: black;
+  color: greenyellow;
   text-align: center;
   border-radius: 3px;
   padding: 2px 0;
   position: absolute;
   z-index: 1;
-  margin-left: -100px;
+  margin-left: -150px;
   border-style: solid;
   border-color: var(--aliengreen);
 }
