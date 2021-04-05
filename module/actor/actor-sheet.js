@@ -597,7 +597,8 @@ export class alienrpgActorSheet extends ActorSheet {
     if (dataset.item === '0') return;
     // console.log('🚀 ~ file: actor-sheet.js ~ line 611 ~ alienrpgActorSheet ~ _supplyRoll ~ dataset', dataset);
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
-    const tItem = dataset.id;
+    // If this is a power roll get the exact id of the item
+    const tItem = dataset.id || 0;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
     const consUme = dataset.spbutt.toLowerCase();
     let mItems = this.actor.items;

@@ -695,13 +695,11 @@ export class alienrpgActor extends Actor {
         // console.log('🚀 ~ file: actor.js ~ line 674 ~ alienrpgActor ~ consumablesCheck ~ itemId', itemId);
         let itemVal = consumables.find(showme)[0][`${consUme}`];
         let mitem = actor.getOwnedItem(itemId);
+        // Check to see if this is a power roll on a specific item
         try {
           pItem = actor.getOwnedItem(tItem);
-          // console.log('🚀 ~ file: actor.js ~ line 675 ~ alienrpgActor ~ consumablesCheck ~ pItem', pItem);
-
           pValue = pItem.data.data.attributes.power.value ?? 0;
         } catch {}
-        // let pValue = pItem.data.data.attributes.power.value;
 
         // console.log('🚀 ~ file: actor.js ~ line 675 ~ alienrpgActor ~ consumablesCheck ~ pItem', pItem);
         let field = '';
@@ -712,7 +710,7 @@ export class alienrpgActor extends Actor {
             await actor.update({ 'data.consumables.air.value': actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
             break;
           case 'food':
-            field = `data.attributes.${consUme}.value`;
+            field = `data.attributes.food.value`;
             await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
             await actor.update({ 'data.consumables.food.value': actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
             break;
@@ -728,9 +726,17 @@ export class alienrpgActor extends Actor {
 
             break;
           case 'water':
-            field = `data.attributes.${consUme}.value`;
-            await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
-            await actor.update({ 'data.consumables.water.value': actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
+            field = `data.attributes.water.value`;
+            if (itemVal - game.alienrpg.rollArr.r2One < 0) {
+              await mitem.update({ [field]: '0' });
+              itemId = consumables.find(showme)[0].item;
+              // console.log('🚀 ~ file: actor.js ~ line 674 ~ alienrpgActor ~ consumablesCheck ~ itemId', itemId);
+              itemVal = consumables.find(showme)[0][`${consUme}`];
+              mitem = actor.getOwnedItem(itemId);
+            } else {
+              await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
+              await actor.update({ 'data.consumables.water.value': actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
+            }
             break;
         }
       }
