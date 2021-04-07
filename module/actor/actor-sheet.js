@@ -173,7 +173,7 @@ export class alienrpgActorSheet extends ActorSheet {
     }
 
     data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
-    this._computeHealth(data);
+    // this._computeHealth(data);
     // Assign and return
     data.inventory = Object.values(inventory);
   }
@@ -204,14 +204,14 @@ export class alienrpgActorSheet extends ActorSheet {
     }
     return enc;
   }
-  _computeHealth(actorData) {
-    // Compute Encumbrance percentage
-    for (let i of actorData.talents) {
-      if (i.name.toUpperCase() === 'TOUGH') {
-        setProperty(actorData, 'actorData.data.header.health.value', (actorData.data.header.health.value += 2));
-      }
-    }
-  }
+  // _computeHealth(actorData) {
+  //   // Compute Encumbrance percentage
+  //   for (let i of actorData.talents) {
+  //     if (i.name.toUpperCase() === 'TOUGH') {
+  //       setProperty(actorData, 'actorData.data.header.health.value', (actorData.data.header.health.value += 2));
+  //     }
+  //   }
+  // }
 
   /**
    * Determine whether an Owned Item will be shown based on the current set of filters
@@ -594,60 +594,14 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
+    // If it's a power roll it will have an item number so test if it's zero
     if (dataset.item === '0') return;
-    // console.log('🚀 ~ file: actor-sheet.js ~ line 611 ~ alienrpgActorSheet ~ _supplyRoll ~ dataset', dataset);
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
-    // If this is a power roll get the exact id of the item
+    // If this is a power roll get the exact id of the item to process
     const tItem = dataset.id || 0;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
     const consUme = dataset.spbutt.toLowerCase();
-    let mItems = this.actor.items;
-    let numbers = [];
-    let temp = [];
-    for (let index = 0; index < mItems.entries.length; index++) {
-      let spanner = mItems.entries[index].data;
-      if (spanner.totalAir || spanner.totalFood || spanner.totalWat || spanner.totalPower) {
-        switch (spanner.type) {
-          case 'item':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                food: spanner.data.attributes.food.value,
-                water: spanner.data.attributes.water.value,
-                power: spanner.data.attributes.power.value,
-                air: spanner.data.attributes.airsupply.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
-          case 'armor':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                air: spanner.data.attributes.airsupply.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
-          case 'weapon':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                power: spanner.data.attributes.power.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
-
-          default:
-            break;
-        }
-      }
-    }
-    this.actor.consumablesCheck(this.actor, consUme, label, numbers, tItem);
+    this.actor.consumablesCheck(this.actor, consUme, label, tItem);
   }
 
   _currencyField(event) {

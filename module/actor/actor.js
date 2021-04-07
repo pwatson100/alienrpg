@@ -215,10 +215,16 @@ export class alienrpgActor extends Actor {
 
       if (Attrib.type === 'talent') {
         const talName = Attrib.name.toUpperCase();
+        let aId = Attrib._id;
         switch (talName) {
           case 'NERVES OF STEEL':
             setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod -= 2));
             break;
+
+          // case 'TOUGH':
+          //   console.log('🚀 ~ file: actor.js ~ line 217 ~ alienrpgActor ~ _prepareCharacterData ~ Attrib', Attrib._id);
+          //   setProperty(actorData, 'data.header.health.value', (data.header.health.value += 2));
+          //   break;
 
           default:
             break;
@@ -324,7 +330,7 @@ export class alienrpgActor extends Actor {
     if (actorData.type === 'character') {
       setProperty(actorData, 'general.panic.calculatedMax', (data.general.panic.calculatedMax = data.general.panic.max));
     }
-    setProperty(actorData, 'header.health.max', (data.header.health.max = data.attributes.str.value));
+    setProperty(actorData, 'header.health.max', (data.header.health.max = data.attributes.str.value + data.header.health.mod));
   }
 
   _prepareVehicleData(data) {}
@@ -673,7 +679,7 @@ export class alienrpgActor extends Actor {
     return event;
   }
 
-  async consumablesCheck(actor, consUme, label, consumables, tItem) {
+  async consumablesCheck(actor, consUme, label, tItem) {
     let r1Data = 0;
     let r2Data = 0;
     r2Data = actor.data.data.consumables[`${consUme}`].value;
@@ -689,62 +695,60 @@ export class alienrpgActor extends Actor {
     } else {
       yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
       if (game.alienrpg.rollArr.r2One) {
-        let pValue = '';
-        let pItem = '';
-        let itemId = consumables.find(showme)[0].item;
-        // console.log('🚀 ~ file: actor.js ~ line 674 ~ alienrpgActor ~ consumablesCheck ~ itemId', itemId);
-        let itemVal = consumables.find(showme)[0][`${consUme}`];
-        let mitem = actor.getOwnedItem(itemId);
-        // Check to see if this is a power roll on a specific item
-        try {
-          pItem = actor.getOwnedItem(tItem);
-          pValue = pItem.data.data.attributes.power.value ?? 0;
-        } catch {}
-
-        // console.log('🚀 ~ file: actor.js ~ line 675 ~ alienrpgActor ~ consumablesCheck ~ pItem', pItem);
-        let field = '';
-        switch (consUme) {
-          case 'air':
-            field = `data.attributes.airsupply.value`;
-            await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
-            await actor.update({ 'data.consumables.air.value': actor.data.data.consumables.air.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'food':
-            field = `data.attributes.food.value`;
-            await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
-            await actor.update({ 'data.consumables.food.value': actor.data.data.consumables.food.value - game.alienrpg.rollArr.r2One });
-            break;
-          case 'power':
-            field = `data.attributes.power.value`;
-            if (pValue - game.alienrpg.rollArr.r2One <= '0') {
-              await pItem.update({ [field]: '0' });
-              await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - pValue });
-            } else {
-              await pItem.update({ [field]: pValue - game.alienrpg.rollArr.r2One });
-              await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
-            }
-
-            break;
-          case 'water':
-            field = `data.attributes.water.value`;
-            if (itemVal - game.alienrpg.rollArr.r2One < 0) {
-              await mitem.update({ [field]: '0' });
-              itemId = consumables.find(showme)[0].item;
-              // console.log('🚀 ~ file: actor.js ~ line 674 ~ alienrpgActor ~ consumablesCheck ~ itemId', itemId);
-              itemVal = consumables.find(showme)[0][`${consUme}`];
-              mitem = actor.getOwnedItem(itemId);
-            } else {
-              await mitem.update({ [field]: itemVal - game.alienrpg.rollArr.r2One });
-              await actor.update({ 'data.consumables.water.value': actor.data.data.consumables.water.value - game.alienrpg.rollArr.r2One });
-            }
-            break;
-        }
+        getItems(actor, consUme, tItem);
       }
     }
 
-    function showme(consumables) {
-      // console.warn('alienrpgActorSheet -> showme -> ', consumables[0][consUme] >= 1);
-      return consumables[0][consUme] >= 1;
+    async function getItems(actor, consUme, tItem) {
+      let bRoll = game.alienrpg.rollArr.r2One;
+      let tNum = 0;
+      let pValue = '';
+      let pItem = '';
+      let iConsUme = '';
+      let field = `data.attributes.${consUme}.value`;
+      let aField = `data.consumables.${consUme}.value`;
+
+      if (consUme === 'power') {
+        pItem = actor.getOwnedItem(tItem);
+        pValue = pItem.data.data.attributes.power.value ?? 0;
+        field = `data.attributes.power.value`;
+        if (pValue - game.alienrpg.rollArr.r2One <= '0') {
+          await pItem.update({ [field]: '0' });
+          await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - pValue });
+        } else {
+          await pItem.update({ [field]: pValue - game.alienrpg.rollArr.r2One });
+          await actor.update({ 'data.consumables.power.value': actor.data.data.consumables.power.value - game.alienrpg.rollArr.r2One });
+        }
+      } else {
+        if (consUme === 'air') {
+          iConsUme = 'airsupply';
+          field = `data.attributes.${iConsUme}.value`;
+        } else {
+          iConsUme = consUme;
+        }
+        // while (bRoll > 0) {
+        for (const key in actor.data.items) {
+          if (bRoll <= 0) {
+            break;
+          }
+          if (Object.hasOwnProperty.call(actor.data.items, key) && bRoll > 0) {
+            let element = actor.data.items[key];
+            if (element.data.attributes[iConsUme].value) {
+              let mitem = actor.getOwnedItem(element._id);
+              let iVal = element.data.attributes[iConsUme].value;
+              if (iVal - bRoll < 0) {
+                tNum = iVal;
+                // bRoll -= iVal;
+              } else {
+                tNum = bRoll;
+              }
+              await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
+            }
+          }
+          bRoll -= tNum;
+        }
+      }
+      await actor.update({ [aField]: `data.consumables.${consUme}.value` - game.alienrpg.rollArr.r2One });
     }
   }
 
