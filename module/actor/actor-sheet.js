@@ -359,10 +359,10 @@ export class alienrpgActorSheet extends ActorSheet {
     // Grab any data associated with this control.
     const data = duplicate(header.dataset);
     // Initialize a default name.
-    const name = `New ${type.capitalize()}`;
+    const iName = `New ${type.capitalize()}`;
     // Prepare the item object.
     const itemData = {
-      name: name,
+      name: iName,
       type: type,
       data: data,
     };

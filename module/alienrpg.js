@@ -271,7 +271,7 @@ function setupCombatantCloning() {
 
     if (Array.isArray(data)) data.forEach((combatant) => ExtraSpeedCombatants.call(this, combatant, options));
 
-    function ExtraSpeedCombatants(combatant, options) {
+    function ExtraSpeedCombatants(combatant, moptions) {
       let token = canvas.tokens.placeables.find((i) => i.data._id == combatant.tokenId);
       let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
 
@@ -294,7 +294,7 @@ function setupCombatantCloning() {
           return { tokenId: v.id, hidden: v.data.hidden };
         });
 
-        originalCombatCreateEmbeddedEntity.call(this, embeddedName, creationData, options);
+        originalCombatCreateEmbeddedEntity.call(this, embeddedName, creationData, moptions);
       }
     }
   };

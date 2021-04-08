@@ -296,7 +296,7 @@ Corrected issue with the MU/TH/ER Instructions load causing an issue with player
 Version 1.3.5
 All GM rolls for Creatures or Hostile tokens are now public by default. But can be made private by using the Chat dropdown and selecting "Private GM Roll".
 Addded Story Points and Cash Trackers to the Character sheet.
-Added "Roll Crit" button for Characters and Synthetics.
+Added "Roll Crit" button for Characters and Synthetics.  NOTE: This will only work if you have tables called "Critical Injuries" and "Critical Injuries on Synthetics"
 On the Inventory tabs, left clicking on an item's context menu will open the item in edit mode.  Right click still shows the context menu with edit and delete. 
 Changed the currency fields to just display a $ sign and no units (this will only show on new input).
 A PC having the "Tough" Talent will automatically add +2 to Health.
@@ -306,3 +306,4 @@ On the Synthetic sheet, moved "Imitate Human Panic and Push" to the bottom.
 On the Character sheet, moved the Radiation tracker to the Conditions block. 
 Corrected a bug with the encumbrance bar no showing at all!
 Corrected a bug in chat with the stress dice not showing for some languages.
+Supply rolls for Air, Food and Water now deduct from all items correctly (in the order they were added to the sheet).

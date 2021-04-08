@@ -245,5 +245,7 @@
   "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button",
   "ALIENRPG.Pwr": "Éne",
   "ALIENRPG.Cash": "Espèces",
-  "ALIENRPG.StoryPoints": "Points d'histoire"
+  "ALIENRPG.StoryPoints": "Points d'histoire",
+  "ALIENRPG.NoCharCrit": "No Critical injuries table",
+  "ALIENRPG.NoSynCrit": "No Critical Injuries on Synthetics table"
 }
