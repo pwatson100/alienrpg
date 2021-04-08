@@ -1,8 +1,8 @@
 <form class="{{cssClass}}" autocomplete="off">
   <header class="vehicle-header">
-    <img class="profile-img-item" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <img class="profile-img-item" src="{{img}}" data-edit="img" title="{{name}}" />
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
 
       <div class="resources grid-weapon">
         <h3 class="resource-label wItem1">{{localize "ALIENRPG.Weight"}}</h3>
@@ -62,8 +62,8 @@
       </div>
       {{/ife}} {{#ife data.header.type.value '8'}}
       <div class="grid-Char-Att">
-      <h3 class="resource-label gCol1">{{localize "ALIENRPG.Power"}}</h3>
-      <input type="text" class="maxboxsize gCol2" name="data.attributes.power.value" value="{{data.attributes.power.value}}" data-dtype="Number" />
+        <h3 class="resource-label gCol1">{{localize "ALIENRPG.Power"}}</h3>
+        <input type="text" class="maxboxsize gCol2" name="data.attributes.power.value" value="{{data.attributes.power.value}}" data-dtype="Number" />
       </div>
       {{/ife}} {{#ife data.header.type.value '9'}}
       <div class="grid-2col">
@@ -84,8 +84,7 @@
           <input type="text" class="maxboxsize" name="data.modifiers.skills.rangedCbt.value" value="{{data.modifiers.skills.rangedCbt.value}}" data-dtype="Number" />
         </div>
       </div>
-      {{/ife}}
- {{#ife data.header.type.value '10'}}
+      {{/ife}} {{#ife data.header.type.value '10'}}
       <div class="grid-item-xtras">
         <h3 class="resource-label xCol1">{{localize "ALIENRPG.Power"}}</h3>
         <input type="text" name="data.attributes.power.value" class="maxboxsize xCol2" value="{{data.attributes.power.value}}" data-dtype="Number" />
@@ -93,8 +92,8 @@
         <input type="text" name="data.attributes.food.value" class="maxboxsize xCol4" value="{{data.attributes.food.value}}" data-dtype="Number" />
         <h3 class="resource-label xCol5">{{localize "ALIENRPG.Water"}}</h3>
         <input type="text" name="data.attributes.water.value" class="maxboxsize xCol6" value="{{data.attributes.water.value}}" data-dtype="Number" />
-         <h3  class="resource-label xCol7">{{localize "ALIENRPG.AirSupply"}}</h3>
-         <input type="text" class="maxboxsize xCol8" name="data.attributes.airsupply.value" value="{{data.attributes.airsupply.value}}" data-dtype="Number" />
+        <h3 class="resource-label xCol7">{{localize "ALIENRPG.AirSupply"}}</h3>
+        <input type="text" class="maxboxsize xCol8" name="data.attributes.airsupply.value" value="{{data.attributes.airsupply.value}}" data-dtype="Number" />
       </div>
       {{/ife}}
 
@@ -197,4 +196,5 @@
     {{!-- Notes Tab --}}
     <div class="tab item" data-group="primary" data-tab="notes">{{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=editable}}</div>
   </section>
+  {{log "CONTEXT!!!!"}} {{log this}}
 </form>

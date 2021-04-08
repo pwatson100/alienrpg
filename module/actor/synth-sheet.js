@@ -39,19 +39,19 @@ export class alienrpgSynthActorSheet extends ActorSheet {
   /** @override */
   getData() {
     // Basic data
-    let isOwner = this.entity.owner;
+    let isOwner = this.document.isOwner;
     const data = {
-      owner: isOwner,
-      limited: this.entity.limited,
+      owner: this.document.isOwner,
+      limited: this.document.limited,
       options: this.options,
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
-      isCharacter: this.entity.data.type === 'character',
-      isSynthetic: this.entity.data.type === 'synthetic',
-      isEnc: this.entity.data.type === 'character' || this.entity.data.type === 'synthetic',
-      isVehicles: this.entity.data.type === 'vehicles',
-      isCreature: this.entity.data.type === 'creature',
-      isNPC: this.entity.data.data.header.npc,
+      isCharacter: this.document.data.type === 'character',
+      isSynthetic: this.document.data.type === 'synthetic',
+      isEnc: this.document.data.type === 'character' || this.document.data.type === 'synthetic',
+      isVehicles: this.document.data.type === 'vehicles',
+      isCreature: this.document.data.type === 'creature',
+      isNPC: this.document.data.data.header.npc,
       isGM: game.user.isGM,
       config: CONFIG.ALIENRPG,
     };
@@ -209,7 +209,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.EditItem'),
         icon: '<i class="fas fa-edit"></i>',
         callback: (element) => {
-          const item = this.actor.getOwnedItem(element.data('item-id'));
+          const item = this.actor.items.get(element.data('item-id'));
           item.sheet.render(true);
         },
       },
@@ -228,7 +228,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').click((ev) => {
       const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.getOwnedItem(li.data('itemId'));
+      const item = this.actor.items.get(li.data('itemId'));
       item.sheet.render(true);
     });
 
@@ -282,7 +282,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     html.find('.activate').contextmenu(this._deactivate.bind(this));
 
     // Drag events for macros.
-    if (this.actor.owner) {
+    if (this.actor.isOwner) {
       let handler = (ev) => this._onDragStart(ev);
       // Find all items on the character sheet.
       html.find('li.item').each((i, li) => {
@@ -301,7 +301,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
-    let item = this.actor.getOwnedItem(itemId);
+    let item = this.actor.items.get(itemId);
     let field = dataset.name;
     // console.log('alienrpgActorSheet -> _inlineedit -> field', field);
     return item.update({ [field]: dataset.value }, {});
@@ -333,13 +333,13 @@ export class alienrpgSynthActorSheet extends ActorSheet {
   _onRollItemMod(event) {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    const item = this.actor.getOwnedItem(itemId);
+    const item = this.actor.items.get(itemId);
     this.actor.rollItemMod(item);
   }
   _rollItem(event) {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    const item = this.actor.getOwnedItem(itemId);
+    const item = this.actor.items.get(itemId);
     this.actor.nowRollItem(item);
   }
 
@@ -347,7 +347,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
-    let item = this.actor.getOwnedItem(itemId);
+    let item = this.actor.items.get(itemId);
 
     return item.update({ 'data.header.active': true }, {});
   }
@@ -355,7 +355,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
-    let item = this.actor.getOwnedItem(itemId);
+    let item = this.actor.items.get(itemId);
 
     return item.update({ 'data.header.active': false }, {});
   }
@@ -427,7 +427,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     let chatData = '';
     const dataset = event.currentTarget.dataset;
 
-    item = this.actor.getOwnedItem(dataset.pmbut);
+    item = this.actor.items.get(dataset.pmbut);
     str = item.name;
     temp2 = item.data.data.general.comment.value;
     if (temp2 != null && temp2.length > 0) {

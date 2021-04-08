@@ -119,9 +119,8 @@
     </li>
     {{#each section.items as |item iid|}}
     {{#ife item.data.header.active false}}
-
         <li class="item grid-items" data-item-id="{{item._id}}">
-                <div class="item-image lCol5 activate" data-item="{{item.name}}" ><img src="{{item.img}}"  title="{{item.name}}" width="24" height="24" /></div>
+                <div class="item-image lCol5 activate" data-item="{{name}}" ><img src="{{item.img}}"  title="{{item.name}}" width="24" height="24" /></div>
                 <span class="item-detail  lCol6" data-item="{{item.name}}" data-mod="{{data.skills.rangedCbt.mod}}">{{item.name~}}</span>
                 {{#ife item.data.header.type.value '1'}}
                 <span class="item-detail lCol14" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
@@ -166,7 +165,7 @@
       </li>
 
      </li>
-     {{/ife}}
+      {{/ife}}
 
     {{/each}}
 {{/each}}
@@ -176,4 +175,4 @@
     <h1 class="" style="text-align: center;">{{localize 'ALIENRPG.AdHoc'}}</h1>
 
     <div class="biog" data-group="primary" data-tab="description">{{editor content=data.adhocitems target="data.adhocitems" button=true owner=owner editable=editable}}</div>
-
+{{log "CONTEXT!!!!"}} {{log this}} 

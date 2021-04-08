@@ -37,29 +37,28 @@ export class alienrpgActorSheet extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
+  getData(options) {
     // Basic data
-    let isOwner = this.entity.owner;
+    const isOwner = this.document.isOwner;
     const data = {
-      owner: isOwner,
-      limited: this.entity.limited,
+      actor: this.object,
+      owner: this.object.isOwner,
+      limited: this.object.limited,
       options: this.options,
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
-      isCharacter: this.entity.data.type === 'character',
-      isEnc: this.entity.data.type === 'character' || this.entity.data.type === 'synthetic',
-      isSynthetic: this.entity.data.type === 'synthetic',
-      isVehicles: this.entity.data.type === 'vehicles',
-      isCreature: this.entity.data.type === 'creature',
-      isNPC: this.entity.data.data.header.npc,
+      isCharacter: this.object.data.type === 'character',
+      isEnc: this.object.data.type === 'character' || this.object.data.type === 'synthetic',
+      isSynthetic: this.object.data.type === 'synthetic',
+      isVehicles: this.object.data.type === 'vehicles',
+      isCreature: this.object.data.type === 'creature',
+      isNPC: this.object.data.data.header.npc,
       isGM: game.user.isGM,
       config: CONFIG.ALIENRPG,
     };
 
     // The Actor and its Items
-    data.actor = duplicate(this.actor.data);
-    const actorData = data.actor.data;
-
+    data.actor = foundry.utils.deepClone(this.actor.data);
     data.items = this.actor.items.map((i) => {
       i.data.labels = i.labels;
       return i.data;
@@ -129,28 +128,29 @@ export class alienrpgActorSheet extends ActorSheet {
       armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
     };
     // Partition items by category
-    let [items, spells, feats, classes, talent] = data.items.reduce(
+    let [items, Weapons, Armor] = data.items.reduce(
       (arr, item) => {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
         item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
 
         // Classify items into types
-        // console.log('alienrpgActorSheet -> _prepareItems -> item', item);
-        // if (item.type === 'talent') arr[1].push(item);
-        // else if (item.type === 'feat') arr[2].push(item);
-        // else if (item.type === 'feature') arr[3].push(item);
-        if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+        if (item.type === 'Weapons') arr[1].push(item);
+        else if (item.type === 'Armor') arr[2].push(item);
+        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
         return arr;
       },
-      [[], [], [], []]
+      [[], [], []]
     );
-
-    // Apply active item filters
-    items = this._filterItems(items, this._filters.inventory);
 
     // Organize Inventory
     let totalWeight = 0;
+    let totalAc = 0;
+    let totalWat = 0;
+    let totalFood = 0;
+    let totalAir = 0;
+    let totalPower = 0;
+
     for (let i of items) {
       if (i.type == 'weapon') {
         // console.log('alienrpgActorSheet -> Organize Inventory', i);
@@ -172,8 +172,8 @@ export class alienrpgActorSheet extends ActorSheet {
       }
     }
 
-    data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
-    this._computeHealth(data);
+    data.actor.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
+
     // Assign and return
     data.inventory = Object.values(inventory);
   }
@@ -204,14 +204,6 @@ export class alienrpgActorSheet extends ActorSheet {
     }
     return enc;
   }
-  _computeHealth(actorData) {
-    // Compute Encumbrance percentage
-    for (let i of actorData.talents) {
-      if (i.name.toUpperCase() === 'TOUGH') {
-        setProperty(actorData, 'actorData.data.header.health.value', (actorData.data.header.health.value += 2));
-      }
-    }
-  }
 
   /**
    * Determine whether an Owned Item will be shown based on the current set of filters
@@ -221,31 +213,6 @@ export class alienrpgActorSheet extends ActorSheet {
   _filterItems(items, filters) {
     return items.filter((item) => {
       const data = item.data;
-
-      // Action usage
-      // for (let f of ['action', 'bonus', 'reaction']) {
-      //   if (filters.has(f)) {
-      //     if (data.activation && data.activation.type !== f) return false;
-      //   }
-      // }
-
-      // // Spell-specific filters
-      // if (filters.has('ritual')) {
-      //   if (data.components.ritual !== true) return false;
-      // }
-      // if (filters.has('concentration')) {
-      //   if (data.components.concentration !== true) return false;
-      // }
-      // if (filters.has('prepared')) {
-      //   if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
-      //   if (this.actor.data.type === 'npc') return true;
-      //   return data.preparation.prepared;
-      // }
-
-      // // Equipment-specific filters
-      // if (filters.has('equipped')) {
-      //   if (data.equipped !== true) return false;
-      // }
       return true;
     });
   }
@@ -260,7 +227,7 @@ export class alienrpgActorSheet extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.EditItem'),
         icon: '<i class="fas fa-edit"></i>',
         callback: (element) => {
-          const item = this.actor.getOwnedItem(element.data('item-id'));
+          const item = this.actor.items.get(element.data('item-id'));
           item.sheet.render(true);
         },
       },
@@ -279,7 +246,7 @@ export class alienrpgActorSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').click((ev) => {
       const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.getOwnedItem(li.data('itemId'));
+      const item = this.actor.items.get(li.data('itemId'));
       item.sheet.render(true);
     });
 
@@ -332,7 +299,7 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.activate').contextmenu(this._deactivate.bind(this));
 
     // Drag events for macros.
-    if (this.actor.owner) {
+    if (this.actor.isOwner) {
       let handler = (ev) => this._onDragStart(ev);
       // Find all items on the character sheet.
       html.find('li.item').each((i, li) => {
@@ -378,7 +345,7 @@ export class alienrpgActorSheet extends ActorSheet {
     const dataset = event.currentTarget;
     // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
-    let item = this.actor.getOwnedItem(itemId);
+    let item = this.actor.items.get(itemId);
     let temp = dataset.name;
     let field = temp.slice(5);
     return item.update({ [field]: dataset.value }, {});
@@ -405,13 +372,13 @@ export class alienrpgActorSheet extends ActorSheet {
   _onRollItemMod(event) {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    const item = this.actor.getOwnedItem(itemId);
+    const item = this.actor.items.get(itemId);
     this.actor.rollItemMod(item);
   }
   _rollItem(event) {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    const item = this.actor.getOwnedItem(itemId);
+    const item = this.actor.items.get(itemId);
     this.actor.nowRollItem(item);
   }
   _rollCrit(event) {
@@ -424,24 +391,19 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
-    // const atoken = this.actor.getActiveTokens(true)[0].id;
-    // console.log('🚀 ~ file: actor-sheet.js ~ line 385 ~ alienrpgActorSheet ~ _rollItem ~ atoken', atoken);
-    // atoken.refresh();
-
-    let item = this.actor.getOwnedItem(itemId);
-
-    return item.update({ 'data.header.active': true }, {});
+    let item = this.actor.items.get(itemId);
+    item.update({ 'data.header.active': true });
+    // this.actor.update({ diff: true });
+    return;
   }
   _deactivate(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
-    // const atoken = this.actor.getActiveTokens(true)[0].id;
-    // atoken.refresh();
-
-    let item = this.actor.getOwnedItem(itemId);
-
-    return item.update({ 'data.header.active': false }, {});
+    let item = this.actor.items.get(itemId);
+    item.update({ 'data.header.active': false });
+    // this.actor.update({ diff: true });
+    return;
   }
 
   _plusMinusButton(event) {
@@ -511,7 +473,7 @@ export class alienrpgActorSheet extends ActorSheet {
     let chatData = '';
     const dataset = event.currentTarget.dataset;
 
-    item = this.actor.getOwnedItem(dataset.pmbut);
+    item = this.actor.items.get(dataset.pmbut);
     str = item.name;
     temp2 = item.data.data.general.comment.value;
     if (temp2 != null && temp2.length > 0) {
@@ -594,59 +556,14 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
+    // If it's a power roll it will have an item number so test if it's zero
     if (dataset.item === '0') return;
-    // console.log('🚀 ~ file: actor-sheet.js ~ line 611 ~ alienrpgActorSheet ~ _supplyRoll ~ dataset', dataset);
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
-    const tItem = dataset.id;
+    // If this is a power roll get the exact id of the item to process
+    const tItem = dataset.id || 0;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
     const consUme = dataset.spbutt.toLowerCase();
-    let mItems = this.actor.items;
-    let numbers = [];
-    let temp = [];
-    for (let index = 0; index < mItems.entries.length; index++) {
-      let spanner = mItems.entries[index].data;
-      if (spanner.totalAir || spanner.totalFood || spanner.totalWat || spanner.totalPower) {
-        switch (spanner.type) {
-          case 'item':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                food: spanner.data.attributes.food.value,
-                water: spanner.data.attributes.water.value,
-                power: spanner.data.attributes.power.value,
-                air: spanner.data.attributes.airsupply.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
-          case 'armor':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                air: spanner.data.attributes.airsupply.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
-          case 'weapon':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                power: spanner.data.attributes.power.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
-
-          default:
-            break;
-        }
-      }
-    }
-    this.actor.consumablesCheck(this.actor, consUme, label, numbers, tItem);
+    this.actor.consumablesCheck(this.actor, consUme, label, tItem);
   }
 
   _currencyField(event) {

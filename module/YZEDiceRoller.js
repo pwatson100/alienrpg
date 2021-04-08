@@ -28,7 +28,7 @@ export class yze {
    *
    */
   static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid, itemid) {
-    // console.log('yze -> yzeRoll -> actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2', actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
+    console.log('yze -> yzeRoll -> actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2', actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
 
     // *******************************************************
     // Store the version number of FVTT
@@ -202,25 +202,25 @@ export class yze {
 
     if (!blind) {
       ChatMessage.create({
-        user: game.user._id,
+        user: game.user.data._id,
         speaker: {
           actor: actorid,
         },
         content: chatMessage,
-        other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        other: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
         sound: CONFIG.sounds.dice,
-        type: CHAT_MESSAGE_TYPES.ROLL,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,
         rollMode: game.settings.get('core', 'rollMode'),
       });
     } else {
       ChatMessage.create({
-        user: game.user._id,
+        user: game.user.data._id,
         speaker: {
           actor: actorid,
         },
         content: chatMessage,
-        whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
         blind: true,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,

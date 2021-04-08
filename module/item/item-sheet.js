@@ -28,10 +28,21 @@ export class alienrpgItemSheet extends ItemSheet {
 
   /** @override */
   getData() {
-    const data = super.getData();
+    // const data = super.getData();
+    const item = duplicate(this.item.data);
+    const data = item;
     return data;
   }
-
+  // getData() {
+  //   // console.log(this.item);
+  //   const itemData = foundry.utils.deepClone(this.item);
+  //   // this.computeSkills(actorData);
+  //   // this.computeItems(actorData);
+  //   // this.computeEncumbrance(actorData);
+  //   return {
+  //     item: itemData,
+  //   };
+  // }
   /* -------------------------------------------- */
 
   /** @override */
