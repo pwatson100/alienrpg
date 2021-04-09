@@ -400,7 +400,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         // do stuff
         let actor = game.actors.get(message.data.speaker.actor);
         if (!actor) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoToken'));
-        let reRoll = true;
+        let reRoll = 'push';
 
         if (tarG) {
           reRoll = 'mPush';

@@ -306,4 +306,5 @@ On the Synthetic sheet, moved "Imitate Human Panic and Push" to the bottom.
 On the Character sheet, moved the Radiation tracker to the Conditions block. 
 Corrected a bug with the encumbrance bar no showing at all!
 Corrected a bug in chat with the stress dice not showing for some languages.
+Corrected chat text message issue for rolls displaying "Following the Push..." when they were not pushed.
 Supply rolls for Air, Food and Water now deduct from all items correctly (in the order they were added to the sheet).

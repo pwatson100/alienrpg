@@ -46,7 +46,7 @@ export class yze {
     } catch {
       niceDice = false;
     }
-    let spud = 'true';
+    let spud = false;
 
     // *******************************************************
     //  Initialise the chat message
@@ -133,9 +133,12 @@ export class yze {
       // *******************************************************
       // Set reroll
       // *******************************************************
-      if (game.alienrpg.rollArr.r2One > 0 && (!reRoll || reRoll === 'mPush')) {
+      // debugger;
+      if (game.alienrpg.rollArr.r2One > 0) {
+        if (reRoll === 'push' || reRoll === 'mPush') {
+          spud = true;
+        }
         reRoll = true;
-        spud = false;
       }
 
       // *******************************************************
@@ -170,7 +173,8 @@ export class yze {
     // *******************************************************
     //  If it's a Push roll and display the total for both rolls.
     // *******************************************************
-    if (reRoll && actortype === 'character' && label != 'Armor') {
+    // if (reRoll === 'push' || (reRoll === 'mPush' && actortype === 'character' && label != 'Armor')) {
+    if (reRoll === 'push' || (reRoll === 'mPush' && actortype === 'character' && label != 'Armor')) {
       chatMessage +=
         '<hr>' +
         '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
@@ -181,6 +185,19 @@ export class yze {
         localizedCountOfSuccesses(oldRoll + game.alienrpg.rollArr.multiPush + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six) +
         ' </div>';
       game.alienrpg.rollArr.multiPush = oldRoll;
+      // console.log('spud');
+    }
+    if (spud) {
+      chatMessage +=
+        '<hr>' +
+        '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+        game.i18n.localize('ALIENRPG.followingPush') +
+        '<br>' +
+        game.i18n.localize('ALIENRPG.totalOf') +
+        ' ' +
+        localizedCountOfSuccesses(oldRoll + game.alienrpg.rollArr.multiPush + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six) +
+        ' </div>';
+      // game.alienrpg.rollArr.multiPush = oldRoll;
       // console.log('spud');
     }
 
