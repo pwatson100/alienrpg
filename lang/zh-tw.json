@@ -248,5 +248,8 @@
     "ALIENRPG.Cash": "Cash",
     "ALIENRPG.StoryPoints": "Story Points",
     "ALIENRPG.NoCharCrit": "No Critical injuries table",
-    "ALIENRPG.NoSynCrit": "No Critical Injuries on Synthetics table"
+    "ALIENRPG.NoSynCrit": "No Critical Injuries on Synthetics table",
+    "ALIENRPG.Ones": "Ones: ",
+    "ALIENRPG.Sixes": "Sixes: ",
+    "ALIENRPG.Dice": "Dice: "
 }

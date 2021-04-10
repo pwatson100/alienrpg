@@ -247,6 +247,9 @@
   "ALIENRPG.Pwr": "Ene",
   "ALIENRPG.Cash": "Kasse",
   "ALIENRPG.StoryPoints": "Story Points",
-  "ALIENRPG.NoCharCrit": "No Critical injuries table",
-  "ALIENRPG.NoSynCrit": "No Critical Injuries on Synthetics table"
+  "ALIENRPG.NoCharCrit": "Keine Tabelle für kritische Verletzungen",
+  "ALIENRPG.NoSynCrit": "No Critical Injuries on Synthetics table",
+  "ALIENRPG.Ones": "Einsen: ",
+  "ALIENRPG.Sixes": "Sechser: ",
+  "ALIENRPG.Dice": "Würfel: "
 }

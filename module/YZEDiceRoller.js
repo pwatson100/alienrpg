@@ -273,8 +273,8 @@ export class yze {
         game.alienrpg.rollArr.r1One = R1.length;
         let numOf6s = R6.length; // added by Steph
         let numOf1s = R1.length; // added by Steph
-        chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' Dice</div>';
-        chatMessage += '<span style="color: #03cf03">  Sixes: </span>';
+        chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
+        chatMessage += '<span style="color: #03cf03">  ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
         chatMessage += `${R6.length}`;
         chatMessage += '<div>';
         // added by Steph (for loop, and moved div close)
@@ -301,8 +301,8 @@ export class yze {
           let numOfB6s = RB6.length; // added by Steph
           let numOfB1s = RB1.length; // added by Steph
           // Base Dice
-          chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' Dice</div>';
-          chatMessage += '<span style="color: #03cf03">  Sixes: </span>';
+          chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
+          chatMessage += '<span style="color: #03cf03">  ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
           chatMessage += `${RB6.length}`;
           chatMessage += '<div>';
           // added by Steph (for loop, and moved div close)
@@ -343,10 +343,10 @@ export class yze {
         let numOfY1s = RY1.length; // added by Steph
 
         // Yellow Dice
-        chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' Dice</div>';
-        chatMessage += '<span style="color: red">Ones: </span>';
+        chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
+        chatMessage += '<span style="color: red">' + game.i18n.localize('ALIENRPG.Ones') + '</span>';
         chatMessage += `<span>${RY1.length}</span>`;
-        chatMessage += '<span style="color: #03cf03">  Sixes: </span>';
+        chatMessage += '<span style="color: #03cf03">  ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
         chatMessage += `${RY6.length}`;
         chatMessage += '<div>';
         // added by Steph (for loops, and moved div close)
