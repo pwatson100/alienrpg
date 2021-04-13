@@ -250,19 +250,19 @@ const migrateActorData = (actor) => {
   // _migrateRemoveDeprecated(actor, updateData);
 
   // Migrate Owned Items
-  // if (!actor.items) return updateData;
-  // let hasItemUpdates = false;
-  // const items = actor.items.map((i) => {
-  //   // Migrate the Owned Item
-  //   let itemUpdate = migrateItemData(i);
+  if (!actor.items) return updateData;
+  let hasItemUpdates = false;
+  const items = actor.items.map((i) => {
+    // Migrate the Owned Item
+    let itemUpdate = migrateItemData(i);
 
-  //   // Update the Owned Item
-  //   if (!isObjectEmpty(itemUpdate)) {
-  //     hasItemUpdates = true;
-  //     return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
-  //   } else return i;
-  // });
-  // if (hasItemUpdates) updateData.items = items;
+    // Update the Owned Item
+    if (!isObjectEmpty(itemUpdate)) {
+      hasItemUpdates = true;
+      return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
+    } else return i;
+  });
+  if (hasItemUpdates) updateData.items = items;
   return updateData;
 };
 
