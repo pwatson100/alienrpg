@@ -70,7 +70,7 @@ const migrateActorData = (actor) => {
   if (actor.type === 'character' || actor.type === 'synthetic') {
     update = setValueIfNotExists(update, actor, 'data.general.sp.value', 0);
     update = setValueIfNotExists(update, actor, 'data.general.sp.max', 3);
-    update = setValueIfNotExists(update, actor, 'data.general.sp.icon', '<i class="far fa-circle"></i>');
+    // update = setValueIfNotExists(update, actor, 'data.general.sp.icon', '<i class="far fa-circle"></i>');
     update = setValueIfNotExists(update, actor, 'data.general.cash.value', 0);
     update = setValueIfNotExists(update, actor, 'data.general.adhocitems', '');
   }

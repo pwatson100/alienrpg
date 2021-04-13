@@ -227,7 +227,7 @@ Hooks.once('ready', async () => {
         { permanent: true }
       );
     }
-    migrations.migrateWorld();
+    await migrations.migrateWorld();
   }
   // clear the minimum resolution message faster
 
