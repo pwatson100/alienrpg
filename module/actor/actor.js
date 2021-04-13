@@ -320,24 +320,24 @@ export class alienrpgActor extends Actor {
     setProperty(actorData, 'data.consumables.power.value', (data.consumables.power.value = totalPower));
     setProperty(actorData, 'data.general.armor.value', (data.general.armor.value = totalAc));
 
-    setProperty(actorData, 'general.radiation.calculatedMax', (data.general.radiation.calculatedMax = data.general.radiation.max));
+    setProperty(actorData, 'data.general.radiation.calculatedMax', (data.general.radiation.calculatedMax = data.general.radiation.max));
 
-    setProperty(actorData, 'general.xp.calculatedMax', (data.general.xp.calculatedMax = data.general.xp.max));
+    setProperty(actorData, 'data.general.xp.calculatedMax', (data.general.xp.calculatedMax = data.general.xp.max));
 
-    setProperty(actorData, 'general.sp.calculatedMax', (data.general.sp.calculatedMax = data.general.sp.max));
+    setProperty(actorData, 'data.general.sp.calculatedMax', (data.general.sp.calculatedMax = data.general.sp.max));
 
-    setProperty(actorData, 'general.starving.calculatedMax', (data.general.starving.calculatedMax = data.general.starving.max));
+    setProperty(actorData, 'data.general.starving.calculatedMax', (data.general.starving.calculatedMax = data.general.starving.max));
 
-    setProperty(actorData, 'general.dehydrated.calculatedMax', (data.general.dehydrated.calculatedMax = data.general.dehydrated.max));
+    setProperty(actorData, 'data.general.dehydrated.calculatedMax', (data.general.dehydrated.calculatedMax = data.general.dehydrated.max));
 
-    setProperty(actorData, 'general.exhausted.calculatedMax', (data.general.exhausted.calculatedMax = data.general.exhausted.max));
+    setProperty(actorData, 'data.general.exhausted.calculatedMax', (data.general.exhausted.calculatedMax = data.general.exhausted.max));
 
-    setProperty(actorData, 'general.freezing.calculatedMax', (data.general.freezing.calculatedMax = data.general.freezing.max));
+    setProperty(actorData, 'data.general.freezing.calculatedMax', (data.general.freezing.calculatedMax = data.general.freezing.max));
 
     if (actorData.type === 'character') {
-      setProperty(actorData, 'general.panic.calculatedMax', (data.general.panic.calculatedMax = data.general.panic.max));
+      setProperty(actorData, 'data.general.panic.calculatedMax', (data.general.panic.calculatedMax = data.general.panic.max));
     }
-    setProperty(actorData, 'header.health.max', (data.header.health.max = data.attributes.str.value + data.header.health.mod));
+    setProperty(actorData, 'data.header.health.max', (data.header.health.max = data.attributes.str.value + data.header.health.mod));
   }
 
   _prepareVehicleData(data) {}

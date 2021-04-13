@@ -134,15 +134,14 @@ const migrateActorData = (actor) => {
   //   }
   // }
   if (actor.type === 'character' || actor.type === 'synthetic') {
-    updateData[`data.general.sp.value`] = 0;
-    updateData[`data.general.sp.max`] = 3;
-    updateData[`data.general.cash.value`] = 0;
-
-    if (data.adhocitems != undefined) {
-      console.log('there is some ');
-      updateData[`data.general.adhocitems`] = data.adhocitems;
-      updateData[`data.-=adhocitems`] = null;
-    }
+    // updateData[`data.general.sp.value`] = 0;
+    // updateData[`data.general.sp.max`] = 3;
+    // updateData[`data.general.cash.value`] = 0;
+    // if (data.adhocitems != undefined) {
+    //   console.log('there is some ');
+    //   updateData[`data.general.adhocitems`] = data.adhocitems;
+    //   // updateData[`data.-=adhocitems`] = null;
+    // }
     // Loop through Skill scores, and add their attribute modifiers to our sheet output.
     // for (let [key, skill] of Object.entries(data.skills)) {
     //   // Calculate the modifier using d20 rules.
@@ -195,7 +194,6 @@ const migrateActorData = (actor) => {
     //     updateData[`data.general.career.value`] = '11';
     //     // data.general.career.value = 11;
     //     break;
-
     //   default:
     //     break;
     // }
@@ -205,43 +203,33 @@ const migrateActorData = (actor) => {
     // // data.skills.closeCbt.description = 'Close Combat';
     // updateData[`data.skills.closeCbt.description.-=value`] = null;
     // updateData[`data.skills.closeCbt`] = { description: 'Close Combat' };
-
     // // data.skills.stamina.description = 'Stamina';
     // updateData[`data.skills.stamina.description.-=value`] = null;
     // updateData[`data.skills.stamina`] = { description: 'Stamina' };
-
     // // data.skills.rangedCbt.description = 'Ranged Combat';
     // updateData[`data.skills.rangedCbt.description.-=value`] = null;
     // updateData[`data.skills.rangedCbt`] = { description: 'Ranged Combat' };
-
     // // data.skills.mobility.description = 'Mobility';
     // updateData[`data.skills.mobility.description.-=value`] = null;
     // updateData[`data.skills.mobility`] = { description: 'Mobility' };
-
     // // data.skills.piloting.description = 'Piloting';
     // updateData[`data.skills.piloting.description.-=value`] = null;
     // updateData[`data.skills.piloting`] = { description: 'Piloting' };
-
     // // data.skills.command.description = 'Command';
     // updateData[`data.skills.command.description.-=value`] = null;
     // updateData[`data.skills.command`] = { description: 'Command' };
-
     // // data.skills.manipulation.description = 'Manipulation';
     // updateData[`data.skills.manipulation.description.-=value`] = null;
     // updateData[`data.skills.manipulation`] = { description: 'Manipulation' };
-
     // // data.skills.medicalAid.description = 'Medical Aid';
     // updateData[`data.skills.medicalAid.description.-=value`] = null;
     // updateData[`data.skills.medicalAid`] = { description: 'Medical Aid' };
-
     // // data.skills.observation.description = 'Observation';
     // updateData[`data.skills.observation.description.-=value`] = null;
     // updateData[`data.skills.observation`] = { description: 'Observation' };
-
     // // data.skills.survival.description = 'Survival';
     // updateData[`data.skills.survival.description.-=value`] = null;
     // updateData[`data.skills.survival`] = { description: 'Survival' };
-
     // // data.skills.comtech.description = 'Comtech';
     // updateData[`data.skills.comtech.description.-=value`] = null;
     // updateData[`data.skills.comtech`] = { description: 'Comtech' };
@@ -251,19 +239,19 @@ const migrateActorData = (actor) => {
   // _migrateRemoveDeprecated(actor, updateData);
 
   // Migrate Owned Items
-  if (!actor.items) return updateData;
-  let hasItemUpdates = false;
-  const items = actor.items.map((i) => {
-    // Migrate the Owned Item
-    let itemUpdate = migrateItemData(i);
+  // if (!actor.items) return updateData;
+  // let hasItemUpdates = false;
+  // const items = actor.items.map((i) => {
+  //   // Migrate the Owned Item
+  //   let itemUpdate = migrateItemData(i);
 
-    // Update the Owned Item
-    if (!isObjectEmpty(itemUpdate)) {
-      hasItemUpdates = true;
-      return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
-    } else return i;
-  });
-  if (hasItemUpdates) updateData.items = items;
+  //   // Update the Owned Item
+  //   if (!isObjectEmpty(itemUpdate)) {
+  //     hasItemUpdates = true;
+  //     return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
+  //   } else return i;
+  // });
+  // if (hasItemUpdates) updateData.items = items;
   return updateData;
 };
 
