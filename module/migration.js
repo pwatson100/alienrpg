@@ -9,9 +9,11 @@ export const migrateWorld = async function () {
   for (let a of game.actors.entities) {
     try {
       console.warn('Tyring to migrate actors');
-      // console.warn('Pre actor', a.data);
+      console.warn('Pre actor', a.data);
       const updateData = migrateActorData(a.data);
       // console.warn('updateData', updateData, a.data);
+      debugger;
+
       if (!isObjectEmpty(updateData)) {
         console.log(`Migrating Actor entity ${a.name}`);
         await a.update(updateData, { enforceTypes: false });
@@ -136,7 +138,6 @@ const migrateActorData = (actor) => {
     updateData[`data.general.sp.max`] = 3;
     updateData[`data.general.cash.value`] = 0;
 
-    debugger;
     if (data.adhocitems != undefined) {
       console.log('there is some ');
       updateData[`data.general.adhocitems`] = data.adhocitems;
