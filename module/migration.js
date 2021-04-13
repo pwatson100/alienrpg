@@ -5,25 +5,34 @@
 export const migrateWorld = async function () {
   ui.notifications.info(`Applying AlienRPG System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, { permanent: true });
 
-  // Migrate World Actors
-  for (let a of game.actors.entities) {
+  for (let actor of game.actors.entities) {
     try {
-      console.warn('Tyring to migrate actors');
-      console.warn('Pre actor', a.data);
-      const updateData = migrateActorData(a.data);
-      // console.warn('updateData', updateData, a.data);
-      debugger;
-
-      if (!isObjectEmpty(updateData)) {
-        console.log(`Migrating Actor entity ${a.name}`);
-        await a.update(updateData, { enforceTypes: false });
+      const update = migrateActorData(actor.data);
+      if (!isObjectEmpty(update)) {
+        await actor.update(update, { enforceTypes: false });
       }
-    } catch (err) {
-      console.error(err);
+    } catch (e) {
+      console.error(e);
     }
   }
 
-  // Migrate World Items
+  // Migrate World Actors
+  // for (let a of game.actors.entities) {
+  //   try {
+  //     console.warn('Tyring to migrate actors');
+  //     // console.warn('Pre actor', a.data);
+  //     const updateData = migrateActorData(a.data);
+  //     // console.warn('updateData', updateData, a.data);
+  //     if (!isObjectEmpty(updateData)) {
+  //       console.log(`Migrating Actor entity ${a.name}`);
+  //       await a.update(updateData, { enforceTypes: false });
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
+
+  // // Migrate World Items
   // for (let i of game.items.entities) {
   //   try {
   //     const updateData = migrateItemData(i.data);
@@ -36,7 +45,7 @@ export const migrateWorld = async function () {
   //   }
   // }
 
-  // Migrate Actor Override Tokens
+  // // Migrate Actor Override Tokens
   // for (let s of game.scenes.entities) {
   //   try {
   //     const updateData = migrateSceneData(s.data);
@@ -49,70 +58,88 @@ export const migrateWorld = async function () {
   //   }
   // }
 
-  // Migrate World Compendium Packs
-  // const packs = game.packs.filter((p) => {
-  //   return p.metadata.package === 'world' && ['Actor', 'Item', 'Scene'].includes(p.metadata.entity);
-  // });
-  // for (let p of packs) {
-  //   await migrateCompendium(p);
-  // }
-
-  // // Migrate Base Rules Compendium Packs
-  // const bRpacks = game.packs.filter((cp) => {
-  //   return cp.metadata.package === 'AlienRPG-CoreRules' && ['Actor', 'Item'].includes(cp.metadata.entity);
-  // });
-  // for (let cp of bRpacks) {
-  //   await migrateCompendium(cp);
-  // }
-
-  // // Migrate Chariot of the Gods Compendium Packs
-  // const cGpacks = game.packs.filter((cg) => {
-  //   return cg.metadata.package === 'AlienRPG-ChariotOfTheGods' && ['Actor', 'Item'].includes(cg.metadata.entity);
-  // });
-  // for (let cg of cGpacks) {
-  //   await migrateCompendium(cg);
-  // }
-
   // Set the migration as complete
   game.settings.set('alienrpg', 'systemMigrationVersion', game.system.data.version);
   ui.notifications.info(`AlienRPG System Migration to version ${game.system.data.version} completed!`, { permanent: true });
 };
 
 /* -------------------------------------------- */
+const migrateActorData = (actor) => {
+  let update = {};
+  if (actor.type === 'character' || actor.type === 'synthetic') {
+    update = setValueIfNotExists(update, actor, 'data.general.sp.value', 0);
+    update = setValueIfNotExists(update, actor, 'data.general.sp.max', 3);
+    update = setValueIfNotExists(update, actor, 'data.general.cash.value', 0);
+    update = setValueIfNotExists(update, actor, 'data.general.adhocitems', 0);
+  }
+
+  if (actor.data.adhocitems != undefined) {
+    console.log('there is some ');
+    update = setValueIfNotExists(update, actor, 'data.general.adhocitems', data.adhocitems);
+    // updateData[`data.-=adhocitems`] = null;
+  }
+
+  let itemsChanged = false;
+  const items = actor.items.map((item) => {
+    const itemUpdate = migrateItemData(item);
+    if (!isObjectEmpty(itemUpdate)) {
+      itemsChanged = true;
+      return mergeObject(item, itemUpdate, { enforceTypes: false, inplace: false });
+    }
+    return item;
+  });
+  if (itemsChanged) {
+    update.items = items;
+  }
+  return update;
+};
+
+const migrateItemData = (item, worldTemplateVersion) => {
+  let update = {};
+  if (worldTemplateVersion < 3) {
+    const powerType = ['trait', 'ability', 'mysticalPower', 'ritual', 'burden', 'boon'];
+    const gearType = ['weapon', 'armor', 'equipment', 'artifact'];
+  }
+
+  if (!isObjectEmpty(update)) {
+    update._id = item._id;
+  }
+  return update;
+};
 
 /**
  * Apply migration rules to all Entities within a single Compendium pack
  * @param pack
  * @return {Promise}
  */
-export const migrateCompendium = async function (pack) {
-  const entity = pack.metadata.entity;
-  if (!['Actor', 'Item', 'Scene'].includes(entity)) return;
+// export const migrateCompendium = async function (pack) {
+//   const entity = pack.metadata.entity;
+//   if (!['Actor', 'Item', 'Scene'].includes(entity)) return;
 
-  // Begin by requesting server-side data model migration and get the migrated content
-  await pack.migrate();
-  const content = await pack.getContent();
+//   // Begin by requesting server-side data model migration and get the migrated content
+//   await pack.migrate();
+//   const content = await pack.getContent();
 
-  // Iterate over compendium entries - applying fine-tuned migration functions
-  for (let ent of content) {
-    try {
-      let updateData = null;
-      // if (entity === 'Item') updateData = migrateItemData(ent.data);
-      if (entity === 'Actor') updateData = migrateActorData(ent.data);
-      // else if (entity === 'Scene') updateData = migrateSceneData(ent.data);
-      // console.warn('ent.data,updateData', ent.data, updateData);
-      if (!isObjectEmpty(updateData)) {
-        expandObject(updateData);
-        updateData['_id'] = ent._id;
-        await pack.updateEntity(updateData);
-        console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  // console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
-};
+//   // Iterate over compendium entries - applying fine-tuned migration functions
+//   for (let ent of content) {
+//     try {
+//       let updateData = null;
+//       if (entity === 'Item') updateData = migrateItemData(ent.data);
+//       else if (entity === 'Actor') updateData = migrateActorData(ent.data);
+//       else if (entity === 'Scene') updateData = migrateSceneData(ent.data);
+//       // console.warn('ent.data,updateData', ent.data, updateData);
+//       if (!isObjectEmpty(updateData)) {
+//         expandObject(updateData);
+//         updateData['_id'] = ent._id;
+//         await pack.updateEntity(updateData);
+//         console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
+//       }
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   }
+//   // console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
+// };
 
 /* -------------------------------------------- */
 /*  Entity Type Migration Helpers               */
@@ -124,47 +151,43 @@ export const migrateCompendium = async function (pack) {
  * @param {Actor} actor   The actor to Update
  * @return {Object}       The updateData to apply
  */
-const migrateActorData = (actor) => {
-  // console.log('migrateActorData -> actor', actor);
-  const data = actor.data;
-  const updateData = {};
-  // if (actor.type === 'creature') {
-  //   if (actor.token.actorLink === true) {
-  //     actor.token.actorLink = false;
-  //   }
-  // }
-  if (actor.type === 'character' || actor.type === 'synthetic') {
-    updateData[`data.general.sp.value`] = 0;
-    updateData[`data.general.sp.max`] = 3;
-    updateData[`data.general.cash.value`] = 0;
-    updateData[`data.general.adhocitems`] = '';
+// const migrateActorData = (actor) => {
+//   // console.log('migrateActorData -> actor', actor);
+//   const data = actor.data;
+//   const updateData = {};
 
-    if (data.adhocitems != undefined) {
-      console.log('there is some ');
-      updateData[`data.general.adhocitems`] = data.adhocitems;
-      updateData[`data.-=adhocitems`] = null;
-    }
-  }
+//   if (actor.type === 'character' || actor.type === 'synthetic') {
+//     updateData[`data.general.sp.value`] = 0;
+//     updateData[`data.general.sp.max`] = 3;
+//     updateData[`data.general.cash.value`] = 0;
+//     updateData[`data.general.adhocitems`] = '';
 
-  // Remove deprecated fields
-  // _migrateRemoveDeprecated(actor, updateData);
+//     if (data.adhocitems != undefined) {
+//       console.log('there is some ');
+//       updateData[`data.general.adhocitems`] = data.adhocitems;
+//       updateData[`data.-=adhocitems`] = null;
+//     }
+//   }
 
-  // Migrate Owned Items
-  if (!actor.items) return updateData;
-  let hasItemUpdates = false;
-  const items = actor.items.map((i) => {
-    // Migrate the Owned Item
-    let itemUpdate = migrateItemData(i);
+//   // Remove deprecated fields
+//   _migrateRemoveDeprecated(actor, updateData);
 
-    // Update the Owned Item
-    if (!isObjectEmpty(itemUpdate)) {
-      hasItemUpdates = true;
-      return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
-    } else return i;
-  });
-  if (hasItemUpdates) updateData.items = items;
-  return updateData;
-};
+//   // Migrate Owned Items
+//   if (!actor.items) return updateData;
+//   let hasItemUpdates = false;
+//   const items = actor.items.map((i) => {
+//     // Migrate the Owned Item
+//     let itemUpdate = migrateItemData(i);
+
+//     // Update the Owned Item
+//     if (!isObjectEmpty(itemUpdate)) {
+//       hasItemUpdates = true;
+//       return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
+//     } else return i;
+//   });
+//   if (hasItemUpdates) updateData.items = items;
+//   return updateData;
+// };
 
 /* -------------------------------------------- */
 
@@ -173,23 +196,23 @@ const migrateActorData = (actor) => {
  * @param {Object} actorData    The data object for an Actor
  * @return {Object}             The scrubbed Actor data
  */
-function cleanActorData(actorData) {
-  // Scrub system data
-  const model = game.system.model.Actor[actorData.type];
-  actorData.data = filterObject(actorData.data, model);
+// function cleanActorData(actorData) {
+//   // Scrub system data
+//   const model = game.system.model.Actor[actorData.type];
+//   actorData.data = filterObject(actorData.data, model);
 
-  // Scrub system flags
-  const allowedFlags = CONFIG.ALIENRPG.allowedActorFlags.reduce((obj, f) => {
-    obj[f] = null;
-    return obj;
-  }, {});
-  if (actorData.flags.alienrpg) {
-    actorData.flags.alienrpg = filterObject(actorData.flags.alienrpg, allowedFlags);
-  }
+//   // Scrub system flags
+//   const allowedFlags = CONFIG.ALIENRPG.allowedActorFlags.reduce((obj, f) => {
+//     obj[f] = null;
+//     return obj;
+//   }, {});
+//   if (actorData.flags.alienrpg) {
+//     actorData.flags.alienrpg = filterObject(actorData.flags.alienrpg, allowedFlags);
+//   }
 
-  // Return the scrubbed data
-  return actorData;
-}
+//   // Return the scrubbed data
+//   return actorData;
+// }
 
 /* -------------------------------------------- */
 
@@ -197,15 +220,16 @@ function cleanActorData(actorData) {
  * Migrate a single Item entity to incorporate latest data model changes
  * @param item
  */
-export const migrateItemData = function (item) {
-  // console.log('migrateItemData -> item', item);
-  const updateData = {};
-  // Remove deprecated fields
-  // _migrateRemoveDeprecated(item, updateData);
+// export const migrateItemData = function (item) {
+//   // console.log('migrateItemData -> item', item);
+//   const updateData = {};
 
-  // Return the migrated update data
-  return updateData;
-};
+//   // Remove deprecated fields
+//   _migrateRemoveDeprecated(item, updateData);
+
+//   // Return the migrated update data
+//   return updateData;
+// };
 
 /* -------------------------------------------- */
 
@@ -215,26 +239,26 @@ export const migrateItemData = function (item) {
  * @param {Object} scene  The Scene data to Update
  * @return {Object}       The updateData to apply
  */
-export const migrateSceneData = function (scene) {
-  const tokens = duplicate(scene.tokens);
-  return {
-    tokens: tokens.map((t) => {
-      if (!t.actorId || t.actorLink || !t.actorData.data) {
-        t.actorData = {};
-        return t;
-      }
-      const token = new Token(t);
-      if (!token.actor) {
-        t.actorId = null;
-        t.actorData = {};
-      } else if (!t.actorLink) {
-        const updateData = migrateActorData(token.data.actorData);
-        t.actorData = mergeObject(token.data.actorData, updateData);
-      }
-      return t;
-    }),
-  };
-};
+// export const migrateSceneData = function (scene) {
+//   const tokens = duplicate(scene.tokens);
+//   return {
+//     tokens: tokens.map((t) => {
+//       if (!t.actorId || t.actorLink || !t.actorData.data) {
+//         t.actorData = {};
+//         return t;
+//       }
+//       const token = new Token(t);
+//       if (!token.actor) {
+//         t.actorId = null;
+//         t.actorData = {};
+//       } else if (!t.actorLink) {
+//         const updateData = migrateActorData(token.data.actorData);
+//         t.actorData = mergeObject(token.data.actorData, updateData);
+//       }
+//       return t;
+//     }),
+//   };
+// };
 
 /* -------------------------------------------- */
 /*  Low level migration utilities
@@ -246,22 +270,29 @@ export const migrateSceneData = function (scene) {
  * A general migration to remove all fields from the data model which are flagged with a _deprecated tag
  * @private
  */
-const _migrateRemoveDeprecated = function (ent, updateData) {
-  const flat = flattenObject(ent.data);
-  // console.warn('flat', flat);
-  // Identify objects to deprecate
-  const toDeprecate = Object.entries(flat)
-    .filter((e) => e[0].endsWith('_deprecated') && e[1] === true)
-    .map((e) => {
-      let parent = e[0].split('.');
-      parent.pop();
-      return parent.join('.');
-    });
+// const _migrateRemoveDeprecated = function (ent, updateData) {
+//   const flat = flattenObject(ent.data);
+//   // console.warn('flat', flat);
+//   // Identify objects to deprecate
+//   const toDeprecate = Object.entries(flat)
+//     .filter((e) => e[0].endsWith('_deprecated') && e[1] === true)
+//     .map((e) => {
+//       let parent = e[0].split('.');
+//       parent.pop();
+//       return parent.join('.');
+//     });
 
-  // Remove them
-  for (let k of toDeprecate) {
-    let parts = k.split('.');
-    parts[parts.length - 1] = '-=' + parts[parts.length - 1];
-    updateData[`data.${parts.join('.')}`] = null;
+//   // Remove them
+//   for (let k of toDeprecate) {
+//     let parts = k.split('.');
+//     parts[parts.length - 1] = '-=' + parts[parts.length - 1];
+//     updateData[`data.${parts.join('.')}`] = null;
+//   }
+// };
+
+const setValueIfNotExists = (update, object, property, newValue) => {
+  if (typeof getProperty(object, property) === 'undefined') {
+    update[property] = newValue;
   }
+  return update;
 };
