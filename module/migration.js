@@ -135,8 +135,10 @@ const migrateActorData = (actor) => {
     updateData[`data.general.sp.value`] = '0';
     updateData[`data.general.sp.max`] = '3';
     updateData[`data.general.cash.value`] = 0;
-    updateData[`data.general.adhocitems`] = '';
-    if (data.adhocitems) {
+
+    debugger;
+    if (data.adhocitems != undefined) {
+      console.log('there is some ');
       updateData[`data.general.adhocitems`] = data.adhocitems;
       updateData[`data.-=adhocitems`] = null;
     }
