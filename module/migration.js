@@ -7,7 +7,7 @@ export const migrateWorld = async function () {
 
   for (let actor of game.actors.entities) {
     try {
-      const update = migrateActorData(actor.data);
+      const update = await migrateActorData(actor.data);
       if (!isObjectEmpty(update)) {
         await actor.update(update, { enforceTypes: false });
       }
@@ -64,7 +64,7 @@ export const migrateWorld = async function () {
 };
 
 /* -------------------------------------------- */
-const migrateActorData = (actor) => {
+const migrateActorData = async (actor) => {
   let update = {};
   if (actor.type === 'character' || actor.type === 'synthetic') {
     update = setValueIfNotExists(update, actor, 'data.general.sp.value', 0);
@@ -81,11 +81,11 @@ const migrateActorData = (actor) => {
   }
 
   let itemsChanged = false;
-  const items = actor.items.map((item) => {
-    const itemUpdate = migrateItemData(item);
+  const items = actor.items.map(async (item) => {
+    const itemUpdate = await migrateItemData(item);
     if (!isObjectEmpty(itemUpdate)) {
       itemsChanged = true;
-      return mergeObject(item, itemUpdate, { enforceTypes: false, inplace: false });
+      return await mergeObject(item, itemUpdate, { enforceTypes: false, inplace: false });
     }
     return item;
   });
@@ -95,7 +95,7 @@ const migrateActorData = (actor) => {
   return update;
 };
 
-const migrateItemData = (item, worldTemplateVersion) => {
+const migrateItemData = async (item, worldTemplateVersion) => {
   let update = {};
   if (worldTemplateVersion < 3) {
     const powerType = ['trait', 'ability', 'mysticalPower', 'ritual', 'burden', 'boon'];
