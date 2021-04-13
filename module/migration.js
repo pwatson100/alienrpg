@@ -65,7 +65,6 @@ export const migrateWorld = async function () {
 
 /* -------------------------------------------- */
 const migrateActorData = (actor) => {
-  debugger;
   let update = {};
   if (actor.type === 'character' || actor.type === 'synthetic') {
     update = setValueIfNotExists(update, actor, 'data.general.sp.value', 0);
@@ -77,7 +76,7 @@ const migrateActorData = (actor) => {
 
   if (actor.data.adhocitems != undefined) {
     console.log('there is some ');
-    update = setValueIfNotExists(update, actor, 'data.general.adhocitems', data.adhocitems);
+    update = setValueIfNotExists(update, actor, 'data.general.adhocitems', actor.data.adhocitems);
     // updateData[`data.-=adhocitems`] = null;
   }
 
