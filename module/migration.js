@@ -71,9 +71,9 @@ const migrateActorData = (actor) => {
     update = setValueIfNotExists(update, actor, 'data.general.sp.max', 3);
     // update = setValueIfNotExists(update, actor, 'data.general.sp.icon', '<i class="far fa-circle"></i>');
     update = setValueIfNotExists(update, actor, 'data.general.cash.value', 0);
-    update = setValueIfNotExists(update, actor, 'data.general.adhocitems', '');
+    // update = setValueIfNotExists(update, actor, 'data.general.adhocitems', '');
   }
-  debugger;
+  // debugger;
   if (actor.data.adhocitems != undefined) {
     console.log('there is some ');
     update = setValueIfNotExists(update, actor, 'data.general.adhocitems', actor.data.adhocitems);
