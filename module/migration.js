@@ -48,12 +48,12 @@ export const migrateWorld = async function () {
   // }
 
   // Migrate World Compendium Packs
-  const packs = game.packs.filter((p) => {
-    return p.metadata.package === 'world' && ['Actor', 'Item', 'Scene'].includes(p.metadata.entity);
-  });
-  for (let p of packs) {
-    await migrateCompendium(p);
-  }
+  // const packs = game.packs.filter((p) => {
+  //   return p.metadata.package === 'world' && ['Actor', 'Item', 'Scene'].includes(p.metadata.entity);
+  // });
+  // for (let p of packs) {
+  //   await migrateCompendium(p);
+  // }
 
   // // Migrate Base Rules Compendium Packs
   // const bRpacks = game.packs.filter((cp) => {
