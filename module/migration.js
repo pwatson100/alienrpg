@@ -136,6 +136,10 @@ const migrateActorData = (actor) => {
     updateData[`data.general.sp.max`] = '3';
     updateData[`data.general.cash.value`] = 0;
 
+    if (data.adhocitems) {
+      updateData[`data.general.adhocitems`] = data.adhocitems;
+      updateData[`data.-=adhocitems`] = null;
+    }
     // Loop through Skill scores, and add their attribute modifiers to our sheet output.
     // for (let [key, skill] of Object.entries(data.skills)) {
     //   // Calculate the modifier using d20 rules.

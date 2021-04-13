@@ -187,7 +187,8 @@
         "cash": {
           "value": 0,
           "label": "Number"
-        }
+        },
+        "adhocitems": ""
       },
       "consumables": {
         "air": {
