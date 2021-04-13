@@ -132,9 +132,9 @@ const migrateActorData = (actor) => {
   //   }
   // }
   if (actor.type === 'character' || actor.type === 'synthetic') {
-    updateData[`data.general.sp.value`] = '0';
-    updateData[`data.general.sp.max`] = '3';
-    updateData[`data.general.cash.value`] = '0';
+    updateData[`data.general.sp.value`] = 0;
+    updateData[`data.general.sp.max`] = 3;
+    updateData[`data.general.cash.value`] = 0;
 
     debugger;
     if (data.adhocitems != undefined) {
