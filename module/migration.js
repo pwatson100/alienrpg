@@ -65,12 +65,14 @@ export const migrateWorld = async function () {
 
 /* -------------------------------------------- */
 const migrateActorData = (actor) => {
+  debugger;
   let update = {};
   if (actor.type === 'character' || actor.type === 'synthetic') {
     update = setValueIfNotExists(update, actor, 'data.general.sp.value', 0);
     update = setValueIfNotExists(update, actor, 'data.general.sp.max', 3);
+    update = setValueIfNotExists(update, actor, 'data.general.sp.icon', '<i class="far fa-circle"></i>');
     update = setValueIfNotExists(update, actor, 'data.general.cash.value', 0);
-    update = setValueIfNotExists(update, actor, 'data.general.adhocitems', 0);
+    update = setValueIfNotExists(update, actor, 'data.general.adhocitems', '');
   }
 
   if (actor.data.adhocitems != undefined) {
