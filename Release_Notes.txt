@@ -308,3 +308,4 @@ Corrected a bug with the encumbrance bar no showing at all!
 Corrected a bug in chat with the stress dice not showing for some languages.
 Corrected chat text message issue for rolls displaying "Following the Push..." when they were not pushed.
 Supply rolls for Air, Food and Water now deduct from all items correctly (in the order they were added to the sheet).
+Supply rolls will only roll a maximum of 6 dice as per the rules. 

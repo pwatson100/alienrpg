@@ -66,7 +66,7 @@ export class alienrpgActor extends Actor {
     super.prepareBaseData();
 
     const actorData = this.data;
-    // console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareBaseData ~ actorData', actorData);
+    console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareBaseData ~ actorData', actorData);
     const data = actorData.data;
     const flags = actorData.flags;
 
@@ -738,24 +738,45 @@ export class alienrpgActor extends Actor {
           if (bRoll <= 0) {
             break;
           }
-          if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
-            let element = aActor.data.items[key];
-            if (element.data.attributes[iConsUme].value) {
-              let mitem = aActor.getOwnedItem(element._id);
-              let iVal = element.data.attributes[iConsUme].value;
-              if (iVal - bRoll < 0) {
-                tNum = iVal;
-                // bRoll -= iVal;
-              } else {
-                tNum = bRoll;
+
+          if (aActor.data.items[key].type === 'item' && aActor.data.items[key].data.header.active) {
+            if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
+              let element = aActor.data.items[key];
+              if (element.data.attributes[iConsUme].value) {
+                let mitem = aActor.getOwnedItem(element._id);
+                let iVal = element.data.attributes[iConsUme].value;
+                if (iVal - bRoll < 0) {
+                  tNum = iVal;
+                  // bRoll -= iVal;
+                } else {
+                  tNum = bRoll;
+                }
+                await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
               }
-              await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
             }
+            bRoll -= tNum;
           }
-          bRoll -= tNum;
+
+          if (aActor.data.items[key].type === 'armor' && aconsUme === 'air' && aActor.data.items[key].data.header.active) {
+            if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
+              let element = aActor.data.items[key];
+              if (element.data.attributes[iConsUme].value) {
+                let mitem = aActor.getOwnedItem(element._id);
+                let iVal = element.data.attributes[iConsUme].value;
+                if (iVal - bRoll < 0) {
+                  tNum = iVal;
+                  // bRoll -= iVal;
+                } else {
+                  tNum = bRoll;
+                }
+                await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
+              }
+            }
+            bRoll -= tNum;
+          }
         }
+        await aActor.update({ [aField]: `data.consumables.${aconsUme}.value` - game.alienrpg.rollArr.r2One });
       }
-      await aActor.update({ [aField]: `data.consumables.${aconsUme}.value` - game.alienrpg.rollArr.r2One });
     }
   }
 

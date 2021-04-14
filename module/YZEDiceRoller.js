@@ -120,8 +120,13 @@ export class yze {
       let roll2 = `${r2Dice}` + 'ds';
       let com;
       if (actortype === 'supply') {
-        // // console.log('yze -> yzeRoll -> hostile', hostile);
-        com = `${roll2}`;
+        if (r2Dice > 6) {
+          r2Dice = 6;
+          com = `${r2Dice}` + 'ds';
+        } else {
+          // // console.log('yze -> yzeRoll -> hostile', hostile);
+          com = `${roll2}`;
+        }
       } else {
         com = `${roll1}` + '+' + `${roll2}`;
         // mr = '';
