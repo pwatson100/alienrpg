@@ -69,17 +69,8 @@ const migrateActorData = async (actor) => {
   if (actor.type === 'character' || actor.type === 'synthetic') {
     update = setValueIfNotExists(update, actor, 'data.general.sp.value', 0);
     update = setValueIfNotExists(update, actor, 'data.general.sp.max', 3);
-    // update = setValueIfNotExists(update, actor, 'data.general.sp.icon', '<i class="far fa-circle"></i>');
     update = setValueIfNotExists(update, actor, 'data.general.cash.value', 0);
-    // update = setValueIfNotExists(update, actor, 'data.general.adhocitems', '');
   }
-  // debugger;
-  // if (actor.data.adhocitems != undefined) {
-  //   console.log('there is some ');
-  //   update = setValueIfNotExists(update, actor, 'data.general.adhocitems', actor.data.adhocitems);
-  //   // updateData[`data.-=adhocitems`] = null;
-  // }
-
   let itemsChanged = false;
   const items = actor.items.map(async (item) => {
     const itemUpdate = await migrateItemData(item);
