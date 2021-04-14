@@ -187,8 +187,7 @@
         "cash": {
           "value": 0,
           "label": "Number"
-        },
-        "adhocitems": ""
+        }
       },
       "consumables": {
         "air": {
@@ -212,7 +211,8 @@
           "max": 5
         }
       },
-      "notes": ""
+      "notes": "",
+      "adhocitems": ""
     },
     "synthetic": {
       "header": {
@@ -404,7 +404,8 @@
           "max": 5
         }
       },
-      "notes": ""
+      "notes": "",
+      "adhocitems": ""
     },
     "creature": {
       "header": {

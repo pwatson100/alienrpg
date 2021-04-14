@@ -74,11 +74,11 @@ const migrateActorData = async (actor) => {
     // update = setValueIfNotExists(update, actor, 'data.general.adhocitems', '');
   }
   // debugger;
-  if (actor.data.adhocitems != undefined) {
-    console.log('there is some ');
-    update = setValueIfNotExists(update, actor, 'data.general.adhocitems', actor.data.adhocitems);
-    // updateData[`data.-=adhocitems`] = null;
-  }
+  // if (actor.data.adhocitems != undefined) {
+  //   console.log('there is some ');
+  //   update = setValueIfNotExists(update, actor, 'data.general.adhocitems', actor.data.adhocitems);
+  //   // updateData[`data.-=adhocitems`] = null;
+  // }
 
   let itemsChanged = false;
   const items = actor.items.map(async (item) => {
