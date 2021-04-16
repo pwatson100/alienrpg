@@ -760,15 +760,14 @@ export class alienrpgActor extends Actor {
           iConsUme = aconsUme;
         }
         // while (bRoll > 0) {
-        for (const key in aActor.data.items) {
+        for (const key in aActor.data.items._source) {
           if (bRoll <= 0) {
             break;
           }
 
-
-          if (aActor.data.items[key].type === 'item' && aActor.data.items[key].data.header.active) {
-            if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
-              let element = aActor.data.items[key];
+          if (aActor.data.items._source[key].type === 'item' && aActor.data.items._source[key].data.header.active) {
+            if (Object.hasOwnProperty.call(aActor.data.items._source, key) && bRoll > 0) {
+              let element = aActor.data.items._source[key];
               if (element.data.attributes[iConsUme].value) {
                 let mitem = aActor.getOwnedItem(element._id);
                 let iVal = element.data.attributes[iConsUme].value;
@@ -784,9 +783,9 @@ export class alienrpgActor extends Actor {
             bRoll -= tNum;
           }
 
-          if (aActor.data.items[key].type === 'armor' && aconsUme === 'air' && aActor.data.items[key].data.header.active) {
-            if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
-              let element = aActor.data.items[key];
+          if (aActor.data.items._source[key].type === 'armor' && aconsUme === 'air' && aActor.data.items._source[key].data.header.active) {
+            if (Object.hasOwnProperty.call(aActor.data.items._source, key) && bRoll > 0) {
+              let element = aActor.data.items._source[key];
               if (element.data.attributes[iConsUme].value) {
                 let mitem = aActor.getOwnedItem(element._id);
                 let iVal = element.data.attributes[iConsUme].value;
@@ -801,12 +800,9 @@ export class alienrpgActor extends Actor {
             }
             bRoll -= tNum;
           }
-
         }
-        await aActor.update({ [aField]: `data.consumables.${aconsUme}.value` - game.alienrpg.rollArr.r2One });
+        await aActor.update({ [aField]: `data.consumables.${aconsUme}.value` - tNum });
       }
-
-
     }
   }
 
