@@ -299,7 +299,6 @@ Addded Story Points and Cash Trackers to the Character sheet.
 Added "Roll Crit" button for Characters and Synthetics.  NOTE: This will only work if you have tables called "Critical Injuries" and "Critical Injuries on Synthetics"
 On the Inventory tabs, left clicking on an item's context menu will open the item in edit mode.  Right click still shows the context menu with edit and delete. 
 Changed the currency fields to just display a $ sign and no units (this will only show on new input).
-A PC having the "Tough" Talent will automatically add +2 to Health.
 A PC having the "Nerves of Steel" Talent will automatically add -2 to Stress rolls. 
 Chat message for stress rolls now shows the net modifier. A tooltip shows the individual modifiers.  
 On the Synthetic sheet, moved "Imitate Human Panic and Push" to the bottom. 
