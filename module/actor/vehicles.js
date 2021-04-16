@@ -164,6 +164,13 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
 
+    // Update Inventory Item
+    html.find('.item-edit').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.getOwnedItem(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
     if (game.settings.get('alienrpg', 'switchMouseKeys')) {
       // Right to Roll and left to mod
       // Rollable abilities.
@@ -300,9 +307,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
   _currencyField(event) {
     event.preventDefault();
     const element = event.currentTarget;
-    const currency = 'USD'; // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
-
-    // format inital value
+    // format initial value
     onBlur({ target: event.currentTarget });
 
     function localStringToNumber(s) {
@@ -310,16 +315,8 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     }
 
     function onBlur(e) {
-      // console.warn('onblur');
       let value = e.target.value;
-
-      let options = {
-        maximumFractionDigits: 2,
-        currency: currency,
-        style: 'currency',
-        currencyDisplay: 'symbol',
-      };
-      e.target.value = value ? localStringToNumber(value).toLocaleString(undefined, options) : '';
+      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
       // console.warn(e.target.value);
     }
   }

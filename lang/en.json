@@ -244,6 +244,14 @@
   "ALIENRPG.CombatantReroll": "ReRoll Initiative",
   "ALIENRPG.CombatantRemove": "Remove Actor",
   "ALIENRPG.MultiPush": "Allow multi-push",
-  "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button",
-  "ALIENRPG.Pwr": "Pwr"
+  "ALIENRPG.SynthStress": "Imitate Human Panic and Push",
+  "ALIENRPG.Pwr": "Pwr",
+  "ALIENRPG.Cash": "Cash",
+  "ALIENRPG.StoryPoints": "Story Points",
+  "ALIENRPG.RollCrit": "Roll Crit",
+  "ALIENRPG.NoCharCrit": "No Critical injuries table",
+  "ALIENRPG.NoSynCrit": "No Critical Injuries on Synthetics table",
+  "ALIENRPG.Ones": "Ones: ",
+  "ALIENRPG.Sixes": "Sixes: ",
+  "ALIENRPG.Dice": "Dice: "
 }

@@ -21,7 +21,7 @@
   "ALIENRPG.Range": "Distancia",
   "ALIENRPG.Comment": "Comentario",
   "ALIENRPG.AbilityStr": "Fuerza",
-  "ALIENRPG.AbilityWit": "Voluntad",
+  "ALIENRPG.AbilityWit": "Ingenio",
   "ALIENRPG.AbilityAgl": "Agilidad",
   "ALIENRPG.AbilityEmp": "Empatía",
   "ALIENRPG.SkillHeavyMach": "Maquinaria pesada",
@@ -247,5 +247,12 @@
   "ALIENRPG.CombatantRemove": "Eliminar actor",
   "ALIENRPG.MultiPush": "Permitir empuje múltiple",
   "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button",
-  "ALIENRPG.Pwr": "Ene"
+  "ALIENRPG.Pwr": "Ene",
+  "ALIENRPG.Cash": "Dinero",
+  "ALIENRPG.StoryPoints": "Puntos de historia",
+  "ALIENRPG.NoCharCrit": "No tabla de lesiones críticas",
+  "ALIENRPG.NoSynCrit": "No Critical Injuries on Synthetics table",
+  "ALIENRPG.Ones": "Unos: ",
+  "ALIENRPG.Sixes": "Seis: ",
+  "ALIENRPG.Dice": "Dado: "
 }

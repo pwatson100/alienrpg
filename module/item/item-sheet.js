@@ -59,12 +59,7 @@ export class alienrpgItemSheet extends ItemSheet {
   _currencyField(event) {
     event.preventDefault();
     const element = event.currentTarget;
-
-    // console.warn(element.dataset);
-
-    const currency = 'USD'; // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
-
-    // format inital value
+    // format initial value
     onBlur({ target: event.currentTarget });
 
     function localStringToNumber(s) {
@@ -72,16 +67,8 @@ export class alienrpgItemSheet extends ItemSheet {
     }
 
     function onBlur(e) {
-      // console.warn('onblur');
       let value = e.target.value;
-
-      let options = {
-        maximumFractionDigits: 2,
-        currency: currency,
-        style: 'currency',
-        currencyDisplay: 'symbol',
-      };
-      e.target.value = value ? localStringToNumber(value).toLocaleString(undefined, options) : '';
+      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
       // console.warn(e.target.value);
     }
   }

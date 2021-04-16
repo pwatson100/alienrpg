@@ -148,6 +148,10 @@
           "value": 0,
           "max": 10
         },
+        "sp": {
+          "value": 0,
+          "max": 3
+        },
         "radiation": {
           "value": 0,
           "max": 10
@@ -179,6 +183,10 @@
           "value": 0,
           "max": 1,
           "lastRoll": 0
+        },
+        "cash": {
+          "value": 0,
+          "label": "Number"
         }
       },
       "consumables": {
@@ -203,7 +211,8 @@
           "max": 5
         }
       },
-      "notes": ""
+      "notes": "",
+      "adhocitems": ""
     },
     "synthetic": {
       "header": {
@@ -337,6 +346,10 @@
           "value": 0,
           "max": 10
         },
+        "sp": {
+          "value": 0,
+          "max": 3
+        },
         "radiation": {
           "value": 0,
           "max": 10
@@ -363,6 +376,10 @@
         "armor": {
           "value": 0,
           "max": 10
+        },
+        "cash": {
+          "value": 0,
+          "label": "Number"
         }
       },
       "consumables": {
@@ -387,7 +404,8 @@
           "max": 5
         }
       },
-      "notes": ""
+      "notes": "",
+      "adhocitems": ""
     },
     "creature": {
       "header": {

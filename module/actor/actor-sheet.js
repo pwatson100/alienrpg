@@ -47,9 +47,8 @@ export class alienrpgActorSheet extends ActorSheet {
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
       isCharacter: this.entity.data.type === 'character',
-      isEnc: this.entity.data.type === 'character',
+      isEnc: this.entity.data.type === 'character' || this.entity.data.type === 'synthetic',
       isSynthetic: this.entity.data.type === 'synthetic',
-      isEnc: this.entity.data.type === 'synthetic',
       isVehicles: this.entity.data.type === 'vehicles',
       isCreature: this.entity.data.type === 'creature',
       isNPC: this.entity.data.data.header.npc,
@@ -70,31 +69,9 @@ export class alienrpgActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-    // // data.actor.data.general.radiation.calculatedMax = data.actor.data.general.radiation.max; // Update
-    // this.actor.update({ 'general.radiation.calculatedMax': data.actor.data.general.radiation.max });
-
-    // // data.actor.data.general.xp.calculatedMax = data.actor.data.general.xp.max; // Update
-    // this.actor.update({ 'general.xp.calculatedMax': data.actor.data.general.xp.max });
-
-    // // data.actor.data.general.starving.calculatedMax = data.actor.data.general.starving.max; // Update
-    // this.actor.update({ 'general.starving.calculatedMax': data.actor.data.general.starving.max });
-
-    // // data.actor.data.general.dehydrated.calculatedMax = data.actor.data.general.dehydrated.max; // Update
-    // this.actor.update({ 'general.dehydrated.calculatedMax': data.actor.data.general.dehydrated.max });
-
-    // // data.actor.data.general.exhausted.calculatedMax = data.actor.data.general.exhausted.max; // Update
-    // this.actor.update({ 'general.exhausted.calculatedMax': data.actor.data.general.exhausted.max });
-
-    // // data.actor.data.general.freezing.calculatedMax = data.actor.data.general.freezing.max; // Update
-    // this.actor.update({ 'general.freezing.calculatedMax': data.actor.data.general.freezing.max });
-
-    // // data.actor.data.general.panic.calculatedMax = data.actor.data.general.panic.max; // Update
-    // this.actor.update({ 'general.panic.calculatedMax': data.actor.data.general.panic.max });
-
-    // this.actor.update({ 'data.header.health.max': actorData.attributes.str.value });
-
     data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
+    data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
     data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
     data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
     data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
@@ -196,7 +173,7 @@ export class alienrpgActorSheet extends ActorSheet {
     }
 
     data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
-
+    // this._computeHealth(data);
     // Assign and return
     data.inventory = Object.values(inventory);
   }
@@ -227,6 +204,14 @@ export class alienrpgActorSheet extends ActorSheet {
     }
     return enc;
   }
+  // _computeHealth(actorData) {
+  //   // Compute Encumbrance percentage
+  //   for (let i of actorData.talents) {
+  //     if (i.name.toUpperCase() === 'TOUGH') {
+  //       setProperty(actorData, 'actorData.data.header.health.value', (actorData.data.header.health.value += 2));
+  //     }
+  //   }
+  // }
 
   /**
    * Determine whether an Owned Item will be shown based on the current set of filters
@@ -291,21 +276,12 @@ export class alienrpgActorSheet extends ActorSheet {
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
 
-    // html.find('.item-create').click(this._onItemCreate.bind(this));
-
-    // // Update Inventory Item
-    // html.find('.item-edit').click((ev) => {
-    //   const li = $(ev.currentTarget).parents('.item');
-    //   const item = this.actor.getOwnedItem(li.data('itemId'));
-    //   item.sheet.render(true);
-    // });
-
-    // // Delete Inventory Item
-    // html.find('.item-delete').click((ev) => {
-    //   const li = $(ev.currentTarget).parents('.item');
-    //   this.actor.deleteOwnedItem(li.data('itemId'));
-    //   li.slideUp(200, () => this.render(false));
-    // });
+    // Update Inventory Item
+    html.find('.item-edit').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.getOwnedItem(li.data('itemId'));
+      item.sheet.render(true);
+    });
 
     if (game.settings.get('alienrpg', 'switchMouseKeys')) {
       // Right to Roll and left to mod
@@ -331,6 +307,7 @@ export class alienrpgActorSheet extends ActorSheet {
       html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
     }
 
+    html.find('.currency').on('change', this._currencyField.bind(this));
     // minus from health and stress
     html.find('.minus-btn').click(this._plusMinusButton.bind(this));
 
@@ -348,6 +325,8 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.talent-btn').click(this._talentBtn.bind(this));
 
     html.find('.inline-edit').change(this._inlineedit.bind(this));
+
+    html.find('.rollCrit').click(this._rollCrit.bind(this));
 
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
@@ -380,10 +359,10 @@ export class alienrpgActorSheet extends ActorSheet {
     // Grab any data associated with this control.
     const data = duplicate(header.dataset);
     // Initialize a default name.
-    const name = `New ${type.capitalize()}`;
+    const iName = `New ${type.capitalize()}`;
     // Prepare the item object.
     const itemData = {
-      name: name,
+      name: iName,
       type: type,
       data: data,
     };
@@ -434,6 +413,11 @@ export class alienrpgActorSheet extends ActorSheet {
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.getOwnedItem(itemId);
     this.actor.nowRollItem(item);
+  }
+  _rollCrit(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCrit(this.actor.data.type, dataset);
   }
 
   _activate(event) {
@@ -610,59 +594,31 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
+    // If it's a power roll it will have an item number so test if it's zero
     if (dataset.item === '0') return;
-    // console.log('🚀 ~ file: actor-sheet.js ~ line 611 ~ alienrpgActorSheet ~ _supplyRoll ~ dataset', dataset);
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
-    const tItem = dataset.id;
+    // If this is a power roll get the exact id of the item to process
+    const tItem = dataset.id || 0;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
     const consUme = dataset.spbutt.toLowerCase();
-    let mItems = this.actor.items;
-    let numbers = [];
-    let temp = [];
-    for (let index = 0; index < mItems.entries.length; index++) {
-      let spanner = mItems.entries[index].data;
-      if (spanner.totalAir || spanner.totalFood || spanner.totalWat || spanner.totalPower) {
-        switch (spanner.type) {
-          case 'item':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                food: spanner.data.attributes.food.value,
-                water: spanner.data.attributes.water.value,
-                power: spanner.data.attributes.power.value,
-                air: spanner.data.attributes.airsupply.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
-          case 'armor':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                air: spanner.data.attributes.airsupply.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
-          case 'weapon':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                power: spanner.data.attributes.power.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
+    this.actor.consumablesCheck(this.actor, consUme, label, tItem);
+  }
 
-          default:
-            break;
-        }
-      }
+  _currencyField(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    // format initial value
+    onBlur({ target: event.currentTarget });
+
+    function localStringToNumber(s) {
+      return Number(String(s).replace(/[^0-9.-]+/g, ''));
     }
-    this.actor.consumablesCheck(this.actor, consUme, label, numbers, tItem);
+
+    function onBlur(e) {
+      let value = e.target.value;
+      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
+      // console.warn(e.target.value);
+    }
   }
 }
 export default alienrpgActorSheet;

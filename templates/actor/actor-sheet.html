@@ -12,7 +12,7 @@
             <input type="text" class="maxboxsize" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
             <button type="button" class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
           </div>
-          <h2 for="data.header.stress.value" class="resource-label rollable" data-panicroll="{{data.header.stress.value}}"data-mod="{{data.header.stress.mod}}" data-label="{{localize "ALIENRPG.Stress"}}">{{localize "ALIENRPG.Stress"}}</h2>
+          <h2 for="data.header.stress.value" class="resource-label rollable" data-panicroll="{{data.header.stress.value}}" data-mod="{{data.header.stress.mod}}" data-label="{{localize "ALIENRPG.Stress"}}">{{localize "ALIENRPG.Stress"}}</h2>
           <div class="resource-content">
             <button type="button" class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
             <input type="text" class="maxboxsize" name="data.header.stress.value" value="{{data.header.stress.value}}" data-dtype="Number" />
@@ -140,13 +140,15 @@
                       <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.xp.icon}}}
                     </span>
                   </div>
-                  <br>
-                  <div class="dots radiation">
-                    <h4 class="resource-label">{{ localize "ALIENRPG.Radiation"}}</h4>
-                   <input type="hidden" name="data.general.radiation.value" data-max="{{data.general.radiation.max}}" value="{{data.general.radiation.value}}" data-dtype="Number">
-                   <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.radiation.icon}}}
-                  </span>
-                </div>
+                  <div class="dots experience" style="margin-top: 3px;" >
+                  <h4 class="resource-label">{{localize "ALIENRPG.StoryPoints"}}</h4>
+                    <input type="hidden" name="data.general.sp.value" data-max="{{data.general.sp.max}}" value="{{data.general.sp.value}}" data-dtype="Number">
+                      <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.sp.icon}}}</span>
+                  </div>
+                  <div style="margin-top: 6px;" >
+                  <label class="resource-label">{{localize "ALIENRPG.Cash"}}</label>
+                  <input type="text" class="cashboxsize currency" name="data.general.cash.value" value="{{data.general.cash.value}}" />
+                  </div>
               </div>
         
               <div class="Item8">
@@ -183,6 +185,14 @@
                 <h4 class="click-stat-level resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}} </h4>
                 {{/if}}
                 </div>
+                <br>
+                  <div class="dots radiation">
+                    <h4 style="text-align: center;" class="resource-label">{{ localize "ALIENRPG.Radiation"}}</h4>
+                   <input type="hidden" name="data.general.radiation.value" data-max="{{data.general.radiation.max}}" value="{{data.general.radiation.value}}" data-dtype="Number">
+                   <span style="text-align: center;" class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.radiation.icon}}}
+                  </span>
+                </div>
+
             </div>
             
             <div class="Item9">
@@ -201,10 +211,6 @@
                       <button type="button" class="supply-btn Food2" data-spbutt="Food" ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
                     
-                    <h3 class="Power1 resource-label">{{localize "ALIENRPG.Power"}}</h3>
-                    <div class="resource-content">
-                      <input type="text" style="border: 1px solid yellowgreen;"  class="maxboxsize" style="margin-top: 6px;" name="data.consumables.power.value" value="{{data.consumables.power.value}}" data-dtype="Number" disabled />
-                    </div>
                     
                     <h3 class="Water1 resource-label">{{localize "ALIENRPG.Water"}}</h3>
                     <div class="resource-content">
@@ -212,6 +218,10 @@
                       <button type="button" class="supply-btn Water2" data-spbutt="Water"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                     </div>
                     
+                    <h3 class="Power1 resource-label">{{localize "ALIENRPG.Power"}}</h3>
+                    <div class="resource-content">
+                      <input type="text" style="border: 1px solid yellowgreen;  margin-top: 5px;" class="maxboxsize"  name="data.consumables.power.value" value="{{data.consumables.power.value}}" data-dtype="Number" disabled />
+                    </div>
                     
                   </div>
 
@@ -277,6 +287,7 @@
         
         <div class="Item7">
           <label class="resource-label">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
+          <label class="resource-label rollCrit" style="font-weight: bold;" >>> {{ localize "ALIENRPG.RollCrit"}} <<</label> 
           <textarea name="data.general.critInj.value" rows="2"data-dtype="String">{{data.general.critInj.value}}</textarea>
         </div>
         

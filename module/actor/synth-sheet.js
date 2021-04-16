@@ -47,9 +47,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
       isCharacter: this.entity.data.type === 'character',
-      isEnc: this.entity.data.type === 'character',
       isSynthetic: this.entity.data.type === 'synthetic',
-      isEnc: this.entity.data.type === 'synthetic',
+      isEnc: this.entity.data.type === 'character' || this.entity.data.type === 'synthetic',
       isVehicles: this.entity.data.type === 'vehicles',
       isCreature: this.entity.data.type === 'creature',
       isNPC: this.entity.data.data.header.npc,
@@ -72,6 +71,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
+    data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
+
     // data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
     // data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
     // data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
@@ -224,6 +225,13 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
 
+    // Update Inventory Item
+    html.find('.item-edit').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.getOwnedItem(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
     if (game.settings.get('alienrpg', 'switchMouseKeys')) {
       // Right to Roll and left to mod
       // Rollable abilities.
@@ -241,6 +249,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       html.find('.rollable').click(this._onRoll.bind(this));
 
       html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
+      html.find('.currency').on('change', this._currencyField.bind(this));
 
       // Rollable Items.
       html.find('.rollItem').click(this._rollItem.bind(this));
@@ -265,6 +275,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     html.find('.talent-btn').click(this._talentBtn.bind(this));
 
     html.find('.inline-edit').change(this._inlineedit.bind(this));
+
+    html.find('.rollCrit').click(this._rollCrit.bind(this));
 
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
@@ -311,6 +323,11 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const element = event.currentTarget;
     const dataset = element.dataset;
     this.actor.rollAbilityMod(this.actor, dataset);
+  }
+  _rollCrit(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCrit(this.actor.data.type, dataset);
   }
 
   _onRollItemMod(event) {
@@ -489,62 +506,36 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     return icons[level];
   }
+
   _supplyRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
+    // If it's a power roll it will have an item number so test if it's zero
     if (dataset.item === '0') return;
-    // console.log('🚀 ~ file: actor-sheet.js ~ line 611 ~ alienrpgActorSheet ~ _supplyRoll ~ dataset', dataset);
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
-    const tItem = dataset.id;
+    // If this is a power roll get the exact id of the item to process
+    const tItem = dataset.id || 0;
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
     const consUme = dataset.spbutt.toLowerCase();
-    let mItems = this.actor.items;
-    let numbers = [];
-    let temp = [];
-    for (let index = 0; index < mItems.entries.length; index++) {
-      let spanner = mItems.entries[index].data;
-      if (spanner.totalAir || spanner.totalFood || spanner.totalWat || spanner.totalPower) {
-        switch (spanner.type) {
-          case 'item':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                food: spanner.data.attributes.food.value,
-                water: spanner.data.attributes.water.value,
-                power: spanner.data.attributes.power.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
-          case 'armor':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                air: spanner.data.attributes.airsupply.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
-          case 'weapon':
-            temp = [
-              {
-                name: spanner.name,
-                item: spanner._id,
-                power: spanner.data.attributes.power.value,
-              },
-            ];
-            numbers.push(temp);
-            break;
+    this.actor.consumablesCheck(this.actor, consUme, label, tItem);
+  }
 
-          default:
-            break;
-        }
-      }
+  _currencyField(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    // format initial value
+    onBlur({ target: event.currentTarget });
+
+    function localStringToNumber(s) {
+      return Number(String(s).replace(/[^0-9.-]+/g, ''));
     }
-    this.actor.consumablesCheck(this.actor, consUme, label, numbers, tItem);
+
+    function onBlur(e) {
+      let value = e.target.value;
+      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
+      // console.warn(e.target.value);
+    }
   }
 }
 export default alienrpgSynthActorSheet;

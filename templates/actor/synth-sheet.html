@@ -141,20 +141,16 @@
                       <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.xp.icon}}}
                     </span>
                   </div>
-                  <br>
-                  {{!-- <div class="dots radiation"> --}}
-                    {{!-- <h4 class="resource-label">{{ localize "ALIENRPG.Radiation"}}</h4> --}}
-                   {{!-- <input type="hidden" name="data.general.radiation.value" data-max="{{data.general.radiation.max}}" value="{{data.general.radiation.value}}" data-dtype="Number"> --}}
-                   {{!-- <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.radiation.icon}}} --}}
-                  {{!-- </span> --}}
-                {{!-- </div> --}}
-           
-                     <h3 >{{localize "ALIENRPG.SynthStress"}}</h3>
-                      <input name="data.header.synthstress" type="checkbox" {{checked data.header.synthstress}} />
-                 
-                  
+                  <div class="dots experience" style="margin-top: 3px;" >
+                  <h4 class="resource-label">{{localize "ALIENRPG.StoryPoints"}}</h4>
+                    <input type="hidden" name="data.general.sp.value" data-max="{{data.general.sp.max}}" value="{{data.general.sp.value}}" data-dtype="Number">
+                      <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.sp.icon}}}</span>
+                  </div>
+                  <div style="margin-top: 6px;">
+                  <label class="resource-label">{{localize "ALIENRPG.Cash"}}</label>
+                  <input type="text" class="cashboxsize currency" name="data.general.cash.value" value="{{data.general.cash.value}}" />
               </div>
-        
+           </div>
               <div class="Item8">
                 <h2 >{{ localize 'ALIENRPG.Conditions'}}</h2>
 
@@ -178,8 +174,11 @@
                  <label class="resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}  </label>
                  <input type="text" style="border: 1px solid yellowgreen;" class="maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}"  data-dtype="Number" disabled>
               </span>
-              
-              
+                 <br>
+                 <div style="border-top: 1px solid yellowgreen;">
+                  <h4 style="margin-top: 10px;">{{localize "ALIENRPG.SynthStress"}}</h4>
+                  <input style="margin-left: 50%" name="data.header.synthstress" type="checkbox" {{checked data.header.synthstress}} />
+              </div>
                 </div>
                 
                 <!-- Col 2 -->
@@ -233,6 +232,7 @@
         
         <div class="Item7">
           <label class="resource-label">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
+        <label class="resource-label rollCrit" style="font-weight: bold;" >>> {{ localize "ALIENRPG.RollCrit"}} <<</label> 
           <textarea name="data.general.critInj.value" rows="2"data-dtype="String">{{data.general.critInj.value}}</textarea>
         </div>
         

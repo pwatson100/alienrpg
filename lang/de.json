@@ -244,5 +244,12 @@
   "ALIENRPG.CombatantRemove": "Entfernen Sie Schauspieler",
   "ALIENRPG.MultiPush": "Multi-Push zulassen",
   "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button",
-  "ALIENRPG.Pwr": "Ene"
+  "ALIENRPG.Pwr": "Ene",
+  "ALIENRPG.Cash": "Kasse",
+  "ALIENRPG.StoryPoints": "Story Points",
+  "ALIENRPG.NoCharCrit": "Keine Tabelle für kritische Verletzungen",
+  "ALIENRPG.NoSynCrit": "No Critical Injuries on Synthetics table",
+  "ALIENRPG.Ones": "Einsen: ",
+  "ALIENRPG.Sixes": "Sechser: ",
+  "ALIENRPG.Dice": "Würfel: "
 }

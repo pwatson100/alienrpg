@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "types": [
-      "foundry-pc-types"
+      "@types/foundry-vtt-types"
     ],
+    "moduleResolution": "node",
     "allowJs": true
   },
   "exclude": [
@@ -10,6 +11,6 @@
     "**/node_modules/*",
     "foundry.js",
     "gulpfile.js",
-    "gmRollCreatureTables.js"
+    "**/macros/*",
   ]
 }

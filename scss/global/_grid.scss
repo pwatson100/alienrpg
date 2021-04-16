@@ -65,18 +65,21 @@
 .Item3 {
   grid-area: Item3;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
 .Item4 {
   grid-area: Item4;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
 .Item5 {
   grid-area: Item5;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -84,12 +87,14 @@
   grid-area: Item6;
   border: 1px solid var(--aliengreen);
   // justify-items: center;
+  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
 .Item7 {
   grid-area: Item7;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -101,6 +106,7 @@
 .Item9 {
   grid-area: Item9;
   border: 1px solid var(--aliengreen);
+  padding-top: 5px;
 }
 .Item10 {
   grid-area: Item10;
@@ -209,8 +215,8 @@
     'Heading Heading '
     'Air1 Air2'
     'Food1 Food2'
-    'Power1 Power2'
-    'Water1 Water2';
+    'Water1 Water2'
+    'Power1 Power2';
 
   grid-template-columns: 1fr 1fr;
 }
@@ -224,6 +230,7 @@
   grid-area: Air1;
   // border: 1px solid white;
   justify-content: left;
+  align-self: center;
 }
 .Air2 {
   grid-area: Air2;
@@ -233,6 +240,7 @@
   grid-area: Food1;
   // border: 1px solid white;
   justify-self: left;
+  align-self: center;
 }
 .Food2 {
   grid-area: Food2;
@@ -242,16 +250,18 @@
   grid-area: Power1;
   // border: 1px solid white;
   justify-self: left;
+  align-self: center;
+  // margin-top: 5px;
 }
 .Power2 {
   grid-area: Power2;
-  margin-top: 5px;
   // border: 1px solid white;
 }
 .Water1 {
   grid-area: Water1;
   // border: 1px solid white;
   justify-self: left;
+  align-self: center;
 }
 .Water2 {
   grid-area: Water2;

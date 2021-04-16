@@ -276,6 +276,19 @@ a.inline-roll {
   }
 }
 
+.rollCrit {
+  // color: yellow;
+  margin-left: 25%;
+  &:hover,
+  &:focus {
+    // color: black;
+    color: red;
+    text-shadow: 0 0 20px red;
+    font-size: 95%;
+    cursor: pointer;
+  }
+}
+
 .minus-btn .plus-btn {
   width: 10px;
   height: 10px;
@@ -964,4 +977,47 @@ button:focus {
   background-size: 100%;
   border: 0;
   background: url(../images/mother-instructions/synth-hum.webp);
+}
+.ctooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+/* Tooltip text */
+.ctooltip .ctooltiptext {
+  // /* Position the tooltip text - see examples below! */
+  // position: absolute;
+  // z-index: 1;
+  font-size: small;
+  visibility: hidden;
+  width: 150px;
+  background-color: black;
+  color: $c-green;
+  text-align: center;
+  border-radius: 3px;
+  padding: 2px 0;
+  position: absolute;
+  z-index: 1;
+  // top: -5px;
+  // right: 105%;
+  margin-left: -150px;
+  border-style: solid;
+  border-color: var(--aliengreen);
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.ctooltip:hover .ctooltiptext {
+  visibility: visible;
+}
+
+.ctooltip .ctooltiptext::after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 100%; /* To the right of the tooltip */
+  margin-top: -5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent transparent transparent $c-green;
 }
