@@ -11,6 +11,9 @@
     "node_modules",
     "**/node_modules/*",
     "foundry.js",
-    "**/macros/*"
+
+    "gulpfile.js",
+    "**/macros/*",
+
   ]
 }

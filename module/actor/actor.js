@@ -66,12 +66,14 @@ export class alienrpgActor extends Actor {
     super.prepareData();
 
     const actorData = this.data;
+
     // console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareData ~ actorData', actorData);
+
     const data = actorData.data;
     const flags = actorData.flags;
 
-    if (actorData.type === 'character') this._prepareCharacterData(actorData);
-    else if (actorData.type === 'synthetic') this._prepareCharacterData(actorData);
+    if (actorData.type === 'character') this._prepareCharacterData(actorData, flags);
+    else if (actorData.type === 'synthetic') this._prepareCharacterData(actorData, flags);
     else if (actorData.type === 'vehicles') this._prepareVehicleData(data);
     else if (actorData.type === 'creature') this._prepareCreatureData(data);
     else if (actorData.type === 'territory') this._prepareTeritoryData(data);
@@ -80,8 +82,10 @@ export class alienrpgActor extends Actor {
   /**
    * Prepare Character type specific data
    */
+
   _prepareCharacterData(actorData) {
     // super.prepareDerivedData();
+
     const data = actorData.data;
     var attrMod = {
       str: 0,
@@ -141,8 +145,8 @@ export class alienrpgActor extends Actor {
           }
 
           let skillBase = Attrib.data.modifiers.skills;
-          for (let [skey, sAttrib] of Object.entries(skillBase)) {
-            switch (skey) {
+          for (let [skkey, sAttrib] of Object.entries(skillBase)) {
+            switch (skkey) {
               case 'heavyMach':
                 sklMod.heavyMach = sklMod.heavyMach += parseInt(sAttrib.value);
                 break;
@@ -222,6 +226,7 @@ export class alienrpgActor extends Actor {
 
       if (Attrib.type === 'talent') {
         const talName = Attrib.name.toUpperCase();
+        let aId = Attrib._id;
         switch (talName) {
           case 'NERVES OF STEEL':
             // actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod -= 2) });
@@ -233,6 +238,12 @@ export class alienrpgActor extends Actor {
 
             // actorData.update({ 'data.header.health.value': (actorData.data.header.health.value += 2) });
             break;
+
+          // case 'TOUGH':
+          //   console.log('🚀 ~ file: actor.js ~ line 228 ~ alienrpgActor ~ _prepareCharacterData ~ flags.tough', flags.tough);
+          //   setProperty(actorData, 'data.header.health.value', (data.header.health.value += 2));
+          //   console.log('🚀 ~ file: actor.js ~ line 228 ~ alienrpgActor ~ _prepareCharacterData ~ flags.tough', flags.tough);
+          //   break;
 
           default:
             break;
@@ -350,7 +361,8 @@ export class alienrpgActor extends Actor {
     if (actorData.type === 'character') {
       setProperty(actorData, 'data.general.panic.calculatedMax', (data.general.panic.calculatedMax = data.general.panic.max));
     }
-    setProperty(actorData, 'data.header.health.max', (data.header.health.max = data.attributes.str.value));
+
+    setProperty(actorData, 'data.header.health.max', (data.header.health.max = data.attributes.str.value + data.header.health.mod));
   }
 
   _prepareVehicleData(data) {}
@@ -718,6 +730,7 @@ export class alienrpgActor extends Actor {
         getItems(actor, consUme, tItem);
       }
     }
+
     async function getItems(aActor, aconsUme, atItem) {
       let bRoll = game.alienrpg.rollArr.r2One;
       let tNum = 0;
@@ -726,8 +739,10 @@ export class alienrpgActor extends Actor {
       let iConsUme = '';
       let field = `data.attributes.${aconsUme}.value`;
       let aField = `data.consumables.${aconsUme}.value`;
+
       if (aconsUme === 'power') {
-        pItem = aActor.items.get(atItem);
+        pItem = aActor.getOwnedItem(atItem);
+
         pValue = pItem.data.data.attributes.power.value ?? 0;
         field = `data.attributes.power.value`;
         if (pValue - game.alienrpg.rollArr.r2One <= '0') {
@@ -749,24 +764,49 @@ export class alienrpgActor extends Actor {
           if (bRoll <= 0) {
             break;
           }
-          if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
-            let element = aActor.data.items[key][0];
-            if (element.data.attributes[iConsUme].value) {
-              let mitem = aActor.items.get(element._id);
-              let iVal = element.data.attributes[iConsUme].value;
-              if (iVal - bRoll < 0) {
-                tNum = iVal;
-                // bRoll -= iVal;
-              } else {
-                tNum = bRoll;
+
+
+          if (aActor.data.items[key].type === 'item' && aActor.data.items[key].data.header.active) {
+            if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
+              let element = aActor.data.items[key];
+              if (element.data.attributes[iConsUme].value) {
+                let mitem = aActor.getOwnedItem(element._id);
+                let iVal = element.data.attributes[iConsUme].value;
+                if (iVal - bRoll < 0) {
+                  tNum = iVal;
+                  // bRoll -= iVal;
+                } else {
+                  tNum = bRoll;
+                }
+                await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
               }
-              await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
             }
+            bRoll -= tNum;
           }
-          bRoll -= tNum;
+
+          if (aActor.data.items[key].type === 'armor' && aconsUme === 'air' && aActor.data.items[key].data.header.active) {
+            if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
+              let element = aActor.data.items[key];
+              if (element.data.attributes[iConsUme].value) {
+                let mitem = aActor.getOwnedItem(element._id);
+                let iVal = element.data.attributes[iConsUme].value;
+                if (iVal - bRoll < 0) {
+                  tNum = iVal;
+                  // bRoll -= iVal;
+                } else {
+                  tNum = bRoll;
+                }
+                await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
+              }
+            }
+            bRoll -= tNum;
+          }
+
         }
+        await aActor.update({ [aField]: `data.consumables.${aconsUme}.value` - game.alienrpg.rollArr.r2One });
       }
-      await aActor.update({ [aField]: `data.consumables.${aconsUme}.value` - game.alienrpg.rollArr.r2One });
+
+
     }
   }
 
@@ -907,10 +947,18 @@ export class alienrpgActor extends Actor {
     switch (type) {
       case 'character':
         atable = game.tables.getName('Critical injuries');
+        if (atable === null) {
+          ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
+          return;
+        }
 
         break;
       case 'synthetic':
         atable = game.tables.getName('Critical Injuries on Synthetics');
+        if (atable === null) {
+          ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+          return;
+        }
         break;
 
       default:

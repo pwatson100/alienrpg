@@ -172,7 +172,9 @@ export class alienrpgActorSheet extends ActorSheet {
       }
     }
 
+
     data.actor.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
+
 
     // Assign and return
     data.inventory = Object.values(inventory);
@@ -204,6 +206,7 @@ export class alienrpgActorSheet extends ActorSheet {
     }
     return enc;
   }
+
 
   /**
    * Determine whether an Owned Item will be shown based on the current set of filters
@@ -326,10 +329,10 @@ export class alienrpgActorSheet extends ActorSheet {
     // Grab any data associated with this control.
     const data = duplicate(header.dataset);
     // Initialize a default name.
-    const name = `New ${type.capitalize()}`;
+    const iName = `New ${type.capitalize()}`;
     // Prepare the item object.
     const itemData = {
-      name: name,
+      name: iName,
       type: type,
       data: data,
     };
