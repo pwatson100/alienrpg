@@ -2,7 +2,7 @@
   <header class="vehicle-header">
     <!-- <img class=profile-img-item" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" /> -->
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
 
       <div class="resources grid-planet-header">
         <h3 class="resource-label hplan1">{{localize "ALIENRPG.CommonName"}}</h3>
@@ -70,4 +70,5 @@
       {{!-- <textarea name="data.misc.comment.value" rows="25" data-dtype="String">{{data.misc.comment.value}}</textarea> --}}
     </div>
   </section>
+  {{log "CONTEXT!!!!"}} {{log this}}
 </form>

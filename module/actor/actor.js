@@ -62,11 +62,13 @@ export class alienrpgActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareBaseData() {
-    super.prepareBaseData();
+  prepareData() {
+    super.prepareData();
 
     const actorData = this.data;
-    console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareBaseData ~ actorData', actorData);
+
+    // console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareData ~ actorData', actorData);
+
     const data = actorData.data;
     const flags = actorData.flags;
 
@@ -80,12 +82,9 @@ export class alienrpgActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  _prepareCharacterData(actorData, flags) {
-    super.prepareDerivedData();
-    // console.log('🚀 ~ file: actor.js ~ line 86 ~ alienrpgActor ~ _prepareCharacterData ~ flags.tough', flags.tough);
-    // if (flags.tough === undefined) {
-    //   setProperty(flags, 'tough', (flags.tough = false));
-    // }
+
+  _prepareCharacterData(actorData) {
+    // super.prepareDerivedData();
 
     const data = actorData.data;
     var attrMod = {
@@ -112,7 +111,9 @@ export class alienrpgActor extends Actor {
       comtech: 0,
     };
 
-    for (let [skey, Attrib] of Object.entries(actorData.items)) {
+    for (let [skey, Attrib] of Object.entries(actorData.items._source)) {
+      // console.log('🚀 ~ file: actor.js ~ line 110 ~ alienrpgActor ~ _prepareCharacterData ~ Attrib', actorData);
+
       if (Attrib.type === 'item') {
         if (Attrib.data.header.active) {
           let base = Attrib.data.modifiers.attributes;
@@ -189,7 +190,11 @@ export class alienrpgActor extends Actor {
           }
         }
         setProperty(actorData, 'data.header.health.mod', (data.header.health.mod = parseInt(attrMod.health || 0)));
+        // actorData.update({ 'data.header.health.mod': (actorData.data.header.health.mod = parseInt(attrMod.health || 0)) });
+
         if (actorData.type === 'character') {
+          // actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod = parseInt(attrMod.stress || 0)) });
+
           setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod = parseInt(attrMod.stress || 0)));
         }
       }
@@ -224,7 +229,14 @@ export class alienrpgActor extends Actor {
         let aId = Attrib._id;
         switch (talName) {
           case 'NERVES OF STEEL':
+            // actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod -= 2) });
+
             setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod -= 2));
+            break;
+          case 'TOUGH':
+            setProperty(actorData, 'data.header.health.mod', (data.header.health.mod += 2));
+
+            // actorData.update({ 'data.header.health.value': (actorData.data.header.health.value += 2) });
             break;
 
           // case 'TOUGH':
@@ -241,19 +253,20 @@ export class alienrpgActor extends Actor {
 
     for (let [a, abl] of Object.entries(data.attributes)) {
       let target = `data.attributes.${a}.mod`;
-      let field = data.attributes[a].mod;
+      let field = actorData.data.attributes[a].mod;
       let upData = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
+      // actorData.update({ [target]: (field = upData) });
       setProperty(actorData, target, (field = upData));
-
-      // abl.mod = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
+      abl.mod = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
       abl.label = CONFIG.ALIENRPG.attributes[a];
     }
 
     for (let [s, skl] of Object.entries(data.skills)) {
       const conSkl = skl.ability;
       let target = `data.skills.${s}.mod`;
-      let field = data.skills[s].mod;
+      let field = actorData.data.skills[s].mod;
       let upData = parseInt(skl.value || 0) + parseInt(actorData.data.attributes[conSkl].mod || 0) + parseInt(sklMod[s] || 0);
+      // actorData.update({ [target]: (field = upData) });
       setProperty(actorData, target, (field = upData));
       skl.label = CONFIG.ALIENRPG.skills[s];
     }
@@ -265,60 +278,71 @@ export class alienrpgActor extends Actor {
     let totalPower = 0;
 
     for (let i of actorData.items) {
+      // debugger;
       try {
         //  Update armor value fron items
-        i.data.attributes.armorrating.value === true;
-        if (i.data.header.active) {
-          i.data.attributes.armorrating.value && i.data.header;
-          i.data.attributes.armorrating.value = i.data.attributes.armorrating.value || 0;
-          i.totalAc = parseInt(i.data.attributes.armorrating.value, 10);
+        i.data.data.attributes.armorrating.value === true;
+
+        if (i.data.data.header.active) {
+          i.data.data.attributes.armorrating.value && i.data.data.header;
+          i.data.data.attributes.armorrating.value = i.data.data.attributes.armorrating.value || 0;
+          i.totalAc = parseInt(i.data.data.attributes.armorrating.value, 10);
           totalAc += i.totalAc;
         }
       } catch {}
 
       try {
         //  Update water value fron items
-        i.data.attributes.water.value === true;
-        if (i.data.header.active) {
-          i.data.attributes.water.value = i.data.attributes.water.value || 0;
-          i.totalWat = parseInt(i.data.attributes.water.value, 10);
+        i.data.data.attributes.water.value === true;
+        if (i.data.data.header.active) {
+          i.data.data.attributes.water.value = i.data.data.attributes.water.value || 0;
+          i.totalWat = parseInt(i.data.data.attributes.water.value, 10);
           totalWat += i.totalWat;
         }
       } catch {}
       try {
         //  Update food value fron items
-        i.data.attributes.food.value === true;
-        if (i.data.header.active) {
-          i.data.attributes.food.value = i.data.attributes.food.value || 0;
-          i.totalFood = parseInt(i.data.attributes.food.value, 10);
+        i.data.data.attributes.food.value === true;
+        if (i.data.data.header.active) {
+          i.data.data.attributes.food.value = i.data.data.attributes.food.value || 0;
+          i.totalFood = parseInt(i.data.data.attributes.food.value, 10);
           totalFood += i.totalFood;
         }
       } catch {}
       try {
         //  Update air value fron items
-        i.data.attributes.airsupply.value === true;
-        if (i.data.header.active) {
-          i.data.attributes.airsupply.value = i.data.attributes.airsupply.value || 0;
-          i.totalAir = parseInt(i.data.attributes.airsupply.value, 10);
+        i.data.data.attributes.airsupply.value === true;
+        if (i.data.data.header.active) {
+          i.data.data.attributes.airsupply.value = i.data.data.attributes.airsupply.value || 0;
+          i.totalAir = parseInt(i.data.data.attributes.airsupply.value, 10);
           totalAir += i.totalAir;
         }
       } catch {}
       try {
         //  Update air value fron items
-        i.data.attributes.power.value === true;
-        if (i.data.header.active) {
-          i.data.attributes.power.value = i.data.attributes.power.value || 0;
-          i.totalPower = parseInt(i.data.attributes.power.value, 10);
+        i.data.data.attributes.power.value === true;
+        if (i.data.data.header.active) {
+          i.data.data.attributes.power.value = i.data.data.attributes.power.value || 0;
+          i.totalPower = parseInt(i.data.data.attributes.power.value, 10);
           totalPower += i.totalPower;
         }
       } catch {}
     }
 
     setProperty(actorData, 'data.consumables.water.value', (data.consumables.water.value = totalWat));
+    // actorData.update({ 'data.consumables.water.value': (actorData.data.consumables.water.value = parseInt(totalWat || 0)) });
+
     setProperty(actorData, 'data.consumables.food.value', (data.consumables.food.value = totalFood));
+    // actorData.update({ 'data.consumables.food.value': (actorData.data.consumables.food.value = parseInt(totalFood || 0)) });
+
     setProperty(actorData, 'data.consumables.air.value', (data.consumables.air.value = totalAir));
+    // actorData.update({ 'data.consumables.air.value': (actorData.data.consumables.air.value = parseInt(totalAir || 0)) });
+
     setProperty(actorData, 'data.consumables.power.value', (data.consumables.power.value = totalPower));
+    // actorData.update({ 'data.consumables.power.value': (actorData.data.consumables.power.value = parseInt(totalPower || 0)) });
+
     setProperty(actorData, 'data.general.armor.value', (data.general.armor.value = totalAc));
+    // actorData.update({ 'data.general.armor.value': (actorData.data.general.armor.value = parseInt(totalAc || 0)) });
 
     setProperty(actorData, 'data.general.radiation.calculatedMax', (data.general.radiation.calculatedMax = data.general.radiation.max));
 
@@ -337,6 +361,7 @@ export class alienrpgActor extends Actor {
     if (actorData.type === 'character') {
       setProperty(actorData, 'data.general.panic.calculatedMax', (data.general.panic.calculatedMax = data.general.panic.max));
     }
+
     setProperty(actorData, 'data.header.health.max', (data.header.health.max = data.attributes.str.value + data.header.health.mod));
   }
 
@@ -383,7 +408,6 @@ export class alienrpgActor extends Actor {
   }
 
   async rollAbility(actor, dataset) {
-    // console.log("🚀 ~ file: actor.js ~ line 311 ~ alienrpgActor ~ rollAbility ~ actor", actor)
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
@@ -392,9 +416,7 @@ export class alienrpgActor extends Actor {
     game.alienrpg.rollArr.multiPush = 0;
 
     let modifier = parseInt(dataset?.mod ?? 0) + parseInt(dataset?.modifier ?? 0);
-    // console.log('🚀 ~ file: actor.js ~ line 382 ~ alienrpgActor ~ rollAbility ~ modifier - CORRECT', modifier);
     let stressMod = parseInt(dataset?.stressMod ?? 0);
-    // console.log('🚀 ~ file: actor.js ~ line 383 ~ alienrpgActor ~ rollAbility ~ stressMod - CORRECT', stressMod);
 
     // the dataset value is returned to the DOM so it should be set to 0 in case a future roll is made without the
     // modifier dialog.
@@ -402,11 +424,13 @@ export class alienrpgActor extends Actor {
     dataset.modifier = 0;
     dataset.stressMod = 0;
 
+    console.log('🚀 ~ file: actor.js ~ line 397 ~ alienrpgActor ~ rollAbility ~ dataset.roll', dataset.roll);
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0) + parseInt(modifier);
       if (dataset.attr) {
         r1Data = parseInt(modifier);
       }
+      // console.log('🚀 ~ file: actor.js ~ line 395 ~ alienrpgActor ~ rollAbility ~ r1Data', r1Data);
 
       reRoll = true;
       r2Data = 0;
@@ -459,9 +483,9 @@ export class alienrpgActor extends Actor {
         // console.log('🚀 ~ file: actor.js ~ line 443 ~ alienrpgActor ~ rollAbility ~ aStress', aStress);
 
         let modRoll = '1d6' + '+' + parseInt(aStress);
-        //   console.warn('rolling stress', modRoll);
+        console.warn('rolling stress', modRoll);
         const roll = new Roll(modRoll);
-        const customResults = table.roll({ roll });
+        const customResults = await table.roll({ roll });
         let oldPanic = actor.data.data.general.panic.lastRoll;
 
         if (customResults.roll.total >= 7 && actor.data.data.general.panic.value === 0) {
@@ -488,6 +512,8 @@ export class alienrpgActor extends Actor {
           ')' +
           '</span></h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
+        //   HERE ISSUE!!!
+
         let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
 
         let pCheck = oldPanic + 1;
@@ -535,9 +561,9 @@ export class alienrpgActor extends Actor {
         let whispertarget = [];
 
         if (rollMode == 'gmroll' || rollMode == 'blindroll') {
-          whispertarget = game.users.entities.filter((u) => u.isGM).map((u) => u._id);
+          whispertarget = game.users.contents.filter((u) => u.isGM).map((u) => u._id);
         } else if (rollMode == 'selfroll') {
-          whispertarget = game.users.entities.filter((u) => u.isGM).map((u) => u._id);
+          whispertarget = game.users.contents.filter((u) => u.isGM).map((u) => u._id);
           whispertarget.push(game.user._id);
         }
 
@@ -693,7 +719,6 @@ export class alienrpgActor extends Actor {
     let reRoll = true;
     // let hostile = this.actor.data.data.type;
     let blind = false;
-
     if (actor.data.token.disposition === -1) {
       blind = true;
     }
@@ -717,6 +742,7 @@ export class alienrpgActor extends Actor {
 
       if (aconsUme === 'power') {
         pItem = aActor.getOwnedItem(atItem);
+
         pValue = pItem.data.data.attributes.power.value ?? 0;
         field = `data.attributes.power.value`;
         if (pValue - game.alienrpg.rollArr.r2One <= '0') {
@@ -738,6 +764,7 @@ export class alienrpgActor extends Actor {
           if (bRoll <= 0) {
             break;
           }
+
 
           if (aActor.data.items[key].type === 'item' && aActor.data.items[key].data.header.active) {
             if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
@@ -774,9 +801,12 @@ export class alienrpgActor extends Actor {
             }
             bRoll -= tNum;
           }
+
         }
         await aActor.update({ [aField]: `data.consumables.${aconsUme}.value` - game.alienrpg.rollArr.r2One });
       }
+
+
     }
   }
 
@@ -840,7 +870,7 @@ export class alienrpgActor extends Actor {
           actor: actor.id,
         },
         content: chatMessage,
-        whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
         blind: true,
       });
     }
@@ -849,7 +879,7 @@ export class alienrpgActor extends Actor {
   async creatureAttackRoll(actor, dataset) {
     let chatMessage = '';
     const targetTable = dataset.atttype;
-    const table = game.tables.entities.find((b) => b.name === targetTable);
+    const table = game.tables.contents.find((b) => b.name === targetTable);
     const roll = new Roll('1d6');
 
     const customResults = table.roll({ roll });
@@ -863,7 +893,7 @@ export class alienrpgActor extends Actor {
       },
       roll: customResults.roll,
       content: chatMessage,
-      // whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+      // whisper: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
       type: CONST.CHAT_MESSAGE_TYPES.ROLL,
     });
   }
@@ -940,6 +970,90 @@ export class alienrpgActor extends Actor {
     const roll = new Roll(formula);
 
     atable.draw({ roll: roll });
+  }
+  /* -------------------------------------------- */
+  /*  Event Handlers                              */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  async _preCreate(data, options, user) {
+    await super._preCreate(data, options, user);
+
+    console.log('🚀 ~ file: actor.js ~ line 938 ~ _preCreate ~ data', data);
+    debugger;
+    if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
+      // Set wounds, advantage, and display name visibility
+      mergeObject(data, {
+        'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+        // Default display name to be on owner hover
+        'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+        // Default display bars to be on owner hover
+        'token.disposition': CONST.TOKEN_DISPOSITIONS.HOSTILE,
+        // Default disposition to hostile
+        'token.name': data.name, // Set token name to actor name
+      }); // Default characters to HasVision = true and Link Data = true
+
+      switch (data.type) {
+        case 'character':
+          console.log("it's a Character");
+          mergeObject(data, {
+            'token.bar1': {
+              attribute: 'header.health',
+            },
+            'token.bar2': {
+              attribute: 'header.stress',
+            },
+          });
+          data.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+          data.token.vision = true;
+          data.token.actorLink = true;
+          break;
+        case 'vehicles':
+          data.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+          data.token.vision = true;
+          data.token.actorLink = true;
+          break;
+        case 'creature':
+          mergeObject(data, {
+            'token.bar1': {
+              attribute: 'header.health',
+            },
+          });
+          data.token.vision = true;
+          data.token.actorLink = false;
+          break;
+        case 'synthetic':
+          mergeObject(data, {
+            'token.bar1': {
+              attribute: 'header.health',
+            },
+          });
+          data.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+          data.token.vision = true;
+          data.token.actorLink = true;
+          break;
+        case 'territory':
+          data.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+          data.token.vision = true;
+          data.token.actorLink = true;
+          break;
+
+        default:
+          data.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+          data.token.vision = true;
+          data.token.actorLink = true;
+          break;
+      }
+    }
+  }
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  async _preUpdate(changed, options, user) {
+    await super._preUpdate(changed, options, user);
+    if (changed.name) {
+      changed['token.name'] = changed.name;
+    }
   }
 }
 export default alienrpgActor;

@@ -66,16 +66,16 @@ Hooks.once('init', async function () {
     decimals: 1,
   };
   // If the FVTT version is > V0.7.x initalise the Base and Stress dice terms
-  if (is07x) {
-    CONFIG.Dice.terms['b'] = AlienRPGBaseDie;
-    CONFIG.Dice.terms['s'] = AlienRPGStressDie;
-  }
+  // if (is07x) {
+  CONFIG.Dice.terms['b'] = AlienRPGBaseDie;
+  CONFIG.Dice.terms['s'] = AlienRPGStressDie;
+  // }
 
   // Define custom Entity classes
   CONFIG.ALIENRPG = ALIENRPG;
-  CONFIG.Actor.entityClass = alienrpgActor;
-  CONFIG.Item.entityClass = alienrpgItem;
-  CONFIG.Combat.entityClass = AlienRPGCombat;
+  CONFIG.Actor.documentClass = alienrpgActor;
+  CONFIG.Item.documentClass = alienrpgItem;
+  CONFIG.Combat.documentClass = AlienRPGCombat;
   CONFIG.CombatTracker = AlienRPGCTContext;
   CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
 
@@ -429,84 +429,6 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 // *************************************************
 // Setupthe prototype token
 // *************************************************
-Hooks.on('preCreateActor', (actor, dir) => {
-  if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
-    // Set wounds, advantage, and display name visibility
-    mergeObject(actor, {
-      'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      // Default display name to be on owner hover
-      'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      // Default display bars to be on owner hover
-      'token.disposition': CONST.TOKEN_DISPOSITIONS.HOSTILE,
-      // Default disposition to hostile
-      'token.name': actor.name, // Set token name to actor name
-    }); // Default characters to HasVision = true and Link Data = true
-
-    switch (actor.type) {
-      case 'character':
-        mergeObject(actor, {
-          'token.bar1': {
-            attribute: 'header.health',
-          },
-          'token.bar2': {
-            attribute: 'header.stress',
-          },
-        });
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
-        break;
-      case 'vehicles':
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
-        break;
-      case 'creature':
-        mergeObject(actor, {
-          'token.bar1': {
-            attribute: 'header.health',
-          },
-        });
-        actor.token.vision = true;
-        actor.token.actorLink = false;
-        break;
-      case 'synthetic':
-        mergeObject(actor, {
-          'token.bar1': {
-            attribute: 'header.health',
-          },
-        });
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
-        break;
-      case 'territory':
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
-        break;
-
-      default:
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
-        break;
-    }
-    // if (!createData.img) {
-    //   createData.img = 'icons/svg/cowled.svg';
-    // }
-  }
-});
-
-Hooks.on('preUpdateActor', (data, updatedData) => {
-  // if (updatedData.img) {
-  //   updatedData['token.img'] = updatedData.img;
-  //   data.data.token.img = updatedData.img;
-  // }
-  if (updatedData.name) {
-    updatedData['token.name'] = updatedData.name;
-  }
-});
 
 // **********************************
 // If the Actor dragged on to the canvas has the NPC box checked unlink the token and change the disposition to Hostile.
@@ -519,6 +441,9 @@ Hooks.on('preCreateToken', async (scene, tokenData) => {
   }
 });
 
+Hooks.on('updateActor', (actor, updates, options, userId) => {
+  console.warn('Update Actor Fired');
+});
 /* --
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
@@ -538,7 +463,7 @@ async function createAlienrpgMacro(data, slot) {
 
   // Create the macro command
   const command = `game.alienrpg.rollItemMacro("${item.name}");`;
-  let macro = game.macros.entities.find((m) => m.name === item.name && m.command === command);
+  let macro = game.macros.contents.find((m) => m.name === item.name && m.command === command);
   if (!macro) {
     macro = await Macro.create({
       name: item.name,

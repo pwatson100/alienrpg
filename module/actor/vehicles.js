@@ -41,18 +41,18 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
   getData() {
     // const data = super.getData();
     // Basic data
-    let isOwner = this.entity.owner;
+    let isOwner = this.document.isOwner;
     const data = {
-      owner: isOwner,
-      limited: this.entity.limited,
+      isOwner: this.document.isOwner,
+      limited: this.document.limited,
       options: this.options,
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
-      isCharacter: this.entity.data.type === 'character',
-      isSynthetic: this.entity.data.type === 'synthetic',
-      isVehicles: this.entity.data.type === 'vehicles',
-      isCreature: this.entity.data.type === 'creature',
-      isNPC: this.entity.data.data.header.npc,
+      isCharacter: this.document.data.type === 'character',
+      isSynthetic: this.document.data.type === 'synthetic',
+      isVehicles: this.document.data.type === 'vehicles',
+      isCreature: this.document.data.type === 'creature',
+      isNPC: this.document.data.data.header.npc,
       isGM: game.user.isGM,
       config: CONFIG.ALIENRPG,
     };
@@ -148,7 +148,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.EditItem'),
         icon: '<i class="fas fa-edit"></i>',
         callback: (element) => {
-          const item = this.actor.getOwnedItem(element.data('item-id'));
+          const item = this.actor.items.get(element.data('item-id'));
           item.sheet.render(true);
         },
       },
@@ -167,7 +167,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').click((ev) => {
       const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.getOwnedItem(li.data('itemId'));
+      const item = this.actor.items.get(li.data('itemId'));
       item.sheet.render(true);
     });
 
@@ -203,7 +203,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
     // Drag events for macros.
-    if (this.actor.owner) {
+    if (this.actor.isOwner) {
       let handler = (ev) => this._onDragStart(ev);
       // Find all items on the character sheet.
       html.find('li.item').each((i, li) => {
@@ -249,7 +249,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     const dataset = event.currentTarget;
     // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
-    let item = this.actor.getOwnedItem(itemId);
+    let item = this.actor.items.get(itemId);
     let field = dataset.name;
     return item.update({ [field]: dataset.value }, {});
   }
@@ -276,14 +276,14 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     // console.log('alienrpgActorSheet -> _rollItem -> event', event);
     event.preventDefault();
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    const item = this.actor.getOwnedItem(itemId);
+    const item = this.actor.items.get(itemId);
     this.actor.nowRollItem(item);
   }
 
   _onRollItemMod(event) {
     event.preventDefault();
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    const item = this.actor.getOwnedItem(itemId);
+    const item = this.actor.items.get(itemId);
     this.actor.rollItemMod(item);
   }
 
@@ -291,7 +291,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
-    let item = this.actor.getOwnedItem(itemId);
+    let item = this.actor.items.get(itemId);
 
     return item.update({ 'data.header.active': true }, {});
   }
@@ -299,7 +299,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
-    let item = this.actor.getOwnedItem(itemId);
+    let item = this.actor.items.get(itemId);
 
     return item.update({ 'data.header.active': false }, {});
   }

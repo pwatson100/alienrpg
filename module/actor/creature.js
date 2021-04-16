@@ -39,16 +39,16 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
   getData() {
     // const data = super.getData();
     // Basic data
-    let isOwner = this.entity.owner;
+    let isOwner = this.document.isOwner;
     const data = {
-      owner: isOwner,
-      limited: this.entity.limited,
+      owner: this.document.isOwner,
+      limited: this.document.limited,
       options: this.options,
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
-      isCharacter: this.entity.data.type === 'character',
-      isVehicles: this.entity.data.type === 'vehicles',
-      isCreature: this.entity.data.type === 'creature',
+      isCharacter: this.document.data.type === 'character',
+      isVehicles: this.document.data.type === 'vehicles',
+      isCreature: this.document.data.type === 'creature',
       // isNPC: this.entity.data.type === 'creature',
       config: CONFIG.ALIENRPG,
     };
@@ -108,7 +108,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     html.find('.creature-acid-roll').click(this._creatureAcidRoll.bind(this));
 
     // Drag events for macros.
-    if (this.actor.owner) {
+    if (this.actor.isOwner) {
       let handler = (ev) => this._onDragItemStart(ev);
       // Find all items on the character sheet.
       html.find('li.item').each((i, li) => {
