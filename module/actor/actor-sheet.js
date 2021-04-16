@@ -393,8 +393,6 @@ export class alienrpgActorSheet extends ActorSheet {
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
     item.update({ 'data.header.active': true });
-    // this.actor.update({ diff: true });
-    return;
   }
   _deactivate(event) {
     event.preventDefault();
@@ -402,8 +400,6 @@ export class alienrpgActorSheet extends ActorSheet {
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
     item.update({ 'data.header.active': false });
-    // this.actor.update({ diff: true });
-    return;
   }
 
   _plusMinusButton(event) {
