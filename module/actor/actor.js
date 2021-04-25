@@ -360,7 +360,7 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  static async checkAndEndPanic(actor) {
+  async checkAndEndPanic(actor) {
     if (actor.data.type != 'character') return;
 
     if (actor.data.data.general.panic.lastRoll > 0) {
@@ -374,7 +374,7 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  static async causePanic(actor) {
+  async causePanic(actor) {
     actor.update({ 'data.general.panic.value': actor.data.data.general.panic.value + 1 });
 
     actor.getActiveTokens().forEach((i) => {
@@ -465,7 +465,7 @@ export class alienrpgActor extends Actor {
         let oldPanic = actor.data.data.general.panic.lastRoll;
 
         if (customResults.roll.total >= 7 && actor.data.data.general.panic.value === 0) {
-          alienrpgActor.causePanic(actor);
+          this.causePanic(actor);
         }
 
         chatMessage +=
@@ -679,7 +679,7 @@ export class alienrpgActor extends Actor {
     } else if (event.type === 'contextmenu') {
       newLevel = Math.clamped(level - 1, 0, max);
       if (field[0].name === 'data.general.panic.value') {
-        alienrpgActor.checkAndEndPanic(actor);
+        actor.checkAndEndPanic(actor);
       }
     } // Update the field value and save the form
     field.val(newLevel);
