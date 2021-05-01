@@ -29,7 +29,9 @@ export class alienrpgItemSheet extends ItemSheet {
   /** @override */
   getData() {
     // const data = super.getData();
-    const item = duplicate(this.item.data);
+    const item = foundry.utils.deepClone(this.item.data);
+
+    // const item = duplicate(this.item.data);
     const data = item;
     return data;
   }

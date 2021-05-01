@@ -84,7 +84,7 @@ export class alienrpgActor extends Actor {
    */
 
   _prepareCharacterData(actorData) {
-    // super.prepareDerivedData();
+    super.prepareDerivedData();
 
     const data = actorData.data;
     var attrMod = {
@@ -110,10 +110,10 @@ export class alienrpgActor extends Actor {
       survival: 0,
       comtech: 0,
     };
-
-    for (let [skey, Attrib] of Object.entries(actorData.items._source)) {
+    // debugger;
+    for (let [skey, iAttrib] of Object.entries(actorData.items.contents)) {
       // console.log('🚀 ~ file: actor.js ~ line 110 ~ alienrpgActor ~ _prepareCharacterData ~ Attrib', actorData);
-
+      const Attrib = iAttrib.data;
       if (Attrib.type === 'item') {
         if (Attrib.data.header.active) {
           let base = Attrib.data.modifiers.attributes;
@@ -277,7 +277,7 @@ export class alienrpgActor extends Actor {
     let totalAir = 0;
     let totalPower = 0;
 
-    for (let i of actorData.items) {
+    for (let i of actorData.items.contents) {
       // debugger;
       try {
         //  Update armor value fron items
@@ -760,42 +760,42 @@ export class alienrpgActor extends Actor {
           iConsUme = aconsUme;
         }
         // while (bRoll > 0) {
-        for (const key in aActor.data.items._source) {
+        for (const key in aActor.data.items.contents) {
           if (bRoll <= 0) {
             break;
           }
 
-          if (aActor.data.items._source[key].type === 'item' && aActor.data.items._source[key].data.header.active) {
-            if (Object.hasOwnProperty.call(aActor.data.items._source, key) && bRoll > 0) {
-              let element = aActor.data.items._source[key];
-              if (element.data.attributes[iConsUme].value) {
+          if (aActor.data.items.contents[key].type === 'item' && aActor.data.items.contents[key].data.data.header.active) {
+            if (Object.hasOwnProperty.call(aActor.data.items.contents, key) && bRoll > 0) {
+              let element = aActor.data.items.contents[key];
+              if (element.data.data.attributes[iConsUme].value) {
                 let mitem = aActor.getOwnedItem(element._id);
-                let iVal = element.data.attributes[iConsUme].value;
+                let iVal = element.data.data.attributes[iConsUme].value;
                 if (iVal - bRoll < 0) {
                   tNum = iVal;
                   // bRoll -= iVal;
                 } else {
                   tNum = bRoll;
                 }
-                await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
+                await mitem.update({ [field]: element.data.data.attributes[iConsUme].value - tNum });
               }
             }
             bRoll -= tNum;
           }
 
-          if (aActor.data.items._source[key].type === 'armor' && aconsUme === 'air' && aActor.data.items._source[key].data.header.active) {
-            if (Object.hasOwnProperty.call(aActor.data.items._source, key) && bRoll > 0) {
-              let element = aActor.data.items._source[key];
-              if (element.data.attributes[iConsUme].value) {
+          if (aActor.data.items.contents[key].type === 'armor' && aconsUme === 'air' && aActor.data.items.contents[key].data.data.header.active) {
+            if (Object.hasOwnProperty.call(aActor.data.items.contents, key) && bRoll > 0) {
+              let element = aActor.data.items.contents[key];
+              if (element.data.data.attributes[iConsUme].value) {
                 let mitem = aActor.getOwnedItem(element._id);
-                let iVal = element.data.attributes[iConsUme].value;
+                let iVal = element.data.data.attributes[iConsUme].value;
                 if (iVal - bRoll < 0) {
                   tNum = iVal;
                   // bRoll -= iVal;
                 } else {
                   tNum = bRoll;
                 }
-                await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
+                await mitem.update({ [field]: element.data.data.attributes[iConsUme].value - tNum });
               }
             }
             bRoll -= tNum;
@@ -878,12 +878,12 @@ export class alienrpgActor extends Actor {
     const table = game.tables.contents.find((b) => b.name === targetTable);
     const roll = new Roll('1d6');
 
-    const customResults = table.roll({ roll });
+    const customResults = await table.roll({ roll });
     chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
-    chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-    chatMessage += `${customResults.results[0].text}`;
+    chatMessage += `<h4><i>${table.data.name}</i></h4>`;
+    chatMessage += `${customResults.results[0].data.text}`;
     ChatMessage.create({
-      user: game.user._id,
+      user: game.user.data._id,
       speaker: {
         actor: actor.id,
       },

@@ -59,6 +59,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // The Actor and its Items
     data.actor = foundry.utils.deepClone(this.actor.data);
+
     data.items = this.actor.items.map((i) => {
       i.data.labels = i.labels;
       return i.data;
@@ -172,9 +173,7 @@ export class alienrpgActorSheet extends ActorSheet {
       }
     }
 
-
     data.actor.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
-
 
     // Assign and return
     data.inventory = Object.values(inventory);
@@ -206,7 +205,6 @@ export class alienrpgActorSheet extends ActorSheet {
     }
     return enc;
   }
-
 
   /**
    * Determine whether an Owned Item will be shown based on the current set of filters

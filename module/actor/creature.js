@@ -54,7 +54,9 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     };
 
     // The Actor and its Items
-    data.actor = duplicate(this.actor.data);
+    // data.actor = duplicate(this.actor.data);
+    data.actor = foundry.utils.deepClone(this.actor.data);
+
     data.items = this.actor.items.map((i) => {
       i.data.labels = i.labels;
       return i.data;
@@ -152,6 +154,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
+    console.log('🚀 ~ file: creature.js ~ line 158 ~ ActorSheetAlienRPGCreat ~ _creatureAttackRoll ~ dataset', dataset);
     this.actor.creatureAttackRoll(this.actor, dataset);
   }
 }
