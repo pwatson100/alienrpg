@@ -198,17 +198,18 @@ Hooks.once('ready', async () => {
 
   if (game.user.isGM) {
     try {
-      const newVer = '1';
+      const newVer = '2';
       if (game.journal.getName('MU/TH/ER Instructions.') !== null) {
         if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
           await game.journal.getName('MU/TH/ER Instructions.').delete();
-          await game.journal.importFromCollection('alienrpg.mother_instructions', `gDOi0tUAxKj7jlEW`);
+          await game.journal.importFromCollection('alienrpg.mother_instructions', `syX1CzWc8zG5jT5g`);
           await game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
           console.log('New version of MU/TH/ER Instructions.');
           await game.journal.getName('MU/TH/ER Instructions.').show();
         }
       } else {
-        await game.journal.importFromCollection('alienrpg.mother_instructions', `gDOi0tUAxKj7jlEW`);
+        await game.journal.importFromCollection('alienrpg.mother_instructions', `syX1CzWc8zG5jT5g`);
+        game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
         await game.journal.getName('MU/TH/ER Instructions.').show();
       }
     } catch (error) {}
@@ -227,7 +228,7 @@ Hooks.once('ready', async () => {
         { permanent: true }
       );
     }
-    migrations.migrateWorld();
+    await migrations.migrateWorld();
   }
   // clear the minimum resolution message faster
 
@@ -272,7 +273,7 @@ function setupCombatantCloning() {
 
     if (Array.isArray(data)) data.forEach((combatant) => ExtraSpeedCombatants.call(this, combatant, options));
 
-    async function ExtraSpeedCombatants(combatant, options) {
+    async function ExtraSpeedCombatants(combatant, moptions) {
       let token = canvas.tokens.placeables.find((i) => i.data._id == combatant.tokenId);
       let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
 
@@ -295,7 +296,7 @@ function setupCombatantCloning() {
           return { tokenId: v.id, hidden: combatant.hidden };
         });
 
-        originalCombatCreateEmbeddedEntity.call(this, embeddedName, creationData, options);
+        originalCombatCreateEmbeddedEntity.call(this, embeddedName, creationData, moptions);
       }
     }
 	return res; // return original Promise to the caller.
@@ -402,7 +403,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         // do stuff
         let actor = game.actors.get(message.data.speaker.actor);
         if (!actor) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoToken'));
-        let reRoll = true;
+        let reRoll = 'push';
 
         if (tarG) {
           reRoll = 'mPush';

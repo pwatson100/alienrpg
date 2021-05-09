@@ -29,7 +29,9 @@
     "FVTT",
     "armor",
     "colorset",
+    "gulpfile",
     "reroll",
-    "spbutt"
+    "spbutt",
+    "typhonjs"
   ]
 }

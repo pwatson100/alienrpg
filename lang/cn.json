@@ -244,8 +244,14 @@
   "ALIENRPG.CombatantReroll": "重新启动计划",
   "ALIENRPG.CombatantRemove": "删除演员",
   "ALIENRPG.MultiPush": "允许多次推送",
-  "ALIENRPG.SynthStress": "Imitate Human Panic and Push Button",
-  "ALIENRPG.Pwr": "Pwr",
-  "ALIENRPG.Cash": "Cash",
-  "ALIENRPG.StoryPoints": "Story Points"
+  "ALIENRPG.SynthStress": "模仿人类的恐慌和按钮",
+  "ALIENRPG.Pwr": "力量",
+  "ALIENRPG.Cash": "现金",
+  "ALIENRPG.StoryPoints": "故事点",
+  "ALIENRPG.RollCrit": "重击",
+  "ALIENRPG.NoCharCrit": "没有严重伤害表",
+  "ALIENRPG.NoSynCrit": "综合表上没有重大伤害",
+  "ALIENRPG.Ones": "那些: ",
+  "ALIENRPG.Sixes": "Sixes: ",
+  "ALIENRPG.Dice": "骰子: "
 }

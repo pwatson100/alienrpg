@@ -46,7 +46,7 @@ export class yze {
     } catch {
       niceDice = false;
     }
-    let spud = 'true';
+    let spud = false;
 
     // *******************************************************
     //  Initialise the chat message
@@ -120,8 +120,13 @@ export class yze {
       let roll2 = `${r2Dice}` + 'ds';
       let com;
       if (actortype === 'supply') {
-        // // console.log('yze -> yzeRoll -> hostile', hostile);
-        com = `${roll2}`;
+        if (r2Dice > 6) {
+          r2Dice = 6;
+          com = `${r2Dice}` + 'ds';
+        } else {
+          // // console.log('yze -> yzeRoll -> hostile', hostile);
+          com = `${roll2}`;
+        }
       } else {
         com = `${roll1}` + '+' + `${roll2}`;
         // mr = '';
@@ -133,9 +138,12 @@ export class yze {
       // *******************************************************
       // Set reroll
       // *******************************************************
-      if (game.alienrpg.rollArr.r2One > 0 && (!reRoll || reRoll === 'mPush')) {
+      // debugger;
+      if (game.alienrpg.rollArr.r2One > 0) {
+        if (reRoll === 'push' || reRoll === 'mPush') {
+          spud = true;
+        }
         reRoll = true;
-        spud = false;
       }
 
       // *******************************************************
@@ -170,7 +178,8 @@ export class yze {
     // *******************************************************
     //  If it's a Push roll and display the total for both rolls.
     // *******************************************************
-    if (reRoll && actortype === 'character' && label != 'Armor') {
+    // if (reRoll === 'push' || (reRoll === 'mPush' && actortype === 'character' && label != 'Armor')) {
+    if (reRoll === 'push' || (reRoll === 'mPush' && actortype === 'character' && label != 'Armor')) {
       chatMessage +=
         '<hr>' +
         '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
@@ -181,6 +190,19 @@ export class yze {
         localizedCountOfSuccesses(oldRoll + game.alienrpg.rollArr.multiPush + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six) +
         ' </div>';
       game.alienrpg.rollArr.multiPush = oldRoll;
+      // console.log('spud');
+    }
+    if (spud) {
+      chatMessage +=
+        '<hr>' +
+        '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+        game.i18n.localize('ALIENRPG.followingPush') +
+        '<br>' +
+        game.i18n.localize('ALIENRPG.totalOf') +
+        ' ' +
+        localizedCountOfSuccesses(oldRoll + game.alienrpg.rollArr.multiPush + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six) +
+        ' </div>';
+      // game.alienrpg.rollArr.multiPush = oldRoll;
       // console.log('spud');
     }
 
@@ -256,8 +278,8 @@ export class yze {
         game.alienrpg.rollArr.r1One = R1.length;
         let numOf6s = R6.length; // added by Steph
         let numOf1s = R1.length; // added by Steph
-        chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' Dice</div>';
-        chatMessage += '<span style="color: #03cf03">  Sixes: </span>';
+        chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
+        chatMessage += '<span style="color: #03cf03">  ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
         chatMessage += `${R6.length}`;
         chatMessage += '<div>';
         // added by Steph (for loop, and moved div close)
@@ -284,8 +306,8 @@ export class yze {
           let numOfB6s = RB6.length; // added by Steph
           let numOfB1s = RB1.length; // added by Steph
           // Base Dice
-          chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' Dice</div>';
-          chatMessage += '<span style="color: #03cf03">  Sixes: </span>';
+          chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
+          chatMessage += '<span style="color: #03cf03">  ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
           chatMessage += `${RB6.length}`;
           chatMessage += '<div>';
           // added by Steph (for loop, and moved div close)
@@ -326,10 +348,10 @@ export class yze {
         let numOfY1s = RY1.length; // added by Steph
 
         // Yellow Dice
-        chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' Dice</div>';
-        chatMessage += '<span style="color: red">Ones: </span>';
+        chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
+        chatMessage += '<span style="color: red">' + game.i18n.localize('ALIENRPG.Ones') + '</span>';
         chatMessage += `<span>${RY1.length}</span>`;
-        chatMessage += '<span style="color: #03cf03">  Sixes: </span>';
+        chatMessage += '<span style="color: #03cf03">  ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
         chatMessage += `${RY6.length}`;
         chatMessage += '<div>';
         // added by Steph (for loops, and moved div close)
