@@ -251,5 +251,8 @@
   "ALIENRPG.Ones": "Les: ",
   "ALIENRPG.Sixes": "Six: ",
   "ALIENRPG.Dice": "Dé: ",
-  "ALIENRPG.RollCrit": "Crit au rouleau"
+  "ALIENRPG.RollCrit": "Crit au rouleau",
+  "ALIENRPG.hideInitChat": "Masquer les messages de discussion d'initiative",
+  "ALIENRPG.hideInitChatHint": "Cochez cette case pour masquer les messages de chat pour les lancers d'Initiative"
+
 }

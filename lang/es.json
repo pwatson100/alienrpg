@@ -141,7 +141,7 @@
   "ALIENRPG.StressMod": "Modificador de estrés",
   "ALIENRPG.RollMod": "Modificador de tirada",
   "ALIENRPG.EnterMod": "Inserta tu modificador",
-  "ALIENRPG.SwitchKeys": "cambiar los botones del ratón",
+  "ALIENRPG.SwitchKeys": "Cambiar los botones del ratón",
   "ALIENRPG.SwitchKeysHint": "Cambiar a clik derecho para tiradas e izquierdo para modificadores",
   "ALIENRPG.ColpickHint": "Selecióna el color que quieres usar para el texto",
   "ALIENRPG.Colpick": "Selector de color",
@@ -255,5 +255,8 @@
   "ALIENRPG.Ones": "Unos: ",
   "ALIENRPG.Sixes": "Seis: ",
   "ALIENRPG.Dice": "Dado: ",
-  "ALIENRPG.RollCrit": "Roll Crit"
+  "ALIENRPG.RollCrit": "Roll Crit",
+  "ALIENRPG.hideInitChat": "Ocultar mensajes de chat de iniciativa",
+  "ALIENRPG.hideInitChatHint": "Marque esto para ocultar los mensajes de chat para las tiradas de iniciativa"
+
 }

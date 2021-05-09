@@ -253,5 +253,8 @@
   "ALIENRPG.NoSynCrit": "综合表上没有重大伤害",
   "ALIENRPG.Ones": "那些: ",
   "ALIENRPG.Sixes": "Sixes: ",
-  "ALIENRPG.Dice": "骰子: "
+  "ALIENRPG.Dice": "骰子: ",
+  "ALIENRPG.hideInitChat": "隐藏主动聊天消息",
+  "ALIENRPG.hideInitChatHint": "选中此选项可隐藏聊天消息，以备不时之需"
+
 }
