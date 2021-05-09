@@ -315,3 +315,6 @@ Minor language file updates.
 System changes to allow integration with Token Action HUD
 
 With thanks to Esposito Token Action HUD V1.0.6 now supports AlienRPG for Actors and Creatures.
+
+Version 1.3.7
+Corrected issue with Inventory headings not being localized. 
