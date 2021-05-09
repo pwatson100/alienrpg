@@ -247,9 +247,10 @@ Hooks.once('ready', async () => {
   //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
 
-  setupCombatantCloning();
+
 });
 
+setupCombatantCloning(); 
 function setupCombatantCloning() {
   // this function replaces calls to Combat.createEmbeddedEntity to
   // create additional combatants for xenos with a speed > 1.
@@ -259,10 +260,10 @@ function setupCombatantCloning() {
 
   let originalCombatCreateEmbeddedEntity = Combat.prototype.createEmbeddedEntity;
 
-  Combat.prototype.createEmbeddedEntity = function (embeddedName, data, options) {
-    originalCombatCreateEmbeddedEntity.call(this, embeddedName, data, options); // create all the Primary combatants
+  Combat.prototype.createEmbeddedEntity = async function (embeddedName, data, options) {
+    let res = originalCombatCreateEmbeddedEntity.call(this, embeddedName, data, options); // create all the Primary combatants
 
-    if (embeddedName != 'Combatant') return; // presumably embeddedName would always be "Combatant" but this preserves the base behavior if not.
+    if (embeddedName != 'Combatant') return res; // presumably embeddedName would always be "Combatant" but this preserves the base behavior if not.
 
     // data will be an array when combatants are created by the combat token icon.
     // therefore only call ExtraSpeedCombatants if data is an array.
@@ -272,7 +273,7 @@ function setupCombatantCloning() {
 
     if (Array.isArray(data)) data.forEach((combatant) => ExtraSpeedCombatants.call(this, combatant, options));
 
-    function ExtraSpeedCombatants(combatant, moptions) {
+    async function ExtraSpeedCombatants(combatant, moptions) {
       let token = canvas.tokens.placeables.find((i) => i.data._id == combatant.tokenId);
       let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
 
@@ -292,12 +293,13 @@ function setupCombatantCloning() {
         }
         // Add extra clones to the Combat encounter for the actor's heightened speed
         const creationData = clones.map((v) => {
-          return { tokenId: v.id, hidden: v.data.hidden };
+          return { tokenId: v.id, hidden: combatant.hidden };
         });
 
         originalCombatCreateEmbeddedEntity.call(this, embeddedName, creationData, moptions);
       }
     }
+	return res; // return original Promise to the caller.
   };
 }
 
