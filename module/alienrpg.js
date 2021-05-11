@@ -130,6 +130,27 @@ Hooks.once('init', async function () {
     else return options.inverse(this);
   });
 
+  Handlebars.registerHelper('gRng', function (value, options) {
+    let g = '';
+    switch (value) {
+      case '1':
+        g = game.i18n.localize('ALIENRPG.Engaged');
+        return g;
+      case '2':
+        g = game.i18n.localize('ALIENRPG.Short');
+        return g;
+      case '3':
+        g = game.i18n.localize('ALIENRPG.Medium');
+        return g;
+      case '4':
+        g = game.i18n.localize('ALIENRPG.Long');
+        return g;
+      case '5':
+        g = game.i18n.localize('ALIENRPG.Extreme');
+        return g;
+    }
+  });
+
   // Register system settings
   game.settings.register('alienrpg', 'macroShorthand', {
     name: 'ALIENRPG.DefMacro',

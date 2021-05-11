@@ -20,6 +20,7 @@
       <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
       <!-- <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div> -->
       {{#ife section.section 'Weapons'}}
+      <div class="item-detail lCol15">{{localize "ALIENRPG.Range"}}</div>
       <div class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</div>
       <div class="item-detail lCol10">{{localize "ALIENRPG.Dam"}}</div>
       <div class="item-detail item-weight lCol11">{{localize "ALIENRPG.Rds"}}</div>
@@ -46,11 +47,13 @@
                 <span class="item-detail rollItem lCol6" data-item="{{item.name}}" data-mod="{{data.skills.rangedCbt.mod}}">{{item.name~}}</span>
                 {{#ife item.data.header.type.value '1'}}
                 <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
+               <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
                 <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-value="item.data.attributes.rounds.value" name="item.data.attributes.rounds.value" value="{{item.data.attributes.rounds.value}}" data-dtype="String" />
                <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
                 {{/ife}}
 
                 {{#ife item.data.header.type.value '2'}}
+                 <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
                 <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
                <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
                 {{/ife}}
@@ -101,6 +104,7 @@
       <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
       <!-- <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div> -->
       {{#ife section.section 'Weapons'}}
+      <div class="item-detail lCol15">{{localize "ALIENRPG.Range"}}</div>
       <div class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</div>
       <div class="item-detail lCol10">{{localize "ALIENRPG.Dam"}}</div>
       <div class="item-detail item-weight lCol11">{{localize "ALIENRPG.Rds"}}</div>
@@ -123,12 +127,14 @@
                 <div class="item-image lCol5 activate" data-item="{{name}}" ><img src="{{item.img}}"  title="{{item.name}}" width="24" height="24" /></div>
                 <span class="item-detail  lCol6" data-item="{{item.name}}" data-mod="{{data.skills.rangedCbt.mod}}">{{item.name~}}</span>
                 {{#ife item.data.header.type.value '1'}}
+                <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
                 <span class="item-detail lCol14" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
                 <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-value="item.data.attributes.rounds.value" name="item.data.attributes.rounds.value" value="{{item.data.attributes.rounds.value}}" data-dtype="String" />
                <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
                 {{/ife}}
 
                 {{#ife item.data.header.type.value '2'}} 
+               <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
                <span class="item-detail lCol14" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
                <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
                 {{/ife}}
