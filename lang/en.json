@@ -253,8 +253,5 @@
   "ALIENRPG.NoSynCrit": "No Critical Injuries on Synthetics table",
   "ALIENRPG.Ones": "Ones: ",
   "ALIENRPG.Sixes": "Sixes: ",
-  "ALIENRPG.Dice": "Dice: ",
-  "ALIENRPG.hideInitChat": "Hide Initiative Chat Messages",
-  "ALIENRPG.hideInitChatHint": "Check this to hide chat messages for Initiative rolls"
-
+  "ALIENRPG.Dice": "Dice: "
 }

@@ -126,9 +126,9 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // Categorize items as inventory, spellbook, features, and classes
     const inventory = {
-      weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
-      item: { section: 'Items', label: game.i18n.localize('ALIENRPG.InventoryItemsHeader'), items: [], dataset: { type: 'item' } },
-      armor: { section: 'Armor', label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'), items: [], dataset: { type: 'armor' } },
+      weapon: { label: 'Weapons', items: [], dataset: { type: 'weapon' } },
+      item: { label: 'Items', items: [], dataset: { type: 'item' } },
+      armor: { label: 'Armor', items: [], dataset: { type: 'armor' } },
     };
     // Partition items by category
     let [items, spells, feats, classes, talent] = data.items.reduce(

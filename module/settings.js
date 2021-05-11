@@ -35,13 +35,4 @@ export default function () {
     default: 0,
     type: Number,
   });
-
-  game.settings.register('alienrpg', 'alienrpgHideInitChat', {
-    name: 'ALIENRPG.hideInitChat',
-    hint: 'ALIENRPG.hideInitChatHint',
-    scope: 'world',
-    config: true,
-    default: false,
-    type: Boolean,
-  });
 }

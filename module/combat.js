@@ -19,9 +19,7 @@ export default class AlienRPGCombat extends Combat {
   async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
     // Structure input data
     ids = typeof ids === 'string' ? [ids] : ids;
-
     const currentId = this.combatant.data._id;
-
     const draw = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false };
 
     // Iterate over Combatants, performing an initiative roll for each
@@ -37,7 +35,6 @@ export default class AlienRPGCombat extends Combat {
         let [updates, messages] = results;
 
         // Get Combatant data
-
         const c = this.combatants.get(id);
         if (!c || !c.isOwner) return results;
 
@@ -50,7 +47,6 @@ export default class AlienRPGCombat extends Combat {
         }
         draw[roll.total] = true;
         updates.push({ _id: id, initiative: roll.total });
-
 
         // Determine the roll mode
         let rollMode = messageOptions.rollMode || game.settings.get('core', 'rollMode');
@@ -92,7 +88,6 @@ export default class AlienRPGCombat extends Combat {
         if (i > 0) chatData.sound = null;
         messages.push(chatData);
 
-
         // Return the Roll and the chat data
         return results;
       },
@@ -106,7 +101,6 @@ export default class AlienRPGCombat extends Combat {
     // Ensure the turn order remains with the same combatant
     if (updateTurn) {
       await this.update({ turn: this.turns.findIndex((t) => t.data._id === currentId) });
-
     }
 
     // Create multiple chat messages
@@ -117,9 +111,7 @@ export default class AlienRPGCombat extends Combat {
   }
 
   getInit(c, cf, updates, roll) {
-
-    roll = this._getInitiativeRoll(c, cf);
-
+    roll = c.getInitiativeRoll(cf);
     if (updates.some((updates) => updates['initiative'] === roll.total)) {
       this.getInit(c, cf, updates);
     } else {
