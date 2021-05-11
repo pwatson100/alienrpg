@@ -3,6 +3,7 @@
   "title": "Alien RPG",
   "description": "The Alien RPG system for Foundry VTT!",
   "version": "2.0.0",
+
   "minimumCoreVersion": "0.7.3",
   "compatibleCoreVersion": "0.8.1",
   "author": "Paul Watson",

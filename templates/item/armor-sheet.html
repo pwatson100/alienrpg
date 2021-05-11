@@ -37,12 +37,22 @@
     <div class="tab modifiers" data-group="primary" data-tab="modifiers">
       <h2 class="resource-label">{{localize "ALIENRPG.Attributes"}}</h2>
       <div class="grid-2col">
-        {{#each data.modifiers as |attributes key|}}
         <div class="modifiers flexrow flex-group-center">
-          <label for="data.modifiers.{{key}}.value" class="resource-label">{{attributes.label}}</label>
-          <input type="text" class="maxboxsize" name="data.modifiers.{{key}}.value" value="{{attributes.value}}" data-dtype="Number" />
+          <label for="data.modifiers.agl.value" class="resource-label">{{localize "ALIENRPG.AbilityAgl"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.agl.value" value="{{data.modifiers.agl.value}}" data-dtype="Number" />
         </div>
-        {{/each}}
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.survival.value" class="resource-label">{{localize "ALIENRPG.SkillSurvival"}} </label>
+          <input type="text" class="maxboxsize" name="data.modifiers.survival.value" value="{{data.modifiers.survival.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.heavyMach.value" class="resource-label">{{localize "ALIENRPG.SkillHeavyMach"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.heavyMach.value" value="{{data.modifiers.heavyMach.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.closeCbt.value" class="resource-label">{{localize "ALIENRPG.SkillCloseCbt"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.closeCbt.value" value="{{data.modifiers.closeCbt.value}}" data-dtype="Number" />
+        </div>
       </div>
     </div>
 
