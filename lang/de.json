@@ -251,5 +251,9 @@
   "ALIENRPG.NoSynCrit": "No Critical Injuries on Synthetics table",
   "ALIENRPG.Ones": "Einsen: ",
   "ALIENRPG.Sixes": "Sechser: ",
-  "ALIENRPG.Dice": "Würfel: "
+  "ALIENRPG.Dice": "Würfel: ",
+  "ALIENRPG.RollCrit": "Roll Crit",
+  "ALIENRPG.hideInitChat": "Initiieren Sie Initiativ-Chat-Nachrichten",
+  "ALIENRPG.hideInitChatHint": "Aktivieren Sie diese Option, um Chatnachrichten für Initiativwürfe auszublenden"
+
 }
