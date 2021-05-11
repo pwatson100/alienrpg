@@ -3,7 +3,7 @@
   <li class="grid-items item-header">
     <div class="item-name lCol1">{{section.label}}</div>
     <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
-    <!-- <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div> -->
+    <div class="item-detail lCol15">{{localize "ALIENRPG.Range"}}</div>
     <div class="item-detail lCol10">{{localize "ALIENRPG.Dam"}}</div>
     <div class="item-detail item-weight lCol11">{{localize "ALIENRPG.Rds"}}</div>
     <div class="item-detail item-weight lCol3">{{localize "ALIENRPG.Power"}}</div>
@@ -13,6 +13,7 @@
   <li class="item grid-items" data-item-id="{{item._id}}">
     <div class="item-image lCol5 activate"><img src="{{item.img}}" data-item="{{item.data.header.active}}" title="{{item.name}}" width="24" height="24" /></div>
     <span class="item-detail rollItem lCol6" data-item="{{item.name}}" data-mod="{{data.skills.rangedCbt.mod}}">{{item.name~}}</span>
+    <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
     <input
       type="text"
       class="item-detail maxboxsize lCol12 inline-edit"

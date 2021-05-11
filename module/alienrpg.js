@@ -130,6 +130,27 @@ Hooks.once('init', async function () {
     else return options.inverse(this);
   });
 
+  Handlebars.registerHelper('gRng', function (value, options) {
+    let g = '';
+    switch (value) {
+      case '1':
+        g = game.i18n.localize('ALIENRPG.Engaged');
+        return g;
+      case '2':
+        g = game.i18n.localize('ALIENRPG.Short');
+        return g;
+      case '3':
+        g = game.i18n.localize('ALIENRPG.Medium');
+        return g;
+      case '4':
+        g = game.i18n.localize('ALIENRPG.Long');
+        return g;
+      case '5':
+        g = game.i18n.localize('ALIENRPG.Extreme');
+        return g;
+    }
+  });
+
   // Register system settings
   game.settings.register('alienrpg', 'macroShorthand', {
     name: 'ALIENRPG.DefMacro',
@@ -246,11 +267,9 @@ Hooks.once('ready', async () => {
 
   //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
-
-
 });
 
-setupCombatantCloning(); 
+setupCombatantCloning();
 function setupCombatantCloning() {
   // this function replaces calls to Combat.createEmbeddedEntity to
   // create additional combatants for xenos with a speed > 1.
@@ -299,7 +318,7 @@ function setupCombatantCloning() {
         originalCombatCreateEmbeddedEntity.call(this, embeddedName, creationData, moptions);
       }
     }
-	return res; // return original Promise to the caller.
+    return res; // return original Promise to the caller.
   };
 }
 
