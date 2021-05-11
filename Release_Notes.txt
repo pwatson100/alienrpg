@@ -320,5 +320,6 @@ Version 1.3.7
 Added Range for weapons to the Items Tab.
 Corrected issue with Inventory headings not being localized. 
 Added GM configuration option to suppress initiative rolls being displayed in chat. 
+Corrected issue where the currency field would show $NAN on a minor change or non numeric input. 
 Improved combat tracker compatibility with modules using libwrapper and @DM9290 Your Tokens Visible module.
 Updated Spanish Language translations with thanks to @KaWeNGoD#7450
