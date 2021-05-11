@@ -66,16 +66,16 @@ Hooks.once('init', async function () {
     decimals: 1,
   };
   // If the FVTT version is > V0.7.x initalise the Base and Stress dice terms
-  if (is07x) {
-    CONFIG.Dice.terms['b'] = AlienRPGBaseDie;
-    CONFIG.Dice.terms['s'] = AlienRPGStressDie;
-  }
-
+  // if (is07x) {
+  CONFIG.Dice.terms['b'] = AlienRPGBaseDie;
+  CONFIG.Dice.terms['s'] = AlienRPGStressDie;
+  // }
+  // debugger;
   // Define custom Entity classes
   CONFIG.ALIENRPG = ALIENRPG;
-  CONFIG.Actor.entityClass = alienrpgActor;
-  CONFIG.Item.entityClass = alienrpgItem;
-  CONFIG.Combat.entityClass = AlienRPGCombat;
+  CONFIG.Actor.documentClass = alienrpgActor;
+  CONFIG.Item.documentClass = alienrpgItem;
+  CONFIG.Combat.documentClass = AlienRPGCombat;
   CONFIG.CombatTracker = AlienRPGCTContext;
   CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
 
@@ -193,9 +193,9 @@ Hooks.once('init', async function () {
 
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
+  // debugger;
   await AlienRPGSetup.setup();
   sendDevMessage();
-
   if (game.user.isGM) {
     try {
       const newVer = '2';
@@ -247,61 +247,58 @@ Hooks.once('ready', async () => {
   //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
 
-
+  // setupCombatantCloning();
 });
 
-setupCombatantCloning(); 
-function setupCombatantCloning() {
-  // this function replaces calls to Combat.createEmbeddedEntity to
-  // create additional combatants for xenos with a speed > 1.
-  // if relies on calling the original Combat.prototypecreateEmbeddedEntity so as long as this
-  // function is called late in the setup after any modules that want to override that function
-  // it should be compatable.
+// function setupCombatantCloning() {
+//   // this function replaces calls to Combat.createEmbeddedEntity to
+//   // create additional combatants for xenos with a speed > 1.
+//   // if relies on calling the original Combat.prototypecreateEmbeddedEntity so as long as this
+//   // function is called late in the setup after any modules that want to override that function
+//   // it should be compatable.
+//   let originalCombatCreateEmbeddedEntity = Combat.prototype.createEmbeddedDocuments;
 
-  let originalCombatCreateEmbeddedEntity = Combat.prototype.createEmbeddedEntity;
+//   Combat.prototype.createEmbeddedDocuments = function (embeddedName, data, options) {
+//     originalCombatCreateEmbeddedEntity.call(this, embeddedName, data, options); // create all the Primary combatants
 
-  Combat.prototype.createEmbeddedEntity = async function (embeddedName, data, options) {
-    let res = originalCombatCreateEmbeddedEntity.call(this, embeddedName, data, options); // create all the Primary combatants
+//     if (embeddedName != 'Combatant') return; // presumably embeddedName would always be "Combatant" but this preserves the base behavior if not.
 
-    if (embeddedName != 'Combatant') return res; // presumably embeddedName would always be "Combatant" but this preserves the base behavior if not.
+//     // data will be an array when combatants are created by the combat token icon.
+//     // therefore only call ExtraSpeedCombatants if data is an array.
+//     // this ensures cloning from inside the combattracker will make 1 clone only.
+//     // toggling combat via the token can create extra speed combatants if needed.
+//     // the token combat toggle is only available if the token is not already in combat.
 
-    // data will be an array when combatants are created by the combat token icon.
-    // therefore only call ExtraSpeedCombatants if data is an array.
-    // this ensures cloning from inside the combattracker will make 1 clone only.
-    // toggling combat via the token can create extra speed combatants if needed.
-    // the token combat toggle is only available if the token is not already in combat.
+//     if (Array.isArray(data)) data.forEach((combatant) => ExtraSpeedCombatants.call(this, combatant, options));
 
-    if (Array.isArray(data)) data.forEach((combatant) => ExtraSpeedCombatants.call(this, combatant, options));
+//     function ExtraSpeedCombatants(combatant, moptions) {
+//       let token = canvas.tokens.placeables.find((i) => i.data._id == combatant.tokenId);
+//       let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
+//       if (ACTOR == null) ACTOR = Actor.createTokenActor(token.actor, token);
 
-    async function ExtraSpeedCombatants(combatant, moptions) {
-      let token = canvas.tokens.placeables.find((i) => i.data._id == combatant.tokenId);
-      let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
+//       // only creatures have speed right now.  Probably a getter method should be created like
+//       // Actor.combatSpeed() to create a unified API to get the speed regardless of underlying
+//       // actor type
 
-      if (ACTOR == null) ACTOR = Actor.createTokenActor(token.actor, token);
+//       if (ACTOR.data.type != 'creature') return;
+//       const creatureSpeed = ACTOR.data.data.attributes?.speed?.value;
+//       if (creatureSpeed > 1) {
+//         const clones = [];
+//         let x;
+//         for (x = 1; x < creatureSpeed; x++) {
+//           clones.push(token);
+//         }
+//         // Add extra clones to the Combat encounter for the actor's heightened speed
+//         const creationData = clones.map((v) => {
+//           return { tokenId: v.id, hidden: v.data.hidden };
+//         });
 
-      // only creatures have speed right now.  Probably a getter method should be created like
-      // Actor.combatSpeed() to create a unified API to get the speed regardless of underlying
-      // actor type
-
-      if (ACTOR.data.type != 'creature') return;
-      const creatureSpeed = ACTOR.data.data.attributes?.speed?.value;
-      if (creatureSpeed > 1) {
-        const clones = [];
-        let x;
-        for (x = 1; x < creatureSpeed; x++) {
-          clones.push(token);
-        }
-        // Add extra clones to the Combat encounter for the actor's heightened speed
-        const creationData = clones.map((v) => {
-          return { tokenId: v.id, hidden: combatant.hidden };
-        });
-
-        originalCombatCreateEmbeddedEntity.call(this, embeddedName, creationData, moptions);
-      }
-    }
-	return res; // return original Promise to the caller.
-  };
-}
+//         originalCombatCreateEmbeddedEntity.call(this, embeddedName, creationData, moptions);
+//       }
+//     }
+//     // debugger;
+//   };
+// }
 
 // create/remove the quick access config button
 Hooks.once('renderSettings', () => {
@@ -431,82 +428,36 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 // *************************************************
 // Setupthe prototype token
 // *************************************************
-Hooks.on('preCreateActor', (actor, dir) => {
-  if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
-    // Set wounds, advantage, and display name visibility
-    mergeObject(actor, {
-      'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      // Default display name to be on owner hover
-      'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      // Default display bars to be on owner hover
-      'token.disposition': CONST.TOKEN_DISPOSITIONS.HOSTILE,
-      // Default disposition to hostile
-      'token.name': actor.name, // Set token name to actor name
-    }); // Default characters to HasVision = true and Link Data = true
 
-    switch (actor.type) {
+Hooks.on('preCreateActor', (doc, createData, options, userid) => {
+  mergeObject(createData, {
+    'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+    'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+    'token.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+    'token.name': createData.name,
+    'token.bar1': { attribute: 'header.health' },
+    'token.bar2': { attribute: 'None' },
+    'token.vision': true,
+    'token.actorLink': true,
+  });
+  if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
+    switch (doc.type) {
       case 'character':
-        mergeObject(actor, {
-          'token.bar1': {
-            attribute: 'header.health',
-          },
-          'token.bar2': {
-            attribute: 'header.stress',
-          },
-        });
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
+        mergeObject(createData, { 'token.bar2': { attribute: 'header.stress' } });
         break;
       case 'vehicles':
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
+        mergeObject(createData, { 'token.bar1': { attribute: 'None' } });
         break;
       case 'creature':
-        mergeObject(actor, {
-          'token.bar1': {
-            attribute: 'header.health',
-          },
-        });
-        actor.token.vision = true;
-        actor.token.actorLink = false;
+        mergeObject(createData, { 'token.actorLink': false });
+        mergeObject(createData, { 'token.disposition': CONST.TOKEN_DISPOSITIONS.HOSTILE });
         break;
       case 'synthetic':
-        mergeObject(actor, {
-          'token.bar1': {
-            attribute: 'header.health',
-          },
-        });
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
         break;
       case 'territory':
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
-        break;
-
-      default:
-        actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-        actor.token.vision = true;
-        actor.token.actorLink = true;
+        mergeObject(createData, { 'token.bar1': { attribute: 'None' } });
         break;
     }
-    // if (!createData.img) {
-    //   createData.img = 'icons/svg/cowled.svg';
-    // }
-  }
-});
-
-Hooks.on('preUpdateActor', (data, updatedData) => {
-  // if (updatedData.img) {
-  //   updatedData['token.img'] = updatedData.img;
-  //   data.data.token.img = updatedData.img;
-  // }
-  if (updatedData.name) {
-    updatedData['token.name'] = updatedData.name;
   }
 });
 
@@ -521,6 +472,12 @@ Hooks.on('preCreateToken', async (scene, tokenData) => {
   }
 });
 
+// Hooks.on('updateToken', (actor, updates, options, userId) => {
+//   // if (updates.name) {
+//   //   mergeObject(updates, { 'token.name': updates.name });
+//   //   // updates['token.name'] = updates.name;
+//   // }
+// });
 /* --
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
@@ -540,7 +497,7 @@ async function createAlienrpgMacro(data, slot) {
 
   // Create the macro command
   const command = `game.alienrpg.rollItemMacro("${item.name}");`;
-  let macro = game.macros.entities.find((m) => m.name === item.name && m.command === command);
+  let macro = game.macros.contents.find((m) => m.name === item.name && m.command === command);
   if (!macro) {
     macro = await Macro.create({
       name: item.name,
@@ -576,7 +533,6 @@ function rollItemMacro(itemName) {
 
 Hooks.once('setup', function () {
   const toLocalize = ['skills', 'attributes'];
-
   for (let o of toLocalize) {
     CONFIG.ALIENRPG[o] = Object.entries(CONFIG.ALIENRPG[o]).reduce((obj, e) => {
       obj[e[0]] = game.i18n.localize(e[1]);

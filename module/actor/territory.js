@@ -41,16 +41,16 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
   getData() {
     // const data = super.getData();
     // Basic data
-    let isOwner = this.entity.owner;
+    let isOwner = this.document.isOwner;
     const data = {
-      owner: isOwner,
-      limited: this.entity.limited,
+      owner: this.document.isOwner,
+      limited: this.document.limited,
       options: this.options,
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
-      isCharacter: this.entity.data.type === 'character',
-      isVehicles: this.entity.data.type === 'vehicles',
-      isCreature: this.entity.data.type === 'creature',
+      isCharacter: this.document.data.type === 'character',
+      isVehicles: this.document.data.type === 'vehicles',
+      isCreature: this.document.data.type === 'creature',
 
       config: CONFIG.ALIENRPG,
     };
@@ -99,7 +99,7 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.EditItem'),
         icon: '<i class="fas fa-edit"></i>',
         callback: (element) => {
-          const item = this.actor.getOwnedItem(element.data('item-id'));
+          const item = this.actor.items.get(element.data('item-id'));
           item.sheet.render(true);
         },
       },
@@ -120,7 +120,7 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
     // Update Inventory Item
     html.find('.openItem').click((ev) => {
       const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.getOwnedItem(li.data('itemId'));
+      const item = this.actor.items.get(li.data('itemId'));
       item.sheet.render(true);
     });
 
@@ -132,7 +132,7 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
     // });
 
     // Drag events for macros.
-    if (this.actor.owner) {
+    if (this.actor.isOwner) {
       let handler = (ev) => this._onDragStart(ev);
       // Find all items on the character sheet.
       html.find('li.item').each((i, li) => {

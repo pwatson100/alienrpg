@@ -4,8 +4,8 @@
 
     <div class="header-fields">
       <h1 class="charname">
-        <select class="select-css" name="name" value="{{item.name}}" data-dcareer="{{item.name}}">
-          {{#select item.name}}
+        <select class="select-css" name="name" value="{{name}}" data-dcareer="{{name}}">
+          {{#select name}}
           <!-- <option value=""></option> -->
           <option value="Heavy Machinery">{{localize "ALIENRPG.SkillHeavyMach"}}</option>
           <option value="Close Combat">{{localize "ALIENRPG.SkillCloseCbt"}}</option>
@@ -34,6 +34,7 @@
   {{!-- Sheet Body --}}
   <section class="sheet-body">
     {{!-- Attributes Tab --}}
-    <div class="tab item" data-group="primary" data-tab="stunts">{{editor content=data.description target="data.description" button=true owner=owner editable=editable}}</div>
+    <div class="tab item" data-group="primary" data-tab="stunts">{{editor content=data.description target="data.description" button=true owner=owner editable=true}}</div>
   </section>
+  {{log "CONTEXT!!!!"}} {{log this}}
 </form>

@@ -12,8 +12,8 @@ export class alienrpgItem extends Item {
     super.prepareData();
     // Get the Item's data
     const itemData = this.data;
-    const actorData = this.actor ? this.actor.data : {};
-    const data = itemData.data;
+    const actorData = this.item ? this.item.data : {};
+    const data = this.data;
     // console.warn('data', data);
   }
   /**

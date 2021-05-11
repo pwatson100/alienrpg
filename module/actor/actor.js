@@ -17,26 +17,26 @@ export class alienrpgActor extends Actor {
       for (let [k, v] of Object.entries(data.attributes)) {
         if (!(k in data)) data[k] = v.value;
       }
-      delete data.attributes;
+      // delete data.attributes;
     }
     if (!!shorthand) {
       for (let [k, v] of Object.entries(data.header)) {
         if (!(k in data)) data[k] = v.value;
       }
-      delete data.header;
+      // delete data.header;
     }
     if (!!shorthand) {
       for (let [k, v] of Object.entries(data.general)) {
         if (!(k in data)) data[k] = v.value;
       }
-      delete data.general;
+      // delete data.general;
     }
     if (this.data.type === 'character' || this.data.type === 'synthetic') {
       if (!!shorthand) {
         for (let [k, v] of Object.entries(data.skills)) {
           if (!(k in data)) data[k] = v.value;
         }
-        delete data.skills;
+        // delete data.skills;
       }
     }
 
@@ -51,7 +51,7 @@ export class alienrpgActor extends Actor {
         for (let [k, v] of Object.entries(itemData.attributes)) {
           if (!(k in itemData)) itemData[k] = v.value;
         }
-        delete itemData['attributes'];
+        // delete itemData['attributes'];
       }
       obj[key] = itemData;
       return obj;
@@ -62,11 +62,13 @@ export class alienrpgActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareBaseData() {
-    super.prepareBaseData();
+  prepareData() {
+    super.prepareData();
 
     const actorData = this.data;
-    console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareBaseData ~ actorData', actorData);
+
+    // console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareData ~ actorData', actorData);
+
     const data = actorData.data;
     const flags = actorData.flags;
 
@@ -80,12 +82,9 @@ export class alienrpgActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  _prepareCharacterData(actorData, flags) {
+
+  _prepareCharacterData(actorData) {
     super.prepareDerivedData();
-    // console.log('🚀 ~ file: actor.js ~ line 86 ~ alienrpgActor ~ _prepareCharacterData ~ flags.tough', flags.tough);
-    // if (flags.tough === undefined) {
-    //   setProperty(flags, 'tough', (flags.tough = false));
-    // }
 
     const data = actorData.data;
     var attrMod = {
@@ -111,8 +110,10 @@ export class alienrpgActor extends Actor {
       survival: 0,
       comtech: 0,
     };
-
-    for (let [skey, Attrib] of Object.entries(actorData.items)) {
+    // debugger;
+    for (let [skey, iAttrib] of Object.entries(actorData.items.contents)) {
+      // console.log('🚀 ~ file: actor.js ~ line 110 ~ alienrpgActor ~ _prepareCharacterData ~ Attrib', actorData);
+      const Attrib = iAttrib.data;
       if (Attrib.type === 'item') {
         if (Attrib.data.header.active) {
           let base = Attrib.data.modifiers.attributes;
@@ -189,7 +190,11 @@ export class alienrpgActor extends Actor {
           }
         }
         setProperty(actorData, 'data.header.health.mod', (data.header.health.mod = parseInt(attrMod.health || 0)));
+        // actorData.update({ 'data.header.health.mod': (actorData.data.header.health.mod = parseInt(attrMod.health || 0)) });
+
         if (actorData.type === 'character') {
+          // actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod = parseInt(attrMod.stress || 0)) });
+
           setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod = parseInt(attrMod.stress || 0)));
         }
       }
@@ -224,7 +229,14 @@ export class alienrpgActor extends Actor {
         let aId = Attrib._id;
         switch (talName) {
           case 'NERVES OF STEEL':
+            // actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod -= 2) });
+
             setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod -= 2));
+            break;
+          case 'TOUGH':
+            setProperty(actorData, 'data.header.health.mod', (data.header.health.mod += 2));
+
+            // actorData.update({ 'data.header.health.value': (actorData.data.header.health.value += 2) });
             break;
 
           // case 'TOUGH':
@@ -241,19 +253,20 @@ export class alienrpgActor extends Actor {
 
     for (let [a, abl] of Object.entries(data.attributes)) {
       let target = `data.attributes.${a}.mod`;
-      let field = data.attributes[a].mod;
+      let field = actorData.data.attributes[a].mod;
       let upData = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
+      // actorData.update({ [target]: (field = upData) });
       setProperty(actorData, target, (field = upData));
-
-      // abl.mod = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
+      abl.mod = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
       abl.label = CONFIG.ALIENRPG.attributes[a];
     }
 
     for (let [s, skl] of Object.entries(data.skills)) {
       const conSkl = skl.ability;
       let target = `data.skills.${s}.mod`;
-      let field = data.skills[s].mod;
+      let field = actorData.data.skills[s].mod;
       let upData = parseInt(skl.value || 0) + parseInt(actorData.data.attributes[conSkl].mod || 0) + parseInt(sklMod[s] || 0);
+      // actorData.update({ [target]: (field = upData) });
       setProperty(actorData, target, (field = upData));
       skl.label = CONFIG.ALIENRPG.skills[s];
     }
@@ -264,61 +277,72 @@ export class alienrpgActor extends Actor {
     let totalAir = 0;
     let totalPower = 0;
 
-    for (let i of actorData.items) {
+    for (let i of actorData.items.contents) {
+      // debugger;
       try {
         //  Update armor value fron items
-        i.data.attributes.armorrating.value === true;
-        if (i.data.header.active) {
-          i.data.attributes.armorrating.value && i.data.header;
-          i.data.attributes.armorrating.value = i.data.attributes.armorrating.value || 0;
-          i.totalAc = parseInt(i.data.attributes.armorrating.value, 10);
+        i.data.data.attributes.armorrating.value === true;
+
+        if (i.data.data.header.active) {
+          i.data.data.attributes.armorrating.value && i.data.data.header;
+          i.data.data.attributes.armorrating.value = i.data.data.attributes.armorrating.value || 0;
+          i.totalAc = parseInt(i.data.data.attributes.armorrating.value, 10);
           totalAc += i.totalAc;
         }
       } catch {}
 
       try {
         //  Update water value fron items
-        i.data.attributes.water.value === true;
-        if (i.data.header.active) {
-          i.data.attributes.water.value = i.data.attributes.water.value || 0;
-          i.totalWat = parseInt(i.data.attributes.water.value, 10);
+        i.data.data.attributes.water.value === true;
+        if (i.data.data.header.active) {
+          i.data.data.attributes.water.value = i.data.data.attributes.water.value || 0;
+          i.totalWat = parseInt(i.data.data.attributes.water.value, 10);
           totalWat += i.totalWat;
         }
       } catch {}
       try {
         //  Update food value fron items
-        i.data.attributes.food.value === true;
-        if (i.data.header.active) {
-          i.data.attributes.food.value = i.data.attributes.food.value || 0;
-          i.totalFood = parseInt(i.data.attributes.food.value, 10);
+        i.data.data.attributes.food.value === true;
+        if (i.data.data.header.active) {
+          i.data.data.attributes.food.value = i.data.data.attributes.food.value || 0;
+          i.totalFood = parseInt(i.data.data.attributes.food.value, 10);
           totalFood += i.totalFood;
         }
       } catch {}
       try {
         //  Update air value fron items
-        i.data.attributes.airsupply.value === true;
-        if (i.data.header.active) {
-          i.data.attributes.airsupply.value = i.data.attributes.airsupply.value || 0;
-          i.totalAir = parseInt(i.data.attributes.airsupply.value, 10);
+        i.data.data.attributes.airsupply.value === true;
+        if (i.data.data.header.active) {
+          i.data.data.attributes.airsupply.value = i.data.data.attributes.airsupply.value || 0;
+          i.totalAir = parseInt(i.data.data.attributes.airsupply.value, 10);
           totalAir += i.totalAir;
         }
       } catch {}
       try {
         //  Update air value fron items
-        i.data.attributes.power.value === true;
-        if (i.data.header.active) {
-          i.data.attributes.power.value = i.data.attributes.power.value || 0;
-          i.totalPower = parseInt(i.data.attributes.power.value, 10);
+        i.data.data.attributes.power.value === true;
+        if (i.data.data.header.active) {
+          i.data.data.attributes.power.value = i.data.data.attributes.power.value || 0;
+          i.totalPower = parseInt(i.data.data.attributes.power.value, 10);
           totalPower += i.totalPower;
         }
       } catch {}
     }
 
     setProperty(actorData, 'data.consumables.water.value', (data.consumables.water.value = totalWat));
+    // actorData.update({ 'data.consumables.water.value': (actorData.data.consumables.water.value = parseInt(totalWat || 0)) });
+
     setProperty(actorData, 'data.consumables.food.value', (data.consumables.food.value = totalFood));
+    // actorData.update({ 'data.consumables.food.value': (actorData.data.consumables.food.value = parseInt(totalFood || 0)) });
+
     setProperty(actorData, 'data.consumables.air.value', (data.consumables.air.value = totalAir));
+    // actorData.update({ 'data.consumables.air.value': (actorData.data.consumables.air.value = parseInt(totalAir || 0)) });
+
     setProperty(actorData, 'data.consumables.power.value', (data.consumables.power.value = totalPower));
+    // actorData.update({ 'data.consumables.power.value': (actorData.data.consumables.power.value = parseInt(totalPower || 0)) });
+
     setProperty(actorData, 'data.general.armor.value', (data.general.armor.value = totalAc));
+    // actorData.update({ 'data.general.armor.value': (actorData.data.general.armor.value = parseInt(totalAc || 0)) });
 
     setProperty(actorData, 'data.general.radiation.calculatedMax', (data.general.radiation.calculatedMax = data.general.radiation.max));
 
@@ -337,6 +361,7 @@ export class alienrpgActor extends Actor {
     if (actorData.type === 'character') {
       setProperty(actorData, 'data.general.panic.calculatedMax', (data.general.panic.calculatedMax = data.general.panic.max));
     }
+
     setProperty(actorData, 'data.header.health.max', (data.header.health.max = data.attributes.str.value + data.header.health.mod));
   }
 
@@ -360,7 +385,52 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  async checkAndEndPanic(actor) {
+
+  /** @inheritdoc */
+  // async _preCreate(data, options, user) {
+  //   await super._preCreate(data, options, user);
+  //   let tokenProto = {
+  //     'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+  //     'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+  //     'token.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+  //     'token.name': `${data.name}`,
+  //     'token.bar1': { attribute: 'header.health' },
+  //     'token.bar2': { attribute: 'None' },
+  //     'token.vision': true,
+  //     'token.actorLink': true,
+  //   };
+  //   if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
+  //     switch (data.type) {
+  //       case 'character':
+  //         tokenProto['token.bar2'] = { attribute: 'header.stress' };
+  //         break;
+  //       case 'vehicles':
+  //         tokenProto['token.bar1'] = { attribute: 'None' };
+  //         break;
+  //       case 'creature':
+  //         tokenProto['token.actorLink'] = false;
+  //         tokenProto['token.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+  //         break;
+  //       case 'synthetic':
+  //         break;
+  //       case 'territory':
+  //         tokenProto['token.bar1'] = { attribute: 'None' };
+  //         break;
+  //     }
+  //   }
+  //   this.data.update(tokenProto);
+  // }
+  /* -------------------------------------------- */
+
+  // /** @inheritdoc */
+  // async _preUpdate(changed, options, user) {
+  //   await super._preUpdate(changed, options, user);
+  //   if (changed.name) {
+  //     changed['token.name'] = `${changed.name}`;
+  //   }
+  // }
+
+  static async checkAndEndPanic(actor) {
     if (actor.data.type != 'character') return;
 
     if (actor.data.data.general.panic.lastRoll > 0) {
@@ -383,7 +453,6 @@ export class alienrpgActor extends Actor {
   }
 
   async rollAbility(actor, dataset) {
-    // console.log("🚀 ~ file: actor.js ~ line 311 ~ alienrpgActor ~ rollAbility ~ actor", actor)
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
@@ -392,9 +461,7 @@ export class alienrpgActor extends Actor {
     game.alienrpg.rollArr.multiPush = 0;
 
     let modifier = parseInt(dataset?.mod ?? 0) + parseInt(dataset?.modifier ?? 0);
-    // console.log('🚀 ~ file: actor.js ~ line 382 ~ alienrpgActor ~ rollAbility ~ modifier - CORRECT', modifier);
     let stressMod = parseInt(dataset?.stressMod ?? 0);
-    // console.log('🚀 ~ file: actor.js ~ line 383 ~ alienrpgActor ~ rollAbility ~ stressMod - CORRECT', stressMod);
 
     // the dataset value is returned to the DOM so it should be set to 0 in case a future roll is made without the
     // modifier dialog.
@@ -402,11 +469,13 @@ export class alienrpgActor extends Actor {
     dataset.modifier = 0;
     dataset.stressMod = 0;
 
+    // console.log('🚀 ~ file: actor.js ~ line 397 ~ alienrpgActor ~ rollAbility ~ dataset.roll', dataset.roll);
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0) + parseInt(modifier);
       if (dataset.attr) {
         r1Data = parseInt(modifier);
       }
+      // console.log('🚀 ~ file: actor.js ~ line 395 ~ alienrpgActor ~ rollAbility ~ r1Data', r1Data);
 
       reRoll = true;
       r2Data = 0;
@@ -459,9 +528,10 @@ export class alienrpgActor extends Actor {
         // console.log('🚀 ~ file: actor.js ~ line 443 ~ alienrpgActor ~ rollAbility ~ aStress', aStress);
 
         let modRoll = '1d6' + '+' + parseInt(aStress);
-        //   console.warn('rolling stress', modRoll);
+        console.warn('rolling stress', modRoll);
         const roll = new Roll(modRoll);
-        const customResults = table.roll({ roll });
+        roll.evaluate({ async: true });
+        const customResults = await table.roll({ roll });
         let oldPanic = actor.data.data.general.panic.lastRoll;
 
         if (customResults.roll.total >= 7 && actor.data.data.general.panic.value === 0) {
@@ -488,6 +558,8 @@ export class alienrpgActor extends Actor {
           ')' +
           '</span></h2>';
         chatMessage += `<h4><i>${table.data.description}</i></h4>`;
+        //   HERE ISSUE!!!
+
         let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
 
         let pCheck = oldPanic + 1;
@@ -535,9 +607,9 @@ export class alienrpgActor extends Actor {
         let whispertarget = [];
 
         if (rollMode == 'gmroll' || rollMode == 'blindroll') {
-          whispertarget = game.users.entities.filter((u) => u.isGM).map((u) => u._id);
+          whispertarget = game.users.contents.filter((u) => u.isGM).map((u) => u._id);
         } else if (rollMode == 'selfroll') {
-          whispertarget = game.users.entities.filter((u) => u.isGM).map((u) => u._id);
+          whispertarget = game.users.contents.filter((u) => u.isGM).map((u) => u._id);
           whispertarget.push(game.user._id);
         }
 
@@ -693,7 +765,6 @@ export class alienrpgActor extends Actor {
     let reRoll = true;
     // let hostile = this.actor.data.data.type;
     let blind = false;
-
     if (actor.data.token.disposition === -1) {
       blind = true;
     }
@@ -716,7 +787,8 @@ export class alienrpgActor extends Actor {
       let aField = `data.consumables.${aconsUme}.value`;
 
       if (aconsUme === 'power') {
-        pItem = aActor.getOwnedItem(atItem);
+        pItem = aActor.items.get(atItem);
+
         pValue = pItem.data.data.attributes.power.value ?? 0;
         field = `data.attributes.power.value`;
         if (pValue - game.alienrpg.rollArr.r2One <= '0') {
@@ -734,48 +806,48 @@ export class alienrpgActor extends Actor {
           iConsUme = aconsUme;
         }
         // while (bRoll > 0) {
-        for (const key in aActor.data.items) {
+        for (const key in aActor.data.items.contents) {
           if (bRoll <= 0) {
             break;
           }
 
-          if (aActor.data.items[key].type === 'item' && aActor.data.items[key].data.header.active) {
-            if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
-              let element = aActor.data.items[key];
-              if (element.data.attributes[iConsUme].value) {
-                let mitem = aActor.getOwnedItem(element._id);
-                let iVal = element.data.attributes[iConsUme].value;
+          if (aActor.data.items.contents[key].type === 'item' && aActor.data.items.contents[key].data.data.header.active) {
+            if (Object.hasOwnProperty.call(aActor.data.items.contents, key) && bRoll > 0) {
+              let element = aActor.data.items.contents[key];
+              if (element.data.data.attributes[iConsUme].value) {
+                let mitem = aActor.items.get(element.data._id);
+                let iVal = element.data.data.attributes[iConsUme].value;
                 if (iVal - bRoll < 0) {
                   tNum = iVal;
                   // bRoll -= iVal;
                 } else {
                   tNum = bRoll;
                 }
-                await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
+                await mitem.update({ [field]: element.data.data.attributes[iConsUme].value - tNum });
               }
             }
             bRoll -= tNum;
           }
 
-          if (aActor.data.items[key].type === 'armor' && aconsUme === 'air' && aActor.data.items[key].data.header.active) {
-            if (Object.hasOwnProperty.call(aActor.data.items, key) && bRoll > 0) {
-              let element = aActor.data.items[key];
-              if (element.data.attributes[iConsUme].value) {
-                let mitem = aActor.getOwnedItem(element._id);
-                let iVal = element.data.attributes[iConsUme].value;
+          if (aActor.data.items.contents[key].type === 'armor' && aconsUme === 'air' && aActor.data.items.contents[key].data.data.header.active) {
+            if (Object.hasOwnProperty.call(aActor.data.items.contents, key) && bRoll > 0) {
+              let element = aActor.data.items.contents[key];
+              if (element.data.data.attributes[iConsUme].value) {
+                let mitem = aActor.items.get(element.data._id);
+                let iVal = element.data.data.attributes[iConsUme].value;
                 if (iVal - bRoll < 0) {
                   tNum = iVal;
                   // bRoll -= iVal;
                 } else {
                   tNum = bRoll;
                 }
-                await mitem.update({ [field]: element.data.attributes[iConsUme].value - tNum });
+                await mitem.update({ [field]: element.data.data.attributes[iConsUme].value - tNum });
               }
             }
             bRoll -= tNum;
           }
         }
-        await aActor.update({ [aField]: `data.consumables.${aconsUme}.value` - game.alienrpg.rollArr.r2One });
+        await aActor.update({ [aField]: `data.consumables.${aconsUme}.value` - tNum });
       }
     }
   }
@@ -840,7 +912,7 @@ export class alienrpgActor extends Actor {
           actor: actor.id,
         },
         content: chatMessage,
-        whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
         blind: true,
       });
     }
@@ -849,21 +921,22 @@ export class alienrpgActor extends Actor {
   async creatureAttackRoll(actor, dataset) {
     let chatMessage = '';
     const targetTable = dataset.atttype;
-    const table = game.tables.entities.find((b) => b.name === targetTable);
+    const table = game.tables.contents.find((b) => b.name === targetTable);
     const roll = new Roll('1d6');
+    roll.evaluate({ async: true });
 
-    const customResults = table.roll({ roll });
+    const customResults = await table.roll({ roll });
     chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
-    chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-    chatMessage += `${customResults.results[0].text}`;
+    chatMessage += `<h4><i>${table.data.name}</i></h4>`;
+    chatMessage += `${customResults.results[0].data.text}`;
     ChatMessage.create({
-      user: game.user._id,
+      user: game.user.data._id,
       speaker: {
         actor: actor.id,
       },
       roll: customResults.roll,
       content: chatMessage,
-      // whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+      // whisper: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
       type: CONST.CHAT_MESSAGE_TYPES.ROLL,
     });
   }
@@ -938,7 +1011,7 @@ export class alienrpgActor extends Actor {
     const formula = atable.data.formula;
 
     const roll = new Roll(formula);
-
+    roll.evaluate({ async: true });
     atable.draw({ roll: roll });
   }
 }
