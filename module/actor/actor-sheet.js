@@ -574,7 +574,7 @@ export class alienrpgActorSheet extends ActorSheet {
     }
 
     function onBlur(e) {
-      let value = e.target.value;
+      let value = localStringToNumber(e.target.value);
       e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
       // console.warn(e.target.value);
     }

@@ -320,3 +320,6 @@ Version 1.3.7
 Corrected issue with Inventory headings not being localized. 
 Added GM configuration option to suppress initiative rolls being displayed in chat. 
 Improved combat tracker compatibility with modules using libwrapper and @DM9290 Your Tokens Visible module.
+
+Version 2.0.0
+Updated to work with Foundry VTT Version 0.8.x
