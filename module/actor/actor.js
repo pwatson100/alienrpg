@@ -17,26 +17,26 @@ export class alienrpgActor extends Actor {
       for (let [k, v] of Object.entries(data.attributes)) {
         if (!(k in data)) data[k] = v.value;
       }
-      delete data.attributes;
+      // delete data.attributes;
     }
     if (!!shorthand) {
       for (let [k, v] of Object.entries(data.header)) {
         if (!(k in data)) data[k] = v.value;
       }
-      delete data.header;
+      // delete data.header;
     }
     if (!!shorthand) {
       for (let [k, v] of Object.entries(data.general)) {
         if (!(k in data)) data[k] = v.value;
       }
-      delete data.general;
+      // delete data.general;
     }
     if (this.data.type === 'character' || this.data.type === 'synthetic') {
       if (!!shorthand) {
         for (let [k, v] of Object.entries(data.skills)) {
           if (!(k in data)) data[k] = v.value;
         }
-        delete data.skills;
+        // delete data.skills;
       }
     }
 
@@ -51,7 +51,7 @@ export class alienrpgActor extends Actor {
         for (let [k, v] of Object.entries(itemData.attributes)) {
           if (!(k in itemData)) itemData[k] = v.value;
         }
-        delete itemData['attributes'];
+        // delete itemData['attributes'];
       }
       obj[key] = itemData;
       return obj;
@@ -385,6 +385,50 @@ export class alienrpgActor extends Actor {
     }
   }
 
+  /** @inheritdoc */
+  // async _preCreate(data, options, user) {
+  //   await super._preCreate(data, options, user);
+  //   let tokenProto = {
+  //     'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+  //     'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+  //     'token.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+  //     'token.name': `${data.name}`,
+  //     'token.bar1': { attribute: 'header.health' },
+  //     'token.bar2': { attribute: 'None' },
+  //     'token.vision': true,
+  //     'token.actorLink': true,
+  //   };
+  //   if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
+  //     switch (data.type) {
+  //       case 'character':
+  //         tokenProto['token.bar2'] = { attribute: 'header.stress' };
+  //         break;
+  //       case 'vehicles':
+  //         tokenProto['token.bar1'] = { attribute: 'None' };
+  //         break;
+  //       case 'creature':
+  //         tokenProto['token.actorLink'] = false;
+  //         tokenProto['token.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+  //         break;
+  //       case 'synthetic':
+  //         break;
+  //       case 'territory':
+  //         tokenProto['token.bar1'] = { attribute: 'None' };
+  //         break;
+  //     }
+  //   }
+  //   this.data.update(tokenProto);
+  // }
+  /* -------------------------------------------- */
+
+  // /** @inheritdoc */
+  // async _preUpdate(changed, options, user) {
+  //   await super._preUpdate(changed, options, user);
+  //   if (changed.name) {
+  //     changed['token.name'] = `${changed.name}`;
+  //   }
+  // }
+
   static async checkAndEndPanic(actor) {
     if (actor.data.type != 'character') return;
 
@@ -424,7 +468,7 @@ export class alienrpgActor extends Actor {
     dataset.modifier = 0;
     dataset.stressMod = 0;
 
-    console.log('🚀 ~ file: actor.js ~ line 397 ~ alienrpgActor ~ rollAbility ~ dataset.roll', dataset.roll);
+    // console.log('🚀 ~ file: actor.js ~ line 397 ~ alienrpgActor ~ rollAbility ~ dataset.roll', dataset.roll);
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0) + parseInt(modifier);
       if (dataset.attr) {
@@ -485,6 +529,7 @@ export class alienrpgActor extends Actor {
         let modRoll = '1d6' + '+' + parseInt(aStress);
         console.warn('rolling stress', modRoll);
         const roll = new Roll(modRoll);
+        roll.evaluate({ async: true });
         const customResults = await table.roll({ roll });
         let oldPanic = actor.data.data.general.panic.lastRoll;
 
@@ -741,7 +786,7 @@ export class alienrpgActor extends Actor {
       let aField = `data.consumables.${aconsUme}.value`;
 
       if (aconsUme === 'power') {
-        pItem = aActor.getOwnedItem(atItem);
+        pItem = aActor.items.get(atItem);
 
         pValue = pItem.data.data.attributes.power.value ?? 0;
         field = `data.attributes.power.value`;
@@ -769,7 +814,7 @@ export class alienrpgActor extends Actor {
             if (Object.hasOwnProperty.call(aActor.data.items.contents, key) && bRoll > 0) {
               let element = aActor.data.items.contents[key];
               if (element.data.data.attributes[iConsUme].value) {
-                let mitem = aActor.getOwnedItem(element._id);
+                let mitem = aActor.items.get(element.data._id);
                 let iVal = element.data.data.attributes[iConsUme].value;
                 if (iVal - bRoll < 0) {
                   tNum = iVal;
@@ -787,7 +832,7 @@ export class alienrpgActor extends Actor {
             if (Object.hasOwnProperty.call(aActor.data.items.contents, key) && bRoll > 0) {
               let element = aActor.data.items.contents[key];
               if (element.data.data.attributes[iConsUme].value) {
-                let mitem = aActor.getOwnedItem(element._id);
+                let mitem = aActor.items.get(element.data._id);
                 let iVal = element.data.data.attributes[iConsUme].value;
                 if (iVal - bRoll < 0) {
                   tNum = iVal;
@@ -877,6 +922,7 @@ export class alienrpgActor extends Actor {
     const targetTable = dataset.atttype;
     const table = game.tables.contents.find((b) => b.name === targetTable);
     const roll = new Roll('1d6');
+    roll.evaluate({ async: true });
 
     const customResults = await table.roll({ roll });
     chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
@@ -964,92 +1010,8 @@ export class alienrpgActor extends Actor {
     const formula = atable.data.formula;
 
     const roll = new Roll(formula);
-
+    roll.evaluate({ async: true });
     atable.draw({ roll: roll });
-  }
-  /* -------------------------------------------- */
-  /*  Event Handlers                              */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  async _preCreate(data, options, user) {
-    await super._preCreate(data, options, user);
-
-    console.log('🚀 ~ file: actor.js ~ line 938 ~ _preCreate ~ data', data);
-    debugger;
-    if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
-      // Set wounds, advantage, and display name visibility
-      mergeObject(data, {
-        'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-        // Default display name to be on owner hover
-        'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-        // Default display bars to be on owner hover
-        'token.disposition': CONST.TOKEN_DISPOSITIONS.HOSTILE,
-        // Default disposition to hostile
-        'token.name': data.name, // Set token name to actor name
-      }); // Default characters to HasVision = true and Link Data = true
-
-      switch (data.type) {
-        case 'character':
-          console.log("it's a Character");
-          mergeObject(data, {
-            'token.bar1': {
-              attribute: 'header.health',
-            },
-            'token.bar2': {
-              attribute: 'header.stress',
-            },
-          });
-          data.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-          data.token.vision = true;
-          data.token.actorLink = true;
-          break;
-        case 'vehicles':
-          data.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-          data.token.vision = true;
-          data.token.actorLink = true;
-          break;
-        case 'creature':
-          mergeObject(data, {
-            'token.bar1': {
-              attribute: 'header.health',
-            },
-          });
-          data.token.vision = true;
-          data.token.actorLink = false;
-          break;
-        case 'synthetic':
-          mergeObject(data, {
-            'token.bar1': {
-              attribute: 'header.health',
-            },
-          });
-          data.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-          data.token.vision = true;
-          data.token.actorLink = true;
-          break;
-        case 'territory':
-          data.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-          data.token.vision = true;
-          data.token.actorLink = true;
-          break;
-
-        default:
-          data.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-          data.token.vision = true;
-          data.token.actorLink = true;
-          break;
-      }
-    }
-  }
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  async _preUpdate(changed, options, user) {
-    await super._preUpdate(changed, options, user);
-    if (changed.name) {
-      changed['token.name'] = changed.name;
-    }
   }
 }
 export default alienrpgActor;

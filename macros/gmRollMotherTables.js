@@ -36,6 +36,7 @@
 
           for (let i = 0; i < drawNumber; i++) {
             const roll = new Roll(formula + ' + ' + modifier);
+            roll.evaluate({ async: true });
             await table.draw({ roll: roll });
           }
         },
