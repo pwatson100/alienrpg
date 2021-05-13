@@ -1,9 +1,15 @@
 (async () => {
   let hostile = false;
-  let label = "for " + actor.name;
+  try {
+    let label = 'for ' + actor.name;
+  } catch {
+    ui.notifications.error(`You need to have a token selected`);
+    return;
+  }
+  let label = 'for ' + actor.name;
   let actorid = actor.id;
   let reRoll = false;
-  let blind = false
+  let blind = false;
 
   let template = `
         <form>
@@ -32,7 +38,7 @@
         const r1Data = parseInt(html.find('#fr1Data')[0].value || 0);
         const r2Data = parseInt(html.find('#fr2Data')[0].value || 0);
 
-        await game.alienrpg.yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress',actorid);
+        await game.alienrpg.yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress', actorid);
       },
     },
     cancel: {
