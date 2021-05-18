@@ -520,7 +520,7 @@
   grid-area: tal4;
   justify-self: right;
   padding-right: 8px;
-  align-self: center;
+  align-self: left;
 
   // padding-top: 2px;
 }
@@ -528,10 +528,32 @@
   grid-area: talTitle;
   background-color: #221f1f;
 }
+.grid-special {
+  display: grid;
+  grid-template-areas: 'spe1 spe2';
+  // grid-template-rows: 3fr;
+  // padding: 3px;
+  grid-template-columns: 75% 25%;
+  align-items: center;
+}
+
+.spe1 {
+  grid-area: spe1;
+  align-self: left;
+  font-weight: bold;
+}
+.spe2 {
+  grid-area: spe2;
+  justify-self: right;
+  padding-right: 8px;
+  align-self: right;
+}
 
 .grid-two {
   display: grid;
-  grid-template-areas: 'box1 box2';
+  grid-template-areas:
+    'box1 box2'
+    'box3 box4';
   padding: 3px;
   grid-template-columns: 25% 75%;
   align-items: center;
@@ -541,13 +563,23 @@
   grid-area: box1;
   justify-self: center;
   padding-left: 8px;
-  // background-color: $c-black;
 }
 .box2 {
   grid-area: box2;
   justify-self: right;
   padding-right: 8px;
 }
+.box3 {
+  grid-area: box3;
+  justify-self: center;
+  padding-left: 8px;
+  padding-top: 10px;
+}
+.box4 {
+  grid-area: box4;
+  padding-top: 10px;
+}
+
 .grid-2 {
   display: grid;
   grid-template-areas: 'box11 box21 box23 box22';

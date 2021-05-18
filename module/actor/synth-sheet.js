@@ -73,12 +73,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
     data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
 
-    // data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
-    // data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
-    // data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
-    // data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
-
-    // this.actor.data.token.disposition = 1;
     // Prepare items.
     this._prepareItems(data); // Return data to the sheet
 
@@ -96,35 +90,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
    */
   _prepareItems(data) {
     // Initialize containers.
-    const talents = [];
-
-    // Iterate through items, allocating to containers
-    for (let i of data.items) {
-      let item = i.data;
-      // Append to gear.
-      if (i.type === 'talent') {
-        talents.push(i);
-      }
-    }
-
-    // Assign and return
-    data.talents = talents;
-
-    const agendas = [];
-
-    // Iterate through items, allocating to containers
-    for (let i of data.items) {
-      let item = i.data;
-      // Append to gear.
-      if (i.type === 'agenda') {
-        agendas.push(i);
-      }
-    }
-
-    // Assign and return
-    data.agendas = agendas;
-
-    // Categorize items as inventory, spellbook, features, and classes
     const inventory = {
       weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
       item: { section: 'Items', label: game.i18n.localize('ALIENRPG.InventoryItemsHeader'), items: [], dataset: { type: 'item' } },
@@ -137,6 +102,11 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         item.img = item.img || DEFAULT_TOKEN;
         item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
 
+        // Classify items into types
+        // console.log('alienrpgActorSheet -> _prepareItems -> item', item);
+        // if (item.type === 'talent') arr[1].push(item);
+        // else if (item.type === 'feat') arr[2].push(item);
+        // else if (item.type === 'feature') arr[3].push(item);
         if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
         return arr;
       },
@@ -145,22 +115,51 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
-    // console.warn('items', items);
-
-    // Organize Inventory
+    const talents = [];
+    const agendas = [];
+    const specialities = [];
     let totalWeight = 0;
-    for (let i of items) {
-      if (i.type != 'talent') {
-        i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-        i.totalWeight = i.data.attributes.weight.value;
-        inventory[i.type].items.push(i);
-        totalWeight += i.totalWeight;
+
+    // Iterate through items, allocating to containers
+    for (let i of data.items) {
+      let item = i.data;
+      switch (i.type) {
+        case 'talent':
+          talents.push(i);
+          break;
+
+        case 'agenda':
+          agendas.push(i);
+          break;
+
+        case 'specialty':
+          specialities.push(i);
+          break;
+
+        case 'weapon':
+          let ammoweight = 0.25;
+          if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
+            ammoweight = 0.5;
+          }
+          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+          i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
+          inventory[i.type].items.push(i);
+          totalWeight += i.totalWeight;
+          break;
+
+        default:
+          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+          i.totalWeight = i.data.attributes.weight.value;
+          inventory[i.type].items.push(i);
+          totalWeight += i.totalWeight;
+          break;
       }
     }
-
-    data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
-
     // Assign and return
+    data.talents = talents;
+    data.agendas = agendas;
+    data.specialities = specialities;
+    data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
   }
 

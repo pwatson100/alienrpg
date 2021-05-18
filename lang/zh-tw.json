@@ -5,7 +5,7 @@
     "ALIENRPG.Description": "描述",
     "ALIENRPG.Items": "物品",
     "ALIENRPG.AddItem": "添加物品",
-    "ALIENRPG.EditItem": "編輯",
+    "ALIENRPG.EditItem": "左键单击以进行编辑，右键单击以打开上下文菜单",
     "ALIENRPG.DeleteItem": "刪除",
     "ALIENRPG.Name": "名稱",
     "ALIENRPG.Type": "種類",

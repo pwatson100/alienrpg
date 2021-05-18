@@ -5,7 +5,7 @@
   "ALIENRPG.Description": "Description",
   "ALIENRPG.Items": "Items",
   "ALIENRPG.AddItem": "Add Item",
-  "ALIENRPG.EditItem": "Edit",
+  "ALIENRPG.EditItem": "Left Click to Edit, Right click to open context menu.",
   "ALIENRPG.DeleteItem": "Delete",
   "ALIENRPG.Name": "Name",
   "ALIENRPG.Type": "Type",
@@ -256,5 +256,4 @@
   "ALIENRPG.Dice": "Dice: ",
   "ALIENRPG.hideInitChat": "Hide Initiative Chat Messages",
   "ALIENRPG.hideInitChatHint": "Check this to hide chat messages for Initiative rolls"
-
 }
