@@ -9,6 +9,17 @@
   flex: auto;
 }
 
+.speciality-label {
+  // font-weight: bold;
+  font-family: var(--alienfont);
+  text-transform: uppercase;
+  // padding-right: 5px;
+  padding-left: 5px;
+  //  color: $c-green;
+  justify-self: left;
+  flex: auto;
+}
+
 .attr-label {
   font-weight: bold;
   text-transform: uppercase;

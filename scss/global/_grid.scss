@@ -413,11 +413,11 @@
   display: grid;
   // border: 2px solid var(--aliengreen);
   grid-template-areas:
-    'lCol1 lCol2 lCol13 lCol11 lCol10 lCol3 lCol4'
-    'lCol5 lCol6 lCol14 lCol12 lCol9 lCol7 lCol8';
+    'lCol1 lCol2 lCol15 lCol13 lCol11 lCol10 lCol3 lCol4'
+    'lCol5 lCol6 lCol16 lCol14 lCol12 lCol9 lCol7 lCol8';
   padding-bottom: 2px;
   //                      l1   l2 l13 l3     l4    l5    l6
-  grid-template-columns: 2em 25em 5em 5em 5em 4em 2em;
+  grid-template-columns: 2em 20em 5em 5em 5em 5em 4em 2em;
   // grid-template-columns: 25px 410px 60px 60px 60px 20px;
   align-items: center;
 }
@@ -478,6 +478,14 @@
   grid-area: lCol14;
   justify-self: center;
 }
+.lCol15 {
+  grid-area: lCol15;
+  justify-self: center;
+}
+.lCol16 {
+  grid-area: lCol16;
+  justify-self: center;
+}
 
 .grid-talents {
   display: grid;
@@ -512,7 +520,7 @@
   grid-area: tal4;
   justify-self: right;
   padding-right: 8px;
-  align-self: center;
+  align-self: left;
 
   // padding-top: 2px;
 }
@@ -520,10 +528,32 @@
   grid-area: talTitle;
   background-color: #221f1f;
 }
+.grid-special {
+  display: grid;
+  grid-template-areas: 'spe1 spe2';
+  // grid-template-rows: 3fr;
+  // padding: 3px;
+  grid-template-columns: 75% 25%;
+  align-items: center;
+}
+
+.spe1 {
+  grid-area: spe1;
+  align-self: left;
+  font-weight: bold;
+}
+.spe2 {
+  grid-area: spe2;
+  justify-self: right;
+  padding-right: 8px;
+  align-self: right;
+}
 
 .grid-two {
   display: grid;
-  grid-template-areas: 'box1 box2';
+  grid-template-areas:
+    'box1 box2'
+    'box3 box4';
   padding: 3px;
   grid-template-columns: 25% 75%;
   align-items: center;
@@ -533,13 +563,23 @@
   grid-area: box1;
   justify-self: center;
   padding-left: 8px;
-  // background-color: $c-black;
 }
 .box2 {
   grid-area: box2;
   justify-self: right;
   padding-right: 8px;
 }
+.box3 {
+  grid-area: box3;
+  justify-self: center;
+  padding-left: 8px;
+  padding-top: 10px;
+}
+.box4 {
+  grid-area: box4;
+  padding-top: 10px;
+}
+
 .grid-2 {
   display: grid;
   grid-template-areas: 'box11 box21 box23 box22';

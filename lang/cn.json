@@ -5,7 +5,7 @@
   "ALIENRPG.Description": "描述",
   "ALIENRPG.Items": "物品",
   "ALIENRPG.AddItem": "添加物品",
-  "ALIENRPG.EditItem": "编辑",
+  "ALIENRPG.EditItem": "左键单击以进行编辑，右键单击以打开上下文菜单",
   "ALIENRPG.DeleteItem": "删除",
   "ALIENRPG.Name": "名称",
   "ALIENRPG.Type": "种类",
@@ -253,5 +253,8 @@
   "ALIENRPG.NoSynCrit": "综合表上没有重大伤害",
   "ALIENRPG.Ones": "那些: ",
   "ALIENRPG.Sixes": "Sixes: ",
-  "ALIENRPG.Dice": "骰子: "
+  "ALIENRPG.Dice": "骰子: ",
+  "ALIENRPG.hideInitChat": "隐藏主动聊天消息",
+  "ALIENRPG.hideInitChatHint": "选中此选项可隐藏聊天消息，以备不时之需"
+
 }

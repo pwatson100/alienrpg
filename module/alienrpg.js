@@ -83,7 +83,7 @@ Hooks.once('init', async function () {
 
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda'], makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty'], makeDefault: false });
   Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
   registerSettings();
   registerActors();
@@ -128,6 +128,27 @@ Hooks.once('init', async function () {
   Handlebars.registerHelper('ifgt', function (v1, v2, options) {
     if (v1 > v2) return options.fn(this);
     else return options.inverse(this);
+  });
+
+  Handlebars.registerHelper('gRng', function (value, options) {
+    let g = '';
+    switch (value) {
+      case '1':
+        g = game.i18n.localize('ALIENRPG.Engaged');
+        return g;
+      case '2':
+        g = game.i18n.localize('ALIENRPG.Short');
+        return g;
+      case '3':
+        g = game.i18n.localize('ALIENRPG.Medium');
+        return g;
+      case '4':
+        g = game.i18n.localize('ALIENRPG.Long');
+        return g;
+      case '5':
+        g = game.i18n.localize('ALIENRPG.Extreme');
+        return g;
+    }
   });
 
   // Register system settings
@@ -198,7 +219,7 @@ Hooks.once('ready', async () => {
 
   if (game.user.isGM) {
     try {
-      const newVer = '2';
+      const newVer = '3';
       if (game.journal.getName('MU/TH/ER Instructions.') !== null) {
         if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
           await game.journal.getName('MU/TH/ER Instructions.').delete();
@@ -246,10 +267,9 @@ Hooks.once('ready', async () => {
 
   //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
-
-  setupCombatantCloning();
 });
 
+setupCombatantCloning();
 function setupCombatantCloning() {
   // this function replaces calls to Combat.createEmbeddedEntity to
   // create additional combatants for xenos with a speed > 1.
@@ -259,10 +279,10 @@ function setupCombatantCloning() {
 
   let originalCombatCreateEmbeddedEntity = Combat.prototype.createEmbeddedEntity;
 
-  Combat.prototype.createEmbeddedEntity = function (embeddedName, data, options) {
-    originalCombatCreateEmbeddedEntity.call(this, embeddedName, data, options); // create all the Primary combatants
+  Combat.prototype.createEmbeddedEntity = async function (embeddedName, data, options) {
+    let res = originalCombatCreateEmbeddedEntity.call(this, embeddedName, data, options); // create all the Primary combatants
 
-    if (embeddedName != 'Combatant') return; // presumably embeddedName would always be "Combatant" but this preserves the base behavior if not.
+    if (embeddedName != 'Combatant') return res; // presumably embeddedName would always be "Combatant" but this preserves the base behavior if not.
 
     // data will be an array when combatants are created by the combat token icon.
     // therefore only call ExtraSpeedCombatants if data is an array.
@@ -272,7 +292,7 @@ function setupCombatantCloning() {
 
     if (Array.isArray(data)) data.forEach((combatant) => ExtraSpeedCombatants.call(this, combatant, options));
 
-    function ExtraSpeedCombatants(combatant, moptions) {
+    async function ExtraSpeedCombatants(combatant, moptions) {
       let token = canvas.tokens.placeables.find((i) => i.data._id == combatant.tokenId);
       let ACTOR = game.actors.get(Actor.fromToken(token).actorId);
 
@@ -292,12 +312,13 @@ function setupCombatantCloning() {
         }
         // Add extra clones to the Combat encounter for the actor's heightened speed
         const creationData = clones.map((v) => {
-          return { tokenId: v.id, hidden: v.data.hidden };
+          return { tokenId: v.id, hidden: combatant.hidden };
         });
 
         originalCombatCreateEmbeddedEntity.call(this, embeddedName, creationData, moptions);
       }
     }
+    return res; // return original Promise to the caller.
   };
 }
 

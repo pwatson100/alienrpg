@@ -5,7 +5,7 @@
   "ALIENRPG.Description": "Beschreibung",
   "ALIENRPG.Items": "Gegenstände",
   "ALIENRPG.AddItem": "Gegenstand hinzufügen",
-  "ALIENRPG.EditItem": "Bearbeiten",
+  "ALIENRPG.EditItem": "Linksklick zum Bearbeiten, Rechtsklick zum Öffnen des Kontextmenüs.",
   "ALIENRPG.DeleteItem": "Löschen",
   "ALIENRPG.Name": "Name",
   "ALIENRPG.Type": "Typ",
@@ -252,5 +252,8 @@
   "ALIENRPG.Ones": "Einsen: ",
   "ALIENRPG.Sixes": "Sechser: ",
   "ALIENRPG.Dice": "Würfel: ",
-  "ALIENRPG.RollCrit": "Roll Crit"
+  "ALIENRPG.RollCrit": "Roll Crit",
+  "ALIENRPG.hideInitChat": "Initiieren Sie Initiativ-Chat-Nachrichten",
+  "ALIENRPG.hideInitChatHint": "Aktivieren Sie diese Option, um Chatnachrichten für Initiativwürfe auszublenden"
+
 }

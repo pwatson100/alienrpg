@@ -66,7 +66,7 @@ export class alienrpgActor extends Actor {
     super.prepareBaseData();
 
     const actorData = this.data;
-    console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareBaseData ~ actorData', actorData);
+    // console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareBaseData ~ actorData', actorData);
     const data = actorData.data;
     const flags = actorData.flags;
 

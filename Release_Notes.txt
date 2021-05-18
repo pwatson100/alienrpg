@@ -315,3 +315,16 @@ Minor language file updates.
 System changes to allow integration with Token Action HUD
 
 With thanks to Esposito Token Action HUD V1.0.6 now supports AlienRPG for Actors and Creatures.
+
+Version 1.3.7
+NOTE: This will be the final release for Foundry VTT version 0.7.9
+Added a tooltip to items edit icon showing "Left Click to Edit, Right click to open context menu." (the most asked question!).
+Added new Item type "specialty" to allow custom career options and sub-careers to be added.  
+    These can be dragged on to the character sheet (characters and Synthetics) and appear on the General tab. 
+Added Range for weapons to the Items Tab.
+Added GM configuration option to suppress initiative rolls being displayed in chat. 
+Updated Spanish Language translations with thanks to @KaWeNGoD#7450
+Improved combat tracker compatibility with modules using libwrapper and @DM9290 Your Tokens Visible module.
+Corrected issue with Inventory headings not being localized. 
+Corrected issue with some item types showing options for food power etc.
+Corrected issue where the currency field would show $NAN on a minor change or non numeric input. 
