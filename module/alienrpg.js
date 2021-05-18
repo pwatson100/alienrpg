@@ -83,7 +83,7 @@ Hooks.once('init', async function () {
 
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda'], makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty'], makeDefault: false });
   Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
   registerSettings();
   registerActors();
@@ -219,7 +219,7 @@ Hooks.once('ready', async () => {
 
   if (game.user.isGM) {
     try {
-      const newVer = '2';
+      const newVer = '3';
       if (game.journal.getName('MU/TH/ER Instructions.') !== null) {
         if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
           await game.journal.getName('MU/TH/ER Instructions.').delete();

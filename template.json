@@ -556,7 +556,8 @@
       "talent",
       "planet-system",
       "skill-stunts",
-      "agenda"
+      "agenda",
+      "specialty"
     ],
     "item": {
       "header": {
@@ -803,6 +804,23 @@
           "value": "",
           "label": "career"
         },
+        "comment": {
+          "value": "",
+          "label": "Text"
+        }
+      },
+      "notes": {
+        "notes": ""
+      }
+    },
+    "specialty": {
+      "attributes": {
+        "flag": {
+          "value": 0,
+          "label": "Flag"
+        }
+      },
+      "general": {
         "comment": {
           "value": "",
           "label": "Text"

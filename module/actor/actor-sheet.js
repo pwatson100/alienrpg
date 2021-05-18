@@ -24,7 +24,7 @@ export class alienrpgActorSheet extends ActorSheet {
       classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 740,
-      height: 741,
+      height: 780,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -94,35 +94,6 @@ export class alienrpgActorSheet extends ActorSheet {
    */
   _prepareItems(data) {
     // Initialize containers.
-    const talents = [];
-
-    // Iterate through items, allocating to containers
-    for (let i of data.items) {
-      let item = i.data;
-      // Append to gear.
-      if (i.type === 'talent') {
-        talents.push(i);
-      }
-    }
-
-    // Assign and return
-    data.talents = talents;
-
-    const agendas = [];
-
-    // Iterate through items, allocating to containers
-    for (let i of data.items) {
-      let item = i.data;
-      // Append to gear.
-      if (i.type === 'agenda') {
-        agendas.push(i);
-      }
-    }
-
-    // Assign and return
-    data.agendas = agendas;
-
-    // Categorize items as inventory, spellbook, features, and classes
     const inventory = {
       weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
       item: { section: 'Items', label: game.i18n.localize('ALIENRPG.InventoryItemsHeader'), items: [], dataset: { type: 'item' } },
@@ -149,32 +120,54 @@ export class alienrpgActorSheet extends ActorSheet {
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
 
-    // Organize Inventory
+    const talents = [];
+    const agendas = [];
+    const specialities = [];
     let totalWeight = 0;
-    for (let i of items) {
-      if (i.type == 'weapon') {
-        // console.log('alienrpgActorSheet -> Organize Inventory', i);
-        let ammoweight = 0.25;
-        if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
-          ammoweight = 0.5;
-        }
 
-        i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-        i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
-        inventory[i.type].items.push(i);
+    // Iterate through items, allocating to containers
+    for (let i of data.items) {
+      let item = i.data;
+      switch (i.type) {
+        case 'talent':
+          talents.push(i);
+          break;
 
-        totalWeight += i.totalWeight;
-      } else if (i.type != 'talent') {
-        i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-        i.totalWeight = i.data.attributes.weight.value;
-        inventory[i.type].items.push(i);
-        totalWeight += i.totalWeight;
+        case 'agenda':
+          agendas.push(i);
+          break;
+
+        case 'specialty':
+          if (specialities.length > 1) {
+            break;
+          } else {
+            specialities.push(i);
+            break;
+          }
+        case 'weapon':
+          let ammoweight = 0.25;
+          if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
+            ammoweight = 0.5;
+          }
+          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+          i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
+          inventory[i.type].items.push(i);
+          totalWeight += i.totalWeight;
+          break;
+
+        default:
+          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+          i.totalWeight = i.data.attributes.weight.value;
+          inventory[i.type].items.push(i);
+          totalWeight += i.totalWeight;
+          break;
       }
     }
-
-    data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
-    // this._computeHealth(data);
     // Assign and return
+    data.talents = talents;
+    data.agendas = agendas;
+    data.specialities = specialities;
+    data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
   }
 
@@ -194,6 +187,7 @@ export class alienrpgActorSheet extends ActorSheet {
     const enc = {
       max: actorData.data.attributes.str.value * 4,
       value: Math.round(totalWeight * 10) / 10,
+      value: totalWeight,
     };
     enc.pct = Math.min((enc.value * 100) / enc.max, 99);
     enc.encumbered = enc.pct > 50;
@@ -222,30 +216,6 @@ export class alienrpgActorSheet extends ActorSheet {
     return items.filter((item) => {
       const data = item.data;
 
-      // Action usage
-      // for (let f of ['action', 'bonus', 'reaction']) {
-      //   if (filters.has(f)) {
-      //     if (data.activation && data.activation.type !== f) return false;
-      //   }
-      // }
-
-      // // Spell-specific filters
-      // if (filters.has('ritual')) {
-      //   if (data.components.ritual !== true) return false;
-      // }
-      // if (filters.has('concentration')) {
-      //   if (data.components.concentration !== true) return false;
-      // }
-      // if (filters.has('prepared')) {
-      //   if (data.level === 0 || ['innate', 'always'].includes(data.preparation.mode)) return true;
-      //   if (this.actor.data.type === 'npc') return true;
-      //   return data.preparation.prepared;
-      // }
-
-      // // Equipment-specific filters
-      // if (filters.has('equipped')) {
-      //   if (data.equipped !== true) return false;
-      // }
       return true;
     });
   }
@@ -379,9 +349,9 @@ export class alienrpgActorSheet extends ActorSheet {
     // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.getOwnedItem(itemId);
-    let temp = dataset.name;
-    let field = temp.slice(5);
-    return item.update({ [field]: dataset.value }, {});
+    let temp = dataset.dataset.mod;
+    // let field = temp.slice(5);
+    return item.update({ [temp]: dataset.value }, {});
   }
 
   /**

@@ -5,7 +5,7 @@
   "ALIENRPG.Description": "Beschreibung",
   "ALIENRPG.Items": "Gegenstände",
   "ALIENRPG.AddItem": "Gegenstand hinzufügen",
-  "ALIENRPG.EditItem": "Bearbeiten",
+  "ALIENRPG.EditItem": "Linksklick zum Bearbeiten, Rechtsklick zum Öffnen des Kontextmenüs.",
   "ALIENRPG.DeleteItem": "Löschen",
   "ALIENRPG.Name": "Name",
   "ALIENRPG.Type": "Typ",

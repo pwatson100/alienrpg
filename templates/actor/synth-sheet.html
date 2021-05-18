@@ -201,8 +201,19 @@
               <option value="11">{{localize "ALIENRPG.Synthetic"}}</option>           
               {{/select}}
             </select>
-          </div>
-        </div>
+                <div class="box3 resource-label">
+                  <label class="speciality-label" >SPECIALTY</label>
+                  <div class="item-controls ">
+                  </div>
+                </div>
+                {{#each specialities as |item iid|}}
+                <li class="box4 item grid-special" data-item-id="{{item._id}}">
+                  <h4 class="item-name spe1" data-pmbut="{{item._id}}">{{item.name}} </h4>
+                  <a class="spe2 item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+                </li>
+                {{/each}}
+            </div>
+                  </div>
         
         <div class="Item4">
           <label class="resource-label">{{ localize "ALIENRPG.Appearance"}}</label> 
@@ -235,16 +246,9 @@
         <label class="resource-label rollCrit" style="font-weight: bold;" >>> {{ localize "ALIENRPG.RollCrit"}} <<</label> 
           <textarea name="data.general.critInj.value" rows="2"data-dtype="String">{{data.general.critInj.value}}</textarea>
         </div>
-        
-     <!--    <div class="Item11">
-          <span class="grid-2col">
-          <label class="resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}  </label>
-        <input type="text" class=" maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number">
-      </span>
-      </div> -->
     </div>
 </div>
     </section>
-        {{log "CONTEXT!!!!"}} {{log this}} 
+        <-- {{log "CONTEXT!!!!"}} {{log this}}  -->
 
   </form>

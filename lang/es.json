@@ -7,7 +7,7 @@
   "ALIENRPG.Description": "Descripción",
   "ALIENRPG.Items": "Objetos",
   "ALIENRPG.AddItem": "Añadir Objeto",
-  "ALIENRPG.EditItem": "Editar",
+  "ALIENRPG.EditItem": "Clic izquierdo para editar, clic derecho para abrir el menú contextual.",
   "ALIENRPG.DeleteItem": "Borrar",
   "ALIENRPG.Name": "Nombre",
   "ALIENRPG.Type": "Tipo",

@@ -1608,7 +1608,7 @@ button:focus {
   grid-area: tal4;
   justify-self: right;
   padding-right: 8px;
-  align-self: center;
+  align-self: left;
 }
 
 .talTitle {
@@ -1616,9 +1616,31 @@ button:focus {
   background-color: #221f1f;
 }
 
+.grid-special {
+  display: grid;
+  grid-template-areas: "spe1 spe2";
+  grid-template-columns: 75% 25%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.spe1 {
+  grid-area: spe1;
+  align-self: left;
+  font-weight: bold;
+}
+
+.spe2 {
+  grid-area: spe2;
+  justify-self: right;
+  padding-right: 8px;
+  align-self: right;
+}
+
 .grid-two {
   display: grid;
-  grid-template-areas: "box1 box2";
+  grid-template-areas: "box1 box2" "box3 box4";
   padding: 3px;
   grid-template-columns: 25% 75%;
   -webkit-box-align: center;
@@ -1636,6 +1658,18 @@ button:focus {
   grid-area: box2;
   justify-self: right;
   padding-right: 8px;
+}
+
+.box3 {
+  grid-area: box3;
+  justify-self: center;
+  padding-left: 8px;
+  padding-top: 10px;
+}
+
+.box4 {
+  grid-area: box4;
+  padding-top: 10px;
 }
 
 .grid-2 {
@@ -2502,6 +2536,15 @@ button:focus {
   text-transform: uppercase;
   padding-left: 5px;
   justify-self: center;
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+.alienrpg .speciality-label {
+  font-family: var(--alienfont);
+  text-transform: uppercase;
+  padding-left: 5px;
+  justify-self: left;
   -webkit-box-flex: 1;
       -ms-flex: auto;
           flex: auto;
