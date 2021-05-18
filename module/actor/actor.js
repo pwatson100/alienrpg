@@ -427,7 +427,7 @@ export class alienrpgActor extends Actor {
   //   }
   // }
 
-  static async checkAndEndPanic(actor) {
+  async checkAndEndPanic(actor) {
     if (actor.data.type != 'character') return;
 
     if (actor.data.data.general.panic.lastRoll > 0) {
