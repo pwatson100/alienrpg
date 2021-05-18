@@ -227,7 +227,7 @@ export class alienrpgActorSheet extends ActorSheet {
     if (!this.options.editable) return;
     const itemContextMenu = [
       {
-        name: game.i18n.localize('ALIENRPG.EditItem'),
+        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
         icon: '<i class="fas fa-edit"></i>',
         callback: (element) => {
           const item = this.actor.getOwnedItem(element.data('item-id'));
