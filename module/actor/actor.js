@@ -383,49 +383,42 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  /** @inheritdoc */
-  // async _preCreate(data, options, user) {
-  //   await super._preCreate(data, options, user);
-  //   let tokenProto = {
-  //     'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-  //     'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-  //     'token.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-  //     'token.name': `${data.name}`,
-  //     'token.bar1': { attribute: 'header.health' },
-  //     'token.bar2': { attribute: 'None' },
-  //     'token.vision': true,
-  //     'token.actorLink': true,
-  //   };
-  //   if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
-  //     switch (data.type) {
-  //       case 'character':
-  //         tokenProto['token.bar2'] = { attribute: 'header.stress' };
-  //         break;
-  //       case 'vehicles':
-  //         tokenProto['token.bar1'] = { attribute: 'None' };
-  //         break;
-  //       case 'creature':
-  //         tokenProto['token.actorLink'] = false;
-  //         tokenProto['token.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
-  //         break;
-  //       case 'synthetic':
-  //         break;
-  //       case 'territory':
-  //         tokenProto['token.bar1'] = { attribute: 'None' };
-  //         break;
-  //     }
-  //   }
-  //   this.data.update(tokenProto);
-  // }
-  /* -------------------------------------------- */
-
-  // /** @inheritdoc */
-  // async _preUpdate(changed, options, user) {
-  //   await super._preUpdate(changed, options, user);
-  //   if (changed.name) {
-  //     changed['token.name'] = `${changed.name}`;
-  //   }
-  // }
+  // *************************************************
+  // Setupthe prototype token
+  // *************************************************
+  async _preCreate(data, options, user) {
+    await super._preCreate(data, options, user);
+    let tokenProto = {
+      'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      'token.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+      'token.name': `${data.name}`,
+      'token.bar1': { attribute: 'header.health' },
+      'token.bar2': { attribute: 'None' },
+      'token.vision': true,
+      'token.actorLink': true,
+    };
+    if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
+      switch (data.type) {
+        case 'character':
+          tokenProto['token.bar2'] = { attribute: 'header.stress' };
+          break;
+        case 'vehicles':
+          tokenProto['token.bar1'] = { attribute: 'None' };
+          break;
+        case 'creature':
+          tokenProto['token.actorLink'] = false;
+          tokenProto['token.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+          break;
+        case 'synthetic':
+          break;
+        case 'territory':
+          tokenProto['token.bar1'] = { attribute: 'None' };
+          break;
+      }
+    }
+    this.data.update(tokenProto);
+  }
 
   async checkAndEndPanic(actor) {
     if (actor.data.type != 'character') return;
