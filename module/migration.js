@@ -4,8 +4,8 @@
  */
 export const migrateWorld = async function () {
   ui.notifications.info(`Applying AlienRPG System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, { permanent: true });
-
-  for (let actor of game.actors.entities) {
+  debugger;
+  for (let actor of game.actors.contents) {
     try {
       const update = await migrateActorData(actor.data);
       if (!isObjectEmpty(update)) {
@@ -17,7 +17,7 @@ export const migrateWorld = async function () {
   }
 
   // Migrate World Actors
-  for (let a of game.actors.entities) {
+  for (let a of game.actors.contents) {
     try {
       console.warn('Tyring to migrate actors');
       // console.warn('Pre actor', a.data);
@@ -33,7 +33,7 @@ export const migrateWorld = async function () {
   }
 
   // Migrate World Items
-  for (let i of game.items.entities) {
+  for (let i of game.items.contents) {
     try {
       const updateData = migrateItemData(i.data);
       if (!isObjectEmpty(updateData)) {
@@ -46,7 +46,7 @@ export const migrateWorld = async function () {
   }
 
   // Migrate Actor Override Tokens
-  for (let s of game.scenes.entities) {
+  for (let s of game.scenes.contents) {
     try {
       const updateData = migrateSceneData(s.data);
       if (!isObjectEmpty(updateData)) {
@@ -65,11 +65,32 @@ export const migrateWorld = async function () {
 
 /* -------------------------------------------- */
 const migrateActorData = async (actor) => {
-  let update = {};
-  if (actor.type === 'character' || actor.type === 'synthetic') {
-    update = setValueIfNotExists(update, actor, 'data.general.sp.value', 0);
-    update = setValueIfNotExists(update, actor, 'data.general.sp.max', 3);
-    update = setValueIfNotExists(update, actor, 'data.general.cash.value', 0);
+  let updateData = {};
+  if (actor.type === 'character' || actor.type === 'synthetic' || actor.type === 'vehicles') {
+    // update = setValueIfNotExists(update, actor, 'data.general.sp.value', 0);
+    // update = setValueIfNotExists(update, actor, 'data.general.sp.max', 3);
+    // update = setValueIfNotExists(update, actor, 'data.general.cash.value', 0);
+
+    if (actor.data.attributes.water != undefined) {
+      console.log('there is some water');
+      updateData[`data.attributes.-=water`] = null;
+    }
+    if (actor.data.attributes.food != undefined) {
+      console.log('there is some food');
+      updateData[`data.attributes.-=food`] = null;
+    }
+    if (actor.data.attributes.air != undefined) {
+      console.log('there is some air');
+      updateData[`data.attributes.-=air`] = null;
+    }
+    if (actor.data.attributes.power != undefined) {
+      console.log('there is some power');
+      updateData[`data.attributes.-=power`] = null;
+    }
+    if (actor.data.attributes.rounds != undefined) {
+      console.log('there is some rounds');
+      updateData[`data.attributes.-=rounds`] = null;
+    }
   }
   let itemsChanged = false;
   const items = actor.items.map(async (item) => {
@@ -81,22 +102,24 @@ const migrateActorData = async (actor) => {
     return item;
   });
   if (itemsChanged) {
-    update.items = items;
+    updateData.items = items;
   }
-  return update;
+  return updateData;
 };
 
-const migrateItemData = async (item, worldTemplateVersion) => {
-  let update = {};
-  if (worldTemplateVersion < 3) {
-    const powerType = ['trait', 'ability', 'mysticalPower', 'ritual', 'burden', 'boon'];
-    const gearType = ['weapon', 'armor', 'equipment', 'artifact'];
-  }
+/**
+ * Migrate a single Item entity to incorporate latest data model changes
+ * @param item
+ */
+export const migrateItemData = function (item) {
+  // console.log('migrateItemData -> item', item);
+  const updateData = {};
 
-  if (!isObjectEmpty(update)) {
-    update._id = item._id;
-  }
-  return update;
+  // Remove deprecated fields
+  //_migrateRemoveDeprecated(item, updateData);
+
+  // Return the migrated update data
+  return updateData;
 };
 
 /**
@@ -207,21 +230,6 @@ const migrateItemData = async (item, worldTemplateVersion) => {
 // }
 
 /* -------------------------------------------- */
-
-/**
- * Migrate a single Item entity to incorporate latest data model changes
- * @param item
- */
-// export const migrateItemData = function (item) {
-//   // console.log('migrateItemData -> item', item);
-//   const updateData = {};
-
-//   // Remove deprecated fields
-//   _migrateRemoveDeprecated(item, updateData);
-
-//   // Return the migrated update data
-//   return updateData;
-// };
 
 /* -------------------------------------------- */
 

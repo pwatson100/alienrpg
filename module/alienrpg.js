@@ -235,8 +235,9 @@ Hooks.once('ready', async () => {
     } catch (error) {}
   }
   // Determine whether a system migration is required and feasible
+  debugger;
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
-  const NEEDS_MIGRATION_VERSION = '1.3.5';
+  const NEEDS_MIGRATION_VERSION = '2.0.0';
   const COMPATIBLE_MIGRATION_VERSION = '0' || isNaN('NaN');
   let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   console.warn('needMigration', needMigration, currentVersion);
@@ -399,6 +400,18 @@ Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
 //   //   // updates['token.name'] = updates.name;
 //   // }
 // });
+
+Hooks.once('setup', function () {
+  const toLocalize = ['skills', 'attributes'];
+  for (let o of toLocalize) {
+    CONFIG.ALIENRPG[o] = Object.entries(CONFIG.ALIENRPG[o]).reduce((obj, e) => {
+      obj[e[0]] = game.i18n.localize(e[1]);
+
+      return obj;
+    }, {});
+  }
+});
+
 /* --
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
@@ -432,13 +445,6 @@ async function createAlienrpgMacro(data, slot) {
   return false;
 }
 
-/**
- * Create a Macro from an Item drop.
- * Get an existing item macro if one exists, otherwise create a new one.
- * @param {string} itemName
- * @param {string} myitemType
- * @return {Promise}
- */
 function rollItemMacro(itemName) {
   const speaker = ChatMessage.getSpeaker();
   let actor;
@@ -452,16 +458,6 @@ function rollItemMacro(itemName) {
   return item.roll();
 }
 
-Hooks.once('setup', function () {
-  const toLocalize = ['skills', 'attributes'];
-  for (let o of toLocalize) {
-    CONFIG.ALIENRPG[o] = Object.entries(CONFIG.ALIENRPG[o]).reduce((obj, e) => {
-      obj[e[0]] = game.i18n.localize(e[1]);
-
-      return obj;
-    }, {});
-  }
-});
 class Utils {
   /**
    *

@@ -299,11 +299,12 @@ export class alienrpgSynthActorSheet extends ActorSheet {
   _inlineedit(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
+    // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
-    let field = dataset.name;
-    // console.log('alienrpgActorSheet -> _inlineedit -> field', field);
-    return item.update({ [field]: dataset.value }, {});
+    let temp = dataset.dataset.mod;
+    // let field = temp.slice(5);
+    return item.update({ [temp]: dataset.value }, {});
   }
 
   /**

@@ -337,7 +337,7 @@ export class alienrpgActorSheet extends ActorSheet {
     const dataset = event.currentTarget;
     // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
-    let item = this.actor.getOwnedItem(itemId);
+    let item = this.actor.items.get(itemId);
     let temp = dataset.dataset.mod;
     // let field = temp.slice(5);
     return item.update({ [temp]: dataset.value }, {});
