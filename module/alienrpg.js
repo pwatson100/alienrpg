@@ -235,7 +235,6 @@ Hooks.once('ready', async () => {
     } catch (error) {}
   }
   // Determine whether a system migration is required and feasible
-  debugger;
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
   const NEEDS_MIGRATION_VERSION = '2.0.0';
   const COMPATIBLE_MIGRATION_VERSION = '0' || isNaN('NaN');
