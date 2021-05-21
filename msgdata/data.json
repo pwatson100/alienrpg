@@ -15,6 +15,10 @@
         {
             "version": 4,
             "message": "<h1>Changes in this release (1.3.7).</h1><br /> There are a number of changes in this release which I hope will improve the overall experience. <br/><b>NOTE:</b> This will be the final release for Foundry VTT version 0.7.9. <br/><ol><li>Added a tooltip to items edit icon showing Left Click to Edit, Right Click to open context menu. (the most asked question!).</li><li>Added new Item type specialty to allow custom career options and sub-careers to be added. <br/> These can be dragged on to the character sheet (characters and Synthetics) and appear on the General tab.</li><li>Added Range for weapons to the Items Tab.</li><li>Added GM configuration option to suppress initiative rolls being displayed in chat. </li><li>Updated Spanish Language translations with thanks to KaWeNGoD</li><li>Improved combat tracker compatibility with modules using libwrapper and DM9290 Your Tokens Visible module.</li><li>Corrected issue with Inventory headings not being localized.</li><li>Corrected issue with some item types showing options for food power etc.</li><li>Corrected issue where the currency field would show $NAN on a minor change or non numeric input.</li></ol> <br />Please read the @JournalEntry[MU/TH/ER Instructions.] to get the most benefit out of using the system and new features."
+        },
+        {
+            "version": 5,
+            "message":"<h1>Head's up</h1><br />I plan to release a new version of Alien RPG and the Premium modules when the new Foundry 0.8 is released in stable. This is however not tested with the same rigour and time as other releases, so take care before you upgrade and make sure to make a backup of your '\\FoundryVTT\\Data' in advance. <br/> <b>Currently there is not a version of the system or Premium modules that will work under FVTT 0.8.x. <b/> <br/> I am testing a new version and will release the details as soon as I are satisfied it is stable."
         }
     ]
 }
