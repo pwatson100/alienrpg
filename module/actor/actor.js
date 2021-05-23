@@ -547,8 +547,6 @@ export class alienrpgActor extends Actor {
           modifier +
           ')' +
           '</span></h2>';
-        chatMessage += `<h4><i>${table.data.description}</i></h4>`;
-        //   HERE ISSUE!!!
 
         let mPanic = customResults.roll.total < actor.data.data.general.panic.lastRoll;
 
@@ -897,12 +895,12 @@ export class alienrpgActor extends Actor {
       chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AcidAttack') + '</h2>';
       chatMessage += `<h4><i>` + game.i18n.localize('ALIENRPG.AcidBlood') + `</i></h4>`;
       ChatMessage.create({
-        user: game.user._id,
+        user: game.user.data._id,
         speaker: {
           actor: actor.id,
         },
         content: chatMessage,
-        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
+        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
         blind: true,
       });
     }
