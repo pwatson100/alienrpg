@@ -96,7 +96,7 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
 
     const itemContextMenu = [
       {
-        name: game.i18n.localize('ALIENRPG.EditItem'),
+        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
         icon: '<i class="fas fa-edit"></i>',
         callback: (element) => {
           const item = this.actor.items.get(element.data('item-id'));
