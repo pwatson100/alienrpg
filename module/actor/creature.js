@@ -154,7 +154,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    console.log('🚀 ~ file: creature.js ~ line 158 ~ ActorSheetAlienRPGCreat ~ _creatureAttackRoll ~ dataset', dataset);
+    // console.log('🚀 ~ file: creature.js ~ line 158 ~ ActorSheetAlienRPGCreat ~ _creatureAttackRoll ~ dataset', dataset);
     this.actor.creatureAttackRoll(this.actor, dataset);
   }
 }

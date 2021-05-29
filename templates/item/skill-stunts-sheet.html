@@ -1,7 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
   <header class="vehicle-header">
-    {{log "CONTEXT!!!!"}} {{log this}}
-
     <div class="header-fields">
       <h1 class="charname">
         <select class="select-css" name="name" value="{{name}}" data-dcareer="{{name}}">
@@ -36,5 +34,4 @@
     {{!-- Attributes Tab --}}
     <div class="tab item" data-group="primary" data-tab="stunts">{{editor content=data.description target="data.description" button=true owner=owner editable=true}}</div>
   </section>
-  {{log "CONTEXT!!!!"}} {{log this}}
 </form>
