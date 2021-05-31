@@ -520,7 +520,7 @@ export class alienrpgActor extends Actor {
         let modRoll = '1d6' + '+' + parseInt(aStress);
         console.warn('rolling stress', modRoll);
         const roll = new Roll(modRoll);
-        roll.evaluate({ async: true });
+        roll.evaluate({ async: false });
         const customResults = await table.roll({ roll });
         let oldPanic = actor.data.data.general.panic.lastRoll;
 
@@ -760,6 +760,7 @@ export class alienrpgActor extends Actor {
       return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSupplys'));
     } else {
       yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
+      // debugger;
       if (game.alienrpg.rollArr.r2One) {
         getItems(actor, consUme, tItem);
       }
@@ -911,7 +912,7 @@ export class alienrpgActor extends Actor {
     const targetTable = dataset.atttype;
     const table = game.tables.contents.find((b) => b.name === targetTable);
     const roll = new Roll('1d6');
-    roll.evaluate({ async: true });
+    roll.evaluate({ async: false });
 
     const customResults = await table.roll({ roll });
     chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
@@ -999,7 +1000,7 @@ export class alienrpgActor extends Actor {
     const formula = atable.data.formula;
 
     const roll = new Roll(formula);
-    roll.evaluate({ async: true });
+    roll.evaluate({ async: false });
     atable.draw({ roll: roll });
   }
 }

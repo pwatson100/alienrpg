@@ -4,8 +4,8 @@
   "description": "The Alien RPG system for Foundry VTT!",
   "version": "2.0.0",
 
-  "minimumCoreVersion": "0.8.4",
-  "compatibleCoreVersion": "0.8.4",
+  "minimumCoreVersion": "0.8.5",
+  "compatibleCoreVersion": "0.8.6",
   "author": "Paul Watson",
   "templateVersion": 2,
   "esmodules": [
