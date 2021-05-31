@@ -28,8 +28,7 @@ export class yze {
    *
    */
   static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid, itemid) {
-    // console.log('yze -> yzeRoll -> actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2', actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
-
+    console.log('yze -> yzeRoll -> actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2', actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
     // *******************************************************
     // Store the version number of FVTT
     // *******************************************************
@@ -106,8 +105,8 @@ export class yze {
     if (r1Dice >= 1) {
       roll1 = `${r1Dice}` + 'db';
       if (r2Dice <= 0) {
-        mr = new Roll(`${roll1}`);
-        mr.evaluate({ async: true });
+        mr = new Roll(`${roll1}`).evaluate({ async: false });
+        // mr.evaluate({ async: false });
         buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
         // console.log('yze -> yzeRoll -> mr', mr);
       }
@@ -132,8 +131,9 @@ export class yze {
         com = `${roll1}` + '+' + `${roll2}`;
         // mr = '';
       }
-      mr = new Roll(`${com}`);
-      mr.evaluate({ async: true });
+
+      mr = new Roll(`${com}`).evaluate({ async: false });
+      // mr.evaluate({ async: false });
       // // console.log('yze -> yzeRoll -> mr', mr);
       buildChat(mr, r1Dice, 'Stress');
 
