@@ -1,8 +1,8 @@
 <form class="{{cssClass}}" autocomplete="off">
   <header class="vehicle-header">
-    <img class="profile-img-item" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <img class="profile-img-item" src="{{img}}" data-edit="img" title="{{name}}" />
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'ALIENRPG.Suit'}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize 'ALIENRPG.Suit'}}" /></h1>
 
       <div class="resources grid-weapon">
         <h3 class="resource-label wItem1">{{localize "ALIENRPG.Weight"}}</h3>
@@ -57,7 +57,6 @@
     </div>
 
     {{!-- Notes Tab --}}
-    <div class="tab item active" data-group="primary" data-tab="notes">{{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=editable}}</div>
+    <div class="tab item active" data-group="primary" data-tab="notes">{{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=true}}</div>
   </section>
-  {{log "CONTEXT!!!!"}} {{log this}}
 </form>

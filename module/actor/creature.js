@@ -39,22 +39,24 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
   getData() {
     // const data = super.getData();
     // Basic data
-    let isOwner = this.entity.owner;
+    let isOwner = this.document.isOwner;
     const data = {
-      owner: isOwner,
-      limited: this.entity.limited,
+      owner: this.document.isOwner,
+      limited: this.document.limited,
       options: this.options,
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
-      isCharacter: this.entity.data.type === 'character',
-      isVehicles: this.entity.data.type === 'vehicles',
-      isCreature: this.entity.data.type === 'creature',
+      isCharacter: this.document.data.type === 'character',
+      isVehicles: this.document.data.type === 'vehicles',
+      isCreature: this.document.data.type === 'creature',
       // isNPC: this.entity.data.type === 'creature',
       config: CONFIG.ALIENRPG,
     };
 
     // The Actor and its Items
-    data.actor = duplicate(this.actor.data);
+    // data.actor = duplicate(this.actor.data);
+    data.actor = foundry.utils.deepClone(this.actor.data);
+
     data.items = this.actor.items.map((i) => {
       i.data.labels = i.labels;
       return i.data;
@@ -108,7 +110,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     html.find('.creature-acid-roll').click(this._creatureAcidRoll.bind(this));
 
     // Drag events for macros.
-    if (this.actor.owner) {
+    if (this.actor.isOwner) {
       let handler = (ev) => this._onDragItemStart(ev);
       // Find all items on the character sheet.
       html.find('li.item').each((i, li) => {
@@ -152,6 +154,7 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
+    // console.log('🚀 ~ file: creature.js ~ line 158 ~ ActorSheetAlienRPGCreat ~ _creatureAttackRoll ~ dataset', dataset);
     this.actor.creatureAttackRoll(this.actor, dataset);
   }
 }
