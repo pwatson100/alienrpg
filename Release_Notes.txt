@@ -328,3 +328,8 @@ Improved combat tracker compatibility with modules using libwrapper and @DM9290 
 Corrected issue with Inventory headings not being localized. 
 Corrected issue with some item types showing options for food power etc.
 Corrected issue where the currency field would show $NAN on a minor change or non numeric input. 
+
+Version 2.0.0
+Foundry VTT 8.6 Compatibility release.
+No Functional changes.
+A couple of minor bug fixes. 
