@@ -5,14 +5,14 @@ export class AlienRPGSetup {
     console.warn('***************************************************************');
 
     function pExists() {
-      if (game.folders.entities.filter((entry) => entry.data.name == 'Alien Tables').length > 0) {
+      if (game.folders.contents.filter((entry) => entry.data.name == 'Alien Tables').length > 0) {
         return true;
       } else {
         return false;
       }
     }
     function itemExists() {
-      if (game.folders.entities.filter((entry) => entry.data.name == 'Skill-Stunts').length > 0) {
+      if (game.folders.contents.filter((entry) => entry.data.name == 'Skill-Stunts').length > 0) {
         return true;
       } else {
         return false;

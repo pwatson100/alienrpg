@@ -29,7 +29,6 @@ export class yze {
    */
   static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid, itemid) {
     // console.log('yze -> yzeRoll -> actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2', actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
-
     // *******************************************************
     // Store the version number of FVTT
     // *******************************************************
@@ -106,7 +105,8 @@ export class yze {
     if (r1Dice >= 1) {
       roll1 = `${r1Dice}` + 'db';
       if (r2Dice <= 0) {
-        mr = new Roll(`${roll1}`).roll();
+        mr = new Roll(`${roll1}`).evaluate({ async: false });
+        // await mr.evaluate({ async: true });
         buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
         // console.log('yze -> yzeRoll -> mr', mr);
       }
@@ -131,7 +131,9 @@ export class yze {
         com = `${roll1}` + '+' + `${roll2}`;
         // mr = '';
       }
-      mr = new Roll(`${com}`).roll();
+
+      mr = new Roll(`${com}`).evaluate({ async: false });
+      // await mr.evaluate({ async: true });
       // // console.log('yze -> yzeRoll -> mr', mr);
       buildChat(mr, r1Dice, 'Stress');
 
@@ -224,25 +226,25 @@ export class yze {
 
     if (!blind) {
       ChatMessage.create({
-        user: game.user._id,
+        user: game.user.data._id,
         speaker: {
           actor: actorid,
         },
         content: chatMessage,
-        other: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        other: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
         sound: CONFIG.sounds.dice,
-        type: CHAT_MESSAGE_TYPES.ROLL,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,
         rollMode: game.settings.get('core', 'rollMode'),
       });
     } else {
       ChatMessage.create({
-        user: game.user._id,
+        user: game.user.data._id,
         speaker: {
           actor: actorid,
         },
         content: chatMessage,
-        whisper: game.users.entities.filter((u) => u.isGM).map((u) => u._id),
+        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
         blind: true,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,

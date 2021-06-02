@@ -17,7 +17,7 @@ export class AlienRPGBaseDie extends Die {
   /* -------------------------------------------- */
 
   /** @override */
-  static getResultLabel(result) {
+  getResultLabel(result) {
     return {
       1: '<img src="systems/alienrpg/ui/DsN/alien-dice-b0.png" />',
       2: '<img src="systems/alienrpg/ui/DsN/alien-dice-b0.png" />',
@@ -25,7 +25,7 @@ export class AlienRPGBaseDie extends Die {
       4: '<img src="systems/alienrpg/ui/DsN/alien-dice-b0.png" />',
       5: '<img src="systems/alienrpg/ui/DsN/alien-dice-b0.png" />',
       6: '<img src="systems/alienrpg/ui/DsN/alien-dice-b6.png" />',
-    }[result];
+    }[result.result];
   }
 }
 export class AlienRPGStressDie extends Die {
@@ -47,7 +47,7 @@ export class AlienRPGStressDie extends Die {
   /* -------------------------------------------- */
 
   /** @override */
-  static getResultLabel(result) {
+  getResultLabel(result) {
     return {
       1: '<img src="systems/alienrpg/ui/DsN/alien-dice-y1.png" />',
       2: '<img src="systems/alienrpg/ui/DsN/alien-dice-y0.png" />',
@@ -55,6 +55,6 @@ export class AlienRPGStressDie extends Die {
       4: '<img src="systems/alienrpg/ui/DsN/alien-dice-y0.png" />',
       5: '<img src="systems/alienrpg/ui/DsN/alien-dice-y0.png" />',
       6: '<img src="systems/alienrpg/ui/DsN/alien-dice-y6.png" />',
-    }[result];
+    }[result.result];
   }
 }

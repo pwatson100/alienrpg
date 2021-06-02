@@ -1,7 +1,7 @@
 (async () => {
   let options = '';
-  game.tables.entities.forEach((t) => {
-    if (t.folder && t.folder.name === 'Alien Mother Tables') {
+  game.tables.contents.forEach((t) => {
+    if (t.folder && t.folder.name === 'Alien Mother Tables' && t.folder.name != null) {
       options = options.concat(`<option value="${t.data._id}">${t.data.name}</option>`);
     }
   });
@@ -36,6 +36,7 @@
 
           for (let i = 0; i < drawNumber; i++) {
             const roll = new Roll(formula + ' + ' + modifier);
+            roll.evaluate({ async: false });
             await table.draw({ roll: roll });
           }
         },
