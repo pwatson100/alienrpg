@@ -25,7 +25,7 @@
             "message": "<h1>Foundry 0.8.6.</h1><br />Version 2.0.0 of Alien RPG is a compatibility release for Foundry 0.8.6. <br />This version has a couple of minor bug fixes but no new features. <br /><br /><b>Premium Modules:</b><br />Updates to the import scripts for the premium modules along with other fixes have been sent to Free League to upload to their site. As soon as I am aware they have been updated I will send out another message. <br /><br /><h1><strong> Before upgrading Foundry, make sure you have a backup of your worlds</strong></h1><br /><br />Please read the @JournalEntry[MU/TH/ER Instructions.] to get the most benefit out of using the system and features."
           },
         {
-            "version": 6,
+            "version": 7,
             "message": "<h1>Premium Modules</h1><br />Free League have updated the source files so you should be able to update them. <br /><br /><h1><strong> Before upgrading Foundry, make sure you have a backup of your worlds</strong></h1><br /><br />Please read the @JournalEntry[MU/TH/ER Instructions.] to get the most benefit out of using the system and features."
         }
     ]
