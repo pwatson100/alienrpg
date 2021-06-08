@@ -563,7 +563,6 @@ export class alienrpgActorSheet extends ActorSheet {
     function localStringToNumber(s) {
       return Number(String(s).replace(/[^0-9.-]+/g, ''));
     }
-
     function onBlur(e) {
       let value = localStringToNumber(e.target.value);
       e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';

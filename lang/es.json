@@ -257,6 +257,8 @@
   "ALIENRPG.Dice": "Dado: ",
   "ALIENRPG.RollCrit": "Tirar Herida",
   "ALIENRPG.hideInitChat": "Ocultar mensajes de chat de iniciativa",
-  "ALIENRPG.hideInitChatHint": "Marca esto para ocultar los mensajes de chat para las tiradas de iniciativa"
+  "ALIENRPG.hideInitChatHint": "Marca esto para ocultar los mensajes de chat para las tiradas de iniciativa",
+  "ALIENRPG.Clothing":"Ropa"
+
 
 }

@@ -53,12 +53,12 @@ export default class AlienRPGCombat extends Combat {
           }
           let cardPath = `<div style="text-align: center;"><img width="125" height="175" src="systems/alienrpg/images/cards/card-${broll.total}.png"></div>`;
           try {
-            if (game.settings.get(crmoduleKey, 'imported')) {
+            if (game.settings.get('alienrpg-corerules', 'imported')) {
               cardPath = `<div style="text-align: center;"><img width="125" height="175" src="modules/alienrpg-corerules/images/cards/card-${broll.total}.png"></div>`;
             }
           } catch (error) {
             try {
-              if (game.settings.get(ssmoduleKey, 'imported')) {
+              if (game.settings.get('alienrpg-starterset', 'imported')) {
                 cardPath = `<div style="text-align: center;"><img width="125" height="175" src="modules/alienrpg-starterset/images/cards/card-${broll.total}.png"></div>`;
               }
             } catch (error) {}

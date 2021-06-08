@@ -333,3 +333,10 @@ Version 2.0.0
 Foundry VTT 8.6 Compatibility release.
 No Functional changes.
 A couple of minor bug fixes. 
+
+Version 2.0.1
+Corrected error displaying Initiative cards from Premium modules.
+Added new Item category of Clothing.
+Corrected bug on Synthetic sheet with rolls (left and right click) not working.
+Corrected issue on Synthetic sheet where the currency field would show $NAN on a minor change or non numeric input. 
+
