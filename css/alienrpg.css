@@ -2377,6 +2377,14 @@ button:focus {
   margin-right: 10px;
   width: 150px;
 }
+.alienrpg .profile-img-vehicle {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100px;
+          flex: 0 0 100px;
+  height: 160px;
+  margin-right: 10px;
+  width: 300px;
+}
 .alienrpg .header-fields {
   -webkit-box-flex: 1;
       -ms-flex: 1;

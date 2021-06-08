@@ -57,8 +57,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     };
 
     // The Actor and its Items
-    data.actor = duplicate(this.actor.data);
-    const actorData = data.actor.data;
+    data.actor = foundry.utils.deepClone(this.actor.data);
+    // const actorData = data.actor.data;
 
     data.items = this.actor.items.map((i) => {
       i.data.labels = i.labels;
@@ -530,9 +530,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     function localStringToNumber(s) {
       return Number(String(s).replace(/[^0-9.-]+/g, ''));
     }
-
     function onBlur(e) {
-      let value = e.target.value;
+      let value = localStringToNumber(e.target.value);
       e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
       // console.warn(e.target.value);
     }

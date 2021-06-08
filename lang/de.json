@@ -254,6 +254,8 @@
   "ALIENRPG.Dice": "Würfel: ",
   "ALIENRPG.RollCrit": "Roll Crit",
   "ALIENRPG.hideInitChat": "Initiieren Sie Initiativ-Chat-Nachrichten",
-  "ALIENRPG.hideInitChatHint": "Aktivieren Sie diese Option, um Chatnachrichten für Initiativwürfe auszublenden"
+  "ALIENRPG.hideInitChatHint": "Aktivieren Sie diese Option, um Chatnachrichten für Initiativwürfe auszublenden",
+  "ALIENRPG.Clothing":"Kleidung"
+
 
 }

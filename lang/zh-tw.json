@@ -254,5 +254,7 @@
     "ALIENRPG.Sixes": "Sixes: ",
     "ALIENRPG.Dice": "骰子: ",
     "ALIENRPG.hideInitChat": "隐藏主动聊天消息",
-    "ALIENRPG.hideInitChatHint": "选中此选项可隐藏聊天消息，以备不时之需"
+    "ALIENRPG.hideInitChatHint": "选中此选项可隐藏聊天消息，以备不时之需",
+    "ALIENRPG.Clothing":"服装"
+
 }
