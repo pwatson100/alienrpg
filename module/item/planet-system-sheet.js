@@ -28,7 +28,9 @@ export class alienrpgPlanetSheet extends ItemSheet {
 
   /** @override */
   getData() {
-    const data = super.getData();
+    // const data = super.getData();
+    const data = foundry.utils.deepClone(this.item.data);
+
     // console.warn('get data', data);
     return data;
   }
