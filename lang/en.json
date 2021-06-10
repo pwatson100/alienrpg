@@ -256,5 +256,16 @@
   "ALIENRPG.Dice": "Dice: ",
   "ALIENRPG.hideInitChat": "Hide Initiative Chat Messages",
   "ALIENRPG.hideInitChatHint": "Check this to hide chat messages for Initiative rolls",
-  "ALIENRPG.Clothing":"Clothing"
+  "ALIENRPG.Clothing":"Clothing",
+  "ALIENRPG.Effect":"Effect",
+  "ALIENRPG.Fatal":"Fatal",
+  "ALIENRPG.TimeLimit":"Time Limit",
+  "ALIENRPG.HealTime":"Healing Time",
+  "ALIENRPG.None":"None",
+  "ALIENRPG.OneRound":"One Round",
+  "ALIENRPG.OneTurn":"One Turn",
+  "ALIENRPG.OneShift":"One Shift",
+  "ALIENRPG.OneDay":"One Day",
+  "ALIENRPG.Days":"Days"
+
 }

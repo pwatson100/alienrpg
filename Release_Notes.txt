@@ -342,3 +342,9 @@ Corrected issue on Synthetic sheet where the currency field would show $NAN on a
 
 Version 2.0.2
 Corrected issue wth planet-system creation.
+Sheet improvements for readability
+Added new Item - "critical-Injury"
+Removed Critical Injury text field from Character and Synthetic sheets.
+Added ability to drag and drop Critical Injuries on to Character and Synthetic sheets.
+  Modifiers in the Critical Injuries items will effect rolls on Character and Synthetic actors.
+  

@@ -242,12 +242,24 @@
               value="{{data.general.relTwo.value}}"
               rows="1"data-dtype="String"></input>
         </div>
-        
-        <div class="Item7">
+                <div class="Item7">
+          <div style=" border-bottom:solid;">
+          <label class="resource-label rollCrit">{{ localize "ALIENRPG.CriticalInjuries"}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >> {{ localize "ALIENRPG.RollCrit"}} <<</label> 
+          {{!-- <label class="resource-label rollCrit" style="font-weight: bold;" >>> {{ localize "ALIENRPG.RollCrit"}} <<</label>  --}}
+          </div>
+                {{#each critInj as |item iid|}}
+                <li class="box4 item grid-special" data-item-id="{{item._id}}">
+                  <h4 class="item-name spe1" data-pmbut="{{item._id}}">{{item.name}} </h4>
+                  <a class="spe2 item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+                </li>
+                {{/each}}
+        </div>
+
+        {{!-- <div class="Item7">
           <label class="resource-label">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
         <label class="resource-label rollCrit" style="font-weight: bold;" >>> {{ localize "ALIENRPG.RollCrit"}} <<</label> 
           <textarea name="data.general.critInj.value" rows="2"data-dtype="String">{{data.general.critInj.value}}</textarea>
-        </div>
+        </div> --}}
     </div>
 </div>
     </section>

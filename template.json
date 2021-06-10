@@ -557,7 +557,8 @@
       "planet-system",
       "skill-stunts",
       "agenda",
-      "specialty"
+      "specialty",
+      "critical-injury"
     ],
     "item": {
       "header": {
@@ -913,6 +914,116 @@
     "skill-stunts": {
       "skill": "",
       "description": ""
+    },
+    "critical-injury": {
+      "header": {
+        "type": {
+          "value": "",
+          "label": "Text"
+        },
+        "active": true
+      },
+      "attributes": {
+        "fatal":false,
+          "effects": "",
+        "timelimit": {
+          "value": 0
+        },
+        "healingtime": {
+          "value": 0
+        }
+      },
+      "modifiers": {
+        "attributes": {
+          "health": {
+            "value": 0,
+            "label": "Health"
+          },
+          "stress": {
+            "value": 0,
+            "label": "Stress"
+          },
+          "str": {
+            "value": 0,
+            "label": "Strength"
+          },
+          "wit": {
+            "value": 0,
+            "label": "Wits"
+          },
+          "agl": {
+            "value": 0,
+            "label": "Agility"
+          },
+          "emp": {
+            "value": 0,
+            "label": "Empathy"
+          }
+        },
+        "skills": {
+          "heavyMach": {
+            "value": 0,
+            "label": "Heavy Machinery",
+            "ability": "str"
+          },
+          "closeCbt": {
+            "value": 0,
+            "label": "Close Combat",
+            "ability": "str"
+          },
+          "stamina": {
+            "value": 0,
+            "label": "Stamina",
+            "ability": "str"
+          },
+          "rangedCbt": {
+            "value": 0,
+            "label": "Ranged Combat",
+            "ability": "agl"
+          },
+          "mobility": {
+            "value": 0,
+            "label": "Mobility",
+            "ability": "agl"
+          },
+          "piloting": {
+            "value": 0,
+            "label": "Piloting",
+            "ability": "agl"
+          },
+          "command": {
+            "value": 0,
+            "label": "Command",
+            "ability": "emp"
+          },
+          "manipulation": {
+            "value": 0,
+            "label": "Manipulation",
+            "ability": "emp"
+          },
+          "medicalAid": {
+            "value": 0,
+            "label": "Medical Aid",
+            "ability": "emp"
+          },
+          "observation": {
+            "value": 0,
+            "label": "Observation",
+            "ability": "wit"
+          },
+          "survival": {
+            "value": 0,
+            "label": "Survival",
+            "ability": "wit"
+          },
+          "comtech": {
+            "value": 0,
+            "label": "Comtech",
+            "ability": "wit"
+          }
+        }
+      }
     }
+
   }
 }

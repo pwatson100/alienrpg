@@ -258,7 +258,17 @@
   "ALIENRPG.RollCrit": "Tirar Herida",
   "ALIENRPG.hideInitChat": "Ocultar mensajes de chat de iniciativa",
   "ALIENRPG.hideInitChatHint": "Marca esto para ocultar los mensajes de chat para las tiradas de iniciativa",
-  "ALIENRPG.Clothing":"Ropa"
+  "ALIENRPG.Clothing":"Ropa",
+  "ALIENRPG.Effect":"Efecto",
+  "ALIENRPG.Fatal":"Fatal",
+  "ALIENRPG.TimeLimit":"Límite de tiempo",
+  "ALIENRPG.HealTime":"Tiempo de recuperación",
+  "ALIENRPG.None":"Ninguno",
+  "ALIENRPG.OneRound":"Un Redondear",
+  "ALIENRPG.OneTurn":"Un Turno",
+  "ALIENRPG.OneShift":"Un Cambiar",
+  "ALIENRPG.OneDay":"Un Día",
+  "ALIENRPG.Days":"Dias"
 
 
 }

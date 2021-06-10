@@ -112,7 +112,8 @@ export class alienrpgActor extends Actor {
     for (let [skey, iAttrib] of Object.entries(actorData.items.contents)) {
       // console.log('🚀 ~ file: actor.js ~ line 110 ~ alienrpgActor ~ _prepareCharacterData ~ Attrib', actorData);
       const Attrib = iAttrib.data;
-      if (Attrib.type === 'item') {
+      // debugger;
+      if (Attrib.type === 'item' || Attrib.type === 'critical-injury') {
         if (Attrib.data.header.active) {
           let base = Attrib.data.modifiers.attributes;
           // console.log('🚀 ~ file: actor.js ~ line 104 ~ alienrpgActor ~ _prepareCharacterData ~ base', base);

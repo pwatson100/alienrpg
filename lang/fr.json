@@ -254,7 +254,17 @@
   "ALIENRPG.RollCrit": "Crit au rouleau",
   "ALIENRPG.hideInitChat": "Masquer les messages de discussion d'initiative",
   "ALIENRPG.hideInitChatHint": "Cochez cette case pour masquer les messages de chat pour les lancers d'Initiative",
-  "ALIENRPG.Clothing":"Vêtements"
+  "ALIENRPG.Clothing":"Vêtements",
+  "ALIENRPG.Effect":"Effet",
+  "ALIENRPG.Fatal":"Fatal",
+  "ALIENRPG.TimeLimit":"Limite de temps",
+  "ALIENRPG.HealTime":"Temps de guérison",
+  "ALIENRPG.None":"Rien",
+  "ALIENRPG.OneRound":"Un Ronde",
+  "ALIENRPG.OneTurn":"Un Tour",
+  "ALIENRPG.OneShift":"Un Décaler",
+  "ALIENRPG.OneDay":"Un Jour",
+  "ALIENRPG.Days":"Journées"
 
 
 }

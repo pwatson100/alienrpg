@@ -255,6 +255,16 @@
     "ALIENRPG.Dice": "骰子: ",
     "ALIENRPG.hideInitChat": "隐藏主动聊天消息",
     "ALIENRPG.hideInitChatHint": "选中此选项可隐藏聊天消息，以备不时之需",
-    "ALIENRPG.Clothing":"服装"
+    "ALIENRPG.Clothing":"服装",
+    "ALIENRPG.Effect":"影响",
+    "ALIENRPG.Fatal":"致命",
+    "ALIENRPG.TimeLimit":"时限",
+    "ALIENRPG.HealTime":"治愈时间",
+    "ALIENRPG.None":"莫",
+    "ALIENRPG.OneRound":"一回合",
+    "ALIENRPG.OneTurn":"一斡",
+    "ALIENRPG.OneShift":"一轮班",
+    "ALIENRPG.OneDay":"一天",
+    "ALIENRPG.Days":"天"
 
 }

@@ -1,0 +1,133 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="vehicle-header">
+    <img class="profile-img-item" src="{{img}}" data-edit="img" title="{{name}}" />
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+
+      <div class="resources grid-weapon">
+        <h3 class="resource-label wItem1">{{localize "ALIENRPG.TimeLimit"}}</h3>
+
+        {{!-- <input type="text" name="data.attributes.healingtime.value" class="maxboxsize wItem2" value="{{data.attributes.healingtime.value}}" data-dtype="Number" /> --}}
+        <select class="select-css" name="data.attributes.healingtime.value" data-dtype="{{data.attributes.healingtime.value}}">
+          {{#select data.attributes.healingtime.value}}
+          <!-- <option value=""></option> -->
+          <option value="0">{{localize "ALIENRPG.None"}}</option>
+          <option value="1">{{localize "ALIENRPG.OneRound"}}</option>
+          <option value="2">{{localize "ALIENRPG.OneTurn"}}</option>
+          <option value="3">{{localize "ALIENRPG.OneShift"}}</option>
+          <option value="4">{{localize "ALIENRPG.OneDay"}}</option>
+          {{/select}}
+        </select>
+
+        <h3 class="resource-label wItem3">{{localize "ALIENRPG.HealTime"}}</h3>
+        <span>
+          <input type="text" class="maxboxsize wItem4" name="data.attributes.timelimit.value" value="{{data.attributes.timelimit.value}} " data-dtype="Number" />
+          {{localize "ALIENRPG.Days"}}
+        </span>
+        <h3 class="resource-label wItem5">{{localize "ALIENRPG.Fatal"}}</h3>
+        <input class="wItem6" name="data.attributes.fatal" type="checkbox" {{checked data.attributes.fatal}} />
+      </div>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="effect">{{localize "ALIENRPG.Effect"}}</a>
+    {{!-- <a class="item" data-tab="notes">{{localize "ALIENRPG.Notes"}}</a> --}}
+    <a class="item" data-tab="modifiers">{{localize "ALIENRPG.Modifiers"}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    {{!-- Attributes Tab --}}
+    <div class="tab effect" data-group="primary" data-tab="effect">
+      <h2 class="resource-label">{{localize "ALIENRPG.Effect"}}</h2>
+      <div class="tab item" data-group="primary" data-tab="effect">
+        <!-- prettier-ignore -->
+        {{editor content=data.attributes.effects target="data.attributes.effects" button=true owner=owner editable=true}}
+      </div>
+    </div>
+
+    <div class="tab modifiers" data-group="primary" data-tab="modifiers">
+      <h2 class="resource-label">{{localize "ALIENRPG.Attributes"}}</h2>
+      <div class="grid-2col">
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.attributes.health.value" class="resource-label">{{localize "ALIENRPG.Health"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.attributes.health.value" value="{{data.modifiers.attributes.health.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.attributes.stress.value" class="resource-label">{{localize "ALIENRPG.Stress"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.attributes.stress.value" value="{{data.modifiers.attributes.stress.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.attributes.str.value" class="resource-label">{{localize "ALIENRPG.AbilityStr"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.attributes.str.value" value="{{data.modifiers.attributes.str.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.attributes.wit.value" class="resource-label">{{localize "ALIENRPG.AbilityWit"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.attributes.wit.value" value="{{data.modifiers.attributes.wit.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.attributes.agl.value" class="resource-label">{{localize "ALIENRPG.AbilityAgl"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.attributes.agl.value" value="{{data.modifiers.attributes.agl.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.attributes.emp.value" class="resource-label">{{localize "ALIENRPG.AbilityEmp"}}</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.attributes.emp.value" value="{{data.modifiers.attributes.emp.value}}" data-dtype="Number" />
+        </div>
+      </div>
+
+      <h2 class="resource-label">{{localize "ALIENRPG.Skills"}}</h2>
+      <div class="grid-2col">
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.heavyMach.value" class="resource-label">{{localize "ALIENRPG.SkillHeavyMach"}} ({{data.modifiers.skills.heavyMach.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.heavyMach.value" value="{{data.modifiers.skills.heavyMach.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.closeCbt.value" class="resource-label">{{localize "ALIENRPG.SkillCloseCbt"}} ({{data.modifiers.skills.closeCbt.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.closeCbt.value" value="{{data.modifiers.skills.closeCbt.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.stamina.value" class="resource-label">{{localize "ALIENRPG.SkillStamina"}} ({{data.modifiers.skills.stamina.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.stamina.value" value="{{data.modifiers.skills.stamina.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.rangedCbt.value" class="resource-label">{{localize "ALIENRPG.SkillRangedCbt"}} ({{data.modifiers.skills.rangedCbt.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.rangedCbt.value" value="{{data.modifiers.skills.rangedCbt.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.mobility.value" class="resource-label">{{localize "ALIENRPG.SkillMobility"}} ({{data.modifiers.skills.mobility.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.mobility.value" value="{{data.modifiers.skills.mobility.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.piloting.value" class="resource-label">{{localize "ALIENRPG.SkillPiloting"}} ({{data.modifiers.skills.piloting.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.piloting.value" value="{{data.modifiers.skills.piloting.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.command.value" class="resource-label">{{localize "ALIENRPG.SkillCommand"}} ({{data.modifiers.skills.command.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.command.value" value="{{data.modifiers.skills.command.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.manipulation.value" class="resource-label">{{localize "ALIENRPG.SkillManipulation"}} ({{data.modifiers.skills.manipulation.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.manipulation.value" value="{{data.modifiers.skills.manipulation.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.medicalAid.value" class="resource-label">{{localize "ALIENRPG.SkillMedicalAid"}} ({{data.modifiers.skills.medicalAid.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.medicalAid.value" value="{{data.modifiers.skills.medicalAid.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.observation.value" class="resource-label">{{localize "ALIENRPG.SkillObservation"}} ({{data.modifiers.skills.observation.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.observation.value" value="{{data.modifiers.skills.observation.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.survival.value" class="resource-label">{{localize "ALIENRPG.SkillSurvival"}} ({{data.modifiers.skills.survival.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.survival.value" value="{{data.modifiers.skills.survival.value}}" data-dtype="Number" />
+        </div>
+        <div class="modifiers flexrow flex-group-center">
+          <label for="data.modifiers.skills.comtech.value" class="resource-label">{{localize "ALIENRPG.SkillComtech"}} ({{data.modifiers.skills.comtech.ability}})</label>
+          <input type="text" class="maxboxsize" name="data.modifiers.skills.comtech.value" value="{{data.modifiers.skills.comtech.value}}" data-dtype="Number" />
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
