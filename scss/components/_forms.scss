@@ -107,14 +107,6 @@ h1.charname {
   margin: 5px 5px 5px 5px;
   // width: 180px;
 }
-.textbox3 {
-  color: inherit;
-  // justify-items: center;
-  background-color: $c-black;
-  padding: 5px;
-  margin: 5px 5px 5px 5px;
-  width: 180px;
-}
 .textbox1 {
   color: inherit;
   justify-items: center;
@@ -141,6 +133,15 @@ h1.charname {
   margin: 5px 5px 5px 5px;
   width: 180px;
 }
+.textbox4 {
+  color: inherit;
+  justify-items: center;
+  background-color: $c-black;
+  width: 450px;
+  padding: 0;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
 
 textarea {
   resize: none;
@@ -148,6 +149,8 @@ textarea {
   // color: $c-green;
   color: inherit;
   border: 1px solid var(--aliengreen);
+  font-family: var(--alienfont);
+  font-size: medium;
 }
 
 form .sheet-content .click-stat-level {

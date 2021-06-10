@@ -141,11 +141,13 @@
                       <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.xp.icon}}}
                     </span>
                   </div>
+                  <br>
                   <div class="dots experience" style="margin-top: 3px;" >
                   <h4 class="resource-label">{{localize "ALIENRPG.StoryPoints"}}</h4>
                     <input type="hidden" name="data.general.sp.value" data-max="{{data.general.sp.max}}" value="{{data.general.sp.value}}" data-dtype="Number">
                       <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.sp.icon}}}</span>
                   </div>
+                  <br><br>
                   <div style="margin-top: 6px;">
                   <label class="resource-label">{{localize "ALIENRPG.Cash"}}</label>
                   <input type="text" class="cashboxsize currency" name="data.general.cash.value" value="{{data.general.cash.value}}" />
@@ -218,13 +220,13 @@
         <div class="Item4">
           <label class="resource-label">{{ localize "ALIENRPG.Appearance"}}</label> 
           <br>
-          <textarea name="data.general.appearance.value" rows="2"data-dtype="String">{{data.general.appearance.value}}</textarea>
+          <textarea name="data.general.appearance.value" rows="5"data-dtype="String">{{data.general.appearance.value}}</textarea>
         </div>
         
         
         <div class="Item5">
           <label class="resource-label">{{ localize "ALIENRPG.PersonalAgenda"}}</label> 
-          <textarea name="data.general.agenda.value" rows="6"data-dtype="String">{{data.general.agenda.value}}</textarea>
+          <textarea name="data.general.agenda.value" rows="5"data-dtype="String">{{data.general.agenda.value}}</textarea>
         </div>
         
         <div class="Item6">

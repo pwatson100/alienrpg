@@ -24,7 +24,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       classes: ['alienrpg', 'sheet', 'actor', 'synth-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 740,
-      height: 710,
+      height: 780,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
