@@ -585,7 +585,7 @@
   display: grid;
   grid-template-areas: 'box11 box21 box23 box22';
   // padding: 3px;
-  grid-template-columns: 150px 33px 15px 33px;
+  grid-template-columns: 1fr 33px 15px 33px;
   align-items: center;
   margin: 1px;
   padding: 0;
@@ -612,6 +612,19 @@
   grid-area: box23;
   justify-self: center;
   // padding-right: 8px;
+}
+.grid-crit {
+  display: grid;
+  grid-template-areas: 'crit1 crit2 ';
+  padding: 0;
+  margin: 0;
+  grid-template-columns: 1fr 1fr;
+}
+.crit1 {
+  grid-area: crit1;
+}
+.crit2 {
+  grid-area: crit2;
 }
 
 .grid-rTables {
@@ -645,7 +658,8 @@
     'vCre5 vCre6 '
     'vCre7 vCre8';
 
-  // grid-template-columns: 1fr;
+  grid-template-columns: auto;
+  align-items: center;
 }
 
 .vCre1 {

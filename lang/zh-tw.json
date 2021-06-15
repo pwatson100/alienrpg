@@ -265,6 +265,7 @@
     "ALIENRPG.OneTurn":"一斡",
     "ALIENRPG.OneShift":"一轮班",
     "ALIENRPG.OneDay":"一天",
-    "ALIENRPG.Days":"天"
-
+    "ALIENRPG.Days":"天",
+    "ALIENRPG.ArmorPiercing":"穿甲弹",
+    "ALIENRPG.ArmorDoubled":"护甲加倍"
 }

@@ -298,9 +298,6 @@ a.inline-roll {
   cursor: pointer;
 }
 
-.rollCrit {
-  margin-left: 25%;
-}
 .rollCrit:hover, .rollCrit:focus {
   color: red;
   text-shadow: 0 0 20px red;
@@ -1676,7 +1673,7 @@ button:focus {
 .grid-2 {
   display: grid;
   grid-template-areas: "box11 box21 box23 box22";
-  grid-template-columns: 150px 33px 15px 33px;
+  grid-template-columns: 1fr 33px 15px 33px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1706,6 +1703,22 @@ button:focus {
   justify-self: center;
 }
 
+.grid-crit {
+  display: grid;
+  grid-template-areas: "crit1 crit2 ";
+  padding: 0;
+  margin: 0;
+  grid-template-columns: 1fr 1fr;
+}
+
+.crit1 {
+  grid-area: crit1;
+}
+
+.crit2 {
+  grid-area: crit2;
+}
+
 .grid-rTables {
   display: grid;
   grid-template-areas: "rTable1 rTable2";
@@ -1732,6 +1745,10 @@ button:focus {
   display: grid;
   border: 2px solid var(--aliengreen);
   grid-template-areas: "vCre1 vCre2 " "vCre3 vCre4 " "vCre5 vCre6 " "vCre7 vCre8";
+  grid-template-columns: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .vCre1 {

@@ -265,7 +265,9 @@
   "ALIENRPG.OneTurn":"Eine Runde",
   "ALIENRPG.OneShift":"Eine Schicht",
   "ALIENRPG.OneDay":"Eines Tages",
-  "ALIENRPG.Days":"Tage"
+  "ALIENRPG.Days":"Tage",
+  "ALIENRPG.ArmorPiercing":"Panzerbrechend",
+  "ALIENRPG.ArmorDoubled":"Rüstung Verdoppelt"
 
 
 }

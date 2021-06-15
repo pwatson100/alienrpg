@@ -264,7 +264,9 @@
   "ALIENRPG.OneTurn":"Un Tour",
   "ALIENRPG.OneShift":"Un Décaler",
   "ALIENRPG.OneDay":"Un Jour",
-  "ALIENRPG.Days":"Journées"
+  "ALIENRPG.Days":"Journées",
+  "ALIENRPG.ArmorPiercing":"Perforant",
+  "ALIENRPG.ArmorDoubled":"Armure Doublée"
 
 
 }

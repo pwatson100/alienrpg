@@ -268,7 +268,9 @@
   "ALIENRPG.OneTurn":"Un Turno",
   "ALIENRPG.OneShift":"Un Cambiar",
   "ALIENRPG.OneDay":"Un Día",
-  "ALIENRPG.Days":"Dias"
+  "ALIENRPG.Days":"Dias",
+  "ALIENRPG.ArmorPiercing":"Traspaza Armaduras",
+  "ALIENRPG.ArmorDoubled":"Armadura Doblada"
 
 
 }

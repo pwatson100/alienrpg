@@ -64,7 +64,7 @@ Hooks.once('init', async function () {
    */
   CONFIG.Combat.initiative = {
     formula: '1d10',
-    decimals: 1,
+    decimals: 2,
   };
   // If the FVTT version is > V0.7.x initalise the Base and Stress dice terms
   // if (is07x) {
@@ -280,6 +280,12 @@ Hooks.once('renderSettings', () => {
 // DsN V3 Hooks
 // ***************************
 Hooks.on('diceSoNiceRollComplete', (chatMessageID) => {});
+
+Hooks.on('diceSoNiceRollStart', (id, context) => {
+  const roll = context.roll;
+  // perform some check to see if you want to hide the roll
+  if ('core.initiativeRoll') context.blind = true;
+});
 
 Hooks.once('diceSoNiceReady', (dice3d) => {
   dice3d.addColorset({

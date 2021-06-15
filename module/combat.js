@@ -21,10 +21,17 @@ export default class AlienRPGCombat extends Combat {
     ids = typeof ids === 'string' ? [ids] : ids;
     const currentId = this.combatant.data._id;
     const draw = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false };
+    let drawn = 0;
     // Iterate over Combatants, performing an initiative roll for each
     // const [updates, messages] = ids.reduce(
-
-    let drawn = 0;
+    if (this.combatant.collection._source.length > 0) {
+      this.combatant.collection._source.forEach((inIt) => {
+        if (inIt.initiative) {
+          draw[inIt.initiative] = true;
+          drawn++;
+        }
+      });
+    }
     const updates = [];
     const messages = [];
     for (let [i, id] of ids.entries()) {
@@ -86,9 +93,45 @@ export default class AlienRPGCombat extends Combat {
           messages.push(chatData);
         }
       } else {
-        ui.notifications.error(
-          `You can only automatically roll Initiative for 10 PCs/NPCs.  Roll initiative manually for the remaining actors or split in to multiple encounters in the Combat Tracker`
-        );
+        const combatant = this.combatants.get(id);
+        if (!combatant?.isOwner) return results;
+        let pNum = 10 / Math.floor(Math.random() * 100);
+        while (pNum === 0 || pNum >= 1) {
+          pNum = 10 / Math.floor(Math.random() * 100);
+        }
+
+        const cf = `1d9+( ${pNum})`;
+        let broll = this.getInit(combatant, cf, updates);
+        updates.push({ _id: id, initiative: broll.total });
+
+        let rollMode = messageOptions.rollMode || game.settings.get('core', 'rollMode');
+        if ((combatant.token.hidden || combatant.hidden) && rollMode === 'roll') {
+          rollMode = 'gmroll';
+        }
+        if (!game.settings.get('alienrpg', 'alienrpgHideInitChat')) {
+          let messageData = mergeObject(
+            {
+              speaker: {
+                scene: canvas.scene.data._id,
+                actor: combatant.actor ? combatant.actor.data._id : null,
+                token: combatant.token.data._id,
+                alias: combatant.token.name,
+              },
+              flavor: `${combatant.token.name} rolls for Initiative! <br> `,
+              flags: { 'core.initiativeRoll': true },
+            },
+            messageOptions
+          );
+
+          const chatData = await broll.toMessage(messageData, { create: false, rollMode });
+
+          // Play 1 sound for the whole rolled set
+          if (i > 0) chatData.sound = null;
+          messages.push(chatData);
+        }
+        // ui.notifications.error(
+        //   `You can only automatically roll Initiative for 10 PCs/NPCs.  Roll initiative manually for the remaining actors or split in to multiple encounters in the Combat Tracker`
+        // );
       }
     }
     if (!updates.length) return this;
@@ -109,6 +152,7 @@ export default class AlienRPGCombat extends Combat {
 
   getInit(c, cf, updates, roll) {
     roll = c.getInitiativeRoll(cf);
+    // roll.options.hidden = true;
     if (updates.some((updates) => updates['initiative'] === roll.total)) {
       this.getInit(c, cf, updates);
     } else {
