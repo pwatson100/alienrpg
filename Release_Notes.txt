@@ -341,6 +341,9 @@ Corrected bug on Synthetic sheet with rolls (left and right click) not working.
 Corrected issue on Synthetic sheet where the currency field would show $NAN on a minor change or non numeric input. 
 
 Version 2.0.2
+Added Brazilian Portuguese translation with thanks to @DanCoimbra and @FranzWarm
+Default Font change.  Wallpoet is no longer the default font.  I have added the OCR-A font as default which is a lot more readable. 
+CSS corrections for uniform colour changes. 
 Corrected issue wth planet-system creation.
 Sheet improvements for readability
 Added new Item - "critical-injury"

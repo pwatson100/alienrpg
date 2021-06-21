@@ -5,7 +5,7 @@
   "version": "2.0.2",
 
   "minimumCoreVersion": "0.8.5",
-  "compatibleCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.7",
   "author": "Paul Watson",
   "templateVersion": 2,
   "esmodules": [
@@ -75,7 +75,13 @@
       "lang": "es",
       "name": "Español",
       "path": "lang/es.json"
-    }
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-br.json"
+  }
+
   ],
   "gridDistance": 5,
   "gridUnits": "m",

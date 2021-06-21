@@ -4,10 +4,10 @@
 .alienrpg #context-menu {
   width: 100%;
   height: max-content;
-  min-width: 100px;
+  min-width: 150px;
   max-width: 360px;
   position: absolute;
-  left: -500%;
+  left: -900%;
   top: 50%;
   background: #000000;
   border: 1px solid var(--aliengreen);
@@ -465,6 +465,10 @@ button:focus {
 .headng3 {
   color: greenyellow;
 }
+
+// .consume-box {
+//   border: 1px solid var(--aliengreen);
+// }
 .spanner-icon {
   display: inline-block;
   width: 30px;
@@ -993,7 +997,7 @@ button:focus {
   visibility: hidden;
   width: 150px;
   background-color: black;
-  color: $c-green;
+  color: var(--aliengreen);
   text-align: center;
   border-radius: 3px;
   padding: 2px 0;

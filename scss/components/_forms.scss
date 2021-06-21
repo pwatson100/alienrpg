@@ -51,16 +51,25 @@ h1.charname {
   padding: 0px;
   margin: 0 5px 5px 5px;
   border-bottom: 0;
+  border: 1px solid var(--aliengreen);
+
   input {
     width: 100%;
     height: 100%;
     margin: 0;
     color: inherit;
+    border: 1px solid var(--aliengreen);
   }
 }
-
+.sheet nav.sheet-tabs {
+  border-top: 1px solid var(--aliengreen) !important;
+  border-bottom: 1px solid var(--aliengreen) !important;
+}
 .sheet-tabs {
   flex: 0;
+  // border: 1px solid var(--aliengreen);
+  border-top: 1px solid var(--aliengreen) !important;
+  border-bottom: 1px solid var(--aliengreen) !important;
   //  color: $c-green;
 }
 
@@ -90,6 +99,7 @@ h1.charname {
   padding: 0;
   margin: 1px;
   text-align: center;
+  border: 1px solid var(--aliengreen);
 }
 .cashboxsize {
   max-width: 150px;
@@ -97,6 +107,7 @@ h1.charname {
   justify-items: center;
   background-color: $c-black;
   text-align: center;
+  border: 1px solid var(--aliengreen);
 }
 
 .textbox {
@@ -105,6 +116,8 @@ h1.charname {
   background-color: $c-black;
   padding: 5px;
   margin: 5px 5px 5px 5px;
+  border: 1px solid var(--aliengreen);
+
   // width: 180px;
 }
 .textbox1 {
@@ -115,6 +128,7 @@ h1.charname {
   padding: 0;
   margin-top: 1px;
   margin-bottom: 1px;
+  border: 1px solid var(--aliengreen);
 }
 .textbox2 {
   color: inherit;
@@ -124,6 +138,7 @@ h1.charname {
   padding: 0;
   margin-top: 1px;
   margin-bottom: 1px;
+  border: 1px solid var(--aliengreen);
 }
 .textbox3 {
   color: inherit;
@@ -132,6 +147,7 @@ h1.charname {
   padding: 5px;
   margin: 5px 5px 5px 5px;
   width: 180px;
+  border: 1px solid var(--aliengreen);
 }
 .textbox4 {
   color: inherit;
@@ -141,6 +157,7 @@ h1.charname {
   padding: 0;
   margin-top: 1px;
   margin-bottom: 1px;
+  border: 1px solid var(--aliengreen);
 }
 
 textarea {
@@ -150,7 +167,8 @@ textarea {
   color: inherit;
   border: 1px solid var(--aliengreen);
   font-family: var(--alienfont);
-  font-size: medium;
+  // font-size: medium;
+  font-size: var(--fontsize);
 }
 
 form .sheet-content .click-stat-level {
