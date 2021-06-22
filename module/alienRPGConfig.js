@@ -45,7 +45,7 @@ export class AlienConfig extends FormApplication {
 
   onReset() {
     // this.reset = true;
-    game.settings.set('alienrpg', 'fontStyle', 'Wallpoet');
+    game.settings.set('alienrpg', 'fontStyle', 'OCR-A');
     game.settings.set('alienrpg', 'fontColour', '#adff2f');
     this.render();
   }
