@@ -343,12 +343,13 @@ Corrected issue on Synthetic sheet where the currency field would show $NAN on a
 Version 2.0.2
 Added Brazilian Portuguese translation with thanks to @DanCoimbra and @FranzWarm
 Default Font change.  Wallpoet is no longer the default font.  I have added the OCR-A font as default which is a lot more readable. 
-CSS corrections for uniform colour changes. 
-Corrected issue wth planet-system creation.
-Sheet improvements for readability
 Added new Item - "critical-injury"
+Combat Tracker will now roll more than 10 initiatives.  It's still capped at 10 and the new rolls will show as n.nn i.e. "3.17". 
 Removed Critical Injury text field from Character and Synthetic sheets.
 Added ability to drag and drop Critical Injuries on to Character and Synthetic sheets.
   Modifiers in the Critical Injuries items will effect rolls on Character and Synthetic actors.
 Right clicking on Armor will give options for Armor Piercing (Armor halved) and Armor Doubled. 
+Sheet improvements for readability
+CSS corrections for uniform colour changes. 
+Corrected issue wth planet-system creation.
   

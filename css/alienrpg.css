@@ -2660,4 +2660,23 @@ button:focus {
 }
 .alienrpg .biog img {
   display: block;
+}
+.alienrpg .biog-full {
+  height: 600px;
+  padding: 3px 0;
+  width: 1fr;
+  font-family: var(--alienfont);
+}
+.alienrpg .biog-full .biog-image {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 24px;
+          flex: 0 0 24px;
+  margin-right: 5px;
+}
+.alienrpg .biog-full .editor-content {
+  word-wrap: break-word;
+  font-family: var(--alienfont);
+}
+.alienrpg .biog-full img {
+  display: block;
 }/*# sourceMappingURL=alienrpg.css.map */

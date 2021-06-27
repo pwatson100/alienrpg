@@ -113,7 +113,7 @@ export class alienrpgActor extends Actor {
       // console.log('🚀 ~ file: actor.js ~ line 110 ~ alienrpgActor ~ _prepareCharacterData ~ Attrib', actorData);
       const Attrib = iAttrib.data;
       // debugger;
-      if (Attrib.type === 'item' || Attrib.type === 'critical-injury') {
+      if (Attrib.type === 'item' || Attrib.type === 'critical-injury' || Attrib.type === 'armor') {
         if (Attrib.data.header.active) {
           let base = Attrib.data.modifiers.attributes;
           // console.log('🚀 ~ file: actor.js ~ line 104 ~ alienrpgActor ~ _prepareCharacterData ~ base', base);
@@ -198,30 +198,30 @@ export class alienrpgActor extends Actor {
         }
       }
 
-      if (Attrib.type === 'armor') {
-        if (Attrib.data.header.active) {
-          let base = Attrib.data.modifiers;
-          for (let [bkey, vAttrib] of Object.entries(base)) {
-            switch (bkey) {
-              case 'agl':
-                attrMod.agl = attrMod.agl += parseInt(vAttrib.value);
-                break;
-              case 'heavyMach':
-                sklMod.heavyMach = sklMod.heavyMach += parseInt(vAttrib.value);
-                break;
-              case 'closeCbt':
-                sklMod.closeCbt = sklMod.closeCbt += parseInt(vAttrib.value);
-                break;
-              case 'survival':
-                sklMod.survival = sklMod.survival += parseInt(vAttrib.value);
-                break;
+      // if (Attrib.type === 'armor') {
+      //   if (Attrib.data.header.active) {
+      //     let base = Attrib.data.modifiers;
+      //     for (let [bkey, vAttrib] of Object.entries(base)) {
+      //       switch (bkey) {
+      //         case 'agl':
+      //           attrMod.agl = attrMod.agl += parseInt(vAttrib.value);
+      //           break;
+      //         case 'heavyMach':
+      //           sklMod.heavyMach = sklMod.heavyMach += parseInt(vAttrib.value);
+      //           break;
+      //         case 'closeCbt':
+      //           sklMod.closeCbt = sklMod.closeCbt += parseInt(vAttrib.value);
+      //           break;
+      //         case 'survival':
+      //           sklMod.survival = sklMod.survival += parseInt(vAttrib.value);
+      //           break;
 
-              default:
-                break;
-            }
-          }
-        }
-      }
+      //         default:
+      //           break;
+      //       }
+      //     }
+      //   }
+      // }
 
       if (Attrib.type === 'talent') {
         const talName = Attrib.name.toUpperCase();
