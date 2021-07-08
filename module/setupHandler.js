@@ -56,9 +56,9 @@ export class AlienRPGSetup {
 
       // Copy the gm tables from the pack into the correct folder so it's available to the templates.
       var gTables = game.packs.get('alienrpg.tables_gm');
-      gTables.getContent().then((d) =>
+      gTables.getDocuments().then((d) =>
         d.forEach((a) => {
-          game.tables.importFromCollection('alienrpg.tables_gm', a.data._id, { folder: mothfolder.id });
+          game.tables.importFromCompendium('alienrpg.tables_gm', a.data._id, { folder: mothfolder.id });
         })
       );
     }
@@ -79,9 +79,9 @@ export class AlienRPGSetup {
 
       // Copy the gm tables from the pack into the correct folder so it's available to the templates.
       var gItems = game.packs.get('alienrpg.skill-stunts');
-      gItems.getContent().then((d) =>
+      gItems.getDocuments().then((d) =>
         d.forEach((a) => {
-          game.items.importFromCollection('alienrpg.skill-stunts', a.data._id, { folder: folder.id });
+          game.items.importFromCompendium('alienrpg.skill-stunts', a.data._id, { folder: folder.id });
         })
       );
 

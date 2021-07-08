@@ -225,13 +225,13 @@ Hooks.once('ready', async () => {
       if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
         if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
           await game.journal.getName('MU/TH/ER Instructions.').delete();
-          await game.journal.importFromCollection('alienrpg.mother_instructions', `syX1CzWc8zG5jT5g`);
+          await game.journal.importFromCompendium('alienrpg.mother_instructions', `syX1CzWc8zG5jT5g`);
           await game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
           console.log('New version of MU/TH/ER Instructions.');
           await game.journal.getName('MU/TH/ER Instructions.').show();
         }
       } else {
-        await game.journal.importFromCollection('alienrpg.mother_instructions', `syX1CzWc8zG5jT5g`);
+        await game.journal.importFromCompendium('alienrpg.mother_instructions', `syX1CzWc8zG5jT5g`);
         game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
         await game.journal.getName('MU/TH/ER Instructions.').show();
       }
