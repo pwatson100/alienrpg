@@ -342,7 +342,8 @@ Corrected issue on Synthetic sheet where the currency field would show $NAN on a
 
 Version 2.0.2
 Added Brazilian Portuguese translation with thanks to @DanCoimbra, @FranzWarm and @zorieuq360
-Default Font change.  Wallpoet is no longer the default font.  I have added the OCR-A font as default which is a lot more readable. 
+Default Font change.  Wallpoet is no longer the default font.  I have added the OCR-A font as default which is a lot more readable.
+Tidied up the Panic, Roll Crit and Creature Attack buttons.  Will now use the language files for text.  
 Added new Item - "critical-injury"
 Combat Tracker will now roll more than 10 initiatives.  It's still capped at 10 and the new rolls will show as n.nn i.e. "3.17". 
 Removed Critical Injury text field from Character and Synthetic sheets.

@@ -12,7 +12,7 @@
   box-sizing: border-box;
   margin: 0;
   border: 1px solid var(--aliengreen);
-  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 0 1px hsla(0, 0%, 0%, 0.04);
   border-radius: 0.5em;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -48,7 +48,7 @@
   box-shadow: 0 0 0 1px -moz-mac-focusring var(--aliengreen);
   color: inherit;
   outline: none;
-  background-color: black;
+  background-color: $c-black;
 }
 
 /* Set options to normal weight */
@@ -76,5 +76,5 @@
 
 .select-css:disabled:hover,
 .select-css[aria-disabled='true'] {
-  border-color: #aaa;
+  border-color: hsl(0, 0%, 67%);
 }

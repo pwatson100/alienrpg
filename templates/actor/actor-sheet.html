@@ -303,7 +303,9 @@
         <div class="Item7">
           <div class="grid-crit" style=" border-bottom:solid;">
           <label class="speciality-label crit1"style="font-weight: bold;">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
-          <label class="speciality-label rollCrit crit2">>> {{ localize "ALIENRPG.RollCrit"}} <<</label> 
+          <button type="button" class="alien-crit-button rollCrit crit2" >{{localize "ALIENRPG.RollCrit"}}</button>
+
+          {{!-- <label class="speciality-label rollCrit crit2">>> {{ localize "ALIENRPG.RollCrit"}} <<</label>  --}}
 
           </div>
                 {{#each critInj as |item iid|}}

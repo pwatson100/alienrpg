@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "types": [
-      "@types/foundry-vtt-types"
-    ],
+    "types": ["@league-of-foundry-developers/foundry-vtt-types"],
     "moduleResolution": "node",
+    "strictNullChecks": true,
     "allowJs": true
   },
   "exclude": [

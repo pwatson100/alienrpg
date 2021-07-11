@@ -221,17 +221,21 @@ Hooks.once('ready', async () => {
   sendDevMessage();
   if (game.user.isGM) {
     try {
+      let motherPack = game.packs.find((p) => p.metadata.label === 'Mother Instructions');
+      await motherPack.getIndex();
+      let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
+
       const newVer = '3';
       if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
         if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
           await game.journal.getName('MU/TH/ER Instructions.').delete();
-          await game.journal.importFromCompendium('alienrpg.mother_instructions', `syX1CzWc8zG5jT5g`);
+          await game.journal.importFromCompendium(motherPack, motherIns._id);
           await game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
           console.log('New version of MU/TH/ER Instructions.');
           await game.journal.getName('MU/TH/ER Instructions.').show();
         }
       } else {
-        await game.journal.importFromCompendium('alienrpg.mother_instructions', `syX1CzWc8zG5jT5g`);
+        await game.journal.importFromCompendium(motherPack, motherIns._id);
         game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
         await game.journal.getName('MU/TH/ER Instructions.').show();
       }
@@ -281,11 +285,11 @@ Hooks.once('renderSettings', () => {
 // ***************************
 Hooks.on('diceSoNiceRollComplete', (chatMessageID) => {});
 
-Hooks.on('diceSoNiceRollStart', (id, context) => {
-  const roll = context.roll;
-  // perform some check to see if you want to hide the roll
-  if ('core.initiativeRoll') context.blind = true;
-});
+// Hooks.on('diceSoNiceRollStart', (id, context) => {
+//   const roll = context.roll;
+//   // perform some check to see if you want to hide the roll
+//   if ('core.initiativeRoll') context.blind = true;
+// });
 
 Hooks.once('diceSoNiceReady', (dice3d) => {
   dice3d.addColorset({

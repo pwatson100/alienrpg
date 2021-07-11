@@ -604,10 +604,10 @@ export class alienrpgActor extends Actor {
         let whispertarget = [];
 
         if (rollMode == 'gmroll' || rollMode == 'blindroll') {
-          whispertarget = game.users.contents.filter((u) => u.isGM).map((u) => u.data._id);
+          whispertarget = game.users.contents.filter((u) => u.isGM).map((u) => u._id);
         } else if (rollMode == 'selfroll') {
-          whispertarget = game.users.contents.filter((u) => u.isGM).map((u) => u.data._id);
-          whispertarget.push(game.user.data._id);
+          whispertarget = game.users.contents.filter((u) => u.isGM).map((u) => u._id);
+          whispertarget.push(game.user._id);
         }
 
         let blind = false;
@@ -616,7 +616,7 @@ export class alienrpgActor extends Actor {
           if (!game.user.isGM) {
             function SelfMessage(content, sound) {
               let selftarget = [];
-              selftarget.push(game.user.data._id);
+              selftarget.push(game.user._id);
 
               ChatMessage.create({ speaker: { actor: actor.id }, content, whisper: selftarget, type: CONST.CHAT_MESSAGE_TYPES.OTHER, sound, blind: false });
             }
