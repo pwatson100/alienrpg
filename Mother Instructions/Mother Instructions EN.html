@@ -14,7 +14,7 @@
     </ul>
     <li>Creature sheets.</li>
     <ul>
-      <li>Dropdown to allow the GM to select from a list of rolltalbes for attacks.</li>
+      <li>Dropdown to allow the GM to select from a list of rolltables for attacks.</li>
     </ul>
     <li>Territories and Vehicle sheets.</li>
     <li>Items:</li>
@@ -25,6 +25,7 @@
       <li>Talent - Talents for use within the system</li>
       <li>Planet-System - Details of planetary systems</li>
       <li>Agenda - PC Agenda and Story cards</li>
+      <li>Critical Injury - Create Critical injuries</li>
     </ul>
     <li>Customisable Fonts and text colours.</li>
     <li>2 sets of custom Alien RPG 3D dice are integrated if using the "Dice So Nice" module.</li>
@@ -97,9 +98,16 @@
   <br />
   Once the power level is zero it will no longer roll and the player will need to edit the item in order to change the power level.
   <br /><br />
-  <h2 class="headng"><span>Roll Crit (4)</span></h2>
-  Players can roll their own Critical Hits by clicking on the "Roll Crit" button. This looks for a table named "Critical injuries" for Characters. If the table does not exist an error message is
-  displayed. <br />
+  <h3 class="headng2"><span>Armor</span></h3>
+  Clicking on Armor will roll the combined value of any active armor (total shown in the box). <br />
+  Right clicking will display a modifier box with one-click options for "Armor Piercing" (half armor value) and "Armor Doubled" (2 x armor value).
+  <br />
+  &nbsp;<span class="armor-mod">&nbsp;</span>&nbsp;
+
+  <br /><br />
+  <h2 class="headng"><span>Critical Injuries (4)</span></h2>
+  Critical Injury items dragged on to the sheet will be displayed in this section and have the same controls for viewing, editing and deleting as a normal item. Players can roll their own Critical
+  Hits by clicking on the "Roll Crit" button. This looks for a table named "Critical injuries" for Characters. If the table does not exist an error message is displayed. <br />
   <br /><br />
   <h2 class="headng"><span>Skills Tab (5)</span></h2>
   The Skills tab lists the skills available to players. These are updated by the player during character creation. <br />
@@ -170,8 +178,8 @@
   <br /><br />
   <h3 class="headng2"><span>Details (2)</span></h3>
   The main section of the General tab has the same fields as the Character sheet except for Signature Item as per the rules Synthetics do not have them. <br />
-  Players can roll their own Critical Hits by clicking on the "Roll Crit" button. This looks for a table named "Critical Injuries on Synthetics" for Androids. If the table does not exist an error
-  message is displayed. <br />
+  Critical Injury items dragged on to the sheet will be displayed in Critical Injuries section and have the same controls for viewing, editing and deleting as a normal item. Players can roll their own
+  Critical Hits by clicking on the "Roll Crit" button. This looks for a table named "Critical Injuries on Synthetics" for Androids. If the table does not exist an error message is displayed. <br />
   <br /><br />
 
   &nbsp;<span class="synthetic-details">&nbsp;</span>&nbsp; <br /><br />
@@ -241,6 +249,7 @@
     <li>Skill-Stunt - Place holders that drive the Skill-Stunts pop up on character sheets</li>
     <li>Agenda - PC Agenda and Story cards</li>
     <li>Specialty - Allows the GM to create new sub-careers, career specialities or your House Rule Careers and drop them on the character sheet.</li>
+    <li>Critical Injury - Create Critical injuries with modifiers</li>
   </ul>
   <br /><br />
   <h2 class="headng"><span>Item</span></h2>
@@ -279,7 +288,6 @@
   <br />
   The additional modifiers some armor can have on attributes and abilities can be found on the Modifiers tab.
   <br />
-  &nbsp;<span class="armor-mods">&nbsp;</span>&nbsp; <br /><br />
   The stats and modifiers on the sheet will be used in rolls when the weapon is "Active".
   <br /><br />
   <h2 class="headng"><span>Planet-System</span></h2>
@@ -298,12 +306,16 @@
   the Skills tab and can be viewed by the player by clicking on the name.
   <br /><br />
   <b> NOTE:</b><br />
-  With the exception of the "Nerves of Steel" Talent, which will automatically add -2 to Stress rolls, Talents do not currently have an effect in the system so any impact deriving from a Talent needs
-  to be applied manually during the game.
+  With the exception of the "Nerves of Steel" talent, which will automatically add -2 to Stress rolls and the "Pack Mule" talent which increases total Encumbrance, Talents do not currently have an
+  effect in the system so any impact deriving from a Talent needs to be applied manually during the game.
   <br /><br />
   For instance, the Compassion (Medic Talent) allows the PC to push their roll multiple times but the system will by default only allow a roll to be pushed once. In this situation the player should
   use the check box in the chat window "Allow multi-push". <br />
   When the situation complies with the Talent criteria the player checks the box, <b>before pushing the roll</b>, they then PUSH as normal and a Stress point is added to their sheet.
+
+  <br /><br />
+  <h2 class="headng"><span>Critical Injury</span></h2>
+  Critical Injury items can be dragged on to Character and Synthetic sheets to record permanent injuries as well as apply the appropriate roll modifiers as defined on the Modifiers tab.
 
   <br /><br />
   <h2 class="headng"><span>Skill-Stunt</span></h2>
@@ -410,11 +422,9 @@
   If you have purchased either the Starter Set or Core Rules these will automatically be replaced with the official Initiative cards.
   <br />
   &nbsp;<span class="init-chat-cards">&nbsp;</span>&nbsp; <br /><br />
-  There are only 10 initiative cards, so if you have a combat with more than 10 actors and roll initiative the system will show a warning and only make rolls for 10 of the actors.
-  <br /><br />
-  You will still be able to roll for the extra actors manually, but they will have duplicate initiatives with the existing actors.
-  <br /><br />
-  Alternatively, you can split the party in to two encounters, though I think it's easier to manage with a few duplicates.
+  There are only 10 initiative cards, so if you have a combat with more than 10 actors and roll initiative the system will roll the first 10 then roll for any extras and add two decimal places to the
+  rolls i.e. 3.42.
+
   <br /><br />
   <h1 class="headng"><span>Tables</span></h1>
   When the system is installed it will create the following folder structure:

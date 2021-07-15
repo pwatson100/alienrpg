@@ -123,7 +123,7 @@
 
 
     {{!-- Biography Tab --}}
-    <div class="tab biog " data-group="primary" data-tab="description">{{editor content=data.notes target="data.notes" button=true owner=owner editable=true}}</div>
+    <div class="tab biog-full" data-group="primary" data-tab="description">{{editor content=data.notes target="data.notes" button=true owner=owner editable=true}}</div>
     {{!-- Owned Items Tab --}}
       <!-- INVENTORY -->
       <div class="tab inventory" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/tabs/actor-inventory.html" sections=inventory}}</div>
@@ -141,11 +141,13 @@
                       <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.xp.icon}}}
                     </span>
                   </div>
+                  <br>
                   <div class="dots experience" style="margin-top: 3px;" >
                   <h4 class="resource-label">{{localize "ALIENRPG.StoryPoints"}}</h4>
                     <input type="hidden" name="data.general.sp.value" data-max="{{data.general.sp.max}}" value="{{data.general.sp.value}}" data-dtype="Number">
                       <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.sp.icon}}}</span>
                   </div>
+                  <br><br>
                   <div style="margin-top: 6px;">
                   <label class="resource-label">{{localize "ALIENRPG.Cash"}}</label>
                   <input type="text" class="cashboxsize currency" name="data.general.cash.value" value="{{data.general.cash.value}}" />
@@ -171,7 +173,7 @@
 
               <hr class="Item9">
                <span class="grid-2col-border">
-                 <label class="resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}  </label>
+                 <label class="resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor" data-label="{{ localize "ALIENRPG.Armor"}}">{{ localize "ALIENRPG.Armor"}}  </label>
                  <input type="text" style="border: 1px solid yellowgreen;" class="maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}"  data-dtype="Number" disabled>
               </span>
                  <br>
@@ -218,13 +220,13 @@
         <div class="Item4">
           <label class="resource-label">{{ localize "ALIENRPG.Appearance"}}</label> 
           <br>
-          <textarea name="data.general.appearance.value" rows="2"data-dtype="String">{{data.general.appearance.value}}</textarea>
+          <textarea name="data.general.appearance.value" rows="5"data-dtype="String">{{data.general.appearance.value}}</textarea>
         </div>
         
         
         <div class="Item5">
           <label class="resource-label">{{ localize "ALIENRPG.PersonalAgenda"}}</label> 
-          <textarea name="data.general.agenda.value" rows="6"data-dtype="String">{{data.general.agenda.value}}</textarea>
+          <textarea name="data.general.agenda.value" rows="5"data-dtype="String">{{data.general.agenda.value}}</textarea>
         </div>
         
         <div class="Item6">
@@ -240,12 +242,27 @@
               value="{{data.general.relTwo.value}}"
               rows="1"data-dtype="String"></input>
         </div>
-        
-        <div class="Item7">
+            <div class="Item7">
+                  <div class="grid-crit" style=" border-bottom:solid;">
+                  <label class="speciality-label crit1">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
+                  <button type="button" class="alien-crit-button rollCrit crit2" >{{localize "ALIENRPG.RollCrit"}}</button>
+
+                  {{!-- <label class="speciality-label rollCrit crit2">>> {{ localize "ALIENRPG.RollCrit"}} <<</label>  --}}
+                  </div>
+
+                {{#each critInj as |item iid|}}
+                <li class="box4 item grid-special" data-item-id="{{item._id}}">
+                  <h4 class="item-name spe1" data-pmbut="{{item._id}}">{{item.name}} </h4>
+                  <a class="spe2 item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+                </li>
+                {{/each}}
+            </div>
+
+        {{!-- <div class="Item7">
           <label class="resource-label">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
         <label class="resource-label rollCrit" style="font-weight: bold;" >>> {{ localize "ALIENRPG.RollCrit"}} <<</label> 
           <textarea name="data.general.critInj.value" rows="2"data-dtype="String">{{data.general.critInj.value}}</textarea>
-        </div>
+        </div> --}}
     </div>
 </div>
     </section>

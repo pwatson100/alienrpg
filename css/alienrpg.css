@@ -22,24 +22,20 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Sansita Swashed";
+  font-family: "OCR-A";
+  src: url("../fonts/ocraext.ttf");
   font-style: normal;
-  font-weight: 400;
-  font-stretch: 25%;
-  font-display: swap;
-  src: local("Sansita Swashed"), url(https://fonts.gstatic.com/s/sansitaswashed/v1/BXRzvFfZifTZgFlDDLgNkBydPKTH0r2z.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 :root {
-  --alienfont: "Wallpoet";
+  --alienfont: "OCR-A";
   --fontsize: 15px;
 }
 
 :root {
-  --aliengreen: #adff2f;
-  --blue: #577ee7;
-  --black: #000;
-  --white: #ffffff;
+  --aliengreen: hsl(84, 100%, 59%);
+  --blue: hsl(224, 75%, 62%);
+  --black: hsl(0, 0%, 0%);
+  --white: hsl(0, 0%, 100%);
 }
 
 /* Global styles */
@@ -52,12 +48,12 @@
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  min-width: 100px;
+  min-width: 150px;
   max-width: 360px;
   position: absolute;
-  left: -500%;
+  left: -900%;
   top: 50%;
-  background: #000000;
+  background: black;
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
   color: var(--aliengreen);
@@ -70,7 +66,7 @@
   font-family: var(--alienfont);
   color: var(--aliengreen);
   font-size: var(--fontsize);
-  background: #000;
+  background: black;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -89,12 +85,12 @@
   background-size: cover;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  color: powderblue;
+  color: #b1e0e7;
 }
 .journal-sheet select {
   font-family: var(--alienfont);
   color: inherit;
-  background: #000;
+  background: black;
   border: var(--aliengreen) 3px;
   border: 1px solid #7a7971;
   border-radius: 3px;
@@ -105,13 +101,13 @@
 .journal-sheet input {
   font-family: var(--alienfont);
   color: inherit;
-  background: #000;
+  background: black;
   border: var(--aliengreen) 3px;
 }
 .journal-sheet button {
   font-family: var(--alienfont);
   color: inherit;
-  background: #000;
+  background: black;
   border: var(--aliengreen) solid 1px;
   width: 100%;
   margin: 0 1px;
@@ -168,26 +164,26 @@ a.entity-link {
 }
 
 .chat-message.whisper {
-  background: #161616;
+  background: #171717;
   color: var(--aliengreen);
 }
 
 .chat-message.blind {
-  background: #161616;
+  background: #171717;
 }
 
 .dice-tooltip {
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  background: #000;
+  background: black;
 }
 .dice-tooltip .dice-rolls {
   color: inherit;
-  background: #000;
+  background: black;
 }
 .dice-tooltip .part-header {
   color: inherit;
-  background: #000;
+  background: black;
 }
 
 .dice-tooltip .dice-rolls .roll {
@@ -207,7 +203,7 @@ a.entity-link {
 
 .inline-roll .dice-tooltip {
   color: inherit;
-  background: #000;
+  background: black;
   border: 2px solid var(--aliengreen);
   border-radius: 2px;
 }
@@ -298,16 +294,6 @@ a.inline-roll {
   cursor: pointer;
 }
 
-.rollCrit {
-  margin-left: 25%;
-}
-.rollCrit:hover, .rollCrit:focus {
-  color: red;
-  text-shadow: 0 0 20px red;
-  font-size: 95%;
-  cursor: pointer;
-}
-
 .minus-btn .plus-btn {
   width: 10px;
   height: 10px;
@@ -322,7 +308,7 @@ a.inline-roll {
 }
 
 .pwr-btn:hover, .pwr-btn:focus {
-  background-color: #da4035;
+  background-color: #da3f34;
   font-size: 120%;
   font-weight: bolder;
   cursor: pointer;
@@ -336,18 +322,22 @@ a.inline-roll {
 
 .creature-attack-roll {
   display: inline-block;
-  width: 260px;
-  height: 42px;
-  padding-top: 5px;
-  margin: 1px;
-  border: none;
-  background: url(../images/AlienRPG-Roll-Attack-Push-Button.png) no-repeat top left;
+  width: 280px;
+  height: 40px;
+  font-weight: bold;
+  font-size: clamp(1.5rem, 1.3vw, 4rem);
+  text-shadow: 2px 2px #0b7519;
+  border: 2px solid var(--aliengreen);
+  border-radius: 25px;
+  color: var(--aliengreen);
+  font-family: var(--alienfont);
+  line-height: inherit;
 }
 
 .creature-attack-roll:hover {
   border-radius: 10px;
-  background-color: #942a22;
   color: red;
+  text-shadow: 2px 2px #7f0505;
 }
 
 .creature-attack-roll:active {
@@ -362,6 +352,45 @@ button:hover,
 button:focus {
   -webkit-box-shadow: unset;
           box-shadow: unset;
+}
+
+.alien-Push-button {
+  display: inline-block;
+  width: 260px;
+  height: 45px;
+  background-color: black;
+  color: #abff2e;
+  font-weight: bold;
+  font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
+  font-family: var(--alienfont);
+  padding-bottom: 5px;
+  border: 2px solid var(--aliengreen);
+  border-radius: 25px;
+  color: var(--aliengreen);
+  font-family: var(--alienfont);
+  line-height: inherit;
+}
+
+.alien-Push-button:hover {
+  border-radius: 10px;
+  color: red;
+}
+
+.alien-crit-button {
+  display: inline-block;
+  height: 26px;
+  border: 2px solid var(--aliengreen);
+  border-radius: 25px;
+  color: var(--aliengreen);
+  font-weight: bold;
+  font-size: clamp(1rem, 1vw, 2rem);
+  font-family: var(--alienfont);
+  line-height: inherit;
+}
+
+.alien-crit-button:hover {
+  border-radius: 5px;
+  color: red;
 }
 
 .alien-diceface-b0 {
@@ -409,22 +438,6 @@ button:focus {
   background: url(../ui/alien-dice-y6.png) no-repeat top left;
 }
 
-.alien-Push-button {
-  display: inline-block;
-  width: 260px;
-  height: 42px;
-  padding-top: 5px;
-  margin: 1px;
-  border: none;
-  background: url(../images/AlienRPG-Push-Button.png) no-repeat top left;
-}
-
-.alien-Push-button:hover {
-  border-radius: 10px;
-  background-color: #942a22;
-  color: red;
-}
-
 .tooltip {
   position: relative;
   display: inline-block;
@@ -456,7 +469,7 @@ button:focus {
   margin-top: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent transparent transparent greenyellow;
+  border-color: transparent transparent transparent var(--aliengreen);
 }
 
 .tooltip:hover .tooltiptext {
@@ -465,24 +478,24 @@ button:focus {
 
 .alienrpg .inputtext {
   color: inherit;
-  background-color: #000;
+  background-color: black;
 }
 
 /* Global styles */
 .headng {
   text-align: center;
-  color: greenyellow;
+  color: var(--aliengreen);
   font-size: xx-large;
 }
 
 .headng2 {
   text-align: center;
-  color: greenyellow;
+  color: var(--aliengreen);
   /* font-size: x-large; */
 }
 
 .headng3 {
-  color: greenyellow;
+  color: var(--aliengreen);
 }
 
 .spanner-icon {
@@ -497,7 +510,7 @@ button:focus {
 .character-sheet-img {
   display: block;
   width: 500px;
-  height: 493px;
+  height: 519px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -547,6 +560,17 @@ button:focus {
   background-size: 100%;
   border: 0;
   background: url(../images/mother-instructions/agil-mod.webp);
+}
+
+.armor-mod {
+  display: block;
+  width: 403px;
+  height: 172px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/armor-mod.webp);
 }
 
 .stress-mod {
@@ -824,17 +848,6 @@ button:focus {
   border: 0;
 }
 
-.armor-mods {
-  display: block;
-  width: 600px;
-  height: 273px;
-  background: url(../images/mother-instructions/armor-mods.webp);
-  margin-left: auto;
-  margin-right: auto;
-  background-size: 100%;
-  border: 0;
-}
-
 .planet-system-img {
   display: block;
   width: 600px;
@@ -1056,7 +1069,7 @@ button:focus {
   visibility: hidden;
   width: 150px;
   background-color: black;
-  color: greenyellow;
+  color: var(--aliengreen);
   text-align: center;
   border-radius: 3px;
   padding: 2px 0;
@@ -1081,7 +1094,7 @@ button:focus {
   margin-top: -5px;
   border-width: 1px;
   border-style: solid;
-  border-color: transparent transparent transparent greenyellow;
+  border-color: transparent transparent transparent var(--aliengreen);
 }
 
 .grid {
@@ -1175,6 +1188,7 @@ button:focus {
   padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
+  height: 80px;
 }
 
 .Item8 {
@@ -1675,7 +1689,7 @@ button:focus {
 .grid-2 {
   display: grid;
   grid-template-areas: "box11 box21 box23 box22";
-  grid-template-columns: 150px 33px 15px 33px;
+  grid-template-columns: 1fr 33px 15px 33px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1705,6 +1719,23 @@ button:focus {
   justify-self: center;
 }
 
+.grid-crit {
+  display: grid;
+  grid-template-areas: "crit1 crit2 ";
+  padding: 0;
+  margin: 0;
+  grid-template-columns: 1fr 1fr;
+}
+
+.crit1 {
+  grid-area: crit1;
+}
+
+.crit2 {
+  grid-area: crit2;
+  margin-bottom: 2px;
+}
+
 .grid-rTables {
   display: grid;
   grid-template-areas: "rTable1 rTable2";
@@ -1731,6 +1762,10 @@ button:focus {
   display: grid;
   border: 2px solid var(--aliengreen);
   grid-template-areas: "vCre1 vCre2 " "vCre3 vCre4 " "vCre5 vCre6 " "vCre7 vCre8";
+  grid-template-columns: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .vCre1 {
@@ -2020,7 +2055,7 @@ button:focus {
           align-items: center;
   text-align: center;
   padding: 0;
-  border: 1px solid #999;
+  border: 1px solid var(--aliengreen);
 }
 
 .flex-group-left {
@@ -2145,7 +2180,7 @@ button:focus {
   background: rgba(0, 0, 0, 0.1);
   height: 12px;
   margin-top: 5px;
-  border: 1px solid #111;
+  border: 1px solid #121212;
   border-radius: 3px;
   position: relative;
   width: calc(100% - 20px);
@@ -2167,7 +2202,7 @@ button:focus {
   height: 16px;
   font-size: 16px;
   line-height: 16px;
-  color: #000;
+  color: black;
   background: rgba(255, 255, 255, 0.4);
   padding: 0 3px;
 }
@@ -2183,7 +2218,7 @@ button:focus {
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 4px solid #666;
+  border-bottom: 4px solid #666666;
 }
 
 .alienrpg.actor .encumbrance .arrow-down {
@@ -2192,15 +2227,15 @@ button:focus {
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid #666;
+  border-top: 4px solid #666666;
 }
 
 .alienrpg.actor .encumbrance.encumbered .arrow-up {
-  border-bottom: 4px solid #fff;
+  border-bottom: 4px solid white;
 }
 
 .alienrpg.actor .encumbrance.encumbered .arrow-down {
-  border-top: 4px solid #fff;
+  border-top: 4px solid white;
 }
 
 .alienrpg.actor .encumbrance.encumbered .encumbrance-bar {
@@ -2209,7 +2244,7 @@ button:focus {
   left: 1px;
   background: #ff1e00;
   height: 8px;
-  border: 1px solid #b9ca1d;
+  border: 1px solid #b8c91d;
   border-radius: 3px;
 }
 
@@ -2272,13 +2307,12 @@ button:focus {
   	for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
 
   */
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ADFF2F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -webkit-gradient(linear, left top, left bottom, from(black), to(black));
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ADFF2F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, black 0%, black 100%);
+  background-image: url(../images/downarrow.svg);
   background-repeat: no-repeat, repeat;
   /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
   background-position: right 0.7em top 50%, 0 0;
   /* icon size, then gradient */
-  background-size: 0.65em auto, 100%;
+  background-size: 1em auto, 100%;
 }
 
 /* Hide arrow icon in IE browsers */
@@ -2320,19 +2354,19 @@ button:focus {
 .select-css:disabled,
 .select-css[aria-disabled=true] {
   color: var(--aliengreen);
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), -webkit-gradient(linear, left top, left bottom, from(black), to(black));
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, black 0%, black 100%);
+  background-image: url(../images/downarrow.svg);
+  background-repeat: no-repeat, repeat;
 }
 
 .select-css:disabled:hover,
 .select-css[aria-disabled=true] {
-  border-color: #aaa;
+  border-color: #ababab;
 }
 
 /* Styles limited to alienrpg sheets */
 .alienrpg .item-form {
   font-family: var(--alienfont);
-  background: #000;
+  background: black;
 }
 .alienrpg .actor-header {
   -webkit-box-flex: 0;
@@ -2352,7 +2386,7 @@ button:focus {
       -ms-flex-pack: start;
           justify-content: flex-start;
   margin-bottom: 1px;
-  background-color: #000;
+  background-color: black;
 }
 .alienrpg .vehicle-header {
   overflow: hidden;
@@ -2360,7 +2394,7 @@ button:focus {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1px;
-  background-color: #000;
+  background-color: black;
 }
 .alienrpg .profile-img {
   -webkit-box-flex: 0;
@@ -2395,26 +2429,34 @@ button:focus {
   padding: 0px;
   margin: 0 5px 5px 5px;
   border-bottom: 0;
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg h1.charname input {
   width: 100%;
   height: 100%;
   margin: 0;
   color: inherit;
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .sheet nav.sheet-tabs {
+  border-top: 1px solid var(--aliengreen) !important;
+  border-bottom: 1px solid var(--aliengreen) !important;
 }
 .alienrpg .sheet-tabs {
   -webkit-box-flex: 0;
       -ms-flex: 0;
           flex: 0;
+  border-top: 1px solid var(--aliengreen) !important;
+  border-bottom: 1px solid var(--aliengreen) !important;
 }
 .alienrpg .alienrpg .sheet-body,
 .alienrpg .tab,
 .alienrpg .editor {
   height: 100%;
-  background-color: #000;
+  background-color: black;
 }
 .alienrpg .tox .tox-editor-container {
-  background: #fff;
+  background: white;
 }
 .alienrpg .tox .tox-edit-area {
   padding: 0 8px;
@@ -2422,70 +2464,81 @@ button:focus {
 .alienrpg .maxboxsize {
   max-width: 40px;
   color: inherit;
-  background-color: #000;
+  background-color: black;
   height: 20px;
   padding: 0;
   margin: 1px;
   text-align: center;
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg .cashboxsize {
   max-width: 150px;
   color: inherit;
   justify-items: center;
-  background-color: #000;
+  background-color: black;
   text-align: center;
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox {
   color: inherit;
-  background-color: #000;
+  background-color: black;
   padding: 5px;
   margin: 5px 5px 5px 5px;
-}
-.alienrpg .textbox3 {
-  color: inherit;
-  background-color: #000;
-  padding: 5px;
-  margin: 5px 5px 5px 5px;
-  width: 180px;
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox1 {
   color: inherit;
   justify-items: center;
-  background-color: #000;
+  background-color: black;
   width: 230px;
   padding: 0;
   margin-top: 1px;
   margin-bottom: 1px;
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox2 {
   color: inherit;
   justify-items: center;
-  background-color: #000;
+  background-color: black;
   width: 400px;
   padding: 0;
   margin-top: 1px;
   margin-bottom: 1px;
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox3 {
   color: inherit;
-  background-color: #000;
+  background-color: black;
   padding: 5px;
   margin: 5px 5px 5px 5px;
   width: 180px;
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .textbox4 {
+  color: inherit;
+  justify-items: center;
+  background-color: black;
+  width: 450px;
+  padding: 0;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg textarea {
   resize: none;
   padding: 2;
   color: inherit;
   border: 1px solid var(--aliengreen);
+  font-family: var(--alienfont);
+  font-size: var(--fontsize);
 }
 .alienrpg form .sheet-content .click-stat-level {
   height: 18px;
   padding: 8px;
   background: black;
   border-radius: 2px;
-  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
-          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.502);
+          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.502);
   font-family: "Roboto", system, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -2564,10 +2617,19 @@ button:focus {
 }
 .alienrpg .tabs {
   height: 30px;
-  border-top: 1px solid #aaa;
-  border-bottom: 1px solid #aaa;
   color: inherit;
-  background-color: #000;
+  background-color: black;
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .tabs .sheet nav.sheet-tabs {
+  height: 32px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 32px;
+          flex: 0 0 32px;
+  margin: 4px 0;
+  line-height: 32px;
+  border-top: 1px solid var(--aliengreen) !important;
+  border-bottom: 1px solid var(--aliengreen) !important;
 }
 .alienrpg .tabs .item {
   line-height: 30px;
@@ -2586,7 +2648,7 @@ button:focus {
   padding-bottom: 0px;
 }
 .alienrpg .item-header {
-  background-color: #2c2828;
+  background-color: #2b2727;
 }
 .alienrpg .item-name {
   margin: 0;
@@ -2618,5 +2680,24 @@ button:focus {
   font-family: var(--alienfont);
 }
 .alienrpg .biog img {
+  display: block;
+}
+.alienrpg .biog-full {
+  height: 600px;
+  padding: 3px 0;
+  width: 1fr;
+  font-family: var(--alienfont);
+}
+.alienrpg .biog-full .biog-image {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 24px;
+          flex: 0 0 24px;
+  margin-right: 5px;
+}
+.alienrpg .biog-full .editor-content {
+  word-wrap: break-word;
+  font-family: var(--alienfont);
+}
+.alienrpg .biog-full img {
   display: block;
 }/*# sourceMappingURL=alienrpg.css.map */

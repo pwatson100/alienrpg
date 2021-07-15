@@ -24,7 +24,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       classes: ['alienrpg', 'sheet', 'actor', 'synth-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 740,
-      height: 710,
+      height: 800,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -118,6 +118,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const talents = [];
     const agendas = [];
     const specialities = [];
+    const critInj = [];
     let totalWeight = 0;
 
     // Iterate through items, allocating to containers
@@ -135,6 +136,13 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         case 'specialty':
           specialities.push(i);
           break;
+        case 'critical-injury':
+          if (critInj.length > 1) {
+            break;
+          } else {
+            critInj.push(i);
+            break;
+          }
 
         case 'weapon':
           let ammoweight = 0.25;
@@ -159,6 +167,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.talents = talents;
     data.agendas = agendas;
     data.specialities = specialities;
+    data.critInj = critInj;
     data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
   }

@@ -255,7 +255,19 @@
   "ALIENRPG.RollCrit": "Roll Crit",
   "ALIENRPG.hideInitChat": "Initiieren Sie Initiativ-Chat-Nachrichten",
   "ALIENRPG.hideInitChatHint": "Aktivieren Sie diese Option, um Chatnachrichten für Initiativwürfe auszublenden",
-  "ALIENRPG.Clothing":"Kleidung"
+  "ALIENRPG.Clothing":"Kleidung",
+  "ALIENRPG.Effect":"Bewirken",
+  "ALIENRPG.Fatal":"Tödlich",
+  "ALIENRPG.TimeLimit":"Zeitlimit",
+  "ALIENRPG.HealTime":"Genesungszeit",
+  "ALIENRPG.None":"Keiner",
+  "ALIENRPG.OneRound":"One Round",
+  "ALIENRPG.OneTurn":"Eine Runde",
+  "ALIENRPG.OneShift":"Eine Schicht",
+  "ALIENRPG.OneDay":"Eines Tages",
+  "ALIENRPG.Days":"Tage",
+  "ALIENRPG.ArmorPiercing":"Panzerbrechend",
+  "ALIENRPG.ArmorDoubled":"Rüstung Verdoppelt"
 
 
 }

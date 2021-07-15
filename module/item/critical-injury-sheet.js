@@ -2,14 +2,14 @@
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class alienrpgPlanetSheet extends ItemSheet {
+export class alienrpgCriticalInjury extends ItemSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['alienrpg', 'sheet', 'item', 'planet-system'],
-      width: 710,
-      height: 760,
-      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'details' }],
+      classes: ['alienrpg', 'sheet', 'item', 'critical-injury'],
+      width: 675,
+      height: 468,
+      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'attributes' }],
     });
   }
 
@@ -17,11 +17,11 @@ export class alienrpgPlanetSheet extends ItemSheet {
   get template() {
     const path = 'systems/alienrpg/templates/item';
     // Return a single sheet for all item types.
-    return `${path}/planet-system-sheet.html`;
+    // return `${path}/item-sheet.html`;
     // Alternatively, you could use the following return statement to do a
     // unique item sheet by type, like `weapon-sheet.html`.
 
-    // return `${path}/${this.item.data.type}-sheet.html`;
+    return `${path}/critical-injury-sheet.html`;
   }
 
   /* -------------------------------------------- */
@@ -29,22 +29,32 @@ export class alienrpgPlanetSheet extends ItemSheet {
   /** @override */
   getData() {
     // const data = super.getData();
-    const data = foundry.utils.deepClone(this.item.data);
+    const item = foundry.utils.deepClone(this.item.data);
 
-    // console.warn('get data', data);
+    // const item = duplicate(this.item.data);
+    const data = item;
     return data;
   }
-
+  // getData() {
+  //   // console.log(this.item);
+  //   const itemData = foundry.utils.deepClone(this.item);
+  //   // this.computeSkills(actorData);
+  //   // this.computeItems(actorData);
+  //   // this.computeEncumbrance(actorData);
+  //   return {
+  //     item: itemData,
+  //   };
+  // }
   /* -------------------------------------------- */
 
-  // /** @override */
-  // setPosition(options = {}) {
-  //   const position = super.setPosition(options);
-  //   const sheetBody = this.element.find('.sheet-body');
-  //   const bodyHeight = position.height - 192;
-  //   sheetBody.css('height', bodyHeight);
-  //   return position;
-  // }
+  /** @override */
+  setPosition(options = {}) {
+    const position = super.setPosition(options);
+    const sheetBody = this.element.find('.sheet-body');
+    const bodyHeight = position.height - 192;
+    sheetBody.css('height', bodyHeight);
+    return position;
+  }
 
   /* -------------------------------------------- */
 
@@ -62,7 +72,7 @@ export class alienrpgPlanetSheet extends ItemSheet {
   _currencyField(event) {
     event.preventDefault();
     const element = event.currentTarget;
-    // format inital value
+    // format initial value
     onBlur({ target: event.currentTarget });
 
     function localStringToNumber(s) {
@@ -71,7 +81,7 @@ export class alienrpgPlanetSheet extends ItemSheet {
 
     function onBlur(e) {
       let value = e.target.value;
-      e.target.value = value ? Intl.NumberFormat('en-EN', { maximumFractionDigits: 0, style: 'currency', currency: 'USD' }).format(value) : '';
+      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
       // console.warn(e.target.value);
     }
   }

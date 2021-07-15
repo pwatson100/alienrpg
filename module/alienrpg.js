@@ -4,6 +4,7 @@ import { alienrpgActor } from './actor/actor.js';
 import { alienrpgItem } from './item/item.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
 import { alienrpgPlanetSheet } from './item/planet-system-sheet.js';
+import { alienrpgCriticalInjury } from './item/critical-injury-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
@@ -42,6 +43,7 @@ Hooks.once('init', async function () {
     alienrpgActor,
     alienrpgItem,
     alienrpgPlanetSheet,
+    alienrpgCriticalInjury,
     yze,
     AlienConfig,
     rollItemMacro,
@@ -62,7 +64,7 @@ Hooks.once('init', async function () {
    */
   CONFIG.Combat.initiative = {
     formula: '1d10',
-    decimals: 1,
+    decimals: 2,
   };
   // If the FVTT version is > V0.7.x initalise the Base and Stress dice terms
   // if (is07x) {
@@ -84,6 +86,7 @@ Hooks.once('init', async function () {
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty'], makeDefault: false });
   Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgCriticalInjury, { types: ['critical-injury'], makeDefault: false });
   registerSettings();
   registerActors();
 
@@ -183,7 +186,7 @@ Hooks.once('init', async function () {
     scope: 'client',
     type: String,
     config: false,
-    default: 'Wallpoet',
+    default: 'OCR-A',
     onChange: () => {
       location.reload();
     },
@@ -218,17 +221,21 @@ Hooks.once('ready', async () => {
   sendDevMessage();
   if (game.user.isGM) {
     try {
+      let motherPack = game.packs.find((p) => p.metadata.label === 'Mother Instructions');
+      await motherPack.getIndex();
+      let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
+
       const newVer = '3';
       if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
         if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
           await game.journal.getName('MU/TH/ER Instructions.').delete();
-          await game.journal.importFromCollection('alienrpg.mother_instructions', `syX1CzWc8zG5jT5g`);
+          await game.journal.importFromCompendium(motherPack, motherIns._id);
           await game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
           console.log('New version of MU/TH/ER Instructions.');
           await game.journal.getName('MU/TH/ER Instructions.').show();
         }
       } else {
-        await game.journal.importFromCollection('alienrpg.mother_instructions', `syX1CzWc8zG5jT5g`);
+        await game.journal.importFromCompendium(motherPack, motherIns._id);
         game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
         await game.journal.getName('MU/TH/ER Instructions.').show();
       }
@@ -236,7 +243,7 @@ Hooks.once('ready', async () => {
   }
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
-  const NEEDS_MIGRATION_VERSION = '2.0.0';
+  const NEEDS_MIGRATION_VERSION = '2.0.2';
   const COMPATIBLE_MIGRATION_VERSION = '0' || isNaN('NaN');
   let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
   console.warn('needMigration', needMigration, currentVersion);
@@ -277,6 +284,12 @@ Hooks.once('renderSettings', () => {
 // DsN V3 Hooks
 // ***************************
 Hooks.on('diceSoNiceRollComplete', (chatMessageID) => {});
+
+// Hooks.on('diceSoNiceRollStart', (id, context) => {
+//   const roll = context.roll;
+//   // perform some check to see if you want to hide the roll
+//   if ('core.initiativeRoll') context.blind = true;
+// });
 
 Hooks.once('diceSoNiceReady', (dice3d) => {
   dice3d.addColorset({

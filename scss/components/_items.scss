@@ -10,7 +10,7 @@
 }
 .item-header {
   // font-weight: bold;
-  background-color: rgb(44, 40, 40);
+  background-color: hsl(0, 5%, 16%);
 }
 
 .item-name {
@@ -36,6 +36,32 @@
 .biog {
   // line-height: 24px;
   height: 300px;
+  // height: 600px;
+  padding: 3px 0;
+  width: 1fr;
+  // border-bottom: 1px solid #bbb;
+  font-family: var(--alienfont);
+
+  .biog-image {
+    flex: 0 0 24px;
+    margin-right: 5px;
+  }
+  .editor-content {
+    // width: 550px;
+    word-wrap: break-word;
+    //  color: $c-green;
+    font-family: var(--alienfont);
+  }
+
+  img {
+    display: block;
+  }
+}
+//   This calls needs tobe used for the editorbox on actor templates without flexcol.
+.biog-full {
+  // line-height: 24px;
+  height: 600px;
+  // height: 600px;
   padding: 3px 0;
   width: 1fr;
   // border-bottom: 1px solid #bbb;

@@ -216,7 +216,8 @@ export class yze {
       if (reRoll != 'mPush') {
         chatMessage += `<span>` + game.i18n.localize('ALIENRPG.MultiPush') + ` ` + `</span> <input class="multiPush" name="multiPush" type="checkbox" {{checked false}} /> `;
       }
-      chatMessage += `<button class="alien-Push-button" title="PUSH Roll?"></button>`;
+      // chatMessage += `<button class="alien-Push-button" title="PUSH Roll?" style="color: #adff2f; font-weight: bold; font-size: xxx-large">` + game.i18n.localize('ALIENRPG.Push') + `</button>`;
+      chatMessage += `<button class="alien-Push-button" title="PUSH Roll?">` + game.i18n.localize('ALIENRPG.Push') + `</button>`;
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`;
       chatMessage += `<span class="dmgBtn-container" style="position:absolute; top:0; right:0; bottom:1px;"></span>`;
     }

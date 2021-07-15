@@ -1,10 +1,10 @@
-$c-white: #fff;
-$c-black: #000;
-$c-green: greenyellow;
+$c-white: hsl(0, 0%, 100%);
+$c-black: hsl(0, 0%, 0%);
+$c-green: hsl(84, 100%, 59%);
 
 :root {
-  --aliengreen: #adff2f;
-  --blue: #577ee7;
-  --black: #000;
-  --white: #ffffff;
+  --aliengreen: hsl(84, 100%, 59%);
+  --blue: hsl(224, 75%, 62%);
+  --black: hsl(0, 0%, 0%);
+  --white: hsl(0, 0%, 100%);
 }
