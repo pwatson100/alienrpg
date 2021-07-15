@@ -510,7 +510,7 @@ button:focus {
 .character-sheet-img {
   display: block;
   width: 500px;
-  height: 493px;
+  height: 519px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -560,6 +560,17 @@ button:focus {
   background-size: 100%;
   border: 0;
   background: url(../images/mother-instructions/agil-mod.webp);
+}
+
+.armor-mod {
+  display: block;
+  width: 403px;
+  height: 172px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/armor-mod.webp);
 }
 
 .stress-mod {
@@ -831,17 +842,6 @@ button:focus {
   width: 600px;
   height: 415px;
   background: url(../images/mother-instructions/armor-img.webp);
-  margin-left: auto;
-  margin-right: auto;
-  background-size: 100%;
-  border: 0;
-}
-
-.armor-mods {
-  display: block;
-  width: 600px;
-  height: 273px;
-  background: url(../images/mother-instructions/armor-mods.webp);
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;

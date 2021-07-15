@@ -30,7 +30,7 @@
           <h3 class="resource-label rollable gCol6" data-attr="attribute" data-roll="{{data.attributes.agl.value}}"  data-mod="{{data.attributes.agl.mod}}" data-label="{{data.attributes.agl.label}}">{{localize "ALIENRPG.AbilityAgl"}}</h3>
           <input type="text" class="maxboxsize gCol7" name="data.attributes.agl.value" value="{{data.attributes.agl.value}}" data-dtype="Number" />
 
-          <h3 class="resource-label rollable gCol8"data-attr="attribute"  data-roll="{{data.attributes.emp.value}}"  data-mod="{{data.attributes.emp.mod}}" data-label="{{data.attributes.emp.label}}">{{localize "ALIENRPG.AbilityEmp"}}</h3>
+          <h3 class="resource-label rollable gCol8" data-attr="attribute"  data-roll="{{data.attributes.emp.value}}"  data-mod="{{data.attributes.emp.mod}}" data-label="{{data.attributes.emp.label}}">{{localize "ALIENRPG.AbilityEmp"}}</h3>
           <input type="text" class="maxboxsize gCol9" name="data.attributes.emp.value" value="{{data.attributes.emp.value}}" data-dtype="Number" />
          
           {{#if isGM}}
@@ -230,7 +230,7 @@
 
                   <hr class="Item9">
                   <span class="grid-2col-border">
-             	    <label class="   resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor">{{ localize "ALIENRPG.Armor"}}  </label>
+             	    <label class="   resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor" data-label="{{ localize "ALIENRPG.Armor"}}">{{ localize "ALIENRPG.Armor"}}  </label>
 		            <input type="text"  class="maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number" disabled />
                  </span>
   
