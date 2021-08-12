@@ -1,7 +1,7 @@
 {
     "messages": [
         {
-            "version": 7,
+            "version": 6,
             "message": "<h1>New Release available 2.0.3</h1><br />There are a number of changes in this release which I hope will improve the overall experience. <br/><ol><li>DsN Theme now set to Black so no more pink d6 dice.</li><li>Armor Piercing (Armor halved) and Armor Doubled buttons now only show for weapon modifiers.</li><li>Corrected issue with Synthetics token health bar not working.</li><li>Corrected issue with Panic table not being created when missing.</li><li>Corrected issue with mods for Synthetics. </li><li>Only approved items types can be dropped on to actor sheets (thanks to @Stefouch#5202 for the code)</li></ol><br />Please read the @JournalEntry[MU/TH/ER Instructions.] to get the most benefit out of using the system and new features."
         }
     ]
