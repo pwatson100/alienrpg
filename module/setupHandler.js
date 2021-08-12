@@ -53,14 +53,15 @@ export class AlienRPGSetup {
         },
         { temporary: false }
       );
+    }
+    const isThere = game.tables.getName('Panic Table');
+    const folderId = await game.folders.getName('Alien Mother Tables').id;
 
-      // Copy the gm tables from the pack into the correct folder so it's available to the templates.
-      var gTables = game.packs.get('alienrpg.tables_gm');
-      gTables.getDocuments().then((d) =>
-        d.forEach((a) => {
-          game.tables.importFromCompendium('alienrpg.tables_gm', a.data._id, { folder: mothfolder.id });
-        })
-      );
+    if (!isThere) {
+      let PanicTablePack = game.packs.find((p) => p.metadata.label === 'Tables (GM)');
+      await PanicTablePack.getIndex();
+      let panicTable = PanicTablePack.index.find((j) => j.name === 'Panic Table');
+      await game.tables.importFromCompendium(PanicTablePack, panicTable._id, { folder: folderId });
     }
 
     let isItems = itemExists();
@@ -76,17 +77,20 @@ export class AlienRPGSetup {
         },
         { temporary: false }
       );
-
-      // Copy the gm tables from the pack into the correct folder so it's available to the templates.
-      var gItems = game.packs.get('alienrpg.skill-stunts');
+    }
+    // Copy the gm tables from the pack into the correct folder so it's available to the templates.
+    let skillStunts = game.folders.contents.filter((entry) => entry.data.name == 'Skill-Stunts');
+    if (skillStunts[0].content.length < 1) {
+      const sfolderId = await game.folders.getName('Skill-Stunts').id;
+      let gItems = game.packs.find((p) => p.metadata.label === 'Skill-Stunts');
+      await gItems.getIndex();
       gItems.getDocuments().then((d) =>
         d.forEach((a) => {
-          game.items.importFromCompendium('alienrpg.skill-stunts', a.data._id, { folder: folder.id });
+          game.items.importFromCompendium(gItems, a.data._id, { folder: sfolderId });
         })
       );
-
-      ui.items.render();
-      ui.notifications.info('First-Time-Setup complete');
     }
+    ui.items.render();
+    ui.notifications.info('First-Time-Setup complete');
   }
 }

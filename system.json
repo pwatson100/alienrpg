@@ -2,7 +2,7 @@
   "name": "alienrpg",
   "title": "Alien RPG",
   "description": "The Alien RPG system for Foundry VTT!",
-  "version": "2.0.2",
+  "version": "2.0.3",
 
   "minimumCoreVersion": "0.8.5",
   "compatibleCoreVersion": "0.8.8",
@@ -89,7 +89,7 @@
   "secondaryTokenAttribute": "stress",
   "initiative": "1d10",
   "url": "https://github.com/pwatson100/alienrpg",
-  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/2.0.2/system.json",
-  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.0.2/master.zip",
+  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/2.0.3/system.json",
+  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.0.3/master.zip",
   "socket": true
 }

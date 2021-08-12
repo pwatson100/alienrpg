@@ -341,7 +341,7 @@ button:focus {
   width: 260px;
   height: 45px;
   background-color: $c-black;
-  color: hsl(84, 100%, 59%);
+  // color: hsl(84, 100%, 59%);
   font-weight: bold;
   font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
   font-family: var(--alienfont);

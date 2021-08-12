@@ -1,5 +1,6 @@
 import { yze } from '../YZEDiceRoller.js';
 import { toNumber } from '../utils.js';
+import { ALIENRPG } from '../config.js';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -238,7 +239,9 @@ export class alienrpgActorSheet extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.DeleteItem'),
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
-          this.actor.deleteOwnedItem(element.data('item-id'));
+          // this.actor.deleteOwnedItem(element.data('item-id'));
+          let itemDel = this.actor.items.get(element.data('item-id'));
+          itemDel.delete();
         },
       },
     ];
@@ -314,7 +317,39 @@ export class alienrpgActorSheet extends ActorSheet {
       });
     }
   }
+  /** @override */
+  async _onDropItemCreate(itemData) {
+    const type = itemData.type;
+    const alwaysAllowedItems = ALIENRPG.physicalItems;
+    const allowedItems = {
+      character: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
+      synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
+      vehicles: ['item', 'weapon'],
+      territory: ['planet-system'],
+    };
+    let allowed = true;
 
+    if (this.actor.type === 'creature') {
+      allowed = false;
+    } else if (!alwaysAllowedItems.includes(type)) {
+      if (!allowedItems[this.actor.type].includes(type)) {
+        allowed = false;
+      }
+    }
+
+    if (!allowed) {
+      const msg = game.i18n.format('ALIENRPG.NotifWrongItemType', {
+        type: type,
+        actor: this.actor.type,
+        // type: game.i18n.localize(`T2K4E.ItemTypes.${type}`),
+        // actor: game.i18n.localize(`T2K4E.ActorTypes.${this.actor.type}`),
+      });
+      console.warn(`Alien RPG | ${msg}`);
+      ui.notifications.warn(msg);
+      return false;
+    }
+    return super._onDropItemCreate(itemData);
+  }
   /* -------------------------------------------- */
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset

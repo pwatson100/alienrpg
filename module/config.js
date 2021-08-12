@@ -30,3 +30,5 @@ ALIENRPG.general = {
   appearance: 'ALIENRPG.Apparance',
   sigItem: 'ALIENRPG.SignatureItem',
 };
+ALIENRPG.physicalItems = [];
+// ALIENRPG.physicalItems = ['item', 'weapon', 'armor', 'talent', 'planet-system', 'agenda', 'specialty', 'critical-injury'];

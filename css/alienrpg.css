@@ -359,7 +359,6 @@ button:focus {
   width: 260px;
   height: 45px;
   background-color: black;
-  color: #abff2e;
   font-weight: bold;
   font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
   font-family: var(--alienfont);

@@ -230,7 +230,7 @@
 
                   <hr class="Item9">
                   <span class="grid-2col-border">
-             	    <label class="   resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor" data-label="{{ localize "ALIENRPG.Armor"}}">{{ localize "ALIENRPG.Armor"}}  </label>
+             	    <label class="resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor" data-label="{{ localize "ALIENRPG.Armor"}}">{{ localize "ALIENRPG.Armor"}}  </label>
 		            <input type="text"  class="maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number" disabled />
                  </span>
   
@@ -305,7 +305,6 @@
           <label class="speciality-label crit1"style="font-weight: bold;">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
           <button type="button" class="alien-crit-button rollCrit crit2" >{{localize "ALIENRPG.RollCrit"}}</button>
 
-          {{!-- <label class="speciality-label rollCrit crit2">>> {{ localize "ALIENRPG.RollCrit"}} <<</label>  --}}
 
           </div>
                 {{#each critInj as |item iid|}}
@@ -315,7 +314,6 @@
                 </li>
                 {{/each}}
 
-          {{!-- <textarea name="data.general.critInj.value" rows="2"data-dtype="String">{{data.general.critInj.value}}</textarea> --}}
         </div>
         
        
@@ -323,5 +321,5 @@
 
       </div>
     </section>
-
+{{log "CONTEXT!!!!"}} {{log this}} 
   </form>

@@ -354,3 +354,10 @@ Sheet improvements for readability
 CSS corrections for uniform colour changes. 
 Corrected issue wth planet-system creation.
   
+Version 2.0.3
+DsN Theme now set to Black so no more pink d6 dice. 
+Armor Piercing (Armor halved) and Armor Doubled buttons now only show for weapon modifiers. 
+Corrected issue with Synthetics token health bar not working. 
+Corrected issue with Panic table not being created when missing. 
+Corrected issue with mods for Synthetics.
+Only approved items types can be dropped on to actor sheets (thanks to @Stefouch#5202 for the code)

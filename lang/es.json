@@ -270,7 +270,9 @@
   "ALIENRPG.OneDay":"Un Día",
   "ALIENRPG.Days":"Dias",
   "ALIENRPG.ArmorPiercing":"Traspaza Armaduras",
-  "ALIENRPG.ArmorDoubled":"Armadura Doblada"
+  "ALIENRPG.ArmorDoubled":"Armadura Doblada",
+  "ALIENRPG.NotifWrongItemType": "\"{type}\" los elementos no se pueden agregar a un {actor}!"
+
 
 
 }

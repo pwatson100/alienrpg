@@ -545,7 +545,7 @@ export class alienrpgActor extends Actor {
           '<span class="ctooltiptext">' +
           game.i18n.localize('ALIENRPG.Stress') +
           ' + (' +
-          actor.getRollData().stress +
+          (actor.getRollData().stress || 0) +
           ') <br>+ ' +
           game.i18n.localize('ALIENRPG.StressMod') +
           ' + (' +
@@ -646,97 +646,237 @@ export class alienrpgActor extends Actor {
       let confirmed = false;
       let armorP = false;
       let armorDou = false;
-      if (dataset.spbutt == 'armorVfire') {
-        renderTemplate(template).then((dlg) => {
-          new Dialog({
-            title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
-            content: dlg,
-            buttons: {
-              one: {
-                icon: '<i class="fas fa-check"></i>',
-                label: game.i18n.localize('ALIENRPG.DialRoll'),
-                callback: () => (confirmed = true),
+      switch (dataset.spbutt) {
+        case 'armorVfire':
+          renderTemplate(template).then((dlg) => {
+            new Dialog({
+              title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+              content: dlg,
+              buttons: {
+                one: {
+                  icon: '<i class="fas fa-check"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialRoll'),
+                  callback: () => (confirmed = true),
+                },
+                four: {
+                  icon: '<i class="fas fa-times"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialCancel'),
+                  callback: () => (confirmed = false),
+                },
               },
-              four: {
-                icon: '<i class="fas fa-times"></i>',
-                label: game.i18n.localize('ALIENRPG.DialCancel'),
-                callback: () => (confirmed = false),
-              },
-            },
-            default: 'one',
-            close: (html) => {
-              if (confirmed || armorP || armorDou) {
-                let modifier = parseInt(html.find('[name=modifier]')[0]?.value);
-                let stressMod = html.find('[name=stressMod]')[0]?.value;
+              default: 'one',
+              close: (html) => {
+                if (confirmed || armorP || armorDou) {
+                  let modifier = parseInt(html.find('[name=modifier]')[0]?.value);
+                  let stressMod = html.find('[name=stressMod]')[0]?.value;
 
-                if (stressMod == 'undefined') {
-                  stressMod = 0;
-                } else stressMod = parseInt(stressMod);
-                if (modifier == 'undefined') {
-                  modifier = 0;
-                } else modifier = parseInt(modifier);
-                if (isNaN(modifier)) modifier = 0;
-                if (isNaN(stressMod)) stressMod = 0;
-                // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
+                  if (stressMod == 'undefined') {
+                    stressMod = 0;
+                  } else stressMod = parseInt(stressMod);
+                  if (modifier == 'undefined') {
+                    modifier = 0;
+                  } else modifier = parseInt(modifier);
+                  if (isNaN(modifier)) modifier = 0;
+                  if (isNaN(stressMod)) stressMod = 0;
+                  // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
 
-                dataset.modifier = modifier;
-                dataset.stressMod = stressMod;
-                actor.rollAbility(actor, dataset);
-              }
-            },
-          }).render(true);
-        });
-      } else {
-        renderTemplate(template).then((dlg) => {
-          new Dialog({
-            title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
-            content: dlg,
-            buttons: {
-              one: {
-                icon: '<i class="fas fa-check"></i>',
-                label: game.i18n.localize('ALIENRPG.DialRoll'),
-                callback: () => (confirmed = true),
+                  dataset.modifier = modifier;
+                  dataset.stressMod = stressMod;
+                  actor.rollAbility(actor, dataset);
+                }
               },
-              two: {
-                label: game.i18n.localize('ALIENRPG.ArmorPiercing'),
-                callback: () => (armorP = true),
-              },
-              three: {
-                label: game.i18n.localize('ALIENRPG.ArmorDoubled'),
-                callback: () => (armorDou = true),
-              },
-              four: {
-                icon: '<i class="fas fa-times"></i>',
-                label: game.i18n.localize('ALIENRPG.DialCancel'),
-                callback: () => (confirmed = false),
-              },
-            },
-            default: 'one',
-            close: (html) => {
-              if (confirmed || armorP || armorDou) {
-                let modifier = parseInt(html.find('[name=modifier]')[0]?.value);
-                let stressMod = html.find('[name=stressMod]')[0]?.value;
+            }).render(true);
+          });
 
-                if (stressMod == 'undefined') {
-                  stressMod = 0;
-                } else stressMod = parseInt(stressMod);
-                if (modifier == 'undefined') {
-                  modifier = 0;
-                } else modifier = parseInt(modifier);
-                if (isNaN(modifier)) modifier = 0;
-                if (isNaN(stressMod)) stressMod = 0;
-                // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
+          break;
+        case 'armor':
+          renderTemplate(template).then((dlg) => {
+            new Dialog({
+              title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+              content: dlg,
+              buttons: {
+                one: {
+                  icon: '<i class="fas fa-check"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialRoll'),
+                  callback: () => (confirmed = true),
+                },
+                two: {
+                  label: game.i18n.localize('ALIENRPG.ArmorPiercing'),
+                  callback: () => (armorP = true),
+                },
+                three: {
+                  label: game.i18n.localize('ALIENRPG.ArmorDoubled'),
+                  callback: () => (armorDou = true),
+                },
+                four: {
+                  icon: '<i class="fas fa-times"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialCancel'),
+                  callback: () => (confirmed = false),
+                },
+              },
+              default: 'one',
+              close: (html) => {
+                if (confirmed || armorP || armorDou) {
+                  let modifier = parseInt(html.find('[name=modifier]')[0]?.value);
+                  let stressMod = html.find('[name=stressMod]')[0]?.value;
 
-                dataset.modifier = modifier;
-                dataset.stressMod = stressMod;
-                dataset.armorP = armorP;
-                dataset.armorDou = armorDou;
-                actor.rollAbility(actor, dataset);
-              }
-            },
-          }).render(true);
-        });
+                  if (stressMod == 'undefined') {
+                    stressMod = 0;
+                  } else stressMod = parseInt(stressMod);
+                  if (modifier == 'undefined') {
+                    modifier = 0;
+                  } else modifier = parseInt(modifier);
+                  if (isNaN(modifier)) modifier = 0;
+                  if (isNaN(stressMod)) stressMod = 0;
+                  // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
+
+                  dataset.modifier = modifier;
+                  dataset.stressMod = stressMod;
+                  dataset.armorP = armorP;
+                  dataset.armorDou = armorDou;
+                  actor.rollAbility(actor, dataset);
+                }
+              },
+            }).render(true);
+          });
+
+          break;
+
+        default:
+          renderTemplate(template).then((dlg) => {
+            new Dialog({
+              title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+              content: dlg,
+              buttons: {
+                one: {
+                  icon: '<i class="fas fa-check"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialRoll'),
+                  callback: () => (confirmed = true),
+                },
+                four: {
+                  icon: '<i class="fas fa-times"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialCancel'),
+                  callback: () => (confirmed = false),
+                },
+              },
+              default: 'one',
+              close: (html) => {
+                if (confirmed) {
+                  let modifier = parseInt(html.find('[name=modifier]')[0]?.value);
+                  let stressMod = html.find('[name=stressMod]')[0]?.value;
+
+                  if (stressMod == 'undefined') {
+                    stressMod = 0;
+                  } else stressMod = parseInt(stressMod);
+                  if (modifier == 'undefined') {
+                    modifier = 0;
+                  } else modifier = parseInt(modifier);
+                  if (isNaN(modifier)) modifier = 0;
+                  if (isNaN(stressMod)) stressMod = 0;
+                  // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
+
+                  dataset.modifier = modifier;
+                  dataset.stressMod = stressMod;
+                  actor.rollAbility(actor, dataset);
+                }
+              },
+            }).render(true);
+          });
+
+          break;
       }
+
+      // if (dataset.spbutt == 'armorVfire') {
+      //   renderTemplate(template).then((dlg) => {
+      //     new Dialog({
+      //       title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+      //       content: dlg,
+      //       buttons: {
+      //         one: {
+      //           icon: '<i class="fas fa-check"></i>',
+      //           label: game.i18n.localize('ALIENRPG.DialRoll'),
+      //           callback: () => (confirmed = true),
+      //         },
+      //         four: {
+      //           icon: '<i class="fas fa-times"></i>',
+      //           label: game.i18n.localize('ALIENRPG.DialCancel'),
+      //           callback: () => (confirmed = false),
+      //         },
+      //       },
+      //       default: 'one',
+      //       close: (html) => {
+      //         if (confirmed || armorP || armorDou) {
+      //           let modifier = parseInt(html.find('[name=modifier]')[0]?.value);
+      //           let stressMod = html.find('[name=stressMod]')[0]?.value;
+
+      //           if (stressMod == 'undefined') {
+      //             stressMod = 0;
+      //           } else stressMod = parseInt(stressMod);
+      //           if (modifier == 'undefined') {
+      //             modifier = 0;
+      //           } else modifier = parseInt(modifier);
+      //           if (isNaN(modifier)) modifier = 0;
+      //           if (isNaN(stressMod)) stressMod = 0;
+      //           // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
+
+      //           dataset.modifier = modifier;
+      //           dataset.stressMod = stressMod;
+      //           actor.rollAbility(actor, dataset);
+      //         }
+      //       },
+      //     }).render(true);
+      //   });
+      // } else {
+      //   renderTemplate(template).then((dlg) => {
+      //     new Dialog({
+      //       title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+      //       content: dlg,
+      //       buttons: {
+      //         one: {
+      //           icon: '<i class="fas fa-check"></i>',
+      //           label: game.i18n.localize('ALIENRPG.DialRoll'),
+      //           callback: () => (confirmed = true),
+      //         },
+      //         two: {
+      //           label: game.i18n.localize('ALIENRPG.ArmorPiercing'),
+      //           callback: () => (armorP = true),
+      //         },
+      //         three: {
+      //           label: game.i18n.localize('ALIENRPG.ArmorDoubled'),
+      //           callback: () => (armorDou = true),
+      //         },
+      //         four: {
+      //           icon: '<i class="fas fa-times"></i>',
+      //           label: game.i18n.localize('ALIENRPG.DialCancel'),
+      //           callback: () => (confirmed = false),
+      //         },
+      //       },
+      //       default: 'one',
+      //       close: (html) => {
+      //         if (confirmed || armorP || armorDou) {
+      //           let modifier = parseInt(html.find('[name=modifier]')[0]?.value);
+      //           let stressMod = html.find('[name=stressMod]')[0]?.value;
+
+      //           if (stressMod == 'undefined') {
+      //             stressMod = 0;
+      //           } else stressMod = parseInt(stressMod);
+      //           if (modifier == 'undefined') {
+      //             modifier = 0;
+      //           } else modifier = parseInt(modifier);
+      //           if (isNaN(modifier)) modifier = 0;
+      //           if (isNaN(stressMod)) stressMod = 0;
+      //           // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
+
+      //           dataset.modifier = modifier;
+      //           dataset.stressMod = stressMod;
+      //           dataset.armorP = armorP;
+      //           dataset.armorDou = armorDou;
+      //           actor.rollAbility(actor, dataset);
+      //         }
+      //       },
+      //     }).render(true);
+      //   });
+      // }
     }
 
     if (dataset.roll) {
@@ -1060,11 +1200,23 @@ export class alienrpgActor extends Actor {
         break;
     }
 
-    const formula = atable.data.formula;
+    // const formula = atable.data.formula;
+    // const roll = new Roll(formula);
+    // roll.evaluate({ async: false });
+    // atable.draw({ roll: roll });
+    const test1 = await atable.draw();
 
-    const roll = new Roll(formula);
-    roll.evaluate({ async: false });
-    atable.draw({ roll: roll });
+    // CREATE INJURY
+    // trying to get the data from the message to create an item
+    // 08/08 this works :)
+    // const messG = JSON.stringify(game.messages.contents.pop());
+    // const factorFour = messG.slice(messG.indexOf('<b>INJURY:'), messG.indexOf('</div>' + 6, messG.indexOf('<b>INJURY:'))).replace(/<a class=(.*?)><\/i>|<\/a>/gi, '');
+    // let testArray = factorFour.match(/<?b>(.*?)(<br>|<\/div>)/g).map(function (val) {
+    //   return val.replace(/<b>(.*?)(: )|<\/b>|(<br>|<\/div>)/g, '');
+    // });
+    // console.log('🚀 ~ file: actor.js ~ line 1079 ~ rollCrit ~ testArray', testArray);
+
+    // End of CREATE INJURY
   }
 }
 export default alienrpgActor;

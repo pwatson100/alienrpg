@@ -267,7 +267,9 @@
   "ALIENRPG.OneDay":"Eines Tages",
   "ALIENRPG.Days":"Tage",
   "ALIENRPG.ArmorPiercing":"Panzerbrechend",
-  "ALIENRPG.ArmorDoubled":"Rüstung Verdoppelt"
+  "ALIENRPG.ArmorDoubled":"Rüstung Verdoppelt",
+  "ALIENRPG.NotifWrongItemType": "\"{type}\" Artikel können nicht zu a . hinzugefügt werden {actor}!"
+
 
 
 }
