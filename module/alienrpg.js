@@ -302,7 +302,20 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
     texture: 'none',
   });
 
-  dice3d.addSystem({ id: 'alienrpg', name: 'Alien RPG - Blank' }, 'exclusive');
+  dice3d.addColorset(
+    {
+      name: 'AlienBlack',
+      description: 'AlienBlack',
+      category: 'Colors',
+      foreground: ['#ffffff'],
+      background: ['#000000'],
+      outline: 'black',
+      texture: 'none',
+    },
+    'preferred'
+  );
+
+  dice3d.addSystem({ id: 'alienrpg', name: 'Alien RPG - Blank' }, 'preferred');
   dice3d.addDicePreset({
     type: 'db',
     labels: [
@@ -313,7 +326,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
       'systems/alienrpg/ui/DsN/alien-dice-b0.png',
       'systems/alienrpg/ui/DsN/alien-dice-b6.png',
     ],
-    colorset: 'black',
+    colorset: 'AlienBlack',
     system: 'alienrpg',
   });
   dice3d.addDicePreset({
@@ -330,7 +343,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
     system: 'alienrpg',
   });
 
-  dice3d.addSystem({ id: 'alienrpgf', name: 'Alien RPG - Full Dice' }, 'exclusive');
+  dice3d.addSystem({ id: 'alienrpgf', name: 'Alien RPG - Full Dice' });
   dice3d.addDicePreset({
     type: 'db',
     labels: [
@@ -341,7 +354,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
       'systems/alienrpg/ui/DsN/b5.png',
       'systems/alienrpg/ui/DsN/alien-dice-b6.png',
     ],
-    colorset: 'black',
+    colorset: 'AlienBlack',
     system: 'alienrpgf',
   });
   dice3d.addDicePreset({

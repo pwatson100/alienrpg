@@ -219,6 +219,7 @@
         "health": {
           "value": 0,
           "label": "Health",
+          "mod": 0,
           "max": 0
         },
         "npc": false,
@@ -228,18 +229,22 @@
         "str": {
           "value": 0,
           "label": "Strength",
+          "mod": 0,
           "proficient": 0
         },
         "wit": {
           "value": 0,
+          "mod": 0,
           "label": "Wits"
         },
         "agl": {
           "value": 0,
+          "mod": 0,
           "label": "Agility"
         },
         "emp": {
           "value": 0,
+          "mod": 0,
           "label": "Empathy"
         }
       },

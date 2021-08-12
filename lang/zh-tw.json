@@ -267,5 +267,7 @@
     "ALIENRPG.OneDay":"一天",
     "ALIENRPG.Days":"天",
     "ALIENRPG.ArmorPiercing":"穿甲弹",
-    "ALIENRPG.ArmorDoubled":"护甲加倍"
+    "ALIENRPG.ArmorDoubled":"护甲加倍",
+    "ALIENRPG.NotifWrongItemType": "\"{type}\" 项目不能添加到 {actor}!"
+
 }
