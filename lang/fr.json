@@ -267,8 +267,10 @@
   "ALIENRPG.Days":"Journées",
   "ALIENRPG.ArmorPiercing":"Perforant",
   "ALIENRPG.ArmorDoubled":"Armure Doublée",
-  "ALIENRPG.NotifWrongItemType": "\"{type}\" les éléments ne peuvent pas être ajoutés à un {actor}!"
-
+  "ALIENRPG.NotifWrongItemType": "\"{type}\" les éléments ne peuvent pas être ajoutés à un {actor}!",
+  "ALIENRPG.hideJournalBGImage": "Masquer l'image d'arrière-plan du journal",
+  "ALIENRPG.hideJournalBGImageNote": "Masquer l'image d'arrière-plan sur les entrées de journal"
+  
 
 
 }

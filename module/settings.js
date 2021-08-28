@@ -44,4 +44,16 @@ export default function () {
     default: false,
     type: Boolean,
   });
+
+  game.settings.register('alienrpg', 'switchJournalColour', {
+    name: 'ALIENRPG.hideJournalBGImage',
+    hint: 'ALIENRPG.hideJournalBGImageNote',
+    scope: 'client',
+    type: Boolean,
+    default: false,
+    config: true,
+    onChange: () => {
+      location.reload();
+    },
+  });
 }

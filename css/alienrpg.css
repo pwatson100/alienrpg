@@ -36,6 +36,7 @@
   --blue: hsl(224, 75%, 62%);
   --black: hsl(0, 0%, 0%);
   --white: hsl(0, 0%, 100%);
+  --journalback: url(../images/mother-instructions/indbackground2.png);
 }
 
 /* Global styles */
@@ -81,7 +82,7 @@
 
 .journal-sheet form {
   color: var(--aliengreen);
-  background: url(../images/mother-instructions/indbackground2.png) no-repeat top left;
+  background: var(--journalback) top left !important;
   background-size: cover;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;

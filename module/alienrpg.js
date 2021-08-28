@@ -270,6 +270,9 @@ Hooks.once('ready', async () => {
   let r = document.querySelector(':root');
   r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
   r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
+  if (game.settings.get('alienrpg', 'switchJournalColour')) {
+    r.style.setProperty('--journalback', `#000000`);
+  }
 
   //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
   Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));

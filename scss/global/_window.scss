@@ -34,9 +34,9 @@
   form {
     // font-family: var(--alienfont);
     color: var(--aliengreen);
-    background: url(../images/mother-instructions/indbackground2.png) no-repeat top left;
+    // background: url(../images/mother-instructions/indbackground2.png) no-repeat top left;
+    background: var(--journalback) top left !important;
     background-size: cover;
-    // background: $c-black;
     border: 1px solid var(--aliengreen);
     border-radius: 1px;
     color: hsl(187, 52%, 80%);

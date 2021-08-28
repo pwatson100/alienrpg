@@ -268,7 +268,10 @@
   "ALIENRPG.Days":"Tage",
   "ALIENRPG.ArmorPiercing":"Panzerbrechend",
   "ALIENRPG.ArmorDoubled":"Rüstung Verdoppelt",
-  "ALIENRPG.NotifWrongItemType": "\"{type}\" Artikel können nicht zu a . hinzugefügt werden {actor}!"
+  "ALIENRPG.NotifWrongItemType": "\"{type}\" Artikel können nicht zu a . hinzugefügt werden {actor}!",
+  "ALIENRPG.hideJournalBGImage": "Journal-Hintergrundbild ausblenden",
+  "ALIENRPG.hideJournalBGImageNote": "Hintergrundbild bei Journaleinträgen ausblenden"
+  
 
 
 
