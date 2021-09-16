@@ -16,32 +16,17 @@ export class AlienConfig extends FormApplication {
   }
 
   getData(options) {
-    return mergeObject(
-      {
-        fontStyle: game.settings.get('alienrpg', 'fontStyle'),
-        fontColour: game.settings.get('alienrpg', 'fontColour'),
-      }
-      // this.reset ? AlienConfig.ARPG_OPTIONS() : AlienConfig.ARPG_OPTIONS()
-    );
+    return mergeObject({
+      fontStyle: game.settings.get('alienrpg', 'fontStyle'),
+      fontColour: game.settings.get('alienrpg', 'fontColour'),
+    });
   }
 
   activateListeners(html) {
     super.activateListeners(html);
-
-    // html.find('select').change(this.onApply.bind(this));
     html.find('button[name="reset"]').click(this.onReset.bind(this));
-
     document.getElementById('fontStyle').value = game.settings.get('alienrpg', 'fontStyle');
-    // this.reset = false;
   }
-
-  // onApply(formData) {
-  //   var r = document.querySelector(':root');
-  //   r.style.setProperty('--aliengreen', formData.fontColour);
-  //   r.style.setProperty('--alienfont', formData.fontStyle);
-
-  //   this.render();
-  // }
 
   onReset() {
     // this.reset = true;
@@ -55,7 +40,9 @@ export class AlienConfig extends FormApplication {
     await game.settings.set('alienrpg', 'fontColour', formData.fontColour);
     await game.settings.set('alienrpg', 'fontStyle', formData.fontStyle);
     ui.notifications.info(game.i18n.localize('ALIENRPG.Consumables'));
+    location.reload();
   }
+
   close() {
     super.close();
   }

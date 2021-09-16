@@ -53,7 +53,7 @@
   max-width: 360px;
   position: absolute;
   left: -900%;
-  top: 50%;
+  top: -38%;
   background: black;
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
@@ -61,6 +61,10 @@
   text-align: left;
   font-size: smaller;
   z-index: 1;
+}
+
+.alienrpg #context-menu li.context-item {
+  line-height: normal;
 }
 
 .alienrpg .window-content {
@@ -1134,7 +1138,7 @@ button:focus {
 
 .grid-genPage {
   display: grid;
-  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item8 Item5 Item5" "Item8 Item3 Item3" "Item9 Item6 Item6" "Item9 Item7 Item7" "Item11 Item10 Item10" "Item11 Item10 Item10";
+  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item8 Item5 Item5" "Item8 Item3 Item3" "Item9 Item6 Item6" "Item10 Item7 Item7" "Item11 Item11 Item11";
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -1188,7 +1192,7 @@ button:focus {
   padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
-  height: 80px;
+  height: auto;
 }
 
 .Item8 {
@@ -1201,25 +1205,26 @@ button:focus {
   grid-area: Item9;
   border: 1px solid var(--aliengreen);
   padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .Item10 {
   grid-area: Item10;
   border: 1px solid var(--aliengreen);
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .Item11 {
   grid-area: Item11;
   border: 1px solid var(--aliengreen);
   padding: 4px;
-  padding-left: 24px;
   -ms-flex-line-pack: center;
       align-content: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  min-height: 53px;
 }
 
 .grid-2col-border {
@@ -1632,8 +1637,8 @@ button:focus {
 
 .grid-special {
   display: grid;
-  grid-template-areas: "spe1 spe2";
-  grid-template-columns: 75% 25%;
+  grid-template-areas: "spe1 spe2 spe3";
+  grid-template-columns: 5% 70% 25%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1641,15 +1646,56 @@ button:focus {
 
 .spe1 {
   grid-area: spe1;
-  align-self: left;
-  font-weight: bold;
+  justify-self: left;
+  padding-right: 4px;
 }
 
 .spe2 {
   grid-area: spe2;
-  justify-self: right;
+  font-weight: bold;
   padding-right: 8px;
-  align-self: right;
+}
+
+.spe3 {
+  grid-area: spe3;
+  justify-self: right;
+}
+
+.critical-inj {
+  display: grid;
+  grid-template-areas: "crit1 crit2 crit3 crit4";
+  grid-template-columns: 5% 21% 70% 3%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.crit1 {
+  grid-area: crit1;
+  justify-self: left;
+  padding-right: 4px;
+}
+
+.crit2 {
+  grid-area: crit2;
+  justify-self: left;
+  font-weight: bold;
+  padding-right: 8px;
+}
+
+.crit3 {
+  grid-area: crit3;
+  justify-self: left;
+  font-weight: bold;
+  padding-right: 8px;
+  -webkit-box-align: left;
+      -ms-flex-align: left;
+          align-items: left;
+}
+
+.crit4 {
+  grid-area: crit4;
+  justify-self: right;
 }
 
 .grid-two {
@@ -2463,6 +2509,16 @@ button:focus {
 }
 .alienrpg .maxboxsize {
   max-width: 40px;
+  color: inherit;
+  background-color: black;
+  height: 20px;
+  padding: 0;
+  margin: 1px;
+  text-align: center;
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .healboxsize {
+  max-width: 80px;
   color: inherit;
   background-color: black;
   height: 20px;

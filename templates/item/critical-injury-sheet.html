@@ -21,8 +21,7 @@
 
         <h3 class="resource-label wItem3">{{localize "ALIENRPG.HealTime"}}</h3>
         <span>
-          <input type="text" class="maxboxsize wItem4" name="data.attributes.timelimit.value" value="{{data.attributes.timelimit.value}} " data-dtype="Number" />
-          {{localize "ALIENRPG.Days"}}
+          <input type="text" class="healboxsize wItem4" name="data.attributes.timelimit.value" value="{{data.attributes.timelimit.value}} " data-dtype="String" />
         </span>
         <h3 class="resource-label wItem5">{{localize "ALIENRPG.Fatal"}}</h3>
         <input class="wItem6" name="data.attributes.fatal" type="checkbox" {{checked data.attributes.fatal}} />
@@ -130,4 +129,5 @@
       </div>
     </div>
   </section>
+  {{log "CONTEXT!!!!"}} {{log this}}
 </form>

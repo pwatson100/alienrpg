@@ -25,7 +25,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       classes: ['alienrpg', 'sheet', 'actor', 'synth-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 740,
-      height: 800,
+      height: 900,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -138,12 +138,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
           specialities.push(i);
           break;
         case 'critical-injury':
-          if (critInj.length > 1) {
-            break;
-          } else {
-            critInj.push(i);
-            break;
-          }
+          critInj.push(i);
+          break;
 
         case 'weapon':
           let ammoweight = 0.25;

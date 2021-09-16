@@ -6,9 +6,9 @@
   "authors": [],
   "url": "https://github.com/pwatson100/alienrpg",
   "flags": {},
-  "version": "2.0.3",
+  "version": "2.0.4",
   "minimumCoreVersion": "0.8.5",
-  "compatibleCoreVersion": "0.8.8",
+  "compatibleCoreVersion": "0.8.9",
   "scripts": [],
   "esmodules": [
     "module/alienrpg.js"
@@ -90,8 +90,8 @@
   "system": [],
   "dependencies": [],
   "socket": true,
-  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/2.0.3/system.json",
-  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.0.3/master.zip",
+  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/2.0.4/system.json",
+  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.0.4/master.zip",
   "protected": false,
   "initiative": "1d10",
   "gridDistance": 5,

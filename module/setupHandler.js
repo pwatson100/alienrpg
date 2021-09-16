@@ -3,6 +3,7 @@ export class AlienRPGSetup {
     console.warn('***************************************************************');
     console.warn('AlienRPGSetup Directories and tables');
     console.warn('***************************************************************');
+    let changes = 0;
 
     function pExists() {
       if (game.folders.contents.filter((entry) => entry.data.name == 'Alien Tables').length > 0) {
@@ -22,6 +23,7 @@ export class AlienRPGSetup {
     let isHere = pExists();
 
     if (!isHere) {
+      changes++;
       let folder = await Folder.create(
         {
           color: '',
@@ -58,6 +60,7 @@ export class AlienRPGSetup {
     const folderId = await game.folders.getName('Alien Mother Tables').id;
 
     if (!isThere) {
+      changes++;
       let PanicTablePack = game.packs.find((p) => p.metadata.label === 'Tables (GM)');
       await PanicTablePack.getIndex();
       let panicTable = PanicTablePack.index.find((j) => j.name === 'Panic Table');
@@ -67,6 +70,7 @@ export class AlienRPGSetup {
     let isItems = itemExists();
 
     if (!isItems) {
+      changes++;
       let folder = await Folder.create(
         {
           color: '',
@@ -81,6 +85,7 @@ export class AlienRPGSetup {
     // Copy the gm tables from the pack into the correct folder so it's available to the templates.
     let skillStunts = game.folders.contents.filter((entry) => entry.data.name == 'Skill-Stunts');
     if (skillStunts[0].content.length < 1) {
+      changes++;
       const sfolderId = await game.folders.getName('Skill-Stunts').id;
       let gItems = game.packs.find((p) => p.metadata.label === 'Skill-Stunts');
       await gItems.getIndex();
@@ -90,7 +95,9 @@ export class AlienRPGSetup {
         })
       );
     }
-    ui.items.render();
-    ui.notifications.info('First-Time-Setup complete');
+    if (changes > 0) {
+      ui.items.render();
+      ui.notifications.info('First-Time-Setup complete');
+    }
   }
 }

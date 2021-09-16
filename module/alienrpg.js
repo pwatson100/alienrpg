@@ -66,12 +66,10 @@ Hooks.once('init', async function () {
     formula: '1d10',
     decimals: 2,
   };
-  // If the FVTT version is > V0.7.x initalise the Base and Stress dice terms
-  // if (is07x) {
+
   CONFIG.Dice.terms['b'] = AlienRPGBaseDie;
   CONFIG.Dice.terms['s'] = AlienRPGStressDie;
-  // }
-  // debugger;
+
   // Define custom Entity classes
   CONFIG.ALIENRPG = ALIENRPG;
   CONFIG.Actor.documentClass = alienrpgActor;
@@ -79,8 +77,6 @@ Hooks.once('init', async function () {
   CONFIG.Combat.documentClass = AlienRPGCombat;
   CONFIG.CombatTracker = AlienRPGCTContext;
   CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
-
-  // CONFIG.Planet.entityClass = alienrpgPlanet;
 
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
@@ -153,6 +149,16 @@ Hooks.once('init', async function () {
     }
   });
 
+  Handlebars.registerHelper('striptags', function (txt) {
+    // console.log(txt);
+    // exit now if text is undefined
+    if (typeof txt == 'undefined') return;
+    // the regular expresion
+    var regexp = /<[\/\w]+>/g;
+    // replacing the text
+    return txt.replace(regexp, '');
+  });
+
   // Register system settings
   game.settings.register('alienrpg', 'macroShorthand', {
     name: 'ALIENRPG.DefMacro',
@@ -173,10 +179,8 @@ Hooks.once('init', async function () {
     config: false,
     scope: 'client',
     default: '#adff2f',
-    onChange: () => {
-      location.reload();
-    },
   });
+
   game.settings.register('alienrpg', 'fontStyle', {
     name: 'ALIENRPG.FontStyle',
     label: 'ALIENRPG.StylePicker',
@@ -187,10 +191,8 @@ Hooks.once('init', async function () {
     type: String,
     config: false,
     default: 'OCR-A',
-    onChange: () => {
-      location.reload();
-    },
   });
+
   game.settings.registerMenu('alienrpg', 'alienrpgSettings', {
     name: 'ALIENRPG.MenuName',
     label: 'ALIENRPG.MenuLabel',
@@ -217,7 +219,10 @@ Hooks.once('init', async function () {
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
   // debugger;
-  await AlienRPGSetup.setup();
+  if (game.user.isGM) {
+    await AlienRPGSetup.setup();
+  }
+
   sendDevMessage();
   if (game.user.isGM) {
     try {
