@@ -271,6 +271,30 @@
   "ALIENRPG.ArmorDoubled":"Armor Doubled",
   "ALIENRPG.NotifWrongItemType": "\"{type}\" items cannot be added to a {actor}!",
   "ALIENRPG.hideJournalBGImage": "Hide Journal Background Image",
-  "ALIENRPG.hideJournalBGImageNote": "Hide the Background Image on Journal Entries"
+  "ALIENRPG.hideJournalBGImageNote": "Hide the Background Image on Journal Entries",
+  "ALIENRPG.Manufacturer":"Manufacturer",
+  "ALIENRPG.AI":"AI",
+  "ALIENRPG.CREW":"CREW",
+  "ALIENRPG.PASSENGERS":"PASSENGERS",
+  "ALIENRPG.LENGTH":"LENGTH",
+  "ALIENRPG.FTL-RATING":"FTL RATING",
+  "ALIENRPG.SIGNATURE":"SIGNATURE",
+  "ALIENRPG.THRUSTERS":"THRUSTERS",
+  "ALIENRPG.HULL":"HULL",
+  "ALIENRPG.SHIP-ARMOR":"ARMOR",
+  "ALIENRPG.DAMAGE":"DAMAGE",
+  "ALIENRPG.LEASE-COST":"LEASE COST",
+  "ALIENRPG.MINOR-COMPONENT-DAMAGE":"MINOR COMPONENT DAMAGE",
+  "ALIENRPG.MAJOR-COMPONENT-DAMAGE":"MAJOR COMPONENT DAMAGE",
+  "ALIENRPG.CAPTAIN":"CAPTAIN",
+  "ALIENRPG.SENSOR-OP":"SENSOR-OP",
+  "ALIENRPG.PILOT":"PILOT",
+  "ALIENRPG.GUNNER":"GUNNER",
+  "ALIENRPG.ENGINEER":"ENGINEER",
+  "ALIENRPG.ARMAMENTS":"ARMAMENTS",
+  "ALIENRPG.MODULES-UPGRADES":"Modules/Upgrades"
+
+
+
 
 }
