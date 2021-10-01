@@ -45,9 +45,10 @@
     'Item8 Item5 Item5'
     'Item8 Item3 Item3'
     'Item9 Item6 Item6'
-    'Item9 Item7 Item7'
-    'Item11 Item10 Item10'
-    'Item11 Item10 Item10';
+    'Item10 Item7 Item7'
+    'Item11 Item11 Item11';
+  // 'Item11 Item10 Item10'
+  // 'Item11 Item10 Item10';
 
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -97,7 +98,8 @@
   padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
-  height: 80px;
+  // height: 80px;
+  height: auto;
 }
 .Item8 {
   grid-area: Item8;
@@ -108,21 +110,25 @@
   grid-area: Item9;
   border: 1px solid var(--aliengreen);
   padding-top: 5px;
+  padding-bottom: 5px;
 }
 .Item10 {
   grid-area: Item10;
   border: 1px solid var(--aliengreen);
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  // padding-left: 5px;
+  // padding-right: 5px;
 }
 .Item11 {
   grid-area: Item11;
   border: 1px solid var(--aliengreen);
   padding: 4px;
-  padding-left: 24px;
   align-content: center;
   justify-content: center;
+  min-height: 53px;
 }
+
 .grid-2col-border {
   display: grid;
   grid-column: span 2;
@@ -531,23 +537,59 @@
 }
 .grid-special {
   display: grid;
-  grid-template-areas: 'spe1 spe2';
+  grid-template-areas: 'spe1 spe2 spe3';
   // grid-template-rows: 3fr;
   // padding: 3px;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: 5% 70% 25%;
   align-items: center;
 }
 
 .spe1 {
   grid-area: spe1;
-  align-self: left;
-  font-weight: bold;
+  justify-self: left;
+  padding-right: 4px;
 }
 .spe2 {
   grid-area: spe2;
-  justify-self: right;
+  // justify-self: left;
+  font-weight: bold;
   padding-right: 8px;
-  align-self: right;
+}
+.spe3 {
+  grid-area: spe3;
+  justify-self: right;
+}
+
+.critical-inj {
+  display: grid;
+  grid-template-areas: 'crit1 crit2 crit3 crit4';
+  // grid-template-rows: 3fr;
+  // padding: 3px;
+  grid-template-columns: 5% 21% 70% 3%;
+  align-items: center;
+}
+
+.crit1 {
+  grid-area: crit1;
+  justify-self: left;
+  padding-right: 4px;
+}
+.crit2 {
+  grid-area: crit2;
+  justify-self: left;
+  font-weight: bold;
+  padding-right: 8px;
+}
+.crit3 {
+  grid-area: crit3;
+  justify-self: left;
+  font-weight: bold;
+  padding-right: 8px;
+  align-items: left;
+}
+.crit4 {
+  grid-area: crit4;
+  justify-self: right;
 }
 
 .grid-two {

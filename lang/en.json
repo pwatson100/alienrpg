@@ -269,6 +269,12 @@
   "ALIENRPG.Days":"Days",
   "ALIENRPG.ArmorPiercing":"Armor Piercing",
   "ALIENRPG.ArmorDoubled":"Armor Doubled",
-  "ALIENRPG.NotifWrongItemType": "\"{type}\" items cannot be added to a {actor}!"
+  "ALIENRPG.NotifWrongItemType": "\"{type}\" items cannot be added to a {actor}!",
+  "ALIENRPG.hideJournalBGImage": "Hide Journal Background Image",
+  "ALIENRPG.hideJournalBGImageNote": "Hide the Background Image on Journal Entries",
+  "ALIENRPG.SheetColorSettings":"Sheet Color Settings",
+  "ALIENRPG.JournalColorSettings":"Journal Color Settings",
+  "ALIENRPG.hideChatBGImage":"Hide Chat Background Image",
+  "ALIENRPG.hideChatBGImageNote":"Check this to hide the facehugger background image in chat."
 
 }

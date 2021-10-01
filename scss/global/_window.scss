@@ -8,7 +8,7 @@
   max-width: 360px;
   position: absolute;
   left: -900%;
-  top: 50%;
+  top: -38%;
   background: $c-black;
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
@@ -16,6 +16,9 @@
   text-align: left;
   font-size: smaller;
   z-index: 1;
+}
+.alienrpg #context-menu li.context-item {
+  line-height: normal;
 }
 
 .alienrpg .window-content {
@@ -33,13 +36,14 @@
 .journal-sheet {
   form {
     // font-family: var(--alienfont);
-    color: var(--aliengreen);
-    background: url(../images/mother-instructions/indbackground2.png) no-repeat top left;
+    // color: var(--aliengreen);
+    // background: url(../images/mother-instructions/indbackground2.png) no-repeat top left;
+    background: var(--journalback) top left !important;
     background-size: cover;
-    // background: $c-black;
     border: 1px solid var(--aliengreen);
     border-radius: 1px;
-    color: hsl(187, 52%, 80%);
+    // color: hsl(187, 52%, 80%);
+    color: var(--alientextjournal) !important;
   }
   select {
     font-family: var(--alienfont);
@@ -93,7 +97,8 @@ a.entity-link {
   border-radius: 1px;
 }
 .chat-message {
-  background-image: url('/systems/alienrpg/images/IndBackground3.png');
+  // background-image: url('/systems/alienrpg/images/IndBackground3.png');
+  background-image: var(--chatbackground);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -118,7 +123,8 @@ a.entity-link {
   }
 }
 .chat-message .table-draw .table-results .table-result .chatBG {
-  background-image: url('/systems/alienrpg/images/IndBackground3.png');
+  // background-image: url('/systems/alienrpg/images/IndBackground3.png');
+  background-image: var(--chatbackground);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -873,7 +879,7 @@ button:focus {
 .gm-settings {
   display: block;
   width: 500px;
-  height: 367px;
+  height: 491px;
   background: url(../images/mother-instructions/gm-settings.webp);
   margin-left: auto;
   margin-right: auto;
@@ -883,7 +889,7 @@ button:focus {
 .player-settings {
   display: block;
   width: 500px;
-  height: 213px;
+  height: 301px;
   background: url(../images/mother-instructions/player-settings.webp);
   margin-left: auto;
   margin-right: auto;
@@ -893,7 +899,7 @@ button:focus {
 .style-settings {
   display: block;
   width: 400px;
-  height: 200px;
+  height: 333px;
   background: url(../images/mother-instructions/style-settings.webp);
   margin-left: auto;
   margin-right: auto;

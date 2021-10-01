@@ -2,48 +2,18 @@
   "name": "alienrpg",
   "title": "Alien RPG",
   "description": "The Alien RPG system for Foundry VTT!",
-  "version": "2.0.3",
-
-  "minimumCoreVersion": "0.8.5",
-  "compatibleCoreVersion": "0.8.8",
   "author": "Paul Watson",
-  "templateVersion": 2,
+  "url": "https://github.com/pwatson100/alienrpg",
+  "flags": {},
+  "version": "2.0.4",
+  "minimumCoreVersion": "0.8.5",
+  "compatibleCoreVersion": "0.8.9",
+  "scripts": [],
   "esmodules": [
     "module/alienrpg.js"
   ],
   "styles": [
     "css/alienrpg.css"
-  ],
-  "scripts": [],
-  "packs": [
-    {
-      "name": "tables_gm",
-      "label": "Tables (GM)",
-      "path": "packs/AlienRPG-tables_gm.db",
-      "entity": "RollTable",
-      "module": "AlienRPG"
-    },
-    {
-      "name": "mother_instructions",
-      "label": "Mother Instructions",
-      "path": "packs/AlienRPG-mother-instructions.db",
-      "entity": "JournalEntry",
-      "module": "AlienRPG"
-    },
-    {
-      "name": "alien",
-      "label": "Alien",
-      "path": "packs/AlienRPG-alien.db",
-      "entity": "Macro",
-      "module": "AlienRPG"
-    },
-    {
-      "name": "skill-stunts",
-      "label": "Skill-Stunts",
-      "path": "packs/AlienRPG-skill-stunts.db",
-      "entity": "Item",
-      "module": "AlienRPG"
-    }
   ],
   "languages": [
     {
@@ -80,16 +50,51 @@
       "lang": "pt-BR",
       "name": "Português (Brasil)",
       "path": "lang/pt-br.json"
-  }
-
+    }
   ],
+  "packs": [
+    {
+      "name": "tables_gm",
+      "label": "Tables (GM)",
+      "path": "packs/AlienRPG-tables_gm.db",
+      "entity": "RollTable",
+      "module": "AlienRPG",
+      "private": false
+    },
+    {
+      "name": "mother_instructions",
+      "label": "Mother Instructions",
+      "path": "packs/AlienRPG-mother-instructions.db",
+      "entity": "JournalEntry",
+      "module": "AlienRPG",
+      "private": false
+    },
+    {
+      "name": "alien",
+      "label": "Alien",
+      "path": "packs/AlienRPG-alien.db",
+      "entity": "Macro",
+      "module": "AlienRPG",
+      "private": false
+    },
+    {
+      "name": "skill-stunts",
+      "label": "Skill-Stunts",
+      "path": "packs/AlienRPG-skill-stunts.db",
+      "entity": "Item",
+      "module": "AlienRPG",
+      "private": false
+    }
+  ],
+  "system": [],
+  "dependencies": [],
+  "socket": true,
+  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/2.0.4/system.json",
+  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.0.4/master.zip",
+  "protected": false,
+  "initiative": "1d10",
   "gridDistance": 5,
   "gridUnits": "m",
   "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "stress",
-  "initiative": "1d10",
-  "url": "https://github.com/pwatson100/alienrpg",
-  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/2.0.3/system.json",
-  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.0.3/master.zip",
-  "socket": true
+  "secondaryTokenAttribute": "stress"
 }

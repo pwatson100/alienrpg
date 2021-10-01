@@ -1179,10 +1179,14 @@ export class alienrpgActor extends Actor {
     // console.log('🚀 ~ file: actor.js ~ line 841 ~ alienrpgActor ~ rollCrit ~ type', type);
     // let label = dataset.label;
     let atable = '';
+    let healTime = 0;
+    let cFatial = false;
+    let factorFour = '';
+    let testArray = '';
     switch (type) {
       case 'character':
         atable = game.tables.getName('Critical injuries');
-        if (atable === null) {
+        if (atable === null || atable === undefined) {
           ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
           return;
         }
@@ -1190,7 +1194,7 @@ export class alienrpgActor extends Actor {
         break;
       case 'synthetic':
         atable = game.tables.getName('Critical Injuries on Synthetics');
-        if (atable === null) {
+        if (atable === null || atable === undefined) {
           ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
           return;
         }
@@ -1205,18 +1209,96 @@ export class alienrpgActor extends Actor {
     // roll.evaluate({ async: false });
     // atable.draw({ roll: roll });
     const test1 = await atable.draw();
+    try {
+      if (game.settings.get('alienrpg-corerules', 'imported') || game.settings.get('alienrpg-starterset', 'imported')) {
+        const messG = JSON.stringify(game.messages.contents.pop());
 
-    // CREATE INJURY
-    // trying to get the data from the message to create an item
-    // 08/08 this works :)
-    // const messG = JSON.stringify(game.messages.contents.pop());
-    // const factorFour = messG.slice(messG.indexOf('<b>INJURY:'), messG.indexOf('</div>' + 6, messG.indexOf('<b>INJURY:'))).replace(/<a class=(.*?)><\/i>|<\/a>/gi, '');
-    // let testArray = factorFour.match(/<?b>(.*?)(<br>|<\/div>)/g).map(function (val) {
-    //   return val.replace(/<b>(.*?)(: )|<\/b>|(<br>|<\/div>)/g, '');
-    // });
-    // console.log('🚀 ~ file: actor.js ~ line 1079 ~ rollCrit ~ testArray', testArray);
+        switch (type) {
+          case 'character':
+            {
+              let resultImage = messG.slice(messG.indexOf('src=') + 6, messG.indexOf('.svg') + 4);
+              factorFour = messG.slice(messG.indexOf('<b>INJURY:'), messG.indexOf('</div>' + 6, messG.indexOf('<b>INJURY:'))).replace(/<a class=(.*?)><\/i>|<\/a>/gi, '');
+              testArray = factorFour.match(/<?b>(.*?)(<br>|<\/div>)/g).map(function (val) {
+                return val.replace(/<b>(.*?)(: )|<\/b>|(<br>|<\/div>)/g, '');
+              });
+              let speanex = testArray[3].replace(/(<([^>]+)>)/gi, '');
+              if (testArray[4] != 'Permanent') {
+                testArray[4].replace(/[^0-9]/g, '');
+              }
+              switch (testArray[1]) {
+                case 'Yes ':
+                  cFatial = true;
+                  break;
+                case 'Yes, –1 ':
+                  cFatial = true;
+                  break;
+                default:
+                  cFatial = false;
+                  break;
+              }
 
-    // End of CREATE INJURY
+              switch (testArray[2]) {
+                case game.i18n.localize('ALIENRPG.None') + ' ':
+                  healTime = 0;
+                  break;
+                case game.i18n.localize('ALIENRPG.OneRound') + ' ':
+                  healTime = 1;
+                  break;
+                case game.i18n.localize('ALIENRPG.OneTurn') + ' ':
+                  healTime = 2;
+                  break;
+                case game.i18n.localize('ALIENRPG.OneShift') + ' ':
+                  healTime = 3;
+                  break;
+                case game.i18n.localize('ALIENRPG.OneDay'):
+                  +' ';
+                  healTime = 3;
+                  break;
+                default:
+                  healTime = 0;
+                  break;
+              }
+              //
+              // Now create the item on the sheet
+              //
+              await this.createEmbeddedDocuments('Item', [
+                {
+                  type: 'critical-injury',
+                  img: resultImage,
+                  name: testArray[0],
+                  'data.attributes.fatal': cFatial,
+                  'data.attributes.timelimit.value': testArray[4],
+                  'data.attributes.healingtime.value': healTime,
+                  'data.attributes.effects': speanex,
+                },
+              ]);
+            }
+
+            break;
+          case 'synthetic':
+            {
+              factorFour = messG.slice(messG.indexOf('result-image'), messG.indexOf('.</div>') + 1);
+              let resultImage = factorFour.slice(factorFour.indexOf('src=') + 6, factorFour.indexOf('.svg') + 4);
+              let injName = factorFour.slice(factorFour.indexOf('<b>') + 3, factorFour.indexOf(': </b>'));
+              let injDesc = factorFour.slice(factorFour.indexOf(': </b>') + 6);
+              let injDesc1 = injDesc.replace(/(<([^>]+)>)/gi, '');
+              // debugger;
+              //
+              // Now create the item on the sheet
+              //
+              await this.createEmbeddedDocuments('Item', [
+                {
+                  type: 'critical-injury',
+                  img: resultImage,
+                  name: injName,
+                  'data.attributes.effects': injDesc1,
+                },
+              ]);
+            }
+            break;
+        }
+      }
+    } catch (error) {}
   }
 }
 export default alienrpgActor;

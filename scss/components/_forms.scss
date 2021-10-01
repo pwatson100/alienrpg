@@ -101,6 +101,16 @@ h1.charname {
   text-align: center;
   border: 1px solid var(--aliengreen);
 }
+.healboxsize {
+  max-width: 80px;
+  color: inherit;
+  background-color: $c-black;
+  height: 20px;
+  padding: 0;
+  margin: 1px;
+  text-align: center;
+  border: 1px solid var(--aliengreen);
+}
 .cashboxsize {
   max-width: 150px;
   color: inherit;

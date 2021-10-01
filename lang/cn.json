@@ -269,8 +269,11 @@
   "ALIENRPG.Days":"天",
   "ALIENRPG.ArmorPiercing":"穿甲弹",
   "ALIENRPG.ArmorDoubled":"护甲加倍",
-  "ALIENRPG.NotifWrongItemType": "\"{type}\" 项目不能添加到 {actor}!"
-
-
-
+  "ALIENRPG.NotifWrongItemType": "\"{type}\" 项目不能添加到 {actor}!",
+  "ALIENRPG.hideJournalBGImage": "隐藏日志背景图像",
+  "ALIENRPG.hideJournalBGImageNote": "隐藏日记条目的背景图像",
+  "ALIENRPG.SheetColorSettings":"图纸颜色设置",
+  "ALIENRPG.JournalColorSettings":"日志颜色设置",
+  "ALIENRPG.hideChatBGImage":"隐藏聊天背景图片",
+  "ALIENRPG.hideChatBGImageNote":"选中此项以在聊天中隐藏 facehugger 背景图像"
 }

@@ -269,7 +269,11 @@
   "ALIENRPG.Days":"Dias",
   "ALIENRPG.ArmorPiercing":"Perfuradora de Armadura",
   "ALIENRPG.ArmorDoubled":"Armadura Dobrada",
-  "ALIENRPG.NotifWrongItemType": "\"{type}\" itens não podem ser adicionados a um {actor}!"
-
-
+  "ALIENRPG.NotifWrongItemType": "\"{type}\" itens não podem ser adicionados a um {actor}!",
+  "ALIENRPG.hideJournalBGImage": "Ocultar imagem de fundo do jornal",
+  "ALIENRPG.hideJournalBGImageNote": "Ocultar a imagem de fundo nas entradas do diário",
+  "ALIENRPG.SheetColorSettings":"Configurações de cor da folha",
+  "ALIENRPG.JournalColorSettings":"Journal Color Settings",
+  "ALIENRPG.hideChatBGImage":"Ocultar imagem de fundo do bate-papo",
+  "ALIENRPG.hideChatBGImageNote":"Selecione esta opção para ocultar a imagem de fundo do facehugger no bate-papo."
 }

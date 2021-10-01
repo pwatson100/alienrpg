@@ -361,3 +361,13 @@ Corrected issue with Synthetics token health bar not working.
 Corrected issue with Panic table not being created when missing. 
 Corrected issue with mods for Synthetics.
 Only approved items types can be dropped on to actor sheets (thanks to @Stefouch#5202 for the code)
+
+Version 2.0.4
+If you have the Core Rules or Starter set on rolling a Critical Injury for a PC or Synthetic the Critical Injury item will be automatically created and added to the actors sheet. 
+        You will have to manually add any modifiers the injury has on the character to the tab modifiers tab on the injury item. 
+Added configuration option to not display the background image on Journal Entries. 
+Added configuration option to hide the facehugger background image from chat messages.
+Added option to change the Journal font color.  Please note that some of the font colors are baked into the modules journal settings so will not change. 
+Minor reformatting of the Character and Synthetic sheets. 
+Fixed bug with the setup running for players which was causing a permissions error message to appear. 
+Fixed an issue where the "First-Time-Setup complete" message kept displaying.
