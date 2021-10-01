@@ -1,7 +1,7 @@
 {
     "messages": [
         {
-            "version": 10,
+           "version": 10,
             "message": "<h1>New Release available 2.0.4</h1><br>There are a number of changes in this release which I hope will improve the overall experience. <br/><ol><li>If you have the Core Rules or Starter set on rolling a Critical Injury for a PC or Synthetic the Critical Injury item will be automatically created and added to the actors sheet. </li><li>Added configuration option to not display the background image on Journal Entries.</li><li>Added configuration option to hide the facehugger background image from chat messages.</li><li>Added option to change the Journal font color.  Please note that some of the font colors are baked into the modules journal settings so will not change.</li><li>Corrected issues with with the setup running for players and First-Time-Setup complete message displaying all the time</li></ol><br>Please read the @JournalEntry[MU/TH/ER Instructions.] to get the most benefit out of using the system and new features."
         }
     ]
