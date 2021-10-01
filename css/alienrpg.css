@@ -36,7 +36,9 @@
   --blue: hsl(224, 75%, 62%);
   --black: hsl(0, 0%, 0%);
   --white: hsl(0, 0%, 100%);
+  --alientextjournal: #b1e0e7;
   --journalback: url(../images/mother-instructions/indbackground2.png);
+  --chatbackground: url(/systems/alienrpg/images/IndBackground3.png);
 }
 
 /* Global styles */
@@ -85,12 +87,11 @@
 }
 
 .journal-sheet form {
-  color: var(--aliengreen);
   background: var(--journalback) top left !important;
   background-size: cover;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  color: #b1e0e7;
+  color: var(--alientextjournal) !important;
 }
 .journal-sheet select {
   font-family: var(--alienfont);
@@ -140,7 +141,7 @@ a.entity-link {
 }
 
 .chat-message {
-  background-image: url("/systems/alienrpg/images/IndBackground3.png");
+  background-image: var(--chatbackground);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -160,7 +161,7 @@ a.entity-link {
 }
 
 .chat-message .table-draw .table-results .table-result .chatBG {
-  background-image: url("/systems/alienrpg/images/IndBackground3.png");
+  background-image: var(--chatbackground);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -921,7 +922,7 @@ button:focus {
 .gm-settings {
   display: block;
   width: 500px;
-  height: 367px;
+  height: 491px;
   background: url(../images/mother-instructions/gm-settings.webp);
   margin-left: auto;
   margin-right: auto;
@@ -932,7 +933,7 @@ button:focus {
 .player-settings {
   display: block;
   width: 500px;
-  height: 213px;
+  height: 301px;
   background: url(../images/mother-instructions/player-settings.webp);
   margin-left: auto;
   margin-right: auto;
@@ -943,7 +944,7 @@ button:focus {
 .style-settings {
   display: block;
   width: 400px;
-  height: 200px;
+  height: 333px;
   background: url(../images/mother-instructions/style-settings.webp);
   margin-left: auto;
   margin-right: auto;

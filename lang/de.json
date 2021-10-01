@@ -270,9 +270,9 @@
   "ALIENRPG.ArmorDoubled":"Rüstung Verdoppelt",
   "ALIENRPG.NotifWrongItemType": "\"{type}\" Artikel können nicht zu a . hinzugefügt werden {actor}!",
   "ALIENRPG.hideJournalBGImage": "Journal-Hintergrundbild ausblenden",
-  "ALIENRPG.hideJournalBGImageNote": "Hintergrundbild bei Journaleinträgen ausblenden"
-  
-
-
-
+  "ALIENRPG.hideJournalBGImageNote": "Hintergrundbild bei Journaleinträgen ausblenden",
+  "ALIENRPG.SheetColorSettings":"Einstellungen für Blattfarbe",
+  "ALIENRPG.JournalColorSettings":"Farbeinstellungen für Journale",
+  "ALIENRPG.hideChatBGImage":"Chat-Hintergrundbild ausblenden",
+  "ALIENRPG.hideChatBGImageNote":"Aktivieren Sie diese Option, um das Hintergrundbild von Facehugger im Chat auszublenden"
 }

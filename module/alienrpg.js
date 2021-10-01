@@ -169,30 +169,6 @@ Hooks.once('init', async function () {
     config: true,
   });
 
-  game.settings.register('alienrpg', 'fontColour', {
-    name: 'ALIENRPG.Fontpick',
-    label: 'ALIENRPG.Colpick',
-    hint: 'ALIENRPG.ColpickHint',
-    icon: 'fas fa-dice-d20',
-    restricted: false,
-    type: String,
-    config: false,
-    scope: 'client',
-    default: '#adff2f',
-  });
-
-  game.settings.register('alienrpg', 'fontStyle', {
-    name: 'ALIENRPG.FontStyle',
-    label: 'ALIENRPG.StylePicker',
-    hint: 'ALIENRPG.StylePickerHint',
-    icon: 'fas fa-cogs',
-    restricted: false,
-    scope: 'client',
-    type: String,
-    config: false,
-    default: 'OCR-A',
-  });
-
   game.settings.registerMenu('alienrpg', 'alienrpgSettings', {
     name: 'ALIENRPG.MenuName',
     label: 'ALIENRPG.MenuLabel',
@@ -230,7 +206,7 @@ Hooks.once('ready', async () => {
       await motherPack.getIndex();
       let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
 
-      const newVer = '4';
+      const newVer = '5';
       if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
         if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
           await game.journal.getName('MU/TH/ER Instructions.').delete();
@@ -275,8 +251,12 @@ Hooks.once('ready', async () => {
   let r = document.querySelector(':root');
   r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
   r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
+  r.style.setProperty('--alientextjournal', game.settings.get('alienrpg', 'JournalFontColour'));
   if (game.settings.get('alienrpg', 'switchJournalColour')) {
     r.style.setProperty('--journalback', `#000000`);
+  }
+  if (game.settings.get('alienrpg', 'switchchatbackground')) {
+    r.style.setProperty('--chatbackground', `#000000`);
   }
 
   //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to

@@ -269,8 +269,9 @@
   "ALIENRPG.ArmorDoubled":"Armure Doublée",
   "ALIENRPG.NotifWrongItemType": "\"{type}\" les éléments ne peuvent pas être ajoutés à un {actor}!",
   "ALIENRPG.hideJournalBGImage": "Masquer l'image d'arrière-plan du journal",
-  "ALIENRPG.hideJournalBGImageNote": "Masquer l'image d'arrière-plan sur les entrées de journal"
-  
-
-
+  "ALIENRPG.hideJournalBGImageNote": "Masquer l'image d'arrière-plan sur les entrées de journal",
+  "ALIENRPG.SheetColorSettings":"Paramètres de couleur de la feuille",
+  "ALIENRPG.JournalColorSettings":"Paramètres de couleur du journal",
+  "ALIENRPG.hideChatBGImage":"Masquer l'image d'arrière-plan du chat",
+  "ALIENRPG.hideChatBGImageNote":"Cochez cette case pour masquer l'image d'arrière-plan facehugger dans le chat."
 }
