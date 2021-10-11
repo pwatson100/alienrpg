@@ -1209,8 +1209,22 @@ export class alienrpgActor extends Actor {
     // roll.evaluate({ async: false });
     // atable.draw({ roll: roll });
     const test1 = await atable.draw();
+    let critTable = false;
     try {
-      if (game.settings.get('alienrpg-corerules', 'imported') || game.settings.get('alienrpg-starterset', 'imported')) {
+      if (game.settings.get('alienrpg-corerules', 'imported') === true) {
+        critTable = true;
+      }
+    } catch (error) {}
+
+    try {
+      if (game.settings.get('alienrpg-starterset', 'imported') === true) {
+        critTable = true;
+      }
+    } catch (error) {}
+
+    try {
+      if (critTable) {
+        // if (game.settings.get('alienrpg-corerules', 'imported') === true || game.settings.get('alienrpg-starterset', 'imported') === true) {
         const messG = JSON.stringify(game.messages.contents.pop());
 
         switch (type) {
