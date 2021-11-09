@@ -551,7 +551,7 @@ export class alienrpgActor extends Actor {
           ' + (' +
           stressMod +
           ') <br>+ ' +
-          game.i18n.localize('ALIENRPG.Talents') +
+          game.i18n.localize('ALIENRPG.Talent-Crit') +
           ' + (' +
           modifier +
           ')' +
