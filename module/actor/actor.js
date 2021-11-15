@@ -114,7 +114,7 @@ export class alienrpgActor extends Actor {
       const Attrib = iAttrib.data;
       // debugger;
       if (Attrib.type === 'item' || Attrib.type === 'critical-injury' || Attrib.type === 'armor') {
-        if (Attrib.data.header.active) {
+        if (Attrib.data.header.active === true) {
           let base = Attrib.data.modifiers.attributes;
           // console.log('🚀 ~ file: actor.js ~ line 104 ~ alienrpgActor ~ _prepareCharacterData ~ base', base);
           for (let [bkey, aAttrib] of Object.entries(base)) {
@@ -198,31 +198,6 @@ export class alienrpgActor extends Actor {
         }
       }
 
-      // if (Attrib.type === 'armor') {
-      //   if (Attrib.data.header.active) {
-      //     let base = Attrib.data.modifiers;
-      //     for (let [bkey, vAttrib] of Object.entries(base)) {
-      //       switch (bkey) {
-      //         case 'agl':
-      //           attrMod.agl = attrMod.agl += parseInt(vAttrib.value);
-      //           break;
-      //         case 'heavyMach':
-      //           sklMod.heavyMach = sklMod.heavyMach += parseInt(vAttrib.value);
-      //           break;
-      //         case 'closeCbt':
-      //           sklMod.closeCbt = sklMod.closeCbt += parseInt(vAttrib.value);
-      //           break;
-      //         case 'survival':
-      //           sklMod.survival = sklMod.survival += parseInt(vAttrib.value);
-      //           break;
-
-      //         default:
-      //           break;
-      //       }
-      //     }
-      //   }
-      // }
-
       if (Attrib.type === 'talent') {
         const talName = Attrib.name.toUpperCase();
         let aId = Attrib._id;
@@ -282,7 +257,7 @@ export class alienrpgActor extends Actor {
         //  Update armor value fron items
         i.data.data.attributes.armorrating.value === true;
 
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.armorrating.value && i.data.data.header;
           i.data.data.attributes.armorrating.value = i.data.data.attributes.armorrating.value || 0;
           i.totalAc = parseInt(i.data.data.attributes.armorrating.value, 10);
@@ -293,7 +268,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update water value fron items
         i.data.data.attributes.water.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.water.value = i.data.data.attributes.water.value || 0;
           i.totalWat = parseInt(i.data.data.attributes.water.value, 10);
           totalWat += i.totalWat;
@@ -302,7 +277,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update food value fron items
         i.data.data.attributes.food.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.food.value = i.data.data.attributes.food.value || 0;
           i.totalFood = parseInt(i.data.data.attributes.food.value, 10);
           totalFood += i.totalFood;
@@ -311,7 +286,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update air value fron items
         i.data.data.attributes.airsupply.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.airsupply.value = i.data.data.attributes.airsupply.value || 0;
           i.totalAir = parseInt(i.data.data.attributes.airsupply.value, 10);
           totalAir += i.totalAir;
@@ -320,7 +295,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update air value fron items
         i.data.data.attributes.power.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.power.value = i.data.data.attributes.power.value || 0;
           i.totalPower = parseInt(i.data.data.attributes.power.value, 10);
           totalPower += i.totalPower;

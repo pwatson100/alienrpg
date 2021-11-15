@@ -277,5 +277,6 @@
   "ALIENRPG.SheetColorSettings":"Configuración de color de hoja",
   "ALIENRPG.JournalColorSettings":"Configuración de color de la revista",
   "ALIENRPG.hideChatBGImage":"Ocultar imagen de fondo de chat",
-  "ALIENRPG.hideChatBGImageNote":"Marque esto para ocultar la imagen de fondo de facehugger en el chat."
+  "ALIENRPG.hideChatBGImageNote":"Marque esto para ocultar la imagen de fondo de facehugger en el chat.",
+  "ALIENRPG.fLocker":"Cajón de los zapatos"
 }

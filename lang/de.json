@@ -275,5 +275,6 @@
   "ALIENRPG.SheetColorSettings":"Einstellungen für Blattfarbe",
   "ALIENRPG.JournalColorSettings":"Farbeinstellungen für Journale",
   "ALIENRPG.hideChatBGImage":"Chat-Hintergrundbild ausblenden",
-  "ALIENRPG.hideChatBGImageNote":"Aktivieren Sie diese Option, um das Hintergrundbild von Facehugger im Chat auszublenden"
+  "ALIENRPG.hideChatBGImageNote":"Aktivieren Sie diese Option, um das Hintergrundbild von Facehugger im Chat auszublenden",
+  "ALIENRPG.fLocker":"Fußschließfach"
 }

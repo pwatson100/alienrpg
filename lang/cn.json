@@ -276,5 +276,6 @@
   "ALIENRPG.SheetColorSettings":"图纸颜色设置",
   "ALIENRPG.JournalColorSettings":"日志颜色设置",
   "ALIENRPG.hideChatBGImage":"隐藏聊天背景图片",
-  "ALIENRPG.hideChatBGImageNote":"选中此项以在聊天中隐藏 facehugger 背景图像"
+  "ALIENRPG.hideChatBGImageNote":"选中此项以在聊天中隐藏 facehugger 背景图像",
+  "ALIENRPG.fLocker":"储物柜"
 }

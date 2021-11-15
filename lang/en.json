@@ -276,6 +276,7 @@
   "ALIENRPG.SheetColorSettings":"Sheet Color Settings",
   "ALIENRPG.JournalColorSettings":"Journal Color Settings",
   "ALIENRPG.hideChatBGImage":"Hide Chat Background Image",
-  "ALIENRPG.hideChatBGImageNote":"Check this to hide the facehugger background image in chat."
+  "ALIENRPG.hideChatBGImageNote":"Check this to hide the facehugger background image in chat.",
+  "ALIENRPG.fLocker":"Foot Locker"
 
 }

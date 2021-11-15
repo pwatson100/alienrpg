@@ -274,5 +274,6 @@
   "ALIENRPG.SheetColorSettings":"Paramètres de couleur de la feuille",
   "ALIENRPG.JournalColorSettings":"Paramètres de couleur du journal",
   "ALIENRPG.hideChatBGImage":"Masquer l'image d'arrière-plan du chat",
-  "ALIENRPG.hideChatBGImageNote":"Cochez cette case pour masquer l'image d'arrière-plan facehugger dans le chat."
+  "ALIENRPG.hideChatBGImageNote":"Cochez cette case pour masquer l'image d'arrière-plan facehugger dans le chat.",
+  "ALIENRPG.fLocker":"Casier à pied"
 }

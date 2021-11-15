@@ -8,7 +8,7 @@
   max-width: 360px;
   position: absolute;
   left: -900%;
-  top: -38%;
+  top: -102%;
   background: $c-black;
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
@@ -18,7 +18,7 @@
   z-index: 1;
 }
 .alienrpg #context-menu li.context-item {
-  line-height: normal;
+  line-height: 16px;
 }
 
 .alienrpg .window-content {

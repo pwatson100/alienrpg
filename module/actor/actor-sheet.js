@@ -150,21 +150,26 @@ export class alienrpgActorSheet extends ActorSheet {
           break;
 
         case 'weapon':
-          let ammoweight = 0.25;
-          if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
-            ammoweight = 0.5;
+          if (item.header.active != 'fLocker') {
+            let ammoweight = 0.25;
+            if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
+              ammoweight = 0.5;
+            }
+            i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+            i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
+            totalWeight += i.totalWeight;
           }
-          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-          i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
           inventory[i.type].items.push(i);
-          totalWeight += i.totalWeight;
+
           break;
 
         default:
-          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-          i.totalWeight = i.data.attributes.weight.value;
+          if (item.header.active != 'fLocker') {
+            i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+            i.totalWeight = i.data.attributes.weight.value;
+            totalWeight += i.totalWeight;
+          }
           inventory[i.type].items.push(i);
-          totalWeight += i.totalWeight;
           break;
       }
     }
@@ -223,6 +228,15 @@ export class alienrpgActorSheet extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
     const itemContextMenu = [
+      {
+        name: game.i18n.localize('ALIENRPG.fLocker'),
+        // icon: '<i class="fas fa-archive"></i>"></fas>',
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'data.header.active': 'fLocker' });
+        },
+      },
       {
         name: game.i18n.localize('ALIENRPG.EditItemTitle'),
         icon: '<i class="fas fa-edit"></i>',

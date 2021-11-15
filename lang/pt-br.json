@@ -276,5 +276,6 @@
   "ALIENRPG.SheetColorSettings":"Configurações de cor da folha",
   "ALIENRPG.JournalColorSettings":"Journal Color Settings",
   "ALIENRPG.hideChatBGImage":"Ocultar imagem de fundo do bate-papo",
-  "ALIENRPG.hideChatBGImageNote":"Selecione esta opção para ocultar a imagem de fundo do facehugger no bate-papo."
+  "ALIENRPG.hideChatBGImageNote":"Selecione esta opção para ocultar a imagem de fundo do facehugger no bate-papo.",
+  "ALIENRPG.fLocker":"Foot Locker"
 }
