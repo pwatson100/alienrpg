@@ -188,13 +188,13 @@ export class alienrpgActor extends Actor {
             }
           }
         }
-        setProperty(actorData, 'data.header.health.mod', (data.header.health.mod = parseInt(attrMod.health || 0)));
+        setProperty(actorData, 'data.header.health.mod', (data.header.health.mod += parseInt(attrMod.health || 0)));
         // actorData.update({ 'data.header.health.mod': (actorData.data.header.health.mod = parseInt(attrMod.health || 0)) });
 
         if (actorData.type === 'character') {
           // actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod = parseInt(attrMod.stress || 0)) });
 
-          setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod = parseInt(attrMod.stress || 0)));
+          setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod += parseInt(attrMod.stress || 0)));
         }
       }
 
@@ -919,6 +919,78 @@ export class alienrpgActor extends Actor {
       if (field[0].name === 'data.general.panic.value') {
         actor.checkAndEndPanic(actor);
       }
+    } // Update the field value and save the form
+    field.val(newLevel);
+    return event;
+  }
+  async conCheckMarks(actor, event) {
+    const field = $(event.currentTarget).siblings('input[type="hidden"]');
+    const max = field.data('max') == undefined ? 4 : field.data('max');
+    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
+    const level = parseFloat(field.val());
+    let newLevel = ''; // Toggle next level - forward on click, backwards on right
+
+    if (event.type === 'click') {
+      newLevel = Math.clamped(level + 1, 0, max);
+      switch (field[0].name) {
+        case "data.general.starving.value":
+          actor.getActiveTokens().forEach((i) => {
+            i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+          });
+          break;
+        case "data.general.dehydrated.value":
+          actor.getActiveTokens().forEach((i) => {
+            i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
+          });
+          break;
+        case "data.general.exhausted.value":
+          actor.getActiveTokens().forEach((i) => {
+            i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+          });
+          break;
+      
+        case "data.general.freezing.value":
+          actor.getActiveTokens().forEach((i) => {
+            i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+          });
+          break;
+      
+        default:
+          break;
+      }
+
+    } else if (event.type === 'contextmenu') {
+      newLevel = Math.clamped(level - 1, 0, max);
+      if (field[0].name === 'data.general.panic.value') {
+        actor.checkAndEndPanic(actor);
+      }
+      switch (field[0].name) {
+        case "data.general.starving.value":
+          actor.getActiveTokens().forEach((i) => {
+            i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+          });
+          break;
+        case "data.general.dehydrated.value":
+          actor.getActiveTokens().forEach((i) => {
+            i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
+          });
+          break;
+        case "data.general.exhausted.value":
+          actor.getActiveTokens().forEach((i) => {
+            i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+          });
+          break;
+      
+        case "data.general.freezing.value":
+          actor.getActiveTokens().forEach((i) => {
+            i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+          });
+          break;
+      
+        default:
+          break;
+      }
+
     } // Update the field value and save the form
     field.val(newLevel);
     return event;

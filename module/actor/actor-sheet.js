@@ -50,6 +50,7 @@ export class alienrpgActorSheet extends ActorSheet {
       cssClass: isOwner ? 'editable' : 'locked',
       isCharacter: this.object.data.type === 'character',
       isEnc: this.object.data.type === 'character' || this.object.data.type === 'synthetic',
+      // isEnc: false,
       isSynthetic: this.object.data.type === 'synthetic',
       isVehicles: this.object.data.type === 'vehicles',
       isCreature: this.object.data.type === 'creature',
@@ -207,6 +208,17 @@ export class alienrpgActorSheet extends ActorSheet {
         enc.encumbered = enc.pct > 75;
       }
     }
+    if (enc.encumbered) {
+      this.actor.getActiveTokens().forEach((i) => {
+        i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
+    }
+      )
+  } else {
+    this.actor.getActiveTokens().forEach((i) => {
+      i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
+  }
+  )
+  };
     return enc;
   }
 
@@ -259,8 +271,38 @@ export class alienrpgActorSheet extends ActorSheet {
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
 
+    const itemContextMenu1 = [
+      {
+        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+        icon: '<i class="fas fa-edit"></i>',
+        callback: (element) => {
+          const item = this.actor.items.get(element.data('item-id'));
+          item.sheet.render(true);
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.DeleteItem'),
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (element) => {
+          // this.actor.deleteOwnedItem(element.data('item-id'));
+          let itemDel = this.actor.items.get(element.data('item-id'));
+          itemDel.delete();
+        },
+      },
+    ];
+
+    // Add Inventory Item
+    new ContextMenu(html, '.item-edit1', itemContextMenu1);
+
+
     // Update Inventory Item
     html.find('.item-edit').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
+    html.find('.item-edit1').click((ev) => {
       const li = $(ev.currentTarget).parents('.item');
       const item = this.actor.items.get(li.data('itemId'));
       item.sheet.render(true);
@@ -298,6 +340,7 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.plus-btn').click(this._plusMinusButton.bind(this));
 
     html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
+    html.find('.click-stat-level-con').on('click contextmenu', this._onClickStatLevelCon.bind(this)); // Toggle for radio buttons
 
     html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
@@ -385,7 +428,8 @@ export class alienrpgActorSheet extends ActorSheet {
     delete itemData.data['type'];
 
     // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
+    // return this.actor.createOwnedItem(itemData);
+    return this.actor.createEmbeddedDocuments(itemData);
   }
 
   _inlineedit(event) {
@@ -552,6 +596,11 @@ export class alienrpgActorSheet extends ActorSheet {
   _onClickStatLevel(event) {
     event.preventDefault();
     this.actor.checkMarks(this.actor, event);
+    this._onSubmit(event);
+  }
+  _onClickStatLevelCon(event) {
+    event.preventDefault();
+    this.actor.conCheckMarks(this.actor, event);
     this._onSubmit(event);
   }
 

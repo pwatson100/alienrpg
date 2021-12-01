@@ -188,6 +188,24 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     };
     enc.pct = Math.min((enc.value * 100) / enc.max, 99);
     enc.encumbered = enc.pct > 50;
+    for (let i of actorData.talents) {
+      if (i.name.toUpperCase() === 'PACK MULE') {
+        enc.encumbered = enc.pct > 75;
+      }
+    }
+
+    if (enc.encumbered) {
+      this.actor.getActiveTokens().forEach((i) => {
+        i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
+    }
+      )
+  } else {
+    this.actor.getActiveTokens().forEach((i) => {
+      i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
+  }
+  )
+  };
+
     return enc;
   }
 
@@ -211,6 +229,15 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     if (!this.options.editable) return;
     const itemContextMenu = [
       {
+        name: game.i18n.localize('ALIENRPG.fLocker'),
+        // icon: '<i class="fas fa-archive"></i>"></fas>',
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'data.header.active': 'fLocker' });
+        },
+      },
+      {
         name: game.i18n.localize('ALIENRPG.EditItemTitle'),
         icon: '<i class="fas fa-edit"></i>',
         callback: (element) => {
@@ -231,6 +258,29 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
+
+    const itemContextMenu1 = [
+      {
+        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+        icon: '<i class="fas fa-edit"></i>',
+        callback: (element) => {
+          const item = this.actor.items.get(element.data('item-id'));
+          item.sheet.render(true);
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.DeleteItem'),
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (element) => {
+          // this.actor.deleteOwnedItem(element.data('item-id'));
+          let itemDel = this.actor.items.get(element.data('item-id'));
+          itemDel.delete();
+        },
+      },
+    ];
+
+    // Add Inventory Item
+    new ContextMenu(html, '.item-edit1', itemContextMenu1);
 
     // Update Inventory Item
     html.find('.item-edit').click((ev) => {
