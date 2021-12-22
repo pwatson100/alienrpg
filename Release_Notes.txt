@@ -376,7 +376,9 @@ Version 2.0.5
 Fixed bug with Critical injuries not being created for users with the Starter set installed. 
 
 Version 2.0.6
+Foundry V9 Compatibility
 Corrected issue with the Chat Panic Condition tooltip not showing the correct figures for Talent/Crit modifiers correctly.
 Added Footlocker to the Inventory tab.  Use the Context menu to select Footlocker. Right or left click on the item icon to remove from Footlocker. 
 Actors that are over Encumbered will now show a status icon (weight) on the token to let the player know they have reduced movement. 
-Added token status indicators for starving, dehydrated, exhausted and freezing
+Added token status indicators for starving, dehydrated, exhausted and freezing.
+New rolltable macros for V9 and they are now localized. 

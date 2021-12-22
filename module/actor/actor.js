@@ -929,68 +929,143 @@ export class alienrpgActor extends Actor {
     const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
     const level = parseFloat(field.val());
     let newLevel = ''; // Toggle next level - forward on click, backwards on right
+    let aTokens = '';
 
     if (event.type === 'click') {
       newLevel = Math.clamped(level + 1, 0, max);
+
       switch (field[0].name) {
-        case "data.general.starving.value":
-          actor.getActiveTokens().forEach((i) => {
-            i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+        case 'data.general.starving.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+            }
           });
           break;
-        case "data.general.dehydrated.value":
-          actor.getActiveTokens().forEach((i) => {
-            i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
-          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   console.log(i.data);
+          //   i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+          // });
           break;
-        case "data.general.exhausted.value":
-          actor.getActiveTokens().forEach((i) => {
-            i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+        case 'data.general.dehydrated.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
+            }
           });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
+          // });
           break;
-      
-        case "data.general.freezing.value":
-          actor.getActiveTokens().forEach((i) => {
-            i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+        case 'data.general.exhausted.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+            }
           });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+          // });
           break;
-      
+
+        case 'data.general.freezing.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+          // });
+          break;
+
         default:
           break;
       }
-
     } else if (event.type === 'contextmenu') {
       newLevel = Math.clamped(level - 1, 0, max);
       if (field[0].name === 'data.general.panic.value') {
         actor.checkAndEndPanic(actor);
       }
       switch (field[0].name) {
-        case "data.general.starving.value":
-          actor.getActiveTokens().forEach((i) => {
-            i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+        case 'data.general.starving.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+            }
           });
           break;
-        case "data.general.dehydrated.value":
-          actor.getActiveTokens().forEach((i) => {
-            i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
-          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+          // });
           break;
-        case "data.general.exhausted.value":
-          actor.getActiveTokens().forEach((i) => {
-            i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+        case 'data.general.dehydrated.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
+            }
           });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
+          // });
           break;
-      
-        case "data.general.freezing.value":
-          actor.getActiveTokens().forEach((i) => {
-            i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+        case 'data.general.exhausted.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+            }
           });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+          // });
           break;
-      
+
+        case 'data.general.freezing.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+          // });
+          break;
+
         default:
           break;
       }
-
     } // Update the field value and save the form
     field.val(newLevel);
     return event;

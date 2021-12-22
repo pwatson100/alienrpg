@@ -276,6 +276,18 @@
     "ALIENRPG.JournalColorSettings":"日志颜色设置",
     "ALIENRPG.hideChatBGImage":"隐藏聊天背景图片",
     "ALIENRPG.hideChatBGImageNote":"选中此项以在聊天中隐藏 facehugger 背景图像",
-    "ALIENRPG.fLocker":"储物柜"
-
+    "ALIENRPG.fLocker":"储物柜",
+    "ALIENRPG.HOWMANYDICE":"有多少基地死亡？",
+    "ALIENRPG.HOWMANYSTRESS":"有多少压力骰子?",
+    "ALIENRPG.GMONLY":"仅限通用汽车",
+    "ALIENRPG.ENSOKEN":"确保选择了玩家令牌。",
+    "ALIENRPG.ROLLFOR":"为",
+    "ALIENRPG.SELTABLE":"选择表",
+    "ALIENRPG.HOWMANY":"多少？",
+    "ALIENRPG.MODIFIER":"修饰符？",
+    "ALIENRPG.DRAW":"画",
+    "ALIENRPG.NOTABLES":"没有可绘制的表格！",
+    "ALIENRPG.ROLLONSELECTED":"在选定的母桌上滚动",
+    "ALIENRPG.ROLLONCREATURETABLE":"绘制外星生物表"
+  
 }

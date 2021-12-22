@@ -208,17 +208,34 @@ export class alienrpgActorSheet extends ActorSheet {
         enc.encumbered = enc.pct > 75;
       }
     }
+    // let aTokens = '';
     if (enc.encumbered) {
+      // aTokens = this.actor.getActiveTokens();
+      // aTokens.forEach((i) => {
+      //   if (aTokens.length > 1 && !i.document._actor.isToken) {
+      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
+      //   } else if (aTokens.length === 1) {
+      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
+      //   }
+      // });
+
       this.actor.getActiveTokens().forEach((i) => {
         i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
+      });
+    } else {
+      // aTokens = this.actor.getActiveTokens();
+      // aTokens.forEach((i) => {
+      //   if (aTokens.length > 1 && !i.document._actor.isToken) {
+      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
+      //   } else if (aTokens.length === 1) {
+      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
+      //   }
+      // });
+
+      this.actor.getActiveTokens().forEach((i) => {
+        i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
+      });
     }
-      )
-  } else {
-    this.actor.getActiveTokens().forEach((i) => {
-      i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
-  }
-  )
-  };
     return enc;
   }
 
@@ -293,7 +310,6 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Add Inventory Item
     new ContextMenu(html, '.item-edit1', itemContextMenu1);
-
 
     // Update Inventory Item
     html.find('.item-edit').click((ev) => {

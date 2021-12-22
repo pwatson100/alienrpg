@@ -278,5 +278,17 @@
   "ALIENRPG.JournalColorSettings":"Configuración de color de la revista",
   "ALIENRPG.hideChatBGImage":"Ocultar imagen de fondo de chat",
   "ALIENRPG.hideChatBGImageNote":"Marque esto para ocultar la imagen de fondo de facehugger en el chat.",
-  "ALIENRPG.fLocker":"Cajón de los zapatos"
+  "ALIENRPG.fLocker":"Cajón de los zapatos",
+  "ALIENRPG.HOWMANYDICE":"Cuántas bases mueren?",
+  "ALIENRPG.HOWMANYSTRESS":"Cuántos dados de estrés?",
+  "ALIENRPG.GMONLY":"Solo GM",
+  "ALIENRPG.ENSOKEN":"Asegúrate de que la ficha de jugador esté seleccionada.",
+  "ALIENRPG.ROLLFOR":"por",
+  "ALIENRPG.SELTABLE":"Seleccionar tabla",
+  "ALIENRPG.HOWMANY":"Cuantos?",
+  "ALIENRPG.MODIFIER":"Modificador?",
+  "ALIENRPG.DRAW":"Dibujar",
+  "ALIENRPG.NOTABLES":"No hay tablas para dibujar!",
+  "ALIENRPG.ROLLONSELECTED":"Ruede en la mesa madre seleccionada",
+  "ALIENRPG.ROLLONCREATURETABLE":"Dibujar tablas de criaturas alienígenas"
 }

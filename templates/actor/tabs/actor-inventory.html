@@ -1,7 +1,7 @@
 <ol class="items-list">
     {{#if isEnc }}
     {{#with data.general.encumbrance}}
-    <div class="encumbrance-label">{{localize "ALIENRPG.Encumbrance"}} - {{value}}kg / {{max}}kg</div>
+    <div class="encumbrance-label">{{localize "ALIENRPG.Encumbrance"}} - {{value}}{{localize "ALIENRPG.AbbreviationKg"}} / {{max}}{{localize "ALIENRPG.AbbreviationKg"}}</div>
     <div class="encumbrance {{#if encumbered}}encumbered blink{{/if}}">
         <span class="encumbrance-bar" style="width:{{pct}}%"></span>
         <i class="encumbrance-breakpoint encumbrance-33 arrow-up"></i>

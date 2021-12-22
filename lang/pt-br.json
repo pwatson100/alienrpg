@@ -277,5 +277,18 @@
   "ALIENRPG.JournalColorSettings":"Journal Color Settings",
   "ALIENRPG.hideChatBGImage":"Ocultar imagem de fundo do bate-papo",
   "ALIENRPG.hideChatBGImageNote":"Selecione esta opção para ocultar a imagem de fundo do facehugger no bate-papo.",
-  "ALIENRPG.fLocker":"Foot Locker"
+  "ALIENRPG.fLocker":"Foot Locker",
+  "ALIENRPG.HOWMANYDICE":"Quantos dados de base morrem?",
+  "ALIENRPG.HOWMANYSTRESS":"Quantos dados de estresse?",
+  "ALIENRPG.GMONLY":"GM apenas",
+  "ALIENRPG.ENSOKEN":"Certifique-se de que o token do jogador esteja selecionado.",
+  "ALIENRPG.ROLLFOR":"por",
+  "ALIENRPG.SELTABLE":"Selecione a mesa",
+  "ALIENRPG.HOWMANY":"Quantos?",
+  "ALIENRPG.MODIFIER":"Modificador?",
+  "ALIENRPG.DRAW":"Desenhar",
+  "ALIENRPG.NOTABLES":"Não há tabelas para desenhar!",
+  "ALIENRPG.ROLLONSELECTED":"Role na mesa mãe selecionada",
+  "ALIENRPG.ROLLONCREATURETABLE":"Desenhe tabelas de criaturas alienígenas"
+
 }

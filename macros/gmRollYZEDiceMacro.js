@@ -6,16 +6,16 @@
   let template = `
         <form>
             <div class="form-group">
-                <label>How Many Base Die?</label>
+                <label>${game.i18n.localize('ALIENRPG.HOWMANYDICE')}</label>
                 <input type="text" id="fr1Data" value=1>
             </div>
             <div class="form-group">
-                <label>How Many Stress Dice?</label>
+                <label>${game.i18n.localize('ALIENRPG.HOWMANYSTRESS')}</label>
                 <input type="text" id="fr2Data" value=0>
             </div>
     
             <div class="form-group">
-                <label>GM Only</label>
+                <label>${game.i18n.localize('ALIENRPG.GMONLY')}</label>
                 <input type="checkbox" id="fblind" value="true" checked>
             </div>
     
@@ -25,7 +25,7 @@
   buttons = {
     draw: {
       icon: '<i class="fas fa-check"></i>',
-      label: 'Roll',
+      label: `${game.i18n.localize('ALIENRPG.Roll')}`,
       callback: async (html) => {
         const r1Data = parseInt(html.find('#fr1Data')[0].value || 0);
         const r2Data = parseInt(html.find('#fr2Data')[0].value || 0);
@@ -36,12 +36,12 @@
     },
     cancel: {
       icon: '<i class="fas fa-times"></i>',
-      label: 'Cancel',
+      label: `${game.i18n.localize('ALIENRPG.DialCancel')}`,
     },
   };
 
   new Dialog({
-    title: 'Roll YZE Dice.',
+    title: 'Roll Alien Dice.',
     content: template,
     buttons: buttons,
     default: 'draw',

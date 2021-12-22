@@ -7,7 +7,7 @@
   "flags": {},
   "version": "2.0.6",
   "minimumCoreVersion": "0.8.5",
-  "compatibleCoreVersion": "0.8.9",
+  "compatibleCoreVersion": "V9",
   "scripts": [],
   "esmodules": [
     "module/alienrpg.js"

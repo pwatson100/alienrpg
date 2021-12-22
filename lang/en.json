@@ -277,6 +277,17 @@
   "ALIENRPG.JournalColorSettings":"Journal Color Settings",
   "ALIENRPG.hideChatBGImage":"Hide Chat Background Image",
   "ALIENRPG.hideChatBGImageNote":"Check this to hide the facehugger background image in chat.",
-  "ALIENRPG.fLocker":"Foot Locker"
-
+  "ALIENRPG.fLocker":"Foot Locker",
+  "ALIENRPG.HOWMANYDICE":"How Many Base Die?",
+  "ALIENRPG.HOWMANYSTRESS":"How Many Stress Dice?",
+  "ALIENRPG.GMONLY":"GM Only",
+  "ALIENRPG.ENSOKEN":"Ensure player token is selected.",
+  "ALIENRPG.ROLLFOR":"for",
+  "ALIENRPG.SELTABLE":"Select Table",
+  "ALIENRPG.HOWMANY":"How Many?",
+  "ALIENRPG.MODIFIER":"Modifier?",
+  "ALIENRPG.DRAW":"Draw",
+  "ALIENRPG.NOTABLES":"There are no tables to draw from!",
+  "ALIENRPG.ROLLONSELECTED":"Roll on selected Mother table",
+  "ALIENRPG.ROLLONCREATURETABLE":" Draw Alien Creature Tables"
 }

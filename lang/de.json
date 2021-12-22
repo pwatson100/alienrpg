@@ -276,5 +276,18 @@
   "ALIENRPG.JournalColorSettings":"Farbeinstellungen für Journale",
   "ALIENRPG.hideChatBGImage":"Chat-Hintergrundbild ausblenden",
   "ALIENRPG.hideChatBGImageNote":"Aktivieren Sie diese Option, um das Hintergrundbild von Facehugger im Chat auszublenden",
-  "ALIENRPG.fLocker":"Fußschließfach"
+  "ALIENRPG.fLocker":"Fußschließfach",
+  "ALIENRPG.HOWMANYDICE":"Wie viele Base sterben?",
+  "ALIENRPG.HOWMANYSTRESS":"Wie viele Stresswürfel?",
+  "ALIENRPG.GMONLY":"Nur GM",
+  "ALIENRPG.ENSOKEN":"Stellen Sie sicher, dass das Spieler-Token ausgewählt ist.",
+  "ALIENRPG.ROLLFOR":"für",
+  "ALIENRPG.SELTABLE":"Tabelle auswählen",
+  "ALIENRPG.HOWMANY":"Wie viele?",
+  "ALIENRPG.MODIFIER":"Modifikator?",
+  "ALIENRPG.DRAW":"zeichnen",
+  "ALIENRPG.NOTABLES":"Es gibt keine Tabellen zum Zeichnen!",
+  "ALIENRPG.ROLLONSELECTED":"Rolle auf ausgewähltem Muttertisch",
+  "ALIENRPG.ROLLONCREATURETABLE":"Zeichne außerirdische Kreaturentabellen"
+
 }
