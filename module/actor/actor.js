@@ -114,7 +114,7 @@ export class alienrpgActor extends Actor {
       const Attrib = iAttrib.data;
       // debugger;
       if (Attrib.type === 'item' || Attrib.type === 'critical-injury' || Attrib.type === 'armor') {
-        if (Attrib.data.header.active) {
+        if (Attrib.data.header.active === true) {
           let base = Attrib.data.modifiers.attributes;
           // console.log('🚀 ~ file: actor.js ~ line 104 ~ alienrpgActor ~ _prepareCharacterData ~ base', base);
           for (let [bkey, aAttrib] of Object.entries(base)) {
@@ -188,40 +188,15 @@ export class alienrpgActor extends Actor {
             }
           }
         }
-        setProperty(actorData, 'data.header.health.mod', (data.header.health.mod = parseInt(attrMod.health || 0)));
+        setProperty(actorData, 'data.header.health.mod', (data.header.health.mod += parseInt(attrMod.health || 0)));
         // actorData.update({ 'data.header.health.mod': (actorData.data.header.health.mod = parseInt(attrMod.health || 0)) });
 
         if (actorData.type === 'character') {
           // actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod = parseInt(attrMod.stress || 0)) });
 
-          setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod = parseInt(attrMod.stress || 0)));
+          setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod += parseInt(attrMod.stress || 0)));
         }
       }
-
-      // if (Attrib.type === 'armor') {
-      //   if (Attrib.data.header.active) {
-      //     let base = Attrib.data.modifiers;
-      //     for (let [bkey, vAttrib] of Object.entries(base)) {
-      //       switch (bkey) {
-      //         case 'agl':
-      //           attrMod.agl = attrMod.agl += parseInt(vAttrib.value);
-      //           break;
-      //         case 'heavyMach':
-      //           sklMod.heavyMach = sklMod.heavyMach += parseInt(vAttrib.value);
-      //           break;
-      //         case 'closeCbt':
-      //           sklMod.closeCbt = sklMod.closeCbt += parseInt(vAttrib.value);
-      //           break;
-      //         case 'survival':
-      //           sklMod.survival = sklMod.survival += parseInt(vAttrib.value);
-      //           break;
-
-      //         default:
-      //           break;
-      //       }
-      //     }
-      //   }
-      // }
 
       if (Attrib.type === 'talent') {
         const talName = Attrib.name.toUpperCase();
@@ -282,7 +257,7 @@ export class alienrpgActor extends Actor {
         //  Update armor value fron items
         i.data.data.attributes.armorrating.value === true;
 
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.armorrating.value && i.data.data.header;
           i.data.data.attributes.armorrating.value = i.data.data.attributes.armorrating.value || 0;
           i.totalAc = parseInt(i.data.data.attributes.armorrating.value, 10);
@@ -293,7 +268,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update water value fron items
         i.data.data.attributes.water.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.water.value = i.data.data.attributes.water.value || 0;
           i.totalWat = parseInt(i.data.data.attributes.water.value, 10);
           totalWat += i.totalWat;
@@ -302,7 +277,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update food value fron items
         i.data.data.attributes.food.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.food.value = i.data.data.attributes.food.value || 0;
           i.totalFood = parseInt(i.data.data.attributes.food.value, 10);
           totalFood += i.totalFood;
@@ -311,7 +286,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update air value fron items
         i.data.data.attributes.airsupply.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.airsupply.value = i.data.data.attributes.airsupply.value || 0;
           i.totalAir = parseInt(i.data.data.attributes.airsupply.value, 10);
           totalAir += i.totalAir;
@@ -320,7 +295,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update air value fron items
         i.data.data.attributes.power.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.power.value = i.data.data.attributes.power.value || 0;
           i.totalPower = parseInt(i.data.data.attributes.power.value, 10);
           totalPower += i.totalPower;
@@ -551,7 +526,7 @@ export class alienrpgActor extends Actor {
           ' + (' +
           stressMod +
           ') <br>+ ' +
-          game.i18n.localize('ALIENRPG.Talents') +
+          game.i18n.localize('ALIENRPG.Talent-Crit') +
           ' + (' +
           modifier +
           ')' +
@@ -943,6 +918,153 @@ export class alienrpgActor extends Actor {
       newLevel = Math.clamped(level - 1, 0, max);
       if (field[0].name === 'data.general.panic.value') {
         actor.checkAndEndPanic(actor);
+      }
+    } // Update the field value and save the form
+    field.val(newLevel);
+    return event;
+  }
+  async conCheckMarks(actor, event) {
+    const field = $(event.currentTarget).siblings('input[type="hidden"]');
+    const max = field.data('max') == undefined ? 4 : field.data('max');
+    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
+    const level = parseFloat(field.val());
+    let newLevel = ''; // Toggle next level - forward on click, backwards on right
+    let aTokens = '';
+
+    if (event.type === 'click') {
+      newLevel = Math.clamped(level + 1, 0, max);
+
+      switch (field[0].name) {
+        case 'data.general.starving.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+            }
+          });
+          break;
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   console.log(i.data);
+          //   i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+          // });
+          break;
+        case 'data.general.dehydrated.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
+          // });
+          break;
+        case 'data.general.exhausted.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+          // });
+          break;
+
+        case 'data.general.freezing.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+          // });
+          break;
+
+        default:
+          break;
+      }
+    } else if (event.type === 'contextmenu') {
+      newLevel = Math.clamped(level - 1, 0, max);
+      if (field[0].name === 'data.general.panic.value') {
+        actor.checkAndEndPanic(actor);
+      }
+      switch (field[0].name) {
+        case 'data.general.starving.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+            }
+          });
+          break;
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+          // });
+          break;
+        case 'data.general.dehydrated.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
+          // });
+          break;
+        case 'data.general.exhausted.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+          // });
+          break;
+
+        case 'data.general.freezing.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+          // });
+          break;
+
+        default:
+          break;
       }
     } // Update the field value and save the form
     field.val(newLevel);

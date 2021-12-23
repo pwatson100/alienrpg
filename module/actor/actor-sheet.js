@@ -50,6 +50,7 @@ export class alienrpgActorSheet extends ActorSheet {
       cssClass: isOwner ? 'editable' : 'locked',
       isCharacter: this.object.data.type === 'character',
       isEnc: this.object.data.type === 'character' || this.object.data.type === 'synthetic',
+      // isEnc: false,
       isSynthetic: this.object.data.type === 'synthetic',
       isVehicles: this.object.data.type === 'vehicles',
       isCreature: this.object.data.type === 'creature',
@@ -150,21 +151,26 @@ export class alienrpgActorSheet extends ActorSheet {
           break;
 
         case 'weapon':
-          let ammoweight = 0.25;
-          if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
-            ammoweight = 0.5;
+          if (item.header.active != 'fLocker') {
+            let ammoweight = 0.25;
+            if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
+              ammoweight = 0.5;
+            }
+            i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+            i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
+            totalWeight += i.totalWeight;
           }
-          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-          i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
           inventory[i.type].items.push(i);
-          totalWeight += i.totalWeight;
+
           break;
 
         default:
-          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-          i.totalWeight = i.data.attributes.weight.value;
+          if (item.header.active != 'fLocker') {
+            i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+            i.totalWeight = i.data.attributes.weight.value;
+            totalWeight += i.totalWeight;
+          }
           inventory[i.type].items.push(i);
-          totalWeight += i.totalWeight;
           break;
       }
     }
@@ -202,6 +208,34 @@ export class alienrpgActorSheet extends ActorSheet {
         enc.encumbered = enc.pct > 75;
       }
     }
+    // let aTokens = '';
+    if (enc.encumbered) {
+      // aTokens = this.actor.getActiveTokens();
+      // aTokens.forEach((i) => {
+      //   if (aTokens.length > 1 && !i.document._actor.isToken) {
+      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
+      //   } else if (aTokens.length === 1) {
+      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
+      //   }
+      // });
+
+      this.actor.getActiveTokens().forEach((i) => {
+        i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
+      });
+    } else {
+      // aTokens = this.actor.getActiveTokens();
+      // aTokens.forEach((i) => {
+      //   if (aTokens.length > 1 && !i.document._actor.isToken) {
+      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
+      //   } else if (aTokens.length === 1) {
+      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
+      //   }
+      // });
+
+      this.actor.getActiveTokens().forEach((i) => {
+        i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
+      });
+    }
     return enc;
   }
 
@@ -224,6 +258,15 @@ export class alienrpgActorSheet extends ActorSheet {
     if (!this.options.editable) return;
     const itemContextMenu = [
       {
+        name: game.i18n.localize('ALIENRPG.fLocker'),
+        // icon: '<i class="fas fa-archive"></i>"></fas>',
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'data.header.active': 'fLocker' });
+        },
+      },
+      {
         name: game.i18n.localize('ALIENRPG.EditItemTitle'),
         icon: '<i class="fas fa-edit"></i>',
         callback: (element) => {
@@ -245,8 +288,37 @@ export class alienrpgActorSheet extends ActorSheet {
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
 
+    const itemContextMenu1 = [
+      {
+        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+        icon: '<i class="fas fa-edit"></i>',
+        callback: (element) => {
+          const item = this.actor.items.get(element.data('item-id'));
+          item.sheet.render(true);
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.DeleteItem'),
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (element) => {
+          // this.actor.deleteOwnedItem(element.data('item-id'));
+          let itemDel = this.actor.items.get(element.data('item-id'));
+          itemDel.delete();
+        },
+      },
+    ];
+
+    // Add Inventory Item
+    new ContextMenu(html, '.item-edit1', itemContextMenu1);
+
     // Update Inventory Item
     html.find('.item-edit').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
+    html.find('.item-edit1').click((ev) => {
       const li = $(ev.currentTarget).parents('.item');
       const item = this.actor.items.get(li.data('itemId'));
       item.sheet.render(true);
@@ -284,6 +356,7 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.plus-btn').click(this._plusMinusButton.bind(this));
 
     html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
+    html.find('.click-stat-level-con').on('click contextmenu', this._onClickStatLevelCon.bind(this)); // Toggle for radio buttons
 
     html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
@@ -371,7 +444,8 @@ export class alienrpgActorSheet extends ActorSheet {
     delete itemData.data['type'];
 
     // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
+    // return this.actor.createOwnedItem(itemData);
+    return this.actor.createEmbeddedDocuments(itemData);
   }
 
   _inlineedit(event) {
@@ -538,6 +612,11 @@ export class alienrpgActorSheet extends ActorSheet {
   _onClickStatLevel(event) {
     event.preventDefault();
     this.actor.checkMarks(this.actor, event);
+    this._onSubmit(event);
+  }
+  _onClickStatLevelCon(event) {
+    event.preventDefault();
+    this.actor.conCheckMarks(this.actor, event);
     this._onSubmit(event);
   }
 

@@ -1,9 +1,9 @@
 (async () => {
   let hostile = false;
   try {
-    let label = 'for ' + actor.name;
+    let label = `${game.i18n.localize('ALIENRPG.ROLLFOR')}` + ' ' + actor.name;
   } catch {
-    ui.notifications.error(`You need to have a token selected`);
+    ui.notifications.error(`${game.i18n.localize('ALIENRPG.NoToken')}`);
     return;
   }
   let label = 'for ' + actor.name;
@@ -13,15 +13,15 @@
 
   let template = `
         <form>
-            <label>Ensure player token is selected.</label>
+            <label>${game.i18n.localize('ALIENRPG.ENSOKEN')}</label>
 
             <div class="form-group">
-                  <label>How Many Base Die?</label>
-                <input type="text" id="fr1Data" value=1>
+            <label>${game.i18n.localize('ALIENRPG.HOWMANYDICE')}</label>
+            <input type="text" id="fr1Data" value=1>
             </div>
             <div class="form-group">
-                <label>How Many Stress Dice?</label>
-                <input type="text" id="fr2Data" value=0>
+            <label>${game.i18n.localize('ALIENRPG.HOWMANYSTRESS')}</label>
+            <input type="text" id="fr2Data" value=0>
             </div>
    
         </form>`;
@@ -31,7 +31,7 @@
   buttons = {
     draw: {
       icon: '<i class="fas fa-check"></i>',
-      label: 'Roll',
+      label: `${game.i18n.localize('ALIENRPG.Roll')}`,
       callback: async (html) => {
         // const tableId = html.find('#tableSelect')[0].value
         // const table = game.tables.get(tableId);
@@ -43,12 +43,12 @@
     },
     cancel: {
       icon: '<i class="fas fa-times"></i>',
-      label: 'Cancel',
+      label: `${game.i18n.localize('ALIENRPG.DialCancel')}`,
     },
   };
 
   new Dialog({
-    title: 'Player - Roll YZE Dice.',
+    title: 'Player - Roll Alien Dice.',
     content: template,
     buttons: buttons,
     default: 'draw',

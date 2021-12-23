@@ -88,7 +88,7 @@
                     <li class="item grid-talents" data-item-id="{{item._id}}">
                       <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
                       <div class="tal4 item-controls">
-                      <a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+                      <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 
                       </div>
                     </li>
@@ -107,7 +107,7 @@
               <li class="item grid-talents" data-item-id="{{item._id}}">
                 <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
                 <div class="tal4 item-controls">
-                <a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 
                 </div>
               </li>
@@ -156,24 +156,24 @@
                   <h2 class="resource-label">{{ localize 'ALIENRPG.Conditions'}}</h2>
                   <div class="dots starving ">
                     <input type="hidden" name="data.general.starving.value" data-max="{{data.general.starving.max}}" value="{{{data.general.starving.value}}}" data-dtype="Number">
-                    <h3 class="click-stat-level resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.starving.icon}}} {{ localize 'ALIENRPG.Starving'}}
+                    <h3 class="click-stat-level-con resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.starving.icon}}} {{ localize 'ALIENRPG.Starving'}}
                   </h3>
                 </div>
                   <div class="dots dehydrated ">
                     <input type="hidden" name="data.general.dehydrated.value" data-max="{{data.general.dehydrated.max}}" value="{{{data.general.dehydrated.value}}}" data-dtype="Number">
-                    <h3 class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.dehydrated.icon}}} {{ localize 'ALIENRPG.Dehydrated'}}
+                    <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.dehydrated.icon}}} {{ localize 'ALIENRPG.Dehydrated'}}
                   </h3>
                 </div>
 
                   <div class="dots exhausted ">
                     <input type="hidden" name="data.general.exhausted.value" data-max="{{data.general.exhausted.max}}" value="{{{data.general.exhausted.value}}}" data-dtype="Number">
-                    <h3 class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.exhausted.icon}}} {{ localize 'ALIENRPG.Exhausted'}}
+                    <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.exhausted.icon}}} {{ localize 'ALIENRPG.Exhausted'}}
                   </h3>
                 </div>
 
                 <div class="dots freezing ">
                   <input type="hidden" name="data.general.freezing.value" data-max="{{data.general.freezing.max}}" value="{{{data.general.freezing.value}}}" data-dtype="Number">
-                  <h3 class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
+                  <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
                   </h3>
                 </div>
                 <div class="dots panic ">
@@ -263,7 +263,7 @@
                         {{#each specialities as |item iid|}}
                         <li class="item grid-special" data-item-id="{{item._id}}">
                           <h4 class="item-name spe2" data-pmbut="{{item._id}}">{{item.name}} </h4>
-                          <a class="spe3 item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+                          <a class="spe3 item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
                         </li>
                         {{/each}}
                         </div>

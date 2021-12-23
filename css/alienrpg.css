@@ -55,7 +55,7 @@
   max-width: 360px;
   position: absolute;
   left: -900%;
-  top: -38%;
+  top: -102%;
   background: black;
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
@@ -66,7 +66,7 @@
 }
 
 .alienrpg #context-menu li.context-item {
-  line-height: normal;
+  line-height: 16px;
 }
 
 .alienrpg .window-content {
@@ -1060,6 +1060,50 @@ button:focus {
   background-size: 100%;
   border: 0;
   background: url(../images/mother-instructions/synth-hum.webp);
+}
+
+.inventory-tab-img {
+  display: block;
+  width: 600px;
+  height: 369px;
+  background: url(../images/mother-instructions/inventory-tab.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.inv-context-menu-img {
+  display: block;
+  width: 151px;
+  height: 49px;
+  background: url(../images/mother-instructions/inv-context-menu.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.status-icons-img {
+  display: block;
+  width: 230px;
+  height: 235px;
+  background: url(../images/mother-instructions/status-icons.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.enc-icon-img {
+  display: block;
+  width: 230px;
+  height: 207px;
+  background: url(../images/mother-instructions/enc-icon.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
 }
 
 .ctooltip {
