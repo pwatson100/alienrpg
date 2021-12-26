@@ -382,3 +382,6 @@ Added Footlocker to the Inventory tab.  Use the Context menu to select Footlocke
 Actors that are over Encumbered will now show a status icon (weight) on the token to let the player know they have reduced movement. 
 Added token status indicators for starving, dehydrated, exhausted and freezing.
 New rolltable macros for V9 and they are now localized. 
+
+Version 2.0.7
+Fixed issue with initiative cards not showing in chat when using FVTT V9.
