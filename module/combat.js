@@ -41,9 +41,9 @@ export default class AlienRPGCombat extends Combat {
         if (!combatant?.isOwner) return results;
 
         const cf = formula || combatant._getInitiativeFormula();
-        let broll = this.getInit(combatant, cf, updates);
+        let broll = await this.getInit(combatant, cf, updates);
         while (draw[broll.total]) {
-          broll = this.getInit(combatant, cf, updates);
+          broll = await this.getInit(combatant, cf, updates);
         }
 
         draw[broll.total] = true;
@@ -101,7 +101,7 @@ export default class AlienRPGCombat extends Combat {
         }
 
         const cf = `1d9+( ${pNum})`;
-        let broll = this.getInit(combatant, cf, updates);
+        let broll = await this.getInit(combatant, cf, updates);
         updates.push({ _id: id, initiative: broll.total });
 
         let rollMode = messageOptions.rollMode || game.settings.get('core', 'rollMode');
@@ -150,11 +150,16 @@ export default class AlienRPGCombat extends Combat {
     return this;
   }
 
-  getInit(c, cf, updates, roll) {
-    roll = c.getInitiativeRoll(cf);
+  async getInit(c, cf, updates, roll) {
+    if (isNewerVersion(game.version, '0.8.9')) {
+      roll = await c.getInitiativeRoll(cf).evaluate({ async: true });
+    } else {
+      roll = await c.getInitiativeRoll(cf);
+    }
+
     // roll.options.hidden = true;
     if (updates.some((updates) => updates['initiative'] === roll.total)) {
-      this.getInit(c, cf, updates);
+      await this.getInit(c, cf, updates);
     } else {
       return roll;
     }
