@@ -9,21 +9,21 @@
   let template = `
                   <form>
                       <div class="form-group">
-                          <label>Select Table</label>
-                          <select id="tableSelect">${options}</select>
+                      <label>${game.i18n.localize('ALIENRPG.SELTABLE')}</label>
+                      <select id="tableSelect">${options}</select>
                       </div>
                       <div class="form-group">
-                          <label>How Many?</label>
-                          <input type="text" id="inputNbr" value=1>
+                      <label>${game.i18n.localize('ALIENRPG.HOWMANY')}</label>
+                      <input type="text" id="inputNbr" value=1>
                       </div>
                   </form>`;
 
   let buttons = {};
-  if (game.tables.entities.length > 0) {
+  if (game.tables.size > 0) {
     buttons = {
       draw: {
         icon: '<i class="fas fa-check"></i>',
-        label: 'Draw',
+        label: `${game.i18n.localize('ALIENRPG.DRAW')}`,
         callback: async (html) => {
           const tableId = html.find('#tableSelect')[0].value;
           const table = game.tables.get(tableId);
@@ -35,11 +35,11 @@
       },
       cancel: {
         icon: '<i class="fas fa-times"></i>',
-        label: 'Cancel',
+        label: `${game.i18n.localize('ALIENRPG.DialCancel')}`,
       },
     };
   } else {
-    template = '<div style="text-align: center">There are no tables to draw from!</div><br>';
+    template = `<div style="text-align: center">${game.i18n.localize('ALIENRPG.NOTABLES')}</div><br>`;
     buttons = {
       draw: {
         icon: '<i class="fas fa-check"></i>',
@@ -49,7 +49,7 @@
   }
 
   new Dialog({
-    title: 'Draw multiple RollTable entries',
+    title: `${game.i18n.localize('ALIENRPG.ROLLONCREATURETABLE')}`,
     content: template,
     buttons: buttons,
     default: 'draw',

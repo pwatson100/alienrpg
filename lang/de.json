@@ -183,7 +183,7 @@
   "ALIENRPG.YouAreAtPanic": "Du bist panisch!",
   "ALIENRPG.Level": "Stufe",
   "ALIENRPG.PermanantTrauma": "Permanentes Trauma. Mache einen EMPATHIE-Wurf am Ende der Sitzung. ",
-  "ALIENRPG.Seepage106": "Siehe Seite 104 im Alien Regelwerk.",
+  "ALIENRPG.Seepage106": "Siehe Seite 105 im Alien Regelwerk.",
   "ALIENRPG.NoSkill": "Keine Fertigkeit",
   "ALIENRPG.CreatureSkill": "Diese Kreatur hat diese Fertigkeit nicht.",
   "ALIENRPG.AttackRoll": "Angriffswurf",
@@ -222,6 +222,7 @@
   "ALIENRPG.NoStress": "Kein Stress.",
   "ALIENRPG.NPC": "NSC",
   "ALIENRPG.Talents": "Talente",
+  "ALIENRPG.Talent-Crit": "Talente/Crít",
   "ALIENRPG.AttackTable": "Angriffstabelle",
   "ALIENRPG.PanicCondition": "Panikeffekt",
   "ALIENRPG.MorePanic": "Mehr Panik",
@@ -270,9 +271,28 @@
   "ALIENRPG.ArmorDoubled":"Rüstung Verdoppelt",
   "ALIENRPG.NotifWrongItemType": "\"{type}\" Artikel können nicht zu a . hinzugefügt werden {actor}!",
   "ALIENRPG.hideJournalBGImage": "Journal-Hintergrundbild ausblenden",
-  "ALIENRPG.hideJournalBGImageNote": "Hintergrundbild bei Journaleinträgen ausblenden"
-  
-
-
-
+  "ALIENRPG.hideJournalBGImageNote": "Hintergrundbild bei Journaleinträgen ausblenden",
+  "ALIENRPG.SheetColorSettings":"Einstellungen für Blattfarbe",
+  "ALIENRPG.JournalColorSettings":"Farbeinstellungen für Journale",
+  "ALIENRPG.hideChatBGImage":"Chat-Hintergrundbild ausblenden",
+  "ALIENRPG.hideChatBGImageNote":"Aktivieren Sie diese Option, um das Hintergrundbild von Facehugger im Chat auszublenden",
+  "ALIENRPG.fLocker":"Fußschließfach",
+  "ALIENRPG.HOWMANYDICE":"Wie viele Base sterben?",
+  "ALIENRPG.HOWMANYSTRESS":"Wie viele Stresswürfel?",
+  "ALIENRPG.GMONLY":"Nur GM",
+  "ALIENRPG.ENSOKEN":"Stellen Sie sicher, dass das Spieler-Token ausgewählt ist.",
+  "ALIENRPG.ROLLFOR":"für",
+  "ALIENRPG.SELTABLE":"Tabelle auswählen",
+  "ALIENRPG.HOWMANY":"Wie viele?",
+  "ALIENRPG.MODIFIER":"Modifikator?",
+  "ALIENRPG.DRAW":"zeichnen",
+  "ALIENRPG.NOTABLES":"Es gibt keine Tabellen zum Zeichnen!",
+  "ALIENRPG.ROLLONSELECTED":"Rolle auf ausgewähltem Muttertisch",
+  "ALIENRPG.ROLLONCREATURETABLE":"Zeichne außerirdische Kreaturentabellen",
+  "ALIENRPG.RollPanic":"Click to roll for panic",
+  "ALIENRPG.addToFLocker":"Add to Locker",
+  "ALIENRPG.moveFromFlocker":"Take from Locker",
+  "ALIENRPG.RollManCrit":"Roll Manual Critical Injury",
+  "ALIENRPG.RollManCharCrit":"Enter D66 number",
+  "ALIENRPG.RollManSynCrit":"Enter D6 Number"
 }

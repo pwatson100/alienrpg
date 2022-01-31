@@ -183,7 +183,7 @@
   "ALIENRPG.YouAreAtPanic": "You are at Panic",
   "ALIENRPG.Level": "Level",
   "ALIENRPG.PermanantTrauma": "Permanent Trauma. Make an EMPATHY roll at the end of the session. ",
-  "ALIENRPG.Seepage106": "See page 106 of the Alien rule book.",
+  "ALIENRPG.Seepage106": "See page 105 of the Alien rule book.",
   "ALIENRPG.NoSkill": "No Skill",
   "ALIENRPG.CreatureSkill": "This Creature does not have this Skill.",
   "ALIENRPG.AttackRoll": "Attack Roll",
@@ -222,6 +222,7 @@
   "ALIENRPG.NoStress": "No Stress",
   "ALIENRPG.NPC": "NPC",
   "ALIENRPG.Talents": "Talents",
+  "ALIENRPG.Talent-Crit": "Talents/Crít",
   "ALIENRPG.AttackTable": "Attack Table",
   "ALIENRPG.PanicCondition": "Panic Condition",
   "ALIENRPG.MorePanic": "More Panic",
@@ -272,6 +273,29 @@
   "ALIENRPG.NotifWrongItemType": "\"{type}\" items cannot be added to a {actor}!",
   "ALIENRPG.hideJournalBGImage": "Hide Journal Background Image",
   "ALIENRPG.hideJournalBGImageNote": "Hide the Background Image on Journal Entries",
+  "ALIENRPG.SheetColorSettings":"Sheet Color Settings",
+  "ALIENRPG.JournalColorSettings":"Journal Color Settings",
+  "ALIENRPG.hideChatBGImage":"Hide Chat Background Image",
+  "ALIENRPG.hideChatBGImageNote":"Check this to hide the facehugger background image in chat.",
+  "ALIENRPG.fLocker":"Foot Locker",
+  "ALIENRPG.HOWMANYDICE":"How Many Base Die?",
+  "ALIENRPG.HOWMANYSTRESS":"How Many Stress Dice?",
+  "ALIENRPG.GMONLY":"GM Only",
+  "ALIENRPG.ENSOKEN":"Ensure player token is selected.",
+  "ALIENRPG.ROLLFOR":"for",
+  "ALIENRPG.SELTABLE":"Select Table",
+  "ALIENRPG.HOWMANY":"How Many?",
+  "ALIENRPG.MODIFIER":"Modifier?",
+  "ALIENRPG.DRAW":"Draw",
+  "ALIENRPG.NOTABLES":"There are no tables to draw from!",
+  "ALIENRPG.ROLLONSELECTED":"Roll on selected Mother table",
+  "ALIENRPG.ROLLONCREATURETABLE":" Draw Alien Creature Tables",
+  "ALIENRPG.RollPanic":"Click to roll for panic",
+  "ALIENRPG.addToFLocker":"Add to Locker",
+  "ALIENRPG.moveFromFlocker":"Take from Locker",
+  "ALIENRPG.RollManCrit":"Roll Manual Critical Injury",
+  "ALIENRPG.RollManCharCrit":"Enter D66 number",
+  "ALIENRPG.RollManSynCrit":"Enter D6 Number"
   "ALIENRPG.Manufacturer":"Manufacturer",
   "ALIENRPG.AI":"AI",
   "ALIENRPG.CREW":"CREW",
@@ -293,8 +317,5 @@
   "ALIENRPG.ENGINEER":"ENGINEER",
   "ALIENRPG.ARMAMENTS":"ARMAMENTS",
   "ALIENRPG.MODULES-UPGRADES":"Modules/Upgrades"
-
-
-
 
 }

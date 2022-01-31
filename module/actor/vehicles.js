@@ -278,6 +278,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     delete itemData.data['type'];
 
     // Finally, create the item!
+    return this.actor.createEmbeddedDocuments(itemData);
     return this.actor.createOwnedItem(itemData);
   }
 

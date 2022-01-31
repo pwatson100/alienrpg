@@ -36,7 +36,9 @@
   --blue: hsl(224, 75%, 62%);
   --black: hsl(0, 0%, 0%);
   --white: hsl(0, 0%, 100%);
+  --alientextjournal: #b1e0e7;
   --journalback: url(../images/mother-instructions/indbackground2.png);
+  --chatbackground: url(/systems/alienrpg/images/IndBackground3.png);
 }
 
 /* Global styles */
@@ -45,7 +47,7 @@
 }
 
 .alienrpg #context-menu {
-  width: 100%;
+  width: auto;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
@@ -53,7 +55,7 @@
   max-width: 360px;
   position: absolute;
   left: -900%;
-  top: -38%;
+  top: -102%;
   background: black;
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
@@ -64,7 +66,7 @@
 }
 
 .alienrpg #context-menu li.context-item {
-  line-height: normal;
+  line-height: 16px;
 }
 
 .alienrpg .window-content {
@@ -85,12 +87,11 @@
 }
 
 .journal-sheet form {
-  color: var(--aliengreen);
   background: var(--journalback) top left !important;
   background-size: cover;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  color: #b1e0e7;
+  color: var(--alientextjournal) !important;
 }
 .journal-sheet select {
   font-family: var(--alienfont);
@@ -140,7 +141,7 @@ a.entity-link {
 }
 
 .chat-message {
-  background-image: url("/systems/alienrpg/images/IndBackground3.png");
+  background-image: var(--chatbackground);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -160,7 +161,7 @@ a.entity-link {
 }
 
 .chat-message .table-draw .table-results .table-result .chatBG {
-  background-image: url("/systems/alienrpg/images/IndBackground3.png");
+  background-image: var(--chatbackground);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -921,7 +922,7 @@ button:focus {
 .gm-settings {
   display: block;
   width: 500px;
-  height: 367px;
+  height: 491px;
   background: url(../images/mother-instructions/gm-settings.webp);
   margin-left: auto;
   margin-right: auto;
@@ -932,7 +933,7 @@ button:focus {
 .player-settings {
   display: block;
   width: 500px;
-  height: 213px;
+  height: 301px;
   background: url(../images/mother-instructions/player-settings.webp);
   margin-left: auto;
   margin-right: auto;
@@ -943,7 +944,7 @@ button:focus {
 .style-settings {
   display: block;
   width: 400px;
-  height: 200px;
+  height: 333px;
   background: url(../images/mother-instructions/style-settings.webp);
   margin-left: auto;
   margin-right: auto;
@@ -1059,6 +1060,50 @@ button:focus {
   background-size: 100%;
   border: 0;
   background: url(../images/mother-instructions/synth-hum.webp);
+}
+
+.inventory-tab-img {
+  display: block;
+  width: 600px;
+  height: 435px;
+  background: url(../images/mother-instructions/inventory-tab.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.inv-context-menu-img {
+  display: block;
+  width: 151px;
+  height: 70px;
+  background: url(../images/mother-instructions/inv-context-menu.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.status-icons-img {
+  display: block;
+  width: 230px;
+  height: 235px;
+  background: url(../images/mother-instructions/status-icons.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.enc-icon-img {
+  display: block;
+  width: 230px;
+  height: 207px;
+  background: url(../images/mother-instructions/enc-icon.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
 }
 
 .ctooltip {
@@ -2577,6 +2622,7 @@ button:focus {
 /* Set options to normal weight */
 .select-css option {
   font-weight: normal;
+  background: black;
 }
 
 /* Support for rtl text, explicit support for Arabic and Hebrew */

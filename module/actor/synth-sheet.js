@@ -142,21 +142,26 @@ export class alienrpgSynthActorSheet extends ActorSheet {
           break;
 
         case 'weapon':
-          let ammoweight = 0.25;
-          if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
-            ammoweight = 0.5;
+          if (item.header.active != 'fLocker') {
+            let ammoweight = 0.25;
+            if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
+              ammoweight = 0.5;
+            }
+            i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+            i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
+            totalWeight += i.totalWeight;
           }
-          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-          i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
           inventory[i.type].items.push(i);
-          totalWeight += i.totalWeight;
+
           break;
 
         default:
-          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-          i.totalWeight = i.data.attributes.weight.value;
+          if (item.header.active != 'fLocker') {
+            i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+            i.totalWeight = i.data.attributes.weight.value;
+            totalWeight += i.totalWeight;
+          }
           inventory[i.type].items.push(i);
-          totalWeight += i.totalWeight;
           break;
       }
     }
@@ -188,6 +193,22 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     };
     enc.pct = Math.min((enc.value * 100) / enc.max, 99);
     enc.encumbered = enc.pct > 50;
+    for (let i of actorData.talents) {
+      if (i.name.toUpperCase() === 'PACK MULE') {
+        enc.encumbered = enc.pct > 75;
+      }
+    }
+
+    if (enc.encumbered) {
+      this.actor.getActiveTokens().forEach((i) => {
+        i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
+      });
+    } else {
+      this.actor.getActiveTokens().forEach((i) => {
+        i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
+      });
+    }
+
     return enc;
   }
 
@@ -211,6 +232,24 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     if (!this.options.editable) return;
     const itemContextMenu = [
       {
+        name: game.i18n.localize('ALIENRPG.addToFLocker'),
+        // icon: '<i class="fas fa-archive"></i>"></fas>',
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'data.header.active': 'fLocker' });
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
+        // icon: '<i class="fas fa-archive"></i>"></fas>',
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'data.header.active': false });
+        },
+      },
+      {
         name: game.i18n.localize('ALIENRPG.EditItemTitle'),
         icon: '<i class="fas fa-edit"></i>',
         callback: (element) => {
@@ -231,6 +270,29 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
+
+    const itemContextMenu1 = [
+      {
+        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+        icon: '<i class="fas fa-edit"></i>',
+        callback: (element) => {
+          const item = this.actor.items.get(element.data('item-id'));
+          item.sheet.render(true);
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.DeleteItem'),
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (element) => {
+          // this.actor.deleteOwnedItem(element.data('item-id'));
+          let itemDel = this.actor.items.get(element.data('item-id'));
+          itemDel.delete();
+        },
+      },
+    ];
+
+    // Add Inventory Item
+    new ContextMenu(html, '.item-edit1', itemContextMenu1);
 
     // Update Inventory Item
     html.find('.item-edit').click((ev) => {
@@ -284,6 +346,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     html.find('.inline-edit').change(this._inlineedit.bind(this));
 
     html.find('.rollCrit').click(this._rollCrit.bind(this));
+    html.find('.rollCrit').contextmenu(this._rollCritMan.bind(this));
 
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
@@ -370,6 +433,12 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
     this.actor.rollCrit(this.actor.data.type, dataset);
+  }
+
+  _rollCritMan(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCritMan(this.actor, this.actor.data.type, dataset);
   }
 
   _onRollItemMod(event) {

@@ -19,6 +19,7 @@ export class AlienConfig extends FormApplication {
     return mergeObject({
       fontStyle: game.settings.get('alienrpg', 'fontStyle'),
       fontColour: game.settings.get('alienrpg', 'fontColour'),
+      journalFontColour: game.settings.get('alienrpg', 'JournalFontColour'),
     });
   }
 
@@ -32,13 +33,15 @@ export class AlienConfig extends FormApplication {
     // this.reset = true;
     game.settings.set('alienrpg', 'fontStyle', 'OCR-A');
     game.settings.set('alienrpg', 'fontColour', '#adff2f');
-    this.render();
+    game.settings.set('alienrpg', 'JournalFontColour', '#b1e0e7');
+    location.reload();
   }
 
   async _updateObject(event, formData) {
     // console.log('_updateObject -> formData', formData);
     await game.settings.set('alienrpg', 'fontColour', formData.fontColour);
     await game.settings.set('alienrpg', 'fontStyle', formData.fontStyle);
+    await game.settings.set('alienrpg', 'JournalFontColour', formData.journalFontColour);
     ui.notifications.info(game.i18n.localize('ALIENRPG.Consumables'));
     location.reload();
   }

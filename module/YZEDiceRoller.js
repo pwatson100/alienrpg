@@ -32,7 +32,7 @@ export class yze {
     // *******************************************************
     // Store the version number of FVTT
     // *******************************************************
-    const sysVer = game.data.version;
+    // const sysVer = game.data.version;
 
     // *******************************************************
     // Is Dice So Nice enabled ?

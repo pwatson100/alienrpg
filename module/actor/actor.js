@@ -115,7 +115,7 @@ export class alienrpgActor extends Actor {
       const Attrib = iAttrib.data;
       // debugger;
       if (Attrib.type === 'item' || Attrib.type === 'critical-injury' || Attrib.type === 'armor') {
-        if (Attrib.data.header.active) {
+        if (Attrib.data.header.active === true) {
           let base = Attrib.data.modifiers.attributes;
           // console.log('🚀 ~ file: actor.js ~ line 104 ~ alienrpgActor ~ _prepareCharacterData ~ base', base);
           for (let [bkey, aAttrib] of Object.entries(base)) {
@@ -189,40 +189,15 @@ export class alienrpgActor extends Actor {
             }
           }
         }
-        setProperty(actorData, 'data.header.health.mod', (data.header.health.mod = parseInt(attrMod.health || 0)));
+        setProperty(actorData, 'data.header.health.mod', (data.header.health.mod += parseInt(attrMod.health || 0)));
         // actorData.update({ 'data.header.health.mod': (actorData.data.header.health.mod = parseInt(attrMod.health || 0)) });
 
         if (actorData.type === 'character') {
           // actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod = parseInt(attrMod.stress || 0)) });
 
-          setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod = parseInt(attrMod.stress || 0)));
+          setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod += parseInt(attrMod.stress || 0)));
         }
       }
-
-      // if (Attrib.type === 'armor') {
-      //   if (Attrib.data.header.active) {
-      //     let base = Attrib.data.modifiers;
-      //     for (let [bkey, vAttrib] of Object.entries(base)) {
-      //       switch (bkey) {
-      //         case 'agl':
-      //           attrMod.agl = attrMod.agl += parseInt(vAttrib.value);
-      //           break;
-      //         case 'heavyMach':
-      //           sklMod.heavyMach = sklMod.heavyMach += parseInt(vAttrib.value);
-      //           break;
-      //         case 'closeCbt':
-      //           sklMod.closeCbt = sklMod.closeCbt += parseInt(vAttrib.value);
-      //           break;
-      //         case 'survival':
-      //           sklMod.survival = sklMod.survival += parseInt(vAttrib.value);
-      //           break;
-
-      //         default:
-      //           break;
-      //       }
-      //     }
-      //   }
-      // }
 
       if (Attrib.type === 'talent') {
         const talName = Attrib.name.toUpperCase();
@@ -283,7 +258,7 @@ export class alienrpgActor extends Actor {
         //  Update armor value fron items
         i.data.data.attributes.armorrating.value === true;
 
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.armorrating.value && i.data.data.header;
           i.data.data.attributes.armorrating.value = i.data.data.attributes.armorrating.value || 0;
           i.totalAc = parseInt(i.data.data.attributes.armorrating.value, 10);
@@ -294,7 +269,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update water value fron items
         i.data.data.attributes.water.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.water.value = i.data.data.attributes.water.value || 0;
           i.totalWat = parseInt(i.data.data.attributes.water.value, 10);
           totalWat += i.totalWat;
@@ -303,7 +278,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update food value fron items
         i.data.data.attributes.food.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.food.value = i.data.data.attributes.food.value || 0;
           i.totalFood = parseInt(i.data.data.attributes.food.value, 10);
           totalFood += i.totalFood;
@@ -312,7 +287,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update air value fron items
         i.data.data.attributes.airsupply.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.airsupply.value = i.data.data.attributes.airsupply.value || 0;
           i.totalAir = parseInt(i.data.data.attributes.airsupply.value, 10);
           totalAir += i.totalAir;
@@ -321,7 +296,7 @@ export class alienrpgActor extends Actor {
       try {
         //  Update air value fron items
         i.data.data.attributes.power.value === true;
-        if (i.data.data.header.active) {
+        if (i.data.data.header.active === true) {
           i.data.data.attributes.power.value = i.data.data.attributes.power.value || 0;
           i.totalPower = parseInt(i.data.data.attributes.power.value, 10);
           totalPower += i.totalPower;
@@ -375,7 +350,9 @@ export class alienrpgActor extends Actor {
     //   setProperty(actorData, 'actorData.health.max', (actorData.header.health.max = actorData.header.health.value));
     // }
   }
-  _prepareTeritoryData(data) {}
+  _prepareTeritoryData(data) {
+    this.data.img = 'systems/alienrpg/images/icons/nested-eclipses.svg';
+  }
 
   _prepareTokenImg() {
     if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
@@ -416,6 +393,7 @@ export class alienrpgActor extends Actor {
           break;
         case 'territory':
           tokenProto['token.bar1'] = { attribute: 'None' };
+          tokenProto['token.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
           break;
       }
     }
@@ -552,7 +530,7 @@ export class alienrpgActor extends Actor {
           ' + (' +
           stressMod +
           ') <br>+ ' +
-          game.i18n.localize('ALIENRPG.Talents') +
+          game.i18n.localize('ALIENRPG.Talent-Crit') +
           ' + (' +
           modifier +
           ')' +
@@ -898,7 +876,8 @@ export class alienrpgActor extends Actor {
   }
 
   async nowRollItem(item, event) {
-    if (item.type === 'weapon' || item.type === 'armor') {
+    // if (item.type === 'weapon' || item.type === 'armor') {
+    if (item.type === 'weapon') {
       // Trigger the item roll
       return item.roll(false);
     }
@@ -914,13 +893,23 @@ export class alienrpgActor extends Actor {
   async stressChange(actor, dataset) {
     switch (dataset.pmbut) {
       case 'minusStress':
-        actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value - 1 });
+        if (actor.data.data.header.stress.value <= 0) {
+          actor.update({ 'data.header.stress.value': (actor.data.data.header.stress.value = 0) });
+        } else {
+          actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value - 1 });
+        }
+        // actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value - 1 });
         break;
       case 'plusStress':
         actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
         break;
       case 'minusHealth':
-        actor.update({ 'data.header.health.value': actor.data.data.header.health.value - 1 });
+        if (actor.data.data.header.health.value <= 0) {
+          actor.update({ 'data.header.health.value': (actor.data.data.header.health.value = 0) });
+        } else {
+          actor.update({ 'data.header.health.value': actor.data.data.header.health.value - 1 });
+        }
+        // actor.update({ 'data.header.health.value': actor.data.data.header.health.value - 1 });
         break;
       case 'plusHealth':
         actor.update({ 'data.header.health.value': actor.data.data.header.health.value + 1 });
@@ -944,6 +933,153 @@ export class alienrpgActor extends Actor {
       newLevel = Math.clamped(level - 1, 0, max);
       if (field[0].name === 'data.general.panic.value') {
         actor.checkAndEndPanic(actor);
+      }
+    } // Update the field value and save the form
+    field.val(newLevel);
+    return event;
+  }
+  async conCheckMarks(actor, event) {
+    const field = $(event.currentTarget).siblings('input[type="hidden"]');
+    const max = field.data('max') == undefined ? 4 : field.data('max');
+    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
+    const level = parseFloat(field.val());
+    let newLevel = ''; // Toggle next level - forward on click, backwards on right
+    let aTokens = '';
+
+    if (event.type === 'click') {
+      newLevel = Math.clamped(level + 1, 0, max);
+
+      switch (field[0].name) {
+        case 'data.general.starving.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+            }
+          });
+          break;
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   console.log(i.data);
+          //   i.toggleEffect('systems/alienrpg/images/starving.svg', { active: true, overlay: false });
+          // });
+          break;
+        case 'data.general.dehydrated.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: true, overlay: false });
+          // });
+          break;
+        case 'data.general.exhausted.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: true, overlay: false });
+          // });
+          break;
+
+        case 'data.general.freezing.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: true, overlay: false });
+          // });
+          break;
+
+        default:
+          break;
+      }
+    } else if (event.type === 'contextmenu') {
+      newLevel = Math.clamped(level - 1, 0, max);
+      if (field[0].name === 'data.general.panic.value') {
+        actor.checkAndEndPanic(actor);
+      }
+      switch (field[0].name) {
+        case 'data.general.starving.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+            }
+          });
+          break;
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/starving.svg', { active: false, overlay: false });
+          // });
+          break;
+        case 'data.general.dehydrated.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/water-flask.svg', { active: false, overlay: false });
+          // });
+          break;
+        case 'data.general.exhausted.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/exhausted.svg', { active: false, overlay: false });
+          // });
+          break;
+
+        case 'data.general.freezing.value':
+          aTokens = actor.getActiveTokens();
+          aTokens.forEach((i) => {
+            if (aTokens.length > 1 && !i.document._actor.isToken) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+            } else if (aTokens.length === 1) {
+              i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+            }
+          });
+
+          // actor.getActiveTokens().forEach((i) => {
+          //   i.toggleEffect('systems/alienrpg/images/frozen.svg', { active: false, overlay: false });
+          // });
+          break;
+
+        default:
+          break;
       }
     } // Update the field value and save the form
     field.val(newLevel);
@@ -1210,8 +1346,22 @@ export class alienrpgActor extends Actor {
     // roll.evaluate({ async: false });
     // atable.draw({ roll: roll });
     const test1 = await atable.draw();
+    let critTable = false;
     try {
-      if (game.settings.get('alienrpg-corerules', 'imported') || game.settings.get('alienrpg-starterset', 'imported')) {
+      if (game.settings.get('alienrpg-corerules', 'imported') === true) {
+        critTable = true;
+      }
+    } catch (error) {}
+
+    try {
+      if (game.settings.get('alienrpg-starterset', 'imported') === true) {
+        critTable = true;
+      }
+    } catch (error) {}
+
+    try {
+      if (critTable) {
+        // if (game.settings.get('alienrpg-corerules', 'imported') === true || game.settings.get('alienrpg-starterset', 'imported') === true) {
         const messG = JSON.stringify(game.messages.contents.pop());
 
         switch (type) {
@@ -1266,7 +1416,7 @@ export class alienrpgActor extends Actor {
                 {
                   type: 'critical-injury',
                   img: resultImage,
-                  name: testArray[0],
+                  name: `#${test1.roll._total} ${testArray[0]}`,
                   'data.attributes.fatal': cFatial,
                   'data.attributes.timelimit.value': testArray[4],
                   'data.attributes.healingtime.value': healTime,
@@ -1291,7 +1441,201 @@ export class alienrpgActor extends Actor {
                 {
                   type: 'critical-injury',
                   img: resultImage,
-                  name: injName,
+                  name: `#${test1.roll._total} ${injName}`,
+                  'data.attributes.effects': injDesc1,
+                },
+              ]);
+            }
+            break;
+        }
+      }
+    } catch (error) {}
+  }
+
+  async rollCritMan(actor, type, dataset) {
+    function myRenderTemplate(template) {
+      let confirmed = false;
+      renderTemplate(template).then((dlg) => {
+        new Dialog({
+          title: game.i18n.localize('ALIENRPG.RollManCrit'),
+          content: dlg,
+          buttons: {
+            one: {
+              icon: '<i class="fas fa-check"></i>',
+              label: game.i18n.localize('ALIENRPG.DialRoll'),
+              callback: () => (confirmed = true),
+            },
+            four: {
+              icon: '<i class="fas fa-times"></i>',
+              label: game.i18n.localize('ALIENRPG.DialCancel'),
+              callback: () => (confirmed = false),
+            },
+          },
+          default: 'one',
+          close: (html) => {
+            if (confirmed) {
+              let manCrit = html.find('[name=manCrit]')[0]?.value;
+
+              if (manCrit == 'undefined') {
+                manCrit = '1';
+              }
+              switch (type) {
+                case 'synthetic':
+                  if (manCrit > 6) {
+                    ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+                    return;
+                  }
+                  break;
+
+                case 'character':
+                  if (!manCrit.match(/^[1-6]?[1-6]$/gm)) {
+                    ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+                    return;
+                  }
+                  break;
+                default:
+                  break;
+              }
+              actor.ManualCrit(actor, type, dataset, manCrit);
+            }
+          },
+        }).render(true);
+      });
+    }
+    if (actor.data.type === 'character') {
+      myRenderTemplate('systems/alienrpg/templates/dialog/roll-char-manual-crit-dialog.html');
+    } else if (actor.data.type === 'synthetic') {
+      myRenderTemplate('systems/alienrpg/templates/dialog/roll-syn-manual-crit-dialog.html');
+    }
+  }
+
+  async ManualCrit(actor, type, dataset, manCrit) {
+    let atable = '';
+    let healTime = 0;
+    let cFatial = false;
+    let factorFour = '';
+    let testArray = '';
+    switch (type) {
+      case 'character':
+        atable = game.tables.getName('Critical injuries');
+        if (atable === null || atable === undefined) {
+          ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
+          return;
+        }
+        break;
+      case 'synthetic':
+        atable = game.tables.getName('Critical Injuries on Synthetics');
+        if (atable === null || atable === undefined) {
+          ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+          return;
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    const formula = manCrit;
+    const roll = new Roll(formula);
+    roll.evaluate({ async: false });
+    // atable.draw({ roll: roll });
+    const test1 = await atable.draw({ roll: roll });
+    let critTable = false;
+    try {
+      if (game.settings.get('alienrpg-corerules', 'imported') === true) {
+        critTable = true;
+      }
+    } catch (error) {}
+
+    try {
+      if (game.settings.get('alienrpg-starterset', 'imported') === true) {
+        critTable = true;
+      }
+    } catch (error) {}
+
+    try {
+      if (critTable) {
+        // if (game.settings.get('alienrpg-corerules', 'imported') === true || game.settings.get('alienrpg-starterset', 'imported') === true) {
+        const messG = JSON.stringify(game.messages.contents.pop());
+
+        switch (type) {
+          case 'character':
+            {
+              let resultImage = messG.slice(messG.indexOf('src=') + 6, messG.indexOf('.svg') + 4);
+              factorFour = messG.slice(messG.indexOf('<b>INJURY:'), messG.indexOf('</div>' + 6, messG.indexOf('<b>INJURY:'))).replace(/<a class=(.*?)><\/i>|<\/a>/gi, '');
+              testArray = factorFour.match(/<?b>(.*?)(<br>|<\/div>)/g).map(function (val) {
+                return val.replace(/<b>(.*?)(: )|<\/b>|(<br>|<\/div>)/g, '');
+              });
+              let speanex = testArray[3].replace(/(<([^>]+)>)/gi, '');
+              if (testArray[4] != 'Permanent') {
+                testArray[4].replace(/[^0-9]/g, '');
+              }
+              switch (testArray[1]) {
+                case 'Yes ':
+                  cFatial = true;
+                  break;
+                case 'Yes, –1 ':
+                  cFatial = true;
+                  break;
+                default:
+                  cFatial = false;
+                  break;
+              }
+
+              switch (testArray[2]) {
+                case game.i18n.localize('ALIENRPG.None') + ' ':
+                  healTime = 0;
+                  break;
+                case game.i18n.localize('ALIENRPG.OneRound') + ' ':
+                  healTime = 1;
+                  break;
+                case game.i18n.localize('ALIENRPG.OneTurn') + ' ':
+                  healTime = 2;
+                  break;
+                case game.i18n.localize('ALIENRPG.OneShift') + ' ':
+                  healTime = 3;
+                  break;
+                case game.i18n.localize('ALIENRPG.OneDay'):
+                  +' ';
+                  healTime = 3;
+                  break;
+                default:
+                  healTime = 0;
+                  break;
+              }
+              //
+              // Now create the item on the sheet
+              //
+              await this.createEmbeddedDocuments('Item', [
+                {
+                  type: 'critical-injury',
+                  img: resultImage,
+                  name: `#${test1.roll._total} ${testArray[0]}`,
+                  'data.attributes.fatal': cFatial,
+                  'data.attributes.timelimit.value': testArray[4],
+                  'data.attributes.healingtime.value': healTime,
+                  'data.attributes.effects': speanex,
+                },
+              ]);
+            }
+
+            break;
+          case 'synthetic':
+            {
+              factorFour = messG.slice(messG.indexOf('result-image'), messG.indexOf('.</div>') + 1);
+              let resultImage = factorFour.slice(factorFour.indexOf('src=') + 6, factorFour.indexOf('.svg') + 4);
+              let injName = factorFour.slice(factorFour.indexOf('<b>') + 3, factorFour.indexOf(': </b>'));
+              let injDesc = factorFour.slice(factorFour.indexOf(': </b>') + 6);
+              let injDesc1 = injDesc.replace(/(<([^>]+)>)/gi, '');
+              // debugger;
+              //
+              // Now create the item on the sheet
+              //
+              await this.createEmbeddedDocuments('Item', [
+                {
+                  type: 'critical-injury',
+                  img: resultImage,
+                  name: `#${test1.roll._total} ${injName}`,
                   'data.attributes.effects': injDesc1,
                 },
               ]);

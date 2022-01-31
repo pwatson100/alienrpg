@@ -7,10 +7,18 @@ export const migrateWorld = async function () {
   // debugger;
   // Migrate World Compendium Packs
   for (let p of game.packs) {
-    // debugger;
     if (!['alienrpg', 'alienrpg-corerules', 'alienrpg-destroyerofworlds', 'alienrpg-starterset', 'alienrpg-cmom'].includes(p.metadata.package)) continue;
-    if (!['Actor', 'Item'].includes(p.metadata.entity)) continue;
+    
     await migrateCompendium(p);
+
+    // V9 check if entity exists otherwise use type
+    // try {
+    //   if (!['Actor', 'Item'].includes(p.metadata.entity));
+    //   await migrateCompendium(p);
+    // } catch (error) {
+    //   if (!['Actor', 'Item'].includes(p.metadata.type));
+    //   await migrateCompendium(p);
+    // }
   }
 
   // Migrate World Actors
@@ -141,8 +149,24 @@ const migrateItemData = function (item) {
  * @return {Promise}
  */
 export const migrateCompendium = async function (pack) {
-  const entity = pack.metadata.entity;
-  // if ( !["Actor", "Item", "Scene"].includes(entity) ) return;
+  let entity = '';
+  if (isNewerVersion(game.version,"0.8.9"))
+{
+      entity = pack.metadata.type;
+      
+} else {
+      entity = pack.metadata.entity;
+
+}
+  // V9 check if entity exists otherwise use type
+  // try {
+  //   // debugger;
+  //   entity = pack.metadata.entity;
+  // } catch (error) {
+  //   // debugger;
+  //   entity = pack.metadata.type;
+  // }
+
   if (!['Actor', 'Item'].includes(entity)) return;
 
   // Unlock the pack for editing

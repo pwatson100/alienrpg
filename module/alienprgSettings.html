@@ -1,6 +1,7 @@
 <form autocomplete="off">
   <div class="tab active">
     <!-- <div id="alienprgSettings"></div> -->
+  <h2>{{localize "ALIENRPG.SheetColorSettings"}}</h2>
 
     <div class="form-group">
       <label>{{localize "ALIENRPG.FontStyle"}}</label>
@@ -29,8 +30,18 @@
     <div class="form-group">
       <label>{{localize "ALIENRPG.Colpick"}}</label>
       <div class="form-fields">
-        <input type="text" name="fontColour" value="{{fontColour}}" data-dtype="String" />
-        <input type="color" name="fontColourSelector" value="{{fontColour}}" data-edit="fontColour" />
+        <input type="text" name="fontColour" value="{{fontColour}}" data-dtype="String"/>
+        <input type="color" name="fontColourSelector" value="{{fontColour}}" data-edit="fontColour"/>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <h2>{{localize "ALIENRPG.JournalColorSettings"}}</h2>
+    <div class="form-group">
+      <label>{{localize "ALIENRPG.Fontpick"}}</label>
+      <div class="form-fields">
+        <input type="text" name="journalFontColour" value="{{journalFontColour}}" data-dtype="String" />
+        <input type="color" name="fontColourSelector" value="{{journalFontColour}}" data-edit="journalFontColour" />
       </div>
     </div>
   </div>
