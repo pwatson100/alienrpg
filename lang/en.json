@@ -295,7 +295,7 @@
   "ALIENRPG.moveFromFlocker":"Take from Locker",
   "ALIENRPG.RollManCrit":"Roll Manual Critical Injury",
   "ALIENRPG.RollManCharCrit":"Enter D66 number",
-  "ALIENRPG.RollManSynCrit":"Enter D6 Number"
+  "ALIENRPG.RollManSynCrit":"Enter D6 Number",
   "ALIENRPG.Manufacturer":"Manufacturer",
   "ALIENRPG.AI":"AI",
   "ALIENRPG.CREW":"CREW",
@@ -317,5 +317,4 @@
   "ALIENRPG.ENGINEER":"ENGINEER",
   "ALIENRPG.ARMAMENTS":"ARMAMENTS",
   "ALIENRPG.MODULES-UPGRADES":"Modules/Upgrades"
-
 }
