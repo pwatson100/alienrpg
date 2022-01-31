@@ -7,15 +7,16 @@
     Created by Paul Watson
     <br /><br />
   </p>
-    <h1 class="headng">Change history for latest version</h1>
+    <h1 class="headng">Change history for latest version 2.0.8</h1>
     <p>
         <ul>
-<li>Foundry V9 Compatibility</li>
-<li>Corrected issue with the Chat Panic Condition tooltip not showing the correct figures for Talent/Crit modifiers correctly.</li>
-<li>Added Footlocker to the Inventory tab.  Use the Context menu to select Footlocker. Right or left click on the item icon to remove from Footlocker. </li>
-<li>Actors that are over Encumbered will now show a status icon (weight) on the token to let the player know they have reduced movement. </li>
-<li>Added token status indicators for starving, dehydrated, exhausted and freezing.  </li>
-<li>New rolltable macros for V9 and they are now localized. </li>
+<li>Added "Take from Locker" to the inventory context menu.</li>
+<li>Right or left clicking on the name of armor on the Inventory tab will now perform an Armor roll or show a modification chat box. </li>
+<li>Added Quantity field to the following Item types: Data Storage,Diagnostics Display,Pharmaceuticals & Clothing.</li>
+<li>Right click on the "Roll Crit" button pops a dialogue box asking for the crit number (D66 for Character and D6 for Synth). This then rolls against the table, writes to chat and creates the item on the sheet as per normal.</li>
+<li>Added tooltip to Stress button on character sheet.</li>
+<li>Created Planets and Territories will now show the correct icon in the sidebar and token.</li>
+<li>Corrected issue with selector background colour.</li>
       </ul>
     </p>
 <br><br> 
@@ -154,6 +155,8 @@
   <p>
     Clicking on Armor will roll the combined value of any active armor (total shown in the box). <br />
     Right clicking will display a modifier box with one-click options for "Armor Piercing" (half armor value) and "Armor Doubled" (2 x armor value).
+    <br><br> 
+    Additionally, right or left clicking on the name of armor on the Inventory tab will also perform an Armor roll or show a modification chat box.
   </p>
   <br />
   &nbsp;<span class="armor-mod">&nbsp;</span>&nbsp;
@@ -161,15 +164,20 @@
   <br /><br />
   <h2 class="headng"><span>Critical Injuries (4)</span></h2>
   <p>
-    Critical Injury items dragged on to the sheet will be displayed in this section and have the same controls for viewing, editing and deleting as a normal item. Players can roll their own Critical
-    Hits by clicking on the "Roll Crit" button. This looks for a table named "Critical injuries" for Characters. If the table does not exist an error message is displayed.
+    Players can roll their own Critical Hits by clicking on the "Roll Crit" button. 
+    This looks for a table named "Critical injuries" for Characters. If the table does not exist an error message is displayed.
     <br /><br />
     Right Clicking on the edit icon to the right will display a context menu allowing injury to be edited or deleted. 
 <br><br> 
-
     If you have the Core Rules or Starter Set modules enabled when on rolling a Critical Injury for a PC or Synthetic the Critical Injury item will be automatically created and added to the actors
     sheet. <br />
-    You will have to manually add any modifiers the injury has on the character to the tab modifiers tab on the injury item.
+    You will have to manually add any modifiers the injury has on the character to the tab modifiers tab on the injury item. <br>
+<br>
+Right clicking on the "Roll Crit" button will display a dialouge box allowing the player/GM to enter a specific critical injury number. 
+This must be in D66 format (number 11 to 16, 21 to 26 etc.) for Characters and D6 format for Synthetics (1-6). 
+This then rolls against the relevent table, writes to chat and creates the item on the sheet as per normal. <br>
+  <br><br> 
+  Using the Item type "critical-injury" a GM can create their own Critical Injury items which can then be dragged on to the sheet and will be displayed in this section and have the same controls for viewing, editing and deleting as a normal item.
   </p>
   <br /><br />
 
@@ -225,8 +233,7 @@
     Items are dragged on to the sheet from item folders or Compendiums and by default, they will appear on the sheet as Inactive. <br /><br />
     Inactive items can be considered as being in a backpack/pocket/slung and do not contribute to Consumables, but they do contribute to Encumbrance.
     <br /><br />
-    The Foot Locker section is for gear owned but stored elsewhere (locker/room etc.) to put an item in the Foot Locker right click on the edit icon to bring up the context menu and select the "Foot
-    Locker".  
+    The Foot Locker section is for gear owned but stored elsewhere (locker/room etc.) to put an item in the Foot Locker right click on the edit icon to bring up the context menu and select "Add to Locker".  
   </p>
    <br />
   &nbsp;<span class="inv-context-menu-img">&nbsp;</span>&nbsp; <br />
@@ -234,12 +241,12 @@
     Items in the Foot Locker are not counted against Encumbrance.
     <br><br> 
     
-    To remove items from the Foot Locker, left or right click on the item's icon which will move it to the Active or Inactive section.
+    To remove items from the Foot Locker, left or right click on the item's icon which will move it to the Active or Inactive section. <br>
+    You can also select "Take From Locker" in the context menu which will move the item to "Inactive". 
 <br><br> 
 
     For any other items or notes use the "Ad Hoc" text area at the bottom of the sheet. The Quick-Insert module can be used to create a link (see Recommended Add-on Modules).
 <br><br> 
-
     Weapons cannot be fired when Inactive or in the Foot Locker.
   </p>
   <br />
@@ -257,7 +264,7 @@
   <br /><br />
 
   <p>
-    Some items have inline edit boxes (3) which enable you to edit some quantities (Rounds, Food, Water, Air) without the need to open the item.
+    Some items have inline edit boxes (3) which enable you to edit some quantities (Rounds, Food, Water, Air, Quantity) without the need to open the item.
     <br /><br />
     <b>NOTE:</b> As Items can be dropped on to the macro bar (though only Weapons will trigger a roll). When using inline edit click on the number in the box, delete or backspace then enter the new
     number. Trying to highlight the number to edit will drag the entire item.
@@ -368,6 +375,8 @@
   <br />
   Any stats entered for the item will have an in-system effect once the item is "Active".
   <br />
+  Item types: Data Storage,Diagnostics Display,Pharmaceuticals and Clothing have a Quantity field to record the number owned.
+  <br>
   The Consumables type is a general item that includes stats for Power, Food, Water and Air Supply for any homebrew items.
   <br /><br />
   The modifiers tab allows you to add any +/- effects using the item may have on the PCs attributes or skills.

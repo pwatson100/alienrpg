@@ -287,5 +287,11 @@
   "ALIENRPG.DRAW":"Dessiner",
   "ALIENRPG.NOTABLES":"Il n'y a pas de tables à partir desquelles puiser!",
   "ALIENRPG.ROLLONSELECTED":"Lancer sur la table Mère sélectionnée",
-  "ALIENRPG.ROLLONCREATURETABLE":"Dessiner des tables de créatures extraterrestres"
+  "ALIENRPG.ROLLONCREATURETABLE":"Dessiner des tables de créatures extraterrestres",
+  "ALIENRPG.RollPanic":"Click to roll for panic",
+  "ALIENRPG.addToFLocker":"Add to Locker",
+  "ALIENRPG.moveFromFlocker":"Take from Locker",
+  "ALIENRPG.RollManCrit":"Roll Manual Critical Injury",
+  "ALIENRPG.RollManCharCrit":"Enter D66 number",
+  "ALIENRPG.RollManSynCrit":"Enter D6 Number"
 }

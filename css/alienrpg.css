@@ -47,7 +47,7 @@
 }
 
 .alienrpg #context-menu {
-  width: 100%;
+  width: auto;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
@@ -1065,7 +1065,7 @@ button:focus {
 .inventory-tab-img {
   display: block;
   width: 600px;
-  height: 369px;
+  height: 435px;
   background: url(../images/mother-instructions/inventory-tab.webp);
   margin-left: auto;
   margin-right: auto;
@@ -1076,7 +1076,7 @@ button:focus {
 .inv-context-menu-img {
   display: block;
   width: 151px;
-  height: 49px;
+  height: 70px;
   background: url(../images/mother-instructions/inv-context-menu.webp);
   margin-left: auto;
   margin-right: auto;
@@ -2431,6 +2431,7 @@ button:focus {
 /* Set options to normal weight */
 .select-css option {
   font-weight: normal;
+  background: black;
 }
 
 /* Support for rtl text, explicit support for Arabic and Hebrew */
