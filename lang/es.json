@@ -290,5 +290,11 @@
   "ALIENRPG.DRAW":"Dibujar",
   "ALIENRPG.NOTABLES":"No hay tablas para dibujar!",
   "ALIENRPG.ROLLONSELECTED":"Ruede en la mesa madre seleccionada",
-  "ALIENRPG.ROLLONCREATURETABLE":"Dibujar tablas de criaturas alienígenas"
+  "ALIENRPG.ROLLONCREATURETABLE":"Dibujar tablas de criaturas alienígenas",
+  "ALIENRPG.RollPanic":"Click to roll for panic",
+  "ALIENRPG.addToFLocker":"Add to Locker",
+  "ALIENRPG.moveFromFlocker":"Take from Locker",
+  "ALIENRPG.RollManCrit":"Roll Manual Critical Injury",
+  "ALIENRPG.RollManCharCrit":"Enter D66 number",
+  "ALIENRPG.RollManSynCrit":"Enter D6 Number"
 }

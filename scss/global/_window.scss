@@ -2,7 +2,8 @@
   margin-left: 3px;
 }
 .alienrpg #context-menu {
-  width: 100%;
+  // width: 100%;
+  width: auto;
   height: max-content;
   min-width: 150px;
   max-width: 360px;
@@ -1011,7 +1012,7 @@ button:focus {
 .inventory-tab-img {
   display: block;
   width: 600px;
-  height: 369px;
+  height: 435px;
   background: url(../images/mother-instructions/inventory-tab.webp);
   margin-left: auto;
   margin-right: auto;
@@ -1022,7 +1023,7 @@ button:focus {
 .inv-context-menu-img {
   display: block;
   width: 151px;
-  height: 49px;
+  height: 70px;
   background: url(../images/mother-instructions/inv-context-menu.webp);
   margin-left: auto;
   margin-right: auto;

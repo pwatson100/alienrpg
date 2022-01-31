@@ -258,12 +258,21 @@ export class alienrpgActorSheet extends ActorSheet {
     if (!this.options.editable) return;
     const itemContextMenu = [
       {
-        name: game.i18n.localize('ALIENRPG.fLocker'),
+        name: game.i18n.localize('ALIENRPG.addToFLocker'),
         // icon: '<i class="fas fa-archive"></i>"></fas>',
         icon: '<i class="fas fa-archive"></i>',
         callback: (element) => {
           let item = this.actor.items.get(element.data('item-id'));
           item.update({ 'data.header.active': 'fLocker' });
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
+        // icon: '<i class="fas fa-archive"></i>"></fas>',
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'data.header.active': false });
         },
       },
       {
@@ -369,6 +378,7 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.inline-edit').change(this._inlineedit.bind(this));
 
     html.find('.rollCrit').click(this._rollCrit.bind(this));
+    html.find('.rollCrit').contextmenu(this._rollCritMan.bind(this));
 
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
@@ -464,6 +474,7 @@ export class alienrpgActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
+
   _onRoll(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
@@ -479,20 +490,43 @@ export class alienrpgActorSheet extends ActorSheet {
 
   _onRollItemMod(event) {
     event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.items.get(itemId);
-    this.actor.rollItemMod(item);
+    if (item.type === 'armor') {
+      dataset.roll = this.actor.data.data.general.armor.value;
+      dataset.mod = 0;
+      dataset.spbutt = 'armor';
+      this.actor.rollAbilityMod(this.actor, dataset);
+    } else {
+      this.actor.rollItemMod(item);
+    }
   }
   _rollItem(event) {
     event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.items.get(itemId);
-    this.actor.nowRollItem(item);
+    if (item.type === 'armor') {
+      dataset.roll = this.actor.data.data.general.armor.value;
+      dataset.mod = 0;
+      dataset.spbutt = 'armor';
+      this.actor.rollAbility(this.actor, dataset);
+    } else {
+      this.actor.nowRollItem(item);
+    }
   }
   _rollCrit(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
     this.actor.rollCrit(this.actor.data.type, dataset);
+  }
+  _rollCritMan(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCritMan(this.actor, this.actor.data.type, dataset);
   }
 
   _activate(event) {

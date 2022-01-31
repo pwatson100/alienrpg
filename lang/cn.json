@@ -289,6 +289,11 @@
   "ALIENRPG.DRAW":"画",
   "ALIENRPG.NOTABLES":"没有可绘制的表格！",
   "ALIENRPG.ROLLONSELECTED":"在选定的母桌上滚动",
-  "ALIENRPG.ROLLONCREATURETABLE":"绘制外星生物表"
-
+  "ALIENRPG.ROLLONCREATURETABLE":"绘制外星生物表",
+  "ALIENRPG.RollPanic":"Click to roll for panic",
+  "ALIENRPG.addToFLocker":"Add to Locker",
+  "ALIENRPG.moveFromFlocker":"Take from Locker",
+  "ALIENRPG.RollManCrit":"Roll Manual Critical Injury",
+  "ALIENRPG.RollManCharCrit":"Enter D66 number",
+  "ALIENRPG.RollManSynCrit":"Enter D6 Number"
 }

@@ -232,12 +232,21 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     if (!this.options.editable) return;
     const itemContextMenu = [
       {
-        name: game.i18n.localize('ALIENRPG.fLocker'),
+        name: game.i18n.localize('ALIENRPG.addToFLocker'),
         // icon: '<i class="fas fa-archive"></i>"></fas>',
         icon: '<i class="fas fa-archive"></i>',
         callback: (element) => {
           let item = this.actor.items.get(element.data('item-id'));
           item.update({ 'data.header.active': 'fLocker' });
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
+        // icon: '<i class="fas fa-archive"></i>"></fas>',
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'data.header.active': false });
         },
       },
       {
@@ -337,6 +346,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     html.find('.inline-edit').change(this._inlineedit.bind(this));
 
     html.find('.rollCrit').click(this._rollCrit.bind(this));
+    html.find('.rollCrit').contextmenu(this._rollCritMan.bind(this));
 
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
@@ -423,6 +433,12 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
     this.actor.rollCrit(this.actor.data.type, dataset);
+  }
+
+  _rollCritMan(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCritMan(this.actor, this.actor.data.type, dataset);
   }
 
   _onRollItemMod(event) {

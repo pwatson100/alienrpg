@@ -385,3 +385,12 @@ New rolltable macros for V9 and they are now localized.
 
 Version 2.0.7
 Fixed issue with initiative cards not showing in chat when using FVTT V9.
+
+Version 2.0.8
+Added tooltip to Stress button on character sheet.
+Added "Take from Locker" to the inventory context menu.
+Right or left clicking on the name of armor on the Inventory tab will now perform an Armor roll or show a modification chat box. 
+Added Quantity field to the following Item types: Data Storage,Diagnostics Display,Pharmaceuticals & Clothing.
+Created Planets and Territories will now show the correct icon in the sidebar and token.
+Corrected issue with selector background colour.
+Right click on the "Roll Crit" button pops a dialogue box asking for the crit number (D66 for Character and D6 for Synth). This then rolls against the table, writes to chat and creates the item on the sheet as per normal.

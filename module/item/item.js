@@ -15,7 +15,13 @@ export class alienrpgItem extends Item {
     const actorData = this.item ? this.item.data : {};
     const data = this.data;
     // console.warn('data', data);
+    if (data.type === 'planet-system') this._prepareSystemData(data);
   }
+
+  _prepareSystemData(data) {
+    this.data.img = 'systems/alienrpg/images/icons/solar-system.svg';
+  }
+
   /**
    * Handle clickable rolls.
    */
@@ -90,7 +96,7 @@ export class alienrpgItem extends Item {
                   r2Data = r2Data + stressMod;
                   yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-                 
+
                   //
                   // Roll power.  This currently breaks the push code so needs review/refactoring (considerable)
                   //
@@ -104,7 +110,7 @@ export class alienrpgItem extends Item {
                   r2Data = r2Data + stressMod;
                   yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-                  
+
                   //
                   // Roll power.  This currently breaks the push code so needs review/refactoring (considerable)
                   //
@@ -202,12 +208,11 @@ export class alienrpgItem extends Item {
           //   const consUme = 'power';
           //   this.actor.consumablesCheck(this.actor, consUme, ilabel, item._id);
           // }
-      
         } else if (item.data.header.type.value === '2') {
           let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-          
+
           //
           // Roll power.  This currently breaks the push code so needs review/refactoring (considerable)
           //
@@ -216,7 +221,7 @@ export class alienrpgItem extends Item {
           //   const consUme = 'power';
           //   this.actor.consumablesCheck(this.actor, consUme, ilabel, item._id);
           // }
-              } else {
+        } else {
           console.warn('No type on item');
         }
       } else {

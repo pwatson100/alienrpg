@@ -602,6 +602,9 @@
           "value": 0,
           "label": "Number"
         },
+        "quantity": {
+          "value": 1
+        },
         "notes": {
           "notes": ""
         }
