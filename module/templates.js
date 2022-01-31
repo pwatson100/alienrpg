@@ -9,6 +9,7 @@ export const preloadHandlebarsTemplates = async function () {
     // Actor Sheet Partials
     'systems/alienrpg/templates/actor/tabs/actor-inventory.html',
     'systems/alienrpg/templates/actor/tabs/vehicle-inventory.html',
+    'systems/alienrpg/templates/actor/tabs/spacecraft-inventory.html',
     'systems/alienrpg/templates/actor/tabs/actor-systems.html',
     'systems/alienrpg/templates/actor/tabs/critical-inj.html',
   ];

@@ -73,6 +73,7 @@ export class alienrpgActor extends Actor {
     if (actorData.type === 'character') this._prepareCharacterData(actorData, flags);
     else if (actorData.type === 'synthetic') this._prepareCharacterData(actorData, flags);
     else if (actorData.type === 'vehicles') this._prepareVehicleData(data);
+    else if (actorData.type === 'spacecraft') this._prepareVehicleData(data);
     else if (actorData.type === 'creature') this._prepareCreatureData(data);
     else if (actorData.type === 'territory') this._prepareTeritoryData(data);
   }
