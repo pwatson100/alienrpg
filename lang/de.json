@@ -289,10 +289,15 @@
   "ALIENRPG.NOTABLES":"Es gibt keine Tabellen zum Zeichnen!",
   "ALIENRPG.ROLLONSELECTED":"Rolle auf ausgewähltem Muttertisch",
   "ALIENRPG.ROLLONCREATURETABLE":"Zeichne außerirdische Kreaturentabellen",
-  "ALIENRPG.RollPanic":"Click to roll for panic",
-  "ALIENRPG.addToFLocker":"Add to Locker",
-  "ALIENRPG.moveFromFlocker":"Take from Locker",
-  "ALIENRPG.RollManCrit":"Roll Manual Critical Injury",
-  "ALIENRPG.RollManCharCrit":"Enter D66 number",
-  "ALIENRPG.RollManSynCrit":"Enter D6 Number"
+  "ALIENRPG.RollPanic":"Klicken Sie, um für Panik zu rollen",
+  "ALIENRPG.addToFLocker":"Zum Schließfach hinzufügen",
+  "ALIENRPG.moveFromFlocker":"Nehmen Sie von Locker",
+  "ALIENRPG.RollManCrit":"Rolle manuelle kritische Verletzung",
+  "ALIENRPG.RollManCharCrit":"Geben Sie die D66-Nummer ein",
+  "ALIENRPG.RollManSynCrit":"Geben Sie die D6-Nummer ein",
+  "ALIENRPG.Encumbered": "Belastet",
+  "ALIENRPG.Overwatch":"OVERWATCH",
+  "ALIENRPG.youTake":"Du nimmst ",
+  "ALIENRPG.healthDamage":" Gesundheitsschäden"
+
 }

@@ -63,7 +63,7 @@ export class yze {
     // *******************************************************
     let rType = '';
     // if (reRoll && (hostile === true) === 'character') {
-    if ((reRoll && actortype === 'character' && label != 'Armor') || reRoll === 'mPush') {
+    if ((reRoll && actortype === 'character' && label != 'Armor' && label != 'Radiation') || reRoll === 'mPush') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
       rType = game.i18n.localize('ALIENRPG.Rolling');
@@ -164,17 +164,44 @@ export class yze {
     // *******************************************************
 
     function localizedCountOfSuccesses(sTotal) {
-      if (sTotal === 1) return '1 ' + game.i18n.localize('ALIENRPG.sucess');
-      else return sTotal + ' ' + game.i18n.localize('ALIENRPG.sucesses');
+      if (label === 'Radiation') {
+        if (sTotal >= 1) {
+          return sTotal + ' ' + '<span class="blink"; style="color: red; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.healthDamage') + '</span>';
+          // return sTotal + ' ' + game.i18n.localize('ALIENRPG.healthDamage');
+        } else {
+          return sTotal + ' ' + game.i18n.localize('ALIENRPG.healthDamage');
+        }
+      } else {
+        if (sTotal === 1) return '1 ' + game.i18n.localize('ALIENRPG.sucess');
+        else return sTotal + ' ' + game.i18n.localize('ALIENRPG.sucesses');
+      }
     }
 
     if (actortype != 'supply') {
-      chatMessage +=
-        '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
-        game.i18n.localize('ALIENRPG.youHave') +
-        ' ' +
-        localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
-        ' </div>';
+      if (label === 'Radiation') {
+        if (game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount >= 1) {
+          chatMessage +=
+            '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">' +
+            game.i18n.localize('ALIENRPG.youTake') +
+            ' ' +
+            localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+            ' </div>';
+        } else {
+          chatMessage +=
+            '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+            game.i18n.localize('ALIENRPG.youTake') +
+            ' ' +
+            localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+            ' </div>';
+        }
+      } else {
+        chatMessage +=
+          '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+          game.i18n.localize('ALIENRPG.youHave') +
+          ' ' +
+          localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+          ' </div>';
+      }
     }
 
     // *******************************************************

@@ -210,31 +210,17 @@ export class alienrpgActorSheet extends ActorSheet {
     }
     // let aTokens = '';
     if (enc.encumbered) {
-      // aTokens = this.actor.getActiveTokens();
-      // aTokens.forEach((i) => {
-      //   if (aTokens.length > 1 && !i.document._actor.isToken) {
-      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
-      //   } else if (aTokens.length === 1) {
-      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
-      //   }
-      // });
+      this.actor.addCondition('encumbered');
 
-      this.actor.getActiveTokens().forEach((i) => {
-        i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
-      });
+      // this.actor.getActiveTokens().forEach((i) => {
+      //   i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
+      // });
     } else {
-      // aTokens = this.actor.getActiveTokens();
-      // aTokens.forEach((i) => {
-      //   if (aTokens.length > 1 && !i.document._actor.isToken) {
-      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
-      //   } else if (aTokens.length === 1) {
-      //     i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
-      //   }
-      // });
+      this.actor.removeCondition('encumbered');
 
-      this.actor.getActiveTokens().forEach((i) => {
-        i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
-      });
+      // this.actor.getActiveTokens().forEach((i) => {
+      //   i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
+      // });
     }
     return enc;
   }
@@ -382,6 +368,8 @@ export class alienrpgActorSheet extends ActorSheet {
 
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
+
+    html.find('.overwatch-toggle').click(this._onOverwatchToggle.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -723,6 +711,11 @@ export class alienrpgActorSheet extends ActorSheet {
       e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
       // console.warn(e.target.value);
     }
+  }
+  _onOverwatchToggle(event) {
+    let key = $(event.currentTarget).parents('.condition').attr('data-key');
+    if (this.actor.hasCondition(key)) this.actor.removeCondition(key);
+    else this.actor.addCondition(key);
   }
 }
 export default alienrpgActorSheet;

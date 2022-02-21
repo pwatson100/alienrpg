@@ -70,7 +70,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-    // data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
+    data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
     data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
     data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
 
@@ -334,6 +334,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     html.find('.plus-btn').click(this._plusMinusButton.bind(this));
 
     html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
+    html.find('.click-stat-level-con').on('click contextmenu', this._onClickStatLevelCon.bind(this)); // Toggle for radio buttons
 
     html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
@@ -350,6 +351,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
+    html.find('.overwatch-toggle').click(this._onOverwatchToggle.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -576,6 +578,12 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     this._onSubmit(event);
   }
 
+  _onClickStatLevelCon(event) {
+    event.preventDefault();
+    this.actor.conCheckMarks(this.actor, event);
+    this._onSubmit(event);
+  }
+
   /**
    * Get the font-awesome icon used to display a certain level of radiation
    * @private
@@ -646,6 +654,11 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
       // console.warn(e.target.value);
     }
+  }
+  _onOverwatchToggle(event) {
+    let key = $(event.currentTarget).parents('.condition').attr('data-key');
+    if (this.actor.hasCondition(key)) this.actor.removeCondition(key);
+    else this.actor.addCondition(key);
   }
 }
 export default alienrpgSynthActorSheet;
