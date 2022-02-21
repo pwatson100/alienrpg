@@ -52,7 +52,7 @@ Hooks.once('init', async function () {
   };
 
   // Set FVTT version constant
-  const is07x = game.data.version.split('.')[1] === '7';
+  // const is07x = game.data.version.split('.')[1] === '7';
 
   // Global define for this so the roll data can be read by the reroll method.
   game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, tLabel: '', sCount: 0, multiPush: 0 };
@@ -206,7 +206,7 @@ Hooks.once('ready', async () => {
       await motherPack.getIndex();
       let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
 
-      const newVer = '7';
+      const newVer = '8';
       if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
         if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
           await game.journal.getName('MU/TH/ER Instructions.').delete();

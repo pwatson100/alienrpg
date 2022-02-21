@@ -23,10 +23,10 @@ function registerActors() {
     makeDefault: true,
   }); // Register vehicle Sheet
 
-  Actors.registerSheet('alienrpg', alienrpgSpacecraftSheet, {
-    types: ['spacecraft'],
-    makeDefault: true,
-  }); // Register vehicle Sheet
+  // Actors.registerSheet('alienrpg', alienrpgSpacecraftSheet, {
+  //   types: ['spacecraft'],
+  //   makeDefault: true,
+  // }); // Register vehicle Sheet
 
   // console.warn('Reg: Got here');
 

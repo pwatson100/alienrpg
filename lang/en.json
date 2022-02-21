@@ -316,5 +316,12 @@
   "ALIENRPG.GUNNER":"GUNNER",
   "ALIENRPG.ENGINEER":"ENGINEER",
   "ALIENRPG.ARMAMENTS":"ARMAMENTS",
-  "ALIENRPG.MODULES-UPGRADES":"Modules/Upgrades"
+  "ALIENRPG.MODULES-UPGRADES":"Modules/Upgrades",
+  "ALIENRPG.Encumbered": "Encumbered",
+  "ALIENRPG.Overwatch":"OVERWATCH",
+  "ALIENRPG.SPECIALTY":"SPECIALTY",
+  "ALIENRPG.youTake":"You Take ",
+  "ALIENRPG.healthDamage":" HEALTH Damage"
+
+
 }

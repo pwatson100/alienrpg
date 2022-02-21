@@ -503,6 +503,46 @@ button:focus {
   color: var(--aliengreen);
 }
 
+.ctooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+/* Tooltip text */
+.ctooltip .ctooltiptext {
+  font-size: small;
+  visibility: hidden;
+  width: 150px;
+  background-color: black;
+  color: var(--aliengreen);
+  text-align: center;
+  border-radius: 3px;
+  padding: 2px 0;
+  position: absolute;
+  z-index: 1;
+  margin-left: -150px;
+  border-style: solid;
+  border-color: var(--aliengreen);
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.ctooltip:hover .ctooltiptext {
+  visibility: visible;
+}
+
+.ctooltip .ctooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  /* To the right of the tooltip */
+  margin-top: -5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--aliengreen);
+}
+
 .spanner-icon {
   display: inline-block;
   width: 30px;
@@ -592,7 +632,7 @@ button:focus {
 .character-details {
   display: block;
   width: 300px;
-  height: 295px;
+  height: 328px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -603,7 +643,7 @@ button:focus {
 .synthetic-details {
   display: block;
   width: 300px;
-  height: 270px;
+  height: 380px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -614,7 +654,7 @@ button:focus {
 .character-consumables {
   display: block;
   width: 153px;
-  height: 300px;
+  height: 330px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -625,7 +665,7 @@ button:focus {
 .synthetic-consumables {
   display: block;
   width: 153px;
-  height: 289px;
+  height: 360px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -737,6 +777,17 @@ button:focus {
   width: 300px;
   height: 188px;
   background: url(../images/mother-instructions/chat-roll.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.radiation-roll {
+  display: block;
+  width: 240px;
+  height: 274px;
+  background: url(../images/mother-instructions/radiation-rolls.webp);
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -1087,7 +1138,7 @@ button:focus {
 .status-icons-img {
   display: block;
   width: 230px;
-  height: 235px;
+  height: 229px;
   background: url(../images/mother-instructions/status-icons.webp);
   margin-left: auto;
   margin-right: auto;
@@ -1104,46 +1155,6 @@ button:focus {
   margin-right: auto;
   background-size: 100%;
   border: 0;
-}
-
-.ctooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-}
-
-/* Tooltip text */
-.ctooltip .ctooltiptext {
-  font-size: small;
-  visibility: hidden;
-  width: 150px;
-  background-color: black;
-  color: var(--aliengreen);
-  text-align: center;
-  border-radius: 3px;
-  padding: 2px 0;
-  position: absolute;
-  z-index: 1;
-  margin-left: -150px;
-  border-style: solid;
-  border-color: var(--aliengreen);
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.ctooltip:hover .ctooltiptext {
-  visibility: visible;
-}
-
-.ctooltip .ctooltiptext::after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  /* To the right of the tooltip */
-  margin-top: -5px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: transparent transparent transparent var(--aliengreen);
 }
 
 .grid {
@@ -1181,9 +1192,15 @@ button:focus {
   padding: 4px;
 }
 
+.grid-synPage {
+  display: grid;
+  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item8 Item4 Item4" "Item8 Item5 Item5" "Item8 Item3 Item3" "Item9 Item6 Item6" "Item10 Item7 Item7" "Item11 Item11 Item11";
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .grid-genPage {
   display: grid;
-  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item8 Item5 Item5" "Item8 Item3 Item3" "Item9 Item6 Item6" "Item10 Item7 Item7" "Item11 Item11 Item11";
+  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item8 Item4 Item4" "Item8 Item5 Item5" "Item8 Item3 Item3" "Item9 Item6 Item6" "Item10 Item7 Item7" "Item11 Item11 Item11";
   grid-template-columns: 1fr 1fr 1fr;
 }
 

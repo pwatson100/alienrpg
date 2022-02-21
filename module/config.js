@@ -32,3 +32,46 @@ ALIENRPG.general = {
 };
 ALIENRPG.physicalItems = [];
 // ALIENRPG.physicalItems = ['item', 'weapon', 'armor', 'talent', 'planet-system', 'agenda', 'specialty', 'critical-injury'];
+
+ALIENRPG.conditionEffects = [
+  {
+    id: 'starving',
+    label: 'ALIENRPG.Starving',
+    icon: 'systems/alienrpg/images/starving.svg',
+  },
+  {
+    id: 'dehydrated',
+    label: 'ALIENRPG.Dehydrated',
+    icon: 'systems/alienrpg/images/water-flask.svg',
+  },
+  {
+    id: 'exhausted',
+    label: 'ALIENRPG.Exhausted',
+    icon: 'systems/alienrpg/images/exhausted.svg',
+  },
+  {
+    id: 'freezing',
+    label: 'ALIENRPG.Freezing',
+    icon: 'systems/alienrpg/images/frozen.svg',
+  },
+  {
+    id: 'encumbered',
+    label: 'ALIENRPG.Encumbered',
+    icon: 'systems/alienrpg/images/weight.png',
+  },
+  {
+    id: 'panicked',
+    label: 'ALIENRPG.Panicked',
+    icon: 'icons/svg/terror.svg',
+  },
+  {
+    id: 'overwatch',
+    label: 'ALIENRPG.Overwatch',
+    icon: 'systems/alienrpg/images/eye-target.svg',
+  },
+  {
+    id: 'radiation',
+    label: 'ALIENRPG.Radiation',
+    icon: 'icons/svg/radiation.svg',
+  },
+];

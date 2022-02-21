@@ -289,10 +289,14 @@
     "ALIENRPG.NOTABLES":"没有可绘制的表格！",
     "ALIENRPG.ROLLONSELECTED":"在选定的母桌上滚动",
     "ALIENRPG.ROLLONCREATURETABLE":"绘制外星生物表",
-    "ALIENRPG.RollPanic":"Click to roll for panic",
-    "ALIENRPG.addToFLocker":"Add to Locker",
-    "ALIENRPG.moveFromFlocker":"Take from Locker",
-    "ALIENRPG.RollManCrit":"Roll Manual Critical Injury",
-    "ALIENRPG.RollManCharCrit":"Enter D66 number",
-    "ALIENRPG.RollManSynCrit":"Enter D6 Number"  
-}
+    "ALIENRPG.RollPanic":"点击滚动恐慌",
+    "ALIENRPG.addToFLocker":"添加到储物柜",
+    "ALIENRPG.moveFromFlocker":"从储物柜拿走",
+    "ALIENRPG.RollManCrit":"滚动手动重伤",
+    "ALIENRPG.RollManCharCrit":"输入 D66 号码",
+    "ALIENRPG.RollManSynCrit":"输入 D6 号码",
+    "ALIENRPG.Encumbered": "受阻",
+    "ALIENRPG.Overwatch":"守望先锋",
+    "ALIENRPG.youTake":"你拿 ",
+    "ALIENRPG.healthDamage":" 健康损害"
+  }

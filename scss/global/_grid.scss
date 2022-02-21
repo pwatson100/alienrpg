@@ -36,12 +36,31 @@
   padding: 4px;
 }
 
+.grid-synPage {
+  display: grid;
+  // border: 2px solid white;
+  grid-template-areas:
+    'Item1 Item2 Item2'
+    'Item1 Item4 Item4'
+    'Item8 Item4 Item4'
+    'Item8 Item5 Item5'
+    'Item8 Item3 Item3'
+    'Item9 Item6 Item6'
+    'Item10 Item7 Item7'
+    'Item11 Item11 Item11';
+  // 'Item11 Item10 Item10'
+  // 'Item11 Item10 Item10';
+
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .grid-genPage {
   display: grid;
   // border: 2px solid white;
   grid-template-areas:
     'Item1 Item2 Item2'
     'Item1 Item4 Item4'
+    'Item8 Item4 Item4'
     'Item8 Item5 Item5'
     'Item8 Item3 Item3'
     'Item9 Item6 Item6'

@@ -7,16 +7,14 @@
     Created by Paul Watson
     <br /><br />
   </p>
-    <h1 class="headng">Change history for latest version 2.0.8</h1>
+    <h1 class="headng">Change history for latest version 2.0.9</h1>
     <p>
         <ul>
-<li>Added "Take from Locker" to the inventory context menu.</li>
-<li>Right or left clicking on the name of armor on the Inventory tab will now perform an Armor roll or show a modification chat box. </li>
-<li>Added Quantity field to the following Item types: Data Storage,Diagnostics Display,Pharmaceuticals & Clothing.</li>
-<li>Right click on the "Roll Crit" button pops a dialogue box asking for the crit number (D66 for Character and D6 for Synth). This then rolls against the table, writes to chat and creates the item on the sheet as per normal.</li>
-<li>Added tooltip to Stress button on character sheet.</li>
-<li>Created Planets and Territories will now show the correct icon in the sidebar and token.</li>
-<li>Corrected issue with selector background colour.</li>
+<li>Changed Status icons to "Active Effects" so they are persistent with the actor.</li>
+<li>Added "Overwatch" checkbox to character and synth sheets which displays a status icon on the token.  </li>
+<li>Put Radiation markers back on the Synth sheet.</li>
+<li>An Actor having Radiation damage will now show a status icon on the Token and will roll to see if there is any health damage. <br> If there is it must be applied manually I did not automate this in case there are any cures to be applied. </li>
+<li>Tidied up the Character and Synthetic character sheets.</li>
       </ul>
     </p>
 <br><br> 
@@ -121,13 +119,22 @@
   <br />
   <p>
     Experience, Story Points, Radiation and Conditions are radio buttons. Left mouse click to set and Right mouse click to unset.
-    <br /><br />
+<br><br> 
+
+    Adding Radiation will cause a roll to determine if there is any health damage caused by the radiation. <br>
+    <strong><em>NOTE:</em></strong> If there is it must be applied manually I did not automate this in case there are any cures to be applied. 
+    <br>
+      &nbsp;<span class="radiation-roll">&nbsp;</span>&nbsp; 
+    <br />
+    Overwatch is a (left click) toggle and gives an "Eye" status icon on the token so show the actor is in Overwatch.  
+  <br><br> 
+  
     If the player has an <strong>active</strong> token in the scene a status icon will show for any conditions set:
   </p>
   <br />
   &nbsp;<span class="status-icons-img">&nbsp;</span>&nbsp; <br />
   <p>
-    Right clicking on the condition will remove the status icon.
+    Right clicking on the condition will remove the status icon. 
     <br />
     <b> NOTE:</b> <i>Removing the status icon from the token HUD will not remove the condition on the actor sheet. </i> <br /><br />
     The "Panicked" condition will automatically set following panic rolls of 7+. This triggers the "More Panic" mechanics in the system. To remove the Panicked condition right click on “PANICKED”. This
@@ -173,7 +180,7 @@
     sheet. <br />
     You will have to manually add any modifiers the injury has on the character to the tab modifiers tab on the injury item. <br>
 <br>
-Right clicking on the "Roll Crit" button will display a dialouge box allowing the player/GM to enter a specific critical injury number. 
+Right clicking on the "Roll Crit" button will display a dialogue box allowing the player/GM to enter a specific critical injury number. 
 This must be in D66 format (number 11 to 16, 21 to 26 etc.) for Characters and D6 format for Synthetics (1-6). 
 This then rolls against the relevent table, writes to chat and creates the item on the sheet as per normal. <br>
   <br><br> 
@@ -266,7 +273,7 @@ This then rolls against the relevent table, writes to chat and creates the item 
   <p>
     Some items have inline edit boxes (3) which enable you to edit some quantities (Rounds, Food, Water, Air, Quantity) without the need to open the item.
     <br /><br />
-    <b>NOTE:</b> As Items can be dropped on to the macro bar (though only Weapons will trigger a roll). When using inline edit click on the number in the box, delete or backspace then enter the new
+    <b>NOTE:</b> All Items can be dropped on to the macro bar (though only Weapons will trigger a roll). When using inline edit click on the number in the box, delete or backspace then enter the new
     number. Trying to highlight the number to edit will drag the entire item.
   </p> 
   <br /><br />
@@ -464,7 +471,7 @@ This then rolls against the relevent table, writes to chat and creates the item 
   For Panic rolls, the player Left clicks on "Stress" and the result is displayed in the chat window. Right Clicking on "Stress" will display a modifier box to add or remove stress to the roll. Chat
   message for stress rolls shows the net modifier. A tooltip shows the individual modifiers by hovering the mouse over "Panic Condition" in the chat window.
   <br /><br />
-  This will add/subtract the entered value (+x or -x) to the roll nad does not change the number of dice rolled.
+  This will add/subtract the entered value (+x or -x) to the roll and does not change the number of dice rolled.
   <br />
   &nbsp;<span class="stress-mod">&nbsp;</span>&nbsp; &nbsp; <br /><br />
   Supply rolls are made by clicking on the parachute icon. Any failures (1's) will automatically be deducted from the total and the items giving that value will be decremented.
@@ -658,12 +665,15 @@ This then rolls against the relevent table, writes to chat and creates the item 
       interface.
     </li>
     <li style="padding-bottom: 2%">
-      <strong style="color: deepskyblue">Weyland - Alien UI theme :</strong> <br />The main goal of this module is to provide a complete Foundry VTT UI theming, and not only AlienRPG system sheets
+      <strong style="color: deepskyblue">Weyland - Alien UI theme:</strong> <br />The main goal of this module is to provide a complete Foundry VTT UI theming, and not only AlienRPG system sheets
       like Alien CRT UI does. So these two modules are complementary and should be used together.
     </li>
     <li style="padding-bottom: 2%">
-      <strong style="color: deepskyblue">Alien RPG - Motion Tracker :</strong> <br />The module installs a button just over the chat box that you can hit. When hit, the button will scan for the
+      <strong style="color: deepskyblue">Alien RPG - Motion Tracker:</strong> <br />The module installs a button just over the chat box that you can hit. When hit, the button will scan for the
       nearest active and visible tokens based on the selected token. This is still under development but is a really good effect to add tension to a scene.
+    </li>
+    <li style="padding-bottom: 2%">
+      <strong style="color: deepskyblue">Year Zero Actions:</strong><br> Useful to track Fast/slow actions.  Adds macros to toggle icons and is refreshed each round. <br />
     </li>
   </ul>
 </div>

@@ -145,9 +145,9 @@
                       <input type="hidden" name="data.general.sp.value" data-max="{{data.general.sp.max}}" value="{{data.general.sp.value}}" data-dtype="Number">
                         <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.sp.icon}}}</span>
                     </div>
-                    <br><br>
-                    <h3 class="resource-label" style="font-weight: bold;">{{localize "ALIENRPG.Cash"}}</h3>
+                    <br>
                     <div style="margin-top: 6px;" >
+            <label class="resource-label">{{localize "ALIENRPG.Cash"}}</label>
                     <input type="text" class="cashboxsize currency" name="data.general.cash.value" value="{{data.general.cash.value}}" />
                     </div>
               </div>
@@ -186,11 +186,23 @@
                   <h3 class="click-stat-level resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}} </h3>
                   {{/if}}
                   </div>
+                  <br>  
+                      <h3 class="condition" data-key="overwatch">
+                        <a class="overwatch-toggle">
+                          {{#if data.general.overwatch}}
+                          <i class="far fa-check-square"></i>
+                          {{else}}
+                          <i class="far fa-square"></i>
+                          {{/if}}
+                        </a>
+                        {{localize "ALIENRPG.Overwatch"}}
+                        </h3>
+
                   <br>
                       <h3 style="text-align: center; font-weight: bold;" class="resource-label">{{ localize "ALIENRPG.Radiation"}}</h3>
                     <div class="dots radiation">
-                      <input type="hidden" name="data.general.radiation.value" data-max="{{data.general.radiation.max}}" value="{{data.general.radiation.value}}" data-dtype="Number">
-                      <span style="text-align: center;" class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.radiation.icon}}}
+                      <input type="hidden" name="data.general.radiation.value" data-max="{{data.general.radiation.max}}" value="{{data.general.radiation.value}}"  data-dtype="Number">
+                      <span style="text-align: center;" class="click-stat-level-con" title="{{ localize 'ALIENRPG.ConButtons'}}" data-label="{{ localize "ALIENRPG.Radiation"}}" data-roll="{{data.general.radiation.value}}">{{{data.general.radiation.icon}}} 
                     </span>
                   </div>
 
@@ -255,7 +267,7 @@
                       {{/select}}
                       </select>
                         <div class="box3 resource-label">
-                          <label class="speciality-label" style="font-weight: bold;" >SPECIALTY</label>
+                          <label class="speciality-label" style="font-weight: bold;" >{{localize 'ALIENRPG.SPECIALTY'}}</label>
                           <div class="item-controls ">
                           </div>
                         </div>
@@ -268,12 +280,13 @@
                         {{/each}}
                         </div>
                     </div>
+                    <br>
               </div>
               
               <div class="Item4">
                 <label class="resource-label"style="font-weight: bold;">{{ localize "ALIENRPG.Appearance"}}</label> 
                 <br>
-                <textarea name="data.general.appearance.value" rows="4"data-dtype="String">{{data.general.appearance.value}}</textarea>
+                <textarea name="data.general.appearance.value" rows="8"data-dtype="String">{{data.general.appearance.value}}</textarea>
               </div>
               
               <div class="Item5">
@@ -306,7 +319,7 @@
 
              <div class="Item11 items-list" style="overflow: auto">{{> "systems/alienrpg/templates/actor/tabs/critical-inj.html" }}</div>
 
-      </div>
+      </h3>
    </div>
 
 </section>

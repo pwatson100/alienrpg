@@ -394,3 +394,11 @@ Added Quantity field to the following Item types: Data Storage,Diagnostics Displ
 Created Planets and Territories will now show the correct icon in the sidebar and token.
 Corrected issue with selector background colour.
 Right click on the "Roll Crit" button pops a dialogue box asking for the crit number (D66 for Character and D6 for Synth). This then rolls against the table, writes to chat and creates the item on the sheet as per normal.
+
+Version 2.0.9
+Changed Status icons to "Active Effects" so they are persistent with the actor.
+Added "Overwatch" checkbox to character and synth sheets which displays a status icon on the token. 
+Put Radiation markers back on the Synth sheet. 
+An Actor having Radiation damage will now show a status icon on the Token and will roll to see if there is any health damage.  
+If there is it must be applied manually I did not automate this in case there are any cures to be applied. 
+Tidied up the Character and Synthetic character sheets. 
