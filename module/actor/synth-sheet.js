@@ -659,10 +659,10 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       // console.warn(e.target.value);
     }
   }
-  _onOverwatchToggle(event) {
+  async _onOverwatchToggle(event) {
     let key = $(event.currentTarget).parents('.condition').attr('data-key');
-    if (this.actor.hasCondition(key)) this.actor.removeCondition(key);
-    else this.actor.addCondition(key);
+    if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
+    else await this.actor.addCondition(key);
   }
 }
 export default alienrpgSynthActorSheet;

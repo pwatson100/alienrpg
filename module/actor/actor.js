@@ -340,7 +340,18 @@ export class alienrpgActor extends Actor {
 
     setProperty(actorData, 'data.header.health.max', (data.header.health.max = data.attributes.str.value + data.header.health.mod));
 
-    if (this.hasCondition('overwatch')) {
+    // if (this.hasCondition('overwatch')) {
+    //   setProperty(actorData, 'data.general.overwatch', true);
+    // } else {
+    //   setProperty(actorData, 'data.general.overwatch', false);
+    // }
+    this._checkOverwatch(actorData);
+  }
+
+  async _checkOverwatch(actorData) {
+    let conDition = await this.hasCondition('overwatch');
+    // if (await this.hasCondition('overwatch')) {
+    if (conDition != undefined || conDition) {
       setProperty(actorData, 'data.general.overwatch', true);
     } else {
       setProperty(actorData, 'data.general.overwatch', false);
