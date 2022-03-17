@@ -402,3 +402,10 @@ Put Radiation markers back on the Synth sheet.
 An Actor having Radiation damage will now show a status icon on the Token and will roll to see if there is any health damage.  
 If there is it must be applied manually I did not automate this in case there are any cures to be applied. 
 Tidied up the Character and Synthetic character sheets. 
+
+Version 2.1.0
+Added quantity to weapons sheets and actor inventory.
+Added Radiation and Encumbrance Status icons to "Active Effects" to Synthetics.
+Encumbrance now calculates correctly for items with a quantity >1.
+Characters and Synthetics now have 20 xp dots.
+Fixed issue with removing actors from the combat tracker. 

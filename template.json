@@ -146,7 +146,7 @@
         },
         "xp": {
           "value": 0,
-          "max": 10
+          "max": 20
         },
         "sp": {
           "value": 0,
@@ -744,6 +744,9 @@
         "comment": {
           "value": "",
           "label": "Text"
+        },
+        "quantity": {
+          "value": 1
         }
       },
       "notes": {

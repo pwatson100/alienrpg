@@ -134,14 +134,14 @@
       <!-- Col1 -->
               <div class="Item1">
                     <h3 class="resource-label" style="font-weight: bold;">{{ localize "ALIENRPG.XP"}}</h3>
-                    <div class="dots experience">
+                    <div class="dots experience" style="width: 150px; display: inline-flex;margin-bottom: 10px;">
                       <input type="hidden" name="data.general.xp.value" data-max="{{data.general.xp.max}}" value="{{data.general.xp.value}}" data-dtype="Number">
                         <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.xp.icon}}}
                       </span>
                     </div>
                     <br>
                     <h3 class="resource-label" style="font-weight: bold;">{{localize "ALIENRPG.StoryPoints"}}</h3>
-                    <div class="dots experience" style="margin-top: 3px;" >
+                    <div class="dots experience"  >
                       <input type="hidden" name="data.general.sp.value" data-max="{{data.general.sp.max}}" value="{{data.general.sp.value}}" data-dtype="Number">
                         <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.sp.icon}}}</span>
                     </div>
@@ -197,7 +197,6 @@
                         </a>
                         {{localize "ALIENRPG.Overwatch"}}
                         </h3>
-
                   <br>
                       <h3 style="text-align: center; font-weight: bold;" class="resource-label">{{ localize "ALIENRPG.Radiation"}}</h3>
                     <div class="dots radiation">

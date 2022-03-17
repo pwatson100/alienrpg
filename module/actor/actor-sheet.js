@@ -38,7 +38,7 @@ export class alienrpgActorSheet extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData(options) {
+  async getData(options) {
     // Basic data
     const isOwner = this.document.isOwner;
     const data = {
@@ -80,7 +80,7 @@ export class alienrpgActorSheet extends ActorSheet {
     data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
     data.actor.data.general.panic.icon = this._getContitionIcon(data.actor.data.general.panic.value, 'panic');
     // Prepare items.
-    this._prepareItems(data); // Return data to the sheet
+    await this._prepareItems(data); // Return data to the sheet
 
     //Return data to the sheet
     return data;
@@ -94,7 +94,7 @@ export class alienrpgActorSheet extends ActorSheet {
    * Organize and classify Owned Items for Character sheets
    * @private
    */
-  _prepareItems(data) {
+  async _prepareItems(data) {
     // Initialize containers.
     const inventory = {
       weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
@@ -150,6 +150,13 @@ export class alienrpgActorSheet extends ActorSheet {
           critInj.push(i);
           break;
 
+        case 'armor':
+          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+          i.totalWeight = i.data.attributes.weight.value;
+          totalWeight += i.totalWeight;
+          inventory[i.type].items.push(i);
+          break;
+
         case 'weapon':
           if (item.header.active != 'fLocker') {
             let ammoweight = 0.25;
@@ -157,7 +164,8 @@ export class alienrpgActorSheet extends ActorSheet {
               ammoweight = 0.5;
             }
             i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-            i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
+            // i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
+            i.totalWeight = (i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight) * i.data.attributes.quantity.value;
             totalWeight += i.totalWeight;
           }
           inventory[i.type].items.push(i);
@@ -165,9 +173,10 @@ export class alienrpgActorSheet extends ActorSheet {
           break;
 
         default:
+          // Its just an item
           if (item.header.active != 'fLocker') {
             i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-            i.totalWeight = i.data.attributes.weight.value;
+            i.totalWeight = i.data.attributes.weight.value * i.data.attributes.quantity.value;
             totalWeight += i.totalWeight;
           }
           inventory[i.type].items.push(i);
@@ -179,7 +188,7 @@ export class alienrpgActorSheet extends ActorSheet {
     data.agendas = agendas;
     data.specialities = specialities;
     data.critInj = critInj;
-    data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
+    data.data.general.encumbrance = await this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
   }
 
@@ -194,11 +203,11 @@ export class alienrpgActorSheet extends ActorSheet {
    * @return {Object}               An object describing the character's encumbrance level
    * @private
    */
-  _computeEncumbrance(totalWeight, actorData) {
+  async _computeEncumbrance(totalWeight, actorData) {
     // Compute Encumbrance percentage
     const enc = {
       max: actorData.data.attributes.str.value * 4,
-      value: Math.round(totalWeight * 10) / 10,
+      value: Math.round(totalWeight * 100) / 100,
       value: totalWeight,
     };
     enc.pct = Math.min((enc.value * 100) / enc.max, 99);
@@ -208,19 +217,11 @@ export class alienrpgActorSheet extends ActorSheet {
         enc.encumbered = enc.pct > 75;
       }
     }
-    // let aTokens = '';
+    let aTokens = '';
     if (enc.encumbered) {
-      this.actor.addCondition('encumbered');
-
-      // this.actor.getActiveTokens().forEach((i) => {
-      //   i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
-      // });
+      await this.actor.addCondition('encumbered');
     } else {
-      this.actor.removeCondition('encumbered');
-
-      // this.actor.getActiveTokens().forEach((i) => {
-      //   i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
-      // });
+      await this.actor.removeCondition('encumbered');
     }
     return enc;
   }

@@ -839,7 +839,7 @@ export class alienrpgActor extends Actor {
 
     if (!effect.id) return 'Conditions require an id field';
 
-    let existing = this.hasCondition(effect.id);
+    let existing = await this.hasCondition(effect.id);
 
     if (!existing) {
       effect.label = game.i18n.localize(effect.label);
@@ -855,14 +855,14 @@ export class alienrpgActor extends Actor {
 
     if (!effect.id) return 'Conditions require an id field';
 
-    let existing = this.hasCondition(effect.id);
+    let existing = await this.hasCondition(effect.id);
 
     if (existing) {
       return existing.delete();
     }
   }
 
-  hasCondition(conditionKey) {
+  async hasCondition(conditionKey) {
     let existing = this.effects.find((i) => i.getFlag('core', 'statusId') == conditionKey);
     return existing;
   }

@@ -24,7 +24,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'synth-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
-      width: 740,
+      width: 800,
       height: 900,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
@@ -38,7 +38,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
+  async getData() {
     // Basic data
     let isOwner = this.document.isOwner;
     const data = {
@@ -75,7 +75,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
 
     // Prepare items.
-    this._prepareItems(data); // Return data to the sheet
+    await this._prepareItems(data); // Return data to the sheet
 
     // Return data to the sheet
     return data;
@@ -89,7 +89,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
    * Organize and classify Owned Items for Character sheets
    * @private
    */
-  _prepareItems(data) {
+  async _prepareItems(data) {
     // Initialize containers.
     const inventory = {
       weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
@@ -141,6 +141,13 @@ export class alienrpgSynthActorSheet extends ActorSheet {
           critInj.push(i);
           break;
 
+        case 'armor':
+          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+          i.totalWeight = i.data.attributes.weight.value;
+          totalWeight += i.totalWeight;
+          inventory[i.type].items.push(i);
+          break;
+
         case 'weapon':
           if (item.header.active != 'fLocker') {
             let ammoweight = 0.25;
@@ -148,7 +155,8 @@ export class alienrpgSynthActorSheet extends ActorSheet {
               ammoweight = 0.5;
             }
             i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-            i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
+            i.totalWeight = (i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight) * i.data.attributes.quantity.value;
+            // i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
             totalWeight += i.totalWeight;
           }
           inventory[i.type].items.push(i);
@@ -158,7 +166,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         default:
           if (item.header.active != 'fLocker') {
             i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-            i.totalWeight = i.data.attributes.weight.value;
+            i.totalWeight = i.data.attributes.weight.value * i.data.attributes.quantity.value;
             totalWeight += i.totalWeight;
           }
           inventory[i.type].items.push(i);
@@ -170,7 +178,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.agendas = agendas;
     data.specialities = specialities;
     data.critInj = critInj;
-    data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
+    data.data.general.encumbrance = await this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
   }
 
@@ -185,11 +193,11 @@ export class alienrpgSynthActorSheet extends ActorSheet {
    * @return {Object}               An object describing the character's encumbrance level
    * @private
    */
-  _computeEncumbrance(totalWeight, actorData) {
+  async _computeEncumbrance(totalWeight, actorData) {
     // Compute Encumbrance percentage
     const enc = {
       max: actorData.data.attributes.str.value * 4,
-      value: Math.round(totalWeight * 10) / 10,
+      value: Math.round(totalWeight * 100) / 100,
     };
     enc.pct = Math.min((enc.value * 100) / enc.max, 99);
     enc.encumbered = enc.pct > 50;
@@ -200,13 +208,9 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     }
 
     if (enc.encumbered) {
-      this.actor.getActiveTokens().forEach((i) => {
-        i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
-      });
+      await this.actor.addCondition('encumbered');
     } else {
-      this.actor.getActiveTokens().forEach((i) => {
-        i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
-      });
+      await this.actor.removeCondition('encumbered');
     }
 
     return enc;

@@ -20,13 +20,14 @@
       <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
       <!-- <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div> -->
       {{#ife section.section 'Weapons'}}
+       <div class="item-detail lCol17">{{localize "ALIENRPG.QuantityLabel"}}</div>
        <div class="item-detail lCol15">{{localize "ALIENRPG.Range"}}</div>
       <div class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</div>
       <div class="item-detail lCol10">{{localize "ALIENRPG.Dam"}}</div>
       <div class="item-detail item-weight lCol11">{{localize "ALIENRPG.Rds"}}</div>
       {{/ife}}
       {{#ife section.section 'Items'}}
-      <span class="item-detail lCol15">{{localize "ALIENRPG.QuantityLabel"}}</span>
+      <span class="item-detail lCol17">{{localize "ALIENRPG.QuantityLabel"}}</span>
       <span class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</span>
       <span class="item-detail item-weight lCol11">{{localize "ALIENRPG.Food"}}</span>
       <span class="item-detail item-weight lCol10">{{localize "ALIENRPG.Water"}}</span>
@@ -49,6 +50,7 @@
                
  {{#ife item.type 'weapon'}}
                     {{#ife item.data.header.type.value '1'}}
+                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                     <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
                     <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
                     <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-mod="data.attributes.rounds.value" name="item.data.attributes.rounds.value" value="{{item.data.attributes.rounds.value}}" data-dtype="String" />
@@ -56,6 +58,7 @@
                     {{/ife}}
 
                     {{#ife item.data.header.type.value '2'}}
+                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                     <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
                     <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
                     <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
@@ -64,10 +67,10 @@
 
   {{#ife item.type 'item'}}
                 {{#ife data.header.type.value '1'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
                 {{#ife data.header.type.value '2'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
 
                 {{#ife item.data.header.type.value '3'}}
@@ -80,7 +83,7 @@
                 {{/ife}}
 
                 {{#ife data.header.type.value '6'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
 
 
@@ -96,7 +99,7 @@
                 {{/ife}}
 
                 {{#ife data.header.type.value '11'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
  {{/ife}}
 
@@ -126,13 +129,14 @@
       <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
       <!-- <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div> -->
       {{#ife section.section 'Weapons'}}
+             <div class="item-detail lCol17">{{localize "ALIENRPG.QuantityLabel"}}</div>
        <div class="item-detail lCol15">{{localize "ALIENRPG.Range"}}</div>
       <div class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</div>
       <div class="item-detail lCol10">{{localize "ALIENRPG.Dam"}}</div>
       <div class="item-detail item-weight lCol11">{{localize "ALIENRPG.Rds"}}</div>
       {{/ife}}
       {{#ife section.section 'Items'}}
-      <span class="item-detail lCol15">{{localize "ALIENRPG.QuantityLabel"}}</span>
+      <span class="item-detail lCol17">{{localize "ALIENRPG.QuantityLabel"}}</span>
       <span class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</span>
       <span class="item-detail item-weight lCol11">{{localize "ALIENRPG.Food"}}</span>
       <span class="item-detail item-weight lCol10">{{localize "ALIENRPG.Water"}}</span>
@@ -152,6 +156,8 @@
   
   {{#ife item.type 'weapon'}}
                     {{#ife item.data.header.type.value '1'}}
+                                        <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+
                     <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
                     <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
                     <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-mod="data.attributes.rounds.value" name="item.data.attributes.rounds.value" value="{{item.data.attributes.rounds.value}}" data-dtype="String" />
@@ -159,6 +165,8 @@
                     {{/ife}}
 
                     {{#ife item.data.header.type.value '2'}}
+                                        <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+
                     <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
                     <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
                     <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
@@ -168,10 +176,10 @@
 
   {{#ife item.type 'item'}}
                 {{#ife data.header.type.value '1'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
                 {{#ife data.header.type.value '2'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
 
                 {{#ife item.data.header.type.value '3'}}
@@ -184,7 +192,7 @@
                 {{/ife}}
 
                 {{#ife data.header.type.value '6'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
 
 
@@ -200,7 +208,7 @@
                 {{/ife}}
 
                 {{#ife data.header.type.value '11'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
   {{/ife}}
 
@@ -231,13 +239,14 @@
       <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
       <!-- <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div> -->
       {{#ife section.section 'Weapons'}}
+                   <div class="item-detail lCol17">{{localize "ALIENRPG.QuantityLabel"}}</div>
        <div class="item-detail lCol15">{{localize "ALIENRPG.Range"}}</div>
       <div class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</div>
       <div class="item-detail lCol10">{{localize "ALIENRPG.Dam"}}</div>
       <div class="item-detail item-weight lCol11">{{localize "ALIENRPG.Rds"}}</div>
       {{/ife}}
       {{#ife section.section 'Items'}}
-      <span class="item-detail lCol15">{{localize "ALIENRPG.QuantityLabel"}}</span>
+      <span class="item-detail lCol17">{{localize "ALIENRPG.QuantityLabel"}}</span>
       <span class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</span>
       <span class="item-detail item-weight lCol11">{{localize "ALIENRPG.Food"}}</span>
       <span class="item-detail item-weight lCol10">{{localize "ALIENRPG.Water"}}</span>
@@ -256,6 +265,7 @@
 
   {{#ife item.type 'weapon'}}
                     {{#ife item.data.header.type.value '1'}}
+                                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                     <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
                     <span class="item-detail lCol14" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
                     <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-mod="data.attributes.rounds.value" name="item.data.attributes.rounds.value" value="{{item.data.attributes.rounds.value}}" data-dtype="String" />
@@ -263,6 +273,7 @@
                     {{/ife}}
 
                     {{#ife item.data.header.type.value '2'}} 
+                                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                     <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
                   <span class="item-detail lCol14" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
                   <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
@@ -271,10 +282,10 @@
 
   {{#ife item.type 'item'}}
                 {{#ife data.header.type.value '1'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
                 {{#ife data.header.type.value '2'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
 
                 {{#ife item.data.header.type.value '3'}}
@@ -291,7 +302,7 @@
                 <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="data.attributes.water.value" name="item.data.attributes.water.value" value="{{item.data.attributes.water.value}}" data-dtype="String" />
                 {{/ife}}
                 {{#ife data.header.type.value '6'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
 
                 {{#ife item.data.header.type.value '10'}}
@@ -301,7 +312,7 @@
                 {{/ife}}
 
                 {{#ife data.header.type.value '11'}}
-                <input type="text" class="item-label maxboxsize lCol16 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
   {{/ife}}
 
@@ -328,5 +339,5 @@
     {{!-- Biography Tab --}}
     <h1 class="" style="text-align: center;">{{localize 'ALIENRPG.AdHoc'}}</h1>
 
-    <div class="biog" data-group="primary" data-tab="description">{{editor content=data.adhocitems target="data.adhocitems" button=true owner=owner editable=true}}</div>
+    <div class="biog" data-group="primary" style="height: 90px;" data-tab="description">{{editor content=data.adhocitems target="data.adhocitems" button=true owner=owner editable=true}}</div>
   
