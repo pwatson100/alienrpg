@@ -71,12 +71,32 @@ export class alienrpgActor extends Actor {
     const data = actorData.data;
     const flags = actorData.flags;
 
-    if (actorData.type === 'character') this._prepareCharacterData(actorData, flags);
-    else if (actorData.type === 'synthetic') this._prepareCharacterData(actorData, flags);
-    else if (actorData.type === 'vehicles') this._prepareVehicleData(data);
-    else if (actorData.type === 'spacecraft') this._prepareVehicleData(data);
-    else if (actorData.type === 'creature') this._prepareCreatureData(data);
-    else if (actorData.type === 'territory') this._prepareTeritoryData(data);
+    switch (actorData.type) {
+      case 'character':
+      case 'synthetic':
+        this._prepareCharacterData(actorData, flags);
+        break;
+      case 'vehicles':
+      case 'spacecraft':
+        this._prepareVehicleData(actorData, flags);
+        break;
+      case 'creature':
+        this._prepareCreatureData(actorData, flags);
+        break;
+      case 'territory':
+        this._prepareTeritoryData(actorData, flags);
+        break;
+
+      default:
+        break;
+    }
+
+    // if (actorData.type === 'character') this._prepareCharacterData(actorData, flags);
+    // else if (actorData.type === 'synthetic') this._prepareCharacterData(actorData, flags);
+    // else if (actorData.type === 'vehicles') this._prepareVehicleData(data);
+    // else if (actorData.type === 'spacecraft') this._prepareVehicleData(data);
+    // else if (actorData.type === 'creature') this._prepareCreatureData(data);
+    // else if (actorData.type === 'territory') this._prepareTeritoryData(data);
   }
 
   /**
@@ -359,15 +379,7 @@ export class alienrpgActor extends Actor {
   }
 
   _prepareVehicleData(data) {}
-  _prepareCreatureData(actorData) {
-    // super.prepareDerivedData();
-    // console.log('🚀 ~ file: actor.js ~ line 268 ~ alienrpgActor ~ _prepareCreatureData ~ data', actorData);
-    // // this.actor.update({ 'data.header.health.tmp': this.actor.data.data.header.health.value });
-    // if (actorData.header.health.max === 0 || actorData.header.health.value > actorData.header.health.max) {
-    //   // this.actor.update({ 'data.header.health.max': this.actor.data.data.header.health.value });
-    //   setProperty(actorData, 'actorData.health.max', (actorData.header.health.max = actorData.header.health.value));
-    // }
-  }
+  _prepareCreatureData(actorData) {}
   _prepareTeritoryData(data) {
     this.data.img = 'systems/alienrpg/images/icons/nested-eclipses.svg';
   }
@@ -422,6 +434,7 @@ export class alienrpgActor extends Actor {
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
+    let actorId = actor.id;
     let effectiveActorType = actor.data.type;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
@@ -446,15 +459,29 @@ export class alienrpgActor extends Actor {
       reRoll = true;
       r2Data = 0;
 
-      if (actor.data.type === 'character') {
-        reRoll = false;
-        r2Data = actor.getRollData().stress + parseInt(stressMod);
-      } else if (actor.data.type === 'synthetic') {
-        if (actor.data.data.header.synthstress) {
-          effectiveActorType = 'character'; // make rolls look human
-          r2Data = parseInt(stressMod);
+      switch (actor.data.type) {
+        case 'character':
           reRoll = false;
-        }
+          r2Data = actor.getRollData().stress + parseInt(stressMod);
+          break;
+        case 'synthetic':
+          if (actor.data.data.header.synthstress) {
+            effectiveActorType = 'character'; // make rolls look human
+            r2Data = parseInt(stressMod);
+            reRoll = false;
+          }
+          break;
+        case 'vehicles':
+          if (dataset.spbutt != 'armor') {
+            reRoll = false;
+            actorId = dataset.actorid;
+            let pilotData = game.actors.get(dataset.actorid);
+            r2Data = pilotData.getRollData().stress + parseInt(stressMod);
+          }
+          break;
+
+        default:
+          break;
       }
 
       let blind = false;
@@ -483,7 +510,7 @@ export class alienrpgActor extends Actor {
       //   blind = true;
       // }
 
-      yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
+      yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
       game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
     } else {
       if (dataset.panicroll) {
@@ -599,7 +626,7 @@ export class alienrpgActor extends Actor {
               let selftarget = [];
               selftarget.push(game.user._id);
 
-              ChatMessage.create({ speaker: { actor: actor.id }, content, whisper: selftarget, type: CONST.CHAT_MESSAGE_TYPES.OTHER, sound, blind: false });
+              ChatMessage.create({ speaker: { actor: actorId }, content, whisper: selftarget, type: CONST.CHAT_MESSAGE_TYPES.OTHER, sound, blind: false });
             }
 
             SelfMessage('<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(aStress).toString() + ' ???</h2>', CONFIG.sounds.dice);
@@ -608,7 +635,7 @@ export class alienrpgActor extends Actor {
 
         ChatMessage.create({
           speaker: {
-            actor: actor.id,
+            actor: actorId,
           },
 
           content: chatMessage,
@@ -771,7 +798,7 @@ export class alienrpgActor extends Actor {
     if (dataset.roll) {
       // call pop up box here to get any mods then use standard RollAbility()
       // Check that is a character (and not armor) or a synth pretending to be a character.
-      if ((actor.data.type === 'character' && dataset.spbutt != 'armor') || actor.data.data.header.synthstress) {
+      if (((actor.data.type === 'character' || actor.data.type === 'vehicles') && dataset.spbutt != 'armor') || actor.data.data.header.synthstress) {
         myRenderTemplate('systems/alienrpg/templates/dialog/roll-all-dialog.html');
       } else if (actor.data.type === 'synthetic') {
         myRenderTemplate('systems/alienrpg/templates/dialog/roll-base-dialog.html');
@@ -808,7 +835,6 @@ export class alienrpgActor extends Actor {
         } else {
           actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value - 1 });
         }
-        // actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value - 1 });
         break;
       case 'plusStress':
         actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
@@ -819,7 +845,6 @@ export class alienrpgActor extends Actor {
         } else {
           actor.update({ 'data.header.health.value': actor.data.data.header.health.value - 1 });
         }
-        // actor.update({ 'data.header.health.value': actor.data.data.header.health.value - 1 });
         break;
       case 'plusHealth':
         actor.update({ 'data.header.health.value': actor.data.data.header.health.value + 1 });
@@ -1511,7 +1536,6 @@ export class alienrpgActor extends Actor {
               let injName = factorFour.slice(factorFour.indexOf('<b>') + 3, factorFour.indexOf(': </b>'));
               let injDesc = factorFour.slice(factorFour.indexOf(': </b>') + 6);
               let injDesc1 = injDesc.replace(/(<([^>]+)>)/gi, '');
-              // debugger;
               //
               // Now create the item on the sheet
               //
@@ -1528,6 +1552,79 @@ export class alienrpgActor extends Actor {
         }
       }
     } catch (error) {}
+  }
+
+  /* ------------------------------------------- */
+  /*  Vehicle: Crew Management                   */
+  /* ------------------------------------------- */
+
+  /**
+   * Adds an occupant to the vehicle.
+   * @param {string}  crewId              The id of the added actor
+   * @param {string}  [position='PASSENGER'] Crew position flag ('PASSENGER', 'DRIVER', 'GUNNER', or 'COMMANDER')
+   * @param {boolean} [isExposed=false]   Whether it's an exposed position
+   * @returns {VehicleOccupant}
+   */
+  addVehicleOccupant(crewId, position = 'PASSENGER') {
+    if (this.type !== 'vehicles') return;
+    if (!ALIENRPG.vehicle.crewPositionFlags.includes(position)) {
+      throw new TypeError(`alienrpg | addVehicleOccupant | Wrong position flag: ${position}`);
+    }
+    const data = this.data.data;
+    // if (!(data.crew.occupants instanceof Array)) {
+    //   data.crew.occupants = [];
+    // }
+    const occupant = {
+      id: crewId,
+      position,
+    };
+    // Removes duplicates.
+    if (data.crew.occupants.some((o) => o.id === crewId)) this.removeVehicleOccupant(crewId);
+    // Adds the new occupant.
+    data.crew.occupants.push(occupant);
+    this.update({ 'data.crew.occupants': data.crew.occupants });
+    return occupant;
+  }
+
+  /* ------------------------------------------- */
+
+  /**
+   * Removes an occupant from the vehicle.
+   * @param {string} crewId The id of the occupant to remove
+   * @return {VehicleOccupant[]}
+   */
+  removeVehicleOccupant(crewId) {
+    if (this.type !== 'vehicles') return;
+    const crew = this.data.data.crew;
+    crew.occupants = crew.occupants.filter((o) => o.id !== crewId);
+    return crew.occupants;
+  }
+
+  /* ------------------------------------------- */
+
+  /**
+   * Gets a specific occupant in the vehicle.
+   * @param {string} crewId The id of the occupant to find
+   * @returns {VehicleOccupant|undefined}
+   */
+  getVehicleOccupant(crewId) {
+    if (this.type !== 'vehicles') return;
+    return this.data.data.crew.occupants.find((o) => o.id === crewId);
+  }
+
+  /* ------------------------------------------- */
+
+  /**
+   * Gets a collection of crewed actors.
+   * @returns {Collection<string, Actor>} [id, actor]
+   */
+  getCrew() {
+    if (this.type !== 'vehicle') return undefined;
+    const c = new foundry.utils.Collection();
+    for (const o of this.data.data.crew.occupants) {
+      c.set(o.id, game.actors.get(o.id));
+    }
+    return c;
   }
 }
 export default alienrpgActor;

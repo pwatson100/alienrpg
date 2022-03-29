@@ -409,8 +409,6 @@ export class alienrpgActorSheet extends ActorSheet {
       const msg = game.i18n.format('ALIENRPG.NotifWrongItemType', {
         type: type,
         actor: this.actor.type,
-        // type: game.i18n.localize(`T2K4E.ItemTypes.${type}`),
-        // actor: game.i18n.localize(`T2K4E.ActorTypes.${this.actor.type}`),
       });
       console.warn(`Alien RPG | ${msg}`);
       ui.notifications.warn(msg);
@@ -537,7 +535,6 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    // console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
     this.actor.stressChange(this.actor, dataset);
   }
 
@@ -710,7 +707,6 @@ export class alienrpgActorSheet extends ActorSheet {
     function onBlur(e) {
       let value = localStringToNumber(e.target.value);
       e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
-      // console.warn(e.target.value);
     }
   }
   async _onOverwatchToggle(event) {

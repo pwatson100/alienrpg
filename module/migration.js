@@ -104,6 +104,14 @@ const migrateActorData = function (actor) {
     //   updateData[`data.attributes.-=rounds`] = null;
     // }
   }
+  if (actor.type === 'vehicles') {
+    // update = setValueIfNotExists(update, actor, 'data.attributes.hull.max', actor.data.attributes.hull.value);
+
+    if (actor.data?.attributes?.hull?.max === 0) {
+      // console.log('data.general.xp.max', actor.data.general.xp.max);
+      updateData[`data.attributes.hull.max`] = actor.data.attributes.hull.value;
+    }
+  }
 
   // Migrate Owned Items
   if (!actor.items) return updateData;

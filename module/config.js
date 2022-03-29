@@ -75,3 +75,21 @@ ALIENRPG.conditionEffects = [
     icon: 'icons/svg/radiation.svg',
   },
 ];
+
+ALIENRPG.vehicle = {
+  crewPositionFlags: ['COMMANDER', 'PILOT', 'GUNNER', 'PASSENGER'],
+  crewPositionFlagsLocalized: {
+    COMMANDER: 'ALIENRPG.CrewCommander',
+    PILOT: 'ALIENRPG.CrewPilot',
+    GUNNER: 'ALIENRPG.CrewGunner',
+    PASSENGER: 'ALIENRPG.CrewPasanger',
+  },
+};
+
+ALIENRPG.Icons = {
+  buttons: {
+    edit: '<i class="fas fa-edit"></i>',
+    delete: '<i class="fas fa-trash"></i>',
+    remove: '<i class="fas fa-times"></i>',
+  },
+};

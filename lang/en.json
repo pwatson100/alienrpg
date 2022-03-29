@@ -321,7 +321,12 @@
   "ALIENRPG.Overwatch":"OVERWATCH",
   "ALIENRPG.SPECIALTY":"SPECIALTY",
   "ALIENRPG.youTake":"You Take ",
-  "ALIENRPG.healthDamage":" HEALTH Damage"
-
+  "ALIENRPG.healthDamage":" HEALTH Damage",
+  "ALIENRPG.CrewPilot":"PILOT",
+  "ALIENRPG.CrewGunner":"GUNNER",
+  "ALIENRPG.CrewCommander":"COMMANDER",
+  "ALIENRPG.CrewPasanger":"PASSENGER",
+  "ALIENRPG.EmptyCrew":"No Crew",
+  "ALIENRPG.fullCrew":"The Vehicle is full"
 
 }

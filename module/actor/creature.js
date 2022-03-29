@@ -50,12 +50,10 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       isCharacter: this.document.data.type === 'character',
       isVehicles: this.document.data.type === 'vehicles',
       isCreature: this.document.data.type === 'creature',
-      // isNPC: this.entity.data.type === 'creature',
       config: CONFIG.ALIENRPG,
     };
 
     // The Actor and its Items
-    // data.actor = duplicate(this.actor.data);
     data.actor = foundry.utils.deepClone(this.actor.data);
 
     data.items = this.actor.items.map((i) => {
@@ -148,8 +146,6 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
       const msg = game.i18n.format('ALIENRPG.NotifWrongItemType', {
         type: type,
         actor: this.actor.type,
-        // type: game.i18n.localize(`T2K4E.ItemTypes.${type}`),
-        // actor: game.i18n.localize(`T2K4E.ActorTypes.${this.actor.type}`),
       });
       console.warn(`Alien RPG | ${msg}`);
       ui.notifications.warn(msg);
@@ -189,7 +185,6 @@ export class ActorSheetAlienRPGCreat extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    // console.log('🚀 ~ file: creature.js ~ line 158 ~ ActorSheetAlienRPGCreat ~ _creatureAttackRoll ~ dataset', dataset);
     this.actor.creatureAttackRoll(this.actor, dataset);
   }
 }

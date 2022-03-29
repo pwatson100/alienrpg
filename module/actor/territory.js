@@ -15,8 +15,6 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
      */
     this._filters = {
       planetsystem: new Set(),
-      // spellbook: new Set(),
-      // features: new Set()
     };
   }
 
@@ -24,7 +22,6 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'territory'],
-      // template: 'systems/alienrpg/templates/actor/vehicles-sheet.html',
       width: 650,
       height: 650,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
@@ -108,7 +105,6 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.DeleteItem'),
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
-          // this.actor.deleteOwnedItem(element.data('item-id'));
           let itemDel = this.actor.items.get(element.data('item-id'));
           itemDel.delete();
         },
@@ -126,13 +122,6 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
       const item = this.actor.items.get(li.data('itemId'));
       item.sheet.render(true);
     });
-
-    // // Delete Inventory Item
-    // html.find('.item-delete').click((ev) => {
-    //   const li = $(ev.currentTarget).parents('.item');
-    //   this.actor.deleteOwnedItem(li.data('itemId'));
-    //   li.slideUp(200, () => this.render(false));
-    // });
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -155,7 +144,7 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
     const allowedItems = {
       character: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
-      vehicles: ['item', 'weapon'],
+      vehicles: ['item', 'weapon', 'armor'],
       territory: ['planet-system'],
     };
     let allowed = true;
@@ -172,8 +161,6 @@ export class ActorSheetAlienRPGTerritory extends ActorSheet {
       const msg = game.i18n.format('ALIENRPG.NotifWrongItemType', {
         type: type,
         actor: this.actor.type,
-        // type: game.i18n.localize(`T2K4E.ItemTypes.${type}`),
-        // actor: game.i18n.localize(`T2K4E.ActorTypes.${this.actor.type}`),
       });
       console.warn(`Alien RPG | ${msg}`);
       ui.notifications.warn(msg);

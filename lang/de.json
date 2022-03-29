@@ -298,6 +298,12 @@
   "ALIENRPG.Encumbered": "Belastet",
   "ALIENRPG.Overwatch":"OVERWATCH",
   "ALIENRPG.youTake":"Du nimmst ",
-  "ALIENRPG.healthDamage":" Gesundheitsschäden"
+  "ALIENRPG.healthDamage":" Gesundheitsschäden",
+  "ALIENRPG.CrewPilot":"PILOT",
+  "ALIENRPG.CrewGunner":"KANONIER",
+  "ALIENRPG.CrewCommander":"KOMMANDANT",
+  "ALIENRPG.CrewPasanger":"PASSAGIER",
+  "ALIENRPG.EmptyCrew":"Keine Besatzung",
+  "ALIENRPG.fullCrew":"Das Fahrzeug ist voll"
 
 }

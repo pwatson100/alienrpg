@@ -243,6 +243,15 @@ a.inline-roll {
     cursor: pointer;
   }
 }
+.rollableVeh {
+  &:hover,
+  &:focus {
+    text-shadow: 0 0 20px hsl(0, 100%, 50%);
+    font-size: 1.3em;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+}
 .creature-acid-roll {
   &:hover,
   &:focus {

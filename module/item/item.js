@@ -14,7 +14,6 @@ export class alienrpgItem extends Item {
     const itemData = this.data;
     const actorData = this.item ? this.item.data : {};
     const data = this.data;
-    // console.warn('data', data);
     if (data.type === 'planet-system') this._prepareSystemData(data);
   }
 
@@ -30,11 +29,13 @@ export class alienrpgItem extends Item {
     // Basic template rendering data
     const token = this.actor.token;
     const item = this.data;
+    let confirmed = false;
+
     if (item.type === 'armor') {
       return;
     }
     const actorData = this.actor ? this.actor.data.data : {};
-    const actorid = this.actor.id;
+    let actorid = this.actor.id;
     const itemData = item.data;
     const itemid = item._id;
     game.alienrpg.rollArr.sCount = 0;
@@ -65,7 +66,7 @@ export class alienrpgItem extends Item {
       // ************************************
 
       // call pop up box here to get any mods then update r1Data or rData as appropriate.
-      let confirmed = false;
+      // let confirmed = false;
       // Check that is a character or a synth pretending to be a character.
       if (this.actor.data.type === 'character' || this.actor.data.data.header.synthstress) {
         renderTemplate(template).then((dlg) => {
@@ -166,22 +167,6 @@ export class alienrpgItem extends Item {
                   } else {
                     console.warn('No type on item');
                   }
-                } else {
-                  // it's a vehicle so no attribute bonus
-
-                  if (item.data.header.type.value === '1') {
-                    let r1Data = itemData.attributes.bonus.value + modifier;
-                    r2Data = r2Data + stressMod;
-                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
-                    game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-                  } else if (item.data.header.type.value === '2') {
-                    let r1Data = itemData.attributes.bonus.value + modifier;
-                    r2Data = r2Data + stressMod;
-                    yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
-                    game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-                  } else {
-                    console.warn('No type on item');
-                  }
                 }
               }
             },
@@ -228,9 +213,66 @@ export class alienrpgItem extends Item {
         // it's a vehicle so no attribute bonus
 
         if (item.data.header.type.value === '1') {
-          let r1Data = itemData.attributes.bonus.value;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
-          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+          let fCrew = [];
+          let options = '';
+          for (let [index] of actorData.crew.occupants.entries()) {
+            if (actorData.crew.occupants[index].position != 'PASSENGER') {
+              const firer = game.actors.get(actorData.crew.occupants[index].id).data;
+              fCrew.push({ firerName: firer.name, firerID: firer._id, position: actorData.crew.occupants[index].position });
+              options = options.concat(`<option value="${index}">${firer.name}</option>`);
+            }
+          }
+          let template = `
+          <form>
+              <div class="form-group">
+              <label>${game.i18n.localize('ALIENRPG.SelectFirer')}</label>
+              <select id="FirerSelect" name="FirerSelect">${options}</select>
+              </div>
+              <div class="form-group">
+              <label>${game.i18n.localize('ALIENRPG.BaseMod')}</label>
+              <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus" />
+              </div>
+              <div class="form-group">
+              <label>${game.i18n.localize('ALIENRPG.StressMod')}</label>
+              <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus" />
+            </div>
+          
+          </form>`;
+          new Dialog({
+            title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+            content: template,
+            buttons: {
+              one: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize('ALIENRPG.DialRoll'),
+                callback: () => (confirmed = true),
+              },
+              two: {
+                icon: '<i class="fas fa-times"></i>',
+                label: game.i18n.localize('ALIENRPG.DialCancel'),
+                callback: () => (confirmed = false),
+              },
+            },
+            default: 'one',
+            close: (html) => {
+              if (confirmed) {
+                let shooter = parseInt(html.find('[name=FirerSelect]')[0].value);
+                actorid = fCrew[shooter].firerID;
+                let modifier = parseInt(html.find('[name=modifier]')[0].value);
+                let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
+                let aStressMod = parseInt(game.actors.get(actorid).data.data.header?.stress?.mod || 0);
+                let aStressVal = parseInt(game.actors.get(actorid).data.data.header?.stress?.value || 0);
+                let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(actorid).data.data.skills.rangedCbt.mod);
+                let r2Data = parseInt(aStressVal + aStressMod + stressMod);
+                label += ` (${fCrew[shooter].firerName}) `;
+
+                reRoll = false;
+                hostile = 'character';
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
+                game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+              }
+            },
+          }).render(true);
         } else if (item.data.header.type.value === '2') {
           let r1Data = itemData.attributes.bonus.value;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);

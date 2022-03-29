@@ -59,7 +59,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // The Actor and its Items
     data.actor = foundry.utils.deepClone(this.actor.data);
-    // const actorData = data.actor.data;
 
     data.items = this.actor.items.map((i) => {
       i.data.labels = i.labels;
@@ -156,7 +155,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
             }
             i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
             i.totalWeight = (i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight) * i.data.attributes.quantity.value;
-            // i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
             totalWeight += i.totalWeight;
           }
           inventory[i.type].items.push(i);
@@ -237,7 +235,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const itemContextMenu = [
       {
         name: game.i18n.localize('ALIENRPG.addToFLocker'),
-        // icon: '<i class="fas fa-archive"></i>"></fas>',
         icon: '<i class="fas fa-archive"></i>',
         callback: (element) => {
           let item = this.actor.items.get(element.data('item-id'));
@@ -246,7 +243,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       },
       {
         name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
-        // icon: '<i class="fas fa-archive"></i>"></fas>',
         icon: '<i class="fas fa-archive"></i>',
         callback: (element) => {
           let item = this.actor.items.get(element.data('item-id'));
@@ -265,7 +261,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.DeleteItem'),
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
-          // this.actor.deleteOwnedItem(element.data('item-id'));
           let itemDel = this.actor.items.get(element.data('item-id'));
           itemDel.delete();
         },
@@ -288,7 +283,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.DeleteItem'),
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
-          // this.actor.deleteOwnedItem(element.data('item-id'));
           let itemDel = this.actor.items.get(element.data('item-id'));
           itemDel.delete();
         },
@@ -378,7 +372,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const allowedItems = {
       character: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
-      vehicles: ['item', 'weapon'],
+      vehicles: ['item', 'weapon', 'armor'],
       territory: ['planet-system'],
     };
     let allowed = true;
@@ -395,8 +389,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       const msg = game.i18n.format('ALIENRPG.NotifWrongItemType', {
         type: type,
         actor: this.actor.type,
-        // type: game.i18n.localize(`T2K4E.ItemTypes.${type}`),
-        // actor: game.i18n.localize(`T2K4E.ActorTypes.${this.actor.type}`),
       });
       console.warn(`Alien RPG | ${msg}`);
       ui.notifications.warn(msg);
@@ -410,11 +402,9 @@ export class alienrpgSynthActorSheet extends ActorSheet {
   _inlineedit(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
-    // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
     let temp = dataset.dataset.mod;
-    // let field = temp.slice(5);
     return item.update({ [temp]: dataset.value }, {});
   }
 
@@ -481,7 +471,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    // console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
     this.actor.stressChange(this.actor, dataset);
   }
 

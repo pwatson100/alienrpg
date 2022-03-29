@@ -385,9 +385,21 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         if (actor.data.token.disposition === -1) {
           blind = true;
         }
-        if (actor.data.type == 'character') {
-          actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
-        } else return;
+
+        switch (actor.data.type) {
+          case 'character':
+            actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
+            break;
+          // case 'vehicles':
+          //   let pilotData = game.actors.get(dataset.actorid);
+
+          //   // actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
+          //   break;
+
+          default:
+            return;
+        }
+
         const reRoll1 = game.alienrpg.rollArr.r1Dice - game.alienrpg.rollArr.r1Six;
         const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
         yze.yzeRoll(hostile, blind, reRoll, game.alienrpg.rollArr.tLabel, reRoll1, game.i18n.localize('ALIENRPG.Black'), reRoll2, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
@@ -407,13 +419,6 @@ Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
   }
 });
 
-// Hooks.on('updateToken', (actor, updates, options, userId) => {
-//   // if (updates.name) {
-//   //   mergeObject(updates, { 'token.name': updates.name });
-//   //   // updates['token.name'] = updates.name;
-//   // }
-// });
-
 Hooks.once('setup', function () {
   const toLocalize = ['skills', 'attributes'];
   for (let o of toLocalize) {
@@ -422,6 +427,14 @@ Hooks.once('setup', function () {
 
       return obj;
     }, {});
+  }
+});
+
+Hooks.on('dropActorSheetData', (actor, sheet, data) => {
+  // When dropping something on a vehicle sheet.
+  if (actor.type === 'vehicles') {
+    // When dropping an actor on a vehicle sheet.
+    if (data.type === 'Actor') sheet._dropCrew(data.id);
   }
 });
 
