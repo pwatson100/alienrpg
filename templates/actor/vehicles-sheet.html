@@ -74,7 +74,7 @@
                       </div>
 
                   {{#ife position 'PILOT'}}
-                  <h3 for="actor.data.data.skills.piloting.value"  class="resource-label rollable Attr1 gC7"  data-roll="{{actor.data.data.skills.piloting.mod}}" data-actorid="{{actor.id}}"  data-label="{{actor.name}} - {{actor.name}}">PILOTING</h3>
+                  <h3 for="actor.data.data.skills.piloting.value"  class="resource-label rollable Attr1 gC7"  data-roll="{{actor.data.data.skills.piloting.mod}}" data-actorid="{{actor.id}}"  data-label="{{@root.actor.name}} - {{localize "ALIENRPG.SkillPiloting"}}">{{localize "ALIENRPG.SkillPiloting"}}</h3>
                   {{/ife}}
 
                       {{!-- Buttons --}}

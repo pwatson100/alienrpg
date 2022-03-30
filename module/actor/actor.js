@@ -476,7 +476,7 @@ export class alienrpgActor extends Actor {
             reRoll = false;
             actorId = dataset.actorid;
             let pilotData = game.actors.get(dataset.actorid);
-            r2Data = pilotData.getRollData().stress + parseInt(stressMod);
+            r2Data = pilotData.getRollData().stress + parseInt(stressMod) || 0;
           }
           break;
 
