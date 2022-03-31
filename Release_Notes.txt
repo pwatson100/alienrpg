@@ -419,3 +419,6 @@ Updated the Vehicle sheet to:
     Armor Rating is now rollable (same pop up as normal armor). 
     Inventory tab now includes the "Footlocker"
 Updated MO/TH/UR Instructions (Please Read).
+
+Version 2.1.1
+Agenda, Talent and Specialty items now set a default icon.

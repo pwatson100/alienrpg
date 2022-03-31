@@ -15,10 +15,26 @@ export class alienrpgItem extends Item {
     const actorData = this.item ? this.item.data : {};
     const data = this.data;
     if (data.type === 'planet-system') this._prepareSystemData(data);
+    if (data.type === 'agenda') this._prepareAgendaData(data);
+    if (data.type === 'talent') this._prepareTalentData(data);
+    if (data.type === 'specialty') this._prepareSpecialtyData(data);
   }
 
   _prepareSystemData(data) {
     this.data.img = 'systems/alienrpg/images/icons/solar-system.svg';
+  }
+  _prepareAgendaData(data) {
+    this.data.img = 'systems/alienrpg/images/icons/personal-agenda.png';
+  }
+  _prepareSpecialtyData(data) {
+    this.data.img = 'systems/alienrpg/images/icons/cover-notext.png';
+  }
+  _prepareTalentData(data) {
+    if (data.data.general.career.value === '1' || data.data.general.career.value === '') {
+      setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/sprint.svg'));
+    } else {
+      setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/fire-dash.svg'));
+    }
   }
 
   /**
