@@ -9,8 +9,12 @@
         <h2 class="vItem1">{{ localize "ALIENRPG.Hull"}}</h2>
         <div class="resource-label">
           <input type="text" class="maxboxsize vItem2" name="data.attributes.hull.value" value="{{data.attributes.hull.value}}" data-dtype="Number" />
+          <label class="box23" > / </label>
+          <input type="text" class="maxboxsize " name="data.attributes.hull.max" value="{{data.attributes.hull.max}}" data-dtype="Number" />
+
+
         </div>
-        <h2 class="vItem3">{{localize "ALIENRPG.ArmorRating"}}</h2>
+        <h2 class="vItem3 rollableVeh" data-roll="{{data.attributes.armorrating.value}}" data-label="{{localize "ALIENRPG.ArmorRating"}}" data-spbutt="armor">{{localize "ALIENRPG.ArmorRating"}}</h2>
         <div class="resource-label">
           <input type="text" class="maxboxsize vItem4" name="data.attributes.armorrating.value" value="{{data.attributes.armorrating.value}}" data-dtype="Number" />
         </div>
@@ -43,25 +47,54 @@
       <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
       <br />
       <h3 class="resource-label">{{localize "ALIENRPG.Description"}}</h3>
-      <textarea name="data.attributes.comment.value" rows="14" data-dtype="String">{{data.attributes.comment.value}}</textarea>
+      <textarea name="data.attributes.comment.value" rows="18" data-dtype="String">{{data.attributes.comment.value}}</textarea>
     </div>
 
-    <div class="tab crew" data-group="primary" data-tab="crew">
-      <h2 class="resource-label">{{localize "ALIENRPG.Crew"}}</h2>
-      <div class="grid-4col">
-        <div class="modifiers">
-          <label class="resource-label">{{localize "ALIENRPG.GunnerName"}}</label>
-          <input type="text" class="textbox3" name="data.modifiers.gunnerName" value="{{data.modifiers.gunnerName}}" data-dtype="text" />
-          <label class="resource-label">{{localize "ALIENRPG.SkillRangedCbt"}}</label>
-          <input type="text" class="maxboxsize" name="data.modifiers.rangedCbt.value" value="{{data.modifiers.rangedCbt.value}}" data-dtype="Number" />
-          <br />
-          <label class="resource-label">{{localize "ALIENRPG.PilotName"}}</label>
-          <input type="text" class="textbox3" name="data.modifiers.pilotName" value="{{data.modifiers.pilotName}}" data-dtype="text" />
-          <label class="resource-label">{{localize "ALIENRPG.SkillPiloting"}}</label>
-          <input type="text" class="maxboxsize" name="data.modifiers.piloting.value" value="{{data.modifiers.piloting.value}}" data-dtype="Number" />
-        </div>
-      </div>
+<div class="tab crew" data-group="primary" data-tab="crew">
+    <div class="grid-crew">
+
+    <label class="resource-label gC1">Name</label>
+    <label class="resource-label gC2">Position</label>
+    <label class="resource-label gC3">Roll</label>
     </div>
+    <br>
+    <div >
+        {{#each crew}}
+          <div class="occupant {{#if (eq position "PASSENGER")}} passenger{{/if}}" data-crew-id="{{id}}" >
+
+                  <div class="  grid-crew">
+                      {{!-- Name --}}
+                      <div class=" gC5">{{actor.name}}</div>
+
+                      {{!-- Position --}}
+                      <div class=" gC6">
+                        <select class=" crew-position select-css" style="width:145px">
+                          {{selectOptions @root.config.vehicle.crewPositionFlagsLocalized selected=position localize=true}}
+                        </select>
+                      </div>
+
+                  {{#ife position 'PILOT'}}
+                  <h3 for="actor.data.data.skills.piloting.value"  class="resource-label rollable Attr1 gC7"  data-roll="{{actor.data.data.skills.piloting.mod}}" data-actorid="{{actor.id}}"  data-label="{{@root.actor.name}} - {{localize "ALIENRPG.SkillPiloting"}}">{{localize "ALIENRPG.SkillPiloting"}}</h3>
+                  {{/ife}}
+
+                      {{!-- Buttons --}}
+                      <div class="gC8">
+                        {{#unless actor.isCrewDeleted}}
+                        <a class="button crew-edit" title="{{localize "ALIENRPG.ActorSheet.Edit"}}">
+                          {{{@root.config.Icons.buttons.edit}}}
+                        </a>
+                        {{/unless}}
+                        <a class="button crew-remove" title="{{localize "ALIENRPG.ActorSheet.Delete"}}">
+                          {{{@root.config.Icons.buttons.remove}}}
+                        </a>
+                      </div>
+                  </div>
+          </div>
+        {{else}}
+        <div class="crew-empty">{{localize "ALIENRPG.EmptyCrew"}}</div>
+        {{/each}}
+    </div>
+</div>
 
     {{!-- Owned Items Tab --}}
     <!-- INVENTORY -->

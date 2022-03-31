@@ -298,5 +298,13 @@
     "ALIENRPG.Encumbered": "受阻",
     "ALIENRPG.Overwatch":"守望先锋",
     "ALIENRPG.youTake":"你拿 ",
-    "ALIENRPG.healthDamage":" 健康损害"
-  }
+    "ALIENRPG.healthDamage":" 健康损害",
+    "ALIENRPG.CrewPilot":"飞行员",
+    "ALIENRPG.CrewGunner":"炮手",
+    "ALIENRPG.CrewCommander":"司令",
+    "ALIENRPG.CrewPasanger":"乘客",
+    "ALIENRPG.EmptyCrew":"没有船员",
+    "ALIENRPG.fullCrew":"车辆已满",
+    "ALIENRPG.SelectFirer":"选择消防员",
+    "ALIENRPG.noCrewAssigned":"没有分配船员"
+    }

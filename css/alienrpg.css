@@ -273,6 +273,13 @@ a.inline-roll {
   cursor: pointer;
 }
 
+.rollableVeh:hover, .rollableVeh:focus {
+  text-shadow: 0 0 20px red;
+  font-size: 1.3em;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
 .creature-acid-roll:hover, .creature-acid-roll:focus {
   text-shadow: 0 0 20px red;
   font-size: 110%;
@@ -665,7 +672,7 @@ button:focus {
 .synthetic-consumables {
   display: block;
   width: 153px;
-  height: 360px;
+  height: 322px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -847,6 +854,28 @@ button:focus {
   margin-right: auto;
   background-size: 100%;
   border: 0;
+}
+
+.vehicle-crew-selector {
+  display: block;
+  width: 500px;
+  height: 227px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/vehicle-crew-selector.webp);
+}
+
+.vehicle-fire-weapon {
+  display: block;
+  width: 403px;
+  height: 162px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/vehicle-fire-weapon.webp);
 }
 
 .item-dropdown {
@@ -1691,7 +1720,7 @@ button:focus {
 
 .grid-weapon-body {
   display: grid;
-  grid-template-areas: "wCol1 wCol2 wCol3 wCol4 wCol5 wCol6" "wCol7 wCol8 wCol9 wCol10 wCol11 wCol12";
+  grid-template-areas: "wCol1 wCol2 wCol3 wCol4 wCol5 wCol6" "wCol7 wCol8 wCol9 wCol10 wCol11 wCol12" "wCol13 wCol14 . . . .";
   padding-bottom: 2px;
   grid-template-columns: 1fr 1.2fr 0.81fr 0.5fr 0.5fr 1fr;
   -webkit-box-align: center;
@@ -1759,11 +1788,21 @@ button:focus {
   justify-self: center;
 }
 
+.wCol13 {
+  grid-area: wCol13;
+  justify-self: left;
+}
+
+.wCol14 {
+  grid-area: wCol14;
+  justify-self: left;
+}
+
 .grid-items {
   display: grid;
-  grid-template-areas: "lCol1 lCol2 lCol15 lCol13 lCol11 lCol10 lCol3 lCol4" "lCol5 lCol6 lCol16 lCol14 lCol12 lCol9 lCol7 lCol8";
+  grid-template-areas: "lCol1 lCol2 lCol17 lCol15 lCol13 lCol11 lCol10 lCol3 lCol4" "lCol5 lCol6 lCol18 lCol16 lCol14 lCol12 lCol9 lCol7 lCol8";
   padding-bottom: 2px;
-  grid-template-columns: 2em 20em 5em 5em 5em 5em 4em 2em;
+  grid-template-columns: 2em 18em 5em 5em 5em 5em 5em 4em 2em;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1846,6 +1885,16 @@ button:focus {
 
 .lCol16 {
   grid-area: lCol16;
+  justify-self: center;
+}
+
+.lCol17 {
+  grid-area: lCol17;
+  justify-self: center;
+}
+
+.lCol18 {
+  grid-area: lCol18;
   justify-self: center;
 }
 
@@ -2369,6 +2418,52 @@ button:focus {
       -ms-flex-pack: end;
           justify-content: flex-end;
   text-align: right;
+}
+
+.grid-crew {
+  display: grid;
+  grid-template-areas: "gC1 gC2 gC3 gC4" "gC5 gC6 gC7 gC8";
+  grid-template-columns: 20em 15em 10em 5em;
+}
+
+.gC1 {
+  justify-self: center;
+  grid-area: gC1;
+}
+
+.gC2 {
+  justify-self: center;
+  grid-area: gC2;
+}
+
+.gC3 {
+  justify-self: center;
+  grid-area: gC3;
+}
+
+.gC4 {
+  justify-self: right;
+  grid-area: gC4;
+}
+
+.gC5 {
+  justify-self: left;
+  grid-area: gC5;
+}
+
+.gC6 {
+  justify-self: center;
+  grid-area: gC6;
+}
+
+.gC7 {
+  justify-self: center;
+  grid-area: gC7;
+}
+
+.gC8 {
+  justify-self: right;
+  grid-area: gC8;
 }
 
 .flex-center {
@@ -2901,6 +2996,8 @@ button:focus {
   margin-right: 8px;
   font-weight: 700;
   font-size: 15px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .alienrpg .resource-label {
   font-family: var(--alienfont);
@@ -2942,7 +3039,6 @@ button:focus {
   border-bottom: 1px solid var(--aliengreen) !important;
 }
 .alienrpg .tabs .item {
-  line-height: 30px;
   font-weight: bold;
   color: inherit;
 }

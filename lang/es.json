@@ -300,6 +300,14 @@
   "ALIENRPG.Encumbered": "Gravado",
   "ALIENRPG.Overwatch":"SUPERVISIÓN",
   "ALIENRPG.youTake":"Usted toma ",
-  "ALIENRPG.healthDamage":" Daño a la SALUD"
+  "ALIENRPG.healthDamage":" Daño a la SALUD",
+  "ALIENRPG.CrewPilot":"PILOTO",
+  "ALIENRPG.CrewGunner":"ARTILLERO",
+  "ALIENRPG.CrewCommander":"COMANDANTE",
+  "ALIENRPG.CrewPasanger":"PASAJERO",
+  "ALIENRPG.EmptyCrew":"Sin tripulación",
+  "ALIENRPG.fullCrew":"El vehículo está lleno",
+  "ALIENRPG.SelectFirer":"Seleccione Firer",
+  "ALIENRPG.noCrewAssigned":"No se ha asignado tripulación"
 
 }

@@ -402,3 +402,20 @@ Put Radiation markers back on the Synth sheet.
 An Actor having Radiation damage will now show a status icon on the Token and will roll to see if there is any health damage.  
 If there is it must be applied manually I did not automate this in case there are any cures to be applied. 
 Tidied up the Character and Synthetic character sheets. 
+
+Version 2.1.0
+Added Max hull box to the vehicle sheet.
+Added quantity to weapons sheets and actor inventory.
+Added Radiation and Encumbrance Status icons to "Active Effects" to Synthetics.
+Encumbrance now calculates correctly for items with a quantity >1.
+Characters and Synthetics now have 20 xp dots.
+Fixed issue with removing actors from the combat tracker. 
+Fixed issue with Condition icons not showing in Firefox.
+Updated the Vehicle sheet to:
+    Allow Actors to be dropped on and assigned crew positions (Big thanks to @Stefouch for allowing me to "borrow" his code).
+    Pilot clicks (right click for modifiers) on "Piloting" on the crew tab to make piloting rolls (which include stress dice).
+    Clicking on a weapon will show a popup allowing those crew with "Pilot" or "Gunner" to be selected as well as any roll modifications.
+    Players making piloting or firing weapons can push rolls as normal and Stress dice will be applied to the PC.
+    Armor Rating is now rollable (same pop up as normal armor). 
+    Inventory tab now includes the "Footlocker"
+Updated MO/TH/UR Instructions (Please Read).

@@ -24,7 +24,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'synth-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
-      width: 740,
+      width: 800,
       height: 900,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
@@ -38,7 +38,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
+  async getData() {
     // Basic data
     let isOwner = this.document.isOwner;
     const data = {
@@ -59,7 +59,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
 
     // The Actor and its Items
     data.actor = foundry.utils.deepClone(this.actor.data);
-    // const actorData = data.actor.data;
 
     data.items = this.actor.items.map((i) => {
       i.data.labels = i.labels;
@@ -75,7 +74,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
 
     // Prepare items.
-    this._prepareItems(data); // Return data to the sheet
+    await this._prepareItems(data); // Return data to the sheet
 
     // Return data to the sheet
     return data;
@@ -89,7 +88,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
    * Organize and classify Owned Items for Character sheets
    * @private
    */
-  _prepareItems(data) {
+  async _prepareItems(data) {
     // Initialize containers.
     const inventory = {
       weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
@@ -141,6 +140,13 @@ export class alienrpgSynthActorSheet extends ActorSheet {
           critInj.push(i);
           break;
 
+        case 'armor':
+          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+          i.totalWeight = i.data.attributes.weight.value;
+          totalWeight += i.totalWeight;
+          inventory[i.type].items.push(i);
+          break;
+
         case 'weapon':
           if (item.header.active != 'fLocker') {
             let ammoweight = 0.25;
@@ -148,7 +154,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
               ammoweight = 0.5;
             }
             i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-            i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
+            i.totalWeight = (i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight) * i.data.attributes.quantity.value;
             totalWeight += i.totalWeight;
           }
           inventory[i.type].items.push(i);
@@ -158,7 +164,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         default:
           if (item.header.active != 'fLocker') {
             i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-            i.totalWeight = i.data.attributes.weight.value;
+            i.totalWeight = i.data.attributes.weight.value * i.data.attributes.quantity.value;
             totalWeight += i.totalWeight;
           }
           inventory[i.type].items.push(i);
@@ -170,7 +176,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     data.agendas = agendas;
     data.specialities = specialities;
     data.critInj = critInj;
-    data.data.general.encumbrance = this._computeEncumbrance(totalWeight, data);
+    data.data.general.encumbrance = await this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
   }
 
@@ -185,11 +191,11 @@ export class alienrpgSynthActorSheet extends ActorSheet {
    * @return {Object}               An object describing the character's encumbrance level
    * @private
    */
-  _computeEncumbrance(totalWeight, actorData) {
+  async _computeEncumbrance(totalWeight, actorData) {
     // Compute Encumbrance percentage
     const enc = {
       max: actorData.data.attributes.str.value * 4,
-      value: Math.round(totalWeight * 10) / 10,
+      value: Math.round(totalWeight * 100) / 100,
     };
     enc.pct = Math.min((enc.value * 100) / enc.max, 99);
     enc.encumbered = enc.pct > 50;
@@ -200,13 +206,9 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     }
 
     if (enc.encumbered) {
-      this.actor.getActiveTokens().forEach((i) => {
-        i.toggleEffect('systems/alienrpg/images/weight.png', { active: true, overlay: false });
-      });
+      await this.actor.addCondition('encumbered');
     } else {
-      this.actor.getActiveTokens().forEach((i) => {
-        i.toggleEffect('systems/alienrpg/images/weight.png', { active: false, overlay: false });
-      });
+      await this.actor.removeCondition('encumbered');
     }
 
     return enc;
@@ -233,7 +235,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const itemContextMenu = [
       {
         name: game.i18n.localize('ALIENRPG.addToFLocker'),
-        // icon: '<i class="fas fa-archive"></i>"></fas>',
         icon: '<i class="fas fa-archive"></i>',
         callback: (element) => {
           let item = this.actor.items.get(element.data('item-id'));
@@ -242,7 +243,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       },
       {
         name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
-        // icon: '<i class="fas fa-archive"></i>"></fas>',
         icon: '<i class="fas fa-archive"></i>',
         callback: (element) => {
           let item = this.actor.items.get(element.data('item-id'));
@@ -261,7 +261,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.DeleteItem'),
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
-          // this.actor.deleteOwnedItem(element.data('item-id'));
           let itemDel = this.actor.items.get(element.data('item-id'));
           itemDel.delete();
         },
@@ -284,7 +283,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.DeleteItem'),
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
-          // this.actor.deleteOwnedItem(element.data('item-id'));
           let itemDel = this.actor.items.get(element.data('item-id'));
           itemDel.delete();
         },
@@ -374,7 +372,7 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const allowedItems = {
       character: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
-      vehicles: ['item', 'weapon'],
+      vehicles: ['item', 'weapon', 'armor'],
       territory: ['planet-system'],
     };
     let allowed = true;
@@ -391,8 +389,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       const msg = game.i18n.format('ALIENRPG.NotifWrongItemType', {
         type: type,
         actor: this.actor.type,
-        // type: game.i18n.localize(`T2K4E.ItemTypes.${type}`),
-        // actor: game.i18n.localize(`T2K4E.ActorTypes.${this.actor.type}`),
       });
       console.warn(`Alien RPG | ${msg}`);
       ui.notifications.warn(msg);
@@ -406,11 +402,9 @@ export class alienrpgSynthActorSheet extends ActorSheet {
   _inlineedit(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
-    // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
     let temp = dataset.dataset.mod;
-    // let field = temp.slice(5);
     return item.update({ [temp]: dataset.value }, {});
   }
 
@@ -477,7 +471,6 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-    // console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
     this.actor.stressChange(this.actor, dataset);
   }
 
@@ -655,10 +648,10 @@ export class alienrpgSynthActorSheet extends ActorSheet {
       // console.warn(e.target.value);
     }
   }
-  _onOverwatchToggle(event) {
+  async _onOverwatchToggle(event) {
     let key = $(event.currentTarget).parents('.condition').attr('data-key');
-    if (this.actor.hasCondition(key)) this.actor.removeCondition(key);
-    else this.actor.addCondition(key);
+    if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
+    else await this.actor.addCondition(key);
   }
 }
 export default alienrpgSynthActorSheet;

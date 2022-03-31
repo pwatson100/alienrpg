@@ -146,7 +146,7 @@
         },
         "xp": {
           "value": 0,
-          "max": 10
+          "max": 20
         },
         "sp": {
           "value": 0,
@@ -490,7 +490,8 @@
         },
         "hull": {
           "value": 0,
-          "label": "Number"
+          "label": "Number",
+          "max": 0
         },
         "passengers": {
           "value": 0,
@@ -526,6 +527,10 @@
       },
       "notes": {
         "notes": ""
+      },
+      "crew":{
+        "occupants":[],
+        "passengerQty": 0
       }
     },
     "territory": {
@@ -744,6 +749,9 @@
         "comment": {
           "value": "",
           "label": "Text"
+        },
+        "quantity": {
+          "value": 1
         }
       },
       "notes": {

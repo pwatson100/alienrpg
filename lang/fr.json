@@ -297,6 +297,14 @@
   "ALIENRPG.Encumbered": "Encombré",
   "ALIENRPG.Overwatch":"SURVEILLANCE",
   "ALIENRPG.youTake":"Tu prends ",
-  "ALIENRPG.healthDamage":" Dégâts de SANTÉ"
+  "ALIENRPG.healthDamage":" Dégâts de SANTÉ",
+  "ALIENRPG.CrewPilot":"PILOTE",
+  "ALIENRPG.CrewGunner":"CANONNIER",
+  "ALIENRPG.CrewCommander":"LE COMMANDANT",
+  "ALIENRPG.CrewPasanger":"PASSAGER",
+  "ALIENRPG.EmptyCrew":"Pas d'équipage",
+  "ALIENRPG.fullCrew":"Le véhicule est plein",
+  "ALIENRPG.SelectFirer":"Sélectionnez le tireur",
+  "ALIENRPG.noCrewAssigned":"Aucun équipage n'a été affecté"
 
 }

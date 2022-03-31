@@ -37,27 +37,27 @@ ALIENRPG.conditionEffects = [
   {
     id: 'starving',
     label: 'ALIENRPG.Starving',
-    icon: 'systems/alienrpg/images/starving.svg',
+    icon: 'systems/alienrpg/images/starving.webp',
   },
   {
     id: 'dehydrated',
     label: 'ALIENRPG.Dehydrated',
-    icon: 'systems/alienrpg/images/water-flask.svg',
+    icon: 'systems/alienrpg/images/water-flask.webp',
   },
   {
     id: 'exhausted',
     label: 'ALIENRPG.Exhausted',
-    icon: 'systems/alienrpg/images/exhausted.svg',
+    icon: 'systems/alienrpg/images/exhausted.webp',
   },
   {
     id: 'freezing',
     label: 'ALIENRPG.Freezing',
-    icon: 'systems/alienrpg/images/frozen.svg',
+    icon: 'systems/alienrpg/images/frozen.webp',
   },
   {
     id: 'encumbered',
     label: 'ALIENRPG.Encumbered',
-    icon: 'systems/alienrpg/images/weight.png',
+    icon: 'systems/alienrpg/images/weight.webp',
   },
   {
     id: 'panicked',
@@ -67,7 +67,7 @@ ALIENRPG.conditionEffects = [
   {
     id: 'overwatch',
     label: 'ALIENRPG.Overwatch',
-    icon: 'systems/alienrpg/images/eye-target.svg',
+    icon: 'systems/alienrpg/images/eye-target.webp',
   },
   {
     id: 'radiation',
@@ -75,3 +75,21 @@ ALIENRPG.conditionEffects = [
     icon: 'icons/svg/radiation.svg',
   },
 ];
+
+ALIENRPG.vehicle = {
+  crewPositionFlags: ['COMMANDER', 'PILOT', 'GUNNER', 'PASSENGER'],
+  crewPositionFlagsLocalized: {
+    COMMANDER: 'ALIENRPG.CrewCommander',
+    PILOT: 'ALIENRPG.CrewPilot',
+    GUNNER: 'ALIENRPG.CrewGunner',
+    PASSENGER: 'ALIENRPG.CrewPasanger',
+  },
+};
+
+ALIENRPG.Icons = {
+  buttons: {
+    edit: '<i class="fas fa-edit"></i>',
+    delete: '<i class="fas fa-trash"></i>',
+    remove: '<i class="fas fa-times"></i>',
+  },
+};
