@@ -222,6 +222,9 @@ export class alienrpgItem extends Item {
               options = options.concat(`<option value="${index}">${firer.name}</option>`);
             }
           }
+          if (fCrew.length === 0) {
+            return ui.notifications.warn(game.i18n.localize('ALIENRPG.noCrewAssigned'));
+          }
           let template = `
           <form>
               <div class="form-group">
@@ -264,7 +267,8 @@ export class alienrpgItem extends Item {
                 let aStressVal = parseInt(game.actors.get(actorid).data.data.header?.stress?.value || 0);
                 let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(actorid).data.data.skills.rangedCbt.mod);
                 let r2Data = parseInt(aStressVal + aStressMod + stressMod);
-                label += ` (${fCrew[shooter].firerName}) `;
+                // label += ` (${fCrew[shooter].firerName}) `;
+                label += ` (${this.actor.name}) `;
 
                 reRoll = false;
                 hostile = 'character';

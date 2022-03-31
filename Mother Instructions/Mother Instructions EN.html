@@ -7,14 +7,25 @@
     Created by Paul Watson
     <br /><br />
   </p>
-    <h1 class="headng">Change history for latest version 2.0.9</h1>
+    <h1 class="headng">Change history for latest version 2.1.0</h1>
     <p>
         <ul>
-<li>Changed Status icons to "Active Effects" so they are persistent with the actor.</li>
-<li>Added "Overwatch" checkbox to character and synth sheets which displays a status icon on the token.  </li>
-<li>Put Radiation markers back on the Synth sheet.</li>
-<li>An Actor having Radiation damage will now show a status icon on the Token and will roll to see if there is any health damage. <br> If there is it must be applied manually I did not automate this in case there are any cures to be applied. </li>
-<li>Tidied up the Character and Synthetic character sheets.</li>
+<li>Added Max hull box to the vehicle sheet.</li>
+<li>Added quantity to weapons sheets and actor inventory.</li>
+<li>Added Radiation and Encumbrance Status icons to "Active Effects" to Synthetics.</li>
+<li>Encumbrance now calculates correctly for items with a quantity >1.</li>
+<li>Characters and Synthetics now have 20 xp dots.</li>
+<li>Fixed issue with removing actors from the combat tracker. </li>
+<li>Fixed issue with Condition icons not showing in Firefox.</li>
+<li>Updated the Vehicle sheet to:</li>
+    <ul>
+      <li>Allow Actors to be dropped on and assigned crew positions (Big thanks to @Stefouch for allowing me to "borrow" his code).</li>
+      <li>Pilot clicks (right click for modifiers) on "Piloting" on the crew tab to make piloting rolls (which include stress dice).</li>
+      <li>Clicking on a weapon will show a popup allowing those crew with "Pilot" or "Gunner" to be selected as well as any roll modifications.</li>
+      <li>Players making piloting or firing weapons can push rolls as normal and Stress dice will be applied to the PC.</li>
+      <li>Armor Rating is now rollable (same pop up as normal armor).</li>
+      <li>Inventory tab now includes the "Footlocker"</li>
+    </ul>
       </ul>
     </p>
 <br><br> 
@@ -57,11 +68,14 @@
 
   <p>
     Save the effort of inputting all the data from the books by purchasing the official modules from Free League: <br />
+    <a href="https://freeleaguepublishing.com/en/store/?collection_id=133130387504">Free League Store</a> <br>
     Alien RPG Starter Set <br />
     Alien RPG Core Rule Book <br />
     Destroyer of Worlds Scenario <br />
-    <br />
-    <b>Top Tips</b> <br />
+    Colonial Marines Operations Manual <br />
+<br><br> 
+
+     <h3 class="headng2"><span>Top Tips</span></h3> 
     Right Click is used quite a bit in the system. If in doubt, try it out. <br />
     Examples are: <br />
     <ul>
@@ -347,19 +361,53 @@ This then rolls against the relevent table, writes to chat and creates the item 
   <h2 class="headng"><span>Vehicles</span></h2>
   Though not used very much within the game the Vehicles template allows you to create vehicles within the system.
   <br />
-  These actors are designed as templates to allow vehicles to be incorporated into your games. <br />
-  As yet the Vehicle sheet is not automated as are the character and Synthetic sheets so many of the stats are not rollable and they should be used as modifiers using the appropriate skills on the PC
-  sheet.
-  <br />
+The Armor Rating is rollable and a right click will pop up the standard Armor Roll modification dialogue box.  
+<br><br> 
+
+  <strong>The GM should make all the players "Owners" of the vehicle in order for them to interact with it.</strong> <br>
+
   &nbsp;<span class="vehicle-general">&nbsp;</span>&nbsp; <br /><br />
-  The Inventory tab allows the PCs to roll for the weapons on that vehicle. The GM should make all the players "Owners" of the vehicle in order for them to interact with it. They should right click to
-  activate the modifier box and add the appropriate number of attribute, skill and stress dice for the test.
-  <br />
+
+  The Inventory tab allows the PCs to roll for the weapons on that vehicle and manage the weapons and other Items. <br>
+   "FootLocker" has been added to stow the crews other gear.  
+   <br>
   &nbsp;<span class="vehicle-inv">&nbsp;</span>&nbsp;
+<br><br> 
+  Right clicking on a weapon will show the weapon dialogue box.   The drop down will show a list of the crew members that have been assigned either the "PILOT" or "GUNNER" roles (see below). <br>
+  The player selects their character and applies and modifiers as instructed by the GM.  <br>
+   The selected PCs stats and stress dice will then be used to fire the weapon.  <br>
+  Rolls can be PUSHED and the additional stress dice will be added to the PCs sheet as normal. <br>
+
+  &nbsp;<span class="vehicle-fire-weapon">&nbsp;</span>&nbsp; <br /><br />
   <br />
-  The Crew tab allows the GM/Players to record the Pilot and Gunner for the ship and the total of their attribute, skill and stress dice for reference.
+
+  The Crew tab allows the GM drag PCs onto the sheet. <br>
+  <strong>NOTE:</strong> ONLY THE GM CAN DRAG ACTORS ONTO THE VEHICLE.
+<br><br> 
+   By default the crew member is assigned the position of "PASSENGER".  
+   <br><br> 
+   
+Clicking on the dropdown allows the GM or Player to select one of the four roles: 
+<ul>
+  <li><strong>COMMANDER:</strong> Has no function on a vehicle other than shouting at the crew!</li>
+  <li><strong>PILOT:</strong> Allows the player to fire weapons and make Piloting rolls.</li>
+  <li><strong>GUNNER:</strong> Allows the player to fire weapons.</li>
+  <li><strong>PASSENGER:</strong> Along for the ride.</li>
+</ul>
+<br>
+<strong>NOTE:</strong> The crew members are sorted in this order when their roles are assigned.
   <br />
+  &nbsp;<span class="vehicle-crew-selector">&nbsp;</span>&nbsp; <br /><br />
+
+When "PILOT" is selected "PILOTING" will appear under the "ROLL" section of the Crew tab. <br>
+ In order to make a Piloting check the player right clicks on this to make the roll (left click to see the modifier box).  <br>
+     The selected PCs stats and stress dice will then be used to make the piloting roll.  <br>
+
+  Rolls can be PUSHED and the additional stress dice will be added to the PCs sheet as normal. <br>
+
   &nbsp;<span class="vehicle-crew">&nbsp;</span>&nbsp; <br /><br />
+<br><br> 
+
   <h1 class="headng"><span>Items/Item Types</span></h1>
   There are a number of Item types that can be created for use within the system:
   <ul>

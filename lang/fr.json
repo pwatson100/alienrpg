@@ -303,6 +303,8 @@
   "ALIENRPG.CrewCommander":"LE COMMANDANT",
   "ALIENRPG.CrewPasanger":"PASSAGER",
   "ALIENRPG.EmptyCrew":"Pas d'équipage",
-  "ALIENRPG.fullCrew":"Le véhicule est plein"
+  "ALIENRPG.fullCrew":"Le véhicule est plein",
+  "ALIENRPG.SelectFirer":"Sélectionnez le tireur",
+  "ALIENRPG.noCrewAssigned":"Aucun équipage n'a été affecté"
 
 }

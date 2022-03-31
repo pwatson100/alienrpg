@@ -327,6 +327,7 @@
   "ALIENRPG.CrewCommander":"COMMANDER",
   "ALIENRPG.CrewPasanger":"PASSENGER",
   "ALIENRPG.EmptyCrew":"No Crew",
-  "ALIENRPG.fullCrew":"The Vehicle is full"
-
+  "ALIENRPG.fullCrew":"The Vehicle is full",
+  "ALIENRPG.SelectFirer":"Select Firer",
+  "ALIENRPG.noCrewAssigned":"No Crew Have Been Assigned"
 }

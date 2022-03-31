@@ -459,7 +459,7 @@ export class ActorSheetAlienRPGVehicle extends ActorSheet {
     if (crew.type === 'vehicles') return ui.notifications.info('Vehicle inceptions are not allowed!');
     if (crew.type !== 'character' && crew.type !== 'synthetic') return;
     if (actorData.data.data.crew.passengerQty >= actorData.data.data.attributes.passengers.value) {
-      return ui.notifications.info(game.i18n.localize('ALIENRPG.fullCrew'));
+      return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
     }
     let crewNumber = actorData.data.data.crew.passengerQty;
     crewNumber++;

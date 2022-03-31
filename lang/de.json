@@ -304,6 +304,8 @@
   "ALIENRPG.CrewCommander":"KOMMANDANT",
   "ALIENRPG.CrewPasanger":"PASSAGIER",
   "ALIENRPG.EmptyCrew":"Keine Besatzung",
-  "ALIENRPG.fullCrew":"Das Fahrzeug ist voll"
+  "ALIENRPG.fullCrew":"Das Fahrzeug ist voll",
+  "ALIENRPG.SelectFirer":"Wählen Sie Feuerwehrmann aus",
+  "ALIENRPG.noCrewAssigned":"Es wurde keine Besatzung zugewiesen"
 
 }
