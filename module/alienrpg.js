@@ -17,6 +17,8 @@ import { AlienConfig } from './alienRPGConfig.js';
 import AlienRPGCombat from './combat.js';
 import AlienRPGCTContext from './CBTracker.js';
 import { sendDevMessage } from './devmsg.js';
+// import { ImporterBase } from './importer-base.js';
+// import { CoreImporter } from './core-importer.js';
 
 const euclidianDistances = function (segments, options = {}) {
   const canvasSize = canvas.dimensions.size;
@@ -49,6 +51,8 @@ Hooks.once('init', async function () {
     rollItemMacro,
     registerSettings,
     AlienRPGCTContext,
+    // ImporterBase,
+    // CoreImporter,
   };
 
   // Set FVTT version constant

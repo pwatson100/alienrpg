@@ -418,12 +418,14 @@ export class alienrpgActor extends Actor {
         case 'creature':
           tokenProto['token.actorLink'] = false;
           tokenProto['token.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+          tokenProto['token.vision'] = false;
           break;
         case 'synthetic':
           break;
         case 'territory':
           tokenProto['token.bar1'] = { attribute: 'None' };
           tokenProto['token.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
+          tokenProto['token.vision'] = false;
           break;
       }
     }

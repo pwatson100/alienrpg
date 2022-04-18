@@ -436,18 +436,35 @@ export class alienrpgSynthActorSheet extends ActorSheet {
     const dataset = event.currentTarget.dataset;
     this.actor.rollCritMan(this.actor, this.actor.data.type, dataset);
   }
-
   _onRollItemMod(event) {
     event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.items.get(itemId);
-    this.actor.rollItemMod(item);
+    if (item.type === 'armor') {
+      dataset.roll = this.actor.data.data.general.armor.value;
+      dataset.mod = 0;
+      dataset.spbutt = 'armor';
+      this.actor.rollAbilityMod(this.actor, dataset);
+    } else {
+      this.actor.rollItemMod(item);
+    }
   }
   _rollItem(event) {
     event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.items.get(itemId);
-    this.actor.nowRollItem(item);
+    if (item.type === 'armor') {
+      dataset.roll = this.actor.data.data.general.armor.value;
+      dataset.mod = 0;
+      dataset.spbutt = 'armor';
+      this.actor.rollAbility(this.actor, dataset);
+    } else {
+      this.actor.nowRollItem(item);
+    }
   }
 
   _activate(event) {
