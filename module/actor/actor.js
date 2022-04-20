@@ -10,39 +10,39 @@ import { ALIENRPG } from '../config.js';
 export class alienrpgActor extends Actor {
   /** @override */
   getRollData() {
-    const data = super.getRollData();
+    const rData = super.getRollData();
     const shorthand = game.settings.get('alienrpg', 'macroShorthand');
 
     // Re-map all attributes onto the base roll data
     if (!!shorthand) {
-      for (let [k, v] of Object.entries(data.attributes)) {
-        if (!(k in data)) data[k] = v.value;
+      for (let [k, v] of Object.entries(rData.attributes)) {
+        if (!(k in rData)) rData[k] = v.value;
       }
       // delete data.attributes;
     }
     if (!!shorthand) {
-      for (let [k, v] of Object.entries(data.header)) {
-        if (!(k in data)) data[k] = v.value;
+      for (let [k, v] of Object.entries(rData.header)) {
+        if (!(k in rData)) rData[k] = v.value;
       }
       // delete data.header;
     }
     if (!!shorthand) {
-      for (let [k, v] of Object.entries(data.general)) {
-        if (!(k in data)) data[k] = v.value;
+      for (let [k, v] of Object.entries(rData.general)) {
+        if (!(k in rData)) rData[k] = v.value;
       }
       // delete data.general;
     }
     if (this.data.type === 'character' || this.data.type === 'synthetic') {
       if (!!shorthand) {
-        for (let [k, v] of Object.entries(data.skills)) {
-          if (!(k in data)) data[k] = v.value;
+        for (let [k, v] of Object.entries(rData.skills)) {
+          if (!(k in rData)) rData[k] = v.value;
         }
         // delete data.skills;
       }
     }
 
     // Map all items data using their slugified names
-    data.items = this.data.items.reduce((obj, i) => {
+    rData.items = this.data.items.reduce((obj, i) => {
       let key = i.name.slugify({ strict: true });
       let itemData = duplicate(i.data);
       if (itemData.skill) {
@@ -57,7 +57,7 @@ export class alienrpgActor extends Actor {
       obj[key] = itemData;
       return obj;
     }, {});
-    return data;
+    return rData;
   }
 
   /**
@@ -210,13 +210,13 @@ export class alienrpgActor extends Actor {
             }
           }
         }
-        setProperty(actorData, 'data.header.health.mod', (data.header.health.mod += parseInt(attrMod.health || 0)));
-        // actorData.update({ 'data.header.health.mod': (actorData.data.header.health.mod = parseInt(attrMod.health || 0)) });
+        // setProperty(actorData, 'data.header.health.mod', (data.header.health.mod += parseInt(attrMod.health || 0)));
+        actorData.update({ 'data.header.health.mod': (actorData.data.header.health.mod = parseInt(attrMod.health || 0)) });
 
         if (actorData.type === 'character') {
-          // actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod = parseInt(attrMod.stress || 0)) });
+          actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod = parseInt(attrMod.stress || 0)) });
 
-          setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod += parseInt(attrMod.stress || 0)));
+          // setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod += parseInt(attrMod.stress || 0)));
         }
       }
 
@@ -225,14 +225,14 @@ export class alienrpgActor extends Actor {
         let aId = Attrib._id;
         switch (talName) {
           case 'NERVES OF STEEL':
-            // actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod -= 2) });
+            actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod -= 2) });
 
-            setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod -= 2));
+            // setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod -= 2));
             break;
           case 'TOUGH':
-            setProperty(actorData, 'data.header.health.mod', (data.header.health.mod += 2));
+            // setProperty(actorData, 'data.header.health.mod', (data.header.health.mod += 2));
 
-            // actorData.update({ 'data.header.health.value': (actorData.data.header.health.value += 2) });
+            actorData.update({ 'data.header.health.mod': (actorData.data.header.health.mod += 2) });
             break;
 
           // case 'TOUGH':
@@ -251,8 +251,8 @@ export class alienrpgActor extends Actor {
       let target = `data.attributes.${a}.mod`;
       let field = actorData.data.attributes[a].mod;
       let upData = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
-      // actorData.update({ [target]: (field = upData) });
-      setProperty(actorData, target, (field = upData));
+      actorData.update({ [target]: (field = upData) });
+      // setProperty(actorData, target, (field = upData));
       abl.mod = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
       abl.label = CONFIG.ALIENRPG.attributes[a];
     }
@@ -262,8 +262,8 @@ export class alienrpgActor extends Actor {
       let target = `data.skills.${s}.mod`;
       let field = actorData.data.skills[s].mod;
       let upData = parseInt(skl.value || 0) + parseInt(actorData.data.attributes[conSkl].mod || 0) + parseInt(sklMod[s] || 0);
-      // actorData.update({ [target]: (field = upData) });
-      setProperty(actorData, target, (field = upData));
+      actorData.update({ [target]: (field = upData) });
+      // setProperty(actorData, target, (field = upData));
       skl.label = CONFIG.ALIENRPG.skills[s];
     }
     // Loop through the items and update the actors AC
@@ -325,40 +325,55 @@ export class alienrpgActor extends Actor {
       } catch {}
     }
 
-    setProperty(actorData, 'data.consumables.water.value', (data.consumables.water.value = totalWat));
+    actorData.update({
+      'data.consumables.water.value': (actorData.data.consumables.water.value = parseInt(totalWat || 0)),
+      'data.consumables.food.value': (actorData.data.consumables.food.value = parseInt(totalFood || 0)),
+      'data.consumables.air.value': (actorData.data.consumables.air.value = parseInt(totalAir || 0)),
+      'data.consumables.power.value': (actorData.data.consumables.power.value = parseInt(totalPower || 0)),
+      'data.general.armor.value': (actorData.data.general.armor.value = parseInt(totalAc || 0)),
+      'data.general.radiation.calculatedMax': (data.general.radiation.calculatedMax = data.general.radiation.max),
+      'data.general.xp.calculatedMax': (data.general.xp.calculatedMax = data.general.xp.max),
+      'data.general.dehydrated.calculatedMax': (data.general.dehydrated.calculatedMax = data.general.dehydrated.max),
+      'data.general.exhausted.calculatedMax': (data.general.exhausted.calculatedMax = data.general.exhausted.max),
+      'data.general.freezing.calculatedMax': (data.general.freezing.calculatedMax = data.general.freezing.max),
+      'data.header.health.max': (data.header.health.max = data.attributes.str.value + data.header.health.mod),
+    });
+
+    // setProperty(actorData, 'data.consumables.water.value', (data.consumables.water.value = totalWat));
     // actorData.update({ 'data.consumables.water.value': (actorData.data.consumables.water.value = parseInt(totalWat || 0)) });
 
-    setProperty(actorData, 'data.consumables.food.value', (data.consumables.food.value = totalFood));
+    // setProperty(actorData, 'data.consumables.food.value', (data.consumables.food.value = totalFood));
     // actorData.update({ 'data.consumables.food.value': (actorData.data.consumables.food.value = parseInt(totalFood || 0)) });
 
-    setProperty(actorData, 'data.consumables.air.value', (data.consumables.air.value = totalAir));
-    // actorData.update({ 'data.consumables.air.value': (actorData.data.consumables.air.value = parseInt(totalAir || 0)) });
+    // setProperty(actorData, 'data.consumables.air.value', (data.consumables.air.value = totalAir));
+    // // actorData.update({ 'data.consumables.air.value': (actorData.data.consumables.air.value = parseInt(totalAir || 0)) });
 
-    setProperty(actorData, 'data.consumables.power.value', (data.consumables.power.value = totalPower));
-    // actorData.update({ 'data.consumables.power.value': (actorData.data.consumables.power.value = parseInt(totalPower || 0)) });
+    // setProperty(actorData, 'data.consumables.power.value', (data.consumables.power.value = totalPower));
+    // // actorData.update({ 'data.consumables.power.value': (actorData.data.consumables.power.value = parseInt(totalPower || 0)) });
 
-    setProperty(actorData, 'data.general.armor.value', (data.general.armor.value = totalAc));
-    // actorData.update({ 'data.general.armor.value': (actorData.data.general.armor.value = parseInt(totalAc || 0)) });
+    // setProperty(actorData, 'data.general.armor.value', (data.general.armor.value = totalAc));
+    // // actorData.update({ 'data.general.armor.value': (actorData.data.general.armor.value = parseInt(totalAc || 0)) });
 
-    setProperty(actorData, 'data.general.radiation.calculatedMax', (data.general.radiation.calculatedMax = data.general.radiation.max));
+    // setProperty(actorData, 'data.general.radiation.calculatedMax', (data.general.radiation.calculatedMax = data.general.radiation.max));
 
-    setProperty(actorData, 'data.general.xp.calculatedMax', (data.general.xp.calculatedMax = data.general.xp.max));
+    // setProperty(actorData, 'data.general.xp.calculatedMax', (data.general.xp.calculatedMax = data.general.xp.max));
 
-    setProperty(actorData, 'data.general.sp.calculatedMax', (data.general.sp.calculatedMax = data.general.sp.max));
+    // setProperty(actorData, 'data.general.sp.calculatedMax', (data.general.sp.calculatedMax = data.general.sp.max));
 
-    setProperty(actorData, 'data.general.starving.calculatedMax', (data.general.starving.calculatedMax = data.general.starving.max));
+    // setProperty(actorData, 'data.general.starving.calculatedMax', (data.general.starving.calculatedMax = data.general.starving.max));
 
-    setProperty(actorData, 'data.general.dehydrated.calculatedMax', (data.general.dehydrated.calculatedMax = data.general.dehydrated.max));
+    // setProperty(actorData, 'data.general.dehydrated.calculatedMax', (data.general.dehydrated.calculatedMax = data.general.dehydrated.max));
 
-    setProperty(actorData, 'data.general.exhausted.calculatedMax', (data.general.exhausted.calculatedMax = data.general.exhausted.max));
+    // setProperty(actorData, 'data.general.exhausted.calculatedMax', (data.general.exhausted.calculatedMax = data.general.exhausted.max));
 
-    setProperty(actorData, 'data.general.freezing.calculatedMax', (data.general.freezing.calculatedMax = data.general.freezing.max));
+    // setProperty(actorData, 'data.general.freezing.calculatedMax', (data.general.freezing.calculatedMax = data.general.freezing.max));
 
     if (actorData.type === 'character') {
-      setProperty(actorData, 'data.general.panic.calculatedMax', (data.general.panic.calculatedMax = data.general.panic.max));
+      // setProperty(actorData, 'data.general.panic.calculatedMax', (data.general.panic.calculatedMax = data.general.panic.max));
+      actorData.update({ 'data.general.panic.calculatedMax': (data.general.panic.calculatedMax = data.general.panic.max) });
     }
 
-    setProperty(actorData, 'data.header.health.max', (data.header.health.max = data.attributes.str.value + data.header.health.mod));
+    // setProperty(actorData, 'data.header.health.max', (data.header.health.max = data.attributes.str.value + data.header.health.mod));
 
     // if (this.hasCondition('overwatch')) {
     //   setProperty(actorData, 'data.general.overwatch', true);

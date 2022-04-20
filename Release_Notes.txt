@@ -425,3 +425,4 @@ Agenda, Talent and Specialty items now set a default icon.
 Increased width of crew position dropdown on the vehicle sheet as it was compressed when using Firefox. 
 Corrected but that sets Token Vision on creatures to "true".
 Fixed issue with Armor rolls on the Inventory sheet for Synthetics. 
+Fixed issue with /em chat background colour.

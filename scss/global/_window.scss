@@ -143,6 +143,10 @@ a.entity-link {
   background: hsl(0, 0%, 9%);
 }
 
+.chat-message.emote {
+  background: hsl(0, 0%, 9%);
+}
+
 .dice-tooltip {
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
@@ -257,7 +261,7 @@ a.inline-roll {
   &:focus {
     // color: black;
     text-shadow: 0 0 20px hsl(0, 100%, 50%);
-    font-size: 110%;
+    font-size: 95%;
     cursor: pointer;
   }
 }
