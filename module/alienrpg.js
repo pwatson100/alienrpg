@@ -381,24 +381,19 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         if (tarG) {
           reRoll = 'mPush';
         }
-        let hostile = actor.data.type;
+        let hostile = actor.type;
         let blind = false;
         //  Initialse the chat message
         let chatMessage = '';
 
-        if (actor.data.token.disposition === -1) {
+        if (actor.token.disposition === -1) {
           blind = true;
         }
 
-        switch (actor.data.type) {
+        switch (actor.type) {
           case 'character':
-            actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
+            actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
             break;
-          // case 'vehicles':
-          //   let pilotData = game.actors.get(dataset.actorid);
-
-          //   // actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
-          //   break;
 
           default:
             return;
@@ -418,7 +413,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 
 Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
   let aTarget = game.actors.find((i) => i.data.name == tokenData.name);
-  if (aTarget.data.data.header.npc) {
+  if (aTarget.system.header.npc) {
     document.data.update({ disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
   }
 });

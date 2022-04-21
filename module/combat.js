@@ -193,10 +193,10 @@ export default class AlienRPGCombat extends Combat {
     let token = canvas.scene.tokens.get(combatant.tokenId);
     let creatureSpeed = 0;
     try {
-      creatureSpeed = token.data.actorData.data.attributes.speed.value;
+      creatureSpeed = token.data.actorData.system.attributes.speed.value;
     } catch (error) {
       let bob = game.actors.get(combatant.actorId);
-      creatureSpeed = bob.data.data.attributes.speed.value;
+      creatureSpeed = bob.system.attributes.speed.value;
     }
     if (creatureSpeed > 1) {
       let x;

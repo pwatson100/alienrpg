@@ -30,7 +30,7 @@ export class alienrpgItem extends Item {
     this.data.img = 'systems/alienrpg/images/icons/cover-notext.png';
   }
   _prepareTalentData(data) {
-    if (data.data.general.career.value === '1' || data.data.general.career.value === '') {
+    if (system.general.career.value === '1' || system.general.career.value === '') {
       setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/sprint.svg'));
     } else {
       setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/fire-dash.svg'));
@@ -50,7 +50,7 @@ export class alienrpgItem extends Item {
     if (item.type === 'armor') {
       return;
     }
-    const actorData = this.actor ? this.actor.data.data : {};
+    const actorData = this.actor ? this.actor.system : {};
     let actorid = this.actor.id;
     const itemData = item.data;
     const itemid = item._id;
@@ -84,7 +84,7 @@ export class alienrpgItem extends Item {
       // call pop up box here to get any mods then update r1Data or rData as appropriate.
       // let confirmed = false;
       // Check that is a character or a synth pretending to be a character.
-      if (this.actor.data.type === 'character' || this.actor.data.data.header.synthstress) {
+      if (this.actor.data.type === 'character' || this.actor.system.header.synthstress) {
         renderTemplate(template).then((dlg) => {
           new Dialog({
             title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
@@ -279,9 +279,9 @@ export class alienrpgItem extends Item {
                 actorid = fCrew[shooter].firerID;
                 let modifier = parseInt(html.find('[name=modifier]')[0].value);
                 let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
-                let aStressMod = parseInt(game.actors.get(actorid).data.data.header?.stress?.mod || 0);
-                let aStressVal = parseInt(game.actors.get(actorid).data.data.header?.stress?.value || 0);
-                let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(actorid).data.data.skills.rangedCbt.mod);
+                let aStressMod = parseInt(game.actors.get(actorid).system.header?.stress?.mod || 0);
+                let aStressVal = parseInt(game.actors.get(actorid).system.header?.stress?.value || 0);
+                let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(actorid).system.skills.rangedCbt.mod);
                 let r2Data = parseInt(aStressVal + aStressMod + stressMod);
                 // label += ` (${fCrew[shooter].firerName}) `;
                 label += ` (${this.actor.name}) `;
