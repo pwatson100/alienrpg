@@ -189,11 +189,11 @@
                   <br>  
                       <h3 class="condition" data-key="overwatch">
                         <a class="overwatch-toggle">
-                          {{#if actor.system.general.overwatch}}
+                          {{#ife actor.system.general.overwatch true}}
                           <i class="far fa-check-square"></i>
                           {{else}}
                           <i class="far fa-square"></i>
-                          {{/if}}
+                          {{/ife}}
                         </a>
                         {{localize "ALIENRPG.Overwatch"}}
                         </h3>
@@ -226,7 +226,7 @@
                       
                       <h3 class="Water1 resource-label">{{localize "ALIENRPG.Water"}}</h3>
                       <div class="resource-content">
-                        <input type="text"  class="maxboxsize" name="actor.system.consumables.water.value" value="{{actor.system.consumables.water.value}}" data-dtype="Number" disabled />
+                        <input type="text"  class="maxboxsize" name="system.consumables.water.value" value="{{actor.system.consumables.water.value}}" data-dtype="Number" disabled />
                         <button type="button" class="supply-btn Water2" data-spbutt="Water"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
                       </div>
                       

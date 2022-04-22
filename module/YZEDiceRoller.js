@@ -254,12 +254,12 @@ export class yze {
 
     if (!blind) {
       ChatMessage.create({
-        user: game.user.data._id,
+        user: game.user.id,
         speaker: {
           actor: actorid,
         },
         content: chatMessage,
-        other: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
+        other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
         sound: CONFIG.sounds.dice,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,
@@ -267,12 +267,12 @@ export class yze {
       });
     } else {
       ChatMessage.create({
-        user: game.user.data._id,
+        user: game.user.id,
         speaker: {
           actor: actorid,
         },
         content: chatMessage,
-        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
+        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
         blind: true,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,

@@ -58,8 +58,8 @@ export class alienrpgActorSheet extends ActorSheet {
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
       isCharacter: this.object.system.type === 'character',
-      isEnc: this.object.system.type === 'character' || this.object.system.type === 'synthetic',
-      // isEnc: false,
+      isEnc: this.object.type === 'character' || this.object.type === 'synthetic',
+      // isEnc: true,
       isSynthetic: this.object.system.type === 'synthetic',
       isVehicles: this.object.system.type === 'vehicles',
       isCreature: this.object.system.type === 'creature',
@@ -68,16 +68,15 @@ export class alienrpgActorSheet extends ActorSheet {
       isGM: game.user.isGM,
       config: CONFIG.ALIENRPG,
     };
-    // debugger;
-    // The Actor and its Items
-    data.actor = foundry.utils.deepClone(this.actor);
+
+    let actor = this.object;
+    data.actor = actor.toJSON();
 
     data.items = this.actor.items.map((i) => {
-      i.data.labels = i.labels;
-      return i.data;
+      i.labels = i.labels;
+      return i;
     });
     data.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-    // data.data = data.actor.system;
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
@@ -91,9 +90,9 @@ export class alienrpgActorSheet extends ActorSheet {
         data.actor.system.general.exhausted.icon = this._getContitionIcon(data.actor.system.general.exhausted.value, 'exhausted');
         data.actor.system.general.freezing.icon = this._getContitionIcon(data.actor.system.general.freezing.value, 'freezing');
         data.actor.system.general.panic.icon = this._getContitionIcon(data.actor.system.general.panic.value, 'panic');
-        // Prepare items.
+        await this._characterData(data);
         await this.actor._checkOverwatch(data);
-        await this._prepareItems(data); // Return data to the sheet
+        await this._prepareItems(data);
         break;
 
       case 'creature':
@@ -104,20 +103,17 @@ export class alienrpgActorSheet extends ActorSheet {
         data.actor.system.general.radiation.icon = this._getClickIcon(data.actor.system.general.radiation.value, 'radiation');
         data.actor.system.general.xp.icon = this._getClickIcon(data.actor.system.general.xp.value, 'xp');
         data.actor.system.general.sp.icon = this._getClickIcon(data.actor.system.general.sp.value, 'sp');
-        // Prepare items.
+        await this._characterData(data);
         await this.actor._checkOverwatch(data);
-        await this._prepareItems(data); // Return data to the sheet
+        await this._prepareItems(data);
         break;
       case 'territory':
-        // Prepare items.
-        await this._prepareTerritoryItems(data); // Return data to the sheet
+        await this._prepareTerritoryItems(data);
         break;
 
       case 'vehicles':
-        // Return data to the sheet
-        await this._prepareVehicleItems(data); // Return data to the sheet
-        await this._prepareCrew(data); // Return data to the sheet
-
+        await this._prepareVehicleItems(data);
+        await this._prepareCrew(data);
         break;
 
       default:
@@ -126,6 +122,216 @@ export class alienrpgActorSheet extends ActorSheet {
     //Return data to the sheet
     return data;
   }
+
+  async _characterData(actor) {
+    const aData = actor.actor.system;
+    var attrMod = {
+      str: 0,
+      agl: 0,
+      emp: 0,
+      wit: 0,
+      health: 0,
+      stress: 0,
+    };
+
+    var sklMod = {
+      heavyMach: 0,
+      closeCbt: 0,
+      stamina: 0,
+      rangedCbt: 0,
+      mobility: 0,
+      piloting: 0,
+      command: 0,
+      manipulation: 0,
+      medicalAid: 0,
+      observation: 0,
+      survival: 0,
+      comtech: 0,
+    };
+    let totalAc = 0;
+    let totalWat = 0;
+    let totalFood = 0;
+    let totalAir = 0;
+    let totalPower = 0;
+
+    for (let [skey, Attrib] of Object.entries(this.actor.items.contents)) {
+      if (Attrib.system.attributes?.armorrating?.value && Attrib.system.header.active === true) {
+        Attrib.system.attributes.armorrating.value = Attrib.system.attributes.armorrating.value || 0;
+        Attrib.totalAc = parseInt(Attrib.system.attributes.armorrating.value, 10);
+        totalAc += Attrib.totalAc;
+      }
+      if (Attrib.system.attributes?.water?.value && Attrib.system.header.active === true) {
+        Attrib.system.attributes.water.value = Attrib.system.attributes.water.value || 0;
+        Attrib.totalWat = parseInt(Attrib.system.attributes.water.value, 10);
+        totalWat += Attrib.totalWat;
+      }
+      if (Attrib.system.attributes?.food?.value && Attrib.system.header.active === true) {
+        Attrib.system.attributes.food.value = Attrib.system.attributes.food.value || 0;
+        Attrib.totalFood = parseInt(Attrib.system.attributes.food.value, 10);
+        totalFood += Attrib.totalFood;
+      }
+      if (Attrib.system.attributes?.airsupply?.value && Attrib.system.header.active === true) {
+        Attrib.system.attributes.airsupply.value = Attrib.system.attributes.airsupply.value || 0;
+        Attrib.totalAir = parseInt(Attrib.system.attributes.airsupply.value, 10);
+        totalAir += Attrib.totalAir;
+      }
+      if (Attrib.system.attributes?.power?.value && Attrib.system.header.active === true) {
+        Attrib.system.attributes.power.value = Attrib.system.attributes.power.value || 0;
+        Attrib.totalPower = parseInt(Attrib.system.attributes.power.value, 10);
+        totalPower += Attrib.totalPower;
+      }
+
+      // debugger;
+      if (Attrib.type === 'item' || Attrib.type === 'critical-injury' || Attrib.type === 'armor') {
+        if (Attrib.system.header.active === true) {
+          let base = Attrib.system.modifiers.attributes;
+
+          for (let [bkey, aAttrib] of Object.entries(base)) {
+            switch (bkey) {
+              case 'str':
+                attrMod.str = attrMod.str += parseInt(aAttrib.value);
+                break;
+              case 'agl':
+                attrMod.agl = attrMod.agl += parseInt(aAttrib.value);
+                break;
+              case 'emp':
+                attrMod.emp = attrMod.emp += parseInt(aAttrib.value);
+                break;
+              case 'wit':
+                attrMod.wit = attrMod.wit += parseInt(aAttrib.value);
+                break;
+              case 'health':
+                attrMod.health = attrMod.health += parseInt(aAttrib.value);
+                break;
+              case 'stress':
+                attrMod.stress = attrMod.stress += parseInt(aAttrib.value);
+                break;
+
+              default:
+                break;
+            }
+          }
+
+          let skillBase = Attrib.system.modifiers.skills;
+          for (let [skkey, sAttrib] of Object.entries(skillBase)) {
+            switch (skkey) {
+              case 'heavyMach':
+                sklMod.heavyMach = sklMod.heavyMach += parseInt(sAttrib.value);
+                break;
+              case 'closeCbt':
+                sklMod.closeCbt = sklMod.closeCbt += parseInt(sAttrib.value);
+                break;
+              case 'stamina':
+                sklMod.stamina = sklMod.stamina += parseInt(sAttrib.value);
+                break;
+              case 'rangedCbt':
+                sklMod.rangedCbt = sklMod.rangedCbt += parseInt(sAttrib.value);
+                break;
+              case 'mobility':
+                sklMod.mobility = sklMod.mobility += parseInt(sAttrib.value);
+                break;
+              case 'piloting':
+                sklMod.piloting = sklMod.piloting += parseInt(sAttrib.value);
+                break;
+              case 'command':
+                sklMod.command = sklMod.command += parseInt(sAttrib.value);
+                break;
+              case 'manipulation':
+                sklMod.manipulation = sklMod.manipulation += parseInt(sAttrib.value);
+                break;
+              case 'medicalAid':
+                sklMod.medicalAid = sklMod.medicalAid += parseInt(sAttrib.value);
+                break;
+              case 'observation':
+                sklMod.observation = sklMod.observation += parseInt(sAttrib.value);
+                break;
+              case 'survival':
+                sklMod.survival = sklMod.survival += parseInt(sAttrib.value);
+                break;
+              case 'comtech':
+                sklMod.comtech = sklMod.comtech += parseInt(sAttrib.value);
+                break;
+
+              default:
+                break;
+            }
+          }
+        }
+        await this.actor.update({ 'system.header.health.mod': (aData.header.health.mod += parseInt(attrMod.health || 0)) });
+        // setProperty(this.actor, 'system.header.health.mod', (aData.header.health.mod += parseInt(attrMod.health || 0)));
+        if (aData.type === 'character') {
+          await this.actor.update({ 'system.header.stress.mod': (aData.header.stress.mod += parseInt(attrMod.stress || 0)) });
+          // setProperty(this.actor, 'system.header.stress.mod', (aData.header.stress.mod += parseInt(attrMod.stress || 0)));
+        }
+      }
+
+      if (Attrib.type === 'talent') {
+        const talName = Attrib.name.toUpperCase();
+
+        switch (talName) {
+          case 'NERVES OF STEEL':
+            setProperty(this.actor, 'system.header.stress.mod', (aData.header.stress.mod -= 2));
+            break;
+          case 'TOUGH':
+            setProperty(this.actor, 'system.header.health.mod', (aData.header.health.mod += 2));
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
+    for (let [a, abl] of Object.entries(aData.attributes)) {
+      let target = `system.attributes.${a}.mod`;
+      let field = `aData.attributes[${a}].mod`;
+      let upData = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
+      await this.actor.updateSource({ [target]: (field = upData) });
+      // setProperty(this.actor, target, (field = upData));
+      abl.mod = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
+      abl.label = CONFIG.ALIENRPG.attributes[a];
+    }
+
+    for (let [s, skl] of Object.entries(aData.skills)) {
+      const conSkl = skl.ability;
+      let target = `system.skills.${s}.mod`;
+      let field = `aData.skills[${s}].mod`;
+      let upData = parseInt(skl.value || 0) + parseInt(aData.attributes[conSkl].mod || 0) + parseInt(sklMod[s] || 0);
+      await this.actor.updateSource({ [target]: (field = upData) });
+      // setProperty(this.actor, target, (field = upData));
+      skl.mod = parseInt(skl.value || 0) + parseInt(sklMod[s] || 0) + parseInt(aData.attributes[conSkl].mod || 0);
+      skl.label = CONFIG.ALIENRPG.skills[s];
+    }
+
+    await this.actor.update({
+      'system.consumables.water.value': (aData.consumables.water.value = parseInt(totalWat || 0)),
+      'system.consumables.food.value': (aData.consumables.food.value = parseInt(totalFood || 0)),
+      'system.consumables.air.value': (aData.consumables.air.value = parseInt(totalAir || 0)),
+      'system.consumables.power.value': (aData.consumables.power.value = parseInt(totalPower || 0)),
+      'system.general.armor.value': (aData.general.armor.value = parseInt(totalAc || 0)),
+      'system.general.radiation.calculatedMax': (aData.general.radiation.calculatedMax = aData.general.radiation.max),
+      'system.general.xp.calculatedMax': (aData.general.xp.calculatedMax = aData.general.xp.max),
+      'system.general.dehydrated.calculatedMax': (aData.general.dehydrated.calculatedMax = aData.general.dehydrated.max),
+      'system.general.exhausted.calculatedMax': (aData.general.exhausted.calculatedMax = aData.general.exhausted.max),
+      'system.general.freezing.calculatedMax': (aData.general.freezing.calculatedMax = aData.general.freezing.max),
+    });
+
+    if (actor.actor.type === 'character') {
+      setProperty(this.actor, 'system.general.panic.calculatedMax', (aData.general.panic.calculatedMax = aData.general.panic.max));
+      setProperty(this.actor, 'system.header.health.max', aData.attributes.str.value + aData.header.health.mod);
+    }
+  }
+
+  // async _checkOverwatch(actor) {
+  //   let conDition = await this.actor.hasCondition('overwatch');
+  //   // if (await this.hasCondition('overwatch')) {
+  //   if (conDition != undefined || conDition) {
+  //     await this.actor.update({ 'system.general.overwatch': true });
+  //     // setProperty(actor, 'system.general.overwatch', true);
+  //   } else {
+  //     await this.actor.update({ 'system.general.overwatch': false });
+  //     // setProperty(actor, 'system.general.overwatch', false);
+  //   }
+  // }
 
   _findActiveList() {
     return this.element.find('.tab.active .directory-list');
@@ -136,7 +342,7 @@ export class alienrpgActorSheet extends ActorSheet {
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
     for (let i of data.items) {
-      let item = i.data;
+      let item = i.system;
       // Append to gear.
       if (i.type === 'planet-system') {
         systems.push(i);
@@ -163,7 +369,7 @@ export class alienrpgActorSheet extends ActorSheet {
       (arr, item) => {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
-        item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
+        item.isStack = item.system.quantity ? item.system.quantity > 1 : false;
 
         // Classify items into types
         if (item.type === 'Weapons') arr[1].push(item);
@@ -186,7 +392,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Iterate through items, allocating to containers
     for (let i of data.items) {
-      let item = i.data;
+      let item = i.system;
       switch (i.type) {
         case 'talent':
           talents.push(i);
@@ -208,8 +414,8 @@ export class alienrpgActorSheet extends ActorSheet {
           break;
 
         case 'armor':
-          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-          i.totalWeight = i.data.attributes.weight.value;
+          i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
+          i.totalWeight = i.system.attributes.weight.value;
           totalWeight += i.totalWeight;
           inventory[i.type].items.push(i);
           break;
@@ -217,12 +423,12 @@ export class alienrpgActorSheet extends ActorSheet {
         case 'weapon':
           if (item.header.active != 'fLocker') {
             let ammoweight = 0.25;
-            if (i.data.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
+            if (i.system.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
               ammoweight = 0.5;
             }
-            i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-            // i.totalWeight = i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight;
-            i.totalWeight = (i.data.attributes.weight.value + i.data.attributes.rounds.value * ammoweight) * i.data.attributes.quantity.value;
+            i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
+            // i.totalWeight = i.system.attributes.weight.value + i.system.attributes.rounds.value * ammoweight;
+            i.totalWeight = (i.system.attributes.weight.value + i.system.attributes.rounds.value * ammoweight) * i.system.attributes.quantity.value;
             totalWeight += i.totalWeight;
           }
           inventory[i.type].items.push(i);
@@ -232,8 +438,8 @@ export class alienrpgActorSheet extends ActorSheet {
         default:
           // Its just an item
           if (item.header.active != 'fLocker') {
-            i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-            i.totalWeight = i.data.attributes.weight.value * i.data.attributes.quantity.value;
+            i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
+            i.totalWeight = i.system.attributes.weight.value * i.system.attributes.quantity.value;
             totalWeight += i.totalWeight;
           }
           inventory[i.type].items.push(i);
@@ -265,7 +471,7 @@ export class alienrpgActorSheet extends ActorSheet {
       (arr, item) => {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
-        item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
+        item.isStack = item.system.quantity ? item.system.quantity > 1 : false;
 
         // Classify items into types
         if (item.type === 'Weapons') arr[1].push(item);
@@ -285,7 +491,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Iterate through items, allocating to containers
     for (let i of data.items) {
-      let item = i.data;
+      let item = i.system;
       switch (i.type) {
         case 'talent':
           talents.push(i);
@@ -397,7 +603,7 @@ export class alienrpgActorSheet extends ActorSheet {
    */
   _filterItems(items, filters) {
     return items.filter((item) => {
-      const data = item.data;
+      const data = item.system;
       return true;
     });
   }
@@ -624,10 +830,10 @@ export class alienrpgActorSheet extends ActorSheet {
     const itemData = {
       name: iName,
       type: type,
-      data: data,
+      system: system,
     };
     // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.data['type'];
+    delete itemData.system['type'];
 
     // Finally, create the item!
     // return this.actor.createOwnedItem(itemData);
@@ -697,12 +903,12 @@ export class alienrpgActorSheet extends ActorSheet {
   _rollCrit(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
-    this.actor.rollCrit(this.actor.data.type, dataset);
+    this.actor.rollCrit(this.actor.type, dataset);
   }
   _rollCritMan(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
-    this.actor.rollCritMan(this.actor, this.actor.data.type, dataset);
+    this.actor.rollCritMan(this.actor, this.actor.type, dataset);
   }
 
   _activate(event) {
@@ -710,14 +916,14 @@ export class alienrpgActorSheet extends ActorSheet {
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
-    item.update({ 'data.header.active': true });
+    item.update({ 'system.header.active': true });
   }
   _deactivate(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
-    item.update({ 'data.header.active': false });
+    item.update({ 'system.header.active': false });
   }
 
   _plusMinusButton(event) {
@@ -928,7 +1134,7 @@ export class alienrpgActorSheet extends ActorSheet {
     }
     let crewNumber = actorData.system.crew.passengerQty;
     crewNumber++;
-    actorData.update({ 'data.crew.passengerQty': crewNumber });
+    actorData.update({ 'system.crew.passengerQty': crewNumber });
     return this.actor.addVehicleOccupant(actorId);
   }
   _onCrewEdit(event) {
@@ -947,8 +1153,8 @@ export class alienrpgActorSheet extends ActorSheet {
     const occupants = this.actor.removeVehicleOccupant(crewId);
     let crewNumber = actorData.system.crew.passengerQty;
     crewNumber--;
-    actorData.update({ 'data.crew.passengerQty': crewNumber });
-    return this.actor.update({ 'data.crew.occupants': occupants });
+    actorData.update({ 'system.crew.passengerQty': crewNumber });
+    return this.actor.update({ 'system.crew.occupants': occupants });
   }
 
   _onChangePosition(event) {

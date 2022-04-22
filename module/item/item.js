@@ -11,29 +11,34 @@ export class alienrpgItem extends Item {
   prepareData() {
     super.prepareData();
     // Get the Item's data
-    const itemData = this.data;
-    const actorData = this.item ? this.item.data : {};
-    const data = this.data;
-    if (data.type === 'planet-system') this._prepareSystemData(data);
-    if (data.type === 'agenda') this._prepareAgendaData(data);
-    if (data.type === 'talent') this._prepareTalentData(data);
-    if (data.type === 'specialty') this._prepareSpecialtyData(data);
+    // debugger;
+    let item = this.toJSON();
+    // data.item = item;
+    // console.log(item);
+
+    // const itemData = this.data;
+    // const actorData = this.item ? this.item.data : {};
+    // const data = this.data;
+    if (item.type === 'planet-system') this._prepareSystemData(item);
+    if (item.type === 'agenda') this._prepareAgendaData(item);
+    if (item.type === 'talent') this._prepareTalentData(item);
+    if (item.type === 'specialty') this._prepareSpecialtyData(item);
   }
 
   _prepareSystemData(data) {
-    this.data.img = 'systems/alienrpg/images/icons/solar-system.svg';
+    this.update({ img: 'systems/alienrpg/images/icons/solar-system.svg' });
   }
   _prepareAgendaData(data) {
-    this.data.img = 'systems/alienrpg/images/icons/personal-agenda.png';
+    this.update({ img: 'systems/alienrpg/images/icons/personal-agenda.png' });
   }
   _prepareSpecialtyData(data) {
-    this.data.img = 'systems/alienrpg/images/icons/cover-notext.png';
+    this.update({ img: 'systems/alienrpg/images/icons/cover-notext.png' });
   }
   _prepareTalentData(data) {
-    if (system.general.career.value === '1' || system.general.career.value === '') {
-      setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/sprint.svg'));
+    if (data.system.general.career.value === '1' || data.system.general.career.value === '') {
+      this.update({ img: 'systems/alienrpg/images/icons/sprint.svg' });
     } else {
-      setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/fire-dash.svg'));
+      this.update({ img: 'systems/alienrpg/images/icons/fire-dash.svg' });
     }
   }
 
@@ -52,7 +57,7 @@ export class alienrpgItem extends Item {
     }
     const actorData = this.actor ? this.actor.system : {};
     let actorid = this.actor.id;
-    const itemData = item.data;
+    const itemData = item.system;
     const itemid = item._id;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
@@ -61,18 +66,18 @@ export class alienrpgItem extends Item {
     // let roll;
     let r2Data = 0;
     let reRoll = false;
-    if (this.actor.data.type === 'character') {
+    if (this.actor.type === 'character') {
       r2Data = this.actor.getRollData().stress;
       reRoll = false;
     } else {
       r2Data = 0;
       reRoll = true;
     }
-    let label = `${item.name} (` + game.i18n.localize('ALIENRPG.Damage') + ` : ${item.data.attributes.damage.value})`;
-    let hostile = this.actor.data.type;
+    let label = `${item.name} (` + game.i18n.localize('ALIENRPG.Damage') + ` : ${item.system.attributes.damage.value})`;
+    let hostile = this.actor.type;
     let blind = false;
 
-    if (this.actor.data.token.disposition === -1) {
+    if (this.actor.token?.disposition === -1) {
       blind = true;
     }
 
@@ -84,7 +89,7 @@ export class alienrpgItem extends Item {
       // call pop up box here to get any mods then update r1Data or rData as appropriate.
       // let confirmed = false;
       // Check that is a character or a synth pretending to be a character.
-      if (this.actor.data.type === 'character' || this.actor.system.header.synthstress) {
+      if (this.actor.type === 'character' || this.actor.system.header.synthstress) {
         renderTemplate(template).then((dlg) => {
           new Dialog({
             title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
@@ -122,7 +127,7 @@ export class alienrpgItem extends Item {
                   //   const consUme = 'power';
                   //   this.actor.consumablesCheck(this.actor, consUme, ilabel, item._id);
                   // }
-                } else if (item.data.header.type.value === '2') {
+                } else if (item.system.header.type.value === '2') {
                   let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
                   r2Data = r2Data + stressMod;
                   yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
@@ -170,12 +175,12 @@ export class alienrpgItem extends Item {
                 if (this.actor.data.type != 'vehicles') {
                   // it's not a vehicle so add the correct attribute bonus
                   // Define the roll formula.
-                  if (item.data.header.type.value === '1') {
+                  if (item.system.header.type.value === '1') {
                     let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
                     r2Data = r2Data + stressMod;
                     yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
                     game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-                  } else if (item.data.header.type.value === '2') {
+                  } else if (item.system.header.type.value === '2') {
                     let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
                     r2Data = r2Data + stressMod;
                     yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
@@ -194,9 +199,9 @@ export class alienrpgItem extends Item {
       // Normal Left Click Roll
       // ************************************
       // Define the roll formula.
-      if (this.actor.data.type != 'vehicles') {
+      if (this.actor.type != 'vehicles') {
         // it's not a vehicle so add the correct attribute bonus
-        if (item.data.header.type.value === '1') {
+        if (item.system.header.type.value === '1') {
           let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
@@ -209,7 +214,7 @@ export class alienrpgItem extends Item {
           //   const consUme = 'power';
           //   this.actor.consumablesCheck(this.actor, consUme, ilabel, item._id);
           // }
-        } else if (item.data.header.type.value === '2') {
+        } else if (item.system.header.type.value === '2') {
           let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
@@ -228,7 +233,7 @@ export class alienrpgItem extends Item {
       } else {
         // it's a vehicle so no attribute bonus
 
-        if (item.data.header.type.value === '1') {
+        if (item.system.header.type.value === '1') {
           let fCrew = [];
           let options = '';
           for (let [index] of actorData.crew.occupants.entries()) {
@@ -293,7 +298,7 @@ export class alienrpgItem extends Item {
               }
             },
           }).render(true);
-        } else if (item.data.header.type.value === '2') {
+        } else if (item.system.header.type.value === '2') {
           let r1Data = itemData.attributes.bonus.value;
           yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
           game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
