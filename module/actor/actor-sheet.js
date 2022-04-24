@@ -903,7 +903,7 @@ export class alienrpgActorSheet extends ActorSheet {
   _rollCrit(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
-    this.actor.rollCrit(this.actor.type, dataset);
+    this.actor.rollCrit(this.actor, this.actor.type, dataset);
   }
   _rollCritMan(event) {
     event.preventDefault();

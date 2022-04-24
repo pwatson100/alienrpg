@@ -28,12 +28,13 @@ export class alienrpgCriticalInjury extends ItemSheet {
 
   /** @override */
   getData() {
-    // const data = super.getData();
-    const item = foundry.utils.deepClone(this.item.data);
+    const data = super.getData();
+    // const item = foundry.utils.deepClone(this.item.data);
+    const item = data.item.toJSON();
 
     // const item = duplicate(this.item.data);
-    const data = item;
-    return data;
+    // const data = item;
+    return item;
   }
   // getData() {
   //   // console.log(this.item);
