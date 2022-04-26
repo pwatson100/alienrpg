@@ -1238,14 +1238,22 @@ export class alienrpgActor extends Actor {
     return con;
   }
 
-  async rollCrit(type, dataset) {
-    // console.log('🚀 ~ file: actor.js ~ line 841 ~ alienrpgActor ~ rollCrit ~ type', type);
-    // let label = dataset.label;
+  async rollCrit(actor, type, dataset, manCrit) {
     let atable = '';
     let healTime = 0;
-    let cFatial = false;
+    let cFatal = false;
     let factorFour = '';
     let testArray = '';
+    let rollheal = '';
+    let newHealTime = '';
+    let htmlData = '';
+    let resultImage = '';
+    let critTable = false;
+    let test1 = '';
+    let hFatal = '';
+    let hHealTime = '';
+    let hTimeLimit = '';
+
     switch (type) {
       case 'character':
         atable = game.tables.getName('Critical injuries');
@@ -1266,13 +1274,15 @@ export class alienrpgActor extends Actor {
       default:
         break;
     }
+    if (!manCrit) {
+      test1 = await atable.draw({ displayChat: false });
+    } else {
+      const formula = manCrit;
+      const roll = new Roll(formula);
+      roll.evaluate({ async: false });
+      test1 = await atable.draw({ roll: roll, displayChat: false });
+    }
 
-    // const formula = atable.data.formula;
-    // const roll = new Roll(formula);
-    // roll.evaluate({ async: false });
-    // atable.draw({ roll: roll });
-    const test1 = await atable.draw();
-    let critTable = false;
     try {
       if (game.settings.get('alienrpg-corerules', 'imported') === true) {
         critTable = true;
@@ -1287,34 +1297,36 @@ export class alienrpgActor extends Actor {
 
     try {
       if (critTable) {
-        // if (game.settings.get('alienrpg-corerules', 'imported') === true || game.settings.get('alienrpg-starterset', 'imported') === true) {
-        const messG = JSON.stringify(game.messages.contents.pop());
-
+        const messG = test1.results[0].data.text;
         switch (type) {
           case 'character':
             {
-              let resultImage = messG.slice(messG.indexOf('src=') + 6, messG.indexOf('.svg') + 4);
-              factorFour = messG.slice(messG.indexOf('<b>INJURY:'), messG.indexOf('</div>' + 6, messG.indexOf('<b>INJURY:'))).replace(/<a class=(.*?)><\/i>|<\/a>/gi, '');
-              testArray = factorFour.match(/<?b>(.*?)(<br>|<\/div>)/g).map(function (val) {
-                return val.replace(/<b>(.*?)(: )|<\/b>|(<br>|<\/div>)/g, '');
-              });
-              let speanex = testArray[3].replace(/(<([^>]+)>)/gi, '');
-              if (testArray[4] != 'Permanent') {
-                testArray[4].replace(/[^0-9]/g, '');
+              resultImage = test1.results[0].data.img;
+              factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
+              testArray = factorFour.split(/[:] |<br \/>/gi);
+              let speanex = testArray[7];
+              if (testArray[9] != 'Permanent') {
+                if (testArray[9].length > 0) {
+                  rollheal = testArray[9].match(/^\[\[([0-9]d[0-9]+)]/)[1];
+                  newHealTime = testArray[9].match(/^\[\[([0-9]d[0-9]+)\]\] ?(.*)/)[2];
+                  testArray[9] = new Roll(`${rollheal}`).evaluate({ async: false }).result + ' ' + newHealTime;
+                } else {
+                  testArray[9] = 'None';
+                }
               }
-              switch (testArray[1]) {
+              switch (testArray[3]) {
                 case 'Yes ':
-                  cFatial = true;
+                  cFatal = true;
                   break;
                 case 'Yes, –1 ':
-                  cFatial = true;
+                  cFatal = true;
                   break;
                 default:
-                  cFatial = false;
+                  cFatal = false;
                   break;
               }
 
-              switch (testArray[2]) {
+              switch (testArray[5]) {
                 case game.i18n.localize('ALIENRPG.None') + ' ':
                   healTime = 0;
                   break;
@@ -1338,42 +1350,98 @@ export class alienrpgActor extends Actor {
               //
               // Now create the item on the sheet
               //
-              await this.createEmbeddedDocuments('Item', [
-                {
-                  type: 'critical-injury',
-                  img: resultImage,
-                  name: `#${test1.roll._total} ${testArray[0]}`,
-                  'data.attributes.fatal': cFatial,
-                  'data.attributes.timelimit.value': testArray[4],
-                  'data.attributes.healingtime.value': healTime,
-                  'data.attributes.effects': speanex,
-                },
-              ]);
+              let rollData = {
+                type: 'critical-injury',
+                img: resultImage,
+                name: `#${test1.roll._total} ${testArray[1]}`,
+                'system.attributes.fatal': cFatal,
+                'system.attributes.timelimit.value': healTime,
+                'system.attributes.healingtime.value': testArray[9],
+                'system.attributes.effects': speanex,
+              };
+
+              await this.createEmbeddedDocuments('Item', [rollData]);
+
+              //
+              // Prepare the data for the chat message
+              //
+
+              hFatal = testArray[3] != ' ' ? testArray[3] : 'None';
+              hHealTime = testArray[9] != ' ' ? testArray[9] : 'None';
+              hTimeLimit = testArray[5] != ' ' ? testArray[5] : 'None';
+
+              htmlData = {
+                actorname: actor.name,
+                img: resultImage,
+                name: `#${test1.roll._total} ${testArray[1]}`,
+                fatal: hFatal,
+                timelimit: hTimeLimit,
+                healingtime: hHealTime,
+                effects: speanex,
+              };
             }
 
             break;
           case 'synthetic':
             {
-              factorFour = messG.slice(messG.indexOf('result-image'), messG.indexOf('.</div>') + 1);
-              let resultImage = factorFour.slice(factorFour.indexOf('src=') + 6, factorFour.indexOf('.svg') + 4);
-              let injName = factorFour.slice(factorFour.indexOf('<b>') + 3, factorFour.indexOf(': </b>'));
-              let injDesc = factorFour.slice(factorFour.indexOf(': </b>') + 6);
-              let injDesc1 = injDesc.replace(/(<([^>]+)>)/gi, '');
-              // debugger;
+              resultImage = test1.results[0].data.img;
+              factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
+              testArray = factorFour.split(/[:] |<br \/>/gi);
+
               //
               // Now create the item on the sheet
               //
-              await this.createEmbeddedDocuments('Item', [
+              await actor.createEmbeddedDocuments('Item', [
                 {
                   type: 'critical-injury',
                   img: resultImage,
-                  name: `#${test1.roll._total} ${injName}`,
-                  'data.attributes.effects': injDesc1,
+                  name: `#${test1.roll._total} ${testArray[0]}`,
+                  'system.attributes.effects': testArray[1],
                 },
               ]);
+
+              //
+              // Prepare the data for the chat message
+              //
+
+              htmlData = {
+                actorname: actor.name,
+                img: resultImage,
+                name: `#${test1.roll._total} ${testArray[0]}`,
+                effects: testArray[1],
+              };
             }
             break;
         }
+
+        // Now push the correct chat message
+
+        console.log(htmlData);
+        const html = await renderTemplate(`systems/alienrpg/templates/chat/crit-roll-${actor.type}.html`, htmlData);
+
+        let chatData = {
+          user: game.user.id,
+          speaker: {
+            actor: actor.id,
+          },
+          content: html,
+          other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
+          sound: CONFIG.sounds.dice,
+          type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+          rollMode: game.settings.get('core', 'rollMode'),
+        };
+
+        ChatMessage.create({
+          user: game.user.id,
+          speaker: {
+            actor: actor.id,
+          },
+          content: html,
+          other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
+          sound: CONFIG.sounds.dice,
+          type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+          rollMode: game.settings.get('core', 'rollMode'),
+        });
       }
     } catch (error) {}
   }
@@ -1422,153 +1490,17 @@ export class alienrpgActor extends Actor {
                 default:
                   break;
               }
-              actor.ManualCrit(actor, type, dataset, manCrit);
+              actor.rollCrit(actor, type, dataset, manCrit);
             }
           },
         }).render(true);
       });
     }
-    if (actor.data.type === 'character') {
+    if (actor.type === 'character') {
       myRenderTemplate('systems/alienrpg/templates/dialog/roll-char-manual-crit-dialog.html');
-    } else if (actor.data.type === 'synthetic') {
+    } else if (actor.type === 'synthetic') {
       myRenderTemplate('systems/alienrpg/templates/dialog/roll-syn-manual-crit-dialog.html');
     }
-  }
-
-  async ManualCrit(actor, type, dataset, manCrit) {
-    let atable = '';
-    let healTime = 0;
-    let cFatial = false;
-    let factorFour = '';
-    let testArray = '';
-    switch (type) {
-      case 'character':
-        atable = game.tables.getName('Critical injuries');
-        if (atable === null || atable === undefined) {
-          ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
-          return;
-        }
-        break;
-      case 'synthetic':
-        atable = game.tables.getName('Critical Injuries on Synthetics');
-        if (atable === null || atable === undefined) {
-          ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
-          return;
-        }
-        break;
-
-      default:
-        break;
-    }
-
-    const formula = manCrit;
-    const roll = new Roll(formula);
-    roll.evaluate({ async: false });
-    // atable.draw({ roll: roll });
-    const test1 = await atable.draw({ roll: roll });
-    let critTable = false;
-    try {
-      if (game.settings.get('alienrpg-corerules', 'imported') === true) {
-        critTable = true;
-      }
-    } catch (error) {}
-
-    try {
-      if (game.settings.get('alienrpg-starterset', 'imported') === true) {
-        critTable = true;
-      }
-    } catch (error) {}
-
-    try {
-      if (critTable) {
-        // if (game.settings.get('alienrpg-corerules', 'imported') === true || game.settings.get('alienrpg-starterset', 'imported') === true) {
-        const messG = JSON.stringify(game.messages.contents.pop());
-
-        switch (type) {
-          case 'character':
-            {
-              let resultImage = messG.slice(messG.indexOf('src=') + 6, messG.indexOf('.svg') + 4);
-              factorFour = messG.slice(messG.indexOf('<b>INJURY:'), messG.indexOf('</div>' + 6, messG.indexOf('<b>INJURY:'))).replace(/<a class=(.*?)><\/i>|<\/a>/gi, '');
-              testArray = factorFour.match(/<?b>(.*?)(<br>|<\/div>)/g).map(function (val) {
-                return val.replace(/<b>(.*?)(: )|<\/b>|(<br>|<\/div>)/g, '');
-              });
-              let speanex = testArray[3].replace(/(<([^>]+)>)/gi, '');
-              if (testArray[4] != 'Permanent') {
-                testArray[4].replace(/[^0-9]/g, '');
-              }
-              switch (testArray[1]) {
-                case 'Yes ':
-                  cFatial = true;
-                  break;
-                case 'Yes, –1 ':
-                  cFatial = true;
-                  break;
-                default:
-                  cFatial = false;
-                  break;
-              }
-
-              switch (testArray[2]) {
-                case game.i18n.localize('ALIENRPG.None') + ' ':
-                  healTime = 0;
-                  break;
-                case game.i18n.localize('ALIENRPG.OneRound') + ' ':
-                  healTime = 1;
-                  break;
-                case game.i18n.localize('ALIENRPG.OneTurn') + ' ':
-                  healTime = 2;
-                  break;
-                case game.i18n.localize('ALIENRPG.OneShift') + ' ':
-                  healTime = 3;
-                  break;
-                case game.i18n.localize('ALIENRPG.OneDay'):
-                  +' ';
-                  healTime = 3;
-                  break;
-                default:
-                  healTime = 0;
-                  break;
-              }
-              //
-              // Now create the item on the sheet
-              //
-              await this.createEmbeddedDocuments('Item', [
-                {
-                  type: 'critical-injury',
-                  img: resultImage,
-                  name: `#${test1.roll._total} ${testArray[0]}`,
-                  'data.attributes.fatal': cFatial,
-                  'data.attributes.timelimit.value': testArray[4],
-                  'data.attributes.healingtime.value': healTime,
-                  'data.attributes.effects': speanex,
-                },
-              ]);
-            }
-
-            break;
-          case 'synthetic':
-            {
-              factorFour = messG.slice(messG.indexOf('result-image'), messG.indexOf('.</div>') + 1);
-              let resultImage = factorFour.slice(factorFour.indexOf('src=') + 6, factorFour.indexOf('.svg') + 4);
-              let injName = factorFour.slice(factorFour.indexOf('<b>') + 3, factorFour.indexOf(': </b>'));
-              let injDesc = factorFour.slice(factorFour.indexOf(': </b>') + 6);
-              let injDesc1 = injDesc.replace(/(<([^>]+)>)/gi, '');
-              //
-              // Now create the item on the sheet
-              //
-              await this.createEmbeddedDocuments('Item', [
-                {
-                  type: 'critical-injury',
-                  img: resultImage,
-                  name: `#${test1.roll._total} ${injName}`,
-                  'data.attributes.effects': injDesc1,
-                },
-              ]);
-            }
-            break;
-        }
-      }
-    } catch (error) {}
   }
 
   /* ------------------------------------------- */
