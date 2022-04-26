@@ -536,13 +536,13 @@ export class alienrpgActorSheet extends ActorSheet {
   }
 
   async _prepareCrew(sheetData) {
-    sheetData.crew = sheetData.system.crew.occupants.reduce((arr, o) => {
+    sheetData.crew = sheetData.actor.system.crew.occupants.reduce((arr, o) => {
       o.actor = game.actors.get(o.id);
       // Creates a fake actor if it doesn't exist anymore in the database.
       if (!o.actor) {
         o.actor = {
           name: '{MISSING_CREW}',
-          data: { data: { health: { value: 0, max: 0 } } },
+          system: { system: { health: { value: 0, max: 0 } } },
           isCrewDeleted: true,
         };
       }

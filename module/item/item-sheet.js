@@ -8,7 +8,9 @@ export class alienrpgItemSheet extends ItemSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'item', 'item-sheet'],
       width: 675,
-      height: 489,
+      // height: 489,
+      height: 489 + 'min-content',
+
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -37,19 +39,46 @@ export class alienrpgItemSheet extends ItemSheet {
 
     // const item = duplicate(this.item.data);
     // const data = item;
+    switch (item.type) {
+      case 'planet-system':
+        // this._prepareSystemData(item);
+        break;
+      case 'agenda':
+        this._prepareAgendaData(item);
+        break;
+      case 'talent':
+        this._prepareTalentData(item);
+        break;
+      case 'specialty':
+        this._prepareSpecialtyData(item);
+        break;
+
+      default:
+        break;
+    }
+
     return item;
   }
-  // getData() {
-  //   // console.log(this.item);
-  //   const itemData = foundry.utils.deepClone(this.item);
-  //   // this.computeSkills(actorData);
-  //   // this.computeItems(actorData);
-  //   // this.computeEncumbrance(actorData);
-  //   return {
-  //     item: itemData,
-  //   };
-  // }
-  /* -------------------------------------------- */
+
+  async _prepareSystemData(data) {
+    this.item.update({ img: 'systems/alienrpg/images/icons/solar-system.svg' });
+  }
+
+  async _prepareAgendaData(data) {
+    this.item.update({ img: 'systems/alienrpg/images/icons/personal-agenda.png' });
+  }
+
+  async _prepareSpecialtyData(data) {
+    this.item.update({ img: 'systems/alienrpg/images/icons/cover-notext.png' });
+  }
+
+  async _prepareTalentData(data) {
+    if (data.system.general.career.value === '1' || data.system.general.career.value === '') {
+      this.item.update({ img: 'systems/alienrpg/images/icons/sprint.svg' });
+    } else {
+      this.item.update({ img: 'systems/alienrpg/images/icons/fire-dash.svg' });
+    }
+  }
 
   /** @override */
   setPosition(options = {}) {

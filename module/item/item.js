@@ -10,36 +10,6 @@ export class alienrpgItem extends Item {
    */
   prepareData() {
     super.prepareData();
-    // Get the Item's data
-    // debugger;
-    let item = this.toJSON();
-    // data.item = item;
-    // console.log(item);
-
-    // const itemData = this.data;
-    // const actorData = this.item ? this.item.data : {};
-    // const data = this.data;
-    if (item.type === 'planet-system') this._prepareSystemData(item);
-    if (item.type === 'agenda') this._prepareAgendaData(item);
-    if (item.type === 'talent') this._prepareTalentData(item);
-    if (item.type === 'specialty') this._prepareSpecialtyData(item);
-  }
-
-  _prepareSystemData(data) {
-    this.update({ img: 'systems/alienrpg/images/icons/solar-system.svg' });
-  }
-  _prepareAgendaData(data) {
-    this.update({ img: 'systems/alienrpg/images/icons/personal-agenda.png' });
-  }
-  _prepareSpecialtyData(data) {
-    this.update({ img: 'systems/alienrpg/images/icons/cover-notext.png' });
-  }
-  _prepareTalentData(data) {
-    if (data.system.general.career.value === '1' || data.system.general.career.value === '') {
-      this.update({ img: 'systems/alienrpg/images/icons/sprint.svg' });
-    } else {
-      this.update({ img: 'systems/alienrpg/images/icons/fire-dash.svg' });
-    }
   }
 
   /**

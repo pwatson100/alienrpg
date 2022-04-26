@@ -1147,7 +1147,7 @@ export class alienrpgActor extends Actor {
           content: html,
           other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
           sound: CONFIG.sounds.dice,
-          type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+          type: CONST.CHAT_MESSAGE_TYPES.OTHER,
           rollMode: game.settings.get('core', 'rollMode'),
         };
 

@@ -8,23 +8,23 @@
       <div class="resources grid-vehicle">
         <h2 class="vItem1">{{ localize "ALIENRPG.Hull"}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem2" name="data.attributes.hull.value" value="{{data.attributes.hull.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem2" name="system.attributes.hull.value" value="{{actor.system.attributes.hull.value}}" data-dtype="Number" />
           <label class="box23" > / </label>
-          <input type="text" class="maxboxsize " name="data.attributes.hull.max" value="{{data.attributes.hull.max}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize " name="system.attributes.hull.max" value="{{actor.system.attributes.hull.max}}" data-dtype="Number" />
 
 
         </div>
-        <h2 class="vItem3 rollableVeh" data-roll="{{data.attributes.armorrating.value}}" data-label="{{localize "ALIENRPG.ArmorRating"}}" data-spbutt="armor">{{localize "ALIENRPG.ArmorRating"}}</h2>
+        <h2 class="vItem3 rollableVeh" data-roll="{{actor.system.attributes.armorrating.value}}" data-label="{{localize "ALIENRPG.ArmorRating"}}" data-spbutt="armor">{{localize "ALIENRPG.ArmorRating"}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem4" name="data.attributes.armorrating.value" value="{{data.attributes.armorrating.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem4" name="system.attributes.armorrating.value" value="{{actor.system.attributes.armorrating.value}}" data-dtype="Number" />
         </div>
         <h2 class="vItem5">{{localize "ALIENRPG.Speed"}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem6" name="data.attributes.speed.value" value="{{data.attributes.speed.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem6" name="system.attributes.speed.value" value="{{actor.system.attributes.speed.value}}" data-dtype="Number" />
         </div>
         <h2 class="vItem7">{{localize "ALIENRPG.Manoeuvrability"}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem8" name="data.attributes.manoeuvrability.value" value="{{data.attributes.manoeuvrability.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem8" name="system.attributes.manoeuvrability.value" value="{{actor.system.attributes.manoeuvrability.value}}" data-dtype="Number" />
         </div>
       </div>
     </div>
@@ -41,13 +41,13 @@
   <section class="sheet-body">
     <div class="tab attributes" data-group="primary" data-tab="general">
       <label class="resource-label">{{localize "ALIENRPG.Passengers"}}</label>
-      <input type="text" class="maxboxsize" name="data.attributes.passengers.value" value="{{data.attributes.passengers.value}}" data-dtype="Number" />
+      <input type="text" class="maxboxsize" name="system.attributes.passengers.value" value="{{actor.system.attributes.passengers.value}}" data-dtype="Number" />
 
       <label class="resource-label">{{localize "ALIENRPG.Cost"}}</label>
-      <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
+      <input type="text" class="cashboxsize currency" name="system.attributes.cost.value" value="{{actor.system.attributes.cost.value}}" />
       <br />
       <h3 class="resource-label">{{localize "ALIENRPG.Description"}}</h3>
-      <textarea name="data.attributes.comment.value" rows="18" data-dtype="String">{{data.attributes.comment.value}}</textarea>
+      <textarea name="system.attributes.comment.value" rows="18" data-dtype="String">{{actor.system.attributes.comment.value}}</textarea>
     </div>
 
 <div class="tab crew" data-group="primary" data-tab="crew">
