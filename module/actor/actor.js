@@ -970,9 +970,10 @@ export class alienrpgActor extends Actor {
     let resultImage = '';
     let critTable = false;
     let test1 = '';
-    // let tokenList = actor.getActiveTokens();
-    // let actingToken = tokenList[0];
-    // let actingCharName = actingToken?.data?.name ?? actor.name;
+    let hFatal = '';
+    let hHealTime = '';
+    let hTimeLimit = '';
+
     switch (type) {
       case 'character':
         atable = game.tables.getName('Critical injuries');
@@ -1001,8 +1002,7 @@ export class alienrpgActor extends Actor {
       roll.evaluate({ async: false });
       test1 = await atable.draw({ roll: roll, displayChat: false });
     }
-    // const test1 = await atable.draw({ displayChat: false });
-    // let critTable = false;
+
     try {
       if (game.settings.get('alienrpg-corerules', 'imported') === true) {
         critTable = true;
@@ -1081,13 +1081,22 @@ export class alienrpgActor extends Actor {
               };
 
               await this.createEmbeddedDocuments('Item', [rollData]);
+
+              //
+              // Prepare the data for the chat message
+              //
+
+              hFatal = testArray[3] != ' ' ? testArray[3] : 'None';
+              hHealTime = testArray[9] != ' ' ? testArray[9] : 'None';
+              hTimeLimit = testArray[5] != ' ' ? testArray[5] : 'None';
+
               htmlData = {
-                type: 'critical-injury',
+                actorname: actor.name,
                 img: resultImage,
                 name: `#${test1.roll._total} ${testArray[1]}`,
-                fatal: testArray[3],
-                timelimit: testArray[5],
-                healingtime: testArray[9],
+                fatal: hFatal,
+                timelimit: hTimeLimit,
+                healingtime: hHealTime,
                 effects: speanex,
               };
             }
@@ -1110,8 +1119,13 @@ export class alienrpgActor extends Actor {
                   'system.attributes.effects': testArray[1],
                 },
               ]);
+
+              //
+              // Prepare the data for the chat message
+              //
+
               htmlData = {
-                type: 'critical-injury',
+                actorname: actor.name,
                 img: resultImage,
                 name: `#${test1.roll._total} ${testArray[0]}`,
                 effects: testArray[1],
@@ -1119,6 +1133,8 @@ export class alienrpgActor extends Actor {
             }
             break;
         }
+
+        // Now push the correct chat message
 
         console.log(htmlData);
         const html = await renderTemplate(`systems/alienrpg/templates/chat/crit-roll-${actor.type}.html`, htmlData);

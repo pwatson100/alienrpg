@@ -147,6 +147,14 @@ a.entity-link {
   background: hsl(0, 0%, 9%);
 }
 
+.chat-message .critchat {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-light-primary);
+  padding: 3px 0;
+  color: var(--aliengreen);
+}
+
 .dice-tooltip {
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
