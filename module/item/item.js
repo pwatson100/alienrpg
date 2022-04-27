@@ -251,19 +251,18 @@ export class alienrpgItem extends Item {
             close: (html) => {
               if (confirmed) {
                 let shooter = parseInt(html.find('[name=FirerSelect]')[0].value);
-                actorid = fCrew[shooter].firerID;
+                let tactorid = fCrew[shooter].firerID;
                 let modifier = parseInt(html.find('[name=modifier]')[0].value);
                 let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
-                let aStressMod = parseInt(game.actors.get(actorid).system.header?.stress?.mod || 0);
-                let aStressVal = parseInt(game.actors.get(actorid).system.header?.stress?.value || 0);
-                let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(actorid).system.skills.rangedCbt.mod);
+                let aStressMod = parseInt(game.actors.get(tactorid).system.header?.stress?.mod || 0);
+                let aStressVal = parseInt(game.actors.get(tactorid).system.header?.stress?.value || 0);
+                let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(tactorid).system.skills.rangedCbt.mod);
                 let r2Data = parseInt(aStressVal + aStressMod + stressMod);
-                // label += ` (${fCrew[shooter].firerName}) `;
-                label += ` (${this.actor.name}) `;
+                label += ` (${fCrew[shooter].firerName}) `;
 
                 reRoll = false;
                 hostile = 'character';
-                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid, tactorid);
                 game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
               }
             },

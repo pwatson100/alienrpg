@@ -27,7 +27,7 @@ export class yze {
    * yze.yzeRoll(actortype, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
    */
-  static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid, itemid) {
+  static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid, itemid, tactorid) {
     // console.log('yze -> yzeRoll -> actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2', actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
     // *******************************************************
     // Store the version number of FVTT
@@ -257,6 +257,7 @@ export class yze {
         user: game.user.id,
         speaker: {
           actor: actorid,
+          alias: tactorid,
         },
         content: chatMessage,
         other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),

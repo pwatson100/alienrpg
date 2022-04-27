@@ -366,9 +366,10 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 
 //  Hook to watch for the Push button being pressed -   Need to refactor this so it does not fire all the time.
 //
+
 Hooks.on('renderChatMessage', (message, html, data) => {
   html.find('button.alien-Push-button').each((i, li) => {
-    // console.warn(li);
+    let hostile = '';
     li.addEventListener('click', function (ev) {
       let tarG = ev.target.previousElementSibling.checked;
 
@@ -381,7 +382,13 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         if (tarG) {
           reRoll = 'mPush';
         }
-        let hostile = actor.type;
+
+        if (actor.data.type != 'vehicles') {
+          hostile = actor.data.type;
+        } else {
+          hostile = 'character';
+        }
+
         let blind = false;
         //  Initialse the chat message
         let chatMessage = '';
@@ -393,6 +400,11 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         switch (actor.type) {
           case 'character':
             actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
+            break;
+
+          case 'vehicles':
+            let pilotData = game.actors.get(message.alias);
+            pilotData.update({ 'system.header.stress.value': pilotData.system.header.stress.value + 1 });
             break;
 
           default:
