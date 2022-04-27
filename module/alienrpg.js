@@ -368,7 +368,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 //
 Hooks.on('renderChatMessage', (message, html, data) => {
   html.find('button.alien-Push-button').each((i, li) => {
-    // console.warn(li);
+    let hostile = '';
     li.addEventListener('click', function (ev) {
       let tarG = ev.target.previousElementSibling.checked;
 
@@ -381,7 +381,13 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         if (tarG) {
           reRoll = 'mPush';
         }
-        let hostile = actor.data.type;
+
+        if (actor.data.type != 'vehicles') {
+          hostile = actor.data.type;
+        } else {
+          hostile = 'character';
+        }
+        // let hostile = actor.data.type;
         let blind = false;
         //  Initialse the chat message
         let chatMessage = '';
@@ -394,11 +400,10 @@ Hooks.on('renderChatMessage', (message, html, data) => {
           case 'character':
             actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
             break;
-          // case 'vehicles':
-          //   let pilotData = game.actors.get(dataset.actorid);
-
-          //   // actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
-          //   break;
+          case 'vehicles':
+            let pilotData = game.actors.get(message.alias);
+            pilotData.update({ 'data.header.stress.value': pilotData.data.data.header.stress.value + 1 });
+            break;
 
           default:
             return;
