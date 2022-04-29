@@ -64,9 +64,9 @@ export class ModuleImportDialog extends Dialog {
   static get menuData() {
     return {
       forceImport: {
-        name: `ALIENRPG.menu.forceImport.name`,
-        label: `ALIENRPG.menu.forceImport.label`,
-        hint: `ALIENRPG.menu.forceImport.hint`,
+        name: `ALIENRPG.forceImportName`,
+        label: `ALIENRPG.forceImportLabel`,
+        hint: `ALIENRPG.forceImportHint`,
       },
     };
   }
@@ -75,7 +75,7 @@ export class ModuleImportDialog extends Dialog {
   //     return game.modules.get('symbaroum5ecore').data.version;
   //   }
   static get requiredAlienrpgCoreVersion() {
-    return '2.0.1';
+    return '2.1.0';
   }
   static get manifestPath() {
     return `modules/${this.moduleName}/manifests/manifest.json`;
@@ -94,7 +94,6 @@ export class ModuleImportDialog extends Dialog {
     migrationVersions,
     migrationData,
     menuData,
-    // requiredAlienrpgCoreVersion,
     requiredAlienrpgCoreVersion,
     manifestPath,
     folderNameDict,
@@ -111,7 +110,6 @@ export class ModuleImportDialog extends Dialog {
       RollTable: {},
       Scene: {},
     };
-
     /* store provided identifying information */
     this.moduleName = moduleName;
     this.moduleTitle = moduleTitle;
@@ -129,7 +127,8 @@ export class ModuleImportDialog extends Dialog {
 
     /* latch current module/core version */
     this.moduleVersion = game.modules.get(this.moduleName).data.version;
-    this.coreVersion = game.modules.get('symbaroum5ecore').data.version;
+    // this.coreVersion = game.modules.get('alienprg').data.version;
+    this.coreVersion = game.system.data.version;
   }
 
   async render(...args) {
@@ -188,7 +187,7 @@ export class ModuleImportDialog extends Dialog {
     };
 
     this.data.buttons = buttons;
-
+    this.position.width = 573;
     return super.render(...args);
   }
 
@@ -269,14 +268,18 @@ export class ModuleImportDialog extends Dialog {
   }
 
   generateDialogHeader() {
-    return `<img src="modules/symbaroum5ecore/images/journal/symbaroum_onelayer.webp" style="height:127px; width:384px; border:0;" alt="" />`;
+    return `<img src="systems/alienrpg/images/icons/alienrpg.webp" style="height:137px; width:560px; border:0;" alt="" />`;
   }
 
   generateDialogFooter() {
-    return `<br><br>No part of this publication may be reproduced, distributed, stored in a retrieval system, or transmitted in any form by any means, electronic, mechanical, photocopying, recording or otherwise without the prior permission of the publishers.<br><br>
+    return `<br>No part of this publication may be reproduced, distributed, stored in a retrieval system, or transmitted in any form by any means, electronic, mechanical, photocopying, recording or otherwise without the prior permission of the publishers.<br><br>
+    <b> <sup>tm</sup> & © 2021 20th Century Studios Inc. All Rights Reserved</b> <br><br>
             Published by: <b>Free League Publishing</b><br>
-            Foundry Conversion by <b>Matthew Haentschke and Paul Watson</b><br>
-            <a href="https://frialigan.se/">Free League</a> <br><br>
+            Foundry Visualisation by <b>Paul Watson</b><br>
+            Thanks for their help and support to: <b>Thomas Boulton and Frank Graeff</b><br><br>
+                  <a href="https://frialigan.se/">Free League</a> <br><br> 
+                         <img src="systems/alienrpg/images/icons/fl-20cf-logo.png" height=189 width=289 style ='margin-left: 25%;'/>
+                         <br><br>
       Module Version: ${this.moduleVersion}
       <br><br>`;
   }
@@ -330,7 +333,6 @@ export class ModuleImportDialog extends Dialog {
   async importModule(folderMapping) {
     const manifest = await this.readManifest();
     const modulePacks = (await game.modules.get(this.moduleName)?.packs) ?? [];
-
     return Promise.all(
       modulePacks.map(async (p) => {
         let moduleFolderId = '';

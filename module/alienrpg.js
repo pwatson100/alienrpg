@@ -17,8 +17,9 @@ import { AlienConfig } from './alienRPGConfig.js';
 import AlienRPGCombat from './combat.js';
 import AlienRPGCTContext from './CBTracker.js';
 import { sendDevMessage } from './devmsg.js';
-// import { ImporterBase } from './importer-base.js';
-// import { CoreImporter } from './core-importer.js';
+import { ImporterBase } from './importer-base.js';
+import { COMMON } from './common.js';
+import { logger } from './logger.js';
 
 const euclidianDistances = function (segments, options = {}) {
   const canvasSize = canvas.dimensions.size;
@@ -33,6 +34,17 @@ const euclidianDistances = function (segments, options = {}) {
 
     return Math.hypot(x, y) * gridDistance;
   });
+};
+
+/*
+  Initialize Module
+*/
+COMMON.build();
+
+const SUB_MODULES = {
+  COMMON,
+  logger,
+  ImporterBase,
 };
 
 Hooks.on('canvasInit', function () {
@@ -51,18 +63,19 @@ Hooks.once('init', async function () {
     rollItemMacro,
     registerSettings,
     AlienRPGCTContext,
-    // ImporterBase,
-    // CoreImporter,
   };
 
-  // Set FVTT version constant
-  // const is07x = game.data.version.split('.')[1] === '7';
+  Object.values(SUB_MODULES).forEach((cl) => {
+    logger.info(COMMON.localize('alienrpg.Init.SubModule', { name: cl.NAME }));
+    cl.register();
+  });
 
+  // CONFIG.debug.hooks = false;
   // Global define for this so the roll data can be read by the reroll method.
   game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, tLabel: '', sCount: 0, multiPush: 0 };
   // console.warn('sCount init', game.alienrpg.rollArr.sCount);
 
-  /**s
+  /**
    * Set an initiative formula for the system
    * @type {String}
    */
@@ -269,7 +282,7 @@ Hooks.once('ready', async () => {
 
 // create/remove the quick access config button
 Hooks.once('renderSettings', () => {
-  AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
+  // AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
 });
 
 // ***************************

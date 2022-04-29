@@ -2,6 +2,7 @@ import { yze } from '../YZEDiceRoller.js';
 import { toNumber } from '../utils.js';
 import { ALIENRPG } from '../config.js';
 import { alienrpgrTableGet } from './rollTableData.js';
+import { logger } from '../logger.js';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -120,6 +121,8 @@ export class alienrpgActorSheet extends ActorSheet {
       default:
         break;
     }
+    logger.debug('Actor Sheet derived data:', data);
+
     //Return data to the sheet
     return data;
   }

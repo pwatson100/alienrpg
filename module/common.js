@@ -22,12 +22,12 @@ export class COMMON {
   static build() {}
 
   static register() {
-    // COMMON.globals();
+    COMMON.globals();
   }
 
   static globals() {
     /* register our namespace */
-    // globalThis.game.ALIENRPG = {
+    // globalThis.game.alienrpg = {
     //   debug: {},
     // };
   }
@@ -77,7 +77,6 @@ export class COMMON {
   }
 
   static addAbstract(cls, key) {
-    // debugger;
     if (!globalThis.game.alienrpg.abstract) globalThis.game.alienrpg.abstract = {};
     globalThis.game.alienrpg.abstract[key] = cls;
   }

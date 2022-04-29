@@ -1,6 +1,6 @@
 import { COMMON } from './common.js';
 import { ModuleImportDialog } from './apps/import-dialog.js';
-// import { logger } from './../logger.js';
+import { logger } from './logger.js';
 
 export class ImporterBase {
   static register() {
@@ -17,10 +17,10 @@ export class ImporterBase {
   }
 
   static async callHook(hook, ...args) {
-    // if ( CONFIG.debug.hooks ) {
-    //   logger.info(`Calling ${hook} hook with args:`);
-    //   logger.info(args);
-    // }
+    if (CONFIG.debug.hooks) {
+      logger.info(`Calling ${hook} hook with args:`);
+      logger.info(args);
+    }
     if (!Hooks._hooks.hasOwnProperty(hook)) return true;
     const fns = new Array(...Hooks._hooks[hook]);
     for (let fn of fns) {

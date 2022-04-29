@@ -1,6 +1,7 @@
 import { yze } from '../YZEDiceRoller.js';
 import { addSign } from '../utils.js';
 import { ALIENRPG } from '../config.js';
+import { logger } from '../logger.js';
 
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
@@ -57,6 +58,7 @@ export class alienrpgActor extends Actor {
       obj[key] = itemData;
       return obj;
     }, {});
+
     return rData;
   }
 
@@ -226,12 +228,8 @@ export class alienrpgActor extends Actor {
         switch (talName) {
           case 'NERVES OF STEEL':
             actorData.update({ 'data.header.stress.mod': (actorData.data.header.stress.mod -= 2) });
-
-            // setProperty(actorData, 'data.header.stress.mod', (data.header.stress.mod -= 2));
             break;
           case 'TOUGH':
-            // setProperty(actorData, 'data.header.health.mod', (data.header.health.mod += 2));
-
             actorData.update({ 'data.header.health.mod': (actorData.data.header.health.mod += 2) });
             break;
 
@@ -339,47 +337,11 @@ export class alienrpgActor extends Actor {
       'data.header.health.max': (data.header.health.max = data.attributes.str.value + data.header.health.mod),
     });
 
-    // setProperty(actorData, 'data.consumables.water.value', (data.consumables.water.value = totalWat));
-    // actorData.update({ 'data.consumables.water.value': (actorData.data.consumables.water.value = parseInt(totalWat || 0)) });
-
-    // setProperty(actorData, 'data.consumables.food.value', (data.consumables.food.value = totalFood));
-    // actorData.update({ 'data.consumables.food.value': (actorData.data.consumables.food.value = parseInt(totalFood || 0)) });
-
-    // setProperty(actorData, 'data.consumables.air.value', (data.consumables.air.value = totalAir));
-    // // actorData.update({ 'data.consumables.air.value': (actorData.data.consumables.air.value = parseInt(totalAir || 0)) });
-
-    // setProperty(actorData, 'data.consumables.power.value', (data.consumables.power.value = totalPower));
-    // // actorData.update({ 'data.consumables.power.value': (actorData.data.consumables.power.value = parseInt(totalPower || 0)) });
-
-    // setProperty(actorData, 'data.general.armor.value', (data.general.armor.value = totalAc));
-    // // actorData.update({ 'data.general.armor.value': (actorData.data.general.armor.value = parseInt(totalAc || 0)) });
-
-    // setProperty(actorData, 'data.general.radiation.calculatedMax', (data.general.radiation.calculatedMax = data.general.radiation.max));
-
-    // setProperty(actorData, 'data.general.xp.calculatedMax', (data.general.xp.calculatedMax = data.general.xp.max));
-
-    // setProperty(actorData, 'data.general.sp.calculatedMax', (data.general.sp.calculatedMax = data.general.sp.max));
-
-    // setProperty(actorData, 'data.general.starving.calculatedMax', (data.general.starving.calculatedMax = data.general.starving.max));
-
-    // setProperty(actorData, 'data.general.dehydrated.calculatedMax', (data.general.dehydrated.calculatedMax = data.general.dehydrated.max));
-
-    // setProperty(actorData, 'data.general.exhausted.calculatedMax', (data.general.exhausted.calculatedMax = data.general.exhausted.max));
-
-    // setProperty(actorData, 'data.general.freezing.calculatedMax', (data.general.freezing.calculatedMax = data.general.freezing.max));
-
     if (actorData.type === 'character') {
       // setProperty(actorData, 'data.general.panic.calculatedMax', (data.general.panic.calculatedMax = data.general.panic.max));
       actorData.update({ 'data.general.panic.calculatedMax': (data.general.panic.calculatedMax = data.general.panic.max) });
     }
 
-    // setProperty(actorData, 'data.header.health.max', (data.header.health.max = data.attributes.str.value + data.header.health.mod));
-
-    // if (this.hasCondition('overwatch')) {
-    //   setProperty(actorData, 'data.general.overwatch', true);
-    // } else {
-    //   setProperty(actorData, 'data.general.overwatch', false);
-    // }
     this._checkOverwatch(actorData);
   }
 
