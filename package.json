@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "CSS compiler for the Alien RPG system",
   "scripts": {
-    "build": "gulp",
-    "compile": "gulp css",
-    "watch": "gulp",
-    "gulp": "gulp"
   },
   "browserslist": [
     "last 3 versions"

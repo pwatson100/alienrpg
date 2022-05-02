@@ -19,13 +19,13 @@ export default class AlienRPGCombat extends Combat {
   async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
     // Structure input data
     ids = typeof ids === 'string' ? [ids] : ids;
-    const currentId = this.combatant.data._id;
+    const currentId = this.id;
     const draw = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false };
     let drawn = 0;
     // Iterate over Combatants, performing an initiative roll for each
     // const [updates, messages] = ids.reduce(
-    if (this.combatant.collection._source.length > 0) {
-      this.combatant.collection._source.forEach((inIt) => {
+    if (this.combatants.contents > 0) {
+      this.combatants.contents.forEach((inIt) => {
         if (inIt.initiative) {
           draw[inIt.initiative] = true;
           drawn++;

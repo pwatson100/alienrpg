@@ -20,6 +20,9 @@ import { sendDevMessage } from './devmsg.js';
 // import { ImporterBase } from './importer-base.js';
 // import { CoreImporter } from './core-importer.js';
 
+const includeRgx = new RegExp('/systems/alienrpg/module/');
+CONFIG.compatibility.includePatterns.push(includeRgx);
+
 const euclidianDistances = function (segments, options = {}) {
   const canvasSize = canvas.dimensions.size;
   const gridDistance = canvas.scene.data.gridDistance;

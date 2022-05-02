@@ -6,14 +6,14 @@ export class AlienRPGSetup {
     let changes = 0;
 
     function pExists() {
-      if (game.folders.contents.filter((entry) => entry.data.name == 'Alien Tables').length > 0) {
+      if (game.folders.contents.filter((entry) => entry.name == 'Alien Tables').length > 0) {
         return true;
       } else {
         return false;
       }
     }
     function itemExists() {
-      if (game.folders.contents.filter((entry) => entry.data.name == 'Skill-Stunts').length > 0) {
+      if (game.folders.contents.filter((entry) => entry.name == 'Skill-Stunts').length > 0) {
         return true;
       } else {
         return false;
@@ -83,8 +83,8 @@ export class AlienRPGSetup {
       );
     }
     // Copy the gm tables from the pack into the correct folder so it's available to the templates.
-    let skillStunts = game.folders.contents.filter((entry) => entry.data.name == 'Skill-Stunts');
-    if (skillStunts[0].content.length < 1) {
+    let skillStunts = game.folders.contents.filter((entry) => entry.name == 'Skill-Stunts');
+    if (skillStunts[0].contents.length < 1) {
       changes++;
       const sfolderId = await game.folders.getName('Skill-Stunts').id;
       let gItems = game.packs.find((p) => p.metadata.label === 'Skill-Stunts');
