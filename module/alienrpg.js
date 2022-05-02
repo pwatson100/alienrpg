@@ -17,11 +17,14 @@ import { AlienConfig } from './alienRPGConfig.js';
 import AlienRPGCombat from './combat.js';
 import AlienRPGCTContext from './CBTracker.js';
 import { sendDevMessage } from './devmsg.js';
-// import { ImporterBase } from './importer-base.js';
-// import { CoreImporter } from './core-importer.js';
+import { ImporterBase } from './importer-base.js';
+import { COMMON } from './common.js';
+import { logger } from './logger.js';
 
 const includeRgx = new RegExp('/systems/alienrpg/module/');
 CONFIG.compatibility.includePatterns.push(includeRgx);
+
+// CONFIG.debug.hooks = true;
 
 const euclidianDistances = function (segments, options = {}) {
   const canvasSize = canvas.dimensions.size;
@@ -42,21 +45,33 @@ Hooks.on('canvasInit', function () {
   SquareGrid.prototype.measureDistances = euclidianDistances;
 });
 
+/*
+  Initialize Module
+*/
+COMMON.build();
+
+const SUB_MODULES = {
+  COMMON,
+  logger,
+  ImporterBase,
+};
+
 Hooks.once('init', async function () {
   console.warn(`Initializing Alien RPG`);
   game.alienrpg = {
     alienrpgActor,
     alienrpgItem,
-    // alienrpgPlanetSheet,
-    // alienrpgCriticalInjury,
     yze,
     AlienConfig,
     rollItemMacro,
     registerSettings,
     AlienRPGCTContext,
-    // ImporterBase,
-    // CoreImporter,
   };
+
+  Object.values(SUB_MODULES).forEach((cl) => {
+    logger.info(COMMON.localize('alienrpg.Init.SubModule', { name: cl.NAME }));
+    cl.register();
+  });
 
   // Set FVTT version constant
   // const is07x = game.data.version.split('.')[1] === '7';

@@ -93,6 +93,15 @@ a.entity-link {
   color: $c-white;
   background: $c-black;
 }
+a.content-link {
+  color: $c-white;
+  background: $c-black;
+}
+
+.alienrpg a.content-link {
+  color: $c-white;
+  background: $c-black;
+}
 #chat .message {
   border: 1px solid hsl(0, 8%, 34%);
   border-radius: 1px;
