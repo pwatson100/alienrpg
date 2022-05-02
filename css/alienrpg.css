@@ -135,6 +135,16 @@ a.entity-link {
   background: hsl(0deg, 0%, 0%);
 }
 
+a.content-link {
+  color: hsl(0deg, 0%, 100%);
+  background: hsl(0deg, 0%, 0%);
+}
+
+.alienrpg a.content-link {
+  color: hsl(0deg, 0%, 100%);
+  background: hsl(0deg, 0%, 0%);
+}
+
 #chat .message {
   border: 1px solid hsl(0deg, 8%, 34%);
   border-radius: 1px;
