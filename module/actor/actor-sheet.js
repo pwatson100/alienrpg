@@ -119,6 +119,7 @@ export class alienrpgActorSheet extends ActorSheet {
       default:
         break;
     }
+    logger.debug('Actor Sheet derived data:', data);
     //Return data to the sheet
     return data;
   }

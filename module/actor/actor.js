@@ -116,38 +116,40 @@ export class alienrpgActor extends Actor {
   async _preCreate(data, options, user) {
     await super._preCreate(data, options, user);
     let tokenProto = {
-      'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      'token.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-      'token.name': `${data.name}`,
-      'token.bar1': { attribute: 'header.health' },
-      'token.bar2': { attribute: 'None' },
-      'token.vision': true,
-      'token.actorLink': true,
+      'prototypeToken.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      'prototypeToken.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+      'prototypeToken.name': `${data.name}`,
+      'prototypeToken.bar1': { attribute: 'header.health' },
+      'prototypeToken.bar2': { attribute: 'None' },
+      'prototypeToken.vision': true,
+      'prototypeToken.actorLink': true,
+      'prototypeToken.brightSight': '8',
+      'prototypeToken.dimSight': '12',
     };
     if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
       switch (data.type) {
         case 'character':
-          tokenProto['token.bar2'] = { attribute: 'header.stress' };
+          tokenProto['prototypeToken.bar2'] = { attribute: 'header.stress' };
           break;
         case 'vehicles':
-          tokenProto['token.bar1'] = { attribute: 'None' };
+          tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
           break;
         case 'creature':
-          tokenProto['token.actorLink'] = false;
-          tokenProto['token.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
-          tokenProto['token.vision'] = false;
+          tokenProto['prototypeToken.actorLink'] = false;
+          tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+          tokenProto['prototypeToken.vision'] = false;
           break;
         case 'synthetic':
           break;
         case 'territory':
-          tokenProto['token.bar1'] = { attribute: 'None' };
-          tokenProto['token.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
-          tokenProto['token.vision'] = false;
+          tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
+          tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
+          tokenProto['prototypeToken.vision'] = false;
           break;
       }
     }
-    this.data.update(tokenProto);
+    this.updateSource(tokenProto);
   }
 
   async _checkOverwatch(actorData) {

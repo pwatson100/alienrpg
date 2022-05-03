@@ -329,5 +329,11 @@
   "ALIENRPG.EmptyCrew":"No Crew",
   "ALIENRPG.fullCrew":"The Vehicle is full",
   "ALIENRPG.SelectFirer":"Select Firer",
-  "ALIENRPG.noCrewAssigned":"No Crew Have Been Assigned"
+  "ALIENRPG.noCrewAssigned":"No Crew Have Been Assigned",
+  "ALIENRPG.forceImportName": "Re-Run the Module Import",
+  "ALIENRPG.forceImportLabel": "Import Module Content",
+  "ALIENRPG.forceImportHint": "Forces a reimport to occur as if this is the module's initial launch.  This will not overwrite existing data but will replace missing data.",
+  "ALIENRPG.debug.name": "Log Debug Output",
+  "ALIENRPG.debug.hint": "Prints extended debug information to the console."
+
 }
