@@ -126,9 +126,9 @@ export class ModuleImportDialog extends Dialog {
     this.folderNameDict = folderNameDict;
 
     /* latch current module/core version */
-    this.moduleVersion = game.modules.get(this.moduleName).data.version;
+    this.moduleVersion = game.modules.get(this.moduleName).version;
     // this.coreVersion = game.modules.get('alienprg').data.version;
-    this.coreVersion = game.system.data.version;
+    this.coreVersion = game.system.version;
   }
 
   async render(...args) {

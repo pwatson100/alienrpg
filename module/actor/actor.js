@@ -842,10 +842,14 @@ export class alienrpgActor extends Actor {
         label = 'Armor';
         r2Data = 0;
       }
-
-      if (actor.data.token.disposition === -1) {
-        // hostile = true;
-        blind = true;
+      if (!actor.token) {
+        ui.notifications.notify(game.i18n.localize('ALIENRPG.NoToken'));
+        return;
+      } else {
+        if (actor.token.disposition === -1) {
+          // hostile = true;
+          blind = true;
+        }
       }
 
       // callpop upbox here to get any mods then update r1Data or rData as appropriate.
@@ -882,12 +886,12 @@ export class alienrpgActor extends Actor {
       chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AcidAttack') + '</h2>';
       chatMessage += `<h4><i>` + game.i18n.localize('ALIENRPG.AcidBlood') + `</i></h4>`;
       ChatMessage.create({
-        user: game.user.data._id,
+        user: game.user._id,
         speaker: {
           actor: actor.id,
         },
         content: chatMessage,
-        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
+        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
         blind: true,
       });
     }
@@ -902,10 +906,10 @@ export class alienrpgActor extends Actor {
 
     const customResults = await table.roll({ roll });
     chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
-    chatMessage += `<h4><i>${table.data.name}</i></h4>`;
-    chatMessage += `${customResults.results[0].data.text}`;
+    chatMessage += `<h4><i>${table.name}</i></h4>`;
+    chatMessage += `${customResults.results[0].text}`;
     ChatMessage.create({
-      user: game.user.data._id,
+      user: game.user._id,
       speaker: {
         actor: actor.id,
       },

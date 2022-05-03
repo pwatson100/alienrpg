@@ -442,7 +442,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 // // **********************************
 
 Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
-  let aTarget = game.actors.find((i) => i.data.name == tokenData.name);
+  let aTarget = game.actors.find((i) => i.name == tokenData.name);
   if (aTarget.system.header.npc) {
     document.data.update({ disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
   }
