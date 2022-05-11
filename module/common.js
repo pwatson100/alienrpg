@@ -1,3 +1,8 @@
+//
+// Distributed Module Class written by Matthew Haentschke as part of the symbaroum5ecore system.
+// Used with permission in accordance with the GPL 3 licence.
+//
+
 /* Common operations and utilities for all
  * core submodules
  */

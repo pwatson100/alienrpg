@@ -467,7 +467,8 @@ export class alienrpgActor extends Actor {
       if (dataset.spbutt === 'armor' && r1Data < 1 && !dataset.armorP && !dataset.armorDou) {
         return;
       } else if (dataset.spbutt === 'armor') {
-        label = 'Armor';
+        label = game.i18n.localize('ALIENRPG.Armor');
+        // label = 'Armor';
         r2Data = 0;
         reRoll = true;
         if (dataset.armorP === 'true') {
@@ -480,7 +481,7 @@ export class alienrpgActor extends Actor {
         }
       }
 
-      if (label === 'Radiation') {
+      if (label === game.i18n.localize('ALIENRPG.Radiation')) {
         r2Data = 0;
         reRoll = true;
         r1Data += 1;
@@ -1081,7 +1082,8 @@ export class alienrpgActor extends Actor {
       if (dataset.spbutt === 'armor' && r1Data < 1) {
         return;
       } else if (dataset.spbutt === 'armor') {
-        label = 'Armor';
+        // label = 'Armor';
+        label = game.i18n.localize('ALIENRPG.Armor');
         r2Data = 0;
       }
 
@@ -1135,14 +1137,31 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  async creatureAttackRoll(actor, dataset) {
+  async creatureAttackRoll(actor, dataset, manCrit) {
     let chatMessage = '';
+    let customResults = '';
     const targetTable = dataset.atttype;
+    if (targetTable === 'None') {
+      logger.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
+      return;
+    }
     const table = game.tables.contents.find((b) => b.name === targetTable);
     const roll = new Roll('1d6');
-    roll.evaluate({ async: false });
 
-    const customResults = await table.roll({ roll });
+    if (!manCrit) {
+      roll.evaluate({ async: false });
+      customResults = await table.roll({ roll });
+    } else {
+      const formula = manCrit;
+      const roll = new Roll(formula);
+      roll.evaluate({ async: false });
+      customResults = await table.roll({ roll });
+    }
+
+    // roll.evaluate({ async: false });
+
+    // const customResults = await table.roll({ roll });
+
     chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
     chatMessage += `<h4><i>${table.data.name}</i></h4>`;
     chatMessage += `${customResults.results[0].data.text}`;
@@ -1156,6 +1175,46 @@ export class alienrpgActor extends Actor {
       // whisper: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
       type: CONST.CHAT_MESSAGE_TYPES.ROLL,
     });
+  }
+
+  async creatureManAttackRoll(actor, dataset) {
+    function myRenderTemplate(template) {
+      let confirmed = false;
+      renderTemplate(template).then((dlg) => {
+        new Dialog({
+          title: game.i18n.localize('ALIENRPG.rollManCreatureAttack'),
+          content: dlg,
+          buttons: {
+            one: {
+              icon: '<i class="fas fa-check"></i>',
+              label: game.i18n.localize('ALIENRPG.DialRoll'),
+              callback: () => (confirmed = true),
+            },
+            four: {
+              icon: '<i class="fas fa-times"></i>',
+              label: game.i18n.localize('ALIENRPG.DialCancel'),
+              callback: () => (confirmed = false),
+            },
+          },
+          default: 'one',
+          close: (html) => {
+            if (confirmed) {
+              let manCrit = html.find('[name=manCrit]')[0]?.value;
+
+              if (manCrit == 'undefined') {
+                manCrit = '1';
+              }
+              if (!manCrit.match(/^[1-6]$/gm)) {
+                ui.notifications.warn(game.i18n.localize('ALIENRPG.rollManCreAttMax'));
+                return;
+              }
+              actor.creatureAttackRoll(actor, dataset, manCrit);
+            }
+          },
+        }).render(true);
+      });
+    }
+    myRenderTemplate('systems/alienrpg/templates/dialog/roll-manual-creature-attack-dialog.html');
   }
 
   morePanic(pCheck) {
@@ -1232,9 +1291,16 @@ export class alienrpgActor extends Actor {
           return;
         }
         break;
+      case 'creature':
+        atable = game.tables.getName(dataset.atttype);
+        if (atable === null || atable === undefined) {
+          ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
+          return;
+        }
+        break;
 
       default:
-        break;
+        return;
     }
     if (!manCrit) {
       test1 = await atable.draw({ displayChat: false });
@@ -1316,10 +1382,10 @@ export class alienrpgActor extends Actor {
                 type: 'critical-injury',
                 img: resultImage,
                 name: `#${test1.roll._total} ${testArray[1]}`,
-                'system.attributes.fatal': cFatal,
-                'system.attributes.timelimit.value': healTime,
-                'system.attributes.healingtime.value': testArray[9],
-                'system.attributes.effects': speanex,
+                'data.attributes.fatal': cFatal,
+                'data.attributes.timelimit.value': healTime,
+                'data.attributes.healingtime.value': testArray[9],
+                'data.attributes.effects': speanex,
               };
 
               await this.createEmbeddedDocuments('Item', [rollData]);
@@ -1345,6 +1411,7 @@ export class alienrpgActor extends Actor {
 
             break;
           case 'synthetic':
+          case 'creature':
             {
               resultImage = test1.results[0].data.img;
               factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
@@ -1358,7 +1425,7 @@ export class alienrpgActor extends Actor {
                   type: 'critical-injury',
                   img: resultImage,
                   name: `#${test1.roll._total} ${testArray[0]}`,
-                  'system.attributes.effects': testArray[1],
+                  'data.attributes.effects': testArray[1],
                 },
               ]);
 
@@ -1382,28 +1449,18 @@ export class alienrpgActor extends Actor {
         const html = await renderTemplate(`systems/alienrpg/templates/chat/crit-roll-${actor.type}.html`, htmlData);
 
         let chatData = {
-          user: game.user.id,
+          user: game.user.data._id,
           speaker: {
-            actor: actor.id,
+            actor: actor._id,
           },
           content: html,
-          other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
-          sound: CONFIG.sounds.dice,
-          type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-          rollMode: game.settings.get('core', 'rollMode'),
-        };
-
-        ChatMessage.create({
-          user: game.user.id,
-          speaker: {
-            actor: actor.id,
-          },
-          content: html,
-          other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
+          other: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
           sound: CONFIG.sounds.dice,
           type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-          rollMode: game.settings.get('core', 'rollMode'),
-        });
+        };
+
+        ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
+        return ChatMessage.create(chatData);
       }
     } catch (error) {}
   }
@@ -1458,10 +1515,18 @@ export class alienrpgActor extends Actor {
         }).render(true);
       });
     }
-    if (actor.type === 'character') {
-      myRenderTemplate('systems/alienrpg/templates/dialog/roll-char-manual-crit-dialog.html');
-    } else if (actor.type === 'synthetic') {
-      myRenderTemplate('systems/alienrpg/templates/dialog/roll-syn-manual-crit-dialog.html');
+    switch (actor.type) {
+      case 'character':
+        myRenderTemplate('systems/alienrpg/templates/dialog/roll-char-manual-crit-dialog.html');
+
+        break;
+      case 'synthetic':
+      case 'creature':
+        myRenderTemplate('systems/alienrpg/templates/dialog/roll-syn-manual-crit-dialog.html');
+        break;
+
+      default:
+        break;
     }
   }
 

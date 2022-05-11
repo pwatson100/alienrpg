@@ -97,6 +97,9 @@ export class alienrpgActorSheet extends ActorSheet {
 
       case 'creature':
         data.rTables = alienrpgrTableGet.rTableget();
+        data.cTables = alienrpgrTableGet.cTableget();
+        await this._prepareCreatureItems(data); // Return data to the sheet
+
         break;
 
       case 'synthetic':
@@ -247,6 +250,15 @@ export class alienrpgActorSheet extends ActorSheet {
     data.critInj = critInj;
     data.data.general.encumbrance = await this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
+  }
+  async _prepareCreatureItems(data) {
+    const critInj = [];
+
+    // Iterate through items, allocating to containers
+    for (let i of data.items) {
+      critInj.push(i);
+      data.critInj = critInj;
+    }
   }
   /*
    * Organize and classify Owned Items for Character sheets
@@ -553,6 +565,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Creature sheet
     html.find('.creature-attack-roll').click(this._creatureAttackRoll.bind(this));
+    html.find('.creature-attack-roll').contextmenu(this._creatureManAttackRoll.bind(this));
 
     html.find('.creature-acid-roll').click(this._creatureAcidRoll.bind(this));
 
@@ -580,14 +593,17 @@ export class alienrpgActorSheet extends ActorSheet {
     const allowedItems = {
       character: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
+      creature: ['critical-injury'],
       vehicles: ['item', 'weapon'],
       territory: ['planet-system'],
     };
     let allowed = true;
 
-    if (this.actor.type === 'creature') {
-      allowed = false;
-    } else if (!alwaysAllowedItems.includes(type)) {
+    // if (this.actor.type === 'creature') {
+    //   allowed = false;
+    // } else
+
+    if (!alwaysAllowedItems.includes(type)) {
       if (!allowedItems[this.actor.type].includes(type)) {
         allowed = false;
       }
@@ -905,17 +921,25 @@ export class alienrpgActorSheet extends ActorSheet {
 
   _creatureAcidRoll(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
+    // const element = event.currentTarget;
+    const dataset = event.currentTarget.dataset;
     this.actor.creatureAcidRoll(this.actor, dataset);
   }
 
   _creatureAttackRoll(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
+    // const element = event.currentTarget;
+    const dataset = event.currentTarget.dataset;
     this.actor.creatureAttackRoll(this.actor, dataset);
   }
+
+  _creatureManAttackRoll(event) {
+    event.preventDefault();
+    // const element = event.currentTarget;
+    const dataset = event.currentTarget.dataset;
+    this.actor.creatureManAttackRoll(this.actor, dataset);
+  }
+
   _dropCrew(actorId) {
     const crew = game.actors.get(actorId);
     const actorData = this.actor;

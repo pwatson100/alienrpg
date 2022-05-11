@@ -421,9 +421,14 @@ Updated the Vehicle sheet to:
 Updated MO/TH/UR Instructions (Please Read).
 
 Version 2.1.1
-Agenda, Talent and Specialty items now set a default icon.
+Agenda, Talent and Specialty items now set a default icon but can be changed as per a normal item..
 Increased width of crew position dropdown on the vehicle sheet as it was compressed when using Firefox. 
 Corrected bug that sets Token Vision on creatures to "true".
 Fixed issue with Armor rolls on the Inventory sheet for Synthetics. 
 Fixed issue with /em chat background colour.
 Corrected issue with Maestro add-on not working for Vehicle weapons. 
+Added Modular import class for premium modules with thanks to @honeybadger#2614
+Refactored Critical Injury code. 
+Added Critical Injury table dropdown and roll button to the Creature sheets (See MO/TH/ER Instructions for more information).
+Corrected Radiation rolling issue when using languages other than English.
+Skill and attribute abbreviation on the Character and Synthetic Skills tab are now localised.

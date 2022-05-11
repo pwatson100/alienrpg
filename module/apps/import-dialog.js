@@ -1,3 +1,9 @@
+//
+// Distributed Module Class written by Matthew Haentschke as part of the symbaroum5ecore system.
+// Import code written by @aMediocreDad and modified by Paul Watson
+// Used with permission in accordance with the GPL 3 licence.
+//
+
 import { COMMON } from '../common.js';
 // This object is intended to be used to convert the module pack names back to "Folder names".
 // It is referenced against the manifest.json so it is important that the key is the pack name and the value is the folder name.
