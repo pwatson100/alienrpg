@@ -2,7 +2,7 @@
   "id": "alienrpg",
   "title": "Alien RPG",
   "description": "The Alien RPG system for Foundry VTT!",
-  "authors": ["Paul Watson"],
+  "authors": [{"name": "Paul Watson"}],
   "url": "https://github.com/pwatson100/alienrpg",
   "flags": {},
   "version": "3.0.0",
