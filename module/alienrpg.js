@@ -395,11 +395,11 @@ Hooks.on('renderChatMessage', (message, html, data) => {
           reRoll = 'mPush';
         }
 
-        if (actor.data.type != 'vehicles') {
-          hostile = actor.data.type;
-        } else {
-          hostile = 'character';
-        }
+        // if (actor.data.type != 'vehicles') {
+        hostile = actor.data.type;
+        // } else {
+        //   hostile = 'character';
+        // }
         // let hostile = actor.data.type;
         let blind = false;
         //  Initialse the chat message
@@ -413,10 +413,10 @@ Hooks.on('renderChatMessage', (message, html, data) => {
           case 'character':
             actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
             break;
-          case 'vehicles':
-            let pilotData = game.actors.get(message.alias);
-            pilotData.update({ 'data.header.stress.value': pilotData.data.data.header.stress.value + 1 });
-            break;
+          // case 'vehicles':
+          //   let pilotData = game.actors.get(message.alias);
+          //   pilotData.update({ 'data.header.stress.value': pilotData.data.data.header.stress.value + 1 });
+          //   break;
 
           default:
             return;

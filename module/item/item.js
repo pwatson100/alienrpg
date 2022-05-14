@@ -292,6 +292,7 @@ export class alienrpgItem extends Item {
             close: (html) => {
               if (confirmed) {
                 let shooter = parseInt(html.find('[name=FirerSelect]')[0].value);
+                actorid = fCrew[shooter].firerID;
                 let tactorid = fCrew[shooter].firerID;
                 let modifier = parseInt(html.find('[name=modifier]')[0].value);
                 let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
@@ -299,8 +300,8 @@ export class alienrpgItem extends Item {
                 let aStressVal = parseInt(game.actors.get(tactorid).data.data.header?.stress?.value || 0);
                 let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(tactorid).data.data.skills.rangedCbt.mod);
                 let r2Data = parseInt(aStressVal + aStressMod + stressMod);
+                label += ` (${this.actor.name}) `;
                 // label += ` (${fCrew[shooter].firerName}) `;
-                label += ` (${fCrew[shooter].firerName}) `;
 
                 reRoll = false;
                 hostile = 'character';
