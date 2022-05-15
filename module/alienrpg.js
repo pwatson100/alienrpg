@@ -119,6 +119,9 @@ Hooks.once('init', async function () {
   Handlebars.registerHelper('toLowerCase', function (str) {
     return str.toLowerCase();
   });
+  Handlebars.registerHelper('addstats', function (v1, v2) {
+    return v1 + v2;
+  });
 
   Handlebars.registerHelper('if_isWeapons', function (sectionlabel, options) {
     // console.warn('helper triggered', sectionlabel);

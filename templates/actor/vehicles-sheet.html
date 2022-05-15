@@ -59,7 +59,7 @@
     </div>
     <br>
     <div >
-        {{#each crew}}
+        {{#each data.crew.occupants}}
           <div class="occupant {{#if (eq position "PASSENGER")}} passenger{{/if}}" data-crew-id="{{id}}" >
 
                   <div class="  grid-crew">
@@ -74,7 +74,7 @@
                       </div>
 
                   {{#ife position 'PILOT'}}
-                  <h3 for="actor.data.data.skills.piloting.value"  class="resource-label rollable Attr1 gC7"  data-roll="{{actor.data.data.skills.piloting.mod}}" data-actorid="{{actor.id}}"  data-label="{{@root.actor.name}} - {{localize "ALIENRPG.Skillpiloting"}}">{{localize "ALIENRPG.Skillpiloting"}}</h3>
+                  <h3 for="actor.data.data.skills.piloting.value"  class="resource-label rollable Attr1 gC7"  data-roll="{{addstats actor.data.data.skills.piloting.mod @root.actor.data.attributes.manoeuvrability.value}}" data-actorid="{{actor.id}}"  data-label="{{@root.actor.name}} - {{localize "ALIENRPG.Skillpiloting"}}">{{localize "ALIENRPG.Skillpiloting"}}</h3>
                   {{/ife}}
 
                       {{!-- Buttons --}}

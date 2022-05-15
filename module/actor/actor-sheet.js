@@ -211,9 +211,11 @@ export class alienrpgActorSheet extends ActorSheet {
           break;
 
         case 'armor':
-          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-          i.totalWeight = i.data.attributes.weight.value;
-          totalWeight += i.totalWeight;
+          if (item.header.active != 'fLocker') {
+            i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+            i.totalWeight = i.data.attributes.weight.value;
+            totalWeight += i.totalWeight;
+          }
           inventory[i.type].items.push(i);
           break;
 
@@ -341,7 +343,7 @@ export class alienrpgActorSheet extends ActorSheet {
   }
 
   async _prepareCrew(sheetData) {
-    sheetData.crew = sheetData.data.crew.occupants.reduce((arr, o) => {
+    sheetData.actor.data.crew.occupants = sheetData.data.crew.occupants.reduce((arr, o) => {
       o.actor = game.actors.get(o.id);
       // Creates a fake actor if it doesn't exist anymore in the database.
       if (!o.actor) {
@@ -354,7 +356,7 @@ export class alienrpgActorSheet extends ActorSheet {
       arr.push(o);
       return arr;
     }, []);
-    sheetData.crew.sort((o1, o2) => {
+    sheetData.actor.data.crew.occupants.sort((o1, o2) => {
       const pos1 = ALIENRPG.vehicle.crewPositionFlags.indexOf(o1.position);
       const pos2 = ALIENRPG.vehicle.crewPositionFlags.indexOf(o2.position);
       if (pos1 < pos2) return -1;
