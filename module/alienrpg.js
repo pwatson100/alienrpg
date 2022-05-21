@@ -124,7 +124,9 @@ Hooks.once('init', async function () {
   Handlebars.registerHelper('toLowerCase', function (str) {
     return str.toLowerCase();
   });
-
+  Handlebars.registerHelper('addstats', function (v1, v2) {
+    return v1 + v2;
+  });
   Handlebars.registerHelper('if_isWeapons', function (sectionlabel, options) {
     // console.warn('helper triggered', sectionlabel);
     if (sectionlabel === 'Weapons') {
@@ -401,11 +403,11 @@ Hooks.on('renderChatMessage', (message, html, data) => {
           reRoll = 'mPush';
         }
 
-        if (actor.data.type != 'vehicles') {
-          hostile = actor.data.type;
-        } else {
-          hostile = 'character';
-        }
+        // if (actor.data.type != 'vehicles') {
+        hostile = actor.data.type;
+        // } else {
+        //   hostile = 'character';
+        // }
 
         let blind = false;
         //  Initialse the chat message
@@ -420,10 +422,10 @@ Hooks.on('renderChatMessage', (message, html, data) => {
             actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
             break;
 
-          case 'vehicles':
-            let pilotData = game.actors.get(message.alias);
-            pilotData.update({ 'system.header.stress.value': pilotData.system.header.stress.value + 1 });
-            break;
+          // case 'vehicles':
+          //   let pilotData = game.actors.get(message.alias);
+          //   pilotData.update({ 'system.header.stress.value': pilotData.system.header.stress.value + 1 });
+          //   break;
 
           default:
             return;
@@ -459,11 +461,12 @@ Hooks.once('setup', function () {
   }
 });
 
-Hooks.on('dropActorSheetData', (actor, sheet, data) => {
+Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
   // When dropping something on a vehicle sheet.
   if (actor.type === 'vehicles') {
     // When dropping an actor on a vehicle sheet.
-    if (data.type === 'Actor') sheet._dropCrew(data.id);
+    let crew = await fromUuid(data.uuid);
+    if (data.type === 'Actor') sheet._dropCrew(crew.id);
   }
 });
 

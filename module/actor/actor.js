@@ -964,6 +964,261 @@ export class alienrpgActor extends Actor {
     return con;
   }
 
+  // async rollCrit(actor, type, dataset, manCrit) {
+  //   let atable = '';
+  //   let healTime = 0;
+  //   let cFatal = false;
+  //   let factorFour = '';
+  //   let testArray = '';
+  //   let rollheal = '';
+  //   let newHealTime = '';
+  //   let htmlData = '';
+  //   let resultImage = '';
+  //   let critTable = false;
+  //   let test1 = '';
+  //   let hFatal = '';
+  //   let hHealTime = '';
+  //   let hTimeLimit = '';
+
+  //   switch (type) {
+  //     case 'character':
+  //       atable = game.tables.getName('Critical injuries');
+  //       if (atable === null || atable === undefined) {
+  //         ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
+  //         return;
+  //       }
+
+  //       break;
+  //     case 'synthetic':
+  //       atable = game.tables.getName('Critical Injuries on Synthetics');
+  //       if (atable === null || atable === undefined) {
+  //         ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+  //         return;
+  //       }
+  //       break;
+
+  //     default:
+  //       break;
+  //   }
+  //   if (!manCrit) {
+  //     test1 = await atable.draw({ displayChat: false });
+  //   } else {
+  //     const formula = manCrit;
+  //     const roll = new Roll(formula);
+  //     roll.evaluate({ async: false });
+  //     test1 = await atable.draw({ roll: roll, displayChat: false });
+  //   }
+
+  //   try {
+  //     if (game.settings.get('alienrpg-corerules', 'imported') === true) {
+  //       critTable = true;
+  //     }
+  //   } catch (error) {}
+
+  //   try {
+  //     if (game.settings.get('alienrpg-starterset', 'imported') === true) {
+  //       critTable = true;
+  //     }
+  //   } catch (error) {}
+
+  //   try {
+  //     if (critTable) {
+  //       const messG = test1.results[0].text;
+  //       switch (type) {
+  //         case 'character':
+  //           {
+  //             resultImage = test1.results[0].img;
+  //             factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
+  //             testArray = factorFour.split(/[:] |<br \/>/gi);
+  //             let speanex = testArray[7];
+  //             if (testArray[9] != 'Permanent') {
+  //               if (testArray[9].length > 0) {
+  //                 rollheal = testArray[9].match(/^\[\[([0-9]d[0-9]+)]/)[1];
+  //                 newHealTime = testArray[9].match(/^\[\[([0-9]d[0-9]+)\]\] ?(.*)/)[2];
+  //                 testArray[9] = new Roll(`${rollheal}`).evaluate({ async: false }).result + ' ' + newHealTime;
+  //               } else {
+  //                 testArray[9] = 'None';
+  //               }
+  //             }
+  //             switch (testArray[3]) {
+  //               case 'Yes ':
+  //                 cFatal = true;
+  //                 break;
+  //               case 'Yes, –1 ':
+  //                 cFatal = true;
+  //                 break;
+  //               default:
+  //                 cFatal = false;
+  //                 break;
+  //             }
+
+  //             switch (testArray[5]) {
+  //               case game.i18n.localize('ALIENRPG.None') + ' ':
+  //                 healTime = 0;
+  //                 break;
+  //               case game.i18n.localize('ALIENRPG.OneRound') + ' ':
+  //                 healTime = 1;
+  //                 break;
+  //               case game.i18n.localize('ALIENRPG.OneTurn') + ' ':
+  //                 healTime = 2;
+  //                 break;
+  //               case game.i18n.localize('ALIENRPG.OneShift') + ' ':
+  //                 healTime = 3;
+  //                 break;
+  //               case game.i18n.localize('ALIENRPG.OneDay'):
+  //                 +' ';
+  //                 healTime = 3;
+  //                 break;
+  //               default:
+  //                 healTime = 0;
+  //                 break;
+  //             }
+  //             //
+  //             // Now create the item on the sheet
+  //             //
+  //             let rollData = {
+  //               type: 'critical-injury',
+  //               img: resultImage,
+  //               name: `#${test1.roll._total} ${testArray[1]}`,
+  //               'system.attributes.fatal': cFatal,
+  //               'system.attributes.timelimit.value': healTime,
+  //               'system.attributes.healingtime.value': testArray[9],
+  //               'system.attributes.effects': speanex,
+  //             };
+
+  //             await this.createEmbeddedDocuments('Item', [rollData]);
+
+  //             //
+  //             // Prepare the data for the chat message
+  //             //
+
+  //             hFatal = testArray[3] != ' ' ? testArray[3] : 'None';
+  //             hHealTime = testArray[9] != ' ' ? testArray[9] : 'None';
+  //             hTimeLimit = testArray[5] != ' ' ? testArray[5] : 'None';
+
+  //             htmlData = {
+  //               actorname: actor.name,
+  //               img: resultImage,
+  //               name: `#${test1.roll._total} ${testArray[1]}`,
+  //               fatal: hFatal,
+  //               timelimit: hTimeLimit,
+  //               healingtime: hHealTime,
+  //               effects: speanex,
+  //             };
+  //           }
+
+  //           break;
+  //         case 'synthetic':
+  //           {
+  //             resultImage = test1.results[0].img;
+  //             factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
+  //             testArray = factorFour.split(/[:] |<br \/>/gi);
+
+  //             //
+  //             // Now create the item on the sheet
+  //             //
+  //             await actor.createEmbeddedDocuments('Item', [
+  //               {
+  //                 type: 'critical-injury',
+  //                 img: resultImage,
+  //                 name: `#${test1.roll._total} ${testArray[0]}`,
+  //                 'system.attributes.effects': testArray[1],
+  //               },
+  //             ]);
+
+  //             //
+  //             // Prepare the data for the chat message
+  //             //
+
+  //             htmlData = {
+  //               actorname: actor.name,
+  //               img: resultImage,
+  //               name: `#${test1.roll._total} ${testArray[0]}`,
+  //               effects: testArray[1],
+  //             };
+  //           }
+  //           break;
+  //       }
+
+  //       // Now push the correct chat message
+
+  //       console.log(htmlData);
+  //       const html = await renderTemplate(`systems/alienrpg/templates/chat/crit-roll-${actor.type}.html`, htmlData);
+
+  //       let chatData = {
+  //         user: game.user.id,
+  //         speaker: {
+  //           actor: actor.id,
+  //         },
+  //         content: html,
+  //         other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
+  //         sound: CONFIG.sounds.dice,
+  //         type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+  //         rollMode: game.settings.get('core', 'rollMode'),
+  //       };
+
+  //       ChatMessage.create(chatData);
+  //     }
+  //   } catch (error) {}
+  // }
+
+  // async rollCritMan(actor, type, dataset) {
+  //   function myRenderTemplate(template) {
+  //     let confirmed = false;
+  //     renderTemplate(template).then((dlg) => {
+  //       new Dialog({
+  //         title: game.i18n.localize('ALIENRPG.RollManCrit'),
+  //         content: dlg,
+  //         buttons: {
+  //           one: {
+  //             icon: '<i class="fas fa-check"></i>',
+  //             label: game.i18n.localize('ALIENRPG.DialRoll'),
+  //             callback: () => (confirmed = true),
+  //           },
+  //           four: {
+  //             icon: '<i class="fas fa-times"></i>',
+  //             label: game.i18n.localize('ALIENRPG.DialCancel'),
+  //             callback: () => (confirmed = false),
+  //           },
+  //         },
+  //         default: 'one',
+  //         close: (html) => {
+  //           if (confirmed) {
+  //             let manCrit = html.find('[name=manCrit]')[0]?.value;
+
+  //             if (manCrit == 'undefined') {
+  //               manCrit = '1';
+  //             }
+  //             switch (type) {
+  //               case 'synthetic':
+  //                 if (manCrit > 6) {
+  //                   ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+  //                   return;
+  //                 }
+  //                 break;
+
+  //               case 'character':
+  //                 if (!manCrit.match(/^[1-6]?[1-6]$/gm)) {
+  //                   ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+  //                   return;
+  //                 }
+  //                 break;
+  //               default:
+  //                 break;
+  //             }
+  //             actor.rollCrit(actor, type, dataset, manCrit);
+  //           }
+  //         },
+  //       }).render(true);
+  //     });
+  //   }
+  //   if (actor.type === 'character') {
+  //     myRenderTemplate('systems/alienrpg/templates/dialog/roll-char-manual-crit-dialog.html');
+  //   } else if (actor.type === 'synthetic') {
+  //     myRenderTemplate('systems/alienrpg/templates/dialog/roll-syn-manual-crit-dialog.html');
+  //   }
+  // }
+
   async rollCrit(actor, type, dataset, manCrit) {
     let atable = '';
     let healTime = 0;
@@ -996,9 +1251,16 @@ export class alienrpgActor extends Actor {
           return;
         }
         break;
+      case 'creature':
+        atable = game.tables.getName(dataset.atttype);
+        if (atable === null || atable === undefined) {
+          ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
+          return;
+        }
+        break;
 
       default:
-        break;
+        return;
     }
     if (!manCrit) {
       test1 = await atable.draw({ displayChat: false });
@@ -1079,11 +1341,11 @@ export class alienrpgActor extends Actor {
               let rollData = {
                 type: 'critical-injury',
                 img: resultImage,
-                name: `#${test1.roll._total} ${testArray[1]}`,
-                'system.attributes.fatal': cFatal,
-                'system.attributes.timelimit.value': healTime,
-                'system.attributes.healingtime.value': testArray[9],
-                'system.attributes.effects': speanex,
+                name: `#${test1.roll.total} ${testArray[1]}`,
+                'data.attributes.fatal': cFatal,
+                'data.attributes.timelimit.value': healTime,
+                'data.attributes.healingtime.value': testArray[9],
+                'data.attributes.effects': speanex,
               };
 
               await this.createEmbeddedDocuments('Item', [rollData]);
@@ -1099,7 +1361,7 @@ export class alienrpgActor extends Actor {
               htmlData = {
                 actorname: actor.name,
                 img: resultImage,
-                name: `#${test1.roll._total} ${testArray[1]}`,
+                name: `#${test1.roll.total} ${testArray[1]}`,
                 fatal: hFatal,
                 timelimit: hTimeLimit,
                 healingtime: hHealTime,
@@ -1109,6 +1371,7 @@ export class alienrpgActor extends Actor {
 
             break;
           case 'synthetic':
+          case 'creature':
             {
               resultImage = test1.results[0].img;
               factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
@@ -1121,8 +1384,8 @@ export class alienrpgActor extends Actor {
                 {
                   type: 'critical-injury',
                   img: resultImage,
-                  name: `#${test1.roll._total} ${testArray[0]}`,
-                  'system.attributes.effects': testArray[1],
+                  name: `#${test1.roll.total} ${testArray[0]}`,
+                  'data.attributes.effects': testArray[1],
                 },
               ]);
 
@@ -1133,7 +1396,7 @@ export class alienrpgActor extends Actor {
               htmlData = {
                 actorname: actor.name,
                 img: resultImage,
-                name: `#${test1.roll._total} ${testArray[0]}`,
+                name: `#${test1.roll.total} ${testArray[0]}`,
                 effects: testArray[1],
               };
             }
@@ -1154,10 +1417,10 @@ export class alienrpgActor extends Actor {
           other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
           sound: CONFIG.sounds.dice,
           type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-          rollMode: game.settings.get('core', 'rollMode'),
         };
 
-        ChatMessage.create(chatData);
+        ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
+        return ChatMessage.create(chatData);
       }
     } catch (error) {}
   }
@@ -1212,13 +1475,20 @@ export class alienrpgActor extends Actor {
         }).render(true);
       });
     }
-    if (actor.type === 'character') {
-      myRenderTemplate('systems/alienrpg/templates/dialog/roll-char-manual-crit-dialog.html');
-    } else if (actor.type === 'synthetic') {
-      myRenderTemplate('systems/alienrpg/templates/dialog/roll-syn-manual-crit-dialog.html');
+    switch (actor.type) {
+      case 'character':
+        myRenderTemplate('systems/alienrpg/templates/dialog/roll-char-manual-crit-dialog.html');
+
+        break;
+      case 'synthetic':
+      case 'creature':
+        myRenderTemplate('systems/alienrpg/templates/dialog/roll-syn-manual-crit-dialog.html');
+        break;
+
+      default:
+        break;
     }
   }
-
   /* ------------------------------------------- */
   /*  Vehicle: Crew Management                   */
   /* ------------------------------------------- */

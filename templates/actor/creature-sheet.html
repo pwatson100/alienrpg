@@ -67,6 +67,20 @@
       <h3 class="resource-label">{{localize "ALIENRPG.SpecialAbilities"}}</h3>
       <textarea name="system.general.special.value" rows="20" data-dtype="String">{{actor.system.general.special.value}}</textarea>
 
+<label class="resource-label" >{{localize "ALIENRPG.CriticalInjuries"}}</label>
+      <div class="grid-rTables" style="margin-top: 5px;">
+        <select class="select-css rTable1" name="system.cTables" data-atttype="{{actor.system.cTables}}">
+          {{#select actor.system.cTables}}
+          <!-- <option value=""></option> -->
+          {{#each cTables as |k v|}}
+          <option value="{{k}}">{{k}}</option>
+          {{/each}} {{/select}}
+        </select>
+        <button type="button" class="alien-crit-button rTable2 rollCrit" data-atttype="{{actor.system.cTables}}">{{localize "ALIENRPG.RollCrit"}}</button>
+
+      </div>
+             <div class="Item11 items-list" style="overflow: auto; margin-top:5px ">{{> "systems/alienrpg/templates/actor/tabs/critical-inj.html" }}</div>
+
     </div>
 
     {{!-- Notes Tab --}}

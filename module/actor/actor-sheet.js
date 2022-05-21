@@ -2,7 +2,7 @@ import { yze } from '../YZEDiceRoller.js';
 import { toNumber } from '../utils.js';
 import { ALIENRPG } from '../config.js';
 import { alienrpgrTableGet } from './rollTableData.js';
-
+import { logger } from '../logger.js';
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -72,13 +72,13 @@ export class alienrpgActorSheet extends ActorSheet {
     let actor = this.object;
     data.actor = actor.toJSON();
 
-    data.items = this.actor.items.map((i) => {
+    data.actor.system.items = this.actor.items.map((i) => {
       i.labels = i.labels;
       return i;
     });
-    data.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-    data.labels = this.actor.labels || {};
-    data.filters = this._filters;
+    data.actor.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+    data.actor.system.labels = this.actor.labels || {};
+    data.actor.system.filters = this._filters;
 
     switch (this.actor.type) {
       case 'character':
@@ -97,6 +97,8 @@ export class alienrpgActorSheet extends ActorSheet {
 
       case 'creature':
         data.rTables = alienrpgrTableGet.rTableget();
+        data.cTables = alienrpgrTableGet.cTableget();
+        await this._prepareCreatureItems(data); // Return data to the sheet
         break;
 
       case 'synthetic':
@@ -366,7 +368,7 @@ export class alienrpgActorSheet extends ActorSheet {
       armor: { section: 'Armor', label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'), items: [], dataset: { type: 'armor' } },
     };
     // Partition items by category
-    let [items, Weapons, Armor] = data.items.reduce(
+    let [items, Weapons, Armor] = data.actor.system.items.reduce(
       (arr, item) => {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
@@ -392,7 +394,7 @@ export class alienrpgActorSheet extends ActorSheet {
     let totalWeight = 0;
 
     // Iterate through items, allocating to containers
-    for (let i of data.items) {
+    for (let i of data.actor.system.items) {
       let item = i.system;
       switch (i.type) {
         case 'talent':
@@ -534,6 +536,16 @@ export class alienrpgActorSheet extends ActorSheet {
     }
 
     data.inventory = Object.values(inventory);
+  }
+
+  async _prepareCreatureItems(data) {
+    const critInj = [];
+
+    // Iterate through items, allocating to containers
+    for (let i of data.actor.system.items) {
+      critInj.push(i);
+      data.critInj = critInj;
+    }
   }
 
   async _prepareCrew(sheetData) {
