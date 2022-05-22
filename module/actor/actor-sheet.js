@@ -538,14 +538,14 @@ export class alienrpgActorSheet extends ActorSheet {
     data.inventory = Object.values(inventory);
   }
 
-  async _prepareCreatureItems(data) {
+  async _prepareCreatureItems(sheetData) {
     const critInj = [];
 
     // Iterate through items, allocating to containers
-    for (let i of data.actor.system.items) {
+    for (let i of sheetData.actor.system.items) {
       critInj.push(i);
-      data.critInj = critInj;
     }
+    sheetData.critInj = critInj;
   }
 
   async _prepareCrew(sheetData) {

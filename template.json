@@ -456,12 +456,17 @@
         "acidSplash": {
           "value": "-",
           "label": "Acid Splash"
+        },
+        "critInj": {
+          "value": ""
         }
       },
       "notes": {
         "notes": ""
       },
-      "rTables": ""
+      "rTables": "",
+      "cTables": ""
+
     },
     "vehicles": {
       "header": {

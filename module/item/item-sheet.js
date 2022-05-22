@@ -56,7 +56,7 @@ export class alienrpgItemSheet extends ItemSheet {
       default:
         break;
     }
-
+    logger.debug('Item Sheet derived data:', item);
     return item;
   }
 

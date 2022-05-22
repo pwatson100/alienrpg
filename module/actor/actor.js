@@ -1342,10 +1342,10 @@ export class alienrpgActor extends Actor {
                 type: 'critical-injury',
                 img: resultImage,
                 name: `#${test1.roll.total} ${testArray[1]}`,
-                'data.attributes.fatal': cFatal,
-                'data.attributes.timelimit.value': healTime,
-                'data.attributes.healingtime.value': testArray[9],
-                'data.attributes.effects': speanex,
+                'system.attributes.fatal': cFatal,
+                'system.attributes.timelimit.value': healTime,
+                'system.attributes.healingtime.value': testArray[9],
+                'system.attributes.effects': speanex,
               };
 
               await this.createEmbeddedDocuments('Item', [rollData]);
@@ -1385,7 +1385,7 @@ export class alienrpgActor extends Actor {
                   type: 'critical-injury',
                   img: resultImage,
                   name: `#${test1.roll.total} ${testArray[0]}`,
-                  'data.attributes.effects': testArray[1],
+                  'system.attributes.effects': testArray[1],
                 },
               ]);
 
@@ -1405,7 +1405,7 @@ export class alienrpgActor extends Actor {
 
         // Now push the correct chat message
 
-        console.log(htmlData);
+        // console.log(htmlData);
         const html = await renderTemplate(`systems/alienrpg/templates/chat/crit-roll-${actor.type}.html`, htmlData);
 
         let chatData = {
