@@ -3,8 +3,8 @@ import registerActors from './register-actors.js';
 import { alienrpgActor } from './actor/actor.js';
 import { alienrpgItem } from './item/item.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
-import { alienrpgPlanetSheet } from './item/planet-system-sheet.js';
-import { alienrpgCriticalInjury } from './item/critical-injury-sheet.js';
+// import { alienrpgPlanetSheet } from './item/planet-system-sheet.js';
+// import { alienrpgCriticalInjury } from './item/critical-injury-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
@@ -56,8 +56,8 @@ Hooks.once('init', async function () {
   game.alienrpg = {
     alienrpgActor,
     alienrpgItem,
-    alienrpgPlanetSheet,
-    alienrpgCriticalInjury,
+    // alienrpgPlanetSheet,
+    // alienrpgCriticalInjury,
     yze,
     AlienConfig,
     rollItemMacro,
@@ -97,9 +97,9 @@ Hooks.once('init', async function () {
 
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty'], makeDefault: false });
-  Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
-  Items.registerSheet('alienrpg', alienrpgCriticalInjury, { types: ['critical-injury'], makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty', 'planet-system', 'critical-injury'], makeDefault: false });
+  // Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
+  // Items.registerSheet('alienrpg', alienrpgCriticalInjury, { types: ['critical-injury'], makeDefault: false });
   registerSettings();
   registerActors();
 

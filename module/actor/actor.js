@@ -1445,7 +1445,6 @@ export class alienrpgActor extends Actor {
 
         // Now push the correct chat message
 
-        console.log(htmlData);
         const html = await renderTemplate(`systems/alienrpg/templates/chat/crit-roll-${actor.type}.html`, htmlData);
 
         let chatData = {

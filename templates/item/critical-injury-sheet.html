@@ -32,16 +32,15 @@
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="effect">{{localize "ALIENRPG.Effect"}}</a>
-    {{!-- <a class="item" data-tab="notes">{{localize "ALIENRPG.Notes"}}</a> --}}
     <a class="item" data-tab="modifiers">{{localize "ALIENRPG.Modifiers"}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
-  <section class="sheet-body">
+  <section class="sheet-body" style="height: 300px">
     {{!-- Attributes Tab --}}
     <div class="tab effect" data-group="primary" data-tab="effect">
       <h2 class="resource-label">{{localize "ALIENRPG.Effect"}}</h2>
-      <div class="tab item" data-group="primary" data-tab="effect">
+      <div class="tab item" data-group="primary" data-tab="effect" style="height: 250px">
         <!-- prettier-ignore -->
         {{editor content=data.attributes.effects target="data.attributes.effects" button=true owner=owner editable=true}}
       </div>
