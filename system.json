@@ -50,6 +50,11 @@
       "lang": "pt-BR",
       "name": "Português (Brasil)",
       "path": "lang/pt-br.json"
+    },
+    {
+      "lang": "it",
+      "name": "italiano",
+      "path": "lang/it.json"
     }
   ],
   "packs": [
