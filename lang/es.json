@@ -86,10 +86,8 @@
     "DAMAGE": "DAÑO",
     "DataStorage": "Almacenamiento de datos",
     "Days": "Dias",
-    "debug": {
-      "hint": "Imprime información de depuración extendida en la consola.",
-      "name": "Registro de salida de depuración"
-    },
+    "debug.hint": "Imprime información de depuración extendida en la consola.",
+    "debug.name": "Registro de salida de depuración",
     "DefMacro": "Sintaxis de macros abreviada",
     "DefMacroHint": "Habilitar sintaxis de macros abreviada que permita hacer referencia a atributos directamente, por ejemplo @str en vez de @attributes.str.value. Desactiva esta opción si necesitas hacer referencia al modelo de atributos completo, por ejemplo @attributes.str.label.",
     "DefProto": "Configuración predeterminada de token",

@@ -86,10 +86,8 @@
     "DAMAGE": "DANO",
     "DataStorage": "Armazenamento de Dados",
     "Days": "Dias",
-    "debug": {
-      "hint": "Imprime informações de depuração estendidas no console.",
-      "name": "Saída de depuração de registro"
-    },
+    "debug.hint": "Imprime informações de depuração estendidas no console.",
+    "debug.name": "Saída de depuração de registro",
     "DefMacro": "Abreviar Sintaxe de Macro",
     "DefMacroHint": "Habilita uma sintaxe de macro abreviada que permite referenciar atributos diretamente, por exemplo @str em vez de @attribute.str.value. Desative esta configuração se precisar fazer referência ao modelo de atributo completo, por exemplo @attribute.str.label.",
     "DefProto": "Configuração do Protótipo de Token",

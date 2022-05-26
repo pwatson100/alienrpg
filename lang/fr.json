@@ -86,10 +86,8 @@
     "DAMAGE": "DÉGÂTS",
     "DataStorage": "Stockage de Données",
     "Days": "Journées",
-    "debug": {
-      "hint": "Imprime des informations de débogage étendues sur la console.",
-      "name": "Sortie de débogage du journal"
-    },
+    "debug.hint": "Imprime des informations de débogage étendues sur la console.",
+    "debug.name": "Sortie de débogage du journal",
     "DefMacro": "Syntaxe de macro raccourcie",
     "DefMacroHint": "Activez une syntaxe de macro raccourcie qui permet de référencer directement les attributs, par exemple @str au lieu de @ attributes.str.value. Désactivez ce paramètre si vous avez besoin de pouvoir référencer le modèle d'attribut complet, par exemple @ attributes.str.label.",
     "DefProto": "Paramètres de jeton de prototype par défaut",

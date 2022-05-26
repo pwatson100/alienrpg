@@ -86,10 +86,8 @@
     "DAMAGE": "损害",
     "DataStorage": "数据储存装置",
     "Days": "天",
-    "debug": {
-      "hint": "将扩展调试信息打印到控制台。",
-      "name": "日志调试输出"
-    },
+    "debug.hint": "将扩展调试信息打印到控制台。",
+    "debug.name": "日志调试输出",
     "DefMacro": "缩减Macro语法",
     "DefMacroHint": "启用更为精简的macro语法，这回允许你直接引用各类属性，例如：@str而非@attributes.str.value. 如果你需要各项属性引用完整的属性model，例如@attributes.str.label，那么请禁用此项。",
     "DefProto": "默认模板指示物设定",

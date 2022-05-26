@@ -1,7 +1,7 @@
 {
   "ALIENRPG": {
     "AbbreviationKg": "kg",
-    "AbilityAbbagl": null,
+    "AbilityAbbagl": "agl",
     "AbilityAbbemp": "emp",
     "AbilityAbbstr": "力量",
     "AbilityAbbwit": "wit",
@@ -86,10 +86,8 @@
     "DAMAGE": "损害",
     "DataStorage": "數據儲存裝置",
     "Days": "天",
-    "debug": {
-      "hint": "将扩展调试信息打印到控制台。",
-      "name": "日志调试输出"
-    },
+    "debug.hint": "将扩展调试信息打印到控制台。",
+    "debug.name": "日志调试输出",
     "DefMacro": "縮減Macro語法",
     "DefMacroHint": "啟用更為精簡的macro語法，這回允許你直接引用各類屬性，例如：@str而非@attributes.str.value. 如果你需要各項屬性引用完整的屬性model，例如@attributes.str.label，那麼請禁用此項。",
     "DefProto": "默認模板指示物設定",
