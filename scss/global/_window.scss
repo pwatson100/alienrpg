@@ -93,6 +93,15 @@ a.entity-link {
   color: $c-white;
   background: $c-black;
 }
+a.content-link {
+  color: $c-white;
+  background: $c-black;
+}
+
+.alienrpg a.content-link {
+  color: $c-white;
+  background: $c-black;
+}
 #chat .message {
   border: 1px solid hsl(0, 8%, 34%);
   border-radius: 1px;
@@ -141,6 +150,18 @@ a.entity-link {
 
 .chat-message.blind {
   background: hsl(0, 0%, 9%);
+}
+
+.chat-message.emote {
+  background: hsl(0, 0%, 9%);
+}
+
+.chat-message .critchat {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-light-primary);
+  padding: 3px 0;
+  color: var(--aliengreen);
 }
 
 .dice-tooltip {
@@ -257,7 +278,7 @@ a.inline-roll {
   &:focus {
     // color: black;
     text-shadow: 0 0 20px hsl(0, 100%, 50%);
-    font-size: 110%;
+    font-size: 95%;
     cursor: pointer;
   }
 }
@@ -486,17 +507,17 @@ button:focus {
 //   color: powderblue;
 // }
 
-.headng {
+.alienrpg .headng {
   text-align: center;
   color: var(--aliengreen);
   font-size: xx-large;
 }
-.headng2 {
+.alienrpg .headng2 {
   text-align: center;
   color: var(--aliengreen);
   /* font-size: x-large; */
 }
-.headng3 {
+.alienrpg .headng3 {
   color: var(--aliengreen);
 }
 

@@ -5,7 +5,7 @@
   "author": "Paul Watson",
   "url": "https://github.com/pwatson100/alienrpg",
   "flags": {},
-  "version": "2.1.0",
+  "version": "2.1.1",
   "minimumCoreVersion": "0.8.5",
   "compatibleCoreVersion": "9",
   "scripts": [],
@@ -50,6 +50,11 @@
       "lang": "pt-BR",
       "name": "Português (Brasil)",
       "path": "lang/pt-br.json"
+    },
+    {
+      "lang": "it",
+      "name": "italiano",
+      "path": "lang/it.json"
     }
   ],
   "packs": [
@@ -57,7 +62,7 @@
       "name": "tables_gm",
       "label": "Tables (GM)",
       "path": "packs/AlienRPG-tables_gm.db",
-      "entity": "RollTable",
+      "type": "RollTable",
       "module": "AlienRPG",
       "private": false
     },
@@ -65,7 +70,7 @@
       "name": "mother_instructions",
       "label": "Mother Instructions",
       "path": "packs/AlienRPG-mother-instructions.db",
-      "entity": "JournalEntry",
+      "type": "JournalEntry",
       "module": "AlienRPG",
       "private": false
     },
@@ -73,7 +78,7 @@
       "name": "alien",
       "label": "Alien",
       "path": "packs/AlienRPG-alien.db",
-      "entity": "Macro",
+      "type": "Macro",
       "module": "AlienRPG",
       "private": false
     },
@@ -81,7 +86,7 @@
       "name": "skill-stunts",
       "label": "Skill-Stunts",
       "path": "packs/AlienRPG-skill-stunts.db",
-      "entity": "Item",
+      "type": "Item",
       "module": "AlienRPG",
       "private": false
     }
@@ -89,8 +94,10 @@
   "system": [],
   "dependencies": [],
   "socket": true,
-  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/2.1.0/system.json",
-  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.1.0/master.zip",
+
+  "manifest": "https://github.com/pwatson100/alienrpg/releases/latest/download/system.json",
+  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.1.1/master.zip",
+
   "protected": false,
   "initiative": "1d10",
   "gridDistance": 5,

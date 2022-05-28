@@ -1,6 +1,8 @@
 import { yze } from '../YZEDiceRoller.js';
 import { toNumber } from '../utils.js';
 import { ALIENRPG } from '../config.js';
+import { alienrpgrTableGet } from './rollTableData.js';
+import { logger } from '../logger.js';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -16,23 +18,31 @@ export class alienrpgActorSheet extends ActorSheet {
      */
     this._filters = {
       inventory: new Set(),
+      planetsystem: new Set(),
     };
   }
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 800,
-      height: 900,
+      height: 900 - 'min-content',
+      // height: 900,
+      // Creature sheet size
+      //       width: 750,
+      //       height: 650,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
 
   get template() {
     const path = 'systems/alienrpg/templates/actor/';
-    return `${path}actor-sheet.html`;
+    // return `${path}actor-sheet.html`;
+    // unique item sheet by type, like `weapon-sheet.html`.
+
+    return `${path}/${this.actor.data.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */
@@ -71,16 +81,50 @@ export class alienrpgActorSheet extends ActorSheet {
     data.labels = this.actor.labels || {};
     data.filters = this._filters;
 
-    data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
-    data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
-    data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
-    data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
-    data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
-    data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
-    data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
-    data.actor.data.general.panic.icon = this._getContitionIcon(data.actor.data.general.panic.value, 'panic');
-    // Prepare items.
-    await this._prepareItems(data); // Return data to the sheet
+    switch (this.actor.data.type) {
+      case 'character':
+        data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
+        data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
+        data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
+        data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
+        data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
+        data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
+        data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
+        data.actor.data.general.panic.icon = this._getContitionIcon(data.actor.data.general.panic.value, 'panic');
+        // Prepare items.
+        await this._prepareItems(data); // Return data to the sheet
+        break;
+
+      case 'creature':
+        data.rTables = alienrpgrTableGet.rTableget();
+        data.cTables = alienrpgrTableGet.cTableget();
+        await this._prepareCreatureItems(data); // Return data to the sheet
+
+        break;
+
+      case 'synthetic':
+        data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
+        data.actor.data.general.xp.icon = this._getClickIcon(data.actor.data.general.xp.value, 'xp');
+        data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
+        // Prepare items.
+        await this._prepareItems(data); // Return data to the sheet
+        break;
+      case 'territory':
+        // Prepare items.
+        await this._prepareTerritoryItems(data); // Return data to the sheet
+        break;
+
+      case 'vehicles':
+        // Return data to the sheet
+        await this._prepareVehicleItems(data); // Return data to the sheet
+        await this._prepareCrew(data); // Return data to the sheet
+
+        break;
+
+      default:
+        break;
+    }
+    logger.debug('Actor Sheet derived data:', data);
 
     //Return data to the sheet
     return data;
@@ -88,6 +132,22 @@ export class alienrpgActorSheet extends ActorSheet {
 
   _findActiveList() {
     return this.element.find('.tab.active .directory-list');
+  }
+
+  async _prepareTerritoryItems(data) {
+    const systems = [];
+    // Iterate through items, allocating to containers
+    // let totalWeight = 0;
+    for (let i of data.items) {
+      let item = i.data;
+      // Append to gear.
+      if (i.type === 'planet-system') {
+        systems.push(i);
+      }
+    }
+
+    // Assign and return
+    data.systems = systems;
   }
 
   /*
@@ -151,9 +211,11 @@ export class alienrpgActorSheet extends ActorSheet {
           break;
 
         case 'armor':
-          i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
-          i.totalWeight = i.data.attributes.weight.value;
-          totalWeight += i.totalWeight;
+          if (item.header.active != 'fLocker') {
+            i.data.attributes.weight.value = i.data.attributes.weight.value || 0;
+            i.totalWeight = i.data.attributes.weight.value;
+            totalWeight += i.totalWeight;
+          }
           inventory[i.type].items.push(i);
           break;
 
@@ -190,6 +252,121 @@ export class alienrpgActorSheet extends ActorSheet {
     data.critInj = critInj;
     data.data.general.encumbrance = await this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
+  }
+  async _prepareCreatureItems(data) {
+    const critInj = [];
+
+    // Iterate through items, allocating to containers
+    for (let i of data.items) {
+      critInj.push(i);
+      data.critInj = critInj;
+    }
+  }
+  /*
+   * Organize and classify Owned Items for Character sheets
+   * @private
+   */
+  async _prepareVehicleItems(data) {
+    // Initialize containers.
+    const inventory = {
+      weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
+      item: { section: 'Items', label: game.i18n.localize('ALIENRPG.InventoryItemsHeader'), items: [], dataset: { type: 'item' } },
+      armor: { section: 'Armor', label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'), items: [], dataset: { type: 'armor' } },
+    };
+    // Partition items by category
+    let [items, Weapons, Armor] = data.items.reduce(
+      (arr, item) => {
+        // Item details
+        item.img = item.img || DEFAULT_TOKEN;
+        item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
+
+        // Classify items into types
+        if (item.type === 'Weapons') arr[1].push(item);
+        else if (item.type === 'Armor') arr[2].push(item);
+        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+        return arr;
+      },
+      [[], [], []]
+    );
+
+    // Apply active item filters
+    items = this._filterItems(items, this._filters.inventory);
+    const talents = [];
+    const agendas = [];
+    const specialities = [];
+    const critInj = [];
+
+    // Iterate through items, allocating to containers
+    for (let i of data.items) {
+      let item = i.data;
+      switch (i.type) {
+        case 'talent':
+          talents.push(i);
+          break;
+
+        case 'agenda':
+          agendas.push(i);
+          break;
+
+        case 'specialty':
+          if (specialities.length > 1) {
+            break;
+          } else {
+            specialities.push(i);
+            break;
+          }
+        case 'critical-injury':
+          critInj.push(i);
+          break;
+
+        case 'armor':
+          inventory[i.type].items.push(i);
+          break;
+
+        case 'weapon':
+          if (item.header.active != 'fLocker') {
+          }
+          inventory[i.type].items.push(i);
+
+          break;
+
+        default:
+          // Its just an item
+          if (item.header.active != 'fLocker') {
+          }
+          inventory[i.type].items.push(i);
+          break;
+      }
+    }
+
+    data.inventory = Object.values(inventory);
+  }
+
+  async _prepareCrew(sheetData) {
+    sheetData.actor.data.crew.occupants = sheetData.data.crew.occupants.reduce((arr, o) => {
+      o.actor = game.actors.get(o.id);
+      // Creates a fake actor if it doesn't exist anymore in the database.
+      if (!o.actor) {
+        o.actor = {
+          name: '{MISSING_CREW}',
+          data: { data: { health: { value: 0, max: 0 } } },
+          isCrewDeleted: true,
+        };
+      }
+      arr.push(o);
+      return arr;
+    }, []);
+    sheetData.actor.data.crew.occupants.sort((o1, o2) => {
+      const pos1 = ALIENRPG.vehicle.crewPositionFlags.indexOf(o1.position);
+      const pos2 = ALIENRPG.vehicle.crewPositionFlags.indexOf(o2.position);
+      if (pos1 < pos2) return -1;
+      if (pos1 > pos2) return 1;
+      // If they are at the same position, sort by their actor's names.
+      if (o1.actor.name < o2.actor.name) return -1;
+      if (o1.actor.name > o2.actor.name) return 1;
+      return 0;
+    });
+    return sheetData;
   }
 
   /*
@@ -307,6 +484,14 @@ export class alienrpgActorSheet extends ActorSheet {
     // Add Inventory Item
     new ContextMenu(html, '.item-edit1', itemContextMenu1);
 
+    html.find('.item-create').click(this._onItemCreate.bind(this));
+    // Update Inventory Item
+    html.find('.openItem').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
     // Update Inventory Item
     html.find('.item-edit').click((ev) => {
       const li = $(ev.currentTarget).parents('.item');
@@ -327,6 +512,10 @@ export class alienrpgActorSheet extends ActorSheet {
 
       html.find('.rollable').click(this._onRollMod.bind(this));
 
+      html.find('.rollableVeh').contextmenu(this._onRoll.bind(this));
+
+      html.find('.rollableVeh').click(this._onRollMod.bind(this));
+
       // Rollable Items.
       html.find('.rollItem').contextmenu(this._rollItem.bind(this));
 
@@ -337,6 +526,10 @@ export class alienrpgActorSheet extends ActorSheet {
       html.find('.rollable').click(this._onRoll.bind(this));
 
       html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
+      html.find('.rollableVeh').click(this._onRoll.bind(this));
+
+      html.find('.rollableVeh').contextmenu(this._onRollMod.bind(this));
 
       // Rollable Items.
       html.find('.rollItem').click(this._rollItem.bind(this));
@@ -372,6 +565,12 @@ export class alienrpgActorSheet extends ActorSheet {
 
     html.find('.overwatch-toggle').click(this._onOverwatchToggle.bind(this));
 
+    // Creature sheet
+    html.find('.creature-attack-roll').click(this._creatureAttackRoll.bind(this));
+    html.find('.creature-attack-roll').contextmenu(this._creatureManAttackRoll.bind(this));
+
+    html.find('.creature-acid-roll').click(this._creatureAcidRoll.bind(this));
+
     // Drag events for macros.
     if (this.actor.isOwner) {
       let handler = (ev) => this._onDragStart(ev);
@@ -384,6 +583,10 @@ export class alienrpgActorSheet extends ActorSheet {
         li.addEventListener('dragstart', handler, false);
       });
     }
+
+    html.find('.crew-edit').click(this._onCrewEdit.bind(this));
+    html.find('.crew-remove').click(this._onCrewRemove.bind(this));
+    html.find('.crew-position').change(this._onChangePosition.bind(this));
   }
   /** @override */
   async _onDropItemCreate(itemData) {
@@ -392,14 +595,17 @@ export class alienrpgActorSheet extends ActorSheet {
     const allowedItems = {
       character: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
+      creature: ['critical-injury'],
       vehicles: ['item', 'weapon'],
       territory: ['planet-system'],
     };
     let allowed = true;
 
-    if (this.actor.type === 'creature') {
-      allowed = false;
-    } else if (!alwaysAllowedItems.includes(type)) {
+    // if (this.actor.type === 'creature') {
+    //   allowed = false;
+    // } else
+
+    if (!alwaysAllowedItems.includes(type)) {
       if (!allowedItems[this.actor.type].includes(type)) {
         allowed = false;
       }
@@ -508,12 +714,12 @@ export class alienrpgActorSheet extends ActorSheet {
   _rollCrit(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
-    this.actor.rollCrit(this.actor.data.type, dataset);
+    this.actor.rollCrit(this.actor, this.actor.type, dataset);
   }
   _rollCritMan(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
-    this.actor.rollCritMan(this.actor, this.actor.data.type, dataset);
+    this.actor.rollCritMan(this.actor, this.actor.type, dataset);
   }
 
   _activate(event) {
@@ -713,6 +919,69 @@ export class alienrpgActorSheet extends ActorSheet {
     let key = $(event.currentTarget).parents('.condition').attr('data-key');
     if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
     else await this.actor.addCondition(key);
+  }
+
+  _creatureAcidRoll(event) {
+    event.preventDefault();
+    // const element = event.currentTarget;
+    const dataset = event.currentTarget.dataset;
+    this.actor.creatureAcidRoll(this.actor, dataset);
+  }
+
+  _creatureAttackRoll(event) {
+    event.preventDefault();
+    // const element = event.currentTarget;
+    const dataset = event.currentTarget.dataset;
+    this.actor.creatureAttackRoll(this.actor, dataset);
+  }
+
+  _creatureManAttackRoll(event) {
+    event.preventDefault();
+    // const element = event.currentTarget;
+    const dataset = event.currentTarget.dataset;
+    this.actor.creatureManAttackRoll(this.actor, dataset);
+  }
+
+  _dropCrew(actorId) {
+    const crew = game.actors.get(actorId);
+    const actorData = this.actor;
+    if (!crew) return;
+    if (crew.type === 'vehicles') return ui.notifications.info('Vehicle inceptions are not allowed!');
+    if (crew.type !== 'character' && crew.type !== 'synthetic') return;
+    if (actorData.data.data.crew.passengerQty >= actorData.data.data.attributes.passengers.value) {
+      return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
+    }
+    let crewNumber = actorData.data.data.crew.passengerQty;
+    crewNumber++;
+    actorData.update({ 'data.crew.passengerQty': crewNumber });
+    return this.actor.addVehicleOccupant(actorId);
+  }
+  _onCrewEdit(event) {
+    event.preventDefault();
+    const elem = event.currentTarget;
+    const crewId = elem.closest('.occupant').dataset.crewId;
+    const actor = game.actors.get(crewId);
+    return actor.sheet.render(true);
+  }
+
+  _onCrewRemove(event) {
+    event.preventDefault();
+    const actorData = this.actor;
+    const elem = event.currentTarget;
+    const crewId = elem.closest('.occupant').dataset.crewId;
+    const occupants = this.actor.removeVehicleOccupant(crewId);
+    let crewNumber = actorData.data.data.crew.passengerQty;
+    crewNumber--;
+    actorData.update({ 'data.crew.passengerQty': crewNumber });
+    return this.actor.update({ 'data.crew.occupants': occupants });
+  }
+
+  _onChangePosition(event) {
+    event.preventDefault();
+    const elem = event.currentTarget;
+    const crewId = elem.closest('.occupant').dataset.crewId;
+    const position = elem.value;
+    return this.actor.addVehicleOccupant(crewId, position);
   }
 }
 export default alienrpgActorSheet;

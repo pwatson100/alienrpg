@@ -3,8 +3,8 @@ import registerActors from './register-actors.js';
 import { alienrpgActor } from './actor/actor.js';
 import { alienrpgItem } from './item/item.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
-import { alienrpgPlanetSheet } from './item/planet-system-sheet.js';
-import { alienrpgCriticalInjury } from './item/critical-injury-sheet.js';
+// import { alienrpgPlanetSheet } from './item/planet-system-sheet.js';
+// import { alienrpgCriticalInjury } from './item/critical-injury-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
@@ -17,6 +17,9 @@ import { AlienConfig } from './alienRPGConfig.js';
 import AlienRPGCombat from './combat.js';
 import AlienRPGCTContext from './CBTracker.js';
 import { sendDevMessage } from './devmsg.js';
+import { ImporterBase } from './importer-base.js';
+import { COMMON } from './common.js';
+import { logger } from './logger.js';
 
 const euclidianDistances = function (segments, options = {}) {
   const canvasSize = canvas.dimensions.size;
@@ -33,6 +36,17 @@ const euclidianDistances = function (segments, options = {}) {
   });
 };
 
+/*
+  Initialize Module
+*/
+COMMON.build();
+
+const SUB_MODULES = {
+  COMMON,
+  logger,
+  ImporterBase,
+};
+
 Hooks.on('canvasInit', function () {
   SquareGrid.prototype.measureDistances = euclidianDistances;
 });
@@ -42,8 +56,8 @@ Hooks.once('init', async function () {
   game.alienrpg = {
     alienrpgActor,
     alienrpgItem,
-    alienrpgPlanetSheet,
-    alienrpgCriticalInjury,
+    // alienrpgPlanetSheet,
+    // alienrpgCriticalInjury,
     yze,
     AlienConfig,
     rollItemMacro,
@@ -51,14 +65,17 @@ Hooks.once('init', async function () {
     AlienRPGCTContext,
   };
 
-  // Set FVTT version constant
-  // const is07x = game.data.version.split('.')[1] === '7';
+  Object.values(SUB_MODULES).forEach((cl) => {
+    logger.info(COMMON.localize('alienrpg.Init.SubModule', { name: cl.NAME }));
+    cl.register();
+  });
 
+  // CONFIG.debug.hooks = false;
   // Global define for this so the roll data can be read by the reroll method.
   game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, tLabel: '', sCount: 0, multiPush: 0 };
   // console.warn('sCount init', game.alienrpg.rollArr.sCount);
 
-  /**s
+  /**
    * Set an initiative formula for the system
    * @type {String}
    */
@@ -80,9 +97,9 @@ Hooks.once('init', async function () {
 
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty'], makeDefault: false });
-  Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
-  Items.registerSheet('alienrpg', alienrpgCriticalInjury, { types: ['critical-injury'], makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty', 'planet-system', 'critical-injury'], makeDefault: false });
+  // Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
+  // Items.registerSheet('alienrpg', alienrpgCriticalInjury, { types: ['critical-injury'], makeDefault: false });
   registerSettings();
   registerActors();
 
@@ -101,6 +118,9 @@ Hooks.once('init', async function () {
 
   Handlebars.registerHelper('toLowerCase', function (str) {
     return str.toLowerCase();
+  });
+  Handlebars.registerHelper('addstats', function (v1, v2) {
+    return v1 + v2;
   });
 
   Handlebars.registerHelper('if_isWeapons', function (sectionlabel, options) {
@@ -206,7 +226,7 @@ Hooks.once('ready', async () => {
       await motherPack.getIndex();
       let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
 
-      const newVer = '9';
+      const newVer = '10';
       if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
         if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
           await game.journal.getName('MU/TH/ER Instructions.').delete();
@@ -265,7 +285,7 @@ Hooks.once('ready', async () => {
 
 // create/remove the quick access config button
 Hooks.once('renderSettings', () => {
-  AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
+  // AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
 });
 
 // ***************************
@@ -364,7 +384,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 //
 Hooks.on('renderChatMessage', (message, html, data) => {
   html.find('button.alien-Push-button').each((i, li) => {
-    // console.warn(li);
+    let hostile = '';
     li.addEventListener('click', function (ev) {
       let tarG = ev.target.previousElementSibling.checked;
 
@@ -377,7 +397,13 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         if (tarG) {
           reRoll = 'mPush';
         }
-        let hostile = actor.data.type;
+
+        // if (actor.data.type != 'vehicles') {
+        hostile = actor.data.type;
+        // } else {
+        //   hostile = 'character';
+        // }
+        // let hostile = actor.data.type;
         let blind = false;
         //  Initialse the chat message
         let chatMessage = '';
@@ -391,9 +417,8 @@ Hooks.on('renderChatMessage', (message, html, data) => {
             actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
             break;
           // case 'vehicles':
-          //   let pilotData = game.actors.get(dataset.actorid);
-
-          //   // actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
+          //   let pilotData = game.actors.get(message.alias);
+          //   pilotData.update({ 'data.header.stress.value': pilotData.data.data.header.stress.value + 1 });
           //   break;
 
           default:

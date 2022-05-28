@@ -3,29 +3,31 @@
   <p>
     Official system for playing the ENNIE award winning Alien RPG by Free League on Foundry VTT.
     <br /><br />
-    Free League have now officially endorsed the system and we have been working to provide official content to enhance the system (see below). <br />
-    Created by Paul Watson
+    Free League have now officially endorsed the system and we have been working to provide official content to enhance the system (see below). <br><br> 
+    
+    Developed for Foundry FTT by Paul Watson
     <br /><br />
+    If you like my system please consider buying me a coffee: <a href="https://ko-fi.com/paulwatson">https://ko-fi.com/paulwatson</a> <br>
+    <br><br> 
   </p>
-    <h1 class="headng">Change history for latest version 2.1.0</h1>
+    <h1 class="headng">Change history for latest version 2.1.1</h1>
     <p>
         <ul>
-<li>Added Max hull box to the vehicle sheet.</li>
-<li>Added quantity to weapons sheets and actor inventory.</li>
-<li>Added Radiation and Encumbrance Status icons to "Active Effects" to Synthetics.</li>
-<li>Encumbrance now calculates correctly for items with a quantity >1.</li>
-<li>Characters and Synthetics now have 20 xp dots.</li>
-<li>Fixed issue with removing actors from the combat tracker. </li>
-<li>Fixed issue with Condition icons not showing in Firefox.</li>
-<li>Updated the Vehicle sheet to:</li>
-    <ul>
-      <li>Allow Actors to be dropped on and assigned crew positions (Big thanks to @Stefouch for allowing me to "borrow" his code).</li>
-      <li>Pilot clicks (right click for modifiers) on "Piloting" on the crew tab to make piloting rolls (which include stress dice).</li>
-      <li>Clicking on a weapon will show a popup allowing those crew with "Pilot" or "Gunner" to be selected as well as any roll modifications.</li>
-      <li>Players making piloting or firing weapons can push rolls as normal and Stress dice will be applied to the PC.</li>
-      <li>Armor Rating is now rollable (same pop up as normal armor).</li>
-      <li>Inventory tab now includes the "Footlocker"</li>
-    </ul>
+<li>Added Italian translation with thanks to Stefano1975t</li>
+<li>Skill and attribute abbreviation on the Character and Synthetic Skills tab are now localised.</li>
+<li>Agenda, Talent and Specialty items now set a default icon but can be changed as per a normal item..</li>
+<li>Added Critical Injury table dropdown and roll button to the Creature sheets (See Creature section).</li>
+<li>Added a "Homebrew" selection to the character and synthetic Career dropdowns. </li>
+<li>Increased width of crew position dropdown on the vehicle sheet as it was compressed when using Firefox. </li>
+<li>Rolling Piloting on the vehicle sheet now includes the Manoeuvrability modifier.</li>
+<li>Fixed odd issue with weapons rolls on the vehicle sheet. </li>
+<li>Corrected bug that sets Token Vision on creatures to "true".</li>
+<li>Fixed issue with Armor rolls on the Inventory sheet for Synthetics. </li>
+<li>Fixed issue with /em chat background colour.</li>
+<li>Corrected issue with Maestro add-on not working for Vehicle weapons. </li>
+<li>Corrected Radiation rolling issue when using languages other than English.</li>
+<li>Fixed error with weight calculation for armour when in the foot locker. </li>
+<li>Refactored Critical Injury code. </li>
       </ul>
     </p>
 <br><br> 
@@ -41,6 +43,8 @@
       <li>Creature sheets.</li>
       <ul>
         <li>Dropdown to allow the GM to select from a list of rolltables for attacks.</li>
+        <li>Critical Injury table dropdown and roll button to allow GM to select from a list of rolltables which they can create themselves.</li>
+
       </ul>
       <li>Territories and Vehicle sheets.</li>
       <li>Items:</li>
@@ -349,6 +353,34 @@ This then rolls against the relevent table, writes to chat and creates the item 
   &nbsp;<span class="chat-roll">&nbsp;</span>&nbsp; <br /><br />
   The Special Abilities section allows quick notes to be added with respect to the Creature or situation. More detailed notes can be added on the Notes tab in the rich text editor.
   <br /><br />
+    <h2 class="headng"><span>Creature Critical Injuries (3)</span></h2>
+  <p>
+    The GM can select a Critial Injuries table using the dropdown (by defailt it's set to "None") and the roll for Critial hits on the creature.  
+    The filter looks in the "Alien Mother Tables" folder for any table starting with "Critical Injuries" and lists them in the dropdown.  
+    If the table does not exist an error message is displayed.
+    <br /><br />
+    Right Clicking on the edit icon to the right will display a context menu allowing injury to be edited or deleted. 
+<br><br> 
+    You will have to manually add any modifiers the injury has on the character to the tab modifiers tab on the injury item. <br>
+<br>
+Right clicking on the "Roll Crit" button will display a dialogue box allowing the GM to enter a specific critical injury number. 
+This must be in D6 format (number 1-6).
+
+This then rolls against the relevent table, writes to chat and creates the item on the sheet as per normal. <br>
+  <br><br> 
+  Using the Item type "critical-injury" a GM can create their own Critical Injury items which can then be dragged on to the sheet and will be displayed in this section and have the same controls for viewing, editing and deleting as a normal item.
+  <br><br> 
+  <h5>Creating your own Creature Critical Injuries Tables</h5>
+  If you want to create your own tables for creatures, add a table to "Alien Mother Tables" as normal ensuring it starts with "Critical Injuries ".  <br>
+  Make the Roll Table Formula 1d6. 
+  Add each of the rows as normal with the data in the following format: <br><br> 
+  <pre>&lt;b&gt;<em>Injury Name</em>&lt;/b&gt;<em>Injury Description</em></pre>
+  <br>
+     <strong>It is important to use this format as the code looks for the Injury Name within the bold html tags to create the item and message.  </strong>
+  
+  </p>
+  <br /><br />
+
   <h2 class="headng"><span>Territories</span></h2>
   The territories sheet allows you to create details about each of the sectors in space which you can share with the players.
   <br />

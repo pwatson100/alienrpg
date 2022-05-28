@@ -24,16 +24,32 @@ export class alienrpgItem extends Item {
     this.data.img = 'systems/alienrpg/images/icons/solar-system.svg';
   }
   _prepareAgendaData(data) {
-    this.data.img = 'systems/alienrpg/images/icons/personal-agenda.png';
+    if (this.data.img == 'icons/svg/item-bag.svg') {
+      setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/personal-agenda.png'));
+    } else {
+      setProperty(data, 'img', (data.img = this.img));
+    }
   }
   _prepareSpecialtyData(data) {
-    this.data.img = 'systems/alienrpg/images/icons/cover-notext.png';
+    if (this.data.img == 'icons/svg/item-bag.svg') {
+      setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/cover-notext.png'));
+    } else {
+      setProperty(data, 'img', (data.img = this.img));
+    }
   }
   _prepareTalentData(data) {
     if (data.data.general.career.value === '1' || data.data.general.career.value === '') {
-      setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/sprint.svg'));
+      if (this.data.img == 'icons/svg/item-bag.svg' || this.data.img == 'systems/alienrpg/images/icons/fire-dash.svg') {
+        setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/sprint.svg'));
+      } else {
+        setProperty(data, 'img', (data.img = this.img));
+      }
     } else {
-      setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/fire-dash.svg'));
+      if (this.data.img == 'icons/svg/item-bag.svg' || this.data.img == 'systems/alienrpg/images/icons/sprint.svg') {
+        setProperty(data, 'img', (data.img = 'systems/alienrpg/images/icons/fire-dash.svg'));
+      } else {
+        setProperty(data, 'img', (data.img = this.img));
+      }
     }
   }
 
@@ -277,18 +293,19 @@ export class alienrpgItem extends Item {
               if (confirmed) {
                 let shooter = parseInt(html.find('[name=FirerSelect]')[0].value);
                 actorid = fCrew[shooter].firerID;
+                let tactorid = fCrew[shooter].firerID;
                 let modifier = parseInt(html.find('[name=modifier]')[0].value);
                 let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
-                let aStressMod = parseInt(game.actors.get(actorid).data.data.header?.stress?.mod || 0);
-                let aStressVal = parseInt(game.actors.get(actorid).data.data.header?.stress?.value || 0);
-                let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(actorid).data.data.skills.rangedCbt.mod);
+                let aStressMod = parseInt(game.actors.get(tactorid).data.data.header?.stress?.mod || 0);
+                let aStressVal = parseInt(game.actors.get(tactorid).data.data.header?.stress?.value || 0);
+                let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(tactorid).data.data.skills.rangedCbt.mod);
                 let r2Data = parseInt(aStressVal + aStressMod + stressMod);
-                // label += ` (${fCrew[shooter].firerName}) `;
                 label += ` (${this.actor.name}) `;
+                // label += ` (${fCrew[shooter].firerName}) `;
 
                 reRoll = false;
                 hostile = 'character';
-                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
+                yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid, tactorid);
                 game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
               }
             },

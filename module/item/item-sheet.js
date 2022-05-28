@@ -1,3 +1,5 @@
+import { logger } from '../logger.js';
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
@@ -8,7 +10,7 @@ export class alienrpgItemSheet extends ItemSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'item', 'item-sheet'],
       width: 675,
-      height: 489,
+      height: 489 + 'max-content',
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -33,6 +35,8 @@ export class alienrpgItemSheet extends ItemSheet {
 
     // const item = duplicate(this.item.data);
     const data = item;
+    logger.debug('Item Sheet derived data:', data);
+
     return data;
   }
   // getData() {
