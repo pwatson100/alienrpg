@@ -226,7 +226,7 @@ Hooks.once('ready', async () => {
       await motherPack.getIndex();
       let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
 
-      const newVer = '9';
+      const newVer = '10';
       if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
         if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
           await game.journal.getName('MU/TH/ER Instructions.').delete();
