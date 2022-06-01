@@ -172,13 +172,14 @@
 
                 <div class="dots freezing ">
                   <input type="hidden" name="data.general.freezing.value" data-max="{{data.general.freezing.max}}" value="{{{data.general.freezing.value}}}" data-dtype="Number">
-                  <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
+                  <h3 class="click-stat-level-con resource-label"  title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
                   </h3>
                 </div>
-                <div class="dots panic ">
+                
+                <div class="dots panic " style="height: 22px">
                   <input type="hidden" name="data.general.panic.value" data-max="{{data.general.panic.max}}" value="{{{data.general.panic.value}}}" data-dtype="Number">
                   {{#if data.general.panic.value}}
-                  <h3 class="click-stat-level resource-label " style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}}
+                  <h3 class="click-stat-level resource-label " style="color: rgb(255, 45, 45);" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}}
                           <input type="text" class="maxboxsize" name="data.general.panic.lastRoll"  value="{{data.general.panic.lastRoll}}" data-dtype="Number">            
                   </h3>
                   {{else}}

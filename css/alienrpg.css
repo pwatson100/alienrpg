@@ -26,6 +26,22 @@
   src: url("../fonts/ocraext.ttf");
   font-style: normal;
 }
+@font-face {
+  font-family: "Kosugi";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/kosugi/v14/pxiFyp4_v8FCjlI4MdLqfUsvcYfqJiw3zzHMw5Qu_B3d0SE.50.woff2) format("woff2");
+  unicode-range: U+4093, U+4103, U+4105, U+4148, U+414f, U+4163, U+41b4, U+41bf, U+41e6, U+41ee, U+41f3, U+4207, U+420e, U+4264, U+4293, U+42c6, U+42d6, U+42dd, U+4302, U+432b, U+4343, U+43ee, U+43f0, U+4408, U+440c, U+4417, U+441c, U+4422, U+4453, U+445b, U+4476, U+447a, U+4491, U+44b3, U+44be, U+44d4, U+4508, U+450d, U+4525, U+4543, U+457a, U+459d, U+45b8, U+45be, U+45e5, U+45ea, U+460f-4610, U+4641, U+4665, U+46a1, U+46ae-46af, U+470c, U+471f, U+4764, U+47e6, U+47fd, U+4816, U+481e, U+4844, U+484e, U+48b5, U+49b0, U+49e7, U+49fa, U+4a04, U+4a29, U+4abc, U+4b38, U+4b3b, U+4b7e, U+4bc2, U+4bca, U+4bd2, U+4be8, U+4c17, U+4c20, U+4c38, U+4cc4, U+4cd1, U+4ce1, U+4d07, U+4d77, U+4e02, U+4e04-4e05, U+4e0c, U+4e0f-4e12, U+4e15, U+4e17, U+4e19, U+4e1e-4e1f, U+4e23-4e24, U+4e28-4e2c, U+4e2e-4e31, U+4e35-4e37, U+4e3f-4e42, U+4e44, U+4e47-4e48, U+4e4d-4e4e, U+4e51, U+4e55-4e56, U+4e58, U+4e5a-4e5c, U+4e62-4e63, U+4e68-4e69, U+4e74-4e75, U+4e79, U+4e7f, U+4e82, U+4e85, U+4e8a, U+4e8d-4e8e, U+4e96-4e99, U+4e9d-4ea0, U+4ea2, U+4ea5-4ea6, U+4ea8, U+4eaf-4eb0, U+4eb3, U+4eb6, U+4eb9, U+4ebb-4ebc, U+4ec2-4ec4, U+4ec6-4ec8, U+4ecd, U+4ed0, U+4ed7, U+4eda-4edb, U+4edd-4ee2, U+4ee8, U+4eeb, U+4eed, U+4eef, U+4ef1, U+4ef3, U+4ef5, U+4ef7, U+4efc-4f00, U+4f02-4f03, U+4f08-4f09, U+4f0b-4f0d, U+4f12, U+4f15-4f17, U+4f19, U+4f1c, U+4f2b, U+4f2e, U+4f30-4f31, U+4f33, U+4f35-4f37, U+4f39, U+4f3b, U+4f3e, U+4f40, U+4f42-4f43, U+4f48-4f49, U+4f4b-4f4c, U+4f52, U+4f54, U+4f56;
+}
+@font-face {
+  font-family: "Blinker";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/blinker/v12/cIf4MaFatEE-VTaP_OGAdGYmnQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 :root {
   --alienfont: "OCR-A";
   --fontsize: 15px;
@@ -33,12 +49,16 @@
 
 :root {
   --aliengreen: hsl(84, 100%, 59%);
+  --aliendarkergreen: hsl(141, 60%, 40%);
+  --alienitemselect: hsl(70, 80%, 74%);
+  --alienoddtab: hsl(72, 29%, 7%);
   --blue: hsl(224, 75%, 62%);
   --black: hsl(0, 0%, 0%);
   --white: hsl(0, 0%, 100%);
   --alientextjournal: #b1e0e7;
   --journalback: url(../images/mother-instructions/indbackground2.png);
   --chatbackground: url(/systems/alienrpg/images/IndBackground3.png);
+  --alienchatfont: "Blinker", sans-serif;
 }
 
 /* Global styles */
@@ -143,6 +163,7 @@ a.content-link {
 .alienrpg a.content-link {
   color: hsl(0deg, 0%, 100%);
   background: hsl(0deg, 0%, 0%);
+  border: none;
 }
 
 #chat .message {
@@ -1050,7 +1071,7 @@ button:focus {
 .style-settings {
   display: block;
   width: 400px;
-  height: 333px;
+  height: 377px;
   background: url(../images/mother-instructions/style-settings.webp);
   margin-left: auto;
   margin-right: auto;
@@ -2784,7 +2805,593 @@ button:focus {
   border-color: hsl(0deg, 0%, 67%);
 }
 
-/* Styles limited to alienrpg sheets */
+/*
+	Original Sheet by Paul Watson
+
+	CRT Effect by Alec Lownes
+		http://aleclownes.com/2017/02/01/crt-display.html
+
+	May 2021
+*/
+@-webkit-keyframes flicker {
+  0% {
+    opacity: 0.27861;
+  }
+  5% {
+    opacity: 0.34769;
+  }
+  10% {
+    opacity: 0.23604;
+  }
+  15% {
+    opacity: 0.90626;
+  }
+  20% {
+    opacity: 0.18128;
+  }
+  25% {
+    opacity: 0.83891;
+  }
+  30% {
+    opacity: 0.65583;
+  }
+  35% {
+    opacity: 0.67807;
+  }
+  40% {
+    opacity: 0.26559;
+  }
+  45% {
+    opacity: 0.84693;
+  }
+  50% {
+    opacity: 0.96019;
+  }
+  55% {
+    opacity: 0.08594;
+  }
+  60% {
+    opacity: 0.20313;
+  }
+  65% {
+    opacity: 0.71988;
+  }
+  70% {
+    opacity: 0.53455;
+  }
+  75% {
+    opacity: 0.37288;
+  }
+  80% {
+    opacity: 0.71428;
+  }
+  85% {
+    opacity: 0.70419;
+  }
+  90% {
+    opacity: 0.7003;
+  }
+  95% {
+    opacity: 0.36108;
+  }
+  100% {
+    opacity: 0.24387;
+  }
+}
+@keyframes flicker {
+  0% {
+    opacity: 0.27861;
+  }
+  5% {
+    opacity: 0.34769;
+  }
+  10% {
+    opacity: 0.23604;
+  }
+  15% {
+    opacity: 0.90626;
+  }
+  20% {
+    opacity: 0.18128;
+  }
+  25% {
+    opacity: 0.83891;
+  }
+  30% {
+    opacity: 0.65583;
+  }
+  35% {
+    opacity: 0.67807;
+  }
+  40% {
+    opacity: 0.26559;
+  }
+  45% {
+    opacity: 0.84693;
+  }
+  50% {
+    opacity: 0.96019;
+  }
+  55% {
+    opacity: 0.08594;
+  }
+  60% {
+    opacity: 0.20313;
+  }
+  65% {
+    opacity: 0.71988;
+  }
+  70% {
+    opacity: 0.53455;
+  }
+  75% {
+    opacity: 0.37288;
+  }
+  80% {
+    opacity: 0.71428;
+  }
+  85% {
+    opacity: 0.70419;
+  }
+  90% {
+    opacity: 0.7003;
+  }
+  95% {
+    opacity: 0.36108;
+  }
+  100% {
+    opacity: 0.24387;
+  }
+}
+@-webkit-keyframes textShadow {
+  0% {
+    text-shadow: 0.4389924193px 0 1px rgba(255, 255, 0, 0.5), -0.4389924193px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  5% {
+    text-shadow: 2.7928974011px 0 1px rgba(255, 255, 0, 0.5), -2.7928974011px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  10% {
+    text-shadow: 0.0295627584px 0 1px rgba(255, 255, 0, 0.5), -0.0295627584px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  15% {
+    text-shadow: 0.4021853855px 0 1px rgba(255, 255, 0, 0.5), -0.4021853855px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  20% {
+    text-shadow: 3.47940379px 0 1px rgba(255, 255, 0, 0.5), -3.47940379px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  25% {
+    text-shadow: 1.6125630401px 0 1px rgba(255, 255, 0, 0.5), -1.6125630401px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  30% {
+    text-shadow: 0.7015590085px 0 1px rgba(255, 255, 0, 0.5), -0.7015590085px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  35% {
+    text-shadow: 3.8969140477px 0 1px rgba(255, 255, 0, 0.5), -3.8969140477px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  40% {
+    text-shadow: 3.8709056148px 0 1px rgba(255, 255, 0, 0.5), -3.8709056148px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  45% {
+    text-shadow: 2.2310569634px 0 1px rgba(255, 255, 0, 0.5), -2.2310569634px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  50% {
+    text-shadow: 0.0808429042px 0 1px rgba(255, 255, 0, 0.5), -0.0808429042px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  55% {
+    text-shadow: 2.3758461067px 0 1px rgba(255, 255, 0, 0.5), -2.3758461067px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  60% {
+    text-shadow: 2.2021930511px 0 1px rgba(255, 255, 0, 0.5), -2.2021930511px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  65% {
+    text-shadow: 2.8638780615px 0 1px rgba(255, 255, 0, 0.5), -2.8638780615px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  70% {
+    text-shadow: 0.4887402516px 0 1px rgba(255, 255, 0, 0.5), -0.4887402516px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  75% {
+    text-shadow: 1.8948491306px 0 1px rgba(255, 255, 0, 0.5), -1.8948491306px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  80% {
+    text-shadow: 0.0833037308px 0 1px rgba(255, 255, 0, 0.5), -0.0833037308px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  85% {
+    text-shadow: 0.0976982726px 0 1px rgba(255, 255, 0, 0.5), -0.0976982726px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  90% {
+    text-shadow: 3.4433397615px 0 1px rgba(255, 255, 0, 0.5), -3.4433397615px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  95% {
+    text-shadow: 2.1841838853px 0 1px rgba(255, 255, 0, 0.5), -2.1841838853px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  100% {
+    text-shadow: 2.6208764474px 0 1px rgba(255, 255, 0, 0.5), -2.6208764474px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+}
+@keyframes textShadow {
+  0% {
+    text-shadow: 0.4389924193px 0 1px rgba(255, 255, 0, 0.5), -0.4389924193px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  5% {
+    text-shadow: 2.7928974011px 0 1px rgba(255, 255, 0, 0.5), -2.7928974011px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  10% {
+    text-shadow: 0.0295627584px 0 1px rgba(255, 255, 0, 0.5), -0.0295627584px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  15% {
+    text-shadow: 0.4021853855px 0 1px rgba(255, 255, 0, 0.5), -0.4021853855px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  20% {
+    text-shadow: 3.47940379px 0 1px rgba(255, 255, 0, 0.5), -3.47940379px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  25% {
+    text-shadow: 1.6125630401px 0 1px rgba(255, 255, 0, 0.5), -1.6125630401px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  30% {
+    text-shadow: 0.7015590085px 0 1px rgba(255, 255, 0, 0.5), -0.7015590085px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  35% {
+    text-shadow: 3.8969140477px 0 1px rgba(255, 255, 0, 0.5), -3.8969140477px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  40% {
+    text-shadow: 3.8709056148px 0 1px rgba(255, 255, 0, 0.5), -3.8709056148px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  45% {
+    text-shadow: 2.2310569634px 0 1px rgba(255, 255, 0, 0.5), -2.2310569634px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  50% {
+    text-shadow: 0.0808429042px 0 1px rgba(255, 255, 0, 0.5), -0.0808429042px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  55% {
+    text-shadow: 2.3758461067px 0 1px rgba(255, 255, 0, 0.5), -2.3758461067px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  60% {
+    text-shadow: 2.2021930511px 0 1px rgba(255, 255, 0, 0.5), -2.2021930511px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  65% {
+    text-shadow: 2.8638780615px 0 1px rgba(255, 255, 0, 0.5), -2.8638780615px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  70% {
+    text-shadow: 0.4887402516px 0 1px rgba(255, 255, 0, 0.5), -0.4887402516px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  75% {
+    text-shadow: 1.8948491306px 0 1px rgba(255, 255, 0, 0.5), -1.8948491306px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  80% {
+    text-shadow: 0.0833037308px 0 1px rgba(255, 255, 0, 0.5), -0.0833037308px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  85% {
+    text-shadow: 0.0976982726px 0 1px rgba(255, 255, 0, 0.5), -0.0976982726px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  90% {
+    text-shadow: 3.4433397615px 0 1px rgba(255, 255, 0, 0.5), -3.4433397615px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  95% {
+    text-shadow: 2.1841838853px 0 1px rgba(255, 255, 0, 0.5), -2.1841838853px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  100% {
+    text-shadow: 2.6208764474px 0 1px rgba(255, 255, 0, 0.5), -2.6208764474px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+}
+/* interface */
+::-webkit-scrollbar-thumb {
+  outline: none;
+  border-radius: 2px;
+  background: var(--aliendarkergreen);
+  border: 1px solid var(--aliendarkergreen);
+}
+
+.window-header {
+  background-color: rgba(50, 100, 120, 0.3);
+  border-radius: 7px 7px 0px 0px;
+}
+
+.alienrpg input[type=text],
+.alienrpg input[type=number],
+.alienrpg input[type=password],
+.alienrpg input[type=date],
+.alienrpg input[type=time] {
+  border-radius: 0px;
+  border: 1px solid var(--aliendarkergreen);
+}
+
+input[type=text]:hover,
+input[type=number]:hover,
+input[type=password]:hover,
+input[type=date]:hover,
+input[type=time]:hover {
+  border: 1px solid var(--aliengreen);
+}
+
+a:hover {
+  text-shadow: 0 0 5px var(--aliengreen);
+}
+
+#sidebar-tabs {
+  border-bottom: 1px solid var(--aliengreen);
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
+}
+
+#sidebar-tabs .item.active {
+  border: 1px solid var(--aliengreen);
+  -webkit-box-shadow: 0 0 6px inset var(--aliengreen);
+          box-shadow: 0 0 6px inset var(--aliengreen);
+}
+
+select:focus {
+  -webkit-box-shadow: 0 0 5px var(--aliengreen);
+          box-shadow: 0 0 5px var(--aliengreen);
+}
+
+textarea:focus {
+  outline: 0px;
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
+  color: #000;
+  font-weight: 400;
+}
+
+combobox:focus {
+  outline: 0px;
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
+  background-color: var(--aliengreen);
+  color: #000;
+}
+
+#hotbar .macro:hover {
+  -webkit-box-shadow: 0 0 10px inset var(--aliengreen);
+          box-shadow: 0 0 10px inset var(--aliengreen);
+}
+
+#hotbar .macro.active:hover {
+  border: 1px solid var(--aliengreen);
+}
+
+#players ol .player.context {
+  border-top: 1px solid var(--aliengreen);
+  border-bottom: 1px solid var(--aliengreen);
+}
+
+#players ol .player.context .player-name {
+  text-shadow: 0 0 5px var(--aliengreen);
+}
+
+#context-menu li.context-item:hover {
+  text-shadow: 0 0 4px var(--aliengreen);
+}
+
+#controls .scene-control.active,
+#controls .control-tool.active,
+#controls .scene-control:hover,
+#controls .control-tool:hover {
+  border: 1px solid var(--aliengreen);
+  border-bottom: 1px solid var(--aliendarkergreen);
+  -webkit-box-shadow: 0 0 10px var(--aliendarkergreen);
+          box-shadow: 0 0 10px var(--aliendarkergreen);
+}
+
+#navigation #scene-list .scene.view,
+#navigation #scene-list .scene.context {
+  border: 1px solid var(--aliengreen);
+  background: rgba(52, 52, 52, 0.95);
+  border-bottom: 1px solid var(--aliengreen);
+  -webkit-box-shadow: 0 0 10px var(--aliendarkergreen);
+          box-shadow: 0 0 10px var(--aliendarkergreen);
+}
+
+#pause {
+  background: none;
+}
+#pause > img {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  left: calc(50% - 100px);
+  opacity: 0.7;
+  -webkit-animation: rotation 10s infinite linear;
+  animation: rotation 10s infinite linear;
+}
+#pause h3 {
+  font-size: 32px;
+  text-shadow: 0px 3px 5px rgb(0, 0, 0);
+}
+
+.alienrpg #context-menu li.context-item {
+  line-height: 1.55;
+}
+
+/* CHAT */
+.sidebar-tab h1,
+.sidebar-tab h2 {
+  border-bottom: 2px dotted var(--aliengreen);
+}
+
+.sidebar-tab .fas.fa-trash:hover {
+  -webkit-animation: textShadow 0.5s infinite;
+          animation: textShadow 0.5s infinite;
+}
+
+.chat-message .message-header .message-sender {
+  padding-bottom: 5px;
+}
+
+.alien-Push-button {
+  height: 40px;
+  margin-top: 5px;
+  margin-left: 1px;
+  -webkit-box-shadow: 0 0 5px var(--aliendarkergreen);
+          box-shadow: 0 0 5px var(--aliendarkergreen);
+  border-radius: 3px;
+  background: url(../images/alien_crt_push-button.png) no-repeat top left;
+  color: rgba(0, 0, 0, 0);
+}
+
+.alien-Push-button:hover {
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 5px var(--aliendarkergreen);
+          box-shadow: 0 0 5px var(--aliendarkergreen);
+  background-color: inherit;
+  background: url(../images/alien_crt_push-button_hover.gif) no-repeat top left;
+  color: rgba(0, 0, 0, 0);
+}
+
+.chat-message,
+.chat-message.emote {
+  font-family: var(--alienchatfont);
+  font-size: 110%;
+  font-weight: bold;
+  padding: 13px 15px 50px 11px;
+  border-width: 0px;
+  -webkit-box-shadow: 0 1px 5px #000;
+          box-shadow: 0 1px 5px #000;
+  background-size: 100%;
+  background-position: top, bottom, 0px 18px;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-image: url("../images/chat-top.png"), url("../images/chat-bottom.png"), var(--chatbackground);
+}
+
+.chat-message.whisper {
+  color: royalblue;
+  padding: 13px 15px 50px 11px;
+  border-width: 0px;
+  -webkit-box-shadow: 0 1px 5px #000;
+          box-shadow: 0 1px 5px #000;
+  background-size: 100%;
+  background-position: top, bottom, 0px 18px;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-image: url("../images/hidden-chat-top.png"), url("../images/hidden-chat-bottom.png"), url("../images/hidden-chat-middle.png");
+}
+
+.chat-message.whisper span,
+.chat-message.whisper div {
+  color: royalblue;
+}
+
+.chat-message.whisper h2 {
+  color: lightblue;
+  border-bottom: 2px dotted lightsteelblue;
+}
+
+.chat-message.whisper h4 {
+  color: lightsteelblue;
+}
+
+.chat-message.whisper hr {
+  border-top: 1px solid lightsteelblue;
+  border-bottom: 1px solid royalblue;
+}
+
+.chat-message.whisper .blink {
+  color: lightsteelblue;
+  background-color: royalblue;
+  text-shadow: 0 0 5px lightsteelblue;
+  -webkit-animation: blink 0.5 5;
+          animation: blink 0.5 5;
+}
+
+.chat-message.whisper .inline-roll:hover {
+  text-shadow: 0 0 5px lightsteelblue;
+}
+
+.chat-message.whisper .inline-roll,
+.chat-message.whisper .dice-tooltip {
+  border-color: lightsteelblue;
+}
+
+.alien-Push-button:hover {
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 5px var(--aliendarkergreen);
+          box-shadow: 0 0 5px var(--aliendarkergreen);
+  background-color: inherit;
+  background: url(../images/alien_crt_push-button_hover.gif) no-repeat top left;
+  color: rgba(0, 0, 0, 0);
+}
+
+.blink {
+  padding: 0px 0px 2px 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: white;
+  text-shadow: 0 0 5px red;
+  -webkit-animation: blink 0.5s 5;
+          animation: blink 0.5s 5;
+}
+
+.message-sender {
+  width: 900px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Journals */
+.journal-sheet ::-webkit-scrollbar-thumb {
+  background: #135d91;
+  border: 1px solid #135d91;
+}
+
+.journal-sheet .editor h1 {
+  color: white;
+  text-shadow: 0 0 10px #2a8ed5;
+  border-bottom: 2px solid #135d91;
+}
+
+.journal-sheet .editor h2 {
+  color: white;
+  text-shadow: 0 0 10px #2a8ed5;
+}
+
+.journal-sheet .editor h3 {
+  color: white;
+  text-shadow: 0 0 10px #2a8ed5;
+}
+
+.alienrpg {
+  /* Styles limited to alienrpg sheets */
+  /*
+  	Original Sheet by Paul Watson
+
+  	CRT Effect by Alec Lownes
+  		http://aleclownes.com/2017/02/01/crt-display.html
+
+  	May 2021
+  */
+  /* CHARACTER SHEET */
+  /*.sheet {
+  	min-width: 600px;
+  	max-width: 1000px;
+  	min-height: 350px;
+  }*/
+  /** General Tab **/
+  /** General Tab - Left Column **/
+  /*** Story and Experience Points ***/
+  /*** Conditions ***/
+  /*.dots.radiation.radbox_char {
+      margin-top: 36px;
+  }
+
+  .dots.radiation.radbox_synth {
+      /*margin-top: 27px;
+      margin-top: 7px;
+  }
+
+  .dots.radiation.radglow_char {
+      margin-top: 36px;
+  }
+
+  .dots.radiation.radglow_synth {
+      margin-top: 27px;
+  }*/
+  /*** Consumables ***/
+  /** General Tab - Right Column **/
+  /** - **/
+  /* Creature Sheet */
+  /* Items */
+}
 .alienrpg .item-form {
   font-family: var(--alienfont);
   background: hsl(0deg, 0%, 0%);
@@ -3132,4 +3739,731 @@ button:focus {
 }
 .alienrpg .biog-full img {
   display: block;
+}
+.alienrpg .window-content {
+  padding: 5px;
+  border: 2px solid var(--aliendarkergreen);
+  color: var(--aliengreen);
+  text-shadow: 0 0 2px var(--aliendarkergreen);
+}
+.alienrpg .window-content::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, rgba(18, 16, 16, 0)), color-stop(50%, rgba(0, 0, 0, 0.25))), -webkit-gradient(linear, left top, right top, from(rgba(255, 0, 0, 0.06)), color-stop(rgba(0, 255, 0, 0.02)), to(rgba(0, 0, 255, 0.06)));
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+.alienrpg .window-content::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.alienrpg .crt textarea {
+  border-radius: 0px;
+  border: 1px solid var(--aliendarkergreen);
+  color: ghostwhite;
+  font-family: var(--alienchatfont);
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+.alienrpg .crt h1 {
+  border-bottom: 2px dotted var(--aliengreen);
+  padding-left: 0px;
+}
+.alienrpg .crt label,
+.alienrpg .crt h2,
+.alienrpg .crt h3 {
+  padding-left: 0px;
+  margin: 0px;
+}
+.alienrpg .crt .profile-img {
+  margin: 0;
+  height: 157px;
+  margin-right: 4px;
+  border-radius: 10px;
+}
+.alienrpg .crt h1.charname input {
+  text-transform: uppercase;
+  width: calc(100% + 10px);
+  padding-left: 8px;
+  border: 0px;
+}
+.alienrpg input[type=text],
+.alienrpg input[type=number],
+.alienrpg input[type=password],
+.alienrpg input[type=date],
+.alienrpg input[type=time] {
+  border-radius: 0px;
+  border: 1px solid var(--aliendarkergreen);
+}
+.alienrpg input[type=text]:hover,
+.alienrpg input[type=number]:hover,
+.alienrpg input[type=password]:hover,
+.alienrpg input[type=date]:hover,
+.alienrpg input[type=time]:hover {
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .crt h1.charname input:focus {
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
+}
+.alienrpg .crt h1.charname {
+  margin: 0px 0px 5px 0px;
+}
+.alienrpg .crt .select-css {
+  border-radius: 3px;
+  border: 1px solid var(--aliendarkergreen);
+}
+.alienrpg .crt .select-css:hover {
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .crt .grid-4col {
+  border: 3px double var(--aliengreen);
+  border-bottom: 1px solid var(--aliengreen);
+}
+.alienrpg .crt .grid-synth {
+  grid-column: 3;
+  grid-template-columns: 25% 25% 50%;
+  border: 3px double var(--aliengreen);
+  border-bottom: 1px solid var(--aliengreen);
+  padding: 4px;
+}
+.alienrpg .crt .synth-stresslabel {
+  justify-self: left;
+  text-align: left;
+}
+.alienrpg .crt .minus-btn {
+  width: 14px;
+  color: var(--aliendarkergreen);
+  font-size: 30px;
+}
+.alienrpg .crt .plus-btn {
+  width: 14px;
+  color: var(--aliendarkergreen);
+  font-size: 30px;
+  margin-left: -7px;
+}
+.alienrpg .crt .rollable-stress:hover,
+.alienrpg .crt .rollCrit:hover {
+  color: var(--aliengreen);
+  background-color: #000;
+  border: 0px solid var(--aliengreen);
+  font-weight: 1;
+  font-size: 150%;
+  -webkit-box-shadow: 0 0 0px var(--aliengreen);
+          box-shadow: 0 0 0px var(--aliengreen);
+  -webkit-animation: textShadow 1s infinite;
+          animation: textShadow 1s infinite;
+}
+.alienrpg .crt .resource-content .maxboxsize {
+  vertical-align: 3px;
+}
+.alienrpg .crt .crt-grid-Char-Att {
+  margin-left: -5px;
+  border-left: 3px double var(--aliengreen);
+  border-bottom: 3px double var(--aliengreen);
+  border-right: 3px double var(--aliengreen);
+  float: right;
+  width: 100%;
+  padding: 6px 12px 6px 2px;
+  grid-column-gap: 0px;
+  grid-template-areas: "crt_gCol1 crt_gCol2 crt_gCol3 crt_gCol4 crt_gCol5 crt_gCol6" "crt_gCol7 crt_gCol8 crt_gCol9 crt_gCol10 crt_gCol11 crt_gCol12";
+  grid-template-columns: 25% 8% 25% 8% 25% 8%;
+  display: grid;
+  grid-row-gap: 3px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.alienrpg .crt_gCol1,
+.alienrpg .crt_gCol2,
+.alienrpg .crt_gCol3,
+.alienrpg .crt_gCol4,
+.alienrpg .crt_gCol5,
+.alienrpg .crt_gCol6,
+.alienrpg .crt_gCol7,
+.alienrpg .crt_gCol8,
+.alienrpg .crt_gCol9,
+.alienrpg .crt_gCol10,
+.alienrpg .crt_gCol11,
+.alienrpg .crt_gCol12 {
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+.alienrpg .crt_gCol11 {
+  color: var(--aliendarkergreen);
+}
+.alienrpg .crt-crt-grid-Char-Att .maxboxsize {
+  min-width: 40px;
+  z-index: 1;
+}
+.alienrpg .crt .NPC {
+  width: 15px;
+  height: 15px;
+}
+.alienrpg .crt .tooltip .tooltiptext {
+  width: 250px;
+  top: -36px;
+  right: 200%;
+  margin-left: -60px;
+  color: black;
+  background-color: var(--aliengreen);
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
+}
+.alienrpg .crt .tooltip .tooltiptext::after {
+  margin-top: 10px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--aliengreen);
+}
+.alienrpg .crt .crt-grid-Char-Att .crt-gCol6:focus,
+.alienrpg .crt .grid-Consumables .maxboxsize:focus {
+  color: var(--aliendarkergreen);
+  background-color: var(--alienoddtab);
+  -webkit-box-shadow: 0 0 0 #000;
+          box-shadow: 0 0 0 #000;
+  cursor: not-allowed;
+}
+.alienrpg .crt .crt-grid-Char-Att .crt_gCol6:hover,
+.alienrpg .crt .grid-Consumables .maxboxsize:hover {
+  cursor: default;
+  border: 1px solid var(--aliendarkergreen);
+}
+.alienrpg .crt .click-stat-level .far {
+  letter-spacing: 1px;
+}
+.alienrpg .crt .synthsdont {
+  margin: 10px;
+  padding-left: 10px;
+  border-left: 2px dotted var(--aliengreen);
+}
+.alienrpg .crt .imitate-human {
+  text-align: center;
+}
+.alienrpg .crt .text {
+  background-color: var(--aliendarkergreen);
+}
+.alienrpg .crt .tabs {
+  color: #000;
+  background-color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 0 0 2px white;
+}
+.alienrpg .crt .tabs .item.active {
+  text-decoration: none;
+  font-size: 110%;
+  color: white;
+  background-color: var(--aliendarkergreen);
+  -webkit-box-shadow: 0 0 10px var(--aliendarkergreen);
+          box-shadow: 0 0 10px var(--aliendarkergreen);
+  text-shadow: 0 0 10px var(--aliengreen);
+  cursor: default;
+}
+.alienrpg .crt .tabs .item {
+  width: 100%;
+  margin: -7px 0 -7px 0;
+  padding-top: 6px;
+}
+.alienrpg .crt .tabs .item.active {
+  margin: -7px 0 -7px 0;
+  padding-top: 5px;
+}
+.alienrpg .crt .tabs .item:hover {
+  color: #000;
+  background-color: var(--alienitemselect);
+  -webkit-box-shadow: 0 0 10px var(--alienitemselect);
+          box-shadow: 0 0 10px var(--alienitemselect);
+  margin: -7px 0 -7px 0;
+  padding-top: 6px;
+}
+.alienrpg .crt .grid-genPage h2 {
+  text-transform: uppercase;
+}
+.alienrpg .crt .grid-2col-border {
+  margin-top: -3px;
+  padding-bottom: 4px;
+}
+.alienrpg .crt .journal-sheet select {
+  text-overflow: ellipsis;
+}
+.alienrpg .crt .resource-content button {
+  width: 16px;
+  color: var(--aliendarkergreen);
+}
+.alienrpg .crt .grid-crtPage {
+  display: grid;
+  grid-template-areas: "crt_Col1 crt_Col2";
+  grid-template-columns: 220px;
+}
+.alienrpg .crt .crt_Col1 {
+  display: grid;
+  grid-template-areas: "crt_Item1", "crt_Item2", "crt_Item3";
+  grid-template-columns: 100%;
+}
+.alienrpg .crt .crt_Col2 {
+  display: grid;
+  grid-template-areas: "crt_Item4", "crt_Item5", "crt_Item7", "crt_Item8", "crt_Item9", "crt_Item6";
+  grid-template-columns: 100%;
+  padding-left: 5px;
+}
+.alienrpg .crt .crt_Col1 h2 {
+  text-transform: uppercase;
+  padding-bottom: 4px;
+}
+.alienrpg .crt .crt_Item1,
+.alienrpg .crt .crt_Item2_char,
+.alienrpg .crt .crt_Item2_synth,
+.alienrpg .crt .crt_Item3 {
+  border: 1px solid var(--aliengreen);
+  padding: 5px;
+}
+.alienrpg .crt .crt_Item1 {
+  text-align: center;
+  height: 130px;
+}
+.alienrpg .crt .crt_Item1 .sp_faded {
+  padding-top: 5px;
+  color: var(--aliendarkergreen);
+}
+.alienrpg .crt .crt_Item1 .xp_faded {
+  padding-top: 6px;
+  color: var(--aliendarkergreen);
+}
+.alienrpg .crt .crt_Item1 h2 {
+  padding-top: 8px;
+}
+.alienrpg .crt .crt_Item1 .experience {
+  width: 160px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin-bottom: 10px;
+}
+.alienrpg .crt .crt_Item1 .xp_dots_pos {
+  padding-top: 18px;
+}
+.alienrpg .crt .crt_Item2_char {
+  position: relative;
+  height: 334px;
+}
+.alienrpg .crt .crt_Item2_synth {
+  position: relative;
+  height: 370px;
+}
+.alienrpg .crt .dots_conditions .dots {
+  height: 25px;
+  padding-top: 4px;
+  padding-left: 7px;
+}
+.alienrpg .crt .dots.starving,
+.alienrpg .crt .dots.exhausted,
+.alienrpg .crt .dots.panic {
+  width: 100%;
+  background-color: var(--alienoddtab);
+}
+.alienrpg .crt .overwatch {
+  margin: 15px 0 25px 13px;
+}
+.alienrpg .crt .overwatch_synth {
+  /* margin: 20px 0 15px 13px ; */
+  margin: 6px 0 0 13px;
+}
+.alienrpg .crt .dots.panic .panicked {
+  color: white;
+  background-color: red;
+  margin-top: -5px;
+  margin-left: -7px;
+  padding-left: 6px;
+  border-top: 2px solid red;
+  border-bottom: 2px solid red;
+  font-weight: bold;
+  -webkit-box-shadow: 0 0 10px red;
+          box-shadow: 0 0 10px red;
+  -webkit-animation: textShadow 1s infinite;
+          animation: textShadow 1s infinite;
+}
+.alienrpg .crt .panicked-textarea {
+  margin-left: 60px;
+  border: 1px solid yellow;
+  background-color: orange;
+}
+.alienrpg .crt .panicked-textarea:focus {
+  border: 1px solid yellow;
+  background-color: yellow;
+  color: red;
+}
+.alienrpg .crt .dots.radiation {
+  border: 1px dashed var(--alienitemselect);
+  color: var(--alienitemselect);
+  width: 98%;
+  padding-top: 4px;
+  padding-bottom: 38px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  margin: 2px;
+}
+.alienrpg #bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.alienrpg .crt .dots.radiation.rad_glow {
+  background-color: var(--alienitemselect);
+  color: #000;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 10px yellow;
+          box-shadow: 0 0 10px yellow;
+}
+.alienrpg .crt .crt_grid_SynthStress {
+  display: grid;
+  grid-template-areas: "imitate-human_left imitate-human_right";
+  grid-template-columns: 20% 80%;
+}
+.alienrpg .crt .imitate-human_left {
+  padding: 7px 0 0 0;
+}
+.alienrpg .crt .imitate-human_right {
+  padding: 5px 0px 0px 10px;
+}
+.alienrpg .crt .synth-label {
+  width: 100%;
+  margin-top: 2px;
+  padding: 6px 0px 5px 0px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.alienrpg .alienrpgv .synth_fake_check {
+  color: var(--aliendarkergreen);
+  width: 100%;
+  margin-top: 12px;
+  padding: 6px 0px 6px 0px;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: var(--alienoddtab);
+}
+.alienrpg .crt .fas.fa-parachute-box {
+  vertical-align: top;
+  padding-top: 6px;
+  padding-left: 3px;
+}
+.alienrpg .crt .fa-parachute-box:before {
+  content: "\f49e";
+}
+.alienrpg .crt .crt_Item3 .supply-btn.Power2 {
+  padding-left: 6px;
+  font-size: 20px;
+}
+.alienrpg .crt .crt_gridCarrer {
+  display: grid;
+  grid-template-areas: "crt_box1 crt_box2 crt_box3 crt_box4";
+  padding: 0px;
+  padding-top: 1px;
+  grid-template-columns: 17% 36% 17% 30%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 2px;
+}
+.alienrpg .crt .crt_gridCarrer .crt_box1,
+.alienrpg .crt .crt_gridCarrer .crt_box2,
+.alienrpg .crt .crt_gridCarrer .crt_box3,
+.alienrpg .crt .crt_gridCarrer .crt_box4 {
+  justify-self: center;
+  max-width: 100%;
+  padding-top: 0px;
+}
+.alienrpg .crt .crt_gridSpecialty {
+  display: grid;
+  grid-template-areas: "crt_sbox1 crt_sbox2";
+  padding: 4px 0px 3px 0px;
+  grid-template-columns: 17% 83%;
+  margin-bottom: 2px;
+}
+.alienrpg .crt .crt_gridSpecialty .crt_sbox1,
+.alienrpg .crt .crt_gridSpecialty .crt_sbox2 {
+  justify-self: center;
+  max-width: 100%;
+  padding-top: 0px;
+}
+.alienrpg .crt .crt_grid-special {
+  grid-area: crt_sbox2;
+  display: grid;
+  width: 100%;
+  grid-template-areas: "crt_spe1 crt_spe2";
+  grid-template-columns: 75% 25%;
+}
+.alienrpg .crt .crt .crt_spe1 {
+  grid-area: crt_spe1;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+.alienrpg .crt .crt_spe2 {
+  grid-area: crt_spe2;
+  padding-right: 5px;
+  justify-self: right;
+}
+.alienrpg .crt .crt_Item4,
+.alienrpg .crt .crt_Item5,
+.alienrpg .crt .crt_Item6,
+.alienrpg .crt .crt_Item7,
+.alienrpg .crt .crt_Item8,
+.alienrpg .crt .crt_Item9 {
+  border: 0px solid var(--aliengreen);
+  margin-bottom: 3px;
+}
+.alienrpg .crt_Item4 .resource-label-header,
+.alienrpg .crt_Item5 .resource-label-header,
+.alienrpg .crt_Item6 .resource-label-header,
+.alienrpg .crt_Item7 .resource-label-header,
+.alienrpg .crt_Item8 .resource-label-header,
+.alienrpg .crt_Item9 .resource-label-header {
+  display: block;
+  width: 100%;
+  padding: 1px 0px 1px 2px;
+  color: #000;
+  font-weight: bolder;
+  text-transform: uppercase;
+  background-color: var(--aliendarkergreen);
+}
+.alienrpg .crt .crt_Item4 {
+  height: 50px;
+}
+.alienrpg .crt .crt_Item5 textarea {
+  height: 107px;
+}
+.alienrpg .crt .crt_Item5 textarea:hover,
+.alienrpg .crt .crt_Item7 textarea:hover {
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .crt .crt_Item6 {
+  height: 216px;
+  border: 1px solid var(--aliendarkergreen);
+  margin-bottom: 0px;
+}
+.alienrpg .crt .crt_Item7 textarea {
+  height: 87px;
+}
+.alienrpg .crt .crt_Item8 {
+  padding-bottom: 2px;
+}
+.alienrpg .crt .crt_Item8 input,
+.alienrpg .crt .crt_Item9 input {
+  margin: 0px;
+  width: 100%;
+}
+.alienrpg .crt .crt_Relat {
+  display: grid;
+  grid-template-areas: "crt_Relat_Buddy crt_Relat_Rival";
+  grid-template-columns: 49%;
+  grid-column-gap: 5px;
+}
+.alienrpg .crt_Col3 {
+  grid-area: crt_Col3;
+  padding-top: 10px;
+  color: var(--aliendarkergreen);
+  font-family: var(--alienfont);
+}
+.alienrpg .crt.grid-attr {
+  border: 0px solid var(--aliengreen);
+}
+.alienrpg .crt .talent-btn:hover,
+.alienrpg .crt .talent-btn:focus {
+  -webkit-box-shadow: 0 0 7px var(--aliengreen);
+          box-shadow: 0 0 7px var(--aliengreen);
+  text-shadow: 0 0 15px var(--aliengreen);
+  background-color: var(--aliengreen);
+  cursor: help;
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: #000;
+}
+.alienrpg .crt .rollable {
+  width: 90%;
+  text-align: center;
+}
+.alienrpg .crt .rollable:hover,
+.alienrpg .crt .rollable:focus {
+  color: #000;
+  font-size: 110%;
+  font-weight: bolder;
+  background-color: var(--aliengreen);
+  border: 1px solid var(--aliengreen);
+  text-shadow: 0 0 0px var(--aliengreen);
+  -webkit-box-shadow: 0 0 5px var(--aliengreen);
+          box-shadow: 0 0 5px var(--aliengreen);
+  cursor: pointer;
+}
+.alienrpg .crt .rollItem,
+.alienrpg .crt .creature-acid-roll {
+  width: 100%;
+  text-align: center;
+}
+.alienrpg .crt .rollItem:hover,
+.alienrpg .crt .rollItem:focus {
+  text-shadow: 0 0 15px var(--aliengreen);
+  -webkit-box-shadow: 0 0 7px var(--aliengreen);
+          box-shadow: 0 0 7px var(--aliengreen);
+  background-color: var(--aliengreen);
+  color: #000;
+  font-size: 100%;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+.alienrpg .crt .grid-talents {
+  text-align: center;
+  grid-template-columns: 90% 10%;
+}
+.alienrpg .crt .talTitle {
+  text-transform: uppercase;
+  color: #000;
+  background-color: var(--aliengreen);
+}
+.alienrpg .crt .item-header {
+  /* background-color: var(--aliendarkergreen); */
+  /* color: black; */
+}
+.alienrpg .crt .textbox {
+  color: ghostwhite;
+  font-family: var(--alienchatfont);
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+.alienrpg .crt .textbox:focus {
+  font-weight: 400;
+}
+.alienrpg .crt .encumbrance .encumbrance-bar {
+  background: var(--alienitemselect);
+}
+.alienrpg .crt .blink {
+  padding: 0px 0px 2px 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: red;
+  color: white;
+  text-shadow: 0 0 5px red;
+  -webkit-animation: blink 0.5s 5;
+          animation: blink 0.5s 5;
+}
+.alienrpg .crt_lCol6 {
+  justify-self: center;
+}
+.alienrpg .crt .crit-injuries {
+  margin-top: 118px;
+}
+.alienrpg .crt .grid-crit {
+  grid-template-columns: 95% 5%;
+}
+.alienrpg .crt_crit2 {
+  text-align: center;
+  font-size: 15px;
+}
+.alienrpg .crt .Item11 {
+  border: 0px solid var(--aliengreen);
+}
+.alienrpg .crt .Item11 .items-list {
+  height: 179px;
+}
+.alienrpg .crt .critical-inj {
+  padding-bottom: 10px;
+}
+.alienrpg .crt .resource-label-header.rollCrit:hover {
+  font-size: 15px;
+  background-color: var(--aliendarkergreen);
+  -webkit-animation: textShadow 1s infinite;
+          animation: textShadow 1s infinite;
+}
+.alienrpg .crt_box4 {
+  padding: 7px 0px 0px 7px;
+}
+.alienrpg .crt .crt_Col1 {
+  margin-left: -5px;
+}
+.alienrpg .crt .fas.fa-tools {
+  vertical-align: top;
+  padding-top: 4px;
+  margin-left: 5px;
+}
+.alienrpg .crt .fas.fa-tools:hover {
+  cursor: help;
+}
+.alienrpg .crt .fas.fa-tools:before {
+  content: "\f022";
+}
+.alienrpg .crt .fas:hover {
+  color: var(--aliengreen);
+  text-shadow: 0 0 2px var(--aliengreen);
+  -webkit-animation: textShadow 0.5s 0.3;
+          animation: textShadow 0.5s 0.3;
+}
+.alienrpg .crt .items-list .item-header {
+  border-bottom-style: solid;
+  border-bottom-color: var(--aliengreen);
+}
+.alienrpg .crt .Col3 .panel {
+  margin-left: 5px;
+  padding: 0 10px 0 10px;
+  border-left: 2px inset var(--aliengreen);
+}
+.alienrpg .crt .tab.inventory .fas {
+  margin-right: 10px;
+}
+.alienrpg .crt .creature-acid-roll:hover,
+.alienrpg .crt .creature-acid-roll:focus {
+  text-shadow: 0 0 0px var(--aliengreen);
+  color: var(--aliengreen);
+  background-color: #000;
+  font-weight: 1;
+  font-size: 110%;
+  border: 0px solid var(--aliengreen);
+  -webkit-animation: textShadow 1s infinite;
+          animation: textShadow 1s infinite;
+}
+.alienrpg .crt .creature-attack-roll {
+  width: 260px;
+  height: 40px;
+  border-radius: 3px;
+  text-shadow: 0 0 rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
+  background: url(../images/alien_crt_roll-attack.png) no-repeat top left;
+}
+.alienrpg .crt .creature-attack-roll:hover {
+  border-radius: 3px;
+  background-color: var(--aliendarkergreen);
+  text-shadow: 0 0 rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
+  background: url(../images/alien_crt_roll-attack_hover.gif) no-repeat top left;
+}
+.alienrpg .crt .profile-img-item {
+  margin: 0;
+  height: 125px;
+  width: auto;
+  margin-right: 4px;
+  border-radius: 10px;
+}
+.alienrpg .crt .textbox1,
+.alienrpg .crt .textbox2 {
+  padding-left: 5px;
 }/*# sourceMappingURL=alienrpg.css.map */

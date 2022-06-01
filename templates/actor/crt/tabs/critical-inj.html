@@ -1,0 +1,10 @@
+<ol class="items-list crt">
+  {{#each critInj as |item iid|}}
+    <li class="item critical-inj" data-item-id="{{item._id}}">
+      <a class="item-image crit1"><img src="{{item.img}}" width="24" height="24" /></a>
+      <a class="item-name crit2">{{item.name}}</a>
+      <a class="item-name crit3">{{striptags item.data.attributes.effects}}</a>
+      <a class="crit4 item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+    </li>
+  {{/each}}
+</ol>
