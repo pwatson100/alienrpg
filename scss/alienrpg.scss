@@ -11,11 +11,13 @@
 @import 'global/flex';
 @import 'global/itemList';
 @import 'global/select-css';
+@import 'actor/alien-crt-ui';
 
-/* Styles limited to alienrpg sheets */
 .alienrpg {
+  /* Styles limited to alienrpg sheets */
   @import 'components/forms';
   @import 'components/resource';
   @import 'components/tabs';
   @import 'components/items';
+  @import 'actor/alien-crt-actor';
 }

@@ -101,6 +101,7 @@ a.content-link {
 .alienrpg a.content-link {
   color: $c-white;
   background: $c-black;
+  border: none;
 }
 #chat .message {
   border: 1px solid hsl(0, 8%, 34%);

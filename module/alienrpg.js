@@ -179,37 +179,6 @@ Hooks.once('init', async function () {
     return txt.replace(regexp, '');
   });
 
-  // Register system settings
-  game.settings.register('alienrpg', 'macroShorthand', {
-    name: 'ALIENRPG.DefMacro',
-    hint: 'ALIENRPG.DefMacroHint',
-    scope: 'world',
-    type: Boolean,
-    default: true,
-    config: true,
-  });
-
-  game.settings.registerMenu('alienrpg', 'alienrpgSettings', {
-    name: 'ALIENRPG.MenuName',
-    label: 'ALIENRPG.MenuLabel',
-    hint: 'ALIENRPG.MenuHint',
-    icon: 'fas fa-palette',
-    type: AlienConfig,
-    restricted: false,
-  });
-
-  // register setting for add/remove menu button
-  game.settings.register('alienrpg', 'addMenuButton', {
-    name: 'ALIENRPG.AddMenuName',
-    hint: 'ALIENRPG.AddMenuHint',
-    scope: 'world',
-    config: true,
-    default: AlienConfig.getDefaults.addMenuButton,
-    type: Boolean,
-    onChange: (enabled) => {
-      AlienConfig.toggleConfigButton(enabled);
-    },
-  });
 });
 
 // Build the panic table if it does not exist.
@@ -271,6 +240,9 @@ Hooks.once('ready', async () => {
   let r = document.querySelector(':root');
   r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
   r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
+  r.style.setProperty('--aliendarkergreen', game.settings.get('alienrpg', 'aliendarkergreen'));
+  r.style.setProperty('--alienitemselect', game.settings.get('alienrpg', 'alienitemselect'));
+  r.style.setProperty('--alienoddtab', game.settings.get('alienrpg', 'alienoddtab'));
   r.style.setProperty('--alientextjournal', game.settings.get('alienrpg', 'JournalFontColour'));
   if (game.settings.get('alienrpg', 'switchJournalColour')) {
     r.style.setProperty('--journalback', `#000000`);
@@ -279,25 +251,22 @@ Hooks.once('ready', async () => {
     r.style.setProperty('--chatbackground', `#000000`);
   }
 
-  //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
-  Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
+  AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
 });
 
-// create/remove the quick access config button
-Hooks.once('renderSettings', () => {
-  // AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
+//   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
+Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
+
+Hooks.on("renderPause", (_app, html, options) => {
+	html.find('img[src="icons/svg/clockwork.svg"]').attr("src", "systems/alienrpg/images/paused-alien.png");
 });
+
 
 // ***************************
 // DsN V3 Hooks
 // ***************************
 Hooks.on('diceSoNiceRollComplete', (chatMessageID) => {});
 
-// Hooks.on('diceSoNiceRollStart', (id, context) => {
-//   const roll = context.roll;
-//   // perform some check to see if you want to hide the roll
-//   if ('core.initiativeRoll') context.blind = true;
-// });
 
 Hooks.once('diceSoNiceReady', (dice3d) => {
   dice3d.addColorset({

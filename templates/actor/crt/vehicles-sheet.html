@@ -1,20 +1,16 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}} crt" autocomplete="off">
   {{!-- Sheet Header --}}
   <header class="vehicle-header">
     <img class="profile-img-vehicle" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize " ALIENRPG.Name"}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
 
       <div class="resources grid-vehicle">
         <h2 class="vItem1">{{ localize "ALIENRPG.Hull"}}</h2>
         <div class="resource-label">
           <input type="text" class="maxboxsize vItem2" name="data.attributes.hull.value" value="{{data.attributes.hull.value}}" data-dtype="Number" />
-          <label class="box23"> / </label>
-          <input type="text" class="maxboxsize " name="data.attributes.hull.max" value="{{data.attributes.hull.max}}" data-dtype="Number" />
-
-
         </div>
-        <h2 class="vItem3 rollableVeh" data-roll="{{data.attributes.armorrating.value}}" data-label="{{localize " ALIENRPG.ArmorRating"}}" data-spbutt="armor">{{localize "ALIENRPG.ArmorRating"}}</h2>
+        <h2 class="vItem3">{{localize "ALIENRPG.ArmorRating"}}</h2>
         <div class="resource-label">
           <input type="text" class="maxboxsize vItem4" name="data.attributes.armorrating.value" value="{{data.attributes.armorrating.value}}" data-dtype="Number" />
         </div>
@@ -47,7 +43,7 @@
       <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
       <br />
       <h3 class="resource-label">{{localize "ALIENRPG.Description"}}</h3>
-      <textarea name="data.attributes.comment.value" rows="18" data-dtype="String">{{data.attributes.comment.value}}</textarea>
+      <textarea name="data.attributes.comment.value" rows="14" data-dtype="String">{{data.attributes.comment.value}}</textarea>
     </div>
 
     <div class="tab crew" data-group="primary" data-tab="crew">
@@ -74,17 +70,17 @@
               </div>
 
               {{#ife position 'PILOT'}}
-                <h3 for="actor.data.data.skills.piloting.value" class="resource-label rollable Attr1 gC7" data-roll="{{addstats actor.data.data.skills.piloting.mod @root.actor.data.attributes.manoeuvrability.value}}" data-actorid="{{actor.id}}" data-label="{{@root.actor.name}} - {{localize " ALIENRPG.Skillpiloting"}}">{{localize "ALIENRPG.Skillpiloting"}}</h3>
+                <h3 for="actor.data.data.skills.piloting.value" class="resource-label rollable Attr1 gC7" data-roll="{{addstats actor.data.data.skills.piloting.mod @root.actor.data.attributes.manoeuvrability.value}}" data-actorid="{{actor.id}}" data-label="{{@root.actor.name}} - {{localize "ALIENRPG.Skillpiloting"}}">{{localize "ALIENRPG.Skillpiloting"}}</h3>
               {{/ife}}
 
               {{!-- Buttons --}}
               <div class="gC8">
                 {{#unless actor.isCrewDeleted}}
-                  <a class="button crew-edit" title="{{localize " ALIENRPG.ActorSheet.Edit"}}">
+                  <a class="button crew-edit" title="{{localize "ALIENRPG.ActorSheet.Edit"}}">
                     {{{@root.config.Icons.buttons.edit}}}
                   </a>
                 {{/unless}}
-                <a class="button crew-remove" title="{{localize " ALIENRPG.ActorSheet.Delete"}}">
+                <a class="button crew-remove" title="{{localize "ALIENRPG.ActorSheet.Delete"}}">
                   {{{@root.config.Icons.buttons.remove}}}
                 </a>
               </div>
@@ -98,6 +94,6 @@
 
     {{!-- Owned Items Tab --}}
     <!-- INVENTORY -->
-    <div class="tab inventory" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/tabs/vehicle-inventory.html" sections=inventory}}</div>
+    <div class="tab inventory" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/crt/tabs/vehicle-inventory.html" sections=inventory}}</div>
   </section>
 </form>

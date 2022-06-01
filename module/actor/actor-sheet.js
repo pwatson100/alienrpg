@@ -36,13 +36,15 @@ export class alienrpgActorSheet extends ActorSheet {
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
-
   get template() {
     const path = 'systems/alienrpg/templates/actor/';
     // return `${path}actor-sheet.html`;
     // unique item sheet by type, like `weapon-sheet.html`.
-
-    return `${path}/${this.actor.data.type}-sheet.html`;
+    if (game.settings.get('alienrpg', 'aliencrt')) {
+      return `systems/alienrpg/templates/actor/crt/${this.actor.data.type}-sheet.html`;
+    } else {
+      return `${path}${this.actor.data.type}-sheet.html`;
+    }
   }
 
   /* -------------------------------------------- */
