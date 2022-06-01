@@ -436,3 +436,9 @@ Corrected issue with Maestro add-on not working for Vehicle weapons.
 Corrected Radiation rolling issue when using languages other than English.
 Fixed error with weight calculation for armour when in the foot locker. 
 Refactored Critical Injury code. 
+
+Version 2.1.2
+FranzWarm wrote a really great add-on module called CRT UI.  Unfortunately he no longer supports the module so I have incorporated it into the core system.
+The UI components are now on by default and the sheets can be changed, by the players, selecting the CRT UI button on the "Configure Alien RPG Settings" menu. 
+(See MO/TH/ER Instructions for more information).  
+

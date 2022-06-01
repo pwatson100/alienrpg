@@ -1071,7 +1071,7 @@ button:focus {
 .style-settings {
   display: block;
   width: 400px;
-  height: 333px;
+  height: 377px;
   background: url(../images/mother-instructions/style-settings.webp);
   margin-left: auto;
   margin-right: auto;
@@ -3251,7 +3251,7 @@ combobox:focus {
   background-size: 100%;
   background-position: top, bottom, 0px 18px;
   background-repeat: no-repeat, no-repeat, repeat;
-  background-image: url("../images/chat-top.png"), url("../images/chat-bottom.png"), url("../images/chat-middle.png");
+  background-image: url("../images/chat-top.png"), url("../images/chat-bottom.png"), var(--chatbackground);
 }
 
 .chat-message.whisper {
