@@ -54,37 +54,22 @@
   ],
   "packs": [
     {
-      "name": "tables_gm",
-      "label": "Tables (GM)",
-      "path": "packs/AlienRPG-tables_gm.db",
-      "type": "RollTable",
+      "name": "alien-rpg-system",
+      "label": "Alien RPG System",
+      "path": "packs/alien-rpg-system.db",
+      "type": "Adventure",
       "module": "AlienRPG",
       "private": false
     },
     {
-      "name": "mother_instructions",
-      "label": "Mother Instructions",
-      "path": "packs/AlienRPG-mother-instructions.db",
-      "type": "JournalEntry",
-      "module": "AlienRPG",
-      "private": false
-    },
-    {
-      "name": "alien",
-      "label": "Alien",
-      "path": "packs/AlienRPG-alien.db",
+      "name": "alien-rpg-macros",
+      "label": "Alien Macros",
+      "path": "packs/alien-rpg-macros.db",
       "type": "Macro",
       "module": "AlienRPG",
       "private": false
-    },
-    {
-      "name": "skill-stunts",
-      "label": "Skill-Stunts",
-      "path": "packs/AlienRPG-skill-stunts.db",
-      "type": "Item",
-      "module": "AlienRPG",
-      "private": false
     }
+
   ],
   "system": [],
   "dependencies": [],

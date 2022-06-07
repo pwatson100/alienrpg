@@ -8,7 +8,7 @@ import { alienrpgItemSheet } from './item/item-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
-import { AlienRPGSetup } from './setupHandler.js';
+// import { AlienRPGSetup } from './setupHandler.js';
 import { preloadHandlebarsTemplates } from './templates.js';
 import { AlienRPGBaseDie } from './alienRPGBaseDice.js';
 import { AlienRPGStressDie } from './alienRPGBaseDice.js';
@@ -20,6 +20,7 @@ import { sendDevMessage } from './devmsg.js';
 import { ImporterBase } from './importer-base.js';
 import { COMMON } from './common.js';
 import { logger } from './logger.js';
+import { ModuleImport, ImportFormWrapper } from './apps/init.js';
 
 const includeRgx = new RegExp('/systems/alienrpg/module/');
 CONFIG.compatibility.includePatterns.push(includeRgx);
@@ -62,7 +63,8 @@ Hooks.once('init', async function () {
     alienrpgActor,
     alienrpgItem,
     yze,
-    AlienConfig,
+    ModuleImport,
+    ImportFormWrapper,
     rollItemMacro,
     registerSettings,
     AlienRPGCTContext,
@@ -99,6 +101,7 @@ Hooks.once('init', async function () {
   CONFIG.Combat.documentClass = AlienRPGCombat;
   CONFIG.CombatTracker = AlienRPGCTContext;
   CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
+  CONFIG.ImportFormWrapper = ImportFormWrapper;
 
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
@@ -219,33 +222,33 @@ Hooks.once('init', async function () {
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
   // debugger;
-  if (game.user.isGM) {
-    await AlienRPGSetup.setup();
-  }
+  // if (game.user.isGM) {
+  //   await ModuleImport();
+  // }
 
   sendDevMessage();
-  if (game.user.isGM) {
-    try {
-      let motherPack = game.packs.find((p) => p.metadata.label === 'Mother Instructions');
-      await motherPack.getIndex();
-      let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
+  // if (game.user.isGM) {
+  //   try {
+  //     let motherPack = game.packs.find((p) => p.metadata.label === 'Mother Instructions');
+  //     await motherPack.getIndex();
+  //     let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
 
-      const newVer = '9';
-      if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
-        if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
-          await game.journal.getName('MU/TH/ER Instructions.').delete();
-          await game.journal.importFromCompendium(motherPack, motherIns._id);
-          await game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
-          console.log('New version of MU/TH/ER Instructions.');
-          await game.journal.getName('MU/TH/ER Instructions.').show();
-        }
-      } else {
-        await game.journal.importFromCompendium(motherPack, motherIns._id);
-        game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
-        await game.journal.getName('MU/TH/ER Instructions.').show();
-      }
-    } catch (error) {}
-  }
+  //     const newVer = '9';
+  //     if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
+  //       if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
+  //         await game.journal.getName('MU/TH/ER Instructions.').delete();
+  //         await game.journal.importFromCompendium(motherPack, motherIns._id);
+  //         await game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
+  //         console.log('New version of MU/TH/ER Instructions.');
+  //         await game.journal.getName('MU/TH/ER Instructions.').show();
+  //       }
+  //     } else {
+  //       await game.journal.importFromCompendium(motherPack, motherIns._id);
+  //       game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
+  //       await game.journal.getName('MU/TH/ER Instructions.').show();
+  //     }
+  //   } catch (error) { }
+  // }
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
   const NEEDS_MIGRATION_VERSION = '2.1.0';
@@ -295,7 +298,7 @@ Hooks.once('renderSettings', () => {
 // ***************************
 // DsN V3 Hooks
 // ***************************
-Hooks.on('diceSoNiceRollComplete', (chatMessageID) => {});
+Hooks.on('diceSoNiceRollComplete', (chatMessageID) => { });
 
 // Hooks.on('diceSoNiceRollStart', (id, context) => {
 //   const roll = context.roll;
