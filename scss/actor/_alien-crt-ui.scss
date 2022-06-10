@@ -251,11 +251,11 @@ combobox:focus {
 //   animation: rotation 20s infinite linear;
 // }
 
-#pause  { 
-background: none;
-& > img {
-      box-sizing: border-box;
-      // background-image: url('../images/paused-alien.png');
+#pause {
+  background: none;
+  & > img {
+    box-sizing: border-box;
+    // background-image: url('../images/paused-alien.png');
     width: 200px;
     height: 200px;
     top: -50px;
@@ -263,15 +263,13 @@ background: none;
     opacity: 0.7;
     -webkit-animation: rotation 10s infinite linear;
     animation: rotation 10s infinite linear;
-
   }
   h3 {
     // font-family: var(--alienfont); !
     font-size: 32px;
     text-shadow: 0px 3px 5px rgba(0, 0, 0, 1);
   }
-  }
-
+}
 
 .alienrpg #context-menu li.context-item {
   line-height: 1.55;
