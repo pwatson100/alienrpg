@@ -80,7 +80,7 @@ export async function ModuleImport() {
       game.settings.set(moduleKey, 'migrationVersion', moduleVersion);
       ui.notifications.notify("Import Complete");
       game.journal.getName(welcomeJournalEntry).show();
-      return
+      return;
     } else {
       ui.notifications.warn("There was a problem with the Import");
     }

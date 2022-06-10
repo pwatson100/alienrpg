@@ -30,7 +30,7 @@ export default async function updateModule() {
         { assetType: 'journal', assetName: 'ALIEN RPG GM RULES INDEX', action: 'update' },
         { assetType: 'scenes', assetName: 'Station Layout', action: 'update' },
     ];
-
+    // This is not used at present
     const packs = {
         'Alien RPG HoD Scenario': 'alienrpg-hod-scenario-journal',
         'Alien RPG HoD Adventure': 'alienrpg-hod-adventure',
