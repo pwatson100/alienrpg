@@ -344,7 +344,7 @@ export class alienrpgActorSheet extends ActorSheet {
     const systems = [];
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
-    for (let i of data.items) {
+    for (let i of data.actor.system.items) {
       let item = i.system;
       // Append to gear.
       if (i.type === 'planet-system') {
@@ -470,7 +470,7 @@ export class alienrpgActorSheet extends ActorSheet {
       armor: { section: 'Armor', label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'), items: [], dataset: { type: 'armor' } },
     };
     // Partition items by category
-    let [items, Weapons, Armor] = data.items.reduce(
+    let [items, Weapons, Armor] = data.actor.system.items.reduce(
       (arr, item) => {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
@@ -493,7 +493,7 @@ export class alienrpgActorSheet extends ActorSheet {
     const critInj = [];
 
     // Iterate through items, allocating to containers
-    for (let i of data.items) {
+    for (let i of data.actor.system.items) {
       let item = i.system;
       switch (i.type) {
         case 'talent':

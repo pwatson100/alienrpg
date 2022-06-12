@@ -96,10 +96,10 @@ export class alienrpgActor extends Actor {
     super.prepareDerivedData();
   }
 
-  _prepareVehicleData(data) {}
-  _prepareCreatureData(actorData) {}
+  _prepareVehicleData(data) { }
+  _prepareCreatureData(actorData) { }
   _prepareTeritoryData(data) {
-    this.data.img = 'systems/alienrpg/images/icons/nested-eclipses.svg';
+    this.img = 'systems/alienrpg/images/icons/nested-eclipses.svg';
   }
 
   _prepareTokenImg() {
@@ -1275,13 +1275,13 @@ export class alienrpgActor extends Actor {
       if (game.settings.get('alienrpg-corerules', 'imported') === true) {
         critTable = true;
       }
-    } catch (error) {}
+    } catch (error) { }
 
     try {
       if (game.settings.get('alienrpg-starterset', 'imported') === true) {
         critTable = true;
       }
-    } catch (error) {}
+    } catch (error) { }
 
     try {
       if (critTable) {
@@ -1422,7 +1422,7 @@ export class alienrpgActor extends Actor {
         ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
         return ChatMessage.create(chatData);
       }
-    } catch (error) {}
+    } catch (error) { }
   }
 
   async rollCritMan(actor, type, dataset) {
