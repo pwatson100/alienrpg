@@ -283,7 +283,7 @@ export class alienrpgActor extends Actor {
           i.totalAc = parseInt(i.data.data.attributes.armorrating.value, 10);
           totalAc += i.totalAc;
         }
-      } catch {}
+      } catch { }
 
       try {
         //  Update water value fron items
@@ -293,7 +293,7 @@ export class alienrpgActor extends Actor {
           i.totalWat = parseInt(i.data.data.attributes.water.value, 10);
           totalWat += i.totalWat;
         }
-      } catch {}
+      } catch { }
       try {
         //  Update food value fron items
         i.data.data.attributes.food.value === true;
@@ -302,7 +302,7 @@ export class alienrpgActor extends Actor {
           i.totalFood = parseInt(i.data.data.attributes.food.value, 10);
           totalFood += i.totalFood;
         }
-      } catch {}
+      } catch { }
       try {
         //  Update air value fron items
         i.data.data.attributes.airsupply.value === true;
@@ -311,7 +311,7 @@ export class alienrpgActor extends Actor {
           i.totalAir = parseInt(i.data.data.attributes.airsupply.value, 10);
           totalAir += i.totalAir;
         }
-      } catch {}
+      } catch { }
       try {
         //  Update air value fron items
         i.data.data.attributes.power.value === true;
@@ -320,7 +320,7 @@ export class alienrpgActor extends Actor {
           i.totalPower = parseInt(i.data.data.attributes.power.value, 10);
           totalPower += i.totalPower;
         }
-      } catch {}
+      } catch { }
     }
 
     actorData.update({
@@ -355,8 +355,8 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  _prepareVehicleData(data) {}
-  _prepareCreatureData(actorData) {}
+  _prepareVehicleData(data) { }
+  _prepareCreatureData(actorData) { }
   _prepareTeritoryData(data) {
     this.data.img = 'systems/alienrpg/images/icons/nested-eclipses.svg';
   }
@@ -1315,13 +1315,13 @@ export class alienrpgActor extends Actor {
       if (game.settings.get('alienrpg-corerules', 'imported') === true) {
         critTable = true;
       }
-    } catch (error) {}
+    } catch (error) { }
 
     try {
       if (game.settings.get('alienrpg-starterset', 'imported') === true) {
         critTable = true;
       }
-    } catch (error) {}
+    } catch (error) { }
 
     try {
       if (critTable) {
@@ -1413,7 +1413,10 @@ export class alienrpgActor extends Actor {
           case 'synthetic':
           case 'creature':
             {
-              resultImage = test1.results[0].data.img;
+              resultImage = test1.results[0].data.img || 'icons/svg/biohazard.svg';
+              if (type === 'creature') {
+                resultImage = 'icons/svg/biohazard.svg';
+              }
               factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
               testArray = factorFour.split(/[:] |<br \/>/gi);
 
@@ -1461,7 +1464,7 @@ export class alienrpgActor extends Actor {
         ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
         return ChatMessage.create(chatData);
       }
-    } catch (error) {}
+    } catch (error) { }
   }
 
   async rollCritMan(actor, type, dataset) {

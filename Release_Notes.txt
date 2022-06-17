@@ -445,5 +445,5 @@ The UI components are now on by default and the sheets can be changed, by the pl
 Version 2.1.3
 Corrected issue with translation tags on the Creature sheet when using CRT UI
 Right click on Armor on the CRT UI Creature sheet now displays armour options as it should. 
-
+Corrected issue with Xeno crit displaying an invalid image in chat and on the item.
 
