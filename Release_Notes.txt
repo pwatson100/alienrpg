@@ -442,3 +442,8 @@ FranzWarm wrote a really great add-on module called CRT UI.  Unfortunately he no
 The UI components are now on by default and the sheets can be changed, by the players, selecting the CRT UI button on the "Configure Alien RPG Settings" menu. 
 (See MO/TH/ER Instructions for more information).  
 
+Version 2.1.3
+Corrected issue with translation tags on the Creature sheet when using CRT UI
+Right click on Armor on the CRT UI Creature sheet now displays armour options as it should. 
+Corrected issue with Xeno crit displaying an invalid image in chat and on the item.
+

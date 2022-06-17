@@ -5,16 +5,12 @@
   "author": "Paul Watson",
   "url": "https://github.com/pwatson100/alienrpg",
   "flags": {},
-  "version": "2.1.2",
+  "version": "2.1.3",
   "minimumCoreVersion": "0.8.5",
   "compatibleCoreVersion": "9",
   "scripts": [],
-  "esmodules": [
-    "module/alienrpg.js"
-  ],
-  "styles": [
-    "css/alienrpg.css"
-  ],
+  "esmodules": ["module/alienrpg.js"],
+  "styles": ["css/alienrpg.css"],
   "languages": [
     {
       "lang": "en",
@@ -96,7 +92,7 @@
   "socket": true,
 
   "manifest": "https://github.com/pwatson100/alienrpg/releases/latest/download/system.json",
-  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.1.2/master.zip",
+  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.1.3/master.zip",
 
   "protected": false,
   "initiative": "1d10",
