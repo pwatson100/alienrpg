@@ -209,7 +209,7 @@ Hooks.once('ready', async () => {
         game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
         await game.journal.getName('MU/TH/ER Instructions.').show();
       }
-    } catch (error) {}
+    } catch (error) { }
   }
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
@@ -260,14 +260,14 @@ Hooks.once('ready', async () => {
 Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
 
 Hooks.on("renderPause", (_app, html, options) => {
-	html.find('img[src="icons/svg/clockwork.svg"]').attr("src", "systems/alienrpg/images/paused-alien.png");
+  html.find('img[src="icons/svg/clockwork.svg"]').attr("src", "systems/alienrpg/images/paused-alien.png");
 });
 
 
 // ***************************
 // DsN V3 Hooks
 // ***************************
-Hooks.on('diceSoNiceRollComplete', (chatMessageID) => {});
+Hooks.on('diceSoNiceRollComplete', (chatMessageID) => { });
 
 
 Hooks.once('diceSoNiceReady', (dice3d) => {
@@ -411,7 +411,8 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
   let aTarget = game.actors.find((i) => i.data.name == tokenData.name);
   if (aTarget.data.data.header.npc) {
-    document.data.update({ disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
+    // document.data.update({ disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
+    document.data.update({ actorLink: false });
   }
 });
 
