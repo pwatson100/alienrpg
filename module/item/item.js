@@ -78,7 +78,10 @@ export class alienrpgItem extends Item {
     let r2Data = 0;
     let reRoll = false;
     if (this.actor.data.type === 'character') {
-      r2Data = this.actor.getRollData().stress;
+      let aStressMod = this.actor.data.data.header.stress.mod;
+
+      r2Data = parseInt(this.actor.getRollData().stress) + parseInt(aStressMod)
+      // r2Data = this.actor.getRollData().stress;
       reRoll = false;
     } else {
       r2Data = 0;
