@@ -447,3 +447,6 @@ Corrected issue with translation tags on the Creature sheet when using CRT UI
 Right click on Armor on the CRT UI Creature sheet now displays armour options as it should. 
 Corrected issue with Xeno crit displaying an invalid image in chat and on the item.
 
+Version 2.1.4
+Corrected issue with modifiers not being added to item rolls. 
+

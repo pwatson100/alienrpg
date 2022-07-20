@@ -472,7 +472,7 @@ export class alienrpgActor extends Actor {
         r2Data = 0;
         reRoll = true;
         if (dataset.armorP === 'true') {
-          r1Data = parseInt(r1Data / 2);
+          r1Data = parseInt(Math.ceil(r1Data / 2)); // fix to armor so it rounds up instead of down
           dataset.armorP = 'false';
         }
         if (dataset.armorDou === 'true') {
