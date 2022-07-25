@@ -421,8 +421,32 @@ Updated the Vehicle sheet to:
 Updated MO/TH/UR Instructions (Please Read).
 
 Version 2.1.1
-Agenda, Talent and Specialty items now set a default icon.
+Added Italian translation with thanks to Stefano1975t
+Skill and attribute abbreviation on the Character and Synthetic Skills tab are now localised.
+Agenda, Talent and Specialty items now set a default icon but can be changed as per a normal item..
+Added Critical Injury table dropdown and roll button to the Creature sheets (See MO/TH/ER Instructions for more information).
+Added a "Homebrew" selection to the character and synthetic Career dropdowns. 
 Increased width of crew position dropdown on the vehicle sheet as it was compressed when using Firefox. 
-Corrected but that sets Token Vision on creatures to "true".
+Rolling Piloting on the vehicle sheet now includes the Manoeuvrability modifier.
+Fixed odd issue with weapons rolls on the vehicle sheet. 
+Corrected bug that sets Token Vision on creatures to "true".
 Fixed issue with Armor rolls on the Inventory sheet for Synthetics. 
 Fixed issue with /em chat background colour.
+Corrected issue with Maestro add-on not working for Vehicle weapons. 
+Corrected Radiation rolling issue when using languages other than English.
+Fixed error with weight calculation for armour when in the foot locker. 
+Refactored Critical Injury code. 
+
+Version 2.1.2
+FranzWarm wrote a really great add-on module called CRT UI.  Unfortunately he no longer supports the module so I have incorporated it into the core system.
+The UI components are now on by default and the sheets can be changed, by the players, selecting the CRT UI button on the "Configure Alien RPG Settings" menu. 
+(See MO/TH/ER Instructions for more information).  
+
+Version 2.1.3
+Corrected issue with translation tags on the Creature sheet when using CRT UI
+Right click on Armor on the CRT UI Creature sheet now displays armour options as it should. 
+Corrected issue with Xeno crit displaying an invalid image in chat and on the item.
+
+Version 2.1.4
+Corrected issue with modifiers not being added to item rolls. 
+

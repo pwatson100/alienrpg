@@ -12,13 +12,14 @@ jobs:
 
       #Substitute the Manifest and Download URLs in the module.json
       - name: Substitute Manifest and Download Links For Versioned Ones
-        id: sub_manifest_link_version
+        id: sub_release_manifest_version
         uses: microsoft/variable-substitution@v1
         with:
           files: 'system.json'
         env:
           version: ${{github.event.release.tag_name}}
-          manifest: https://raw.githubusercontent.com/pwatson100/alienrpg/master/system.json
+          url: https://github.com/${{github.repository}}
+          manifest: https://github.com/${{github.repository}}/releases/latest/download/system.json
           download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/master.zip
 
       # create a zip file with all files required by the module to add to the release

@@ -257,7 +257,7 @@ export class yze {
         user: game.user.id,
         speaker: {
           actor: actorid,
-          alias: tactorid,
+          // alias: tactorid,
         },
         content: chatMessage,
         other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),

@@ -27,13 +27,24 @@ export class AlienConfig extends FormApplication {
     super.activateListeners(html);
     html.find('button[name="reset"]').click(this.onReset.bind(this));
     document.getElementById('fontStyle').value = game.settings.get('alienrpg', 'fontStyle');
+
+    html.find('button[name="addcrt"]').click(this.onCRT.bind(this));
   }
 
-  onReset() {
+  async onReset() {
     // this.reset = true;
-    game.settings.set('alienrpg', 'fontStyle', 'OCR-A');
-    game.settings.set('alienrpg', 'fontColour', '#adff2f');
-    game.settings.set('alienrpg', 'JournalFontColour', '#b1e0e7');
+    await game.settings.set('alienrpg', 'fontStyle', 'OCR-A');
+    await game.settings.set('alienrpg', 'fontColour', '#adff2f');
+    await game.settings.set('alienrpg', 'JournalFontColour', '#b1e0e7');
+    await game.settings.set('alienrpg', 'aliencrt', false);
+
+    location.reload();
+  }
+
+  async onCRT() {
+    await game.settings.set('alienrpg', 'aliencrt', true);
+    await game.settings.set('alienrpg', 'fontStyle', 'Kosugi');
+    await game.settings.set('alienrpg', 'fontColour', '#88f2ad');
     location.reload();
   }
 
@@ -55,7 +66,9 @@ export class AlienConfig extends FormApplication {
 
   static toggleConfigButton(shown) {
     const button = $('#AlienRPGButton');
-    if (button) button.remove();
+    const menu = game.settings.menus.get('alienrpg.alienrpgSettings');
+
+   if (button) button.remove();
 
     if (shown) {
       const title = game.i18n.localize('ALIENRPG.MenuLabel');
@@ -65,9 +78,10 @@ export class AlienConfig extends FormApplication {
      </button>`)
         .insertAfter('button[data-action="configure"]')
         .on('click', (event) => {
-          const menu = game.settings.menus.get('alienrpg.alienrpgSettings');
           if (!menu) return ui.notifications.error('No submenu found for the provided key');
           const app = new menu.type();
+          // game.settings.set('alienrpg', 'addMenuButton', true);
+
           return app.render(true);
         });
     }

@@ -1,12 +1,6 @@
 {
   "Actor": {
-    "types": [
-      "character",
-      "synthetic",
-      "vehicles",
-      "creature",
-      "territory"
-    ],
+    "types": ["character", "synthetic", "vehicles", "creature", "territory"],
     "character": {
       "header": {
         "health": {
@@ -466,7 +460,6 @@
       },
       "rTables": "",
       "cTables": ""
-
     },
     "vehicles": {
       "header": {
@@ -533,8 +526,8 @@
       "notes": {
         "notes": ""
       },
-      "crew":{
-        "occupants":[],
+      "crew": {
+        "occupants": [],
         "passengerQty": 0
       }
     },
@@ -564,17 +557,7 @@
     }
   },
   "Item": {
-    "types": [
-      "item",
-      "weapon",
-      "armor",
-      "talent",
-      "planet-system",
-      "skill-stunts",
-      "agenda",
-      "specialty",
-      "critical-injury"
-    ],
+    "types": ["item", "weapon", "armor", "talent", "planet-system", "skill-stunts", "agenda", "specialty", "critical-injury"],
     "item": {
       "header": {
         "type": {
@@ -878,7 +861,6 @@
             "ability": "wit"
           }
         }
-
       },
       "notes": {
         "notes": ""
@@ -1015,8 +997,8 @@
         "active": true
       },
       "attributes": {
-        "fatal":false,
-          "effects": "",
+        "fatal": false,
+        "effects": "",
         "timelimit": {
           "value": 0
         },
@@ -1115,6 +1097,5 @@
         }
       }
     }
-
   }
 }

@@ -3,29 +3,18 @@
   <p>
     Official system for playing the ENNIE award winning Alien RPG by Free League on Foundry VTT.
     <br /><br />
-    Free League have now officially endorsed the system and we have been working to provide official content to enhance the system (see below). <br />
-    Created by Paul Watson
+    Free League have now officially endorsed the system and we have been working to provide official content to enhance the system (see below). <br><br> 
+    
+    Developed for Foundry FTT by Paul Watson
     <br /><br />
+    If you like my system please consider buying me a coffee: <a href="https://ko-fi.com/paulwatson">https://ko-fi.com/paulwatson</a> <br>
+    <br><br> 
   </p>
-    <h1 class="headng">Change history for latest version 2.1.0</h1>
+    <h1 class="headng">Change history for latest version 2.1.2</h1>
     <p>
         <ul>
-<li>Added Max hull box to the vehicle sheet.</li>
-<li>Added quantity to weapons sheets and actor inventory.</li>
-<li>Added Radiation and Encumbrance Status icons to "Active Effects" to Synthetics.</li>
-<li>Encumbrance now calculates correctly for items with a quantity >1.</li>
-<li>Characters and Synthetics now have 20 xp dots.</li>
-<li>Fixed issue with removing actors from the combat tracker. </li>
-<li>Fixed issue with Condition icons not showing in Firefox.</li>
-<li>Updated the Vehicle sheet to:</li>
-    <ul>
-      <li>Allow Actors to be dropped on and assigned crew positions (Big thanks to @Stefouch for allowing me to "borrow" his code).</li>
-      <li>Pilot clicks (right click for modifiers) on "Piloting" on the crew tab to make piloting rolls (which include stress dice).</li>
-      <li>Clicking on a weapon will show a popup allowing those crew with "Pilot" or "Gunner" to be selected as well as any roll modifications.</li>
-      <li>Players making piloting or firing weapons can push rolls as normal and Stress dice will be applied to the PC.</li>
-      <li>Armor Rating is now rollable (same pop up as normal armor).</li>
-      <li>Inventory tab now includes the "Footlocker"</li>
-    </ul>
+<li>I have now incorporated the CRT UI module (by FranzWarm) into the core system.</li>
+<li>The UI components are now on by default and the sheets can be changed, by the players, selecting the CRT UI button on the "Configure Alien RPG Settings" menu. </li>
       </ul>
     </p>
 <br><br> 
@@ -41,6 +30,8 @@
       <li>Creature sheets.</li>
       <ul>
         <li>Dropdown to allow the GM to select from a list of rolltables for attacks.</li>
+        <li>Critical Injury table dropdown and roll button to allow GM to select from a list of rolltables which they can create themselves.</li>
+
       </ul>
       <li>Territories and Vehicle sheets.</li>
       <li>Items:</li>
@@ -349,6 +340,34 @@ This then rolls against the relevent table, writes to chat and creates the item 
   &nbsp;<span class="chat-roll">&nbsp;</span>&nbsp; <br /><br />
   The Special Abilities section allows quick notes to be added with respect to the Creature or situation. More detailed notes can be added on the Notes tab in the rich text editor.
   <br /><br />
+    <h2 class="headng"><span>Creature Critical Injuries (3)</span></h2>
+  <p>
+    The GM can select a Critial Injuries table using the dropdown (by defailt it's set to "None") and the roll for Critial hits on the creature.  
+    The filter looks in the "Alien Mother Tables" folder for any table starting with "Critical Injuries" and lists them in the dropdown.  
+    If the table does not exist an error message is displayed.
+    <br /><br />
+    Right Clicking on the edit icon to the right will display a context menu allowing injury to be edited or deleted. 
+<br><br> 
+    You will have to manually add any modifiers the injury has on the character to the tab modifiers tab on the injury item. <br>
+<br>
+Right clicking on the "Roll Crit" button will display a dialogue box allowing the GM to enter a specific critical injury number. 
+This must be in D6 format (number 1-6).
+
+This then rolls against the relevent table, writes to chat and creates the item on the sheet as per normal. <br>
+  <br><br> 
+  Using the Item type "critical-injury" a GM can create their own Critical Injury items which can then be dragged on to the sheet and will be displayed in this section and have the same controls for viewing, editing and deleting as a normal item.
+  <br><br> 
+  <h5>Creating your own Creature Critical Injuries Tables</h5>
+  If you want to create your own tables for creatures, add a table to "Alien Mother Tables" as normal ensuring it starts with "Critical Injuries ".  <br>
+  Make the Roll Table Formula 1d6. 
+  Add each of the rows as normal with the data in the following format: <br><br> 
+  <pre>&lt;b&gt;<em>Injury Name</em>&lt;/b&gt;<em>Injury Description</em></pre>
+  <br>
+     <strong>It is important to use this format as the code looks for the Injury Name within the bold html tags to create the item and message.  </strong>
+  
+  </p>
+  <br /><br />
+
   <h2 class="headng"><span>Territories</span></h2>
   The territories sheet allows you to create details about each of the sectors in space which you can share with the players.
   <br />
@@ -638,10 +657,14 @@ When "PILOT" is selected "PILOTING" will appear under the "ROLL" section of the 
   little intense. <br />
   Additionally, having the text colour green can cause issues for people with sight problems.
   <br /><br />
-  Additionally there is an option to change the Journal font color settings. <br />
+  There is also an option to change the Journal font color settings. <br />
   Please note that some of the font colors are baked into the modules journal settings so will not change.
   <br /><br />
-  In order to make the system more accessible, there are configuration options available to change these settings for individual players. &nbsp;<span class="style-settings">&nbsp;</span>&nbsp;
+FranzWarm wrote a really great add-on module called CRT UI.  Unfortunately he no longer supports the module so I have incorporated it into the core system.<br><br> 
+ The UI components are now on by default and the sheets can be changed, by the players, selecting the CRT UI button on the "Configure Alien RPG Settings" menu.  <br><br> 
+ The can be reverted to the default sheet by selecting the "Reset" option.   
+  <br><br> 
+    In order to make the system more accessible, there are configuration options available to change these settings for individual players. &nbsp;<span class="style-settings">&nbsp;</span>&nbsp;
   <br /><br />
   <br />
   &nbsp;<span class="font-picker-img">&nbsp;</span>&nbsp; &nbsp;<span class="colour-picker-img">&nbsp;</span>&nbsp; <br /><br />
@@ -709,12 +732,7 @@ When "PILOT" is selected "PILOTING" will appear under the "ROLL" section of the 
     </li>
     <li style="padding-bottom: 2%"><strong style="color: deepskyblue">Drag'n'Transfer :</strong> <br />This module allows you to easily transfer items from one sheet to another.</li>
     <li style="padding-bottom: 2%">
-      <strong style="color: deepskyblue">Alien RPG CRT UI :</strong> <br />This module adds an old CRT style for Foundry's Alien RPG system sheets, chat cards, and minor tweaks to the journals and
-      interface.
-    </li>
-    <li style="padding-bottom: 2%">
-      <strong style="color: deepskyblue">Weyland - Alien UI theme:</strong> <br />The main goal of this module is to provide a complete Foundry VTT UI theming, and not only AlienRPG system sheets
-      like Alien CRT UI does. So these two modules are complementary and should be used together.
+      <strong style="color: deepskyblue">Weyland - Alien UI theme:</strong> <br />The main goal of this module is to provide a complete Foundry VTT UI theming.
     </li>
     <li style="padding-bottom: 2%">
       <strong style="color: deepskyblue">Alien RPG - Motion Tracker:</strong> <br />The module installs a button just over the chat box that you can hit. When hit, the button will scan for the

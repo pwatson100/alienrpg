@@ -82,7 +82,7 @@ Hooks.once('init', async function () {
   game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, tLabel: '', sCount: 0, multiPush: 0 };
   // console.warn('sCount init', game.alienrpg.rollArr.sCount);
 
-  /**s
+  /**
    * Set an initiative formula for the system
    * @type {String}
    */
@@ -186,37 +186,7 @@ Hooks.once('init', async function () {
     return txt.replace(regexp, '');
   });
 
-  // Register system settings
-  game.settings.register('alienrpg', 'macroShorthand', {
-    name: 'ALIENRPG.DefMacro',
-    hint: 'ALIENRPG.DefMacroHint',
-    scope: 'world',
-    type: Boolean,
-    default: true,
-    config: true,
-  });
 
-  game.settings.registerMenu('alienrpg', 'alienrpgSettings', {
-    name: 'ALIENRPG.MenuName',
-    label: 'ALIENRPG.MenuLabel',
-    hint: 'ALIENRPG.MenuHint',
-    icon: 'fas fa-palette',
-    type: AlienConfig,
-    restricted: false,
-  });
-
-  // register setting for add/remove menu button
-  game.settings.register('alienrpg', 'addMenuButton', {
-    name: 'ALIENRPG.AddMenuName',
-    hint: 'ALIENRPG.AddMenuHint',
-    scope: 'world',
-    config: true,
-    default: AlienConfig.getDefaults.addMenuButton,
-    type: Boolean,
-    onChange: (enabled) => {
-      AlienConfig.toggleConfigButton(enabled);
-    },
-  });
 });
 
 // Build the panic table if it does not exist.
@@ -278,33 +248,35 @@ Hooks.once('ready', async () => {
   let r = document.querySelector(':root');
   r.style.setProperty('--aliengreen', game.settings.get('alienrpg', 'fontColour'));
   r.style.setProperty('--alienfont', game.settings.get('alienrpg', 'fontStyle'));
+  r.style.setProperty('--aliendarkergreen', game.settings.get('alienrpg', 'aliendarkergreen'));
+  r.style.setProperty('--alienitemselect', game.settings.get('alienrpg', 'alienitemselect'));
+  r.style.setProperty('--alienoddtab', game.settings.get('alienrpg', 'alienoddtab'));
   r.style.setProperty('--alientextjournal', game.settings.get('alienrpg', 'JournalFontColour'));
   if (game.settings.get('alienrpg', 'switchJournalColour')) {
     r.style.setProperty('--journalback', `#000000`);
   }
   if (game.settings.get('alienrpg', 'switchchatbackground')) {
-    r.style.setProperty('--chatbackground', `#000000`);
+    // r.style.setProperty('--chatbackground', `#000000`);
+    r.style.setProperty('--chatbackground', `url('/systems/alienrpg/images/chat-middle.png')`);
+
   }
 
-  //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
-  Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
-});
-
-// create/remove the quick access config button
-Hooks.once('renderSettings', () => {
   AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
 });
+
+//   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
+Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
+
+Hooks.on("renderPause", (_app, html, options) => {
+  html.find('img[src="icons/svg/clockwork.svg"]').attr("src", "systems/alienrpg/images/paused-alien.png");
+});
+
 
 // ***************************
 // DsN V3 Hooks
 // ***************************
 Hooks.on('diceSoNiceRollComplete', (chatMessageID) => { });
 
-// Hooks.on('diceSoNiceRollStart', (id, context) => {
-//   const roll = context.roll;
-//   // perform some check to see if you want to hide the roll
-//   if ('core.initiativeRoll') context.blind = true;
-// });
 
 Hooks.once('diceSoNiceReady', (dice3d) => {
   dice3d.addColorset({
@@ -398,7 +370,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 
       if (ev.target.classList.contains('alien-Push-button')) {
         // do stuff
-        let actor = game.actors.get(message.data.speaker.actor);
+        let actor = game.actors.get(message.speaker.actor);
         if (!actor) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoToken'));
         let reRoll = 'push';
 
@@ -407,16 +379,16 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         }
 
         // if (actor.data.type != 'vehicles') {
-        hostile = actor.data.type;
+        hostile = actor.type;
         // } else {
         //   hostile = 'character';
         // }
-
+        // let hostile = actor.data.type;
         let blind = false;
         //  Initialse the chat message
         let chatMessage = '';
 
-        if (actor.token.disposition === -1) {
+        if (actor.prototypeToken.disposition === -1) {
           blind = true;
         }
 

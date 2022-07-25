@@ -35,13 +35,15 @@ export class alienrpgActorSheet extends ActorSheet {
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
-
   get template() {
     const path = 'systems/alienrpg/templates/actor/';
     // return `${path}actor-sheet.html`;
     // unique item sheet by type, like `weapon-sheet.html`.
-
-    return `${path}/${this.actor.type}-sheet.html`;
+    if (game.settings.get('alienrpg', 'aliencrt')) {
+      return `systems/alienrpg/templates/actor/crt/${this.actor.type}-sheet.html`;
+    } else {
+      return `${path}${this.actor.type}-sheet.html`;
+    }
   }
 
   /* -------------------------------------------- */
@@ -288,7 +290,7 @@ export class alienrpgActorSheet extends ActorSheet {
       let target = `system.attributes.${a}.mod`;
       let field = `aData.attributes[${a}].mod`;
       let upData = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
-      await this.actor.updateSource({ [target]: (field = upData) });
+      await this.actor.update({ [target]: (field = upData) });
       // setProperty(this.actor, target, (field = upData));
       abl.mod = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
       abl.label = CONFIG.ALIENRPG.attributes[a];
@@ -299,7 +301,7 @@ export class alienrpgActorSheet extends ActorSheet {
       let target = `system.skills.${s}.mod`;
       let field = `aData.skills[${s}].mod`;
       let upData = parseInt(skl.value || 0) + parseInt(aData.attributes[conSkl].mod || 0) + parseInt(sklMod[s] || 0);
-      await this.actor.updateSource({ [target]: (field = upData) });
+      await this.actor.update({ [target]: (field = upData) });
       // setProperty(this.actor, target, (field = upData));
       skl.mod = parseInt(skl.value || 0) + parseInt(sklMod[s] || 0) + parseInt(aData.attributes[conSkl].mod || 0);
       skl.label = CONFIG.ALIENRPG.skills[s];
@@ -319,8 +321,10 @@ export class alienrpgActorSheet extends ActorSheet {
     });
 
     if (actor.actor.type === 'character') {
-      setProperty(this.actor, 'system.general.panic.calculatedMax', (aData.general.panic.calculatedMax = aData.general.panic.max));
-      setProperty(this.actor, 'system.header.health.max', aData.attributes.str.value + aData.header.health.mod);
+      await this.actor.update({
+        'system.general.panic.calculatedMax': (aData.general.panic.calculatedMax = aData.general.panic.max),
+        'system.header.health.max': (aData.attributes.str.value + aData.header.health.mod),
+      });
     }
   }
 
@@ -417,9 +421,11 @@ export class alienrpgActorSheet extends ActorSheet {
           break;
 
         case 'armor':
-          i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
-          i.totalWeight = i.system.attributes.weight.value;
-          totalWeight += i.totalWeight;
+          if (item.header.active != 'fLocker') {
+            i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
+            i.totalWeight = i.system.attributes.weight.value;
+            totalWeight += i.totalWeight;
+          }
           inventory[i.type].items.push(i);
           break;
 
@@ -457,6 +463,15 @@ export class alienrpgActorSheet extends ActorSheet {
     // debugger;
     data.actor.system.general.encumbrance = await this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
+  }
+  async _prepareCreatureItems(data) {
+    const critInj = [];
+
+    // Iterate through items, allocating to containers
+    for (let i of data.items) {
+      critInj.push(i);
+      data.critInj = critInj;
+    }
   }
   /*
    * Organize and classify Owned Items for Character sheets
@@ -562,7 +577,7 @@ export class alienrpgActorSheet extends ActorSheet {
       arr.push(o);
       return arr;
     }, []);
-    sheetData.crew.sort((o1, o2) => {
+    sheetData.actor.system.crew.occupants.sort((o1, o2) => {
       const pos1 = ALIENRPG.vehicle.crewPositionFlags.indexOf(o1.position);
       const pos2 = ALIENRPG.vehicle.crewPositionFlags.indexOf(o2.position);
       if (pos1 < pos2) return -1;
@@ -773,6 +788,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Creature sheet
     html.find('.creature-attack-roll').click(this._creatureAttackRoll.bind(this));
+    html.find('.creature-attack-roll').contextmenu(this._creatureManAttackRoll.bind(this));
 
     html.find('.creature-acid-roll').click(this._creatureAcidRoll.bind(this));
 
@@ -800,14 +816,17 @@ export class alienrpgActorSheet extends ActorSheet {
     const allowedItems = {
       character: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
+      creature: ['critical-injury'],
       vehicles: ['item', 'weapon'],
       territory: ['planet-system'],
     };
     let allowed = true;
 
-    if (this.actor.type === 'creature') {
-      allowed = false;
-    } else if (!alwaysAllowedItems.includes(type)) {
+    // if (this.actor.type === 'creature') {
+    //   allowed = false;
+    // } else
+
+    if (!alwaysAllowedItems.includes(type)) {
       if (!allowedItems[this.actor.type].includes(type)) {
         allowed = false;
       }
@@ -1125,17 +1144,25 @@ export class alienrpgActorSheet extends ActorSheet {
 
   _creatureAcidRoll(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
+    // const element = event.currentTarget;
+    const dataset = event.currentTarget.dataset;
     this.actor.creatureAcidRoll(this.actor, dataset);
   }
 
   _creatureAttackRoll(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
+    // const element = event.currentTarget;
+    const dataset = event.currentTarget.dataset;
     this.actor.creatureAttackRoll(this.actor, dataset);
   }
+
+  _creatureManAttackRoll(event) {
+    event.preventDefault();
+    // const element = event.currentTarget;
+    const dataset = event.currentTarget.dataset;
+    this.actor.creatureManAttackRoll(this.actor, dataset);
+  }
+
   _dropCrew(actorId) {
     const crew = game.actors.get(actorId);
     const actorData = this.actor;

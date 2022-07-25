@@ -4,10 +4,14 @@ $c-green: hsl(84, 100%, 59%);
 
 :root {
   --aliengreen: hsl(84, 100%, 59%);
+  --aliendarkergreen: hsl(141, 60%, 40%);
+  --alienitemselect: hsl(70, 80%, 74%);
+	--alienoddtab: hsl(72, 29%, 7%);
   --blue: hsl(224, 75%, 62%);
   --black: hsl(0, 0%, 0%);
   --white: hsl(0, 0%, 100%);
   --alientextjournal: #b1e0e7;
   --journalback: url(../images/mother-instructions/indbackground2.png);
   --chatbackground: url(/systems/alienrpg/images/IndBackground3.png);
+  --alienchatfont: 'Blinker', sans-serif;
 }
