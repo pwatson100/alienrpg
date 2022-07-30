@@ -5,6 +5,9 @@
   "authors": [{ "name": "Paul Watson" }],
   "url": "https://github.com/pwatson100/alienrpg",
   "flags": {},
+  "relationships": {
+    "systems": [{ "id": "alienrpg" }]
+  },
   "version": "3.0.0",
   "minimumCoreVersion": "10",
   "compatibleCoreVersion": "10",
@@ -71,7 +74,6 @@
       "private": false
     }
   ],
-  "system": [],
   "dependencies": [],
   "socket": true,
   "manifest": "https://github.com/pwatson100/alienrpg/releases/download/3.0.0/system.json",
