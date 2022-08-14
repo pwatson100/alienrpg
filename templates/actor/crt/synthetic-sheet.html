@@ -128,7 +128,7 @@
 
 
 		{{!-- Biography Tab --}}
-		<div class="tab biog " data-group="primary" data-tab="description">{{editor content=actor.system.notes target="actor.system.notes" button=true owner=owner editable=editable}}</div>
+		<div class="tab biog " data-group="primary" data-tab="description">{{editor actor.system.notes target="system.notes" button=true owner=owner editable=editable}}</div>
 		{{!-- Owned Items Tab --}}
 		<!-- INVENTORY -->
 		<div class="tab inventory" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/crt/tabs/actor-inventory.html" sections=inventory}}</div>

@@ -3736,13 +3736,13 @@ combobox:focus {
 .alienrpg .biog-full img {
   display: block;
 }
-.alienrpg .window-content {
+.alienrpg .crt .window-content {
   padding: 5px;
   border: 2px solid var(--aliendarkergreen);
   color: var(--aliengreen);
   text-shadow: 0 0 2px var(--aliendarkergreen);
 }
-.alienrpg .window-content::before {
+.alienrpg .crt .window-content::before {
   content: " ";
   display: block;
   position: absolute;
@@ -3756,7 +3756,7 @@ combobox:focus {
   background-size: 100% 2px, 3px 100%;
   pointer-events: none;
 }
-.alienrpg .window-content::after {
+.alienrpg .crt .window-content::after {
   content: " ";
   display: block;
   position: absolute;
@@ -3800,19 +3800,19 @@ combobox:focus {
   padding-left: 8px;
   border: 0px;
 }
-.alienrpg input[type=text],
-.alienrpg input[type=number],
-.alienrpg input[type=password],
-.alienrpg input[type=date],
-.alienrpg input[type=time] {
+.alienrpg .crt input[type=text],
+.alienrpg .crt input[type=number],
+.alienrpg .crt input[type=password],
+.alienrpg .crt input[type=date],
+.alienrpg .crt input[type=time] {
   border-radius: 0px;
   border: 1px solid var(--aliendarkergreen);
 }
-.alienrpg input[type=text]:hover,
-.alienrpg input[type=number]:hover,
-.alienrpg input[type=password]:hover,
-.alienrpg input[type=date]:hover,
-.alienrpg input[type=time]:hover {
+.alienrpg .crt input[type=text]:hover,
+.alienrpg .crt input[type=number]:hover,
+.alienrpg .crt input[type=password]:hover,
+.alienrpg .crt input[type=date]:hover,
+.alienrpg .crt input[type=time]:hover {
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .crt h1.charname input:focus {
@@ -4120,7 +4120,7 @@ combobox:focus {
       flex-wrap: nowrap;
   margin: 2px;
 }
-.alienrpg #bottom {
+.alienrpg .crt #bottom {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -4150,7 +4150,7 @@ combobox:focus {
   text-transform: uppercase;
   text-align: center;
 }
-.alienrpg .alienrpgv .synth_fake_check {
+.alienrpg .crt .alienrpgv .synth_fake_check {
   color: var(--aliendarkergreen);
   width: 100%;
   margin-top: 12px;

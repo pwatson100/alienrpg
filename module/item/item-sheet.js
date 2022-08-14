@@ -29,7 +29,7 @@ export class alienrpgItemSheet extends ItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
+  async getData() {
     const data = super.getData();
     // const item = foundry.utils.deepClone(this.item.data);
     // debugger;
