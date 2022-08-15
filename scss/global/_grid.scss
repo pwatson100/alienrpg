@@ -1096,7 +1096,7 @@
   display: grid;
   // border: 2px solid var(--aliengreen);
   padding-bottom: 4px;
-  padding-top: 5px;
+  padding-top: 12px;
   padding-left: 30px;
   grid-row-gap: 3px;
   grid-column-gap: 10px;
@@ -1259,4 +1259,25 @@
 .gC8 {
   justify-self: right;
   grid-area: gC8;
+}
+
+.grid-actor {
+  display: grid;
+  padding-top: 10px;
+  border: 2px solid var(--aliengreen);
+  grid-template-areas: 'gaItem1 gaItem2 gaItem3 gaItem4';
+  grid-template-columns: 20% 34% 20% 30%;
+}
+
+.gaItem1 {
+  grid-area: gaItem1;
+}
+.gaItem2 {
+  grid-area: gaItem2;
+}
+.gaItem3 {
+  grid-area: gaItem3;
+}
+.gaItem4 {
+  grid-area: gaItem4;
 }

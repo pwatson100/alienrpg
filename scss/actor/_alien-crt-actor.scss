@@ -163,7 +163,7 @@
 }
 
 .crt .resource-content .maxboxsize {
-  vertical-align: 3px;
+  vertical-align: 7px;
 }
 
 .crt .crt-grid-Char-Att {
@@ -285,12 +285,12 @@
 
 .crt .tabs .item {
   width: 100%;
-  margin: -7px 0 -7px 0;
+  // margin: -7px 0 -7px 0;
   padding-top: 6px;
 }
 
 .crt .tabs .item.active {
-  margin: -7px 0 -7px 0;
+  // margin: -7px 0 -7px 0;
   padding-top: 5px;
 }
 
@@ -298,7 +298,7 @@
   color: #000;
   background-color: var(--alienitemselect);
   box-shadow: 0 0 10px var(--alienitemselect);
-  margin: -7px 0 -7px 0;
+  margin: -3px 0 -3px 0;
   padding-top: 6px;
 }
 
@@ -802,7 +802,7 @@
 
 .crt .fas.fa-tools {
   vertical-align: top;
-  padding-top: 4px;
+  padding-top: 13px;
   margin-left: 5px;
 }
 

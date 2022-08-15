@@ -2316,7 +2316,7 @@ button:focus {
 .grid-Char-Att {
   display: grid;
   padding-bottom: 4px;
-  padding-top: 5px;
+  padding-top: 12px;
   padding-left: 30px;
   grid-row-gap: 3px;
   grid-column-gap: 10px;
@@ -2508,6 +2508,30 @@ button:focus {
 .gC8 {
   justify-self: right;
   grid-area: gC8;
+}
+
+.grid-actor {
+  display: grid;
+  padding-top: 10px;
+  border: 2px solid var(--aliengreen);
+  grid-template-areas: "gaItem1 gaItem2 gaItem3 gaItem4";
+  grid-template-columns: 20% 34% 20% 30%;
+}
+
+.gaItem1 {
+  grid-area: gaItem1;
+}
+
+.gaItem2 {
+  grid-area: gaItem2;
+}
+
+.gaItem3 {
+  grid-area: gaItem3;
+}
+
+.gaItem4 {
+  grid-area: gaItem4;
 }
 
 .flex-center {
@@ -3181,15 +3205,12 @@ combobox:focus {
   background: none;
 }
 #pause > img {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   width: 200px;
   height: 200px;
   top: -50px;
   left: calc(50% - 100px);
   opacity: 0.7;
-  -webkit-animation: rotation 10s infinite linear;
-  animation: rotation 10s infinite linear;
+  --fa-animation-duration: 10s;
 }
 #pause h3 {
   font-size: 32px;
@@ -3868,7 +3889,7 @@ combobox:focus {
           animation: textShadow 1s infinite;
 }
 .alienrpg .crt .resource-content .maxboxsize {
-  vertical-align: 3px;
+  vertical-align: 7px;
 }
 .alienrpg .crt .crt-grid-Char-Att {
   margin-left: -5px;
@@ -3976,11 +3997,9 @@ combobox:focus {
 }
 .alienrpg .crt .tabs .item {
   width: 100%;
-  margin: -7px 0 -7px 0;
   padding-top: 6px;
 }
 .alienrpg .crt .tabs .item.active {
-  margin: -7px 0 -7px 0;
   padding-top: 5px;
 }
 .alienrpg .crt .tabs .item:hover {
@@ -3988,7 +4007,7 @@ combobox:focus {
   background-color: var(--alienitemselect);
   -webkit-box-shadow: 0 0 10px var(--alienitemselect);
           box-shadow: 0 0 10px var(--alienitemselect);
-  margin: -7px 0 -7px 0;
+  margin: -3px 0 -3px 0;
   padding-top: 6px;
 }
 .alienrpg .crt .grid-genPage h2 {
@@ -4399,7 +4418,7 @@ combobox:focus {
 }
 .alienrpg .crt .fas.fa-tools {
   vertical-align: top;
-  padding-top: 4px;
+  padding-top: 13px;
   margin-left: 5px;
 }
 .alienrpg .crt .fas.fa-tools:hover {

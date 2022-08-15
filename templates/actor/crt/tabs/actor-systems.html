@@ -15,7 +15,7 @@
       <li class="item grid-items" data-item-id="{{item._id}}">
         <div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
         <span class="item-label lCol6" data-item="{{item.name}}">{{item.name~}}</span>
-        <span class="item-label lCol9" data-item="{{item.data.header.System.value}}">{{item.data.attributes.damage.value}}</span>
+        <span class="item-label lCol9" data-item="{{item.system.header.System.value}}">{{item.system.attributes.damage.value}}</span>
         <div class="item-controls lCol8">
           <a class="item-control item-edit" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
           <a class="item-control item-delete" title="{{localize 'ALIENRPG.DeleteItem'}}"><i class="fas fa-trash"></i></a>

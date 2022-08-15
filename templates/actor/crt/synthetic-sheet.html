@@ -6,17 +6,19 @@
 			<h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
 			<div class="resources grid grid-synth">
 				{{!-- Health and Stress --}}
-				<h2 for="actor.system.health.value" class="resource-label rollable rollCrit" title="{{ localize 'ALIENRPG.CriticalInjuries'}}">{{ localize 'ALIENRPG.Health'}}</h2>
-				<div class="resource-content">
+				<h2 for="actor.system.health.value" class="resource-label rollable rollCrit " title="{{ localize 'ALIENRPG.CriticalInjuries'}}">{{ localize 'ALIENRPG.Health'}}</h2>
+				<div class="resource-content ">
 					<button type="button" type="button" class="minus-btn" data-pmbut="minusHealth"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
 					<input type="text" class="maxboxsize" name="actor.system.header.health.value" value="{{actor.system.header.health.value}}" data-dtype="Number" />
+					<span style="vertical-align: 7px">/</span>
+					<input type="text" class="maxboxsize" name="actor.system.header.health.calculatedMax" value="{{actor.system.header.health.calculatedMax}}" data-dtype="Number" disabled />
 					<button type="button" class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
 				</div>
 
 				{{#if actor.system.header.synthstress}}
-					<h2 for="0" class="resource-label rollable rollable-stress synth-stresslabel" data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h2>
+					<h2 for="0" class="resource-label rollable rollable-stress synth-stresslabel " data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h2>
 				{{else}}
-					<h2 for="0" class="resource-label synth-stresslabel" data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h2>
+					<h2 for="0" class="resource-label synth-stresslabel " data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h2>
 				{{/if}}
 			</div>
 

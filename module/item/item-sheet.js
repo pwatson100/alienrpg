@@ -27,10 +27,17 @@ export class alienrpgItemSheet extends ItemSheet {
   }
 
   /* -------------------------------------------- */
+  async _enrichTextFields(data, fieldNameArr) {
+    for (let t = 0; t < fieldNameArr.length; t++) {
+      if (hasProperty(data, fieldNameArr[t])) {
+        setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(getProperty(data, fieldNameArr[t]), { async: true }));
+      }
+    };
+  }
 
   /** @override */
   async getData() {
-    const data = super.getData();
+    const data = await super.getData();
     // const item = foundry.utils.deepClone(this.item.data);
     // debugger;
     // let item = data.item;
@@ -42,18 +49,47 @@ export class alienrpgItemSheet extends ItemSheet {
     switch (item.type) {
       case 'planet-system':
         // this._prepareSystemData(item);
+        let enrichedFields = [
+          "system.misc.comment.value",
+        ];
+        await this._enrichTextFields(item, enrichedFields);
+        break;
+      case 'critical-injury':
+        let enrichedFields1 = [
+          "system.attributes.effects",
+        ];
+        await this._enrichTextFields(item, enrichedFields1);
         break;
       case 'agenda':
-        this._prepareAgendaData(item);
-        break;
-      case 'talent':
-        this._prepareTalentData(item);
+        await this._prepareAgendaData(item);
         break;
       case 'specialty':
-        this._prepareSpecialtyData(item);
+        await this._prepareSpecialtyData(item);
+        break;
+      case 'skill-stunts':
+        let enrichedFields5 = [
+          "system.description",
+        ];
+        await this._enrichTextFields(item, enrichedFields5);
+        break;
+
+      case 'talent':
+        let enrichedFields6 = [
+          "system.notes.notes",
+          "system.general.comment.value",
+        ];
+        await this._enrichTextFields(item, enrichedFields6);
+
         break;
 
       default:
+        // item, weapon, armor
+        let enrichedFieldsDef = [
+          "system.notes.notes",
+          "system.general.comment.value",
+        ];
+        await this._enrichTextFields(item, enrichedFieldsDef);
+
         break;
     }
     logger.debug('Item Sheet derived data:', item);
@@ -66,10 +102,20 @@ export class alienrpgItemSheet extends ItemSheet {
 
   async _prepareAgendaData(data) {
     this.item.update({ img: 'systems/alienrpg/images/icons/personal-agenda.png' });
+    let enrichedFields2 = [
+      "system.general.comment.value",
+    ];
+    await this._enrichTextFields(data, enrichedFields2);
+
   }
 
   async _prepareSpecialtyData(data) {
+    let enrichedFields4 = [
+      "system.general.comment.value",
+    ];
+    await this._enrichTextFields(data, enrichedFields4);
     this.item.update({ img: 'systems/alienrpg/images/icons/cover-notext.png' });
+
   }
 
   async _prepareTalentData(data) {

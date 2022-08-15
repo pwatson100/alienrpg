@@ -2,18 +2,21 @@
 	{{!-- CRT Sheet Header --}}
 	<header class="actor-header">
 		<img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" />
-		<div class="header-fields">
+		<div class="header-fields" style="width: 50%;">
 			<h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
-			<div class="resources grid grid-4col">
+			<div class="resources grid grid-actor">
 				{{!-- Health and Stress --}}
-				<h2 for="actor.system.health.value" class="resource-label rollable rollCrit" title="{{localize 'ALIENRPG.RollCrit'}}">{{ localize 'ALIENRPG.Health'}}</h2>
-				<div class="resource-content">
+				<h2 for="actor.system.health.value" class="resource-label rollable rollCrit gaItem1" style="margin-bottom: 8px;" title="{{localize 'ALIENRPG.RollCrit'}}">{{ localize 'ALIENRPG.Health'}}</h2>
+				<div class="resource-content gaItem2">
 					<button type="button" class="minus-btn" data-pmbut="minusHealth"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
 					<input type="text" class="maxboxsize" name="actor.system.header.health.value" value="{{actor.system.header.health.value}}" data-dtype="Number" />
+					<span style="vertical-align: 7px">/</span>
+					<input type="text" class="maxboxsize" name="actor.system.header.health.calculatedMax" value="{{actor.system.header.health.calculatedMax}}" data-dtype="Number" disabled />
+
 					<button type="button" class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
 				</div>
-				<h2 for="actor.system.header.stress.value" class="resource-label rollable rollable-stress" title="Roll Stress" data-panicroll="{{actor.system.header.stress.value}}" data-mod="{{actor.system.header.stress.mod}}" data-label="{{localize 'ALIENRPG.Stress'}}">{{localize 'ALIENRPG.Stress'}}</h2>
-				<div class="resource-content">
+				<h2 for="actor.system.header.stress.value" class="resource-label rollable rollable-stress gaItem3" style="margin-bottom: 8px;" title="Roll Stress" data-panicroll="{{actor.system.header.stress.value}}" data-mod="{{actor.system.header.stress.mod}}" data-label="{{localize 'ALIENRPG.Stress'}}">{{localize 'ALIENRPG.Stress'}}</h2>
+				<div class="resource-content gaItem4">
 					<button type="button" class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
 					<input type="text" class="maxboxsize" name="actor.system.header.stress.value" value="{{actor.system.header.stress.value}}" data-dtype="Number" />
 					<button type="button" class="plus-btn" data-pmbut="plusStress"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>

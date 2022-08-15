@@ -47,6 +47,13 @@ export class alienrpgActorSheet extends ActorSheet {
   }
 
   /* -------------------------------------------- */
+  async _enrichTextFields(data, fieldNameArr) {
+    for (let t = 0; t < fieldNameArr.length; t++) {
+      if (hasProperty(data, fieldNameArr[t])) {
+        setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(getProperty(data, fieldNameArr[t]), { async: true }));
+      }
+    };
+  }
 
   /** @override */
   async getData(options) {
@@ -95,12 +102,22 @@ export class alienrpgActorSheet extends ActorSheet {
         await this._characterData(data);
         await this.actor._checkOverwatch(data);
         await this._prepareItems(data);
+        let enrichedFields = [
+          "actor.system.notes",
+          "actor.system.adhocitems",
+        ];
+        await this._enrichTextFields(data, enrichedFields);
         break;
 
       case 'creature':
         data.rTables = alienrpgrTableGet.rTableget();
         data.cTables = alienrpgrTableGet.cTableget();
         await this._prepareCreatureItems(data); // Return data to the sheet
+        let enrichedFields2 = [
+          "actor.system.notes",
+        ];
+        await this._enrichTextFields(data, enrichedFields2);
+
         break;
 
       case 'synthetic':
@@ -110,6 +127,12 @@ export class alienrpgActorSheet extends ActorSheet {
         await this._characterData(data);
         await this.actor._checkOverwatch(data);
         await this._prepareItems(data);
+        let enrichedFields3 = [
+          "actor.system.notes",
+          "actor.system.adhocitems",
+        ];
+        await this._enrichTextFields(data, enrichedFields3);
+
         break;
       case 'territory':
         await this._prepareTerritoryItems(data);
@@ -268,6 +291,7 @@ export class alienrpgActorSheet extends ActorSheet {
           await this.actor.update({ 'system.header.stress.mod': (aData.header.stress.mod += parseInt(attrMod.stress || 0)) });
           // setProperty(this.actor, 'system.header.stress.mod', (aData.header.stress.mod += parseInt(attrMod.stress || 0)));
         }
+
       }
 
       if (Attrib.type === 'talent') {
@@ -278,6 +302,7 @@ export class alienrpgActorSheet extends ActorSheet {
             setProperty(this.actor, 'system.header.stress.mod', (aData.header.stress.mod -= 2));
             break;
           case 'TOUGH':
+            // await this.actor.update({ 'system.header.health.mod': (aData.header.health.mod += 2) });
             setProperty(this.actor, 'system.header.health.mod', (aData.header.health.mod += 2));
             break;
           default:
@@ -318,27 +343,18 @@ export class alienrpgActorSheet extends ActorSheet {
       'system.general.dehydrated.calculatedMax': (aData.general.dehydrated.calculatedMax = aData.general.dehydrated.max),
       'system.general.exhausted.calculatedMax': (aData.general.exhausted.calculatedMax = aData.general.exhausted.max),
       'system.general.freezing.calculatedMax': (aData.general.freezing.calculatedMax = aData.general.freezing.max),
+      'system.header.health.max': (aData.attributes.str.value + aData.header.health.mod),
+      'system.header.health.calculatedMax': (aData.header.health.calculatedMax = aData.attributes.str.value + aData.header.health.mod),
+
     });
 
     if (actor.actor.type === 'character') {
       await this.actor.update({
         'system.general.panic.calculatedMax': (aData.general.panic.calculatedMax = aData.general.panic.max),
-        'system.header.health.max': (aData.attributes.str.value + aData.header.health.mod),
       });
+
     }
   }
-
-  // async _checkOverwatch(actor) {
-  //   let conDition = await this.actor.hasCondition('overwatch');
-  //   // if (await this.hasCondition('overwatch')) {
-  //   if (conDition != undefined || conDition) {
-  //     await this.actor.update({ 'system.general.overwatch': true });
-  //     // setProperty(actor, 'system.general.overwatch', true);
-  //   } else {
-  //     await this.actor.update({ 'system.general.overwatch': false });
-  //     // setProperty(actor, 'system.general.overwatch', false);
-  //   }
-  // }
 
   _findActiveList() {
     return this.element.find('.tab.active .directory-list');
@@ -464,15 +480,20 @@ export class alienrpgActorSheet extends ActorSheet {
     data.actor.system.general.encumbrance = await this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
   }
-  async _prepareCreatureItems(data) {
-    const critInj = [];
 
-    // Iterate through items, allocating to containers
-    for (let i of data.items) {
-      critInj.push(i);
-      data.critInj = critInj;
-    }
-  }
+
+  // async _prepareCreatureItems(data) {
+  //   const critInj = [];
+
+  //   // Iterate through items, allocating to containers
+  //   for (let i of data.items) {
+  //     critInj.push(i);
+  //     data.critInj = critInj;
+  //   }
+  // }
+
+
+
   /*
    * Organize and classify Owned Items for Character sheets
    * @private
@@ -603,18 +624,23 @@ export class alienrpgActorSheet extends ActorSheet {
    */
   async _computeEncumbrance(totalWeight, actorData) {
     // Compute Encumbrance percentage
-    const enc = {
+    let enc = {
       max: actorData.actor.system.attributes.str.value * 4,
       value: Math.round(totalWeight * 100) / 100,
       value: totalWeight,
     };
-    enc.pct = Math.min((enc.value * 100) / enc.max, 99);
-    enc.encumbered = enc.pct > 50;
     for (let i of actorData.talents) {
       if (i.name.toUpperCase() === 'PACK MULE') {
-        enc.encumbered = enc.pct > 75;
+        enc = {
+          max: actorData.actor.system.attributes.str.value * 8,
+          value: Math.round(totalWeight * 100) / 100,
+          value: totalWeight,
+        };
       }
     }
+
+    enc.pct = Math.min((enc.value * 100) / enc.max, 99);
+    enc.encumbered = enc.pct > 50;
     let aTokens = '';
     if (enc.encumbered) {
       await this.actor.addCondition('encumbered');

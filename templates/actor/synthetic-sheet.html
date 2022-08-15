@@ -2,21 +2,23 @@
   {{!-- Sheet Header --}}
   <header class="actor-header">
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" />
-    <div class="header-fields">
+    <div class="header-fields" style="width: 50%;">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
-      <div class="resources grid grid-4col">
+      <div class="resources grid grid-actor">
         {{!-- Health and Stress --}}
         <h2 for="actor.system.health.value" class="resource-label">{{ localize 'ALIENRPG.Health'}}</h2>
-        <div class="resource-content">
+        <div class="resource-content gaItem2">
           <button type="button" class="minus-btn" data-pmbut="minusHealth"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
           <input type="text" class="maxboxsize minHealth" name="actor.system.header.health.value" value="{{actor.system.header.health.value}}" data-dtype="Number" />
+          /
+          <input type="text" class="maxboxsize" name="actor.system.header.health.calculatedMax" value="{{actor.system.header.health.calculatedMax}}" data-dtype="Number" disabled />
           <button type="button" class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
         </div>
-        <h3>{{ localize 'ALIENRPG.Synthetic'}}</h3>
+        <h3 class="gaItem3">{{ localize 'ALIENRPG.Synthetic'}}</h3>
         {{#if actor.system.header.synthstress}}
-          <h3 for="0" class="resource-label rollable" data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h3>
+          <h3 for="0" class="resource-label rollable gaItem4" data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h3>
         {{else}}
-          <h3 for="0" class="resource-label " data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h3>
+          <h3 for="0" class="resource-label gaItem4" data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h3>
         {{/if}}
         {{!-- Attributes --}}
         <div class="abilities grid-Char-Att">
