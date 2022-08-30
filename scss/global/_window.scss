@@ -497,27 +497,19 @@ button:focus {
 
 /* Global styles */
 
-// .journal-sheet form {
-//   color: var(--aliengreen);
-//   background: #000;
-//   border: 1px solid var(--aliengreen);
-//   border-radius: 1px;
-//   background: #000000;
-//   background-size: cover;
-//   color: powderblue;
-// }
-
-.alienrpg .headng {
-  text-align: center;
+.alienrpg .heading {
+  // text-align: center;
   color: var(--aliengreen);
-  font-size: xx-large;
+  // font-size: xx-large;
+  font-size: 28px;
+  border-bottom: 2px solid var(--color-underline-header);
 }
-.alienrpg .headng2 {
+.alienrpg .heading2 {
   text-align: center;
   color: var(--aliengreen);
   /* font-size: x-large; */
 }
-.alienrpg .headng3 {
+.alienrpg .heading3 {
   color: var(--aliengreen);
 }
 

@@ -9,8 +9,11 @@
     "systems": [{ "id": "alienrpg" }]
   },
   "version": "3.0.0",
-  "minimumCoreVersion": "10",
-  "compatibleCoreVersion": "10",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10",
+    "maximum": "10"
+  },
   "scripts": [],
   "esmodules": ["module/alienrpg.js"],
   "styles": ["css/alienrpg.css"],
