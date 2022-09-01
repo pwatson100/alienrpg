@@ -180,7 +180,7 @@
 }
 
 .skltable {
-  width: 30%;
+  width: 35%;
   /* border-style: double; */
   /* border-color: #e92d2d; */
   margin-left: auto;
@@ -280,4 +280,20 @@
   left: 50%;
   text-align: justify;
   /* background: rgb(174, 174, 110); */
+}
+
+.alienrpg .heading {
+  // text-align: center;
+  color: var(--aliengreen);
+  // font-size: xx-large;
+  font-size: 28px;
+  border-bottom: 2px solid var(--color-underline-header);
+}
+.alienrpg .heading2 {
+  text-align: center;
+  color: var(--aliengreen);
+  /* font-size: x-large; */
+}
+.alienrpg .heading3 {
+  color: var(--aliengreen);
 }
