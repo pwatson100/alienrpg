@@ -26,19 +26,19 @@
 			<div class="abilities crt-grid-Char-Att">
 
 				<h3 class="resource-label rollable crt_gCol1" data-attr="attribute" data-roll="{{actor.system.attributes.str.value}}" data-mod="{{actor.system.attributes.str.mod}}" data-label="{{localize 'ALIENRPG.AbilityStr'}}">{{localize 'ALIENRPG.AbilityStr'}}</h3>
-				<input type="text" class="maxboxsize crt_gCol2" name="actor.system.attributes.str.value" value="{{actor.system.attributes.str.value}}" data-dtype="Number" />
+				<input type="text" class="maxboxsize crt_gCol2" name="system.attributes.str.value" value="{{actor.system.attributes.str.value}}" data-dtype="Number" />
 
 				<h3 class="resource-label rollable crt_gCol3" data-attr="attribute" data-roll="{{actor.system.attributes.wit.value}}" data-mod="{{actor.system.attributes.wit.mod}}" data-label="{{localize 'ALIENRPG.AbilityWit'}}">{{localize 'ALIENRPG.AbilityWit'}}</h3>
-				<input type="text" class="maxboxsize crt_gCol4" name="actor.system.attributes.wit.value" value="{{actor.system.attributes.wit.value}}" data-dtype="Number" />
+				<input type="text" class="maxboxsize crt_gCol4" name="system.attributes.wit.value" value="{{actor.system.attributes.wit.value}}" data-dtype="Number" />
 
 				<h3 class="resource-label rollable crt_gCol5" data-roll="{{actor.system.general.armor.value}}" data-spbutt="armor">{{ localize 'ALIENRPG.Armor'}}</h3>
 				<input type="text" class="maxboxsize crt_gCol6" name="system.general.armor.value" value="{{actor.system.general.armor.value}}" data-dtype="Number" disabled />
 
 				<h3 class="resource-label rollable crt_gCol7" data-attr="attribute" data-roll="{{actor.system.attributes.agl.value}}" data-mod="{{actor.system.attributes.agl.mod}}" data-label="{{localize 'ALIENRPG.AbilityAgl'}}">{{localize 'ALIENRPG.AbilityAgl'}}</h3>
-				<input type="text" class="maxboxsize crt_gCol8" name="actor.system.attributes.agl.value" value="{{actor.system.attributes.agl.value}}" data-dtype="Number" />
+				<input type="text" class="maxboxsize crt_gCol8" name="system.attributes.agl.value" value="{{actor.system.attributes.agl.value}}" data-dtype="Number" />
 
 				<h3 class="resource-label rollable crt_gCol9" data-attr="attribute" data-roll="{{actor.system.attributes.emp.value}}" data-mod="{{actor.system.attributes.emp.mod}}" data-label="{{localize 'ALIENRPG.AbilityEmp'}}">{{localize 'ALIENRPG.AbilityEmp'}}</h3>
-				<input type="text" class="maxboxsize crt_gCol10" name="actor.system.attributes.emp.value" value="{{actor.system.attributes.emp.value}}" data-dtype="Number" />
+				<input type="text" class="maxboxsize crt_gCol10" name="system.attributes.emp.value" value="{{actor.system.attributes.emp.value}}" data-dtype="Number" />
 
 
 
@@ -243,7 +243,7 @@
 					<div class="crt_Item4">
 						<div class="crt_gridCarrer">
 							<label class="resource-label crt_box1">{{localize 'ALIENRPG.Career'}}</label>
-							<select class="select-css crt_box2" name="actor.system.general.career.value" data-dtype="{{actor.system.general.career.value}}">
+							<select class="select-css crt_box2" name="system.general.career.value" data-dtype="{{actor.system.general.career.value}}">
 								{{#select actor.system.general.career.value}}
 									<!-- <option value=""></option> -->
 									<option value="1">{{localize 'ALIENRPG.ColonialMarine'}}</option>
@@ -262,7 +262,7 @@
 								{{/select}}
 							</select>
 							<label class="resource-label crt_box3">{{localize 'ALIENRPG.Cash'}}</label>
-							<input type="text" class="cashboxsize currency crt_box4" name="actor.system.general.cash.value" value="{{actor.system.general.cash.value}}" />
+							<input type="text" class="cashboxsize currency crt_box4" name="system.general.cash.value" value="{{actor.system.general.cash.value}}" />
 						</div>
 						<div class="crt_gridSpecialty">
 							{{#each specialities as |item iid|}}
