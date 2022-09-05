@@ -538,23 +538,6 @@ button:focus {
   background-color: hsl(0deg, 0%, 0%);
 }
 
-/* Global styles */
-.alienrpg .heading {
-  color: var(--aliengreen);
-  font-size: 28px;
-  border-bottom: 2px solid var(--color-underline-header);
-}
-
-.alienrpg .heading2 {
-  text-align: center;
-  color: var(--aliengreen);
-  /* font-size: x-large; */
-}
-
-.alienrpg .heading3 {
-  color: var(--aliengreen);
-}
-
 .ctooltip {
   position: relative;
   display: inline-block;
