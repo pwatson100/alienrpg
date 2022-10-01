@@ -1,37 +1,37 @@
 import { AlienConfig } from './alienRPGConfig.js';
 
 export default function () {
-    // Register system settings
-    game.settings.register('alienrpg', 'macroShorthand', {
-      name: 'ALIENRPG.DefMacro',
-      hint: 'ALIENRPG.DefMacroHint',
-      scope: 'world',
-      type: Boolean,
-      default: true,
-      config: true,
-    });
-  
-    game.settings.registerMenu('alienrpg', 'alienrpgSettings', {
-      name: 'ALIENRPG.MenuName',
-      label: 'ALIENRPG.MenuLabel',
-      hint: 'ALIENRPG.MenuHint',
-      icon: 'fas fa-palette',
-      type: AlienConfig,
-      restricted: false,
-    });
-  
-    // register setting for add/remove menu button
-    game.settings.register('alienrpg', 'addMenuButton', {
-      name: 'ALIENRPG.AddMenuName',
-      hint: 'ALIENRPG.AddMenuHint',
-      scope: 'world',
-      config: true,
-      default: AlienConfig.getDefaults.addMenuButton,
-      type: Boolean,
-      onChange: (enabled) => {
-        AlienConfig.toggleConfigButton(enabled);
-      },
-    });
+  // Register system settings
+  game.settings.register('alienrpg', 'macroShorthand', {
+    name: 'ALIENRPG.DefMacro',
+    hint: 'ALIENRPG.DefMacroHint',
+    scope: 'world',
+    type: Boolean,
+    default: true,
+    config: true,
+  });
+
+  game.settings.registerMenu('alienrpg', 'alienrpgSettings', {
+    name: 'ALIENRPG.MenuName',
+    label: 'ALIENRPG.MenuLabel',
+    hint: 'ALIENRPG.MenuHint',
+    icon: 'fas fa-palette',
+    type: AlienConfig,
+    restricted: false,
+  });
+
+  // register setting for add/remove menu button
+  game.settings.register('alienrpg', 'addMenuButton', {
+    name: 'ALIENRPG.AddMenuName',
+    hint: 'ALIENRPG.AddMenuHint',
+    scope: 'world',
+    config: true,
+    default: AlienConfig.getDefaults.addMenuButton,
+    type: Boolean,
+    onChange: (enabled) => {
+      AlienConfig.toggleConfigButton(enabled);
+    },
+  });
 
   // Register system settings
   game.settings.register('alienrpg', 'fontColour', {
@@ -171,4 +171,16 @@ export default function () {
       location.reload();
     },
   });
+
+  game.settings.register('alienrpg', 'ARPGSemaphore', {
+    name: 'Semaphore Flag',
+    hint: 'Flag for running sequential actions/scripts',
+    scope: 'world',
+    type: String,
+    config: false,
+    default: '',
+  });
+
 }
+
+

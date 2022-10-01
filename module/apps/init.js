@@ -2,7 +2,7 @@ import updateModule from './update.js';
 
 export const systemName = 'Alien RPG';
 export const requiredSystemVersion = '3.0.0';
-export const moduleVersion = '3.0.0';
+// export const moduleVersion = '3.0.0';
 export const moduleKey = 'alienrpg'; // Module name. Important that this one is the exact same as the name of the module
 export const adventurePack = 'alienrpg.alien-rpg-system';
 export const adventurePackName = 'Alien RPG System';
@@ -66,6 +66,10 @@ export async function ModuleImport() {
   // Imports all assets in the Adventure Collection.  
   // Will overwrite existing assets. 
   //
+  await deleteFolderIfExist("Skill-Stunts");
+  await deleteJournalIfExist('MU/TH/ER Instructions.');
+  await deleteTableIfExist('Panic Table');
+
   const pack = game.packs.get(adventurePack);
   const adventureId = pack.index.find(a => a.name === adventurePackName)?._id;
   logger.info(`For ${adventurePackName} the Id is: ${adventureId}`)
@@ -77,7 +81,7 @@ export async function ModuleImport() {
   Hooks.on('importAdventure', (created, updated) => {
     if (created || updated) {
       game.settings.set(moduleKey, 'imported', true);
-      game.settings.set(moduleKey, 'migrationVersion', moduleVersion);
+      game.settings.set(moduleKey, 'migrationVersion', game.system.version);
       ui.notifications.notify("Import Complete");
       game.journal.getName(welcomeJournalEntry).show();
       return;
@@ -85,6 +89,25 @@ export async function ModuleImport() {
       ui.notifications.warn("There was a problem with the Import");
     }
   });
+  async function deleteFolderIfExist(folderName) {
+    let delFolder = game.folders.getName(folderName);
+    if (delFolder) {
+      console.log(`${folderName} Deleted`)
+      await delFolder.delete({ deleteSubfolders: true, deleteContents: true });
+    }
+  }
+  async function deleteJournalIfExist(journalName) {
+    let delJournal = game.journal.getName(journalName);
+    if (delJournal) {
+      await delJournal.delete();
+    }
+  }
+  async function deleteTableIfExist(tableName) {
+    let delTable = game.tables.getName(tableName);
+    if (delTable) {
+      await delTable.delete();
+    }
+  }
 };
 
 export async function ReImport() {

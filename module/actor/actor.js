@@ -1077,161 +1077,161 @@ export class alienrpgActor extends Actor {
       test1 = await atable.draw({ roll: roll, displayChat: false });
     }
 
-    try {
-      if (game.settings.get('alienrpg-corerules', 'imported') === true) {
-        critTable = true;
-      }
-    } catch (error) { }
+    // try {
+    //   if (game.settings.get('alienrpg-corerules', 'imported') === true) {
+    //     critTable = true;
+    //   }
+    // } catch (error) {  }
 
-    try {
-      if (game.settings.get('alienrpg-starterset', 'imported') === true) {
-        critTable = true;
-      }
-    } catch (error) { }
+    // try {
+    //   if (game.settings.get('alienrpg-starterset', 'imported') === true) {
+    //     critTable = true;
+    //   }
+    // } catch (error) { }
 
-    try {
-      if (critTable) {
-        const messG = test1.results[0].text;
-        switch (type) {
-          case 'character':
-            {
-              resultImage = test1.results[0].img;
-              factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
-              testArray = factorFour.split(/[:] |<br \/>/gi);
-              let speanex = testArray[7];
-              if (testArray[9] != 'Permanent') {
-                if (testArray[9].length > 0) {
-                  rollheal = testArray[9].match(/^\[\[([0-9]d[0-9]+)]/)[1];
-                  newHealTime = testArray[9].match(/^\[\[([0-9]d[0-9]+)\]\] ?(.*)/)[2];
-                  testArray[9] = new Roll(`${rollheal}`).evaluate({ async: false }).result + ' ' + newHealTime;
-                } else {
-                  testArray[9] = 'None';
-                }
-              }
-              switch (testArray[3]) {
-                case 'Yes ':
-                  cFatal = true;
-                  break;
-                case 'Yes, –1 ':
-                  cFatal = true;
-                  break;
-                default:
-                  cFatal = false;
-                  break;
-              }
-
-              switch (testArray[5]) {
-                case game.i18n.localize('ALIENRPG.None') + ' ':
-                  healTime = 0;
-                  break;
-                case game.i18n.localize('ALIENRPG.OneRound') + ' ':
-                  healTime = 1;
-                  break;
-                case game.i18n.localize('ALIENRPG.OneTurn') + ' ':
-                  healTime = 2;
-                  break;
-                case game.i18n.localize('ALIENRPG.OneShift') + ' ':
-                  healTime = 3;
-                  break;
-                case game.i18n.localize('ALIENRPG.OneDay'):
-                  +' ';
-                  healTime = 3;
-                  break;
-                default:
-                  healTime = 0;
-                  break;
-              }
-              //
-              // Now create the item on the sheet
-              //
-              let rollData = {
-                type: 'critical-injury',
-                img: resultImage,
-                name: `#${test1.roll._total} ${testArray[1]}`,
-                'data.attributes.fatal': cFatal,
-                'data.attributes.timelimit.value': healTime,
-                'data.attributes.healingtime.value': testArray[9],
-                'data.attributes.effects': speanex,
-              };
-
-              await this.createEmbeddedDocuments('Item', [rollData]);
-
-              //
-              // Prepare the data for the chat message
-              //
-
-              hFatal = testArray[3] != ' ' ? testArray[3] : 'None';
-              hHealTime = testArray[9] != ' ' ? testArray[9] : 'None';
-              hTimeLimit = testArray[5] != ' ' ? testArray[5] : 'None';
-
-              htmlData = {
-                actorname: actor.name,
-                img: resultImage,
-                name: `#${test1.roll._total} ${testArray[1]}`,
-                fatal: hFatal,
-                timelimit: hTimeLimit,
-                healingtime: hHealTime,
-                effects: speanex,
-              };
+    // try {
+    // if (critTable) {
+    const messG = test1.results[0].text;
+    switch (type) {
+      case 'character':
+        {
+          resultImage = test1.results[0].img;
+          factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
+          testArray = factorFour.split(/[:] |<br \/>/gi);
+          let speanex = testArray[7];
+          if (testArray[9] != 'Permanent') {
+            if (testArray[9].length > 0) {
+              rollheal = testArray[9].match(/^\[\[([0-9]d[0-9]+)]/)[1];
+              newHealTime = testArray[9].match(/^\[\[([0-9]d[0-9]+)\]\] ?(.*)/)[2];
+              testArray[9] = new Roll(`${rollheal}`).evaluate({ async: false }).result + ' ' + newHealTime;
+            } else {
+              testArray[9] = 'None';
             }
+          }
+          switch (testArray[3]) {
+            case 'Yes ':
+              cFatal = true;
+              break;
+            case 'Yes, –1 ':
+              cFatal = true;
+              break;
+            default:
+              cFatal = false;
+              break;
+          }
 
-            break;
-          case 'synthetic':
-          case 'creature':
-            {
-              resultImage = test1.results[0].img || 'icons/svg/biohazard.svg';
-              if (type === 'creature') {
-                resultImage = 'icons/svg/biohazard.svg';
-              }
-              factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
-              testArray = factorFour.split(/[:] |<br \/>/gi);
+          switch (testArray[5]) {
+            case game.i18n.localize('ALIENRPG.None') + ' ':
+              healTime = 0;
+              break;
+            case game.i18n.localize('ALIENRPG.OneRound') + ' ':
+              healTime = 1;
+              break;
+            case game.i18n.localize('ALIENRPG.OneTurn') + ' ':
+              healTime = 2;
+              break;
+            case game.i18n.localize('ALIENRPG.OneShift') + ' ':
+              healTime = 3;
+              break;
+            case game.i18n.localize('ALIENRPG.OneDay'):
+              +' ';
+              healTime = 3;
+              break;
+            default:
+              healTime = 0;
+              break;
+          }
+          //
+          // Now create the item on the sheet
+          //
+          let rollData = {
+            type: 'critical-injury',
+            img: resultImage,
+            name: `#${test1.roll._total} ${testArray[1]}`,
+            'data.attributes.fatal': cFatal,
+            'data.attributes.timelimit.value': healTime,
+            'data.attributes.healingtime.value': testArray[9],
+            'data.attributes.effects': speanex,
+          };
 
-              //
-              // Now create the item on the sheet
-              //
-              await actor.createEmbeddedDocuments('Item', [
-                {
-                  type: 'critical-injury',
-                  img: resultImage,
-                  name: `#${test1.roll.total} ${testArray[0]}`,
-                  'system.attributes.effects': testArray[1],
-                },
-              ]);
+          await this.createEmbeddedDocuments('Item', [rollData]);
 
-              //
-              // Prepare the data for the chat message
-              //
+          //
+          // Prepare the data for the chat message
+          //
 
-              htmlData = {
-                actorname: actor.name,
-                img: resultImage,
-                name: `#${test1.roll.total} ${testArray[0]}`,
-                effects: testArray[1],
-              };
-            }
-            break;
+          hFatal = testArray[3] != ' ' ? testArray[3] : 'None';
+          hHealTime = testArray[9] != ' ' ? testArray[9] : 'None';
+          hTimeLimit = testArray[5] != ' ' ? testArray[5] : 'None';
+
+          htmlData = {
+            actorname: actor.name,
+            img: resultImage,
+            name: `#${test1.roll._total} ${testArray[1]}`,
+            fatal: hFatal,
+            timelimit: hTimeLimit,
+            healingtime: hHealTime,
+            effects: speanex,
+          };
         }
 
-        // Now push the correct chat message
+        break;
+      case 'synthetic':
+      case 'creature':
+        {
+          resultImage = test1.results[0].img || 'icons/svg/biohazard.svg';
+          if (type === 'creature') {
+            resultImage = 'icons/svg/biohazard.svg';
+          }
+          factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
+          testArray = factorFour.split(/[:] |<br \/>/gi);
 
-        // console.log(htmlData);
-        const html = await renderTemplate(`systems/alienrpg/templates/chat/crit-roll-${actor.type}.html`, htmlData);
+          //
+          // Now create the item on the sheet
+          //
+          await actor.createEmbeddedDocuments('Item', [
+            {
+              type: 'critical-injury',
+              img: resultImage,
+              name: `#${test1.roll.total} ${testArray[0]}`,
+              'system.attributes.effects': testArray[1],
+            },
+          ]);
 
-        let chatData = {
-          user: game.user.id,
-          speaker: {
-            actor: actor.id,
-          },
-          content: html,
-          other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
-          sound: CONFIG.sounds.dice,
-          type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-        };
+          //
+          // Prepare the data for the chat message
+          //
 
-        ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
-        return ChatMessage.create(chatData);
-      }
-    } catch (error) { }
+          htmlData = {
+            actorname: actor.name,
+            img: resultImage,
+            name: `#${test1.roll.total} ${testArray[0]}`,
+            effects: testArray[1],
+          };
+        }
+        break;
+    }
+
+    // Now push the correct chat message
+
+    // console.log(htmlData);
+    const html = await renderTemplate(`systems/alienrpg/templates/chat/crit-roll-${actor.type}.html`, htmlData);
+
+    let chatData = {
+      user: game.user.id,
+      speaker: {
+        actor: actor.id,
+      },
+      content: html,
+      other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
+      sound: CONFIG.sounds.dice,
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+    };
+
+    ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
+    return ChatMessage.create(chatData);
+    // }
+    // } catch (error) { }
   }
 
   async rollCritMan(actor, type, dataset) {

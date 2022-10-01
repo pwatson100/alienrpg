@@ -285,30 +285,22 @@ export class alienrpgActorSheet extends ActorSheet {
             }
           }
         }
-        await this.actor.update({ 'system.header.health.mod': (aData.header.health.mod += parseInt(attrMod.health || 0)) });
-        // setProperty(this.actor, 'system.header.health.mod', (aData.header.health.mod += parseInt(attrMod.health || 0)));
-        if (aData.type === 'character') {
-          await this.actor.update({ 'system.header.stress.mod': (aData.header.stress.mod += parseInt(attrMod.stress || 0)) });
-          // setProperty(this.actor, 'system.header.stress.mod', (aData.header.stress.mod += parseInt(attrMod.stress || 0)));
-        }
 
       }
 
-      if (Attrib.type === 'talent') {
-        const talName = Attrib.name.toUpperCase();
-
-        switch (talName) {
-          case 'NERVES OF STEEL':
-            setProperty(this.actor, 'system.header.stress.mod', (aData.header.stress.mod -= 2));
-            break;
-          case 'TOUGH':
-            // await this.actor.update({ 'system.header.health.mod': (aData.header.health.mod += 2) });
-            setProperty(this.actor, 'system.header.health.mod', (aData.header.health.mod += 2));
-            break;
-          default:
-            break;
-        }
+      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'NERVES OF STEEL') {
+        attrMod.stress = attrMod.stress += -2;
       }
+
+      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'TOUGH') {
+        attrMod.health = attrMod.health += 2;
+      }
+
+      await this.actor.update({ 'system.header.health.mod': (aData.header.health.mod = parseInt(attrMod.health || 0)) });
+      if (actor.actor.type === 'character') {
+        await this.actor.update({ 'system.header.stress.mod': (aData.header.stress.mod = parseInt(attrMod.stress || 0)) });
+      }
+
     }
 
     for (let [a, abl] of Object.entries(aData.attributes)) {
