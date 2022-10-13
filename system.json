@@ -66,15 +66,8 @@
       "path": "packs/alien-rpg-system.db",
       "type": "Adventure",
       "module": "AlienRPG",
-      "private": false
-    },
-    {
-      "name": "alien-rpg-macros",
-      "label": "Alien Macros",
-      "path": "packs/alien-rpg-macros.db",
-      "type": "Macro",
-      "module": "AlienRPG",
-      "private": false
+      "private": false,
+      "system": "alienrpg"
     }
   ],
   "socket": true,

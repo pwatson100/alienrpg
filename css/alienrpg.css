@@ -3791,6 +3791,46 @@ combobox:focus {
   background-color: #d0daee;
 }
 
+.alienrpg .cinsymbol {
+  display: inline-block;
+  background-image: url("../images/icons/cin-symbol.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
+}
+
+.alienrpg .camsymbol {
+  display: inline-block;
+  background-image: url("../images/icons/cam-symbol.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
+}
+
+.alienrpg .stresssymbol {
+  display: inline-block;
+  background-image: url("../images/icons/alien-dice-y1.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
+}
+
+.alienrpg .basesymbol {
+  display: inline-block;
+  background-image: url("../images/icons/alien-dice-6.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
+}
+
 .alienrpg {
   /* Styles limited to alienrpg sheets */
   /*
