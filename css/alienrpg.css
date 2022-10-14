@@ -2546,12 +2546,6 @@ button:focus {
       flex-wrap: nowrap;
 }
 
-.alienrpg .flexcol > * {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-
 .alienrpg .flexcol .flex1 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
