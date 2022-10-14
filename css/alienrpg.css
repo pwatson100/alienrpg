@@ -90,6 +90,10 @@
 }
 
 .alienrpg .window-content {
+  background: hsl(0deg, 0%, 0%);
+}
+
+.alienrpg form {
   font-family: var(--alienfont);
   color: var(--aliengreen);
   font-size: var(--fontsize);
