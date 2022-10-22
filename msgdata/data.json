@@ -7,6 +7,10 @@
         {
            "version": 12,
             "message": "<h1>New Release available 2.1.2</h1><br>FranzWarm wrote a really great add-on module called CRT UI.  Unfortunately he no longer supports the module so I have incorporated it into the core system.<br>The UI components are now on by default and the sheets can be changed, by the players, selecting the CRT UI button on the 'Configure Alien RPG Settings' menu.<br><strong>Remember...</strong> Back up your worlds before upgrading to the new version. <br>Please read the @JournalEntry[MU/TH/ER Instructions.] to get the most benefit out of using the system and new features."
-        }
+        },
+               {
+           "version": 13,
+            "message": "<h1>Alien RPG V10</h1><br />Next week I am going to release Alien RPG for Foundry VTT V10.<br/>As always, take care and be in no hurry to upgrade.  There are only minor fixes in this version - the majority of work has to make it fully compatible with Foundry VTT V10.</p><p>Before you upgrade, remember<strong> make a backup</strong> - see this on how to make a <a href='https://www.youtube.com/watch?v=OmbxMmqNNXU'><b>backup</b></a>.  Once a world has been upgraded to V10, you can not go back.</p><p>The foundry discord have channel #v10-update-troubleshooting to help with upgrades if you run into problems,  but as long as you have a backup, you can always rescue your world.</p>"
+        }, 
     ]
 }
