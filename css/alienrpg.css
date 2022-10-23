@@ -3916,7 +3916,8 @@ combobox:focus {
           flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
-  width: 150px;
+  width: auto;
+  justify-self: center;
 }
 .alienrpg .profile-img-vehicle {
   -webkit-box-flex: 0;
@@ -3956,7 +3957,6 @@ combobox:focus {
   border-top: 1px solid var(--aliengreen) !important;
   border-bottom: 1px solid var(--aliengreen) !important;
 }
-.alienrpg .alienrpg .sheet-body,
 .alienrpg .tab,
 .alienrpg .editor {
   height: 100%;

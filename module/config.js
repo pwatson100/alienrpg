@@ -93,3 +93,4 @@ ALIENRPG.Icons = {
     remove: '<i class="fas fa-times"></i>',
   },
 };
+

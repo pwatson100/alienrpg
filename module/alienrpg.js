@@ -17,7 +17,6 @@ import { AlienConfig } from './alienRPGConfig.js';
 import AlienRPGCombat from './combat.js';
 import AlienRPGCTContext from './CBTracker.js';
 import { sendDevMessage } from './devmsg.js';
-import { ImporterBase } from './importer-base.js';
 import { COMMON } from './common.js';
 import { logger } from './logger.js';
 import { ModuleImport, ImportFormWrapper } from './apps/init.js';
@@ -54,7 +53,6 @@ COMMON.build();
 const SUB_MODULES = {
   COMMON,
   logger,
-  ImporterBase,
 };
 
 Hooks.once('init', async function () {
@@ -262,10 +260,19 @@ Hooks.once('ready', async () => {
   }
 
   AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
+
+  setupMacroFolders();
+
 });
 
 //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
-Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
+Hooks.on('hotbarDrop', (bar, data, slot) => {
+  let item = fromUuidSync(data.uuid);
+  if (item && item.system && (item.type === 'weapon' || item.type === 'armor')) {
+    createAlienrpgMacro(item, slot);
+    return false;
+  }
+});
 
 Hooks.on("renderPause", (_app, html, options) => {
   html.find('img[src="icons/svg/clockwork.svg"]').attr("src", "systems/alienrpg/images/paused-alien.png");
@@ -445,10 +452,53 @@ Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
   }
 });
 
+
+function setupMacroFolders() {
+  if (!game.user.isGM) {
+    // Only make changes to system
+    return;
+  }
+  const folderName = "Alien RPG System Macros";
+  let folder = game.folders
+    .filter((f) => f.type === "Macro")
+    .find((f) => f.name === folderName);
+  if (!folder) {
+    Folder.create({
+      name: folderName,
+      type: "Macro",
+      parent: null,
+    });
+  }
+}
+
+
+
 /* --
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */
+
+// async function createAlienrpgMacro(data, slot) {
+//   debugger;
+//   if (data.type !== 'Item') return;
+//   if (!('data' in data)) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoActor'));
+//   const item = data.data;
+
+//   // Create the macro command
+//   const command = `game.alienrpg.rollItemMacro("${item.name}");`;
+//   let macro = game.macros.contents.find((m) => m.name === item.name && m.command === command);
+//   if (!macro) {
+//     macro = await Macro.create({
+//       name: item.name,
+//       type: 'script',
+//       img: item.img,
+//       command: command,
+//       flags: { 'alienrpg.itemMacro': true },
+//     });
+//   }
+//   game.user.assignHotbarMacro(macro, slot);
+//   return false;
+// }
 
 /**
  * Create a Macro from an Item drop.
@@ -457,25 +507,34 @@ Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-async function createAlienrpgMacro(data, slot) {
-  if (data.type !== 'Item') return;
-  if (!('data' in data)) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoActor'));
-  const item = data.data;
-
+async function createAlienrpgMacro(item, slot) {
+  const folder = game.folders
+    .filter((f) => f.type === "Macro")
+    .find((f) => f.name === "Alien RPG System Macros");
   // Create the macro command
   const command = `game.alienrpg.rollItemMacro("${item.name}");`;
-  let macro = game.macros.contents.find((m) => m.name === item.name && m.command === command);
+  let macro = game.macros.find(
+    (m) =>
+      m.name === item.name &&
+      m.command === command &&
+      (m.author === game.user.id ||
+        m.ownership.default >=
+        CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER ||
+        m.ownership[game.user.id] >=
+        CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER)
+  );
   if (!macro) {
     macro = await Macro.create({
       name: item.name,
-      type: 'script',
+      type: "script",
       img: item.img,
       command: command,
-      flags: { 'alienrpg.itemMacro': true },
+      flags: { "alienrpg.itemMacro": true },
+      folder: folder?.id,
+      "ownership.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
     });
   }
   game.user.assignHotbarMacro(macro, slot);
-  return false;
 }
 
 function rollItemMacro(itemName) {
@@ -486,6 +545,7 @@ function rollItemMacro(itemName) {
   // console.warn('alienrpg.js 155 - Got here', speaker, actor);
   const item = actor ? actor.items.find((i) => i.name === itemName) : null;
   if (!item) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoItem') + ' ' + ` ${itemName}`);
+  if (!item.system.header.active) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NotActive') + ' ' + ` ${itemName}`);
 
   // Trigger the item roll
   return item.roll();

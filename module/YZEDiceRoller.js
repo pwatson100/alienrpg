@@ -110,6 +110,14 @@ export class yze {
         buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
         // console.log('yze -> yzeRoll -> mr', mr);
       }
+    } else {
+      if (r1Dice < 0) {
+        r2Dice = r2Dice + r1Dice
+        if (r2Dice < 1) {
+          return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoDice'));
+        }
+      }
+      roll1 = 0 + 'db';
     }
 
     // *******************************************************

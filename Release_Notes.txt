@@ -450,3 +450,11 @@ Corrected issue with Xeno crit displaying an invalid image in chat and on the it
 Version 2.1.4
 Corrected issue with modifiers not being added to item rolls. 
 
+Version 3.0.0
+Foundry V10 compatible
+New V10 macros for Roll on selected Creature table and Roll on selected Mother table - Ensure you update them.
+Dice roller now allows just Stress Dice to be rolled.  
+If the Base dice modifier is less than the attribute/skill is will subtract Stress dice in accordance with page 62 of the CRB.
+It is now possible to create your own Critical Injuries table (See MO/TH/ER Instructions for required format).
+Encumbrance for PC's with Pack Mule should now display correctly.
+Changed the way "Nerves of Steel" and "Tough" are applied which should/might sort out rare issue with tokens losing the adjusted stat.

@@ -1,7 +1,8 @@
 import updateModule from './update.js';
+import migrateFolders from './migratefolders.js';
 
 export const systemName = 'Alien RPG';
-export const requiredSystemVersion = '3.0.0';
+// export const requiredSystemVersion = '3.0.0';
 // export const moduleVersion = '3.0.0';
 export const moduleKey = 'alienrpg'; // Module name. Important that this one is the exact same as the name of the module
 export const adventurePack = 'alienrpg.alien-rpg-system';
@@ -36,7 +37,7 @@ Hooks.on('init', () => {
     default: '0',
   });
   game.settings.registerMenu(moduleKey, 'import', {
-    name: 'Import Compendiums',
+    name: 'Import Adventure',
     label: 'Re-Import',
     hint: `Welcome to the ${adventurePackName}.  Click above to import any missing (deleted) content to your world.  If you want to do a full refresh (overwrite) open the Compendium and use the Adventure Importer. `,
     config: true,
@@ -49,14 +50,18 @@ Hooks.on('init', () => {
 
 
 Hooks.on('ready', () => {
-  if (!game.settings.get(moduleKey, 'imported') && game.user.isGM) {
+  if (!game.settings.get(moduleKey, 'imported') && game.user.isGM && !game.folders.getName('Alien Tables')) {
     ModuleImport();
-  } else {
-    if (game.settings.get(moduleKey, 'imported') && game.settings.get(moduleKey, 'migrationVersion') < game.system.version) {
-      updateModule();
-    }
+    return;
+  } else if (!game.settings.get(moduleKey, 'imported') && game.user.isGM && game.folders.getName('Alien Tables')) {
+    migrateFolders();
+    game.settings.set(moduleKey, 'imported', true)
+    return;
   }
-  // logger.info("Imorted ", game.settings.get(moduleKey, 'imported'), "Version ", game.modules.get(moduleKey).version, "Migration ", game.settings.get(moduleKey, 'migrationVersion'))
+  else if (game.settings.get(moduleKey, 'imported') && game.user.isGM && game.settings.get(moduleKey, 'migrationVersion') < game.system.version) {
+    updateModule();
+  }
+  logger.info("Imorted ", game.settings.get(moduleKey, 'imported'), "Version ", game.system.version, "Migration ", game.settings.get(moduleKey, 'migrationVersion'))
 
 });
 
@@ -66,9 +71,9 @@ export async function ModuleImport() {
   // Imports all assets in the Adventure Collection.  
   // Will overwrite existing assets. 
   //
-  await deleteFolderIfExist("Skill-Stunts");
-  await deleteJournalIfExist('MU/TH/ER Instructions.');
-  await deleteTableIfExist('Panic Table');
+  // await deleteFolderIfExist("Skill-Stunts");
+  // await deleteJournalIfExist('MU/TH/ER Instructions.');
+  // await deleteFolderIfExist('Alien Tables');
 
   const pack = game.packs.get(adventurePack);
   const adventureId = pack.index.find(a => a.name === adventurePackName)?._id;
