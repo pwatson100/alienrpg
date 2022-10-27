@@ -11,6 +11,10 @@
                {
            "version": 13,
             "message": "<h1>Alien RPG V10</h1><br />Next week I am going to release Alien RPG for Foundry VTT V10.<br/>As always, take care and be in no hurry to upgrade.  There are only minor fixes in this version - the majority of work has to make it fully compatible with Foundry VTT V10.</p><p>Before you upgrade, remember<strong> make a backup</strong> - see this on how to make a <a href='https://www.youtube.com/watch?v=OmbxMmqNNXU'><b>backup</b></a>.  Once a world has been upgraded to V10, you can not go back.</p><p>The foundry discord have channel #v10-update-troubleshooting to help with upgrades if you run into problems,  but as long as you have a backup, you can always rescue your world.</p>"
+        },
+               {
+           "version": 14,
+"message":"<h1>Alien released for v10</h1><p>The Alien system has now gone to v10, with the Free-League modules as well.  PLEASE, make a <a href='https://www.youtube.com/watch?v=OmbxMmqNNXU'>backup</a>, especially if you are going from Foundry v9 to Foundry v10. There are a couple of new features in v10 and some bugs squashed, but the majority of work has been to make it stable and ready for Foundry v10.</p><p>Note that while Alien v9 and the modules works perfectly fine, there are no plans to enhance them further nor provide further bug-fixes for them going forward. </p>I am active in the <a href='https://discord.gg/foundryvtt'>#free-league</a> channel on the Foundry discord.</a>.</p>"
         }
     ]
 }
