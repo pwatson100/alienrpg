@@ -23,42 +23,118 @@ export class alienrpgItemSheet extends ItemSheet {
     // Alternatively, you could use the following return statement to do a
     // unique item sheet by type, like `weapon-sheet.html`.
 
-    return `${path}/${this.item.data.type}-sheet.html`;
+    return `${path}/${this.item.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */
+  async _enrichTextFields(data, fieldNameArr) {
+    for (let t = 0; t < fieldNameArr.length; t++) {
+      if (hasProperty(data, fieldNameArr[t])) {
+        setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(getProperty(data, fieldNameArr[t]), { async: true }));
+      }
+    };
+  }
 
   /** @override */
-  getData() {
-    // const data = super.getData();
-    const item = foundry.utils.deepClone(this.item.data);
+  async getData() {
+    const data = await super.getData();
+    // const item = foundry.utils.deepClone(this.item.data);
+    // debugger;
+    // let item = data.item;
+    const item = data.item.toJSON();
+    // console.log(data);
 
     // const item = duplicate(this.item.data);
-    const data = item;
-    logger.debug('Item Sheet derived data:', data);
+    // const data = item;
+    switch (item.type) {
+      case 'planet-system':
+        // this._prepareSystemData(item);
+        let enrichedFields = [
+          "system.misc.comment.value",
+        ];
+        await this._enrichTextFields(item, enrichedFields);
+        break;
+      case 'critical-injury':
+        let enrichedFields1 = [
+          "system.attributes.effects",
+        ];
+        await this._enrichTextFields(item, enrichedFields1);
+        break;
+      case 'agenda':
+        await this._prepareAgendaData(item);
+        break;
+      case 'specialty':
+        await this._prepareSpecialtyData(item);
+        break;
+      case 'skill-stunts':
+        let enrichedFields5 = [
+          "system.description",
+        ];
+        await this._enrichTextFields(item, enrichedFields5);
+        break;
 
-    return data;
+      case 'talent':
+        let enrichedFields6 = [
+          "system.notes.notes",
+          "system.general.comment.value",
+        ];
+        await this._enrichTextFields(item, enrichedFields6);
+
+        break;
+
+      default:
+        // item, weapon, armor
+        let enrichedFieldsDef = [
+          "system.notes.notes",
+          "system.general.comment.value",
+        ];
+        await this._enrichTextFields(item, enrichedFieldsDef);
+
+        break;
+    }
+    logger.debug('Item Sheet derived data:', item);
+    return item;
   }
-  // getData() {
-  //   // console.log(this.item);
-  //   const itemData = foundry.utils.deepClone(this.item);
-  //   // this.computeSkills(actorData);
-  //   // this.computeItems(actorData);
-  //   // this.computeEncumbrance(actorData);
-  //   return {
-  //     item: itemData,
-  //   };
-  // }
-  /* -------------------------------------------- */
+
+  async _prepareSystemData(data) {
+    this.item.update({ img: 'systems/alienrpg/images/icons/solar-system.svg' });
+  }
+
+  async _prepareAgendaData(data) {
+    this.item.update({ img: 'systems/alienrpg/images/icons/personal-agenda.png' });
+    let enrichedFields2 = [
+      "system.general.comment.value",
+    ];
+    await this._enrichTextFields(data, enrichedFields2);
+
+  }
+
+  async _prepareSpecialtyData(data) {
+    let enrichedFields4 = [
+      "system.general.comment.value",
+    ];
+    await this._enrichTextFields(data, enrichedFields4);
+    this.item.update({ img: 'systems/alienrpg/images/icons/cover-notext.png' });
+
+  }
+
+  async _prepareTalentData(data) {
+    if (data.system.general.career.value === '1' || data.system.general.career.value === '') {
+      this.item.update({ img: 'systems/alienrpg/images/icons/sprint.svg' });
+    } else {
+      this.item.update({ img: 'systems/alienrpg/images/icons/fire-dash.svg' });
+    }
+  }
 
   /** @override */
-  setPosition(options = {}) {
-    const position = super.setPosition(options);
-    const sheetBody = this.element.find('.sheet-body');
-    const bodyHeight = position.height - 192;
-    sheetBody.css('height', bodyHeight);
-    return position;
-  }
+  // setPosition(options = {}) {
+  //   const position = super.setPosition(options);
+  //   const sheetBody = this.element.find('.sheet-body');
+  //   // const bodyHeight = position.height - 192;
+  //   const bodyHeight = position.height;
+  //   sheetBody.css('height', bodyHeight);
+  //   return position;
+  // }
 
   /* -------------------------------------------- */
 

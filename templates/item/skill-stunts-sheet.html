@@ -1,22 +1,22 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}}" style="min-height: 489px" autocomplete="off">
   <header class="vehicle-header">
     <div class="header-fields">
       <h1 class="charname">
         <select class="select-css" name="name" value="{{name}}" data-dcareer="{{name}}">
           {{#select name}}
-          <!-- <option value=""></option> -->
-          <option value="Heavy Machinery">{{localize "ALIENRPG.SkillheavyMach"}}</option>
-          <option value="Close Combat">{{localize "ALIENRPG.SkillcloseCbt"}}</option>
-          <option value="Stamina">{{localize "ALIENRPG.Skillstamina"}}</option>
-          <option value="Ranged Combat">{{localize "ALIENRPG.SkillrangedCbt"}}</option>
-          <option value="Mobility">{{localize "ALIENRPG.Skillmobility"}}</option>
-          <option value="Piloting">{{localize "ALIENRPG.Skillpiloting"}}</option>
-          <option value="Command">{{localize "ALIENRPG.Skillcommand"}}</option>
-          <option value="Manipulation">{{localize "ALIENRPG.Skillmanipulation"}}</option>
-          <option value="Medical Aid">{{localize "ALIENRPG.SkillmedicalAid"}}</option>
-          <option value="Observation">{{localize "ALIENRPG.Skillobservation"}}</option>
-          <option value="Survival">{{localize "ALIENRPG.Skillsurvival"}}</option>
-          <option value="Comtech">{{localize "ALIENRPG.Skillcomtech"}}</option>
+            <!-- <option value=""></option> -->
+            <option value="Heavy Machinery">{{localize "ALIENRPG.SkillheavyMach"}}</option>
+            <option value="Close Combat">{{localize "ALIENRPG.SkillcloseCbt"}}</option>
+            <option value="Stamina">{{localize "ALIENRPG.Skillstamina"}}</option>
+            <option value="Ranged Combat">{{localize "ALIENRPG.SkillrangedCbt"}}</option>
+            <option value="Mobility">{{localize "ALIENRPG.Skillmobility"}}</option>
+            <option value="Piloting">{{localize "ALIENRPG.Skillpiloting"}}</option>
+            <option value="Command">{{localize "ALIENRPG.Skillcommand"}}</option>
+            <option value="Manipulation">{{localize "ALIENRPG.Skillmanipulation"}}</option>
+            <option value="Medical Aid">{{localize "ALIENRPG.SkillmedicalAid"}}</option>
+            <option value="Observation">{{localize "ALIENRPG.Skillobservation"}}</option>
+            <option value="Survival">{{localize "ALIENRPG.Skillsurvival"}}</option>
+            <option value="Comtech">{{localize "ALIENRPG.Skillcomtech"}}</option>
           {{/select}}
         </select>
       </h1>
@@ -32,6 +32,6 @@
   {{!-- Sheet Body --}}
   <section class="sheet-body" style="height: 275px">
     {{!-- Attributes Tab --}}
-    <div class="tab item" data-group="primary" data-tab="stunts">{{editor content=data.description target="data.description" button=true owner=owner editable=true}}</div>
+    <div class="tab item" data-group="primary" data-tab="stunts">{{editor system.description target="system.description" button=true owner=owner editable=true}}</div>
   </section>
 </form>

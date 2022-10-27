@@ -15,14 +15,14 @@
 	min-height: 350px;
 }*/
 
-.window-content {
+.crt .window-content {
   padding: 5px;
   border: 2px solid var(--aliendarkergreen);
   color: var(--aliengreen);
   text-shadow: 0 0 2px var(--aliendarkergreen);
 }
 
-.window-content::before {
+.crt .window-content::before {
   content: ' ';
   display: block;
   position: absolute;
@@ -36,7 +36,7 @@
   pointer-events: none;
 }
 
-.window-content::after {
+.crt .window-content::after {
   content: ' ';
   display: block;
   position: absolute;
@@ -86,20 +86,20 @@
   padding-left: 8px;
   border: 0px;
 }
-input[type='text'],
-input[type='number'],
-input[type='password'],
-input[type='date'],
-input[type='time'] {
+.crt input[type='text'],
+.crt input[type='number'],
+.crt input[type='password'],
+.crt input[type='date'],
+.crt input[type='time'] {
   border-radius: 0px;
   border: 1px solid var(--aliendarkergreen);
 }
 
-input[type='text']:hover,
-input[type='number']:hover,
-input[type='password']:hover,
-input[type='date']:hover,
-input[type='time']:hover {
+.crt input[type='text']:hover,
+.crt input[type='number']:hover,
+.crt input[type='password']:hover,
+.crt input[type='date']:hover,
+.crt input[type='time']:hover {
   border: 1px solid var(--aliengreen);
 }
 
@@ -163,7 +163,7 @@ input[type='time']:hover {
 }
 
 .crt .resource-content .maxboxsize {
-  vertical-align: 3px;
+  vertical-align: 7px;
 }
 
 .crt .crt-grid-Char-Att {
@@ -285,12 +285,12 @@ input[type='time']:hover {
 
 .crt .tabs .item {
   width: 100%;
-  margin: -7px 0 -7px 0;
+  // margin: -7px 0 -7px 0;
   padding-top: 6px;
 }
 
 .crt .tabs .item.active {
-  margin: -7px 0 -7px 0;
+  // margin: -7px 0 -7px 0;
   padding-top: 5px;
 }
 
@@ -298,7 +298,7 @@ input[type='time']:hover {
   color: #000;
   background-color: var(--alienitemselect);
   box-shadow: 0 0 10px var(--alienitemselect);
-  margin: -7px 0 -7px 0;
+  margin: -3px 0 -3px 0;
   padding-top: 6px;
 }
 
@@ -455,7 +455,7 @@ input[type='time']:hover {
   margin: 2px;
 }
 
-#bottom {
+.crt #bottom {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -507,7 +507,7 @@ input[type='time']:hover {
   text-align: center;
 }
 
-.alienrpgv .synth_fake_check {
+.crt .alienrpgv .synth_fake_check {
   color: var(--aliendarkergreen);
   width: 100%;
   margin-top: 12px;
@@ -802,7 +802,7 @@ input[type='time']:hover {
 
 .crt .fas.fa-tools {
   vertical-align: top;
-  padding-top: 4px;
+  padding-top: 13px;
   margin-left: 5px;
 }
 

@@ -23,6 +23,32 @@
 }
 
 .alienrpg .window-content {
+  // font-family: var(--alienfont);
+  // color: var(--aliengreen);
+  // font-size: var(--fontsize);
+  background: hsl(0deg, 0%, 0%);
+  // flex-direction: column;
+  // flex-wrap: nowrap;
+  // padding: 2px;
+  // overflow-y: scroll;
+  // overflow-x: auto;
+  // border: var(--aliengreen) 3px;
+}
+
+// .alienrpg .window-content {
+//   // font-family: var(--alienfont);
+//   // color: var(--aliengreen);
+//   // font-size: var(--fontsize);
+//   background: $c-black;
+//   // flex-direction: column;
+//   // flex-wrap: nowrap;
+//   // padding: 2px;
+//   // overflow-y: scroll;
+//   // overflow-x: auto;
+//   // border: var(--aliengreen) 3px;
+// }
+
+.alienrpg form {
   font-family: var(--alienfont);
   color: var(--aliengreen);
   font-size: var(--fontsize);
@@ -34,6 +60,7 @@
   overflow-x: auto;
   border: var(--aliengreen) 3px;
 }
+
 .journal-sheet {
   form {
     // font-family: var(--alienfont);
@@ -101,7 +128,6 @@ a.content-link {
 .alienrpg a.content-link {
   color: $c-white;
   background: $c-black;
-  border: none;
 }
 #chat .message {
   border: 1px solid hsl(0, 8%, 34%);
@@ -494,32 +520,6 @@ button:focus {
 .alienrpg .inputtext {
   color: inherit;
   background-color: $c-black;
-}
-
-/* Global styles */
-
-// .journal-sheet form {
-//   color: var(--aliengreen);
-//   background: #000;
-//   border: 1px solid var(--aliengreen);
-//   border-radius: 1px;
-//   background: #000000;
-//   background-size: cover;
-//   color: powderblue;
-// }
-
-.alienrpg .headng {
-  text-align: center;
-  color: var(--aliengreen);
-  font-size: xx-large;
-}
-.alienrpg .headng2 {
-  text-align: center;
-  color: var(--aliengreen);
-  /* font-size: x-large; */
-}
-.alienrpg .headng3 {
-  color: var(--aliengreen);
 }
 
 // .consume-box {

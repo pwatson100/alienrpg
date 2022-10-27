@@ -1,13 +1,19 @@
 {
-  "name": "alienrpg",
+  "id": "alienrpg",
   "title": "Alien RPG",
   "description": "The Alien RPG system for Foundry VTT!",
-  "author": "Paul Watson",
+  "authors": [{ "name": "Paul Watson" }],
   "url": "https://github.com/pwatson100/alienrpg",
   "flags": {},
-  "version": "2.1.3",
-  "minimumCoreVersion": "0.8.5",
-  "compatibleCoreVersion": "9",
+  "relationships": {
+    "systems": [{ "id": "alienrpg" }]
+  },
+  "version": "3.0.0",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10",
+    "maximum": "10"
+  },
   "scripts": [],
   "esmodules": ["module/alienrpg.js"],
   "styles": ["css/alienrpg.css"],
@@ -55,45 +61,18 @@
   ],
   "packs": [
     {
-      "name": "tables_gm",
-      "label": "Tables (GM)",
-      "path": "packs/AlienRPG-tables_gm.db",
-      "type": "RollTable",
+      "name": "alien-rpg-system",
+      "label": "Alien RPG System",
+      "path": "packs/alien-rpg-system.db",
+      "type": "Adventure",
       "module": "AlienRPG",
-      "private": false
-    },
-    {
-      "name": "mother_instructions",
-      "label": "Mother Instructions",
-      "path": "packs/AlienRPG-mother-instructions.db",
-      "type": "JournalEntry",
-      "module": "AlienRPG",
-      "private": false
-    },
-    {
-      "name": "alien",
-      "label": "Alien",
-      "path": "packs/AlienRPG-alien.db",
-      "type": "Macro",
-      "module": "AlienRPG",
-      "private": false
-    },
-    {
-      "name": "skill-stunts",
-      "label": "Skill-Stunts",
-      "path": "packs/AlienRPG-skill-stunts.db",
-      "type": "Item",
-      "module": "AlienRPG",
-      "private": false
+      "private": false,
+      "system": "alienrpg"
     }
   ],
-  "system": [],
-  "dependencies": [],
   "socket": true,
-
-  "manifest": "https://github.com/pwatson100/alienrpg/releases/latest/download/system.json",
-  "download": "https://github.com/pwatson100/alienrpg/releases/download/2.1.3/master.zip",
-
+  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/3.0.0/system.json",
+  "download": "https://github.com/pwatson100/alienrpg/releases/download/3.0.0/master.zip",
   "protected": false,
   "initiative": "1d10",
   "gridDistance": 5,

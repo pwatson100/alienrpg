@@ -110,6 +110,14 @@ export class yze {
         buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
         // console.log('yze -> yzeRoll -> mr', mr);
       }
+    } else {
+      if (r1Dice < 0) {
+        r2Dice = r2Dice + r1Dice
+        if (r2Dice < 1) {
+          return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoDice'));
+        }
+      }
+      roll1 = 0 + 'db';
     }
 
     // *******************************************************
@@ -254,13 +262,13 @@ export class yze {
 
     if (!blind) {
       ChatMessage.create({
-        user: game.user.data._id,
+        user: game.user.id,
         speaker: {
           actor: actorid,
           // alias: tactorid,
         },
         content: chatMessage,
-        other: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
+        other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
         sound: CONFIG.sounds.dice,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,
@@ -268,12 +276,12 @@ export class yze {
       });
     } else {
       ChatMessage.create({
-        user: game.user.data._id,
+        user: game.user.id,
         speaker: {
           actor: actorid,
         },
         content: chatMessage,
-        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
+        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
         blind: true,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,

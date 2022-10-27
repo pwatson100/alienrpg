@@ -8,7 +8,7 @@ import { alienrpgItemSheet } from './item/item-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
-import { AlienRPGSetup } from './setupHandler.js';
+// import { AlienRPGSetup } from './setupHandler.js';
 import { preloadHandlebarsTemplates } from './templates.js';
 import { AlienRPGBaseDie } from './alienRPGBaseDice.js';
 import { AlienRPGStressDie } from './alienRPGBaseDice.js';
@@ -17,9 +17,14 @@ import { AlienConfig } from './alienRPGConfig.js';
 import AlienRPGCombat from './combat.js';
 import AlienRPGCTContext from './CBTracker.js';
 import { sendDevMessage } from './devmsg.js';
-import { ImporterBase } from './importer-base.js';
 import { COMMON } from './common.js';
 import { logger } from './logger.js';
+import { ModuleImport, ImportFormWrapper } from './apps/init.js';
+
+const includeRgx = new RegExp('/systems/alienrpg/module/');
+CONFIG.compatibility.includePatterns.push(includeRgx);
+
+// CONFIG.debug.hooks = true;
 
 const euclidianDistances = function (segments, options = {}) {
   const canvasSize = canvas.dimensions.size;
@@ -36,6 +41,10 @@ const euclidianDistances = function (segments, options = {}) {
   });
 };
 
+Hooks.on('canvasInit', function () {
+  SquareGrid.prototype.measureDistances = euclidianDistances;
+});
+
 /*
   Initialize Module
 */
@@ -44,22 +53,16 @@ COMMON.build();
 const SUB_MODULES = {
   COMMON,
   logger,
-  ImporterBase,
 };
-
-Hooks.on('canvasInit', function () {
-  SquareGrid.prototype.measureDistances = euclidianDistances;
-});
 
 Hooks.once('init', async function () {
   console.warn(`Initializing Alien RPG`);
   game.alienrpg = {
     alienrpgActor,
     alienrpgItem,
-    // alienrpgPlanetSheet,
-    // alienrpgCriticalInjury,
     yze,
-    AlienConfig,
+    ModuleImport,
+    ImportFormWrapper,
     rollItemMacro,
     registerSettings,
     AlienRPGCTContext,
@@ -70,7 +73,9 @@ Hooks.once('init', async function () {
     cl.register();
   });
 
-  // CONFIG.debug.hooks = false;
+  // Set FVTT version constant
+  // const is07x = game.data.version.split('.')[1] === '7';
+
   // Global define for this so the roll data can be read by the reroll method.
   game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, tLabel: '', sCount: 0, multiPush: 0 };
   // console.warn('sCount init', game.alienrpg.rollArr.sCount);
@@ -94,6 +99,7 @@ Hooks.once('init', async function () {
   CONFIG.Combat.documentClass = AlienRPGCombat;
   CONFIG.CombatTracker = AlienRPGCTContext;
   CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
+  CONFIG.ImportFormWrapper = ImportFormWrapper;
 
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
@@ -122,7 +128,6 @@ Hooks.once('init', async function () {
   Handlebars.registerHelper('addstats', function (v1, v2) {
     return v1 + v2;
   });
-
   Handlebars.registerHelper('if_isWeapons', function (sectionlabel, options) {
     // console.warn('helper triggered', sectionlabel);
     if (sectionlabel === 'Weapons') {
@@ -179,38 +184,39 @@ Hooks.once('init', async function () {
     return txt.replace(regexp, '');
   });
 
+
 });
 
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
   // debugger;
-  if (game.user.isGM) {
-    await AlienRPGSetup.setup();
-  }
+  // if (game.user.isGM) {
+  //   await ModuleImport();
+  // }
 
   sendDevMessage();
-  if (game.user.isGM) {
-    try {
-      let motherPack = game.packs.find((p) => p.metadata.label === 'Mother Instructions');
-      await motherPack.getIndex();
-      let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
+  // if (game.user.isGM) {
+  //   try {
+  //     let motherPack = game.packs.find((p) => p.metadata.label === 'Mother Instructions');
+  //     await motherPack.getIndex();
+  //     let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
 
-      const newVer = '10';
-      if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
-        if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
-          await game.journal.getName('MU/TH/ER Instructions.').delete();
-          await game.journal.importFromCompendium(motherPack, motherIns._id);
-          await game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
-          console.log('New version of MU/TH/ER Instructions.');
-          await game.journal.getName('MU/TH/ER Instructions.').show();
-        }
-      } else {
-        await game.journal.importFromCompendium(motherPack, motherIns._id);
-        game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
-        await game.journal.getName('MU/TH/ER Instructions.').show();
-      }
-    } catch (error) {}
-  }
+  //     const newVer = '9';
+  //     if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
+  //       if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
+  //         await game.journal.getName('MU/TH/ER Instructions.').delete();
+  //         await game.journal.importFromCompendium(motherPack, motherIns._id);
+  //         await game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
+  //         console.log('New version of MU/TH/ER Instructions.');
+  //         await game.journal.getName('MU/TH/ER Instructions.').show();
+  //       }
+  //     } else {
+  //       await game.journal.importFromCompendium(motherPack, motherIns._id);
+  //       game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
+  //       await game.journal.getName('MU/TH/ER Instructions.').show();
+  //     }
+  //   } catch (error) { }
+  // }
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
   const NEEDS_MIGRATION_VERSION = '2.1.0';
@@ -254,20 +260,29 @@ Hooks.once('ready', async () => {
   }
 
   AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
+
+  setupMacroFolders();
+
 });
 
 //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
-Hooks.on('hotbarDrop', (bar, data, slot) => createAlienrpgMacro(data, slot));
+Hooks.on('hotbarDrop', (bar, data, slot) => {
+  let item = fromUuidSync(data.uuid);
+  if (item && item.system && (item.type === 'weapon' || item.type === 'armor')) {
+    createAlienrpgMacro(item, slot);
+    return false;
+  }
+});
 
 Hooks.on("renderPause", (_app, html, options) => {
-	html.find('img[src="icons/svg/clockwork.svg"]').attr("src", "systems/alienrpg/images/paused-alien.png");
+  html.find('img[src="icons/svg/clockwork.svg"]').attr("src", "systems/alienrpg/images/paused-alien.png");
 });
 
 
 // ***************************
 // DsN V3 Hooks
 // ***************************
-Hooks.on('diceSoNiceRollComplete', (chatMessageID) => {});
+Hooks.on('diceSoNiceRollComplete', (chatMessageID) => { });
 
 
 Hooks.once('diceSoNiceReady', (dice3d) => {
@@ -353,6 +368,7 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 
 //  Hook to watch for the Push button being pressed -   Need to refactor this so it does not fire all the time.
 //
+
 Hooks.on('renderChatMessage', (message, html, data) => {
   html.find('button.alien-Push-button').each((i, li) => {
     let hostile = '';
@@ -361,7 +377,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 
       if (ev.target.classList.contains('alien-Push-button')) {
         // do stuff
-        let actor = game.actors.get(message.data.speaker.actor);
+        let actor = game.actors.get(message.speaker.actor);
         if (!actor) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoToken'));
         let reRoll = 'push';
 
@@ -370,7 +386,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         }
 
         // if (actor.data.type != 'vehicles') {
-        hostile = actor.data.type;
+        hostile = actor.type;
         // } else {
         //   hostile = 'character';
         // }
@@ -379,17 +395,18 @@ Hooks.on('renderChatMessage', (message, html, data) => {
         //  Initialse the chat message
         let chatMessage = '';
 
-        if (actor.data.token.disposition === -1) {
+        if (actor.prototypeToken.disposition === -1) {
           blind = true;
         }
 
-        switch (actor.data.type) {
+        switch (actor.type) {
           case 'character':
-            actor.update({ 'data.header.stress.value': actor.data.data.header.stress.value + 1 });
+            actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
             break;
+
           // case 'vehicles':
           //   let pilotData = game.actors.get(message.alias);
-          //   pilotData.update({ 'data.header.stress.value': pilotData.data.data.header.stress.value + 1 });
+          //   pilotData.update({ 'system.header.stress.value': pilotData.system.header.stress.value + 1 });
           //   break;
 
           default:
@@ -409,8 +426,8 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 // // **********************************
 
 Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
-  let aTarget = game.actors.find((i) => i.data.name == tokenData.name);
-  if (aTarget.data.data.header.npc) {
+  let aTarget = game.actors.find((i) => i.name == tokenData.name);
+  if (aTarget.system.header.npc) {
     document.data.update({ disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
   }
 });
@@ -426,18 +443,62 @@ Hooks.once('setup', function () {
   }
 });
 
-Hooks.on('dropActorSheetData', (actor, sheet, data) => {
+Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
   // When dropping something on a vehicle sheet.
   if (actor.type === 'vehicles') {
     // When dropping an actor on a vehicle sheet.
-    if (data.type === 'Actor') sheet._dropCrew(data.id);
+    let crew = await fromUuid(data.uuid);
+    if (data.type === 'Actor') sheet._dropCrew(crew.id);
   }
 });
+
+
+function setupMacroFolders() {
+  if (!game.user.isGM) {
+    // Only make changes to system
+    return;
+  }
+  const folderName = "Alien RPG System Macros";
+  let folder = game.folders
+    .filter((f) => f.type === "Macro")
+    .find((f) => f.name === folderName);
+  if (!folder) {
+    Folder.create({
+      name: folderName,
+      type: "Macro",
+      parent: null,
+    });
+  }
+}
+
+
 
 /* --
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */
+
+// async function createAlienrpgMacro(data, slot) {
+//   debugger;
+//   if (data.type !== 'Item') return;
+//   if (!('data' in data)) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoActor'));
+//   const item = data.data;
+
+//   // Create the macro command
+//   const command = `game.alienrpg.rollItemMacro("${item.name}");`;
+//   let macro = game.macros.contents.find((m) => m.name === item.name && m.command === command);
+//   if (!macro) {
+//     macro = await Macro.create({
+//       name: item.name,
+//       type: 'script',
+//       img: item.img,
+//       command: command,
+//       flags: { 'alienrpg.itemMacro': true },
+//     });
+//   }
+//   game.user.assignHotbarMacro(macro, slot);
+//   return false;
+// }
 
 /**
  * Create a Macro from an Item drop.
@@ -446,25 +507,34 @@ Hooks.on('dropActorSheetData', (actor, sheet, data) => {
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-async function createAlienrpgMacro(data, slot) {
-  if (data.type !== 'Item') return;
-  if (!('data' in data)) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoActor'));
-  const item = data.data;
-
+async function createAlienrpgMacro(item, slot) {
+  const folder = game.folders
+    .filter((f) => f.type === "Macro")
+    .find((f) => f.name === "Alien RPG System Macros");
   // Create the macro command
   const command = `game.alienrpg.rollItemMacro("${item.name}");`;
-  let macro = game.macros.contents.find((m) => m.name === item.name && m.command === command);
+  let macro = game.macros.find(
+    (m) =>
+      m.name === item.name &&
+      m.command === command &&
+      (m.author === game.user.id ||
+        m.ownership.default >=
+        CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER ||
+        m.ownership[game.user.id] >=
+        CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER)
+  );
   if (!macro) {
     macro = await Macro.create({
       name: item.name,
-      type: 'script',
+      type: "script",
       img: item.img,
       command: command,
-      flags: { 'alienrpg.itemMacro': true },
+      flags: { "alienrpg.itemMacro": true },
+      folder: folder?.id,
+      "ownership.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER,
     });
   }
   game.user.assignHotbarMacro(macro, slot);
-  return false;
 }
 
 function rollItemMacro(itemName) {
@@ -475,6 +545,7 @@ function rollItemMacro(itemName) {
   // console.warn('alienrpg.js 155 - Got here', speaker, actor);
   const item = actor ? actor.items.find((i) => i.name === itemName) : null;
   if (!item) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoItem') + ' ' + ` ${itemName}`);
+  if (!item.system.header.active) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NotActive') + ' ' + ` ${itemName}`);
 
   // Trigger the item roll
   return item.roll();

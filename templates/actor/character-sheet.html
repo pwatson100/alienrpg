@@ -1,325 +1,326 @@
 <form class="{{cssClass}}" autocomplete="off">
   {{!-- Sheet Header --}}
   <header class="actor-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"/>
-  <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
-        <div class="resources grid grid-4col">
-          {{!-- Health and Stress --}}
-            <h2 for="data.health.value" class="resource-label">{{ localize "ALIENRPG.Health"}}</h2>
-            <div class="resource-content">
-              <button type="button" class="minus-btn" data-pmbut="minusHealth"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
-              <input type="text" class="maxboxsize minHealth" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
-              <button type="button" class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
-            </div>
-            <h2 for="data.header.stress.value" class="resource-label rollable" title="{{localize 'ALIENRPG.RollPanic'}}" data-panicroll="{{data.header.stress.value}}" data-mod="{{data.header.stress.mod}}" data-label="{{localize "ALIENRPG.Stress"}}">{{localize "ALIENRPG.Stress"}}</h2>
-            <div class="resource-content">
-              <button type="button" class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
-              <input type="text" class="maxboxsize minStress" name="data.header.stress.value" value="{{data.header.stress.value}}" data-dtype="Number" />
-              <button type="button" class="plus-btn" data-pmbut="plusStress"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
-            </div>
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" />
+    <div class="header-fields" style="width: 50%;">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
+      <div class="resources grid grid-actor">
+        {{!-- Health and Stress --}}
+        <h2 for="actor.system.health.value" class="resource-label gaItem1">{{ localize 'ALIENRPG.Health'}}</h2>
+        <div class="resource-content gaItem2">
+          <button type="button" class="minus-btn" data-pmbut="minusHealth"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
+          <input type="text" class="maxboxsize minHealth" name="actor.system.header.health.value" value="{{actor.system.header.health.value}}" data-dtype="Number" />
+          /
+          <input type="text" class="maxboxsize" name="actor.system.header.health.calculatedMax" value="{{actor.system.header.health.calculatedMax}}" data-dtype="Number" disabled />
+          <button type="button" class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
+        </div>
+        <h2 for="actor.system.header.stress.value" class="resource-label rollable gaItem3" title="{{localize 'ALIENRPG.RollPanic'}}" data-panicroll="{{actor.system.header.stress.value}}" data-mod="{{actor.system.header.stress.mod}}" data-label="{{localize 'ALIENRPG.Stress'}}">{{localize 'ALIENRPG.Stress'}}</h2>
+        <div class="resource-content gaItem4">
+          <button type="button" class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
+          <input type="text" class="maxboxsize minStress" name="actor.system.header.stress.value" value="{{actor.system.header.stress.value}}" data-dtype="Number" />
+          <button type="button" class="plus-btn" data-pmbut="plusStress"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
+        </div>
         {{!-- Attributes --}}
-            <div class="abilities grid-Char-Att">
+        <div class="abilities grid-Char-Att">
 
-                <h3 class="resource-label rollable gCol1" data-attr="attribute" data-roll="{{data.attributes.str.value}}" data-mod="{{data.attributes.str.mod}}" data-label="{{localize "ALIENRPG.AbilityStr"}}">{{localize "ALIENRPG.AbilityStr"}}</h3>
-                <input type="text" class="maxboxsize gCol2" name="data.attributes.str.value" value="{{data.attributes.str.value}}" data-dtype="Number" />
+          <h3 class="resource-label rollable gCol1" data-attr="attribute" data-roll="{{actor.system.attributes.str.value}}" data-mod="{{actor.system.attributes.str.mod}}" data-label="{{localize 'ALIENRPG.AbilityStr'}}">{{localize 'ALIENRPG.AbilityStr'}}</h3>
+          <input type="text" class="maxboxsize gCol2" name="system.attributes.str.value" value="{{actor.system.attributes.str.value}}" data-dtype="Number" />
 
-                <h3 class="resource-label rollable gCol3" data-attr="attribute" data-roll="{{data.attributes.wit.value}}" data-mod="{{data.attributes.wit.mod}}"  data-label="{{localize "ALIENRPG.AbilityWit"}}">{{localize "ALIENRPG.AbilityWit"}}</h3>
-                <input type="text" class="maxboxsize gCol4" name="data.attributes.wit.value" value="{{data.attributes.wit.value}}" data-dtype="Number" />
+          <h3 class="resource-label rollable gCol3" data-attr="attribute" data-roll="{{actor.system.attributes.wit.value}}" data-mod="{{actor.system.attributes.wit.mod}}" data-label="{{localize 'ALIENRPG.AbilityWit'}}">{{localize 'ALIENRPG.AbilityWit'}}</h3>
+          <input type="text" class="maxboxsize gCol4" name="system.attributes.wit.value" value="{{actor.system.attributes.wit.value}}" data-dtype="Number" />
 
-                <h3 class="resource-label rollable gCol6" data-attr="attribute" data-roll="{{data.attributes.agl.value}}"  data-mod="{{data.attributes.agl.mod}}" data-label="{{localize "ALIENRPG.AbilityAgl"}}">{{localize "ALIENRPG.AbilityAgl"}}</h3>
-                <input type="text" class="maxboxsize gCol7" name="data.attributes.agl.value" value="{{data.attributes.agl.value}}" data-dtype="Number" />
+          <h3 class="resource-label rollable gCol6" data-attr="attribute" data-roll="{{actor.system.attributes.agl.value}}" data-mod="{{actor.system.attributes.agl.mod}}" data-label="{{localize 'ALIENRPG.AbilityAgl'}}">{{localize 'ALIENRPG.AbilityAgl'}}</h3>
+          <input type="text" class="maxboxsize gCol7" name="system.attributes.agl.value" value="{{actor.system.attributes.agl.value}}" data-dtype="Number" />
 
-                <h3 class="resource-label rollable gCol8" data-attr="attribute"  data-roll="{{data.attributes.emp.value}}"  data-mod="{{data.attributes.emp.mod}}" data-label="{{localize "ALIENRPG.AbilityEmp"}}">{{localize "ALIENRPG.AbilityEmp"}}</h3>
-                <input type="text" class="maxboxsize gCol9" name="data.attributes.emp.value" value="{{data.attributes.emp.value}}" data-dtype="Number" />
-              
-                {{#if isGM}}
-                <div class="tooltip"> 
-                <h3 class="resource-label gCol5 tooltip" >NPC?</h3>
-                  <span class="tooltiptext" style="font-family:'Times New Roman', Times, serif ">{{localize "ALIENRPG.NPCpopUp"}}</span>
-                  </div>
-                <input class="gCol10 NPC" name="data.header.npc" type="checkbox" {{checked data.header.npc}} />
-                {{/if}}
+          <h3 class="resource-label rollable gCol8" data-attr="attribute" data-roll="{{actor.system.attributes.emp.value}}" data-mod="{{actor.system.attributes.emp.mod}}" data-label="{{localize 'ALIENRPG.AbilityEmp'}}">{{localize 'ALIENRPG.AbilityEmp'}}</h3>
+          <input type="text" class="maxboxsize gCol9" name="system.attributes.emp.value" value="{{actor.system.attributes.emp.value}}" data-dtype="Number" />
 
+          {{#if isGM}}
+            <div class="tooltip">
+              <h3 class="resource-label gCol5 tooltip">NPC?</h3>
+              <span class="tooltiptext" style="font-family:'Times New Roman', Times, serif ">{{localize 'ALIENRPG.NPCpopUp'}}</span>
             </div>
+            <input class="gCol10 NPC" name="system.header.npc" type="checkbox" {{checked actor.system.header.npc}} />
+          {{/if}}
+
+        </div>
       </div>
-   </div>
+    </div>
   </header>
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
-    <a class="item" data-tab="skills">{{localize "ALIENRPG.Skills"}}</a>
-    <a class="item" data-tab="inventory">{{localize "ALIENRPG.Inventory"}}</a>
-    <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
+    <a class="item" data-tab="general">{{localize 'ALIENRPG.General'}}</a>
+    <a class="item" data-tab="skills">{{localize 'ALIENRPG.Skills'}}</a>
+    <a class="item" data-tab="inventory">{{localize 'ALIENRPG.Inventory'}}</a>
+    <a class="item" data-tab="description">{{localize 'ALIENRPG.Description'}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
-<section class="sheet-body">
-    
+  <section class="sheet-body">
+
     {{!--Skills Tab --}}
-  <div class="tab skills" data-group="primary" data-tab="skills">
-        <div class="grid-container ">
-              <!-- Col1 -->
-            <span class="Col1">
-              {{#each data.skills as |skill key|}}
-              <span class="ability grid-attr">
-                <h3 for="data.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}"  data-label="{{localize (concat "ALIENRPG.Skill" key) }}">{{localize (concat "ALIENRPG.Skill" key) }}  ({{localize (concat "ALIENRPG.AbilityAbb" skill.ability) }})</h3>
-                <input type="text" class="maxboxsize Attr2" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
-                <div class="resource-content">
-                  <button type="button" class="stunt-btn Attr3" data-pmbut="{{skill.description}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>
-                </div>
-              </span>
-              {{/each}}
-              
+    <div class="tab skills" data-group="primary" data-tab="skills">
+      <div class="grid-container ">
+        <!-- Col1 -->
+        <span class="Col1">
+          {{#each actor.system.skills as |skill key|}}
+            <span class="ability grid-attr">
+              <h3 for="actor.system.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{localize (concat 'ALIENRPG.Skill' key) }}">{{localize (concat 'ALIENRPG.Skill' key) }} ({{localize (concat 'ALIENRPG.AbilityAbb' skill.ability) }})</h3>
+              <input type="text" class="maxboxsize Attr2" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
+              <div class="resource-content">
+                <button type="button" class="stunt-btn Attr3" data-pmbut="{{skill.description}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>
+              </div>
             </span>
-            
-            <!-- Col2 -->
-            <div class="Col2">
-                    <li class="grid-talents item-header">
-                      <h2 class="item talTitle">{{localize "ALIENRPG.Talents"}}</h2>
-                      <h3 class="item-name tal1"  >{{localize "ALIENRPG.Name"}}</h3>
-                      <div class="item-controls tal2">
-                      </div>
-                    </li>
-                    
-                    {{#each talents as |item iid|}}
-                    <li class="item grid-talents" data-item-id="{{item._id}}">
-                      <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
-                      <div class="tal4 item-controls">
-                      <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+          {{/each}}
 
-                      </div>
-                    </li>
-                    {{/each}}
+        </span>
+
+        <!-- Col2 -->
+        <div class="Col2">
+          <li class="grid-talents item-header">
+            <h2 class="item talTitle">{{localize 'ALIENRPG.Talents'}}</h2>
+            <h3 class="item-name tal1">{{localize 'ALIENRPG.Name'}}</h3>
+            <div class="item-controls tal2">
             </div>
+          </li>
 
-            <div class="Col4">
-              <li class="grid-talents item-header">
-                <h2 class="item talTitle">{{localize "ALIENRPG.AgendaStory"}}</h2>
-                <h3 class="item-name tal1"  >{{localize "ALIENRPG.Name"}}</h3>
-                <div class="item-controls tal2">
-                </div>
-              </li>
-              
-              {{#each agendas as |item iid|}}
-              <li class="item grid-talents" data-item-id="{{item._id}}">
-                <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
-                <div class="tal4 item-controls">
+          {{#each talents as |item iid|}}
+            <li class="item grid-talents" data-item-id="{{item._id}}">
+              <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
+              <div class="tal4 item-controls">
                 <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 
-                </div>
-              </li>
-              {{/each}}
-            </div>
+              </div>
+            </li>
+          {{/each}}
+        </div>
 
-            {{!-- Stunts/Talents pop up    DO NOT TOUCH THE DIV BELOW --}}
-            <div class="Col3" style="font-family: initial;font-size: larger" id="panel" >
+        <div class="Col4">
+          <li class="grid-talents item-header">
+            <h2 class="item talTitle">{{localize 'ALIENRPG.AgendaStory'}}</h2>
+            <h3 class="item-name tal1">{{localize 'ALIENRPG.Name'}}</h3>
+            <div class="item-controls tal2">
             </div>
+          </li>
+
+          {{#each agendas as |item iid|}}
+            <li class="item grid-talents" data-item-id="{{item._id}}">
+              <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
+              <div class="tal4 item-controls">
+                <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+
+              </div>
+            </li>
+          {{/each}}
+        </div>
+
+        {{!-- Stunts/Talents pop up    DO NOT TOUCH THE DIV BELOW --}}
+        <div class="Col3" style="font-family: initial;font-size: larger" id="panel">
+        </div>
       </div>
-  </div>
+    </div>
 
     {{!-- Biography Tab --}}
-    <div class="tab biog-full " data-group="primary" data-tab="description">{{editor content=data.notes target="data.notes" button=true owner=owner editable=true}}</div>
+    <div class="tab biog-full " data-group="primary" data-tab="description">{{editor actor.system.notes target="system.notes" button=true owner=owner editable=true}}</div>
     {{!-- Owned Items Tab --}}
-      <!-- INVENTORY -->
+    <!-- INVENTORY -->
     <div class="tab inventory" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/tabs/actor-inventory.html" sections=inventory}}</div>
 
 
 
-   <div class="tab general" data-group="primary" data-tab="general">
+    <div class="tab general" data-group="primary" data-tab="general">
       <div class="grid-genPage">
 
-      <!-- Col1 -->
-              <div class="Item1">
-                    <h3 class="resource-label" style="font-weight: bold;">{{ localize "ALIENRPG.XP"}}</h3>
-                    <div class="dots experience" style="width: 150px; display: inline-flex;margin-bottom: 10px;">
-                      <input type="hidden" name="data.general.xp.value" data-max="{{data.general.xp.max}}" value="{{data.general.xp.value}}" data-dtype="Number">
-                        <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.xp.icon}}}
-                      </span>
-                    </div>
-                    <br>
-                    <h3 class="resource-label" style="font-weight: bold;">{{localize "ALIENRPG.StoryPoints"}}</h3>
-                    <div class="dots experience"  >
-                      <input type="hidden" name="data.general.sp.value" data-max="{{data.general.sp.max}}" value="{{data.general.sp.value}}" data-dtype="Number">
-                        <span class="click-stat-level" title="{{ localize "ALIENRPG.ConButtons"}}">{{{data.general.sp.icon}}}</span>
-                    </div>
-                    <br>
-                    <div style="margin-top: 6px;" >
-            <label class="resource-label">{{localize "ALIENRPG.Cash"}}</label>
-                    <input type="text" class="cashboxsize currency" name="data.general.cash.value" value="{{data.general.cash.value}}" />
-                    </div>
-              </div>
-          
-              <div class="Item8">
-                  <h2 class="resource-label">{{ localize 'ALIENRPG.Conditions'}}</h2>
-                  <div class="dots starving ">
-                    <input type="hidden" name="data.general.starving.value" data-max="{{data.general.starving.max}}" value="{{{data.general.starving.value}}}" data-dtype="Number">
-                    <h3 class="click-stat-level-con resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.starving.icon}}} {{ localize 'ALIENRPG.Starving'}}
-                  </h3>
-                </div>
-                  <div class="dots dehydrated ">
-                    <input type="hidden" name="data.general.dehydrated.value" data-max="{{data.general.dehydrated.max}}" value="{{{data.general.dehydrated.value}}}" data-dtype="Number">
-                    <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.dehydrated.icon}}} {{ localize 'ALIENRPG.Dehydrated'}}
-                  </h3>
-                </div>
+        <!-- Col1 -->
+        <div class="Item1">
+          <h3 class="resource-label" style="font-weight: bold;">{{ localize 'ALIENRPG.XP'}}</h3>
+          <div class="dots experience" style="width: 150px; display: inline-flex;margin-bottom: 10px;">
+            <input type="hidden" name="system.general.xp.value" data-max="{{actor.system.general.xp.max}}" value="{{actor.system.general.xp.value}}" data-dtype="Number">
+            <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.xp.icon}}}
+            </span>
+          </div>
+          <br>
+          <h3 class="resource-label" style="font-weight: bold;">{{localize 'ALIENRPG.StoryPoints'}}</h3>
+          <div class="dots experience">
+            <input type="hidden" name="system.general.sp.value" data-max="{{actor.system.general.sp.max}}" value="{{actor.system.general.sp.value}}" data-dtype="Number">
+            <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.sp.icon}}}</span>
+          </div>
+          <br>
+          <div style="margin-top: 6px;">
+            <label class="resource-label">{{localize 'ALIENRPG.Cash'}}</label>
+            <input type="text" class="cashboxsize currency" name="system.general.cash.value" value="{{actor.system.general.cash.value}}" />
+          </div>
+        </div>
 
-                  <div class="dots exhausted ">
-                    <input type="hidden" name="data.general.exhausted.value" data-max="{{data.general.exhausted.max}}" value="{{{data.general.exhausted.value}}}" data-dtype="Number">
-                    <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}" > {{{data.general.exhausted.icon}}} {{ localize 'ALIENRPG.Exhausted'}}
-                  </h3>
-                </div>
+        <div class="Item8">
+          <h2 class="resource-label">{{ localize 'ALIENRPG.Conditions'}}</h2>
+          <div class="dots starving ">
+            <input type="hidden" name="system.general.starving.value" data-max="{{actor.system.general.starving.max}}" value="{{{actor.system.general.starving.value}}}" data-dtype="Number">
+            <h3 class="click-stat-level-con resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.starving.icon}}} {{ localize 'ALIENRPG.Starving'}}
+            </h3>
+          </div>
+          <div class="dots dehydrated ">
+            <input type="hidden" name="system.general.dehydrated.value" data-max="{{actor.system.general.dehydrated.max}}" value="{{{actor.system.general.dehydrated.value}}}" data-dtype="Number">
+            <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.dehydrated.icon}}} {{ localize 'ALIENRPG.Dehydrated'}}
+            </h3>
+          </div>
 
-                <div class="dots freezing ">
-                  <input type="hidden" name="data.general.freezing.value" data-max="{{data.general.freezing.max}}" value="{{{data.general.freezing.value}}}" data-dtype="Number">
-                  <h3 class="click-stat-level-con resource-label"  title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
-                  </h3>
-                </div>
-                
-                <div class="dots panic " style="height: 22px">
-                  <input type="hidden" name="data.general.panic.value" data-max="{{data.general.panic.max}}" value="{{{data.general.panic.value}}}" data-dtype="Number">
-                  {{#if data.general.panic.value}}
-                  <h3 class="click-stat-level resource-label " style="color: rgb(255, 45, 45);" title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}}
-                          <input type="text" class="maxboxsize" name="data.general.panic.lastRoll"  value="{{data.general.panic.lastRoll}}" data-dtype="Number">            
-                  </h3>
-                  {{else}}
-                  <h3 class="click-stat-level resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}" >{{{data.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}} </h3>
-                  {{/if}}
-                  </div>
-                  <br>  
-                      <h3 class="condition" data-key="overwatch">
-                        <a class="overwatch-toggle">
-                          {{#if data.general.overwatch}}
-                          <i class="far fa-check-square"></i>
-                          {{else}}
-                          <i class="far fa-square"></i>
-                          {{/if}}
-                        </a>
-                        {{localize "ALIENRPG.Overwatch"}}
-                        </h3>
-                  <br>
-                      <h3 style="text-align: center; font-weight: bold;" class="resource-label">{{ localize "ALIENRPG.Radiation"}}</h3>
-                    <div class="dots radiation">
-                      <input type="hidden" name="data.general.radiation.value" data-max="{{data.general.radiation.max}}" value="{{data.general.radiation.value}}"  data-dtype="Number">
-                      <span style="text-align: center;" class="click-stat-level-con" title="{{ localize 'ALIENRPG.ConButtons'}}" data-label="{{ localize "ALIENRPG.Radiation"}}" data-roll="{{data.general.radiation.value}}">{{{data.general.radiation.icon}}} 
-                    </span>
-                  </div>
+          <div class="dots exhausted ">
+            <input type="hidden" name="system.general.exhausted.value" data-max="{{actor.system.general.exhausted.max}}" value="{{{actor.system.general.exhausted.value}}}" data-dtype="Number">
+            <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.exhausted.icon}}} {{ localize 'ALIENRPG.Exhausted'}}
+            </h3>
+          </div>
 
-              </div>
-              
-              <div class="Item9">
-                <div class="consumables grid-Consumables">
-                  <h2 class="Heading" style="margin-bottom: 0; border-bottom: 0 ">{{localize "ALIENRPG.Consumables"}}</h2>
+          <div class="dots freezing ">
+            <input type="hidden" name="system.general.freezing.value" data-max="{{actor.system.general.freezing.max}}" value="{{{actor.system.general.freezing.value}}}" data-dtype="Number">
+            <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
+            </h3>
+          </div>
+          <div class="dots panic " style="height: 22px">
+            <input type="hidden" name="system.general.panic.value" data-max="{{actor.system.general.panic.max}}" value="{{{actor.system.general.panic.value}}}" data-dtype="Number">
+            {{#if actor.system.general.panic.value}}
+              <h3 class="click-stat-level resource-label " style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}}
+                <input type="text" class="maxboxsize" name="system.general.panic.lastRoll" value="{{actor.system.general.panic.lastRoll}}" data-dtype="Number">
+              </h3>
+            {{else}}
+              <h3 class="click-stat-level resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}} </h3>
+            {{/if}}
+          </div>
+          <br>
+          <h3 class="condition" data-key="overwatch">
+            <a class="overwatch-toggle">
+              {{#ife actor.system.general.overwatch true}}
+                <i class="far fa-check-square"></i>
+                {{else}}
+                  <i class="far fa-square"></i>
+              {{/ife}}
+            </a>
+            {{localize 'ALIENRPG.Overwatch'}}
+          </h3>
+          <br>
+          <h3 style="text-align: center; font-weight: bold;" class="resource-label">{{ localize 'ALIENRPG.Radiation'}}</h3>
+          <div class="dots radiation">
+            <input type="hidden" name="system.general.radiation.value" data-max="{{actor.system.general.radiation.max}}" value="{{actor.system.general.radiation.value}}" data-dtype="Number">
+            <span style="text-align: center;" class="click-stat-level-con" title="{{ localize 'ALIENRPG.ConButtons'}}" data-label="{{ localize 'ALIENRPG.Radiation'}}" data-roll="{{actor.system.general.radiation.value}}">{{{actor.system.general.radiation.icon}}}
+            </span>
+          </div>
 
-                    <h3 class="Air1 resource-label">{{localize "ALIENRPG.Air"}}</h3>
-                      <div class="resource-content">
-                        <input type="text" class="maxboxsize" name="data.consumables.air.value" value="{{data.consumables.air.value}}" data-dtype="Number" disabled />
-                        <button type="button" class="supply-btn Air2" data-spbutt="Air"  ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
-                      </div>
-                      
-                    <h3 class="Food1 resource-label">{{localize "ALIENRPG.Food"}}</h3>
-                      <div class="resource-content">
-                        <input type="text"  class="maxboxsize" name="data.consumables.food.value" value="{{data.consumables.food.value}}" data-dtype="Number" disabled />
-                        <button type="button" class="supply-btn Food2" data-spbutt="Food" ><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
-                      </div>
-                      
-                      
-                      <h3 class="Water1 resource-label">{{localize "ALIENRPG.Water"}}</h3>
-                      <div class="resource-content">
-                        <input type="text"  class="maxboxsize" name="data.consumables.water.value" value="{{data.consumables.water.value}}" data-dtype="Number" disabled />
-                        <button type="button" class="supply-btn Water2" data-spbutt="Water"><i class="fas fa-parachute-box fa-xs" title="{{localize "ALIENRPG.Supply"}}"></i></button>
-                      </div>
-                      
-                      <h3 class="Power1 resource-label">{{localize "ALIENRPG.Power"}}</h3>
-                      <div class="resource-content">
-                        <input type="text" style=" margin-top: 5px;" class="maxboxsize"  name="data.consumables.power.value" value="{{data.consumables.power.value}}" data-dtype="Number" disabled />
-                      </div>
+        </div>
 
-                </div>
-              </div>
-              
-              <div class="Item10">
-                    <span class="grid-2col-border">
-                    <label class="resource-label rollable" data-roll="{{data.general.armor.value}}" data-spbutt="armor" data-label="{{ localize "ALIENRPG.Armor"}}">{{ localize "ALIENRPG.Armor"}}  </label>
-                  <input type="text"  class="maxboxsize" name="data.general.armor.value"  value="{{data.general.armor.value}}" data-dtype="Number" disabled />
-                  </span>
-              </div>
-                      
+        <div class="Item9">
+          <div class="consumables grid-Consumables">
+            <h2 class="Heading" style="margin-bottom: 0; border-bottom: 0 ">{{localize 'ALIENRPG.Consumables'}}</h2>
+
+            <h3 class="Air1 resource-label">{{localize 'ALIENRPG.Air'}}</h3>
+            <div class="resource-content">
+              <input type="text" class="maxboxsize" name="system.consumables.air.value" value="{{actor.system.consumables.air.value}}" data-dtype="Number" disabled />
+              <button type="button" class="supply-btn Air2" data-spbutt="Air"><i class="fas fa-parachute-box fa-xs" title="{{localize 'ALIENRPG.Supply'}}"></i></button>
+            </div>
+
+            <h3 class="Food1 resource-label">{{localize 'ALIENRPG.Food'}}</h3>
+            <div class="resource-content">
+              <input type="text" class="maxboxsize" name="system.consumables.food.value" value="{{actor.system.consumables.food.value}}" data-dtype="Number" disabled />
+              <button type="button" class="supply-btn Food2" data-spbutt="Food"><i class="fas fa-parachute-box fa-xs" title="{{localize 'ALIENRPG.Supply'}}"></i></button>
+            </div>
+
+
+            <h3 class="Water1 resource-label">{{localize 'ALIENRPG.Water'}}</h3>
+            <div class="resource-content">
+              <input type="text" class="maxboxsize" name="system.consumables.water.value" value="{{actor.system.consumables.water.value}}" data-dtype="Number" disabled />
+              <button type="button" class="supply-btn Water2" data-spbutt="Water"><i class="fas fa-parachute-box fa-xs" title="{{localize 'ALIENRPG.Supply'}}"></i></button>
+            </div>
+
+            <h3 class="Power1 resource-label">{{localize 'ALIENRPG.Power'}}</h3>
+            <div class="resource-content">
+              <input type="text" style=" margin-top: 5px;" class="maxboxsize" name="system.consumables.power.value" value="{{actor.system.consumables.power.value}}" data-dtype="Number" disabled />
+            </div>
+
+          </div>
+        </div>
+
+        <div class="Item10">
+          <span class="grid-2col-border">
+            <label class="resource-label rollable" data-roll="{{actor.system.general.armor.value}}" data-spbutt="armor" data-label="{{ localize 'ALIENRPG.Armor'}}">{{ localize 'ALIENRPG.Armor'}} </label>
+            <input type="text" class="maxboxsize" name="system.general.armor.value" value="{{actor.system.general.armor.value}}" data-dtype="Number" disabled />
+          </span>
+        </div>
+
         <!-- Col 2 -->
-              <div class="Item2">
-                  <div class="grid-two">
-                    <label class="resource-label" style="font-weight: bold;">{{localize "ALIENRPG.Career"}}</label>
-                    <select class="select-css" name="data.general.career.value" data-dtype="{{data.general.career.value}}">
-                      {{#select data.general.career.value}}
-                      <!-- <option value=""></option> -->
-                      <option value="1">{{localize "ALIENRPG.ColonialMarine"}}</option>
-                      <option value="2">{{localize "ALIENRPG.ColonialMarshal"}}</option>
-                      <option value="3">{{localize "ALIENRPG.CompanyAgent"}}</option>
-                      <option value="4">{{localize "ALIENRPG.Kid"}}</option>
-                      <option value="5">{{localize "ALIENRPG.Medic"}}</option>
-                      <option value="6">{{localize "ALIENRPG.Mercenary"}}</option>           
-                      <option value="7">{{localize "ALIENRPG.Officer"}}</option>
-                      <option value="8">{{localize "ALIENRPG.Pilot"}}</option>
-                      <option value="9">{{localize "ALIENRPG.Roughneck"}}</option>
-                      <option value="10">{{localize "ALIENRPG.Scientist"}}</option>           
-                      <option value="11">{{localize "ALIENRPG.Synthetic"}}</option>           
-                      <option value="12">{{localize "ALIENRPG.Homebrew"}}</option>           
-                      {{/select}}
-                      </select>
-                        <div class="box3 resource-label">
-                          <label class="speciality-label" style="font-weight: bold;" >{{localize 'ALIENRPG.SPECIALTY'}}</label>
-                          <div class="item-controls ">
-                          </div>
-                        </div>
-                        <div class="box4">
-                        {{#each specialities as |item iid|}}
-                        <li class="item grid-special" data-item-id="{{item._id}}">
-                          <h4 class="item-name spe2" data-pmbut="{{item._id}}">{{item.name}} </h4>
-                          <a class="spe3 item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
-                        </li>
-                        {{/each}}
-                        </div>
-                    </div>
-                    <br>
+        <div class="Item2">
+          <div class="grid-two">
+            <label class="resource-label" style="font-weight: bold;">{{localize 'ALIENRPG.Career'}}</label>
+            <select class="select-css" name="system.general.career.value" data-dtype="{{actor.system.general.career.value}}">
+              {{#select actor.system.general.career.value}}
+                <!-- <option value=""></option> -->
+                <option value="1">{{localize 'ALIENRPG.ColonialMarine'}}</option>
+                <option value="2">{{localize 'ALIENRPG.ColonialMarshal'}}</option>
+                <option value="3">{{localize 'ALIENRPG.CompanyAgent'}}</option>
+                <option value="4">{{localize 'ALIENRPG.Kid'}}</option>
+                <option value="5">{{localize 'ALIENRPG.Medic'}}</option>
+                <option value="6">{{localize 'ALIENRPG.Mercenary'}}</option>
+                <option value="7">{{localize 'ALIENRPG.Officer'}}</option>
+                <option value="8">{{localize 'ALIENRPG.Pilot'}}</option>
+                <option value="9">{{localize 'ALIENRPG.Roughneck'}}</option>
+                <option value="10">{{localize 'ALIENRPG.Scientist'}}</option>
+                <option value="11">{{localize 'ALIENRPG.Synthetic'}}</option>
+                <option value="12">{{localize 'ALIENRPG.Homebrew'}}</option>
+              {{/select}}
+            </select>
+            <div class="box3 resource-label">
+              <label class="speciality-label" style="font-weight: bold;">{{localize 'ALIENRPG.SPECIALTY'}}</label>
+              <div class="item-controls ">
               </div>
-              
-              <div class="Item4">
-                <label class="resource-label"style="font-weight: bold;">{{ localize "ALIENRPG.Appearance"}}</label> 
-                <br>
-                <textarea name="data.general.appearance.value" rows="8"data-dtype="String">{{data.general.appearance.value}}</textarea>
-              </div>
-              
-              <div class="Item5">
-                <label class="resource-label"style="font-weight: bold;">{{ localize "ALIENRPG.SignatureItem"}}</label>
-                <input type="text" class="textbox" name="data.general.sigItem.value" value="{{data.general.sigItem.value}}"  rows="1"data-dtype="String"></textarea>
+            </div>
+            <div class="box4">
+              {{#each specialities as |item iid|}}
+                <li class="item grid-special" data-item-id="{{item._id}}">
+                  <h4 class="item-name spe2" data-pmbut="{{item._id}}">{{item.name}} </h4>
+                  <a class="spe3 item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+                </li>
+              {{/each}}
+            </div>
+          </div>
+          <br>
+        </div>
 
-              </div>
-              
-              <div class="Item3">
-                <label class="resource-label"style="font-weight: bold;">{{ localize "ALIENRPG.PersonalAgenda"}}</label> 
-                <textarea name="data.general.agenda.value" rows="3"data-dtype="String">{{data.general.agenda.value}}</textarea>
-              </div>
-              
-              <div class="Item6">
-                <label class="resource-label"style="font-weight: bold;">{{ localize "ALIENRPG.Relationships"}}</label> 
-                <br>
-                <label class="resource-label" style="font-size: smaller;">{{ localize "ALIENRPG.relOne"}}</label>
-                <input type="text" class="textbox" name="data.general.relOne.value" value="{{data.general.relOne.value}}" rows="1"data-dtype="String"></input>
-                <label class="resource-label" style="font-size: smaller;">{{ localize "ALIENRPG.relTwo"}}</label>
-                <input type="text" class="textbox" name="data.general.relTwo.value"  value="{{data.general.relTwo.value}}" rows="1"data-dtype="String"></textarea>
+        <div class="Item4">
+          <label class="resource-label" style="font-weight: bold;">{{ localize 'ALIENRPG.Appearance'}}</label>
+          <br>
+          <textarea name="system.general.appearance.value" rows="8" data-dtype="String">{{actor.system.general.appearance.value}}</textarea>
+        </div>
 
-              </div>
-              
-              <div class="Item7">
-                    <div class="grid-crit " >
-                        <label class="speciality-label crit1"style="font-weight: bold;">{{ localize "ALIENRPG.CriticalInjuries"}}</label> 
-                        <button type="button" class="alien-crit-button rollCrit crit2" >{{localize "ALIENRPG.RollCrit"}}</button>
-                    </div>
-              </div>
+        <div class="Item5">
+          <label class="resource-label" style="font-weight: bold;">{{ localize 'ALIENRPG.SignatureItem'}}</label>
+          <input type="text" class="textbox" name="system.general.sigItem.value" value="{{actor.system.general.sigItem.value}}" rows="1" data-dtype="String"></textarea>
 
-             <div class="Item11 items-list" style="overflow: auto">{{> "systems/alienrpg/templates/actor/tabs/critical-inj.html" }}</div>
+        </div>
 
-      </h3>
-   </div>
-</section>
-  </form>
+        <div class="Item3">
+          <label class="resource-label" style="font-weight: bold;">{{ localize 'ALIENRPG.PersonalAgenda'}}</label>
+          <textarea name="system.general.agenda.value" rows="3" data-dtype="String">{{actor.system.general.agenda.value}}</textarea>
+        </div>
+
+        <div class="Item6">
+          <label class="resource-label" style="font-weight: bold;">{{ localize 'ALIENRPG.Relationships'}}</label>
+          <br>
+          <label class="resource-label" style="font-size: smaller;">{{ localize 'ALIENRPG.relOne'}}</label>
+          <input type="text" class="textbox" name="system.general.relOne.value" value="{{actor.system.general.relOne.value}}" rows="1" data-dtype="String"></input>
+          <label class="resource-label" style="font-size: smaller;">{{ localize 'ALIENRPG.relTwo'}}</label>
+          <input type="text" class="textbox" name="system.general.relTwo.value" value="{{actor.system.general.relTwo.value}}" rows="1" data-dtype="String"></textarea>
+
+        </div>
+
+        <div class="Item7">
+          <div class="grid-crit ">
+            <label class="speciality-label crit1" style="font-weight: bold;">{{ localize 'ALIENRPG.CriticalInjuries'}}</label>
+            <button type="button" class="alien-crit-button rollCrit crit2">{{localize 'ALIENRPG.RollCrit'}}</button>
+          </div>
+        </div>
+
+        <div class="Item11 items-list" style="overflow: auto">{{> "systems/alienrpg/templates/actor/tabs/critical-inj.html" }}</div>
+
+      </div>
+    </div>
+  </section>
+</form>

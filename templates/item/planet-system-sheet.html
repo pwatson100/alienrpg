@@ -2,21 +2,21 @@
   <header class="vehicle-header">
     <!-- <img class=profile-img-item" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" /> -->
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize " ALIENRPG.Name"}}" /></h1>
 
       <div class="resources grid-planet-header">
         <h3 class="resource-label hplan1">{{localize "ALIENRPG.CommonName"}}</h3>
-        {{!-- <input type="text" class="hplan2 textbox2" name="data.header.commonName.value" value="{{data.header.commonName.value}}" data-dtype="text" /> --}}
-        <textarea class="hplan2" name="data.header.commonName.value" rows="1" data-dtype="String">{{data.header.commonName.value}}</textarea>
+
+        <textarea class="hplan2" name="system.header.commonName.value" rows="1" data-dtype="String">{{system.header.commonName.value}}</textarea>
 
         <h3 class="resource-label hplan3">{{localize "ALIENRPG.System"}}</h3>
-        <input type="text" class="hplan4 textbox2" name="data.header.system.value" value="{{data.header.system.value}}" data-dtype="text" />
+        <input type="text" class="hplan4 textbox2" name="system.header.system.value" value="{{system.header.system.value}}" data-dtype="text" />
 
         <h3 class="resource-label hplan5">{{localize "ALIENRPG.Sector"}}</h3>
-        <input type="text" class="hplan6 textbox2" name="data.header.sector.value" value="{{data.header.sector.value}}" data-dtype="text" />
+        <input type="text" class="hplan6 textbox2" name="system.header.sector.value" value="{{system.header.sector.value}}" data-dtype="text" />
 
         <h3 class="resource-label hplan7">{{localize "ALIENRPG.Location"}}</h3>
-        <input type="text" class="hplan8 textbox2" name="data.header.location.value" value="{{data.header.location.value}}" data-dtype="text" />
+        <input type="text" class="hplan8 textbox2" name="system.header.location.value" value="{{system.header.location.value}}" data-dtype="text" />
       </div>
     </div>
   </header>
@@ -33,41 +33,42 @@
     <div class="tab details" data-group="primary" data-tab="details">
       <div class="plan1">
         <label class="resource-label">{{localize "ALIENRPG.Affiliation"}}</label>
-        <textarea name="data.details.affiliation.value" rows="2" data-dtype="String">{{data.details.affiliation.value}}</textarea>
+        <textarea name="system.details.affiliation.value" rows="2" data-dtype="String">{{system.details.affiliation.value}}</textarea>
       </div>
       <div class="grid-planet">
         <div class="plan2">
           <label class="resource-label">{{localize "ALIENRPG.Classification"}}</label> <br />
-          {{!-- <input type="text" class="textbox2" name="data.details.classification.value" value="{{data.details.classification.value}}" data-dtype="text" /> --}}
-          <textarea class="textbox4" name="data.details.classification.value" rows="1" data-dtype="String">{{data.details.classification.value}}</textarea>
+
+          <textarea class="textbox4" name="system.details.classification.value" rows="1" data-dtype="String">{{system.details.classification.value}}</textarea>
         </div>
         <div class="plan3">
           <label class="resource-label">{{localize "ALIENRPG.population"}}</label> <br />
-          <input type="text" class="textbox3" name="data.details.population.value" value="{{data.details.population.value}}" data-dtype="text" />
+          <input type="text" class="textbox3" name="system.details.population.value" value="{{system.details.population.value}}" data-dtype="text" />
         </div>
         <div class="plan4">
           <label class="resource-label">{{localize "ALIENRPG.meanTemperature"}}</label> <br />
-          <input type="text" class="textbox2" name="data.details.meanTemperature.value" value="{{data.details.meanTemperature.value}}" data-dtype="text" />
+          <input type="text" class="textbox2" name="system.details.meanTemperature.value" value="{{system.details.meanTemperature.value}}" data-dtype="text" />
         </div>
       </div>
       <label class="resource-label">{{localize "ALIENRPG.climate"}}</label>
-      <textarea name="data.details.climate.value" rows="2" data-dtype="String">{{data.details.climate.value}}</textarea>
+      <textarea name="system.details.climate.value" rows="2" data-dtype="String">{{system.details.climate.value}}</textarea>
 
       <label class="resource-label">{{localize "ALIENRPG.terrain"}}</label>
-      <textarea name="data.details.terrain.value" rows="2" data-dtype="String">{{data.details.terrain.value}}</textarea>
+      <textarea name="system.details.terrain.value" rows="2" data-dtype="String">{{system.details.terrain.value}}</textarea>
 
       <label class="resource-label">{{localize "ALIENRPG.colonies"}}</label>
-      <textarea name="data.details.colonies.value" rows="2" data-dtype="String">{{data.details.colonies.value}}</textarea>
+      <textarea name="system.details.colonies.value" rows="2" data-dtype="String">{{system.details.colonies.value}}</textarea>
 
       <label class="resource-label">{{localize "ALIENRPG.keyResources"}}</label>
-      <textarea name="data.details.keyResources.value" rows="2" data-dtype="String">{{data.details.keyResources.value}}</textarea>
+      <textarea name="system.details.keyResources.value" rows="2" data-dtype="String">{{system.details.keyResources.value}}</textarea>
     </div>
 
     {{!-- Notes Tab --}}
     <div class="tab item" data-group="primary" data-tab="description">
-      <!-- <label class="resource-label">{{localize "ALIENRPG.Description"}}</label> -->
       {{!-- Biography Tab --}}
-      <div class="tab biog" data-group="primary" data-tab="description">{{editor content=data.misc.comment.value target="data.misc.comment.value" button=true owner=owner editable=true}}</div>
+      <div class="tab biog" style="height: 450px" data-group="primary" data-tab="description">
+        {{editor system.misc.comment.value target="system.misc.comment.value" button=true owner=owner editable=true}}
+      </div>
     </div>
   </section>
 </form>

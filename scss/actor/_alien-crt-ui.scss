@@ -254,15 +254,12 @@ combobox:focus {
 #pause {
   background: none;
   & > img {
-    box-sizing: border-box;
-    // background-image: url('../images/paused-alien.png');
     width: 200px;
     height: 200px;
     top: -50px;
     left: calc(50% - 100px);
     opacity: 0.7;
-    -webkit-animation: rotation 10s infinite linear;
-    animation: rotation 10s infinite linear;
+    --fa-animation-duration: 10s;
   }
   h3 {
     // font-family: var(--alienfont); !

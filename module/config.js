@@ -12,18 +12,18 @@ ALIENRPG.attributes = {
   emp: 'ALIENRPG.AbilityEmp',
 };
 ALIENRPG.skills = {
-  heavyMach: 'ALIENRPG.SkillHeavyMach',
-  closeCbt: 'ALIENRPG.SkillCloseCbt',
-  stamina: 'ALIENRPG.SkillStamina',
-  rangedCbt: 'ALIENRPG.SkillRangedCbt',
-  mobility: 'ALIENRPG.SkillMobility',
-  piloting: 'ALIENRPG.SkillPiloting',
-  command: 'ALIENRPG.SkillCommand',
-  manipulation: 'ALIENRPG.SkillManipulation',
-  medicalAid: 'ALIENRPG.SkillMedicalAid',
-  observation: 'ALIENRPG.SkillObservation',
-  survival: 'ALIENRPG.SkillSurvival',
-  comtech: 'ALIENRPG.SkillComtech',
+  heavyMach: 'ALIENRPG.SkillheavyMach',
+  closeCbt: 'ALIENRPG.SkillcloseCbt',
+  stamina: 'ALIENRPG.Skillstamina',
+  rangedCbt: 'ALIENRPG.SkillrangedCbt',
+  mobility: 'ALIENRPG.Skillmobility',
+  piloting: 'ALIENRPG.Skillpiloting',
+  command: 'ALIENRPG.Skillcommand',
+  manipulation: 'ALIENRPG.Skillmanipulation',
+  medicalAid: 'ALIENRPG.SkillmedicalAid',
+  observation: 'ALIENRPG.Skillobservation',
+  survival: 'ALIENRPG.Skillsurvival',
+  comtech: 'ALIENRPG.Skillcomtech',
 };
 ALIENRPG.general = {
   career: 'ALIENRPG.Career',
@@ -93,3 +93,4 @@ ALIENRPG.Icons = {
     remove: '<i class="fas fa-times"></i>',
   },
 };
+

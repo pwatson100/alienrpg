@@ -19,13 +19,13 @@ export default class AlienRPGCombat extends Combat {
   async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
     // Structure input data
     ids = typeof ids === 'string' ? [ids] : ids;
-    const currentId = this.combatant.data._id;
+    const currentId = this.id;
     const draw = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false };
     let drawn = 0;
     // Iterate over Combatants, performing an initiative roll for each
     // const [updates, messages] = ids.reduce(
-    if (this.combatant.collection._source.length > 0) {
-      this.combatant.collection._source.forEach((inIt) => {
+    if (this.combatants.contents > 0) {
+      this.combatants.contents.forEach((inIt) => {
         if (inIt.initiative) {
           draw[inIt.initiative] = true;
           drawn++;
@@ -75,9 +75,9 @@ export default class AlienRPGCombat extends Combat {
           let messageData = mergeObject(
             {
               speaker: {
-                scene: canvas.scene.data._id,
-                actor: combatant.actor ? combatant.actor.data._id : null,
-                token: combatant.token.data._id,
+                scene: canvas.scene.id,
+                actor: combatant.actor ? combatant.actor.id : null,
+                token: combatant.token.id,
                 alias: combatant.token.name,
               },
               flavor: `${combatant.token.name} rolls for Initiative! <br> ${cardPath}`,
@@ -112,9 +112,9 @@ export default class AlienRPGCombat extends Combat {
           let messageData = mergeObject(
             {
               speaker: {
-                scene: canvas.scene.data._id,
-                actor: combatant.actor ? combatant.actor.data._id : null,
-                token: combatant.token.data._id,
+                scene: canvas.scene.id,
+                actor: combatant.actor ? combatant.actor.id : null,
+                token: combatant.token.id,
                 alias: combatant.token.name,
               },
               flavor: `${combatant.token.name} rolls for Initiative! <br> `,
@@ -141,7 +141,7 @@ export default class AlienRPGCombat extends Combat {
 
     // Ensure the turn order remains with the same combatant
     if (updateTurn) {
-      await this.update({ turn: this.turns.findIndex((t) => t.data._id === currentId) });
+      await this.update({ turn: this.turns.findIndex((t) => t.id === currentId) });
     }
     // Create multiple chat messages
     await CONFIG.ChatMessage.documentClass.create(messages);
@@ -175,7 +175,7 @@ export default class AlienRPGCombat extends Combat {
 
     for (let i of data) {
       const aType = game.actors.get(i.actorId);
-      if (aType.data.type === 'creature') {
+      if (aType.type === 'creature') {
         const cData = this._getExtraSpeedCombatants(i, aType);
         if (cData) {
           data = data.concat(cData);
@@ -193,10 +193,10 @@ export default class AlienRPGCombat extends Combat {
     let token = canvas.scene.tokens.get(combatant.tokenId);
     let creatureSpeed = 0;
     try {
-      creatureSpeed = token.data.actorData.data.attributes.speed.value;
+      creatureSpeed = token.actor.system.attributes.speed.value;
     } catch (error) {
       let bob = game.actors.get(combatant.actorId);
-      creatureSpeed = bob.data.data.attributes.speed.value;
+      creatureSpeed = bob.system.attributes.speed.value;
     }
     if (creatureSpeed > 1) {
       let x;
@@ -206,7 +206,7 @@ export default class AlienRPGCombat extends Combat {
     }
     // Add extra clones to the Combat encounter for the actor's heightened speed
     creationData = clones.map((v) => {
-      return { tokenId: v.id, hidden: v.data.hidden };
+      return { tokenId: v.id, hidden: v.hidden };
     });
     return creationData;
   }

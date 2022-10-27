@@ -1,30 +1,28 @@
 <ol class="items-list crt">
 
-    {{#each systems as |section sid|}}
+  {{#each systems as |section sid|}}
     <li class=" grid-items item-header">
       <div class="item-name lCol1">{{section.label}}</div>
-      <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
-      <div class="item-detail lCol10">{{localize "ALIENRPG.Damage"}}</div>
-      <div class="item-detail item-weight lCol10">{{localize "ALIENRPG.Damage"}}</div>
-      <div class="item-detail item-weight lCol3">{{localize "ALIENRPG.Weight"}}</div>
+      <div class="item-name lCol2">{{localize 'ALIENRPG.Name'}}</div>
+      <div class="item-detail lCol10">{{localize 'ALIENRPG.Damage'}}</div>
+      <div class="item-detail item-weight lCol10">{{localize 'ALIENRPG.Damage'}}</div>
+      <div class="item-detail item-weight lCol3">{{localize 'ALIENRPG.Weight'}}</div>
       <div class="item-controls lCol4">
-        <a class="item-control item-create" style="font-size: smaller;" title="{{localize "ALIENRPG.AddItem"}}" data-type="item"><i class="fas fa-plus"></i>{{localize "ALIENRPG.AddItem"}}</a>
+        <a class="item-control item-create" style="font-size: smaller;" title="{{localize 'ALIENRPG.AddItem'}}" data-type="item"><i class="fas fa-plus"></i>{{localize 'ALIENRPG.AddItem'}}</a>
       </div>
     </li>
     {{#each systems.items as |item iid|}}
-        <li class="item grid-items" data-item-id="{{item._id}}">
-                <div class="item-image lCol5" ><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
-                <span class="item-label lCol6" data-item="{{item.name}}">{{item.name~}}</span>
-                <span class="item-label lCol9" data-item="{{item.data.header.System.value}}">{{item.data.attributes.damage.value}}</span>
-                 <div class="item-controls lCol8">
-                  <a class="item-control item-edit" title="{{localize "ALIENRPG.EditItem"}}"><i class="fas fa-edit"></i></a>
-                  <a class="item-control item-delete" title="{{localize "ALIENRPG.DeleteItem"}}"><i class="fas fa-trash"></i></a>
-                </div>
+      <li class="item grid-items" data-item-id="{{item._id}}">
+        <div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+        <span class="item-label lCol6" data-item="{{item.name}}">{{item.name~}}</span>
+        <span class="item-label lCol9" data-item="{{item.system.header.System.value}}">{{item.system.attributes.damage.value}}</span>
+        <div class="item-controls lCol8">
+          <a class="item-control item-edit" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title="{{localize 'ALIENRPG.DeleteItem'}}"><i class="fas fa-trash"></i></a>
+        </div>
       </li>
 
-     </li>
+      </li>
     {{/each}}
-{{/each}}
+  {{/each}}
 </ol>
-
-

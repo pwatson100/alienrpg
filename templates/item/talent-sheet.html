@@ -1,28 +1,28 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}}" style="min-height: 489px" autocomplete="off">
   <header class="vehicle-header">
     <img class="profile-img" src="{{img}}" data-edit="img" title="{{img}}" />
 
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize " ALIENRPG.Name"}}" /></h1>
 
       <div class="grid-weapon">
         <h3 class="wItem2 resource-label">{{localize "ALIENRPG.Career"}}</h3>
         <div class="wItem3">
-          <select class="select-css" name="data.general.career.value" data-dcareer="{{data.general.career.value}}">
-            {{#select data.general.career.value}}
-            <!-- <option value=""></option> -->
-            <option value="0"></option>
-            <option value="1">{{localize "ALIENRPG.GeneralTalent"}}</option>
-            <option value="2">{{localize "ALIENRPG.ColonialMarine"}}</option>
-            <option value="3">{{localize "ALIENRPG.ColonialMarshal"}}</option>
-            <option value="4">{{localize "ALIENRPG.CompanyAgent"}}</option>
-            <option value="5">{{localize "ALIENRPG.Kid"}}</option>
-            <option value="6">{{localize "ALIENRPG.Medic"}}</option>
-            <option value="7">{{localize "ALIENRPG.Mercenary"}}</option>
-            <option value="8">{{localize "ALIENRPG.Officer"}}</option>
-            <option value="9">{{localize "ALIENRPG.Pilot"}}</option>
-            <option value="10">{{localize "ALIENRPG.Roughneck"}}</option>
-            <option value="11">{{localize "ALIENRPG.Scientist"}}</option>
+          <select class="select-css" name="system.general.career.value" data-dcareer="{{system.general.career.value}}">
+            {{#select system.general.career.value}}
+              <!-- <option value=""></option> -->
+              <option value="0"></option>
+              <option value="1">{{localize "ALIENRPG.GeneralTalent"}}</option>
+              <option value="2">{{localize "ALIENRPG.ColonialMarine"}}</option>
+              <option value="3">{{localize "ALIENRPG.ColonialMarshal"}}</option>
+              <option value="4">{{localize "ALIENRPG.CompanyAgent"}}</option>
+              <option value="5">{{localize "ALIENRPG.Kid"}}</option>
+              <option value="6">{{localize "ALIENRPG.Medic"}}</option>
+              <option value="7">{{localize "ALIENRPG.Mercenary"}}</option>
+              <option value="8">{{localize "ALIENRPG.Officer"}}</option>
+              <option value="9">{{localize "ALIENRPG.Pilot"}}</option>
+              <option value="10">{{localize "ALIENRPG.Roughneck"}}</option>
+              <option value="11">{{localize "ALIENRPG.Scientist"}}</option>
             {{/select}}
           </select>
         </div>
@@ -41,10 +41,10 @@
     {{!-- Attributes Tab --}}
     <div class="tab general" data-group="primary" data-tab="general">
       <h2 class="resource-label">{{localize "ALIENRPG.Description"}}</h2>
-      <div class="tab item">{{editor content=data.general.comment.value target="data.general.comment.value" button=true owner=owner editable=true}}</div>
+      <div class="tab item">{{editor system.general.comment.value target="system.general.comment.value" button=true owner=owner editable=true}}</div>
     </div>
 
     {{!-- Notes Tab --}}
-    <div class="tab item" data-group="primary" data-tab="notes">{{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=true}}</div>
+    <div class="tab item" data-group="primary" data-tab="notes">{{editor system.notes.notes target="system.notes.notes" button=true owner=owner editable=true}}</div>
   </section>
 </form>

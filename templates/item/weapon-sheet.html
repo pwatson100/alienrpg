@@ -1,26 +1,27 @@
 <form class="{{cssClass}} " autocomplete="off">
   <header class="vehicle-header">
-    <img class="profile-img-item" src="{{img}}" data-edit="img" title="{{name}}" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize " ALIENRPG.Name"}}" /></h1>
+      <div class="grid-2col">
+        <img class="profile-img-item" src="{{img}}" data-edit="img" title="{{name}}" />
+        <div class="resources grid-weapon">
+          <h3 class="resource-label wItem1">{{localize "ALIENRPG.Weight"}}</h3>
+          <input type="text" name="system.attributes.weight.value" class="maxboxsize wItem2" value="{{system.attributes.weight.value}}" data-dtype="Number" />
 
-      <div class="resources grid-weapon">
-        <h3 class="resource-label wItem1">{{localize "ALIENRPG.Weight"}}</h3>
-        <input type="text" name="data.attributes.weight.value" class="maxboxsize wItem2" value="{{data.attributes.weight.value}}" data-dtype="Number" />
+          <h3 class="resource-label wItem3">{{localize "ALIENRPG.Class"}}</h3>
+          <input type="text" class="wItem4 textbox3" name="system.attributes.class.value" value="{{system.attributes.class.value}}" data-dtype="text" />
 
-        <h3 class="resource-label wItem3">{{localize "ALIENRPG.Class"}}</h3>
-        <input type="text" class="wItem4 textbox3" name="data.attributes.class.value" value="{{data.attributes.class.value}}" data-dtype="text" />
-
-        <h3 class="wItem6 resource-label">{{localize "ALIENRPG.Type"}}</h3>
-        <div class="selectBox wItem7">
-          <select class="select-css" name="data.header.type.value" data-dtype="{{data.header.type.value}}">
-            {{#select data.header.type.value}}
-              <!-- <option value=""></option> -->
-              <option value="0"></option>
-              <option value="1">{{localize "ALIENRPG.WepTypeRanged"}}</option>
-              <option value="2">{{localize "ALIENRPG.WepTypeMelee"}}</option>
-            {{/select}}
-          </select>
+          <h3 class="wItem6 resource-label">{{localize "ALIENRPG.Type"}}</h3>
+          <div class="selectBox wItem7">
+            <select class="select-css" name="system.header.type.value" data-dtype="{{system.header.type.value}}">
+              {{#select system.header.type.value}}
+                <!-- <option value=""></option> -->
+                <option value="0"></option>
+                <option value="1">{{localize "ALIENRPG.WepTypeRanged"}}</option>
+                <option value="2">{{localize "ALIENRPG.WepTypeMelee"}}</option>
+              {{/select}}
+            </select>
+          </div>
         </div>
       </div>
     </div>
@@ -38,19 +39,19 @@
     <div class="tab attributes" data-group="primary" data-tab="attributes">
       <div class="grid-weapon-body">
         <label class="resource-label wCol1">{{localize "ALIENRPG.Cost"}}</label>
-        <input type="text" class="cashboxsize currency wCol2" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
+        <input type="text" class="cashboxsize currency wCol2" name="system.attributes.cost.value" value="{{system.attributes.cost.value}}" />
 
         <label class="resource-label wCol3">{{localize "ALIENRPG.Damage"}}</label>
-        <input type="text" class="maxboxsize wCol4" name="data.attributes.damage.value" value="{{data.attributes.damage.value}}" data-dtype="Number" />
+        <input type="text" class="maxboxsize wCol4" name="system.attributes.damage.value" value="{{system.attributes.damage.value}}" data-dtype="Number" />
 
         <label class="resource-label wCol5">{{localize "ALIENRPG.Bonus"}}</label>
-        <input type="text" class="maxboxsize wCol6" name="data.attributes.bonus.value" value="{{data.attributes.bonus.value}}" data-dtype="Number" />
+        <input type="text" class="maxboxsize wCol6" name="system.attributes.bonus.value" value="{{system.attributes.bonus.value}}" data-dtype="Number" />
 
         <label class="resource-label wCol7">{{localize "ALIENRPG.Range"}}</label>
-        <select class="select-css wCol8" style="margin-top: 5px" name="data.attributes.range.value" data-dtype="{{data.attributes.range.value}}">
-          {{#ife data.header.type.value '2'}} {{#select data.attributes.range.value}}
+        <select class="select-css wCol8" style="margin-top: 5px" name="system.attributes.range.value" data-dtype="{{system.attributes.range.value}}">
+          {{#ife system.header.type.value '2'}} {{#select system.attributes.range.value}}
               <option value="1">{{localize "ALIENRPG.Engaged"}}</option>
-            {{/select}} {{/ife}} {{#ife data.header.type.value '1'}} {{#select data.attributes.range.value}}
+            {{/select}} {{/ife}} {{#ife system.header.type.value '1'}} {{#select system.attributes.range.value}}
               <!-- <option value=""></option> -->
               <option value="1">{{localize "ALIENRPG.Engaged"}}</option>
               <option value="2">{{localize "ALIENRPG.Short"}}</option>
@@ -60,23 +61,23 @@
             {{/select}} {{/ife}}
         </select>
         <!-- </div> -->
-        {{#ife data.header.type.value '1'}}
-          <label class="resource-label wCol9">{{localize "ALIENRPG.Rds"}}</label>
-          <input type="text" class="maxboxsize wCol10" name="data.attributes.rounds.value" value="{{data.attributes.rounds.value}}" data-dtype="Number" />
+        {{#ife system.header.type.value '1'}}
+          <label class="resource-label wCol9">{{localize "ALIENRPG.Rounds"}}</label>
+          <input type="text" class="maxboxsize wCol10" name="system.attributes.rounds.value" value="{{system.attributes.rounds.value}}" data-dtype="Number" />
           <label class="resource-label wCol11">{{localize "ALIENRPG.Power"}}</label>
-          <input type="text" class="maxboxsize wCol12" name="data.attributes.power.value" value="{{data.attributes.power.value}}" data-dtype="Number" />
-        {{/ife}} {{#ife data.header.type.value '2'}}
+          <input type="text" class="maxboxsize wCol12" name="system.attributes.power.value" value="{{system.attributes.power.value}}" data-dtype="Number" />
+        {{/ife}} {{#ife system.header.type.value '2'}}
           <label class="resource-label wCol11">{{localize "ALIENRPG.Power"}}</label>
-          <input type="text" class="maxboxsize wCol12" name="data.attributes.power.value" value="{{data.attributes.power.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize wCol12" name="system.attributes.power.value" value="{{system.attributes.power.value}}" data-dtype="Number" />
         {{/ife}}
         <label class="resource-label wCol13">{{localize "ALIENRPG.QuantityLabel"}}</label>
-        <input type="text" class="maxboxsize wCol14" style="margin-top: 5px" name="data.attributes.quantity.value" value="{{data.attributes.quantity.value}}" data-dtype="Number" />
+        <input type="text" class="maxboxsize wCol14" style="margin-top: 5px" name="system.attributes.quantity.value" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
       </div>
       <h2 class="resource-label">{{localize "ALIENRPG.Comment"}}</h2>
-      <textarea name="data.attributes.comment.value" rows="10" data-dtype="String">{{data.attributes.comment.value}}</textarea>
+      <textarea name="system.attributes.comment.value" rows="10" data-dtype="String">{{system.attributes.comment.value}}</textarea>
     </div>
 
     {{!-- Notes Tab --}}
-    <div class="tab item" data-group="primary" data-tab="notes">{{editor content=data.notes.notes target="data.notes.notes" button=true owner=owner editable=true}}</div>
+    <div class="tab item" data-group="primary" data-tab="notes">{{editor system.notes.notes target="system.notes.notes" button=true owner=owner editable=true}}</div>
   </section>
 </form>

@@ -3,28 +3,28 @@
   <header class="vehicle-header">
     <img class="profile-img-vehicle" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize " ALIENRPG.Name"}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
 
       <div class="resources grid-vehicle">
-        <h2 class="vItem1">{{ localize "ALIENRPG.Hull"}}</h2>
+        <h2 class="vItem1">{{ localize 'ALIENRPG.Hull'}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem2" name="data.attributes.hull.value" value="{{data.attributes.hull.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem2" name="system.attributes.hull.value" value="{{actor.system.attributes.hull.value}}" data-dtype="Number" />
           <label class="box23"> / </label>
-          <input type="text" class="maxboxsize " name="data.attributes.hull.max" value="{{data.attributes.hull.max}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize " name="system.attributes.hull.max" value="{{actor.system.attributes.hull.max}}" data-dtype="Number" />
 
 
         </div>
-        <h2 class="vItem3 rollableVeh" data-roll="{{data.attributes.armorrating.value}}" data-label="{{localize " ALIENRPG.ArmorRating"}}" data-spbutt="armor">{{localize "ALIENRPG.ArmorRating"}}</h2>
+        <h2 class="vItem3 rollableVeh" data-roll="{{actor.system.attributes.armorrating.value}}" data-label="{{localize 'ALIENRPG.ArmorRating'}}" data-spbutt="armor">{{localize 'ALIENRPG.ArmorRating'}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem4" name="data.attributes.armorrating.value" value="{{data.attributes.armorrating.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem4" name="system.attributes.armorrating.value" value="{{actor.system.attributes.armorrating.value}}" data-dtype="Number" />
         </div>
-        <h2 class="vItem5">{{localize "ALIENRPG.Speed"}}</h2>
+        <h2 class="vItem5">{{localize 'ALIENRPG.Speed'}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem6" name="data.attributes.speed.value" value="{{data.attributes.speed.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem6" name="system.attributes.speed.value" value="{{actor.system.attributes.speed.value}}" data-dtype="Number" />
         </div>
-        <h2 class="vItem7">{{localize "ALIENRPG.Manoeuvrability"}}</h2>
+        <h2 class="vItem7">{{localize 'ALIENRPG.Manoeuvrability'}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem8" name="data.attributes.manoeuvrability.value" value="{{data.attributes.manoeuvrability.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem8" name="system.attributes.manoeuvrability.value" value="{{actor.system.attributes.manoeuvrability.value}}" data-dtype="Number" />
         </div>
       </div>
     </div>
@@ -32,22 +32,22 @@
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
-    <a class="item" data-tab="inventory">{{localize "ALIENRPG.Inventory"}}</a>
-    <a class="item" data-tab="crew">{{localize "ALIENRPG.Crew"}}</a>
+    <a class="item" data-tab="general">{{localize 'ALIENRPG.General'}}</a>
+    <a class="item" data-tab="inventory">{{localize 'ALIENRPG.Inventory'}}</a>
+    <a class="item" data-tab="crew">{{localize 'ALIENRPG.Crew'}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
     <div class="tab attributes" data-group="primary" data-tab="general">
-      <label class="resource-label">{{localize "ALIENRPG.Passengers"}}</label>
-      <input type="text" class="maxboxsize" name="data.attributes.passengers.value" value="{{data.attributes.passengers.value}}" data-dtype="Number" />
+      <label class="resource-label">{{localize 'ALIENRPG.Passengers'}}</label>
+      <input type="text" class="maxboxsize" name="system.attributes.passengers.value" value="{{actor.system.attributes.passengers.value}}" data-dtype="Number" />
 
-      <label class="resource-label">{{localize "ALIENRPG.Cost"}}</label>
-      <input type="text" class="cashboxsize currency" name="data.attributes.cost.value" value="{{data.attributes.cost.value}}" />
+      <label class="resource-label">{{localize 'ALIENRPG.Cost'}}</label>
+      <input type="text" class="cashboxsize currency" name="system.attributes.cost.value" value="{{actor.system.attributes.cost.value}}" />
       <br />
-      <h3 class="resource-label">{{localize "ALIENRPG.Description"}}</h3>
-      <textarea name="data.attributes.comment.value" rows="18" data-dtype="String">{{data.attributes.comment.value}}</textarea>
+      <h3 class="resource-label">{{localize 'ALIENRPG.Description'}}</h3>
+      <textarea name="system.attributes.comment.value" rows="18" data-dtype="String">{{actor.system.attributes.comment.value}}</textarea>
     </div>
 
     <div class="tab crew" data-group="primary" data-tab="crew">
@@ -59,7 +59,7 @@
       </div>
       <br>
       <div>
-        {{#each data.crew.occupants}}
+        {{#each actor.system.crew.occupants}}
           <div class="occupant {{#if (eq position " PASSENGER")}} passenger{{/if}}" data-crew-id="{{id}}">
 
             <div class="  grid-crew">
@@ -74,24 +74,24 @@
               </div>
 
               {{#ife position 'PILOT'}}
-                <h3 for="actor.data.data.skills.piloting.value" class="resource-label rollable Attr1 gC7" data-roll="{{addstats actor.data.data.skills.piloting.mod @root.actor.data.attributes.manoeuvrability.value}}" data-actorid="{{actor.id}}" data-label="{{@root.actor.name}} - {{localize " ALIENRPG.Skillpiloting"}}">{{localize "ALIENRPG.Skillpiloting"}}</h3>
+                <h3 for="actor.system.skills.piloting.value" class="resource-label rollable Attr1 gC7" data-roll="{{addstats actor.system.skills.piloting.mod @root.actor.system.attributes.manoeuvrability.value}}" data-actorid="{{actor.id}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillpiloting'}}">{{localize 'ALIENRPG.Skillpiloting'}}</h3>
               {{/ife}}
 
               {{!-- Buttons --}}
               <div class="gC8">
                 {{#unless actor.isCrewDeleted}}
-                  <a class="button crew-edit" title="{{localize " ALIENRPG.ActorSheet.Edit"}}">
+                  <a class="button crew-edit" title="{{localize 'ALIENRPG.ActorSheet.Edit'}}">
                     {{{@root.config.Icons.buttons.edit}}}
                   </a>
                 {{/unless}}
-                <a class="button crew-remove" title="{{localize " ALIENRPG.ActorSheet.Delete"}}">
+                <a class="button crew-remove" title="{{localize 'ALIENRPG.ActorSheet.Delete'}}">
                   {{{@root.config.Icons.buttons.remove}}}
                 </a>
               </div>
             </div>
           </div>
         {{else}}
-          <div class="crew-empty">{{localize "ALIENRPG.EmptyCrew"}}</div>
+          <div class="crew-empty">{{localize 'ALIENRPG.EmptyCrew'}}</div>
         {{/each}}
       </div>
     </div>

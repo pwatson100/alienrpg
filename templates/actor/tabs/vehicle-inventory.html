@@ -30,69 +30,69 @@
     </li>
     
     {{#each section.items as |item iid|}}
-    {{#ifne item.data.header.active 'fLocker' }}
+    {{#ifne item.system.header.active 'fLocker' }}
         <li class="item grid-items" data-item-id="{{item._id}}">
-                <div class="item-image lCol5 activate" ><img src="{{item.img}}" data-item="{{item.data.header.active}}" title="{{item.name}}" width="24" height="24" /></div>
-                <span class="item-detail rollItem lCol6" data-item="{{item.name}}" data-mod="{{data.skills.rangedCbt.mod}}">{{item.name~}}</span>
+                <div class="item-image lCol5 activate" ><img src="{{item.img}}" data-item="{{item.system.header.active}}" title="{{item.name}}" width="24" height="24" /></div>
+                <span class="item-detail rollItem lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
                
  {{#ife item.type 'weapon'}}
-                    {{#ife item.data.header.type.value '1'}}
-                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
-                    <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
-                    <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
-                    <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-mod="data.attributes.rounds.value" name="item.data.attributes.rounds.value" value="{{item.data.attributes.rounds.value}}" data-dtype="String" />
-                    <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
+                    {{#ife item.system.header.type.value '1'}}
+                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+                    <span class="item-detail lCol16" data-item="{{system.attributes.range.value}}">{{gRng system.attributes.range.value}}</span>
+                    <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+                    <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-mod="system.attributes.rounds.value" name="item.system.attributes.rounds.value" value="{{item.system.attributes.rounds.value}}" data-dtype="String" />
+                    <span class="item-detail lCol9" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
                     {{/ife}}
 
-                    {{#ife item.data.header.type.value '2'}}
-                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
-                    <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
-                    <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
-                    <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
+                    {{#ife item.system.header.type.value '2'}}
+                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+                    <span class="item-detail lCol16" data-item="{{system.attributes.range.value}}">{{gRng system.attributes.range.value}}</span>
+                    <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+                    <span class="item-detail lCol9" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
                     {{/ife}}
   {{/ife}}
 
   {{#ife item.type 'item'}}
-                {{#ife data.header.type.value '1'}}
-                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                {{#ife system.header.type.value '1'}}
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
-                {{#ife data.header.type.value '2'}}
-                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
-                {{/ife}}
-
-                {{#ife item.data.header.type.value '3'}}
-                <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
+                {{#ife system.header.type.value '2'}}
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
 
-                {{#ife item.data.header.type.value '4'}}
-                <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
-                 <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
+                {{#ife item.system.header.type.value '3'}}
+                <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
                 {{/ife}}
 
-                {{#ife data.header.type.value '6'}}
-                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                {{#ife item.system.header.type.value '4'}}
+                <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+                 <span class="item-detail lCol9" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
+                {{/ife}}
+
+                {{#ife system.header.type.value '6'}}
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
 
 
-                {{#ife item.data.header.type.value '7'}}
-                <input type="text" class="item-label maxboxsize lCol12 inline-edit" data-mod="data.attributes.food.value" name="item.data.attributes.food.value" value="{{item.data.attributes.food.value}}" data-dtype="String" />
-                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="data.attributes.water.value" name="item.data.attributes.water.value" value="{{item.data.attributes.water.value}}" data-dtype="String" />
+                {{#ife item.system.header.type.value '7'}}
+                <input type="text" class="item-label maxboxsize lCol12 inline-edit" data-mod="system.attributes.food.value" name="item.system.attributes.food.value" value="{{item.system.attributes.food.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="system.attributes.water.value" name="item.system.attributes.water.value" value="{{item.system.attributes.water.value}}" data-dtype="String" />
                 {{/ife}}
 
-                {{#ife item.data.header.type.value '10'}}
-                <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
-                <input type="text" class="item-label maxboxsize lCol12 inline-edit" data-mod="data.attributes.food.value" name="item.data.attributes.food.value" value="{{item.data.attributes.food.value}}" data-dtype="String" />
-                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="data.attributes.water.value" name="item.data.attributes.water.value" value="{{item.data.attributes.water.value}}" data-dtype="String" />
+                {{#ife item.system.header.type.value '10'}}
+                <span class="item-detail pwr-btn Power2 lCol14" data-spbutt="Power" data-id="{{item._id}}" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+                <input type="text" class="item-label maxboxsize lCol12 inline-edit" data-mod="system.attributes.food.value" name="item.system.attributes.food.value" value="{{item.system.attributes.food.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="system.attributes.water.value" name="item.system.attributes.water.value" value="{{item.system.attributes.water.value}}" data-dtype="String" />
                 {{/ife}}
 
-                {{#ife data.header.type.value '11'}}
-                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                {{#ife system.header.type.value '11'}}
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
  {{/ife}}
 
  {{#ife item.type 'armor'}}
-                <span class="item-detail lCol12" data-item="{{data.attributes.armorrating.value}}">{{data.attributes.armorrating.value}}</span>
-                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="data.attributes.airsupply.value" name="item.data.attributes.airsupply.value" value="{{item.data.attributes.airsupply.value}}" data-dtype="String" />
+                <span class="item-detail lCol12" data-item="{{system.attributes.armorrating.value}}">{{system.attributes.armorrating.value}}</span>
+                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="system.attributes.airsupply.value" name="item.system.attributes.airsupply.value" value="{{item.system.attributes.airsupply.value}}" data-dtype="String" />
  {{/ife}}
 
                 <div class="item-detail lCol7" style="font-size: smaller;">{{ item.totalWeight }} {{localize "ALIENRPG.AbbreviationKg"}}</div>
@@ -134,68 +134,68 @@
 
     </li>
     {{#each section.items as |item iid|}}
-    {{#ife item.data.header.active 'fLocker'}}
+    {{#ife item.system.header.active 'fLocker'}}
         <li class="item grid-items" data-item-id="{{item._id}}">
                 <div class="item-image lCol5 activate" data-item="{{name}}" ><img src="{{item.img}}"  title="{{item.name}}" width="24" height="24" /></div>
-                <span class="item-detail  lCol6" data-item="{{item.name}}" data-mod="{{data.skills.rangedCbt.mod}}">{{item.name~}}</span>
+                <span class="item-detail  lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
 
   {{#ife item.type 'weapon'}}
-                    {{#ife item.data.header.type.value '1'}}
-                                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
-                    <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
-                    <span class="item-detail lCol14" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
-                    <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-mod="data.attributes.rounds.value" name="item.data.attributes.rounds.value" value="{{item.data.attributes.rounds.value}}" data-dtype="String" />
-                  <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
+                    {{#ife item.system.header.type.value '1'}}
+                                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+                    <span class="item-detail lCol16" data-item="{{system.attributes.range.value}}">{{gRng system.attributes.range.value}}</span>
+                    <span class="item-detail lCol14" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+                    <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-mod="system.attributes.rounds.value" name="item.system.attributes.rounds.value" value="{{item.system.attributes.rounds.value}}" data-dtype="String" />
+                  <span class="item-detail lCol9" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
                     {{/ife}}
 
-                    {{#ife item.data.header.type.value '2'}} 
-                                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
-                    <span class="item-detail lCol16" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
-                  <span class="item-detail lCol14" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
-                  <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
+                    {{#ife item.system.header.type.value '2'}} 
+                                    <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+                    <span class="item-detail lCol16" data-item="{{system.attributes.range.value}}">{{gRng system.attributes.range.value}}</span>
+                  <span class="item-detail lCol14" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+                  <span class="item-detail lCol9" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
                     {{/ife}}
   {{/ife}}
 
   {{#ife item.type 'item'}}
-                {{#ife data.header.type.value '1'}}
-                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                {{#ife system.header.type.value '1'}}
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
-                {{#ife data.header.type.value '2'}}
-                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
-                {{/ife}}
-
-                {{#ife item.data.header.type.value '3'}}
-                <span class="item-detail  lCol14" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
+                {{#ife system.header.type.value '2'}}
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
 
-                {{#ife item.data.header.type.value '4'}}
-                <span class="item-detail lCol14" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
-               <span class="item-detail lCol9" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
+                {{#ife item.system.header.type.value '3'}}
+                <span class="item-detail  lCol14" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
                 {{/ife}}
 
-                {{#ife item.data.header.type.value '7'}}
-                <input type="text" class="item-label maxboxsize lCol12 inline-edit" data-mod="data.attributes.food.value" name="item.data.attributes.food.value" value="{{item.data.attributes.food.value}}" data-dtype="String" />
-                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="data.attributes.water.value" name="item.data.attributes.water.value" value="{{item.data.attributes.water.value}}" data-dtype="String" />
-                {{/ife}}
-                {{#ife data.header.type.value '6'}}
-                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                {{#ife item.system.header.type.value '4'}}
+                <span class="item-detail lCol14" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+               <span class="item-detail lCol9" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
                 {{/ife}}
 
-                {{#ife item.data.header.type.value '10'}}
-                <span class="item-detail lCol14" data-item="{{data.attributes.power.value}}">{{data.attributes.power.value}}</span>
-                <input type="text" class="item-label maxboxsize lCol12 inline-edit" data-mod="data.attributes.food.value" name="item.data.attributes.food.value" value="{{item.data.attributes.food.value}}" data-dtype="String" />
-                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="data.attributes.water.value" name="item.data.attributes.water.value" value="{{item.data.attributes.water.value}}" data-dtype="String" />
+                {{#ife item.system.header.type.value '7'}}
+                <input type="text" class="item-label maxboxsize lCol12 inline-edit" data-mod="system.attributes.food.value" name="item.system.attributes.food.value" value="{{item.system.attributes.food.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="system.attributes.water.value" name="item.system.attributes.water.value" value="{{item.system.attributes.water.value}}" data-dtype="String" />
+                {{/ife}}
+                {{#ife system.header.type.value '6'}}
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
 
-                {{#ife data.header.type.value '11'}}
-                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="data.attributes.quantity.value" name="item.data.attributes.quantity.value" value="{{item.data.attributes.quantity.value}}" data-dtype="String" />
+                {{#ife item.system.header.type.value '10'}}
+                <span class="item-detail lCol14" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+                <input type="text" class="item-label maxboxsize lCol12 inline-edit" data-mod="system.attributes.food.value" name="item.system.attributes.food.value" value="{{item.system.attributes.food.value}}" data-dtype="String" />
+                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="system.attributes.water.value" name="item.system.attributes.water.value" value="{{item.system.attributes.water.value}}" data-dtype="String" />
+                {{/ife}}
+
+                {{#ife system.header.type.value '11'}}
+                <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
                 {{/ife}}
   {{/ife}}
 
 
   {{#ife item.type 'armor'}}
-                <span class="item-detail lCol12" data-item="{{data.attributes.armorrating.value}}">{{data.attributes.armorrating.value}}</span>
-                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="data.attributes.airsupply.value" name="item.data.attributes.airsupply.value" value="{{item.data.attributes.airsupply.value}}" data-dtype="String" />
+                <span class="item-detail lCol12" data-item="{{system.attributes.armorrating.value}}">{{system.attributes.armorrating.value}}</span>
+                <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="system.attributes.airsupply.value" name="item.system.attributes.airsupply.value" value="{{item.system.attributes.airsupply.value}}" data-dtype="String" />
   {{/ife}}
   
                 <div class="item-controls lCol8">

@@ -2,40 +2,40 @@
   <header class="vehicle-header" style="height: 179px;">
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
 
       {{!-- Health and Stress --}}
 
       <div class="grid-creature" style="height: 120px">
         <div class="vCre1 grid-2">
-          <h2 class="resource-label box11">{{ localize "ALIENRPG.Health"}}</h2>
-          <input type="text" class="maxboxsize box21" name="data.header.health.value" value="{{data.header.health.value}}" data-dtype="Number" />
-          <label class="box23" > / </label>
-          <input type="text" class="maxboxsize box22" name="data.header.health.max" value="{{data.header.health.max}}" data-dtype="Number" />
+          <h2 class="resource-label box11">{{ localize 'ALIENRPG.Health'}}</h2>
+          <input type="text" class="maxboxsize box21" name="system.header.health.value" value="{{actor.system.header.health.value}}" data-dtype="Number" />
+          <label class="box23"> / </label>
+          <input type="text" class="maxboxsize box22" name="system.header.health.max" value="{{actor.system.header.health.max}}" data-dtype="Number" />
         </div>
-            <div class="vCre2 grid-2">
-              <h2 class="resource-label box11 rollable" data-roll="{{data.attributes.armorrating.value}}" data-label="{{localize "ALIENRPG.InventoryArmorHeader"}}" data-spbutt="armor">{{localize "ALIENRPG.InventoryArmorHeader"}}</h2>
-              <input type="text" class="maxboxsize box21" name="data.attributes.armorrating.value" value="{{data.attributes.armorrating.value}}" data-dtype="Number" />
-            </div>
+        <div class="vCre2 grid-2">
+          <h2 class="resource-label box11 rollable" data-roll="{{actor.system.attributes.armorrating.value}}" data-label="{{localize 'ALIENRPG.InventoryArmorHeader'}}" data-spbutt="armor">{{localize 'ALIENRPG.InventoryArmorHeader'}}</h2>
+          <input type="text" class="maxboxsize box21" name="system.attributes.armorrating.value" value="{{actor.system.attributes.armorrating.value}}" data-dtype="Number" />
+        </div>
         <div class="vCre3 grid-2">
-          <h2 class="resource-label box11">{{localize "ALIENRPG.Speed"}}</h2>
-          <input type="text" class="maxboxsize box21" name="data.attributes.speed.value" value="{{data.attributes.speed.value}}" data-dtype="Number" />
+          <h2 class="resource-label box11">{{localize 'ALIENRPG.Speed'}}</h2>
+          <input type="text" class="maxboxsize box21" name="system.attributes.speed.value" value="{{actor.system.attributes.speed.value}}" data-dtype="Number" />
         </div>
-            <div class="vCre4 grid-2">
-              <h2 class="resource-label box11 rollable" data-roll="{{data.attributes.armorvfire.value}}" data-label="{{localize "ALIENRPG.ArmorVsFire"}}" data-spbutt="armorVfire">{{localize "ALIENRPG.ArmorVsFire"}}</h2>
-              <input type="text" class="maxboxsize box21" name="data.attributes.armorvfire.value" value="{{data.attributes.armorvfire.value}}" data-dtype="Number" />
-            </div>
+        <div class="vCre4 grid-2">
+          <h2 class="resource-label box11 rollable" data-roll="{{actor.system.attributes.armorvfire.value}}" data-label="{{localize 'ALIENRPG.ArmorVsFire'}}" data-spbutt="armorVfire">{{localize 'ALIENRPG.ArmorVsFire'}}</h2>
+          <input type="text" class="maxboxsize box21" name="system.attributes.armorvfire.value" value="{{actor.system.attributes.armorvfire.value}}" data-dtype="Number" />
+        </div>
         <div class="vCre5 grid-2">
-          <h2 class="resource-label box11 rollable" data-roll="{{data.general.mobility.value}}" data-label="{{localize "ALIENRPG.Skillmobility"}}">{{localize "ALIENRPG.Skillmobility"}}</h2>
-          <input type="text" class="maxboxsize box21" name="data.general.mobility.value" value="{{data.general.mobility.value}}" data-dtype="String" />
+          <h2 class="resource-label box11 rollable" data-roll="{{actor.system.general.mobility.value}}" data-label="Mobility">{{localize 'ALIENRPG.Skillmobility'}}</h2>
+          <input type="text" class="maxboxsize box21" name="system.general.mobility.value" value="{{actor.system.general.mobility.value}}" data-dtype="String" />
         </div>
         <div class="vCre6 grid-2">
-          <h2 class="resource-label box11 rollable" data-roll="{{data.general.observation.value}}" data-label="{{localize "ALIENRPG.Skillobservation"}}">{{localize "ALIENRPG.Skillobservation"}}</h2>
-          <input type="text" class="maxboxsize box21" name="data.general.observation.value" value="{{data.general.observation.value}}" data-dtype="String" />
+          <h2 class="resource-label box11 rollable" data-roll="{{actor.system.general.observation.value}}" data-label="Observation">{{localize 'ALIENRPG.Skillobservation'}}</h2>
+          <input type="text" class="maxboxsize box21" name="system.general.observation.value" value="{{actor.system.general.observation.value}}" data-dtype="String" />
         </div>
         <div class="vCre8 grid-2">
-          <h2 class="resource-label box11 creature-acid-roll" data-roll="{{data.general.acidSplash.value}}" data-label="{{localize "ALIENRPG.SkillAcidSplash"}}">{{localize "ALIENRPG.SkillAcidSplash"}}</h2>
-          <input type="text" class="maxboxsize box21" name="data.general.acidSplash.value" value="{{data.general.acidSplash.value}}" data-dtype="String" />
+          <h2 class="resource-label box11 creature-acid-roll" data-roll="{{actor.system.general.acidSplash.value}}" data-label="Acid Splash">{{localize 'ALIENRPG.SkillAcidSplash'}}</h2>
+          <input type="text" class="maxboxsize box21" name="system.general.acidSplash.value" value="{{actor.system.general.acidSplash.value}}" data-dtype="String" />
         </div>
       </div>
     </div>
@@ -43,50 +43,52 @@
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
-    <a class="item" data-tab="notes">{{localize "ALIENRPG.Notes"}}</a>
+    <a class="item" data-tab="general">{{localize 'ALIENRPG.General'}}</a>
+    <a class="item" data-tab="notes">{{localize 'ALIENRPG.Notes'}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
     {{!-- General Tab --}}
     <div class="tab general" data-group="primary" data-tab="general">
-      <label class="resource-label">{{localize "ALIENRPG.AttackTable"}}</label>
+      <label class="resource-label">{{localize 'ALIENRPG.AttackTable'}}</label>
       <div class="grid-rTables">
-        <select class="select-css rTable1" name="data.rTables" data-atttype="{{data.rTables}}">
-          {{#select data.rTables}}
-          <!-- <option value=""></option> -->
-          {{#each rTables as |k v|}}
-          <option value="{{k}}">{{k}}</option>
-          {{/each}} {{/select}}
+        <select class="select-css rTable1" name="system.rTables" data-atttype="{{actor.system.rTables}}">
+          {{#select actor.system.rTables}}
+            <!-- <option value=""></option> -->
+            {{#each rTables as |k v|}}
+              <option value="{{k}}">{{k}}</option>
+            {{/each}}
+          {{/select}}
         </select>
 
-        <button type="button" class="creature-attack-roll rTable2" data-atttype="{{data.rTables}}">{{localize "ALIENRPG.AttackRoll"}}</button>
+        <button type="button" class="creature-attack-roll rTable2" data-atttype="{{actor.system.rTables}}">{{localize 'ALIENRPG.AttackRoll'}}</button>
       </div>
 
-      <h3 class="resource-label">{{localize "ALIENRPG.SpecialAbilities"}}</h3>
-      <textarea name="data.general.special.value" rows="20" style="margin-bottom: 10px;" data-dtype="String">{{data.general.special.value}}</textarea>
+      <h3 class="resource-label">{{localize 'ALIENRPG.SpecialAbilities'}}</h3>
+      <textarea name="system.general.special.value" rows="20" style="margin-bottom: 10px;" data-dtype="String">{{actor.system.general.special.value}}</textarea>
 
 
-      <label class="resource-label" >{{localize "ALIENRPG.CriticalInjuries"}}</label>
+      <label class="resource-label">{{localize 'ALIENRPG.CriticalInjuries'}}</label>
       <div class="grid-rTables" style="margin-top: 5px;">
-        <select class="select-css rTable1" name="data.cTables" data-atttype="{{data.cTables}}">
-          {{#select data.cTables}}
-          <!-- <option value=""></option> -->
-          {{#each cTables as |k v|}}
-          <option value="{{k}}">{{k}}</option>
-          {{/each}} {{/select}}
+        <select class="select-css rTable1" name="system.cTables" data-atttype="{{actor.system.cTables}}">
+          {{#select actor.system.cTables}}
+            <!-- <option value=""></option> -->
+            {{#each cTables as |k v|}}
+              <option value="{{k}}">{{k}}</option>
+            {{/each}}
+          {{/select}}
         </select>
-        <button type="button" class="alien-crit-button rTable2 rollCrit" data-atttype="{{data.cTables}}">{{localize "ALIENRPG.RollCrit"}}</button>
+        <button type="button" class="alien-crit-button rTable2 rollCrit" data-atttype="{{actor.system.cTables}}">{{localize 'ALIENRPG.RollCrit'}}</button>
 
       </div>
-             <div class="Item11 items-list" style="overflow: auto; margin-top:5px ">{{> "systems/alienrpg/templates/actor/tabs/critical-inj.html" }}</div>
-
+      <div class="Item11 items-list" style="overflow: auto; margin-top:5px ">{{> "systems/alienrpg/templates/actor/tabs/critical-inj.html" }}</div>
     </div>
 
     {{!-- Notes Tab --}}
     <div class="tab " style="height: 400px;" data-group="primary" data-tab="notes">
-      {{editor content=data.notes target="data.notes" button=true owner=owner editable=true}}
+      {{editor actor.system.notes target="system.notes" button=true owner=owner editable=true}}
     </div>
   </section>
+
 </form>

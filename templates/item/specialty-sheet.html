@@ -1,8 +1,8 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}}" style="min-height: 489px" autocomplete="off">
   <header class="vehicle-header">
     <img class="profile-img" src="{{img}}" data-edit="img" title="{{img}}" />
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize " ALIENRPG.Name"}}" /></h1>
     </div>
   </header>
 
@@ -16,7 +16,7 @@
     {{!-- Attributes Tab --}}
     <div class="tab general" data-group="primary" data-tab="general">
       <h2 class="resource-label">{{localize "ALIENRPG.Description"}}</h2>
-      <div class="tab item">{{editor content=data.general.comment.value target="data.general.comment.value" button=true owner=owner editable=true}}</div>
+      <div class="tab item">{{editor system.general.comment.value target="system.general.comment.value" button=true owner=owner editable=true}}</div>
     </div>
   </section>
 </form>
