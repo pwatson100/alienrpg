@@ -55,7 +55,7 @@ Hooks.on('ready', () => {
     return;
   } else if (!game.settings.get(moduleKey, 'imported') && game.user.isGM && game.folders.getName('Alien Tables')) {
     migrateFolders();
-    game.settings.set(moduleKey, 'imported', true)
+    game.settings.set(moduleKey, 'imported', true);
     return;
   }
   else if (game.settings.get(moduleKey, 'imported') && game.user.isGM && game.settings.get(moduleKey, 'migrationVersion') < game.system.version) {

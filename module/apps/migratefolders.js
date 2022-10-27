@@ -103,6 +103,8 @@ async function allDone(moduleTitle) {
     });
     await game.settings.set('alienrpg', 'ARPGSemaphore', '');
     await game.settings.set(moduleKey, 'migrationVersion', game.system.version);
+    game.journal.getName('MU/TH/ER Instructions.').show();
+
     logger.warn('Status: ', await game.settings.get('alienrpg', 'ARPGSemaphore'), 'Core System Upgrade Completed');
     logger.info("Imorted ", game.settings.get(moduleKey, 'imported'), "Version ", game.system.version, "Migration ", game.settings.get(moduleKey, 'migrationVersion'))
 }

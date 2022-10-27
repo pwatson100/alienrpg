@@ -22,19 +22,14 @@ export default async function updateModule() {
     */
 
     const updateAssets = [
-        { assetType: 'actors', assetName: 'Hannah Singleton', action: 'delete' },
-        { assetType: 'actors', assetName: 'Hannah Singleton', action: 'add' },
-        { assetType: 'actors', assetName: 'Holroyd', action: 'update' },
-        { assetType: 'actors', assetName: 'Sonny Sigg', action: 'update' },
-        { assetType: 'items', assetName: '20mm Gatling Gun', action: 'update' },
-        { assetType: 'journal', assetName: 'ALIEN RPG GM RULES INDEX', action: 'update' },
-        { assetType: 'scenes', assetName: 'Station Layout', action: 'update' },
+        // { assetType: 'actors', assetName: 'Hannah Singleton', action: 'delete' },
+        // { assetType: 'actors', assetName: 'Hannah Singleton', action: 'add' },
+        // { assetType: 'actors', assetName: 'Holroyd', action: 'update' },
+        // { assetType: 'actors', assetName: 'Sonny Sigg', action: 'update' },
+        // { assetType: 'items', assetName: '20mm Gatling Gun', action: 'update' },
+        // { assetType: 'journal', assetName: 'ALIEN RPG GM RULES INDEX', action: 'update' },
+        // { assetType: 'scenes', assetName: 'Station Layout', action: 'update' },
     ];
-    // This is not used at present
-    const packs = {
-        'Alien RPG HoD Scenario': 'alienrpg-hod-scenario-journal',
-        'Alien RPG HoD Adventure': 'alienrpg-hod-adventure',
-    }
 
     const updateNotes = `<ul>
     <li>Added Hannah Singleton</li>
