@@ -61,7 +61,7 @@ Hooks.on('ready', () => {
   else if (game.settings.get(moduleKey, 'imported') && game.user.isGM && game.settings.get(moduleKey, 'migrationVersion') < game.system.version) {
     updateModule();
   }
-  logger.info("Imorted ", game.settings.get(moduleKey, 'imported'), "Version ", game.system.version, "Migration ", game.settings.get(moduleKey, 'migrationVersion'))
+  logger.info("Imported ", game.settings.get(moduleKey, 'imported'), "Version ", game.system.version, "Migration ", game.settings.get(moduleKey, 'migrationVersion'))
 
 });
 
@@ -84,16 +84,19 @@ export async function ModuleImport() {
   await adventure.sheet.render(true);
 
   Hooks.on('importAdventure', (created, updated) => {
-    if (created || updated) {
-      game.settings.set(moduleKey, 'imported', true);
-      game.settings.set(moduleKey, 'migrationVersion', game.system.version);
-      ui.notifications.notify("Import Complete");
-      game.journal.getName(welcomeJournalEntry).show();
-      return;
-    } else {
-      ui.notifications.warn("There was a problem with the Import");
+    if (adventure.name === adventurePackName) {
+      if (created || updated) {
+        game.settings.set(moduleKey, 'imported', true);
+        game.settings.set(moduleKey, 'migrationVersion', game.system.version);
+        ui.notifications.notify("Import Complete");
+        game.journal.getName(welcomeJournalEntry).show();
+        return;
+      } else {
+        ui.notifications.warn("There was a problem with the Import");
+      }
     }
   });
+
   async function deleteFolderIfExist(folderName) {
     let delFolder = game.folders.getName(folderName);
     if (delFolder) {
@@ -155,18 +158,4 @@ export async function ReImport() {
   logger.info(` Created ${created} Assets`);
 };
 
-
-
-// async function checkVersion() {
-//   const current = game.system.version;
-//   // const required = requiredSystemVersion;
-//   if (current < requiredSystemVersion) {
-//     throw Dialog.prompt({
-//       title: 'Version Check',
-//       content: `<h2>Failed to Import</h2><p>Your ${systemName} system version (${current}) is below the minimum required version (${requiredSystemVersion}).</p><p>Please update your system before proceeding.</p>`,
-//       label: 'Okay!',
-//       callback: () => ui.notifications.warn('Aborted importing of compendium content. Update your system and try again.'),
-//     });
-//   }
-// }
 

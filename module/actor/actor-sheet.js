@@ -296,10 +296,10 @@ export class alienrpgActorSheet extends ActorSheet {
         attrMod.health = attrMod.health += 2;
       }
 
-      await this.actor.update({ 'system.header.health.mod': (aData.header.health.mod = parseInt(attrMod.health || 0)) });
-      if (actor.actor.type === 'character') {
-        await this.actor.update({ 'system.header.stress.mod': (aData.header.stress.mod = parseInt(attrMod.stress || 0)) });
-      }
+      // await this.actor.update({ 'system.header.health.mod': (aData.header.health.mod = parseInt(attrMod.health || 0)) });
+      // if (actor.actor.type === 'character') {
+      //   await this.actor.update({ 'system.header.stress.mod': (aData.header.stress.mod = parseInt(attrMod.stress || 0)) });
+      // }
 
     }
 
@@ -337,12 +337,14 @@ export class alienrpgActorSheet extends ActorSheet {
       'system.general.freezing.calculatedMax': (aData.general.freezing.calculatedMax = aData.general.freezing.max),
       'system.header.health.max': (aData.attributes.str.value + aData.header.health.mod),
       'system.header.health.calculatedMax': (aData.header.health.calculatedMax = aData.attributes.str.value + aData.header.health.mod),
-
+      'system.header.health.mod': (aData.header.health.mod = parseInt(attrMod.health || 0)),
     });
 
     if (actor.actor.type === 'character') {
       await this.actor.update({
         'system.general.panic.calculatedMax': (aData.general.panic.calculatedMax = aData.general.panic.max),
+        'system.header.stress.mod': (aData.header.stress.mod = parseInt(attrMod.stress || 0)),
+
       });
 
     }

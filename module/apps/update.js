@@ -21,20 +21,19 @@ export default async function updateModule() {
     *
     */
 
-    const updateAssets = [
-        // { assetType: 'actors', assetName: 'Hannah Singleton', action: 'delete' },
-        // { assetType: 'actors', assetName: 'Hannah Singleton', action: 'add' },
-        // { assetType: 'actors', assetName: 'Holroyd', action: 'update' },
-        // { assetType: 'actors', assetName: 'Sonny Sigg', action: 'update' },
-        // { assetType: 'items', assetName: '20mm Gatling Gun', action: 'update' },
-        // { assetType: 'journal', assetName: 'ALIEN RPG GM RULES INDEX', action: 'update' },
-        // { assetType: 'scenes', assetName: 'Station Layout', action: 'update' },
-    ];
+    const updateAssets = [];
 
     const updateNotes = `<ul>
     <li>Added Hannah Singleton</li>
-    <li>Updated Holroyd, Sonny Sigg, 20mm Gatling Gun, ALIEN RPG GM RULES INDEX & Station Layout</li>
     </ul>`;
+
+    // If there are no actual asset updates quit.
+    if (!updateAssets.length) {
+        logger.info("No asset updates required");
+
+        await game.settings.set(moduleKey, 'migrationVersion', game.system.version);
+        return;
+    };
 
     const pack = game.packs.get(adventurePack);
     const adventureId = pack.index.find(a => a.name === adventurePackName)?._id;
@@ -147,7 +146,7 @@ async function ModuleUpdate(aPack, updateAssets) {
 }
 
 async function allDone(moduleTitle, updateNotes) {
-    await game.settings.set(moduleKey, 'migrationVersion', game.modules.get(moduleKey).version);
+    await game.settings.set(moduleKey, 'migrationVersion', game.system.version);
     Dialog.prompt({
         title: `${moduleTitle} Update`,
         content: `<p>The update has completed and the following have been updated:</p> <br> ${updateNotes}`,
@@ -156,5 +155,5 @@ async function allDone(moduleTitle, updateNotes) {
             console.log('All Done');
         },
     });
-    logger.info("Imorted ", game.settings.get(moduleKey, 'imported'), "Version ", game.modules.get(moduleKey).version, "Migration ", game.settings.get(moduleKey, 'migrationVersion'))
+    logger.info("Imported ", game.settings.get(moduleKey, 'imported'), "Version ", game.system.version, "Migration ", game.settings.get(moduleKey, 'migrationVersion'))
 }
