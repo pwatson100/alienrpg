@@ -835,7 +835,7 @@ export class alienrpgActorSheet extends ActorSheet {
       character: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       creature: ['critical-injury'],
-      vehicles: ['item', 'weapon'],
+      vehicles: ['item', 'weapon', 'armor'],
       territory: ['planet-system'],
     };
     let allowed = true;
