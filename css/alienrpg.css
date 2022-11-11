@@ -3354,7 +3354,7 @@ combobox:focus {
   background: #000;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  background: url(../images/indbackground2.png) no-repeat top left;
+  background: var(--journalback) top left !important;
   background-size: cover;
   color: powderblue;
 }

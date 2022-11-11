@@ -459,6 +459,8 @@ It is now possible to create your own Critical Injuries table (See MO/TH/ER Inst
 Encumbrance for PC's with Pack Mule should now display correctly.
 Changed the way "Nerves of Steel" and "Tough" are applied which should/might sort out rare issue with tokens losing the adjusted stat.
 
-
 Version 3.0.1
 Fixed looping issue when adding Tough or Nerves of Steel talents to characters.
+
+Version 3.0.2
+Fixed issue with "hide Journal background" not working. 
