@@ -463,4 +463,8 @@ Version 3.0.1
 Fixed looping issue when adding Tough or Nerves of Steel talents to characters.
 
 Version 3.0.2
+Fixed issue with Skill-Stunts not being installed as part of the import. 
 Fixed issue with "hide Journal background" not working. 
+Adjusted chat colours to make them easier to read. 
+Increased the size of the chat card fonts to make them easier to read.  
+Fixed issue with font sizing of the Attack Roll and Roll Crit buttons on UltrWide screens 
