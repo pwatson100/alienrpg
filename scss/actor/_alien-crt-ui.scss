@@ -402,6 +402,11 @@ combobox:focus {
   animation: blink 0.5s 5;
 }
 
+.warnblink {
+  text-shadow: 0 0 5px red;
+  animation: blink 0.5s 5;
+}
+
 .message-sender {
   width: 900px;
   white-space: nowrap;

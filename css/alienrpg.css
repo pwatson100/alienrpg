@@ -59,6 +59,13 @@
   --journalback: url(../images/mother-instructions/indbackground2.png);
   --chatbackground: url(/systems/alienrpg/images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
+  --alienchatwhite: hsl(0, 0%, 100%);
+  --alienchatred: hsl(0, 100%, 50%);
+  --alienchatredshadow: rgb(230 230 230);
+  --alienchatblue: hsl(240deg 42% 72%);
+  --alienchatlightblue: hsl(120, 97%, 41%);
+  --alienchatlightgreen: hsl(120, 97%, 41%);
+  --alienchatgoldenrod: hsl(43, 74%, 49%);
 }
 
 /* Global styles */
@@ -388,7 +395,8 @@ a.inline-roll {
   width: 280px;
   height: 40px;
   font-weight: bold;
-  font-size: clamp(1.5rem, 1.3vw, 4rem);
+  font-size: 2em;
+  /* font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem); */
   text-shadow: 2px 2px hsl(128deg, 83%, 25%);
   border: 2px solid var(--aliengreen);
   border-radius: 25px;
@@ -440,12 +448,13 @@ button:focus {
 
 .alien-crit-button {
   display: inline-block;
+  width: 280px;
   height: 26px;
   border: 2px solid var(--aliengreen);
   border-radius: 25px;
   color: var(--aliengreen);
   font-weight: bold;
-  font-size: clamp(1rem, 1vw, 2rem);
+  font-size: 1.2rem;
   font-family: var(--alienfont);
   line-height: inherit;
 }
@@ -579,6 +588,38 @@ button:focus {
   border-width: 1px;
   border-style: solid;
   border-color: transparent transparent transparent var(--aliengreen);
+}
+
+.alienchatwhite {
+  color: var(--alienchatwhite);
+}
+
+.alienchatred {
+  color: var(--alienchatred);
+  font-weight: bolder;
+  font-size: larger;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-color: var(--alienchatredshadow);
+}
+
+.alienchatblue {
+  color: var(--alienchatblue);
+}
+
+.alienchatlightblue {
+  color: var(--alienchatlightblue);
+  font-weight: bold;
+  font-size: larger;
+}
+
+.alienchatlightgreen {
+  color: var(--alienchatlightgreen);
+}
+
+.alienchatgoldenrod {
+  color: var(--alienchatgoldenrod);
+  font-weight: bold;
 }
 
 .spanner-icon {
@@ -3319,6 +3360,12 @@ combobox:focus {
           animation: blink 0.5s 5;
 }
 
+.warnblink {
+  text-shadow: 0 0 5px red;
+  -webkit-animation: blink 0.5s 5;
+          animation: blink 0.5s 5;
+}
+
 .message-sender {
   width: 900px;
   white-space: nowrap;
@@ -3354,7 +3401,7 @@ combobox:focus {
   background: #000;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  background: url(../images/indbackground2.png) no-repeat top left;
+  background: var(--journalback) top left !important;
   background-size: cover;
   color: powderblue;
 }

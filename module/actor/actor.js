@@ -287,7 +287,7 @@ export class alienrpgActor extends Actor {
         }
 
         chatMessage +=
-          '<h2 style=" color: #f71403; font-weight: bold;" class="ctooltip">' +
+          '<h2 class="alienchatred ctooltip">' +
           game.i18n.localize('ALIENRPG.PanicCondition') +
           ' ' +
           addSign(aStress).toString() +
@@ -318,14 +318,14 @@ export class alienrpgActor extends Actor {
             ' ' +
             `${customResults.roll.total}` +
             ' ' +
-            '<span style="color: #f71403;font-weight: bolder"><i><b>' +
+            '<span class="alienchatred"><i><b>' +
             game.i18n.localize('ALIENRPG.MorePanic') +
             '</span></b></i></span></h4>';
 
           chatMessage +=
             '<h4><i>' +
             game.i18n.localize('ALIENRPG.PCPanicLevel') +
-            '<b style="color: #f71403;">' +
+            '<b class="alienchatred">' +
             game.i18n.localize('ALIENRPG.Level') +
             ' ' +
             `${pCheck}` +
@@ -341,7 +341,7 @@ export class alienrpgActor extends Actor {
           // chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
           chatMessage += this.morePanic(pCheck);
           if (customResults.roll.total >= 7) {
-            chatMessage += `<h4 style="color: #f71403;"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${pCheck}</b></i></h4>`;
+            chatMessage += `<h4 class="alienchatred"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${pCheck}</b></i></h4>`;
           }
         }
         let trauma = customResults.roll.total >= 13 || pCheck >= 13;
@@ -370,7 +370,7 @@ export class alienrpgActor extends Actor {
               ChatMessage.create({ speaker: { actor: actorId }, content, whisper: selftarget, type: CONST.CHAT_MESSAGE_TYPES.OTHER, sound, blind: false });
             }
 
-            SelfMessage('<h2 style=" color: #f71403; font-weight: bold;" >' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(aStress).toString() + ' ???</h2>', CONFIG.sounds.dice);
+            SelfMessage('<h2 class="alienchatred">' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(aStress).toString() + ' ???</h2>', CONFIG.sounds.dice);
           }
         }
 
