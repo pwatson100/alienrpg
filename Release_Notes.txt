@@ -472,3 +472,6 @@ Fixed issue with font sizing of the Attack Roll and Roll Crit buttons on UltrWid
 Version 3.0.3
 Fix to chat dice tooltip image size issue caused by Foundry V10.290
 the chat text for Private GM Roll, Blind GM Roll and Self roll now appear in green text for ease of differentiation. 
+
+Version 3.0.4
+CSS update for Whisper.
