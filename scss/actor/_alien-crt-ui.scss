@@ -340,7 +340,9 @@ combobox:focus {
 
 .chat-message.whisper span,
 .chat-message.whisper div {
-  color: royalblue;
+  color: var(--alienchatlightblue);
+
+  // color: royalblue;
 }
 
 .chat-message.whisper h2 {
