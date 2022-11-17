@@ -191,6 +191,10 @@ a.content-link {
   color: var(--aliengreen);
 }
 
+.dice-tooltip .roll > img {
+  width: 24px;
+}
+
 .dice-tooltip {
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
