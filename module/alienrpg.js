@@ -3,12 +3,9 @@ import registerActors from './register-actors.js';
 import { alienrpgActor } from './actor/actor.js';
 import { alienrpgItem } from './item/item.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
-// import { alienrpgPlanetSheet } from './item/planet-system-sheet.js';
-// import { alienrpgCriticalInjury } from './item/critical-injury-sheet.js';
 import { yze } from './YZEDiceRoller.js';
 import { ALIENRPG } from './config.js';
 import registerSettings from './settings.js';
-// import { AlienRPGSetup } from './setupHandler.js';
 import { preloadHandlebarsTemplates } from './templates.js';
 import { AlienRPGBaseDie } from './alienRPGBaseDice.js';
 import { AlienRPGStressDie } from './alienRPGBaseDice.js';
@@ -104,8 +101,6 @@ Hooks.once('init', async function () {
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty', 'planet-system', 'critical-injury'], makeDefault: false });
-  // Items.registerSheet('alienrpg', alienrpgPlanetSheet, { types: ['planet-system'], makeDefault: false });
-  // Items.registerSheet('alienrpg', alienrpgCriticalInjury, { types: ['critical-injury'], makeDefault: false });
   registerSettings();
   registerActors();
 
@@ -190,9 +185,6 @@ Hooks.once('init', async function () {
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
   // debugger;
-  // if (game.user.isGM) {
-  //   await ModuleImport();
-  // }
 
   sendDevMessage();
   // if (game.user.isGM) {
@@ -385,12 +377,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
           reRoll = 'mPush';
         }
 
-        // if (actor.data.type != 'vehicles') {
         hostile = actor.type;
-        // } else {
-        //   hostile = 'character';
-        // }
-        // let hostile = actor.data.type;
         let blind = false;
         //  Initialse the chat message
         let chatMessage = '';
@@ -403,11 +390,6 @@ Hooks.on('renderChatMessage', (message, html, data) => {
           case 'character':
             actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
             break;
-
-          // case 'vehicles':
-          //   let pilotData = game.actors.get(message.alias);
-          //   pilotData.update({ 'system.header.stress.value': pilotData.system.header.stress.value + 1 });
-          //   break;
 
           default:
             return;
@@ -471,34 +453,6 @@ function setupMacroFolders() {
   }
 }
 
-
-
-/* --
-/* -------------------------------------------- */
-/*  Hotbar Macros                               */
-/* -------------------------------------------- */
-
-// async function createAlienrpgMacro(data, slot) {
-//   debugger;
-//   if (data.type !== 'Item') return;
-//   if (!('data' in data)) return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoActor'));
-//   const item = data.data;
-
-//   // Create the macro command
-//   const command = `game.alienrpg.rollItemMacro("${item.name}");`;
-//   let macro = game.macros.contents.find((m) => m.name === item.name && m.command === command);
-//   if (!macro) {
-//     macro = await Macro.create({
-//       name: item.name,
-//       type: 'script',
-//       img: item.img,
-//       command: command,
-//       flags: { 'alienrpg.itemMacro': true },
-//     });
-//   }
-//   game.user.assignHotbarMacro(macro, slot);
-//   return false;
-// }
 
 /**
  * Create a Macro from an Item drop.

@@ -475,3 +475,8 @@ the chat text for Private GM Roll, Blind GM Roll and Self roll now appear in gre
 
 Version 3.0.4
 CSS update for Whisper.
+
+Version 3.0.5
+Nerves of Steel modifier (- 2 stress dice) being incorrectly deducted from Item rolls on characters and vehicles. 
+Comments on the Item sheets now use the rich text editor.
+Removed settings for fonts that were not available in the browser.

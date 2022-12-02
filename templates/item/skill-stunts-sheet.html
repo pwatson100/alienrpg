@@ -1,4 +1,4 @@
-<form class="{{cssClass}}" style="min-height: 489px" autocomplete="off">
+<form class="{{cssClass}}" autocomplete="off">
   <header class="vehicle-header">
     <div class="header-fields">
       <h1 class="charname">
@@ -30,8 +30,8 @@
   </nav>
 
   {{!-- Sheet Body --}}
-  <section class="sheet-body" style="height: 275px">
+  <section class="sheet-body" style="height: 375px">
     {{!-- Attributes Tab --}}
-    <div class="tab item" data-group="primary" data-tab="stunts">{{editor system.description target="system.description" button=true owner=owner editable=true}}</div>
+    <div class="tab item" data-group="primary" data-tab="stunts" style="border: solid 1px; padding: 5px">{{editor system.description target="system.description" button=true owner=owner editable=true}}</div>
   </section>
 </form>

@@ -296,11 +296,6 @@ export class alienrpgActorSheet extends ActorSheet {
         attrMod.health = attrMod.health += 2;
       }
 
-      // await this.actor.update({ 'system.header.health.mod': (aData.header.health.mod = parseInt(attrMod.health || 0)) });
-      // if (actor.actor.type === 'character') {
-      //   await this.actor.update({ 'system.header.stress.mod': (aData.header.stress.mod = parseInt(attrMod.stress || 0)) });
-      // }
-
     }
 
     for (let [a, abl] of Object.entries(aData.attributes)) {
@@ -308,7 +303,6 @@ export class alienrpgActorSheet extends ActorSheet {
       let field = `aData.attributes[${a}].mod`;
       let upData = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
       await this.actor.update({ [target]: (field = upData) });
-      // setProperty(this.actor, target, (field = upData));
       abl.mod = parseInt(abl.value || 0) + parseInt(attrMod[a] || 0);
       abl.label = CONFIG.ALIENRPG.attributes[a];
     }
@@ -319,7 +313,6 @@ export class alienrpgActorSheet extends ActorSheet {
       let field = `aData.skills[${s}].mod`;
       let upData = parseInt(skl.value || 0) + parseInt(aData.attributes[conSkl].mod || 0) + parseInt(sklMod[s] || 0);
       await this.actor.update({ [target]: (field = upData) });
-      // setProperty(this.actor, target, (field = upData));
       skl.mod = parseInt(skl.value || 0) + parseInt(sklMod[s] || 0) + parseInt(aData.attributes[conSkl].mod || 0);
       skl.label = CONFIG.ALIENRPG.skills[s];
     }
@@ -446,7 +439,6 @@ export class alienrpgActorSheet extends ActorSheet {
               ammoweight = 0.5;
             }
             i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
-            // i.totalWeight = i.system.attributes.weight.value + i.system.attributes.rounds.value * ammoweight;
             i.totalWeight = (i.system.attributes.weight.value + i.system.attributes.rounds.value * ammoweight) * i.system.attributes.quantity.value;
             totalWeight += i.totalWeight;
           }
@@ -474,19 +466,6 @@ export class alienrpgActorSheet extends ActorSheet {
     data.actor.system.general.encumbrance = await this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
   }
-
-
-  // async _prepareCreatureItems(data) {
-  //   const critInj = [];
-
-  //   // Iterate through items, allocating to containers
-  //   for (let i of data.items) {
-  //     critInj.push(i);
-  //     data.critInj = critInj;
-  //   }
-  // }
-
-
 
   /*
    * Organize and classify Owned Items for Character sheets
@@ -664,7 +643,6 @@ export class alienrpgActorSheet extends ActorSheet {
     const itemContextMenu = [
       {
         name: game.i18n.localize('ALIENRPG.addToFLocker'),
-        // icon: '<i class="fas fa-archive"></i>"></fas>',
         icon: '<i class="fas fa-archive"></i>',
         callback: (element) => {
           let item = this.actor.items.get(element.data('item-id'));
@@ -673,7 +651,6 @@ export class alienrpgActorSheet extends ActorSheet {
       },
       {
         name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
-        // icon: '<i class="fas fa-archive"></i>"></fas>',
         icon: '<i class="fas fa-archive"></i>',
         callback: (element) => {
           let item = this.actor.items.get(element.data('item-id'));
@@ -692,7 +669,6 @@ export class alienrpgActorSheet extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.DeleteItem'),
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
-          // this.actor.deleteOwnedItem(element.data('item-id'));
           let itemDel = this.actor.items.get(element.data('item-id'));
           itemDel.delete();
         },
@@ -715,7 +691,6 @@ export class alienrpgActorSheet extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.DeleteItem'),
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
-          // this.actor.deleteOwnedItem(element.data('item-id'));
           let itemDel = this.actor.items.get(element.data('item-id'));
           itemDel.delete();
         },
@@ -841,10 +816,6 @@ export class alienrpgActorSheet extends ActorSheet {
       territory: ['planet-system'],
     };
     let allowed = true;
-
-    // if (this.actor.type === 'creature') {
-    //   allowed = false;
-    // } else
 
     if (!alwaysAllowedItems.includes(type)) {
       if (!allowedItems[this.actor.type].includes(type)) {
