@@ -142,7 +142,7 @@ export class alienrpgItem extends Item {
               if (confirmed) {
                 let modifier = parseInt(html.find('[name=modifier]')[0].value);
                 let stressMod = 0;
-                if (this.actor.type != 'vehicles') {
+                if (this.actor.type != 'vehicles' && this.actor.type != 'spacecraft') {
                   // it's not a vehicle so add the correct attribute bonus
                   // Define the roll formula.
                   if (itemData.header.type.value === '1') {
@@ -169,7 +169,7 @@ export class alienrpgItem extends Item {
       // Normal Left Click Roll
       // ************************************
       // Define the roll formula.
-      if (this.actor.type != 'vehicles') {
+      if (this.actor.type != 'vehicles' && this.actor.type != 'spacecraft') {
         // it's not a vehicle so add the correct attribute bonus
         if (itemData.header.type.value === '1') {
           let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;

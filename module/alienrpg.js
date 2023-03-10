@@ -1,6 +1,7 @@
 // Import Modules
 import registerActors from './register-actors.js';
 import { alienrpgActor } from './actor/actor.js';
+// import { alienrpgActor } from './actor/actor.js';
 import { alienrpgItem } from './item/item.js';
 import { alienrpgItemSheet } from './item/item-sheet.js';
 import { yze } from './YZEDiceRoller.js';
@@ -427,7 +428,7 @@ Hooks.once('setup', function () {
 
 Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
   // When dropping something on a vehicle sheet.
-  if (actor.type === 'vehicles') {
+  if (actor.type === 'vehicles' || actor.type === 'spacecraft') {
     // When dropping an actor on a vehicle sheet.
     let crew = await fromUuid(data.uuid);
     if (data.type === 'Actor') sheet._dropCrew(crew.id);

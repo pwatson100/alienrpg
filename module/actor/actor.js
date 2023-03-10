@@ -207,7 +207,9 @@ export class alienrpgActor extends Actor {
             reRoll = false;
           }
           break;
+
         case 'vehicles':
+        case 'spacecraft':
           if (dataset.spbutt != 'armor') {
             reRoll = false;
             actorId = dataset.actorid;
@@ -539,7 +541,7 @@ export class alienrpgActor extends Actor {
     if (dataset.roll) {
       // call pop up box here to get any mods then use standard RollAbility()
       // Check that is a character (and not armor) or a synth pretending to be a character.
-      if (((actor.type === 'character' || actor.type === 'vehicles') && dataset.spbutt != 'armor') || actor.system.header.synthstress) {
+      if (((actor.type === 'character' || actor.type === 'vehicles' || actor.type === 'spaceship') && dataset.spbutt != 'armor') || actor.system.header.synthstress) {
         myRenderTemplate('systems/alienrpg/templates/dialog/roll-all-dialog.html');
       } else if (actor.type === 'synthetic') {
         myRenderTemplate('systems/alienrpg/templates/dialog/roll-base-dialog.html');
@@ -1310,9 +1312,16 @@ export class alienrpgActor extends Actor {
    * @returns {VehicleOccupant}
    */
   addVehicleOccupant(crewId, position = 'PASSENGER') {
-    if (this.type !== 'vehicles') return;
-    if (!ALIENRPG.vehicle.crewPositionFlags.includes(position)) {
-      throw new TypeError(`alienrpg | addVehicleOccupant | Wrong position flag: ${position}`);
+    if (this.type !== 'vehicles' && this.type !== 'spacecraft') return;
+    if (this.type === 'vehicles') {
+      if (!ALIENRPG.vehicle.crewPositionFlags.includes(position)) {
+        throw new TypeError(`alienrpg | addVehicleOccupant | Wrong position flag: ${position}`);
+      }
+    } else if (this.type === 'spacecraft') {
+      // position = 'CREW';
+      if (!ALIENRPG.spacecraft.crewPositionFlags.includes(position)) {
+        throw new TypeError(`alienrpg | addVehicleOccupant | Wrong position flag: ${position}`);
+      }
     }
     const data = this.system;
     // if (!(data.crew.occupants instanceof Array)) {
@@ -1338,7 +1347,7 @@ export class alienrpgActor extends Actor {
    * @return {VehicleOccupant[]}
    */
   removeVehicleOccupant(crewId) {
-    if (this.type !== 'vehicles') return;
+    if (this.type !== 'vehicles' && this.type !== 'spacecraft') return;
     const crew = this.system.crew;
     crew.occupants = crew.occupants.filter((o) => o.id !== crewId);
     return crew.occupants;
@@ -1352,7 +1361,7 @@ export class alienrpgActor extends Actor {
    * @returns {VehicleOccupant|undefined}
    */
   getVehicleOccupant(crewId) {
-    if (this.type !== 'vehicles') return;
+    if (this.type !== 'vehicles' && this.type !== 'spacecraft') return;
     return this.system.crew.occupants.find((o) => o.id === crewId);
   }
 
@@ -1363,7 +1372,7 @@ export class alienrpgActor extends Actor {
    * @returns {Collection<string, Actor>} [id, actor]
    */
   getCrew() {
-    if (this.type !== 'vehicle') return undefined;
+    if (this.type !== 'vehicles' && this.type !== 'spacecraft') return undefined;
     const c = new foundry.utils.Collection();
     for (const o of this.system.crew.occupants) {
       c.set(o.id, game.actors.get(o.id));

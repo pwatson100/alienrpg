@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "synthetic", "vehicles", "creature", "territory"],
+    "types": ["character", "synthetic", "vehicles", "creature", "territory", "spacecraft"],
     "character": {
       "header": {
         "health": {
@@ -546,6 +546,59 @@
         "value": "",
         "label": "Text"
       }
+    },
+    "spacecraft": {
+      "header": {
+        "type": {
+          "value": "",
+          "label": "Text"
+        }
+      },
+      "attributes": {
+        "manufacturer": "",
+        "ai": "",
+        "crew": {
+          "value": 0
+        },
+        "passengers": {
+          "value": 0
+        },
+        "length": {
+          "value": 0
+        },
+        "ftlrating": {
+          "value": 0
+        },
+        "signature": {
+          "value": 0
+        },
+        "thrusters": {
+          "value": 0
+        },
+        "hull": {
+          "value": 0
+        },
+        "armor": {
+          "value": 0
+        },
+        "damage": {
+          "value": 0,
+          "max": 10
+        },
+        "leasecost": {
+          "value": 0
+        }
+      },
+      "crew": {
+        "occupants": [],
+        "passengerQty": 0
+      },
+      "general": {
+        "misc": {
+          "value": ""
+        }
+      },
+      "notes": ""
     },
     "general": {
       "misc": {

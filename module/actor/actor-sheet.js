@@ -143,6 +143,11 @@ export class alienrpgActorSheet extends ActorSheet {
         await this._prepareCrew(data);
         break;
 
+      case 'spacecraft':
+        await this._prepareVehicleItems(data);
+        await this._prepareCrew(data);
+        break;
+
       default:
         break;
     }
@@ -813,6 +818,7 @@ export class alienrpgActorSheet extends ActorSheet {
       synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       creature: ['critical-injury'],
       vehicles: ['item', 'weapon', 'armor'],
+      spacecraft: ['item', 'weapon', 'armor'],
       territory: ['planet-system'],
     };
     let allowed = true;
@@ -1158,15 +1164,27 @@ export class alienrpgActorSheet extends ActorSheet {
     const crew = game.actors.get(actorId);
     const actorData = this.actor;
     if (!crew) return;
-    if (crew.type === 'vehicles') return ui.notifications.info('Vehicle inceptions are not allowed!');
+    if (crew.type === 'vehicles' && crew.type === 'spacecraft') return ui.notifications.info('Vehicle inceptions are not allowed!');
     if (crew.type !== 'character' && crew.type !== 'synthetic') return;
-    if (actorData.system.crew.passengerQty >= actorData.system.attributes.passengers.value) {
-      return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
+    if (actorData.type === 'vehicles') {
+      if (actorData.system.crew.passengerQty >= actorData.system.attributes.passengers.value) {
+        return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
+      }
+      let crewNumber = actorData.system.crew.passengerQty;
+      crewNumber++;
+      actorData.update({ 'system.crew.passengerQty': crewNumber });
+      return this.actor.addVehicleOccupant(actorId);
+    } else if (actorData.type === 'spacecraft') {
+      if (actorData.system.crew.passengerQty >= actorData.system.attributes.crew.value) {
+        return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
+      }
+      let crewNumber = actorData.system.crew.passengerQty;
+      crewNumber++;
+      actorData.update({ 'system.crew.passengerQty': crewNumber });
+      return this.actor.addVehicleOccupant(actorId);
     }
-    let crewNumber = actorData.system.crew.passengerQty;
-    crewNumber++;
-    actorData.update({ 'system.crew.passengerQty': crewNumber });
-    return this.actor.addVehicleOccupant(actorId);
+
+
   }
   _onCrewEdit(event) {
     event.preventDefault();
