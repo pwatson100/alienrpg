@@ -6,15 +6,19 @@
 
 /* Global styles */
 @import 'global/window';
+@import 'global/mother-instruction-images';
 @import 'global/grid';
 @import 'global/flex';
 @import 'global/itemList';
 @import 'global/select-css';
+@import 'actor/alien-crt-ui';
+@import 'global/module';
 
-/* Styles limited to alienrpg sheets */
 .alienrpg {
+  /* Styles limited to alienrpg sheets */
   @import 'components/forms';
   @import 'components/resource';
   @import 'components/tabs';
   @import 'components/items';
+  @import 'actor/alien-crt-actor';
 }

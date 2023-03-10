@@ -4,4 +4,5 @@ foundry.js
 .eslintrc.js
 package-lock.json
 package.json
-
+alienrpg.lock
+packs/alien-rpg-system

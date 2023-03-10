@@ -3,50 +3,49 @@
   <header class="vehicle-header">
     <!-- <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"  /> -->
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
   </header>
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
-    <a class="item" data-tab="systems">{{localize "ALIENRPG.Systems"}}</a>
+    <a class="item" data-tab="general">{{localize 'ALIENRPG.General'}}</a>
+    <a class="item" data-tab="systems">{{localize 'ALIENRPG.Systems'}}</a>
   </nav>
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
     <div class="tab attributes" data-group="primary" data-tab="general">
-      <h2 class="resource-label">{{localize "ALIENRPG.Description"}}</h2>
-      <textarea name="data.comment.value" rows="13" data-dtype="String">{{data.comment.value}}</textarea>
-      <h2 class="resource-label">{{localize "ALIENRPG.Sectors"}}</h2>
-      <textarea name="data.sectors.value" rows="13" data-dtype="String">{{data.sectors.value}}</textarea>
+      <h2 class="resource-label">{{localize 'ALIENRPG.Description'}}</h2>
+      <textarea name="system.comment.value" rows="13" data-dtype="String">{{actor.system.comment.value}}</textarea>
+      <h2 class="resource-label">{{localize 'ALIENRPG.Sectors'}}</h2>
+      <textarea name="system.sectors.value" rows="13" data-dtype="String">{{actor.system.sectors.value}}</textarea>
     </div>
 
     {{!-- Owned Items Tab --}}
     <!-- INVENTORY -->
     <div class="tab systems" data-group="primary" data-tab="systems">
       <li class="grid-systems">
-        <label class="item-name sys1">{{localize "ALIENRPG.Sector"}}</label>
-        <label class="item-name sys2">{{localize "ALIENRPG.System"}}</label>
-        <label class="item-name sys3">{{localize "ALIENRPG.Name"}}</label>
+        <label class="item-name sys1">{{localize 'ALIENRPG.Sector'}}</label>
+        <label class="item-name sys2">{{localize 'ALIENRPG.System'}}</label>
+        <label class="item-name sys3">{{localize 'ALIENRPG.Name'}}</label>
         <div class="item-controls sys4">
           <a class="item-control item-create" style="font-size: smaller;" title="Create item" data-type="planet-system"><i class="fas fa-plus"></i></a>
         </div>
       </li>
 
       {{#each systems as |item iid|}}
-      <li class="item grid-systems" data-item-id="{{item._id}}">
-        <div class="item-name sys1">{{item.data.header.sector.value}} </div>
-        <div class="item-name sys2 ">{{item.data.header.system.value}} </div>
-        <div class="item-name sys3 openItem">{{item.name}} </div>
+        <li class="item grid-systems" data-item-id="{{item._id}}">
+          <div class="item-name sys1">{{item.system.header.sector.value}} </div>
+          <div class="item-name sys2 ">{{item.system.header.system.value}} </div>
+          <div class="item-name sys3 openItem">{{item.name}} </div>
 
-        <div class="sys4">
-          <a class="item-control item-edit" data-item-id="{{item._id}}" title="Edit Item"><i class="fas fa-edit"></i></a>
-        </div>
-      </li>
+          <div class="sys4">
+            <a class="item-control item-edit" data-item-id="{{item._id}}" title="Edit Item"><i class="fas fa-edit"></i></a>
+          </div>
+        </li>
       {{/each}}
 
     </div>
 
   </section>
-
 </form>

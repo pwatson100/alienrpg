@@ -1,13 +1,6 @@
 {
   "Actor": {
-    "types": [
-      "character",
-      "synthetic",
-      "vehicles",
-      "spacecraft",
-      "creature",
-      "territory"
-    ],
+    "types": ["character", "synthetic", "vehicles", "creature", "territory"],
     "character": {
       "header": {
         "health": {
@@ -147,7 +140,7 @@
         },
         "xp": {
           "value": 0,
-          "max": 10
+          "max": 20
         },
         "sp": {
           "value": 0,
@@ -350,7 +343,7 @@
         },
         "xp": {
           "value": 0,
-          "max": 10
+          "max": 20
         },
         "sp": {
           "value": 0,
@@ -457,12 +450,16 @@
         "acidSplash": {
           "value": "-",
           "label": "Acid Splash"
+        },
+        "critInj": {
+          "value": ""
         }
       },
       "notes": {
         "notes": ""
       },
-      "rTables": ""
+      "rTables": "",
+      "cTables": ""
     },
     "vehicles": {
       "header": {
@@ -491,7 +488,8 @@
         },
         "hull": {
           "value": 0,
-          "label": "Number"
+          "label": "Number",
+          "max": 0
         },
         "passengers": {
           "value": 0,
@@ -527,77 +525,11 @@
       },
       "notes": {
         "notes": ""
+      },
+      "crew": {
+        "occupants": [],
+        "passengerQty": 0
       }
-    },
-    "spacecraft": {
-      "header": {
-        "type": {
-          "value": "",
-          "label": "Text"
-        }
-      },
-      "attributes": {
-        "manufacturer":  "",
-         "ai": "",
-        "crew": {
-          "value": 0
-        },
-        "passengers": {
-          "value": 0
-        },
-        "length": {
-          "value": 0
-        },
-        "ftlrating": {
-          "value": 0
-        },
-        "signature": {
-          "value": 0
-        },
-        "thrusters": {
-          "value": 0
-        },
-        "hull": {
-          "value": 0
-        },
-        "armor": {
-          "value": 0
-        },
-        "damage": {
-          "value": 0,
-          "max":10
-        },
-        "leasecost": {
-          "value": 0
-        }
-      },
-      "crew":{
-        "captain":"",
-        "sensor": "",
-        "pilot": "",
-        "gunner":"",
-        "engineer":""
-      },
-      "modifiers": {
-        "gunnerName": "",
-        "rangedCbt": {
-          "value": 0,
-          "label": "Ranged Combat",
-          "ability": "agl"
-        },
-        "pilotName": "",
-        "piloting": {
-          "value": 0,
-          "label": "Piloting",
-          "ability": "agl"
-        }
-      },
-      "general": {
-        "misc": {
-          "value": ""
-        }
-      },
-      "notes": ""
     },
     "territory": {
       "header": {
@@ -625,17 +557,7 @@
     }
   },
   "Item": {
-    "types": [
-      "item",
-      "weapon",
-      "armor",
-      "talent",
-      "planet-system",
-      "skill-stunts",
-      "agenda",
-      "specialty",
-      "critical-injury"
-    ],
+    "types": ["item", "weapon", "armor", "talent", "planet-system", "skill-stunts", "agenda", "specialty", "critical-injury"],
     "item": {
       "header": {
         "type": {
@@ -815,6 +737,9 @@
         "comment": {
           "value": "",
           "label": "Text"
+        },
+        "quantity": {
+          "value": 1
         }
       },
       "notes": {
@@ -936,7 +861,6 @@
             "ability": "wit"
           }
         }
-
       },
       "notes": {
         "notes": ""
@@ -1073,8 +997,8 @@
         "active": true
       },
       "attributes": {
-        "fatal":false,
-          "effects": "",
+        "fatal": false,
+        "effects": "",
         "timelimit": {
           "value": 0
         },
@@ -1173,6 +1097,5 @@
         }
       }
     }
-
   }
 }

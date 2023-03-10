@@ -26,6 +26,22 @@
   src: url("../fonts/ocraext.ttf");
   font-style: normal;
 }
+@font-face {
+  font-family: "Kosugi";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/kosugi/v14/pxiFyp4_v8FCjlI4MdLqfUsvcYfqJiw3zzHMw5Qu_B3d0SE.50.woff2) format("woff2");
+  unicode-range: U+4093, U+4103, U+4105, U+4148, U+414f, U+4163, U+41b4, U+41bf, U+41e6, U+41ee, U+41f3, U+4207, U+420e, U+4264, U+4293, U+42c6, U+42d6, U+42dd, U+4302, U+432b, U+4343, U+43ee, U+43f0, U+4408, U+440c, U+4417, U+441c, U+4422, U+4453, U+445b, U+4476, U+447a, U+4491, U+44b3, U+44be, U+44d4, U+4508, U+450d, U+4525, U+4543, U+457a, U+459d, U+45b8, U+45be, U+45e5, U+45ea, U+460f-4610, U+4641, U+4665, U+46a1, U+46ae-46af, U+470c, U+471f, U+4764, U+47e6, U+47fd, U+4816, U+481e, U+4844, U+484e, U+48b5, U+49b0, U+49e7, U+49fa, U+4a04, U+4a29, U+4abc, U+4b38, U+4b3b, U+4b7e, U+4bc2, U+4bca, U+4bd2, U+4be8, U+4c17, U+4c20, U+4c38, U+4cc4, U+4cd1, U+4ce1, U+4d07, U+4d77, U+4e02, U+4e04-4e05, U+4e0c, U+4e0f-4e12, U+4e15, U+4e17, U+4e19, U+4e1e-4e1f, U+4e23-4e24, U+4e28-4e2c, U+4e2e-4e31, U+4e35-4e37, U+4e3f-4e42, U+4e44, U+4e47-4e48, U+4e4d-4e4e, U+4e51, U+4e55-4e56, U+4e58, U+4e5a-4e5c, U+4e62-4e63, U+4e68-4e69, U+4e74-4e75, U+4e79, U+4e7f, U+4e82, U+4e85, U+4e8a, U+4e8d-4e8e, U+4e96-4e99, U+4e9d-4ea0, U+4ea2, U+4ea5-4ea6, U+4ea8, U+4eaf-4eb0, U+4eb3, U+4eb6, U+4eb9, U+4ebb-4ebc, U+4ec2-4ec4, U+4ec6-4ec8, U+4ecd, U+4ed0, U+4ed7, U+4eda-4edb, U+4edd-4ee2, U+4ee8, U+4eeb, U+4eed, U+4eef, U+4ef1, U+4ef3, U+4ef5, U+4ef7, U+4efc-4f00, U+4f02-4f03, U+4f08-4f09, U+4f0b-4f0d, U+4f12, U+4f15-4f17, U+4f19, U+4f1c, U+4f2b, U+4f2e, U+4f30-4f31, U+4f33, U+4f35-4f37, U+4f39, U+4f3b, U+4f3e, U+4f40, U+4f42-4f43, U+4f48-4f49, U+4f4b-4f4c, U+4f52, U+4f54, U+4f56;
+}
+@font-face {
+  font-family: "Blinker";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/blinker/v12/cIf4MaFatEE-VTaP_OGAdGYmnQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 :root {
   --alienfont: "OCR-A";
   --fontsize: 15px;
@@ -33,12 +49,23 @@
 
 :root {
   --aliengreen: hsl(84, 100%, 59%);
+  --aliendarkergreen: hsl(141, 60%, 40%);
+  --alienitemselect: hsl(70, 80%, 74%);
+  --alienoddtab: hsl(72, 29%, 7%);
   --blue: hsl(224, 75%, 62%);
   --black: hsl(0, 0%, 0%);
   --white: hsl(0, 0%, 100%);
   --alientextjournal: #b1e0e7;
   --journalback: url(../images/mother-instructions/indbackground2.png);
   --chatbackground: url(/systems/alienrpg/images/IndBackground3.png);
+  --alienchatfont: "Blinker", sans-serif;
+  --alienchatwhite: hsl(0, 0%, 100%);
+  --alienchatred: hsl(0, 100%, 50%);
+  --alienchatredshadow: rgb(230 230 230);
+  --alienchatblue: hsl(240deg 42% 72%);
+  --alienchatlightblue: hsl(120, 97%, 41%);
+  --alienchatlightgreen: hsl(120, 97%, 41%);
+  --alienchatgoldenrod: hsl(43, 74%, 49%);
 }
 
 /* Global styles */
@@ -56,7 +83,7 @@
   position: absolute;
   left: -900%;
   top: -102%;
-  background: black;
+  background: hsl(0deg, 0%, 0%);
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
   color: var(--aliengreen);
@@ -70,10 +97,14 @@
 }
 
 .alienrpg .window-content {
+  background: hsl(0deg, 0%, 0%);
+}
+
+.alienrpg form {
   font-family: var(--alienfont);
   color: var(--aliengreen);
   font-size: var(--fontsize);
-  background: black;
+  background: hsl(0deg, 0%, 0%);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -96,9 +127,9 @@
 .journal-sheet select {
   font-family: var(--alienfont);
   color: inherit;
-  background: black;
+  background: hsl(0deg, 0%, 0%);
   border: var(--aliengreen) 3px;
-  border: 1px solid #7a7971;
+  border: 1px solid hsl(53deg, 4%, 46%);
   border-radius: 3px;
   padding: 0 3px;
   text-overflow: ellipsis;
@@ -107,13 +138,13 @@
 .journal-sheet input {
   font-family: var(--alienfont);
   color: inherit;
-  background: black;
+  background: hsl(0deg, 0%, 0%);
   border: var(--aliengreen) 3px;
 }
 .journal-sheet button {
   font-family: var(--alienfont);
   color: inherit;
-  background: black;
+  background: hsl(0deg, 0%, 0%);
   border: var(--aliengreen) solid 1px;
   width: 100%;
   margin: 0 1px;
@@ -122,21 +153,31 @@
   line-height: 28px;
 }
 .journal-sheet .tox .tox-editor-container {
-  background-color: white;
+  background-color: hsl(0deg, 0%, 100%);
 }
 
 a.entity-link {
-  color: white;
-  background: black;
+  color: hsl(0deg, 0%, 100%);
+  background: hsl(0deg, 0%, 0%);
 }
 
 .alienrpg a.entity-link {
-  color: white;
-  background: black;
+  color: hsl(0deg, 0%, 100%);
+  background: hsl(0deg, 0%, 0%);
+}
+
+a.content-link {
+  color: hsl(0deg, 0%, 100%);
+  background: hsl(0deg, 0%, 0%);
+}
+
+.alienrpg a.content-link {
+  color: hsl(0deg, 0%, 100%);
+  background: hsl(0deg, 0%, 0%);
 }
 
 #chat .message {
-  border: 1px solid #5e5050;
+  border: 1px solid hsl(0deg, 8%, 34%);
   border-radius: 1px;
 }
 
@@ -170,26 +211,46 @@ a.entity-link {
 }
 
 .chat-message.whisper {
-  background: #171717;
+  background: hsl(0deg, 0%, 9%);
   color: var(--aliengreen);
 }
 
 .chat-message.blind {
-  background: #171717;
+  background: hsl(0deg, 0%, 9%);
+}
+
+.chat-message.emote {
+  background: hsl(0deg, 0%, 9%);
+}
+
+.chat-message .critchat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid var(--color-border-light-primary);
+  padding: 3px 0;
+  color: var(--aliengreen);
+}
+
+.dice-tooltip .roll > img {
+  width: 24px;
 }
 
 .dice-tooltip {
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  background: black;
+  background: hsl(0deg, 0%, 0%);
 }
 .dice-tooltip .dice-rolls {
   color: inherit;
-  background: black;
+  background: hsl(0deg, 0%, 0%);
 }
 .dice-tooltip .part-header {
   color: inherit;
-  background: black;
+  background: hsl(0deg, 0%, 0%);
 }
 
 .dice-tooltip .dice-rolls .roll {
@@ -209,13 +270,13 @@ a.entity-link {
 
 .inline-roll .dice-tooltip {
   color: inherit;
-  background: black;
+  background: hsl(0deg, 0%, 0%);
   border: 2px solid var(--aliengreen);
   border-radius: 2px;
 }
 
 a.inline-roll {
-  background: black;
+  background: hsl(0deg, 0%, 0%);
   padding: 1px 4px;
   border: 1px solid var(--aliengreen);
   border-radius: 2px;
@@ -268,34 +329,41 @@ a.inline-roll {
 }
 
 .rollable:hover, .rollable:focus {
-  text-shadow: 0 0 20px red;
+  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
   font-size: 95%;
   cursor: pointer;
 }
 
+.rollableVeh:hover, .rollableVeh:focus {
+  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
+  font-size: 1.3em;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
 .creature-acid-roll:hover, .creature-acid-roll:focus {
-  text-shadow: 0 0 20px red;
-  font-size: 110%;
+  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
+  font-size: 95%;
   cursor: pointer;
 }
 
 .rollItem:hover, .rollItem:focus {
-  text-shadow: 0 0 20px red;
+  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
   font-size: 110%;
   font-weight: bolder;
   cursor: pointer;
 }
 
 .openItem:hover, .openItem:focus {
-  text-shadow: 0 0 20px red;
+  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
   font-size: 110%;
   font-weight: bolder;
   cursor: pointer;
 }
 
 .talent-btn:hover, .talent-btn:focus {
-  color: #288f00;
-  text-shadow: 0 0 20px red;
+  color: hsl(103deg, 100%, 28%);
+  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
   font-weight: bolder;
   cursor: pointer;
 }
@@ -314,7 +382,7 @@ a.inline-roll {
 }
 
 .pwr-btn:hover, .pwr-btn:focus {
-  background-color: #da3f34;
+  background-color: hsl(4deg, 69%, 53%);
   font-size: 120%;
   font-weight: bolder;
   cursor: pointer;
@@ -331,8 +399,9 @@ a.inline-roll {
   width: 280px;
   height: 40px;
   font-weight: bold;
-  font-size: clamp(1.5rem, 1.3vw, 4rem);
-  text-shadow: 2px 2px #0b7519;
+  font-size: 2em;
+  /* font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem); */
+  text-shadow: 2px 2px hsl(128deg, 83%, 25%);
   border: 2px solid var(--aliengreen);
   border-radius: 25px;
   color: var(--aliengreen);
@@ -342,8 +411,8 @@ a.inline-roll {
 
 .creature-attack-roll:hover {
   border-radius: 10px;
-  color: red;
-  text-shadow: 2px 2px #7f0505;
+  color: hsl(0deg, 100%, 50%);
+  text-shadow: 2px 2px hsl(0deg, 92%, 26%);
 }
 
 .creature-attack-roll:active {
@@ -364,7 +433,7 @@ button:focus {
   display: inline-block;
   width: 260px;
   height: 45px;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   font-weight: bold;
   font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
   font-family: var(--alienfont);
@@ -378,24 +447,25 @@ button:focus {
 
 .alien-Push-button:hover {
   border-radius: 10px;
-  color: red;
+  color: hsl(0deg, 100%, 50%);
 }
 
 .alien-crit-button {
   display: inline-block;
+  width: 280px;
   height: 26px;
   border: 2px solid var(--aliengreen);
   border-radius: 25px;
   color: var(--aliengreen);
   font-weight: bold;
-  font-size: clamp(1rem, 1vw, 2rem);
+  font-size: 1.2rem;
   font-family: var(--alienfont);
   line-height: inherit;
 }
 
 .alien-crit-button:hover {
   border-radius: 5px;
-  color: red;
+  color: hsl(0deg, 100%, 50%);
 }
 
 .alien-diceface-b0 {
@@ -452,7 +522,7 @@ button:focus {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 250px;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
@@ -469,8 +539,7 @@ button:focus {
   content: " ";
   position: absolute;
   top: 50%;
-  left: 100%;
-  /* To the right of the tooltip */
+  left: 100%; /* To the right of the tooltip */
   margin-top: -5px;
   border-width: 5px;
   border-style: solid;
@@ -483,24 +552,78 @@ button:focus {
 
 .alienrpg .inputtext {
   color: inherit;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
 }
 
-/* Global styles */
-.headng {
+.ctooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted hsl(0deg, 0%, 0%);
+}
+
+/* Tooltip text */
+.ctooltip .ctooltiptext {
+  font-size: small;
+  visibility: hidden;
+  width: 150px;
+  background-color: hsl(0deg, 0%, 0%);
+  color: var(--aliengreen);
   text-align: center;
-  color: var(--aliengreen);
-  font-size: xx-large;
+  border-radius: 3px;
+  padding: 2px 0;
+  position: absolute;
+  z-index: 1;
+  margin-left: -150px;
+  border-style: solid;
+  border-color: var(--aliengreen);
 }
 
-.headng2 {
-  text-align: center;
-  color: var(--aliengreen);
-  /* font-size: x-large; */
+/* Show the tooltip text when you mouse over the tooltip container */
+.ctooltip:hover .ctooltiptext {
+  visibility: visible;
 }
 
-.headng3 {
-  color: var(--aliengreen);
+.ctooltip .ctooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 100%; /* To the right of the tooltip */
+  margin-top: -5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--aliengreen);
+}
+
+.alienchatwhite {
+  color: var(--alienchatwhite);
+}
+
+.alienchatred {
+  color: var(--alienchatred);
+  font-weight: bolder;
+  font-size: larger;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-color: var(--alienchatredshadow);
+}
+
+.alienchatblue {
+  color: var(--alienchatblue);
+}
+
+.alienchatlightblue {
+  color: var(--alienchatlightblue);
+  font-weight: bold;
+  font-size: larger;
+}
+
+.alienchatlightgreen {
+  color: var(--alienchatlightgreen);
+}
+
+.alienchatgoldenrod {
+  color: var(--alienchatgoldenrod);
+  font-weight: bold;
 }
 
 .spanner-icon {
@@ -514,8 +637,8 @@ button:focus {
 
 .character-sheet-img {
   display: block;
-  width: 500px;
-  height: 519px;
+  width: 464px;
+  height: 500px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -592,7 +715,7 @@ button:focus {
 .character-details {
   display: block;
   width: 300px;
-  height: 295px;
+  height: 328px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -603,7 +726,7 @@ button:focus {
 .synthetic-details {
   display: block;
   width: 300px;
-  height: 270px;
+  height: 380px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -614,7 +737,7 @@ button:focus {
 .character-consumables {
   display: block;
   width: 153px;
-  height: 300px;
+  height: 330px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -625,7 +748,7 @@ button:focus {
 .synthetic-consumables {
   display: block;
   width: 153px;
-  height: 289px;
+  height: 322px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -743,6 +866,17 @@ button:focus {
   border: 0;
 }
 
+.radiation-roll {
+  display: block;
+  width: 240px;
+  height: 274px;
+  background: url(../images/mother-instructions/radiation-rolls.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
 .territories-general {
   display: block;
   width: 500px;
@@ -796,6 +930,28 @@ button:focus {
   margin-right: auto;
   background-size: 100%;
   border: 0;
+}
+
+.vehicle-crew-selector {
+  display: block;
+  width: 500px;
+  height: 227px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/vehicle-crew-selector.webp);
+}
+
+.vehicle-fire-weapon {
+  display: block;
+  width: 403px;
+  height: 162px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/vehicle-fire-weapon.webp);
 }
 
 .item-dropdown {
@@ -944,7 +1100,7 @@ button:focus {
 .style-settings {
   display: block;
   width: 400px;
-  height: 333px;
+  height: 377px;
   background: url(../images/mother-instructions/style-settings.webp);
   margin-left: auto;
   margin-right: auto;
@@ -1087,7 +1243,7 @@ button:focus {
 .status-icons-img {
   display: block;
   width: 230px;
-  height: 235px;
+  height: 229px;
   background: url(../images/mother-instructions/status-icons.webp);
   margin-left: auto;
   margin-right: auto;
@@ -1104,46 +1260,6 @@ button:focus {
   margin-right: auto;
   background-size: 100%;
   border: 0;
-}
-
-.ctooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-}
-
-/* Tooltip text */
-.ctooltip .ctooltiptext {
-  font-size: small;
-  visibility: hidden;
-  width: 150px;
-  background-color: black;
-  color: var(--aliengreen);
-  text-align: center;
-  border-radius: 3px;
-  padding: 2px 0;
-  position: absolute;
-  z-index: 1;
-  margin-left: -150px;
-  border-style: solid;
-  border-color: var(--aliengreen);
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.ctooltip:hover .ctooltiptext {
-  visibility: visible;
-}
-
-.ctooltip .ctooltiptext::after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  /* To the right of the tooltip */
-  margin-top: -5px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: transparent transparent transparent var(--aliengreen);
 }
 
 .grid {
@@ -1181,9 +1297,15 @@ button:focus {
   padding: 4px;
 }
 
+.grid-synPage {
+  display: grid;
+  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item8 Item4 Item4" "Item8 Item5 Item5" "Item8 Item3 Item3" "Item9 Item6 Item6" "Item10 Item7 Item7" "Item11 Item11 Item11";
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .grid-genPage {
   display: grid;
-  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item8 Item5 Item5" "Item8 Item3 Item3" "Item9 Item6 Item6" "Item10 Item7 Item7" "Item11 Item11 Item11";
+  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item8 Item4 Item4" "Item8 Item5 Item5" "Item8 Item3 Item3" "Item9 Item6 Item6" "Item10 Item7 Item7" "Item11 Item11 Item11";
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -1674,7 +1796,7 @@ button:focus {
 
 .grid-weapon-body {
   display: grid;
-  grid-template-areas: "wCol1 wCol2 wCol3 wCol4 wCol5 wCol6" "wCol7 wCol8 wCol9 wCol10 wCol11 wCol12";
+  grid-template-areas: "wCol1 wCol2 wCol3 wCol4 wCol5 wCol6" "wCol7 wCol8 wCol9 wCol10 wCol11 wCol12" "wCol13 wCol14 . . . .";
   padding-bottom: 2px;
   grid-template-columns: 1fr 1.2fr 0.81fr 0.5fr 0.5fr 1fr;
   -webkit-box-align: center;
@@ -1742,11 +1864,21 @@ button:focus {
   justify-self: center;
 }
 
+.wCol13 {
+  grid-area: wCol13;
+  justify-self: left;
+}
+
+.wCol14 {
+  grid-area: wCol14;
+  justify-self: left;
+}
+
 .grid-items {
   display: grid;
-  grid-template-areas: "lCol1 lCol2 lCol15 lCol13 lCol11 lCol10 lCol3 lCol4" "lCol5 lCol6 lCol16 lCol14 lCol12 lCol9 lCol7 lCol8";
+  grid-template-areas: "lCol1 lCol2 lCol17 lCol15 lCol13 lCol11 lCol10 lCol3 lCol4" "lCol5 lCol6 lCol18 lCol16 lCol14 lCol12 lCol9 lCol7 lCol8";
   padding-bottom: 2px;
-  grid-template-columns: 2em 20em 5em 5em 5em 5em 4em 2em;
+  grid-template-columns: 2em 18em 5em 5em 5em 5em 5em 4em 2em;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1829,6 +1961,16 @@ button:focus {
 
 .lCol16 {
   grid-area: lCol16;
+  justify-self: center;
+}
+
+.lCol17 {
+  grid-area: lCol17;
+  justify-self: center;
+}
+
+.lCol18 {
+  grid-area: lCol18;
   justify-self: center;
 }
 
@@ -2044,7 +2186,7 @@ button:focus {
   display: grid;
   border: 2px solid var(--aliengreen);
   grid-template-areas: "vCre1 vCre2 " "vCre3 vCre4 " "vCre5 vCre6 " "vCre7 vCre8";
-  grid-template-columns: auto;
+  grid-template-columns: 1fr 1fr;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -2206,7 +2348,7 @@ button:focus {
 .grid-Char-Att {
   display: grid;
   padding-bottom: 4px;
-  padding-top: 5px;
+  padding-top: 12px;
   padding-left: 30px;
   grid-row-gap: 3px;
   grid-column-gap: 10px;
@@ -2354,6 +2496,76 @@ button:focus {
   text-align: right;
 }
 
+.grid-crew {
+  display: grid;
+  grid-template-areas: "gC1 gC2 gC3 gC4" "gC5 gC6 gC7 gC8";
+  grid-template-columns: 20em 15em 10em 5em;
+}
+
+.gC1 {
+  justify-self: center;
+  grid-area: gC1;
+}
+
+.gC2 {
+  justify-self: center;
+  grid-area: gC2;
+}
+
+.gC3 {
+  justify-self: center;
+  grid-area: gC3;
+}
+
+.gC4 {
+  justify-self: right;
+  grid-area: gC4;
+}
+
+.gC5 {
+  justify-self: left;
+  grid-area: gC5;
+}
+
+.gC6 {
+  justify-self: center;
+  grid-area: gC6;
+}
+
+.gC7 {
+  justify-self: center;
+  grid-area: gC7;
+}
+
+.gC8 {
+  justify-self: right;
+  grid-area: gC8;
+}
+
+.grid-actor {
+  display: grid;
+  padding-top: 10px;
+  border: 2px solid var(--aliengreen);
+  grid-template-areas: "gaItem1 gaItem2 gaItem3 gaItem4";
+  grid-template-columns: 20% 34% 20% 30%;
+}
+
+.gaItem1 {
+  grid-area: gaItem1;
+}
+
+.gaItem2 {
+  grid-area: gaItem2;
+}
+
+.gaItem3 {
+  grid-area: gaItem3;
+}
+
+.gaItem4 {
+  grid-area: gaItem4;
+}
+
 .flex-center {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -2381,12 +2593,6 @@ button:focus {
           flex-direction: column;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-}
-
-.alienrpg .flexcol > * {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
 }
 
 .alienrpg .flexcol .flex1 {
@@ -2459,10 +2665,10 @@ button:focus {
 }
 
 .alienrpg.actor .encumbrance {
-  background: rgba(0, 0, 0, 0.1);
+  background: hsla(0deg, 0%, 0%, 0.1);
   height: 12px;
   margin-top: 5px;
-  border: 1px solid #121212;
+  border: 1px solid hsl(0deg, 0%, 7%);
   border-radius: 3px;
   position: relative;
   width: calc(100% - 20px);
@@ -2474,7 +2680,7 @@ button:focus {
   left: 1px;
   background: var(--aliengreen);
   height: 8px;
-  border: 1px solid #6f5439;
+  border: 1px solid hsl(30deg, 32%, 33%);
   border-radius: 3px;
 }
 
@@ -2484,8 +2690,8 @@ button:focus {
   height: 16px;
   font-size: 16px;
   line-height: 16px;
-  color: black;
-  background: rgba(255, 255, 255, 0.4);
+  color: hsl(0deg, 0%, 0%);
+  background: hsla(0deg, 0%, 100%, 0.4);
   padding: 0 3px;
 }
 
@@ -2500,7 +2706,7 @@ button:focus {
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 4px solid #666666;
+  border-bottom: 4px solid hsl(0deg, 0%, 40%);
 }
 
 .alienrpg.actor .encumbrance .arrow-down {
@@ -2509,24 +2715,24 @@ button:focus {
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid #666666;
+  border-top: 4px solid hsl(0deg, 0%, 40%);
 }
 
 .alienrpg.actor .encumbrance.encumbered .arrow-up {
-  border-bottom: 4px solid white;
+  border-bottom: 4px solid hsl(0deg, 0%, 100%);
 }
 
 .alienrpg.actor .encumbrance.encumbered .arrow-down {
-  border-top: 4px solid white;
+  border-top: 4px solid hsl(0deg, 0%, 100%);
 }
 
 .alienrpg.actor .encumbrance.encumbered .encumbrance-bar {
   position: absolute;
   top: 1px;
   left: 1px;
-  background: #ff1e00;
+  background: hsl(7deg, 100%, 50%);
   height: 8px;
-  border: 1px solid #b8c91d;
+  border: 1px solid hsl(66deg, 75%, 45%);
   border-radius: 3px;
 }
 
@@ -2573,14 +2779,13 @@ button:focus {
   font-weight: 700;
   color: inherit;
   width: 100%;
-  max-width: 90%;
-  /* useful when width is set to anything other than 100% */
+  max-width: 90%; /* useful when width is set to anything other than 100% */
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0;
   border: 1px solid var(--aliengreen);
-  -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  -webkit-box-shadow: 0 1px 0 1px hsla(0deg, 0%, 0%, 0.04);
+          box-shadow: 0 1px 0 1px hsla(0deg, 0%, 0%, 0.04);
   border-radius: 0.5em;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -2616,13 +2821,13 @@ button:focus {
   box-shadow: 0 0 0 1px -moz-mac-focusring var(--aliengreen);
   color: inherit;
   outline: none;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
 }
 
 /* Set options to normal weight */
 .select-css option {
   font-weight: normal;
-  background: black;
+  background: hsl(0deg, 0%, 0%);
 }
 
 /* Support for rtl text, explicit support for Arabic and Hebrew */
@@ -2643,13 +2848,1083 @@ button:focus {
 
 .select-css:disabled:hover,
 .select-css[aria-disabled=true] {
-  border-color: #ababab;
+  border-color: hsl(0deg, 0%, 67%);
 }
 
-/* Styles limited to alienrpg sheets */
+/*
+	Original Sheet by Paul Watson
+
+	CRT Effect by Alec Lownes
+		http://aleclownes.com/2017/02/01/crt-display.html
+
+	May 2021
+*/
+@-webkit-keyframes flicker {
+  0% {
+    opacity: 0.27861;
+  }
+  5% {
+    opacity: 0.34769;
+  }
+  10% {
+    opacity: 0.23604;
+  }
+  15% {
+    opacity: 0.90626;
+  }
+  20% {
+    opacity: 0.18128;
+  }
+  25% {
+    opacity: 0.83891;
+  }
+  30% {
+    opacity: 0.65583;
+  }
+  35% {
+    opacity: 0.67807;
+  }
+  40% {
+    opacity: 0.26559;
+  }
+  45% {
+    opacity: 0.84693;
+  }
+  50% {
+    opacity: 0.96019;
+  }
+  55% {
+    opacity: 0.08594;
+  }
+  60% {
+    opacity: 0.20313;
+  }
+  65% {
+    opacity: 0.71988;
+  }
+  70% {
+    opacity: 0.53455;
+  }
+  75% {
+    opacity: 0.37288;
+  }
+  80% {
+    opacity: 0.71428;
+  }
+  85% {
+    opacity: 0.70419;
+  }
+  90% {
+    opacity: 0.7003;
+  }
+  95% {
+    opacity: 0.36108;
+  }
+  100% {
+    opacity: 0.24387;
+  }
+}
+@keyframes flicker {
+  0% {
+    opacity: 0.27861;
+  }
+  5% {
+    opacity: 0.34769;
+  }
+  10% {
+    opacity: 0.23604;
+  }
+  15% {
+    opacity: 0.90626;
+  }
+  20% {
+    opacity: 0.18128;
+  }
+  25% {
+    opacity: 0.83891;
+  }
+  30% {
+    opacity: 0.65583;
+  }
+  35% {
+    opacity: 0.67807;
+  }
+  40% {
+    opacity: 0.26559;
+  }
+  45% {
+    opacity: 0.84693;
+  }
+  50% {
+    opacity: 0.96019;
+  }
+  55% {
+    opacity: 0.08594;
+  }
+  60% {
+    opacity: 0.20313;
+  }
+  65% {
+    opacity: 0.71988;
+  }
+  70% {
+    opacity: 0.53455;
+  }
+  75% {
+    opacity: 0.37288;
+  }
+  80% {
+    opacity: 0.71428;
+  }
+  85% {
+    opacity: 0.70419;
+  }
+  90% {
+    opacity: 0.7003;
+  }
+  95% {
+    opacity: 0.36108;
+  }
+  100% {
+    opacity: 0.24387;
+  }
+}
+@-webkit-keyframes textShadow {
+  0% {
+    text-shadow: 0.4389924193px 0 1px rgba(255, 255, 0, 0.5), -0.4389924193px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  5% {
+    text-shadow: 2.7928974011px 0 1px rgba(255, 255, 0, 0.5), -2.7928974011px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  10% {
+    text-shadow: 0.0295627584px 0 1px rgba(255, 255, 0, 0.5), -0.0295627584px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  15% {
+    text-shadow: 0.4021853855px 0 1px rgba(255, 255, 0, 0.5), -0.4021853855px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  20% {
+    text-shadow: 3.47940379px 0 1px rgba(255, 255, 0, 0.5), -3.47940379px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  25% {
+    text-shadow: 1.6125630401px 0 1px rgba(255, 255, 0, 0.5), -1.6125630401px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  30% {
+    text-shadow: 0.7015590085px 0 1px rgba(255, 255, 0, 0.5), -0.7015590085px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  35% {
+    text-shadow: 3.8969140477px 0 1px rgba(255, 255, 0, 0.5), -3.8969140477px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  40% {
+    text-shadow: 3.8709056148px 0 1px rgba(255, 255, 0, 0.5), -3.8709056148px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  45% {
+    text-shadow: 2.2310569634px 0 1px rgba(255, 255, 0, 0.5), -2.2310569634px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  50% {
+    text-shadow: 0.0808429042px 0 1px rgba(255, 255, 0, 0.5), -0.0808429042px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  55% {
+    text-shadow: 2.3758461067px 0 1px rgba(255, 255, 0, 0.5), -2.3758461067px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  60% {
+    text-shadow: 2.2021930511px 0 1px rgba(255, 255, 0, 0.5), -2.2021930511px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  65% {
+    text-shadow: 2.8638780615px 0 1px rgba(255, 255, 0, 0.5), -2.8638780615px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  70% {
+    text-shadow: 0.4887402516px 0 1px rgba(255, 255, 0, 0.5), -0.4887402516px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  75% {
+    text-shadow: 1.8948491306px 0 1px rgba(255, 255, 0, 0.5), -1.8948491306px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  80% {
+    text-shadow: 0.0833037308px 0 1px rgba(255, 255, 0, 0.5), -0.0833037308px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  85% {
+    text-shadow: 0.0976982726px 0 1px rgba(255, 255, 0, 0.5), -0.0976982726px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  90% {
+    text-shadow: 3.4433397615px 0 1px rgba(255, 255, 0, 0.5), -3.4433397615px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  95% {
+    text-shadow: 2.1841838853px 0 1px rgba(255, 255, 0, 0.5), -2.1841838853px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  100% {
+    text-shadow: 2.6208764474px 0 1px rgba(255, 255, 0, 0.5), -2.6208764474px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+}
+@keyframes textShadow {
+  0% {
+    text-shadow: 0.4389924193px 0 1px rgba(255, 255, 0, 0.5), -0.4389924193px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  5% {
+    text-shadow: 2.7928974011px 0 1px rgba(255, 255, 0, 0.5), -2.7928974011px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  10% {
+    text-shadow: 0.0295627584px 0 1px rgba(255, 255, 0, 0.5), -0.0295627584px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  15% {
+    text-shadow: 0.4021853855px 0 1px rgba(255, 255, 0, 0.5), -0.4021853855px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  20% {
+    text-shadow: 3.47940379px 0 1px rgba(255, 255, 0, 0.5), -3.47940379px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  25% {
+    text-shadow: 1.6125630401px 0 1px rgba(255, 255, 0, 0.5), -1.6125630401px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  30% {
+    text-shadow: 0.7015590085px 0 1px rgba(255, 255, 0, 0.5), -0.7015590085px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  35% {
+    text-shadow: 3.8969140477px 0 1px rgba(255, 255, 0, 0.5), -3.8969140477px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  40% {
+    text-shadow: 3.8709056148px 0 1px rgba(255, 255, 0, 0.5), -3.8709056148px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  45% {
+    text-shadow: 2.2310569634px 0 1px rgba(255, 255, 0, 0.5), -2.2310569634px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  50% {
+    text-shadow: 0.0808429042px 0 1px rgba(255, 255, 0, 0.5), -0.0808429042px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  55% {
+    text-shadow: 2.3758461067px 0 1px rgba(255, 255, 0, 0.5), -2.3758461067px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  60% {
+    text-shadow: 2.2021930511px 0 1px rgba(255, 255, 0, 0.5), -2.2021930511px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  65% {
+    text-shadow: 2.8638780615px 0 1px rgba(255, 255, 0, 0.5), -2.8638780615px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  70% {
+    text-shadow: 0.4887402516px 0 1px rgba(255, 255, 0, 0.5), -0.4887402516px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  75% {
+    text-shadow: 1.8948491306px 0 1px rgba(255, 255, 0, 0.5), -1.8948491306px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  80% {
+    text-shadow: 0.0833037308px 0 1px rgba(255, 255, 0, 0.5), -0.0833037308px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  85% {
+    text-shadow: 0.0976982726px 0 1px rgba(255, 255, 0, 0.5), -0.0976982726px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  90% {
+    text-shadow: 3.4433397615px 0 1px rgba(255, 255, 0, 0.5), -3.4433397615px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  95% {
+    text-shadow: 2.1841838853px 0 1px rgba(255, 255, 0, 0.5), -2.1841838853px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+  100% {
+    text-shadow: 2.6208764474px 0 1px rgba(255, 255, 0, 0.5), -2.6208764474px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
+  }
+}
+/* interface */
+::-webkit-scrollbar-thumb {
+  outline: none;
+  border-radius: 2px;
+  background: var(--aliendarkergreen);
+  border: 1px solid var(--aliendarkergreen);
+}
+
+.window-header {
+  background-color: rgba(50, 100, 120, 0.3);
+  border-radius: 7px 7px 0px 0px;
+}
+
+.alienrpg input[type=text],
+.alienrpg input[type=number],
+.alienrpg input[type=password],
+.alienrpg input[type=date],
+.alienrpg input[type=time] {
+  border-radius: 0px;
+  border: 1px solid var(--aliendarkergreen);
+}
+
+input[type=text]:hover,
+input[type=number]:hover,
+input[type=password]:hover,
+input[type=date]:hover,
+input[type=time]:hover {
+  border: 1px solid var(--aliengreen);
+}
+
+a:hover {
+  text-shadow: 0 0 5px var(--aliengreen);
+}
+
+#sidebar-tabs {
+  border-bottom: 1px solid var(--aliengreen);
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
+}
+
+#sidebar-tabs .item.active {
+  border: 1px solid var(--aliengreen);
+  -webkit-box-shadow: 0 0 6px inset var(--aliengreen);
+          box-shadow: 0 0 6px inset var(--aliengreen);
+}
+
+select:focus {
+  -webkit-box-shadow: 0 0 5px var(--aliengreen);
+          box-shadow: 0 0 5px var(--aliengreen);
+}
+
+textarea:focus {
+  outline: 0px;
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
+  color: #000;
+  font-weight: 400;
+}
+
+combobox:focus {
+  outline: 0px;
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
+  background-color: var(--aliengreen);
+  color: #000;
+}
+
+#hotbar .macro:hover {
+  -webkit-box-shadow: 0 0 10px inset var(--aliengreen);
+          box-shadow: 0 0 10px inset var(--aliengreen);
+}
+
+#hotbar .macro.active:hover {
+  border: 1px solid var(--aliengreen);
+}
+
+#players ol .player.context {
+  border-top: 1px solid var(--aliengreen);
+  border-bottom: 1px solid var(--aliengreen);
+}
+
+#players ol .player.context .player-name {
+  text-shadow: 0 0 5px var(--aliengreen);
+}
+
+#context-menu li.context-item:hover {
+  text-shadow: 0 0 4px var(--aliengreen);
+}
+
+#controls .scene-control.active,
+#controls .control-tool.active,
+#controls .scene-control:hover,
+#controls .control-tool:hover {
+  border: 1px solid var(--aliengreen);
+  border-bottom: 1px solid var(--aliendarkergreen);
+  -webkit-box-shadow: 0 0 10px var(--aliendarkergreen);
+          box-shadow: 0 0 10px var(--aliendarkergreen);
+}
+
+#navigation #scene-list .scene.view,
+#navigation #scene-list .scene.context {
+  border: 1px solid var(--aliengreen);
+  background: rgba(52, 52, 52, 0.95);
+  border-bottom: 1px solid var(--aliengreen);
+  -webkit-box-shadow: 0 0 10px var(--aliendarkergreen);
+          box-shadow: 0 0 10px var(--aliendarkergreen);
+}
+
+#pause {
+  background: none;
+}
+#pause > img {
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  left: calc(50% - 100px);
+  opacity: 0.7;
+  --fa-animation-duration: 10s;
+}
+#pause h3 {
+  font-size: 32px;
+  text-shadow: 0px 3px 5px rgb(0, 0, 0);
+}
+
+.alienrpg #context-menu li.context-item {
+  line-height: 1.55;
+}
+
+/* CHAT */
+.sidebar-tab h1,
+.sidebar-tab h2 {
+  border-bottom: 2px dotted var(--aliengreen);
+}
+
+.sidebar-tab .fas.fa-trash:hover {
+  -webkit-animation: textShadow 0.5s infinite;
+          animation: textShadow 0.5s infinite;
+}
+
+.chat-message .message-header .message-sender {
+  padding-bottom: 5px;
+}
+
+.alien-Push-button {
+  height: 40px;
+  margin-top: 5px;
+  margin-left: 1px;
+  -webkit-box-shadow: 0 0 5px var(--aliendarkergreen);
+          box-shadow: 0 0 5px var(--aliendarkergreen);
+  border-radius: 3px;
+  background: url(../images/alien_crt_push-button.png) no-repeat top left;
+  color: rgba(0, 0, 0, 0);
+}
+
+.alien-Push-button:hover {
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 5px var(--aliendarkergreen);
+          box-shadow: 0 0 5px var(--aliendarkergreen);
+  background-color: inherit;
+  background: url(../images/alien_crt_push-button_hover.gif) no-repeat top left;
+  color: rgba(0, 0, 0, 0);
+}
+
+.chat-message,
+.chat-message.emote {
+  font-family: var(--alienchatfont);
+  font-size: 110%;
+  font-weight: bold;
+  padding: 13px 15px 50px 11px;
+  border-width: 0px;
+  -webkit-box-shadow: 0 1px 5px #000;
+          box-shadow: 0 1px 5px #000;
+  background-size: 100%;
+  background-position: top, bottom, 0px 18px;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-image: url("../images/chat-top.png"), url("../images/chat-bottom.png"), var(--chatbackground);
+}
+
+.chat-message.whisper {
+  color: var(--alienchatlightblue);
+  padding: 13px 15px 50px 11px;
+  border-width: 0px;
+  -webkit-box-shadow: 0 1px 5px #000;
+          box-shadow: 0 1px 5px #000;
+  background-size: 100%;
+  background-position: top, bottom, 0px 18px;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-image: url("../images/hidden-chat-top.png"), url("../images/hidden-chat-bottom.png"), url("../images/hidden-chat-middle.png");
+}
+
+.chat-message.whisper span,
+.chat-message.whisper div {
+  color: var(--alienchatlightblue);
+}
+
+.chat-message.whisper h2 {
+  color: lightblue;
+  border-bottom: 2px dotted lightsteelblue;
+}
+
+.chat-message.whisper h4 {
+  color: lightsteelblue;
+}
+
+.chat-message.whisper hr {
+  border-top: 1px solid lightsteelblue;
+  border-bottom: 1px solid royalblue;
+}
+
+.chat-message.whisper .blink {
+  color: lightsteelblue;
+  background-color: royalblue;
+  text-shadow: 0 0 5px lightsteelblue;
+  -webkit-animation: blink 0.5 5;
+          animation: blink 0.5 5;
+}
+
+.chat-message.whisper .inline-roll:hover {
+  text-shadow: 0 0 5px lightsteelblue;
+}
+
+.chat-message.whisper .inline-roll,
+.chat-message.whisper .dice-tooltip {
+  border-color: lightsteelblue;
+}
+
+.alien-Push-button:hover {
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 5px var(--aliendarkergreen);
+          box-shadow: 0 0 5px var(--aliendarkergreen);
+  background-color: inherit;
+  background: url(../images/alien_crt_push-button_hover.gif) no-repeat top left;
+  color: rgba(0, 0, 0, 0);
+}
+
+.blink {
+  padding: 0px 0px 2px 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: white;
+  text-shadow: 0 0 5px red;
+  -webkit-animation: blink 0.5s 5;
+          animation: blink 0.5s 5;
+}
+
+.warnblink {
+  text-shadow: 0 0 5px red;
+  -webkit-animation: blink 0.5s 5;
+          animation: blink 0.5s 5;
+}
+
+.message-sender {
+  width: 900px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Journals */
+.journal-sheet ::-webkit-scrollbar-thumb {
+  background: #135d91;
+  border: 1px solid #135d91;
+}
+
+.journal-sheet .editor h1 {
+  color: white;
+  text-shadow: 0 0 10px #2a8ed5;
+  border-bottom: 2px solid #135d91;
+}
+
+.journal-sheet .editor h2 {
+  color: white;
+  text-shadow: 0 0 10px #2a8ed5;
+}
+
+.journal-sheet .editor h3 {
+  color: white;
+  text-shadow: 0 0 10px #2a8ed5;
+}
+
+/* .journal-sheet form { */
+.sheet.journal-entry .journal-entry-content {
+  color: var(--aliengreen);
+  background: #000;
+  border: 1px solid var(--aliengreen);
+  border-radius: 1px;
+  background: var(--journalback) top left !important;
+  background-size: cover;
+  color: powderblue;
+}
+
+.sheet.journal-entry .sidebar .directory-header .header-search input {
+  color: hsl(0deg, 0%, 0%);
+}
+
+.alienrpg .arpgtable {
+  height: 36px;
+  width: 80%;
+  /* border-style: double;
+        border-color: greenyellow; */
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+}
+
+.alienrpg .arpgtable tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.alienrpg .caption {
+  text-align: center;
+  color: greenyellow;
+  font-size: xx-large;
+}
+
+.alienrpg .arpgtablesmall {
+  height: 36px;
+  width: 34%;
+  /* border-style: double;
+        border-color: greenyellow; */
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+}
+
+.alienrpg .arpgtablesmall tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.alienrpg .tdstyle {
+  width: 40%;
+  height: 18px;
+  text-align: left;
+}
+
+.alienrpg .tdstyleR {
+  width: 40%;
+  height: 18px;
+  text-align: Right;
+}
+
+.alienrpg .tdstyleC {
+  width: 100%;
+  height: 18px;
+  text-align: center;
+}
+
+.alienrpg .tdstyle3D {
+  width: 30%;
+  height: 18px;
+  text-align: center;
+}
+
+.alienrpg .tdstyle2D {
+  width: 50%;
+  height: 18px;
+  text-align: center;
+}
+
+.alienrpg .arpglink {
+  background-color: white;
+  color: black;
+}
+
+.alienrpg .mess {
+  color: yellowgreen;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.alienrpg .ntable {
+  width: 99%;
+  /* border-style: double;
+        border-color: greenyellow; */
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.alienrpg .ntable tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.alienrpg .trhead {
+  text-align: center;
+  width: 45%;
+  font-weight: bold;
+}
+
+.alienrpg .tcol1 {
+  width: 2.5%;
+}
+
+.alienrpg .tcol2 {
+  width: 45%;
+  text-align: justify;
+  vertical-align: top;
+}
+
+.alienrpg .tcol3 {
+  width: 5%;
+}
+
+.alienrpg .etable {
+  width: 40%;
+  /* border-style: double; */
+  border-color: #e92d2d;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1;
+  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.alienrpg .etable td:first-child {
+  padding-left: 5px;
+}
+
+.alienrpg .etr {
+  /* border-style: solid;
+        border-color: greenyellow; */
+  border: 1;
+}
+
+.alienrpg .ehead {
+  text-align: center;
+  font-weight: bold;
+}
+
+.alienrpg .ecol1 {
+  width: 50%;
+  text-align: center;
+}
+
+.alienrpg .ecol2 {
+  width: 50%;
+  text-align: center;
+}
+
+.alienrpg .ecol3 {
+  width: 3%;
+  /* border-left: greenyellow;
+        border-style: solid; */
+}
+
+.alienrpg .stable {
+  width: 90%;
+  /* border-style: double; */
+  border-color: #e92d2d;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.alienrpg .strhead {
+  text-align: center;
+  font-weight: bold;
+}
+
+.alienrpg .scol1 {
+  width: 16%;
+}
+
+.alienrpg .scol2 {
+  width: 3%;
+}
+
+.alienrpg .scol3 {
+  width: 80%;
+}
+
+.alienrpg .scol4 {
+  width: 25%;
+}
+
+.alienrpg .scol5 {
+  width: 60%;
+  text-align: left;
+}
+
+.alienrpg .scol6 {
+  width: 90%;
+}
+
+.alienrpg .scol7 {
+  width: 20%;
+  text-align: left;
+}
+
+.alienrpg .scol8 {
+  width: 65%;
+  text-align: left;
+}
+
+.alienrpg .scol9 {
+  width: 12%;
+}
+
+.alienrpg .scol10 {
+  width: 50%;
+}
+
+.alienrpg .skltable {
+  width: 35%;
+  /* border-style: double; */
+  /* border-color: #e92d2d; */
+  margin-left: auto;
+  margin-right: auto;
+  border: 1;
+}
+
+.alienrpg .oddstable {
+  width: 96%;
+  height: 16px;
+  /* border-style: double; */
+  border-color: #e92d2d;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.alienrpg .oddhead {
+  font-weight: bold;
+}
+
+.alienrpg .oddcol1 {
+  width: 25%;
+}
+
+.alienrpg .oddcol2 {
+  width: 39%;
+}
+
+.oddcol3 {
+  width: 36%;
+}
+
+.alienrpg .oddcol4 {
+  width: 40%;
+}
+
+.alienrpg .bigtable {
+  width: 99%;
+  /* border-style: double; */
+  border-color: #e92d2d;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.alienrpg .die {
+  width: 6%;
+  text-align: center;
+}
+
+.alienrpg .inj {
+  width: 16%;
+}
+
+.alienrpg .fatal {
+  width: 6%;
+}
+
+.alienrpg .tim {
+  width: 7%;
+  text-align: center;
+}
+
+.alienrpg .eff {
+  width: 56%;
+}
+
+.alienrpg .heal {
+  width: 15%;
+  text-align: center;
+}
+
+.alienrpg .crit {
+  width: 19%;
+  text-align: center;
+}
+
+.alienrpg .eff2 {
+  width: 55%;
+}
+
+/* V10 work */
+.alienrpg .aframe {
+  position: relative;
+}
+
+.alienrpg .leftcol {
+  position: absolute;
+  width: 45%;
+  left: 1.2%;
+  text-align: justify;
+  /* background: #855f5f; */
+}
+
+.alienrpg .rightcol {
+  position: absolute;
+  width: 45%;
+  left: 50%;
+  text-align: justify;
+  /* background: rgb(174, 174, 110); */
+}
+
+.alienrpg .heading {
+  color: var(--aliengreen);
+  font-size: 28px;
+  border-bottom: 2px solid var(--color-underline-header);
+}
+
+.alienrpg .heading2 {
+  text-align: center;
+  color: var(--aliengreen);
+  /* font-size: x-large; */
+}
+
+.alienrpg .heading3 {
+  color: var(--aliengreen);
+}
+
+.alienrpg .imagecontainer {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* Import settings */
+.alienrpg .container {
+  width: 100%;
+}
+
+.alienrpg .listHeading {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px 0px;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.alienrpg .twogridcol {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 50%));
+}
+
+.alienrpg .twogridcol input[type=checkbox] {
+  vertical-align: middle;
+}
+
+.alienrpg .actors.content {
+  background: lightgray;
+}
+
+.alienrpg .actors.content.toggle-display {
+  display: none;
+}
+
+.alienrpg .items.content {
+  background: lightgray;
+}
+
+.alienrpg .items.content.toggle-display {
+  display: none;
+}
+
+.alienrpg .journal.content {
+  background: lightgray;
+}
+
+.alienrpg .journal.content.toggle-display {
+  display: none;
+}
+
+.alienrpg .scenes.content {
+  background: lightgray;
+}
+
+.alienrpg .scenes.content.toggle-display {
+  display: none;
+}
+
+.alienrpg .tables.content {
+  background: lightgray;
+}
+
+.alienrpg .tables.content.toggle-display {
+  display: none;
+}
+
+.alienrpg .macros.content {
+  background: lightgray;
+}
+
+.alienrpg .macros.content.toggle-display {
+  display: none;
+}
+
+.alienrpg .title {
+  cursor: pointer;
+}
+
+/* Footer */
+.alienrpg .footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: inherit;
+  height: auto;
+  background-color: #d0daee;
+}
+
+.alienrpg .cinsymbol {
+  display: inline-block;
+  background-image: url("../images/icons/cin-symbol.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
+}
+
+.alienrpg .camsymbol {
+  display: inline-block;
+  background-image: url("../images/icons/cam-symbol.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
+}
+
+.alienrpg .stresssymbol {
+  display: inline-block;
+  background-image: url("../images/icons/alien-dice-y1.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
+}
+
+.alienrpg .basesymbol {
+  display: inline-block;
+  background-image: url("../images/icons/alien-dice-6.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
+}
+
+.alienrpg {
+  /* Styles limited to alienrpg sheets */
+  /*
+  	Original Sheet by Paul Watson
+
+  	CRT Effect by Alec Lownes
+  		http://aleclownes.com/2017/02/01/crt-display.html
+
+  	May 2021
+  */
+  /* CHARACTER SHEET */
+  /*.sheet {
+  	min-width: 600px;
+  	max-width: 1000px;
+  	min-height: 350px;
+  }*/
+  /** General Tab **/
+  /** General Tab - Left Column **/
+  /*** Story and Experience Points ***/
+  /*** Conditions ***/
+  /*.dots.radiation.radbox_char {
+      margin-top: 36px;
+  }
+
+  .dots.radiation.radbox_synth {
+      /*margin-top: 27px;
+      margin-top: 7px;
+  }
+
+  .dots.radiation.radglow_char {
+      margin-top: 36px;
+  }
+
+  .dots.radiation.radglow_synth {
+      margin-top: 27px;
+  }*/
+  /*** Consumables ***/
+  /** General Tab - Right Column **/
+  /** - **/
+  /* Creature Sheet */
+  /* Items */
+}
 .alienrpg .item-form {
   font-family: var(--alienfont);
-  background: black;
+  background: hsl(0deg, 0%, 0%);
 }
 .alienrpg .actor-header {
   -webkit-box-flex: 0;
@@ -2669,7 +3944,7 @@ button:focus {
       -ms-flex-pack: start;
           justify-content: flex-start;
   margin-bottom: 1px;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
 }
 .alienrpg .vehicle-header {
   overflow: hidden;
@@ -2677,7 +3952,7 @@ button:focus {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1px;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
 }
 .alienrpg .profile-img {
   -webkit-box-flex: 0;
@@ -2692,7 +3967,8 @@ button:focus {
           flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
-  width: 150px;
+  width: auto;
+  justify-self: center;
 }
 .alienrpg .profile-img-vehicle {
   -webkit-box-flex: 0;
@@ -2732,14 +4008,13 @@ button:focus {
   border-top: 1px solid var(--aliengreen) !important;
   border-bottom: 1px solid var(--aliengreen) !important;
 }
-.alienrpg .alienrpg .sheet-body,
 .alienrpg .tab,
 .alienrpg .editor {
   height: 100%;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
 }
 .alienrpg .tox .tox-editor-container {
-  background: white;
+  background: hsl(0deg, 0%, 100%);
 }
 .alienrpg .tox .tox-edit-area {
   padding: 0 8px;
@@ -2747,7 +4022,7 @@ button:focus {
 .alienrpg .maxboxsize {
   max-width: 40px;
   color: inherit;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   height: 20px;
   padding: 0;
   margin: 1px;
@@ -2757,7 +4032,7 @@ button:focus {
 .alienrpg .healboxsize {
   max-width: 80px;
   color: inherit;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   height: 20px;
   padding: 0;
   margin: 1px;
@@ -2768,13 +4043,13 @@ button:focus {
   max-width: 150px;
   color: inherit;
   justify-items: center;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   text-align: center;
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox {
   color: inherit;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   padding: 5px;
   margin: 5px 5px 5px 5px;
   border: 1px solid var(--aliengreen);
@@ -2782,7 +4057,7 @@ button:focus {
 .alienrpg .textbox1 {
   color: inherit;
   justify-items: center;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   width: 230px;
   padding: 0;
   margin-top: 1px;
@@ -2792,7 +4067,7 @@ button:focus {
 .alienrpg .textbox2 {
   color: inherit;
   justify-items: center;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   width: 400px;
   padding: 0;
   margin-top: 1px;
@@ -2801,7 +4076,7 @@ button:focus {
 }
 .alienrpg .textbox3 {
   color: inherit;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   padding: 5px;
   margin: 5px 5px 5px 5px;
   width: 180px;
@@ -2810,7 +4085,7 @@ button:focus {
 .alienrpg .textbox4 {
   color: inherit;
   justify-items: center;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   width: 450px;
   padding: 0;
   margin-top: 1px;
@@ -2828,10 +4103,10 @@ button:focus {
 .alienrpg form .sheet-content .click-stat-level {
   height: 18px;
   padding: 8px;
-  background: black;
+  background: hsl(0deg, 0%, 0%);
   border-radius: 2px;
-  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.502);
-          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.502);
+  -webkit-box-shadow: inset 0 0 0 1px hsla(0deg, 0%, 0%, 0.502);
+          box-shadow: inset 0 0 0 1px hsla(0deg, 0%, 0%, 0.502);
   font-family: "Roboto", system, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -2853,8 +4128,8 @@ button:focus {
   display: none;
   padding: 2px 4px;
   border-radius: 2px;
-  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
-          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 0 0 1px hsla(0deg, 0%, 0%, 0.5);
+          box-shadow: inset 0 0 0 1px hsla(0deg, 0%, 0%, 0.5);
   font-family: "Roboto", system, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -2884,6 +4159,8 @@ button:focus {
   margin-right: 8px;
   font-weight: 700;
   font-size: 15px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .alienrpg .resource-label {
   font-family: var(--alienfont);
@@ -2911,7 +4188,7 @@ button:focus {
 .alienrpg .tabs {
   height: 30px;
   color: inherit;
-  background-color: black;
+  background-color: hsl(0deg, 0%, 0%);
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .tabs .sheet nav.sheet-tabs {
@@ -2925,7 +4202,6 @@ button:focus {
   border-bottom: 1px solid var(--aliengreen) !important;
 }
 .alienrpg .tabs .item {
-  line-height: 30px;
   font-weight: bold;
   color: inherit;
 }
@@ -2941,7 +4217,7 @@ button:focus {
   padding-bottom: 0px;
 }
 .alienrpg .item-header {
-  background-color: #2b2727;
+  background-color: hsl(0deg, 5%, 16%);
 }
 .alienrpg .item-name {
   margin: 0;
@@ -2993,4 +4269,729 @@ button:focus {
 }
 .alienrpg .biog-full img {
   display: block;
+}
+.alienrpg .crt .window-content {
+  padding: 5px;
+  border: 2px solid var(--aliendarkergreen);
+  color: var(--aliengreen);
+  text-shadow: 0 0 2px var(--aliendarkergreen);
+}
+.alienrpg .crt .window-content::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, rgba(18, 16, 16, 0)), color-stop(50%, rgba(0, 0, 0, 0.25))), -webkit-gradient(linear, left top, right top, from(rgba(255, 0, 0, 0.06)), color-stop(rgba(0, 255, 0, 0.02)), to(rgba(0, 0, 255, 0.06)));
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+.alienrpg .crt .window-content::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.alienrpg .crt textarea {
+  border-radius: 0px;
+  border: 1px solid var(--aliendarkergreen);
+  color: ghostwhite;
+  font-family: var(--alienchatfont);
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+.alienrpg .crt h1 {
+  border-bottom: 2px dotted var(--aliengreen);
+  padding-left: 0px;
+}
+.alienrpg .crt label,
+.alienrpg .crt h2,
+.alienrpg .crt h3 {
+  padding-left: 0px;
+  margin: 0px;
+}
+.alienrpg .crt .profile-img {
+  margin: 0;
+  height: 157px;
+  margin-right: 4px;
+  border-radius: 10px;
+}
+.alienrpg .crt h1.charname input {
+  text-transform: uppercase;
+  width: calc(100% + 10px);
+  padding-left: 8px;
+  border: 0px;
+}
+.alienrpg .crt input[type=text],
+.alienrpg .crt input[type=number],
+.alienrpg .crt input[type=password],
+.alienrpg .crt input[type=date],
+.alienrpg .crt input[type=time] {
+  border-radius: 0px;
+  border: 1px solid var(--aliendarkergreen);
+}
+.alienrpg .crt input[type=text]:hover,
+.alienrpg .crt input[type=number]:hover,
+.alienrpg .crt input[type=password]:hover,
+.alienrpg .crt input[type=date]:hover,
+.alienrpg .crt input[type=time]:hover {
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .crt h1.charname input:focus {
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
+}
+.alienrpg .crt h1.charname {
+  margin: 0px 0px 5px 0px;
+}
+.alienrpg .crt .select-css {
+  border-radius: 3px;
+  border: 1px solid var(--aliendarkergreen);
+}
+.alienrpg .crt .select-css:hover {
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .crt .grid-4col {
+  border: 3px double var(--aliengreen);
+  border-bottom: 1px solid var(--aliengreen);
+}
+.alienrpg .crt .grid-synth {
+  grid-column: 3;
+  grid-template-columns: 25% 25% 50%;
+  border: 3px double var(--aliengreen);
+  border-bottom: 1px solid var(--aliengreen);
+  padding: 4px;
+}
+.alienrpg .crt .synth-stresslabel {
+  justify-self: left;
+  text-align: left;
+}
+.alienrpg .crt .minus-btn {
+  width: 14px;
+  color: var(--aliendarkergreen);
+  font-size: 30px;
+}
+.alienrpg .crt .plus-btn {
+  width: 14px;
+  color: var(--aliendarkergreen);
+  font-size: 30px;
+  margin-left: -7px;
+}
+.alienrpg .crt .rollable-stress:hover,
+.alienrpg .crt .rollCrit:hover {
+  color: var(--aliengreen);
+  background-color: #000;
+  border: 0px solid var(--aliengreen);
+  font-weight: 1;
+  font-size: 150%;
+  -webkit-box-shadow: 0 0 0px var(--aliengreen);
+          box-shadow: 0 0 0px var(--aliengreen);
+  -webkit-animation: textShadow 1s infinite;
+          animation: textShadow 1s infinite;
+}
+.alienrpg .crt .resource-content .maxboxsize {
+  vertical-align: 7px;
+}
+.alienrpg .crt .crt-grid-Char-Att {
+  margin-left: -5px;
+  border-left: 3px double var(--aliengreen);
+  border-bottom: 3px double var(--aliengreen);
+  border-right: 3px double var(--aliengreen);
+  float: right;
+  width: 100%;
+  padding: 6px 12px 6px 2px;
+  grid-column-gap: 0px;
+  grid-template-areas: "crt_gCol1 crt_gCol2 crt_gCol3 crt_gCol4 crt_gCol5 crt_gCol6" "crt_gCol7 crt_gCol8 crt_gCol9 crt_gCol10 crt_gCol11 crt_gCol12";
+  grid-template-columns: 25% 8% 25% 8% 25% 8%;
+  display: grid;
+  grid-row-gap: 3px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.alienrpg .crt_gCol1,
+.alienrpg .crt_gCol2,
+.alienrpg .crt_gCol3,
+.alienrpg .crt_gCol4,
+.alienrpg .crt_gCol5,
+.alienrpg .crt_gCol6,
+.alienrpg .crt_gCol7,
+.alienrpg .crt_gCol8,
+.alienrpg .crt_gCol9,
+.alienrpg .crt_gCol10,
+.alienrpg .crt_gCol11,
+.alienrpg .crt_gCol12 {
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+.alienrpg .crt_gCol11 {
+  color: var(--aliendarkergreen);
+}
+.alienrpg .crt-crt-grid-Char-Att .maxboxsize {
+  min-width: 40px;
+  z-index: 1;
+}
+.alienrpg .crt .NPC {
+  width: 15px;
+  height: 15px;
+}
+.alienrpg .crt .tooltip .tooltiptext {
+  width: 250px;
+  top: -36px;
+  right: 200%;
+  margin-left: -60px;
+  color: black;
+  background-color: var(--aliengreen);
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
+}
+.alienrpg .crt .tooltip .tooltiptext::after {
+  margin-top: 10px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--aliengreen);
+}
+.alienrpg .crt .crt-grid-Char-Att .crt-gCol6:focus,
+.alienrpg .crt .grid-Consumables .maxboxsize:focus {
+  color: var(--aliendarkergreen);
+  background-color: var(--alienoddtab);
+  -webkit-box-shadow: 0 0 0 #000;
+          box-shadow: 0 0 0 #000;
+  cursor: not-allowed;
+}
+.alienrpg .crt .crt-grid-Char-Att .crt_gCol6:hover,
+.alienrpg .crt .grid-Consumables .maxboxsize:hover {
+  cursor: default;
+  border: 1px solid var(--aliendarkergreen);
+}
+.alienrpg .crt .click-stat-level .far {
+  letter-spacing: 1px;
+}
+.alienrpg .crt .synthsdont {
+  margin: 10px;
+  padding-left: 10px;
+  border-left: 2px dotted var(--aliengreen);
+}
+.alienrpg .crt .imitate-human {
+  text-align: center;
+}
+.alienrpg .crt .text {
+  background-color: var(--aliendarkergreen);
+}
+.alienrpg .crt .tabs {
+  color: #000;
+  background-color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 0 0 2px white;
+}
+.alienrpg .crt .tabs .item.active {
+  text-decoration: none;
+  font-size: 110%;
+  color: white;
+  background-color: var(--aliendarkergreen);
+  -webkit-box-shadow: 0 0 10px var(--aliendarkergreen);
+          box-shadow: 0 0 10px var(--aliendarkergreen);
+  text-shadow: 0 0 10px var(--aliengreen);
+  cursor: default;
+}
+.alienrpg .crt .tabs .item {
+  width: 100%;
+  padding-top: 6px;
+}
+.alienrpg .crt .tabs .item.active {
+  padding-top: 5px;
+}
+.alienrpg .crt .tabs .item:hover {
+  color: #000;
+  background-color: var(--alienitemselect);
+  -webkit-box-shadow: 0 0 10px var(--alienitemselect);
+          box-shadow: 0 0 10px var(--alienitemselect);
+  margin: -3px 0 -3px 0;
+  padding-top: 6px;
+}
+.alienrpg .crt .grid-genPage h2 {
+  text-transform: uppercase;
+}
+.alienrpg .crt .grid-2col-border {
+  margin-top: -3px;
+  padding-bottom: 4px;
+}
+.alienrpg .crt .journal-sheet select {
+  text-overflow: ellipsis;
+}
+.alienrpg .crt .resource-content button {
+  width: 16px;
+  color: var(--aliendarkergreen);
+}
+.alienrpg .crt .grid-crtPage {
+  display: grid;
+  grid-template-areas: "crt_Col1 crt_Col2";
+  grid-template-columns: 220px;
+}
+.alienrpg .crt .crt_Col1 {
+  display: grid;
+  grid-template-areas: "crt_Item1", "crt_Item2", "crt_Item3";
+  grid-template-columns: 100%;
+}
+.alienrpg .crt .crt_Col2 {
+  display: grid;
+  grid-template-areas: "crt_Item4", "crt_Item5", "crt_Item7", "crt_Item8", "crt_Item9", "crt_Item6";
+  grid-template-columns: 100%;
+  padding-left: 5px;
+}
+.alienrpg .crt .crt_Col1 h2 {
+  text-transform: uppercase;
+  padding-bottom: 4px;
+}
+.alienrpg .crt .crt_Item1,
+.alienrpg .crt .crt_Item2_char,
+.alienrpg .crt .crt_Item2_synth,
+.alienrpg .crt .crt_Item3 {
+  border: 1px solid var(--aliengreen);
+  padding: 5px;
+}
+.alienrpg .crt .crt_Item1 {
+  text-align: center;
+  height: 130px;
+}
+.alienrpg .crt .crt_Item1 .sp_faded {
+  padding-top: 5px;
+  color: var(--aliendarkergreen);
+}
+.alienrpg .crt .crt_Item1 .xp_faded {
+  padding-top: 6px;
+  color: var(--aliendarkergreen);
+}
+.alienrpg .crt .crt_Item1 h2 {
+  padding-top: 8px;
+}
+.alienrpg .crt .crt_Item1 .experience {
+  width: 160px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin-bottom: 10px;
+}
+.alienrpg .crt .crt_Item1 .xp_dots_pos {
+  padding-top: 18px;
+}
+.alienrpg .crt .crt_Item2_char {
+  position: relative;
+  height: 334px;
+}
+.alienrpg .crt .crt_Item2_synth {
+  position: relative;
+  height: 370px;
+}
+.alienrpg .crt .dots_conditions .dots {
+  height: 25px;
+  padding-top: 4px;
+  padding-left: 7px;
+}
+.alienrpg .crt .dots.starving,
+.alienrpg .crt .dots.exhausted,
+.alienrpg .crt .dots.panic {
+  width: 100%;
+  background-color: var(--alienoddtab);
+}
+.alienrpg .crt .overwatch {
+  margin: 15px 0 25px 13px;
+}
+.alienrpg .crt .overwatch_synth {
+  /* margin: 20px 0 15px 13px ; */
+  margin: 6px 0 0 13px;
+}
+.alienrpg .crt .dots.panic .panicked {
+  color: white;
+  background-color: red;
+  margin-top: -5px;
+  margin-left: -7px;
+  padding-left: 6px;
+  border-top: 2px solid red;
+  border-bottom: 2px solid red;
+  font-weight: bold;
+  -webkit-box-shadow: 0 0 10px red;
+          box-shadow: 0 0 10px red;
+  -webkit-animation: textShadow 1s infinite;
+          animation: textShadow 1s infinite;
+}
+.alienrpg .crt .panicked-textarea {
+  margin-left: 60px;
+  border: 1px solid yellow;
+  background-color: orange;
+}
+.alienrpg .crt .panicked-textarea:focus {
+  border: 1px solid yellow;
+  background-color: yellow;
+  color: red;
+}
+.alienrpg .crt .dots.radiation {
+  border: 1px dashed var(--alienitemselect);
+  color: var(--alienitemselect);
+  width: 98%;
+  padding-top: 4px;
+  padding-bottom: 38px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  margin: 2px;
+}
+.alienrpg .crt #bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.alienrpg .crt .dots.radiation.rad_glow {
+  background-color: var(--alienitemselect);
+  color: #000;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 10px yellow;
+          box-shadow: 0 0 10px yellow;
+}
+.alienrpg .crt .crt_grid_SynthStress {
+  display: grid;
+  grid-template-areas: "imitate-human_left imitate-human_right";
+  grid-template-columns: 20% 80%;
+}
+.alienrpg .crt .imitate-human_left {
+  padding: 7px 0 0 0;
+}
+.alienrpg .crt .imitate-human_right {
+  padding: 5px 0px 0px 10px;
+}
+.alienrpg .crt .synth-label {
+  width: 100%;
+  margin-top: 2px;
+  padding: 6px 0px 5px 0px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.alienrpg .crt .alienrpgv .synth_fake_check {
+  color: var(--aliendarkergreen);
+  width: 100%;
+  margin-top: 12px;
+  padding: 6px 0px 6px 0px;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: var(--alienoddtab);
+}
+.alienrpg .crt .fas.fa-parachute-box {
+  vertical-align: top;
+  padding-top: 6px;
+  padding-left: 3px;
+}
+.alienrpg .crt .fa-parachute-box:before {
+  content: "\f49e";
+}
+.alienrpg .crt .crt_Item3 .supply-btn.Power2 {
+  padding-left: 6px;
+  font-size: 20px;
+}
+.alienrpg .crt .crt_gridCarrer {
+  display: grid;
+  grid-template-areas: "crt_box1 crt_box2 crt_box3 crt_box4";
+  padding: 0px;
+  padding-top: 1px;
+  grid-template-columns: 17% 36% 17% 30%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 2px;
+}
+.alienrpg .crt .crt_gridCarrer .crt_box1,
+.alienrpg .crt .crt_gridCarrer .crt_box2,
+.alienrpg .crt .crt_gridCarrer .crt_box3,
+.alienrpg .crt .crt_gridCarrer .crt_box4 {
+  justify-self: center;
+  max-width: 100%;
+  padding-top: 0px;
+}
+.alienrpg .crt .crt_gridSpecialty {
+  display: grid;
+  grid-template-areas: "crt_sbox1 crt_sbox2";
+  padding: 4px 0px 3px 0px;
+  grid-template-columns: 17% 83%;
+  margin-bottom: 2px;
+}
+.alienrpg .crt .crt_gridSpecialty .crt_sbox1,
+.alienrpg .crt .crt_gridSpecialty .crt_sbox2 {
+  justify-self: center;
+  max-width: 100%;
+  padding-top: 0px;
+}
+.alienrpg .crt .crt_grid-special {
+  grid-area: crt_sbox2;
+  display: grid;
+  width: 100%;
+  grid-template-areas: "crt_spe1 crt_spe2";
+  grid-template-columns: 75% 25%;
+}
+.alienrpg .crt .crt .crt_spe1 {
+  grid-area: crt_spe1;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+.alienrpg .crt .crt_spe2 {
+  grid-area: crt_spe2;
+  padding-right: 5px;
+  justify-self: right;
+}
+.alienrpg .crt .crt_Item4,
+.alienrpg .crt .crt_Item5,
+.alienrpg .crt .crt_Item6,
+.alienrpg .crt .crt_Item7,
+.alienrpg .crt .crt_Item8,
+.alienrpg .crt .crt_Item9 {
+  border: 0px solid var(--aliengreen);
+  margin-bottom: 3px;
+}
+.alienrpg .crt_Item4 .resource-label-header,
+.alienrpg .crt_Item5 .resource-label-header,
+.alienrpg .crt_Item6 .resource-label-header,
+.alienrpg .crt_Item7 .resource-label-header,
+.alienrpg .crt_Item8 .resource-label-header,
+.alienrpg .crt_Item9 .resource-label-header {
+  display: block;
+  width: 100%;
+  padding: 1px 0px 1px 2px;
+  color: #000;
+  font-weight: bolder;
+  text-transform: uppercase;
+  background-color: var(--aliendarkergreen);
+}
+.alienrpg .crt .crt_Item4 {
+  height: 50px;
+}
+.alienrpg .crt .crt_Item5 textarea {
+  height: 107px;
+}
+.alienrpg .crt .crt_Item5 textarea:hover,
+.alienrpg .crt .crt_Item7 textarea:hover {
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .crt .crt_Item6 {
+  height: 216px;
+  border: 1px solid var(--aliendarkergreen);
+  margin-bottom: 0px;
+}
+.alienrpg .crt .crt_Item7 textarea {
+  height: 87px;
+}
+.alienrpg .crt .crt_Item8 {
+  padding-bottom: 2px;
+}
+.alienrpg .crt .crt_Item8 input,
+.alienrpg .crt .crt_Item9 input {
+  margin: 0px;
+  width: 100%;
+}
+.alienrpg .crt .crt_Relat {
+  display: grid;
+  grid-template-areas: "crt_Relat_Buddy crt_Relat_Rival";
+  grid-template-columns: 49%;
+  grid-column-gap: 5px;
+}
+.alienrpg .crt_Col3 {
+  grid-area: crt_Col3;
+  padding-top: 10px;
+  color: var(--aliendarkergreen);
+  font-family: var(--alienfont);
+}
+.alienrpg .crt.grid-attr {
+  border: 0px solid var(--aliengreen);
+}
+.alienrpg .crt .talent-btn:hover,
+.alienrpg .crt .talent-btn:focus {
+  -webkit-box-shadow: 0 0 7px var(--aliengreen);
+          box-shadow: 0 0 7px var(--aliengreen);
+  text-shadow: 0 0 15px var(--aliengreen);
+  background-color: var(--aliengreen);
+  cursor: help;
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: #000;
+}
+.alienrpg .crt .rollable {
+  width: 90%;
+  text-align: center;
+}
+.alienrpg .crt .rollable:hover,
+.alienrpg .crt .rollable:focus {
+  color: #000;
+  font-size: 110%;
+  font-weight: bolder;
+  background-color: var(--aliengreen);
+  border: 1px solid var(--aliengreen);
+  text-shadow: 0 0 0px var(--aliengreen);
+  -webkit-box-shadow: 0 0 5px var(--aliengreen);
+          box-shadow: 0 0 5px var(--aliengreen);
+  cursor: pointer;
+}
+.alienrpg .crt .rollItem,
+.alienrpg .crt .creature-acid-roll {
+  width: 100%;
+  text-align: center;
+}
+.alienrpg .crt .rollItem:hover,
+.alienrpg .crt .rollItem:focus {
+  text-shadow: 0 0 15px var(--aliengreen);
+  -webkit-box-shadow: 0 0 7px var(--aliengreen);
+          box-shadow: 0 0 7px var(--aliengreen);
+  background-color: var(--aliengreen);
+  color: #000;
+  font-size: 100%;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+.alienrpg .crt .grid-talents {
+  text-align: center;
+  grid-template-columns: 90% 10%;
+}
+.alienrpg .crt .talTitle {
+  text-transform: uppercase;
+  color: #000;
+  background-color: var(--aliengreen);
+}
+.alienrpg .crt .item-header {
+  /* background-color: var(--aliendarkergreen); */
+  /* color: black; */
+}
+.alienrpg .crt .textbox {
+  color: ghostwhite;
+  font-family: var(--alienchatfont);
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+.alienrpg .crt .textbox:focus {
+  font-weight: 400;
+}
+.alienrpg .crt .encumbrance .encumbrance-bar {
+  background: var(--alienitemselect);
+}
+.alienrpg .crt .blink {
+  padding: 0px 0px 2px 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: red;
+  color: white;
+  text-shadow: 0 0 5px red;
+  -webkit-animation: blink 0.5s 5;
+          animation: blink 0.5s 5;
+}
+.alienrpg .crt_lCol6 {
+  justify-self: center;
+}
+.alienrpg .crt .crit-injuries {
+  margin-top: 118px;
+}
+.alienrpg .crt .grid-crit {
+  grid-template-columns: 95% 5%;
+}
+.alienrpg .crt_crit2 {
+  text-align: center;
+  font-size: 15px;
+}
+.alienrpg .crt .Item11 {
+  border: 0px solid var(--aliengreen);
+}
+.alienrpg .crt .Item11 .items-list {
+  height: 179px;
+}
+.alienrpg .crt .critical-inj {
+  padding-bottom: 10px;
+}
+.alienrpg .crt .resource-label-header.rollCrit:hover {
+  font-size: 15px;
+  background-color: var(--aliendarkergreen);
+  -webkit-animation: textShadow 1s infinite;
+          animation: textShadow 1s infinite;
+}
+.alienrpg .crt_box4 {
+  padding: 7px 0px 0px 7px;
+}
+.alienrpg .crt .crt_Col1 {
+  margin-left: -5px;
+}
+.alienrpg .crt .fas.fa-tools {
+  vertical-align: top;
+  padding-top: 13px;
+  margin-left: 5px;
+}
+.alienrpg .crt .fas.fa-tools:hover {
+  cursor: help;
+}
+.alienrpg .crt .fas.fa-tools:before {
+  content: "\f022";
+}
+.alienrpg .crt .fas:hover {
+  color: var(--aliengreen);
+  text-shadow: 0 0 2px var(--aliengreen);
+  -webkit-animation: textShadow 0.5s 0.3;
+          animation: textShadow 0.5s 0.3;
+}
+.alienrpg .crt .items-list .item-header {
+  border-bottom-style: solid;
+  border-bottom-color: var(--aliengreen);
+}
+.alienrpg .crt .Col3 .panel {
+  margin-left: 5px;
+  padding: 0 10px 0 10px;
+  border-left: 2px inset var(--aliengreen);
+}
+.alienrpg .crt .tab.inventory .fas {
+  margin-right: 10px;
+}
+.alienrpg .crt .creature-acid-roll:hover,
+.alienrpg .crt .creature-acid-roll:focus {
+  text-shadow: 0 0 0px var(--aliengreen);
+  color: var(--aliengreen);
+  background-color: #000;
+  font-weight: 1;
+  font-size: 110%;
+  border: 0px solid var(--aliengreen);
+  -webkit-animation: textShadow 1s infinite;
+          animation: textShadow 1s infinite;
+}
+.alienrpg .crt .creature-attack-roll {
+  width: 260px;
+  height: 40px;
+  border-radius: 3px;
+  text-shadow: 0 0 rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
+  background: url(../images/alien_crt_roll-attack.png) no-repeat top left;
+}
+.alienrpg .crt .creature-attack-roll:hover {
+  border-radius: 3px;
+  background-color: var(--aliendarkergreen);
+  text-shadow: 0 0 rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
+  background: url(../images/alien_crt_roll-attack_hover.gif) no-repeat top left;
+}
+.alienrpg .crt .profile-img-item {
+  margin: 0;
+  height: 125px;
+  width: auto;
+  margin-right: 4px;
+  border-radius: 10px;
+}
+.alienrpg .crt .textbox1,
+.alienrpg .crt .textbox2 {
+  padding-left: 5px;
 }/*# sourceMappingURL=alienrpg.css.map */

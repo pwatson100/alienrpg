@@ -33,7 +33,8 @@
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
-  width: 150px;
+  width: auto;
+  justify-self: center;
 }
 .profile-img-vehicle {
   flex: 0 0 100px;
@@ -73,7 +74,7 @@ h1.charname {
   //  color: $c-green;
 }
 
-.alienrpg .sheet-body,
+// .sheet-body,
 .tab,
 .editor {
   height: 100%; //  Do not change this or notes will stop working
@@ -224,4 +225,5 @@ form .sheet-content .click-stat-level {
   margin-right: 8px;
   font-weight: 700;
   font-size: 15px;
+  flex-wrap: wrap;
 }

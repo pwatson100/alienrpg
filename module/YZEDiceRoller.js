@@ -27,7 +27,7 @@ export class yze {
    * yze.yzeRoll(actortype, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
    */
-  static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid, itemid) {
+  static async yzeRoll(actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2, actorid, itemid, tactorid) {
     // console.log('yze -> yzeRoll -> actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2', actortype, blind, reRoll, label, r1Dice, col1, r2Dice, col2);
     // *******************************************************
     // Store the version number of FVTT
@@ -63,7 +63,7 @@ export class yze {
     // *******************************************************
     let rType = '';
     // if (reRoll && (hostile === true) === 'character') {
-    if ((reRoll && actortype === 'character' && label != 'Armor') || reRoll === 'mPush') {
+    if ((reRoll && actortype === 'character' && label != 'Armor' && label != 'Radiation') || reRoll === 'mPush') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
       rType = game.i18n.localize('ALIENRPG.Rolling');
@@ -101,7 +101,7 @@ export class yze {
     // *******************************************************
     // Handle Base Dice Roll
     // *******************************************************
-    chatMessage += '<h2 style="color:  #fff">' + rType + ' ' + label + ' </h2>';
+    chatMessage += '<h2 class="alienchatwhite">' + rType + ' ' + label + ' </h2>';
     if (r1Dice >= 1) {
       roll1 = `${r1Dice}` + 'db';
       if (r2Dice <= 0) {
@@ -110,6 +110,14 @@ export class yze {
         buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
         // console.log('yze -> yzeRoll -> mr', mr);
       }
+    } else {
+      if (r1Dice < 0) {
+        r2Dice = r2Dice + r1Dice
+        if (r2Dice < 1) {
+          return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoDice'));
+        }
+      }
+      roll1 = 0 + 'db';
     }
 
     // *******************************************************
@@ -153,10 +161,10 @@ export class yze {
       // *******************************************************
       if (actortype != 'supply') {
         if (game.alienrpg.rollArr.r2One >= 1) {
-          chatMessage += '<div class="blink"; style="color: red; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.rollStress') + '</div>';
+          chatMessage += '<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.rollStress') + '</div>';
         }
       } else if (game.alienrpg.rollArr.r2One >= 1) {
-        chatMessage += '<div class="blink"; style="color: blue; font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.supplyDecreases') + '</div>';
+        chatMessage += '<div class="alienchatblue warnblink"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.supplyDecreases') + '</div>';
       }
     }
     // *******************************************************
@@ -164,17 +172,44 @@ export class yze {
     // *******************************************************
 
     function localizedCountOfSuccesses(sTotal) {
-      if (sTotal === 1) return '1 ' + game.i18n.localize('ALIENRPG.sucess');
-      else return sTotal + ' ' + game.i18n.localize('ALIENRPG.sucesses');
+      if (label === 'Radiation') {
+        if (sTotal >= 1) {
+          return sTotal + ' ' + '<span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.healthDamage') + '</span>';
+          // return sTotal + ' ' + game.i18n.localize('ALIENRPG.healthDamage');
+        } else {
+          return sTotal + ' ' + game.i18n.localize('ALIENRPG.healthDamage');
+        }
+      } else {
+        if (sTotal === 1) return '1 ' + game.i18n.localize('ALIENRPG.sucess');
+        else return sTotal + ' ' + game.i18n.localize('ALIENRPG.sucesses');
+      }
     }
 
     if (actortype != 'supply') {
-      chatMessage +=
-        '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
-        game.i18n.localize('ALIENRPG.youHave') +
-        ' ' +
-        localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
-        ' </div>';
+      if (label === 'Radiation') {
+        if (game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount >= 1) {
+          chatMessage +=
+            '<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' +
+            game.i18n.localize('ALIENRPG.youTake') +
+            ' ' +
+            localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+            ' </div>';
+        } else {
+          chatMessage +=
+            '<div class="alienchatlightblue">' +
+            game.i18n.localize('ALIENRPG.youTake') +
+            ' ' +
+            localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+            ' </div>';
+        }
+      } else {
+        chatMessage +=
+          '<div class="alienchatlightblue">' +
+          game.i18n.localize('ALIENRPG.youHave') +
+          ' ' +
+          localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+          ' </div>';
+      }
     }
 
     // *******************************************************
@@ -184,7 +219,7 @@ export class yze {
     if (reRoll === 'push' || (reRoll === 'mPush' && actortype === 'character' && label != 'Armor')) {
       chatMessage +=
         '<hr>' +
-        '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+        '<div class="alienchatlightblue"' +
         game.i18n.localize('ALIENRPG.followingPush') +
         '<br>' +
         game.i18n.localize('ALIENRPG.totalOf') +
@@ -197,7 +232,7 @@ export class yze {
     if (spud) {
       chatMessage +=
         '<hr>' +
-        '<div style="color: #6868fc; font-weight: bold; font-size: larger">' +
+        '<div class="alienchatlightblue">' +
         game.i18n.localize('ALIENRPG.followingPush') +
         '<br>' +
         game.i18n.localize('ALIENRPG.totalOf') +
@@ -214,7 +249,7 @@ export class yze {
 
     if (!reRoll || reRoll === 'mPush') {
       if (reRoll != 'mPush') {
-        chatMessage += `<span>` + game.i18n.localize('ALIENRPG.MultiPush') + ` ` + `</span> <input class="multiPush" name="multiPush" type="checkbox" {{checked false}} /> `;
+        chatMessage += `<span style="font-size:larger">` + game.i18n.localize('ALIENRPG.MultiPush') + ` ` + `</span> <input class="multiPush" name="multiPush" type="checkbox" {{checked false}} /> `;
       }
       // chatMessage += `<button class="alien-Push-button" title="PUSH Roll?" style="color: #adff2f; font-weight: bold; font-size: xxx-large">` + game.i18n.localize('ALIENRPG.Push') + `</button>`;
       chatMessage += `<button class="alien-Push-button" title="PUSH Roll?">` + game.i18n.localize('ALIENRPG.Push') + `</button>`;
@@ -227,12 +262,13 @@ export class yze {
 
     if (!blind) {
       ChatMessage.create({
-        user: game.user.data._id,
+        user: game.user.id,
         speaker: {
           actor: actorid,
+          // alias: tactorid,
         },
         content: chatMessage,
-        other: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
+        other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
         sound: CONFIG.sounds.dice,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,
@@ -240,12 +276,12 @@ export class yze {
       });
     } else {
       ChatMessage.create({
-        user: game.user.data._id,
+        user: game.user.id,
         speaker: {
           actor: actorid,
         },
         content: chatMessage,
-        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.data._id),
+        whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
         blind: true,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,
@@ -281,8 +317,8 @@ export class yze {
         game.alienrpg.rollArr.r1One = R1.length;
         let numOf6s = R6.length; // added by Steph
         let numOf1s = R1.length; // added by Steph
-        chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
-        chatMessage += '<span style="color: #03cf03">  ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
+        chatMessage += '<div <span class="alienchatlightgreen" style="font-size:larger">' + col1 + '  ' + r1Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
+        chatMessage += '<span <span class="alienchatlightgreen" style="font-size:larger"> ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
         chatMessage += `${R6.length}`;
         chatMessage += '<div>';
         // added by Steph (for loop, and moved div close)
@@ -309,8 +345,8 @@ export class yze {
           let numOfB6s = RB6.length; // added by Steph
           let numOfB1s = RB1.length; // added by Steph
           // Base Dice
-          chatMessage += '<div style="color: #03cf03">' + col1 + '  ' + r1Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
-          chatMessage += '<span style="color: #03cf03">  ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
+          chatMessage += '<div <span class="alienchatlightgreen" style="font-size:larger"> ' + col1 + '  ' + r1Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
+          chatMessage += '<span class="alienchatlightgreen" style="font-size:larger"> ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
           chatMessage += `${RB6.length}`;
           chatMessage += '<div>';
           // added by Steph (for loop, and moved div close)
@@ -351,10 +387,10 @@ export class yze {
         let numOfY1s = RY1.length; // added by Steph
 
         // Yellow Dice
-        chatMessage += '<div style="color: goldenrod; font-weight: bold">' + col2 + '  ' + r2Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
-        chatMessage += '<span style="color: red">' + game.i18n.localize('ALIENRPG.Ones') + '</span>';
-        chatMessage += `<span>${RY1.length}</span>`;
-        chatMessage += '<span style="color: #03cf03">  ' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
+        chatMessage += '<div class="alienchatgoldenrod" style="font-size:larger">' + col2 + '  ' + r2Dice + ' ' + game.i18n.localize('ALIENRPG.Dice') + '</div>';
+        chatMessage += '<span class="alienchatred">' + game.i18n.localize('ALIENRPG.Ones') + ' </span>';
+        chatMessage += `<span>${RY1.length}&nbsp;&nbsp;&nbsp;</span>`;
+        chatMessage += '<span class="alienchatlightgreen" style="font-size:larger">' + game.i18n.localize('ALIENRPG.Sixes') + '</span>';
         chatMessage += `${RY6.length}`;
         chatMessage += '<div>';
         // added by Steph (for loops, and moved div close)

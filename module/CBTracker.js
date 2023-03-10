@@ -26,7 +26,8 @@ export default class AlienRPGCTContext extends CombatTracker {
       {
         name: 'ALIENRPG.CombatantRemove',
         icon: '<i class="fas fa-skull"></i>',
-        callback: (li) => this.viewed.deleteCombatant(li.data('combatant-id')),
+        // callback: (li) => this.viewed.deleteCombatant(li.data('combatant-id')),
+        callback: (li) => this.viewed.deleteEmbeddedDocuments('Combatant', [li.data('combatant-id')]),
       },
       {
         name: 'ALIENRPG.CloneActor',

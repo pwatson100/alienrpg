@@ -394,3 +394,91 @@ Added Quantity field to the following Item types: Data Storage,Diagnostics Displ
 Created Planets and Territories will now show the correct icon in the sidebar and token.
 Corrected issue with selector background colour.
 Right click on the "Roll Crit" button pops a dialogue box asking for the crit number (D66 for Character and D6 for Synth). This then rolls against the table, writes to chat and creates the item on the sheet as per normal.
+
+Version 2.0.9
+Changed Status icons to "Active Effects" so they are persistent with the actor.
+Added "Overwatch" checkbox to character and synth sheets which displays a status icon on the token. 
+Put Radiation markers back on the Synth sheet. 
+An Actor having Radiation damage will now show a status icon on the Token and will roll to see if there is any health damage.  
+If there is it must be applied manually I did not automate this in case there are any cures to be applied. 
+Tidied up the Character and Synthetic character sheets. 
+
+Version 2.1.0
+Added Max hull box to the vehicle sheet.
+Added quantity to weapons sheets and actor inventory.
+Added Radiation and Encumbrance Status icons to "Active Effects" to Synthetics.
+Encumbrance now calculates correctly for items with a quantity >1.
+Characters and Synthetics now have 20 xp dots.
+Fixed issue with removing actors from the combat tracker. 
+Fixed issue with Condition icons not showing in Firefox.
+Updated the Vehicle sheet to:
+    Allow Actors to be dropped on and assigned crew positions (Big thanks to @Stefouch for allowing me to "borrow" his code).
+    Pilot clicks (right click for modifiers) on "Piloting" on the crew tab to make piloting rolls (which include stress dice).
+    Clicking on a weapon will show a popup allowing those crew with "Pilot" or "Gunner" to be selected as well as any roll modifications.
+    Players making piloting or firing weapons can push rolls as normal and Stress dice will be applied to the PC.
+    Armor Rating is now rollable (same pop up as normal armor). 
+    Inventory tab now includes the "Footlocker"
+Updated MO/TH/UR Instructions (Please Read).
+
+Version 2.1.1
+Added Italian translation with thanks to Stefano1975t
+Skill and attribute abbreviation on the Character and Synthetic Skills tab are now localised.
+Agenda, Talent and Specialty items now set a default icon but can be changed as per a normal item..
+Added Critical Injury table dropdown and roll button to the Creature sheets (See MO/TH/ER Instructions for more information).
+Added a "Homebrew" selection to the character and synthetic Career dropdowns. 
+Increased width of crew position dropdown on the vehicle sheet as it was compressed when using Firefox. 
+Rolling Piloting on the vehicle sheet now includes the Manoeuvrability modifier.
+Fixed odd issue with weapons rolls on the vehicle sheet. 
+Corrected bug that sets Token Vision on creatures to "true".
+Fixed issue with Armor rolls on the Inventory sheet for Synthetics. 
+Fixed issue with /em chat background colour.
+Corrected issue with Maestro add-on not working for Vehicle weapons. 
+Corrected Radiation rolling issue when using languages other than English.
+Fixed error with weight calculation for armour when in the foot locker. 
+Refactored Critical Injury code. 
+
+Version 2.1.2
+FranzWarm wrote a really great add-on module called CRT UI.  Unfortunately he no longer supports the module so I have incorporated it into the core system.
+The UI components are now on by default and the sheets can be changed, by the players, selecting the CRT UI button on the "Configure Alien RPG Settings" menu. 
+(See MO/TH/ER Instructions for more information).  
+
+Version 2.1.3
+Corrected issue with translation tags on the Creature sheet when using CRT UI
+Right click on Armor on the CRT UI Creature sheet now displays armour options as it should. 
+Corrected issue with Xeno crit displaying an invalid image in chat and on the item.
+
+Version 2.1.4
+Corrected issue with modifiers not being added to item rolls. 
+
+Version 3.0.0
+Foundry V10 compatible
+New V10 macros for Roll on selected Creature table and Roll on selected Mother table - Ensure you update them.
+Dice roller now allows just Stress Dice to be rolled.  
+If the Base dice modifier is less than the attribute/skill is will subtract Stress dice in accordance with page 62 of the CRB.
+It is now possible to create your own Critical Injuries table (See MO/TH/ER Instructions for required format).
+Encumbrance for PC's with Pack Mule should now display correctly.
+Changed the way "Nerves of Steel" and "Tough" are applied which should/might sort out rare issue with tokens losing the adjusted stat.
+
+Version 3.0.1
+Fixed looping issue when adding Tough or Nerves of Steel talents to characters.
+
+Version 3.0.2
+Fixed issue with Skill-Stunts not being installed as part of the import. 
+Fixed issue with "hide Journal background" not working. 
+Adjusted chat colours to make them easier to read. 
+Increased the size of the chat card fonts to make them easier to read.  
+Fixed issue with font sizing of the Attack Roll and Roll Crit buttons on UltrWide screens 
+
+Version 3.0.3
+Fix to chat dice tooltip image size issue caused by Foundry V10.290
+the chat text for Private GM Roll, Blind GM Roll and Self roll now appear in green text for ease of differentiation. 
+
+Version 3.0.4
+CSS update for Whisper.
+
+Version 3.0.5
+Nerves of Steel modifier (- 2 stress dice) being incorrectly deducted from Item rolls on characters and vehicles. 
+Comments on the Item sheets now use the rich text editor.
+Removed settings for fonts that were not available in the browser.
+Updated German language file with thanks to @kingofkong#6768
+
