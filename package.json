@@ -2,8 +2,7 @@
   "name": "alienrpg",
   "version": "1.0.0",
   "description": "CSS compiler for the Alien RPG system",
-  "scripts": {
-  },
+  "scripts": {},
   "browserslist": [
     "last 3 versions"
   ],
