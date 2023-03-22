@@ -187,6 +187,7 @@
     "NoDice": "Keine Würfel zum Rollen",
     "NoItem": "Deine Figur hat diesen Gegenstand nicht",
     "None": "Keiner",
+    "NoPanicTable": "You need to Import the Panic Table - Configuration> Alien RPG > Re-Import",
     "NoSkill": "Keine Fertigkeit",
     "NoStress": "Kein Stress.",
     "NoSupplys": "Dein Vorrat ist leer",

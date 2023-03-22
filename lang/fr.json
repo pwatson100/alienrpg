@@ -187,6 +187,7 @@
     "NoDice": "Pas de dés à lancer",
     "NoItem": "Votre acteur contrôlé n'a pas d'élément nommé",
     "None": "Rien",
+    "NoPanicTable": "You need to Import the Panic Table - Configuration> Alien RPG > Re-Import",
     "NoSkill": "Aucune compétence",
     "NoStress": "Pas de Stress",
     "NoSupplys": "Vous êtes à court de fournitures",

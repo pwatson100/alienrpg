@@ -187,6 +187,7 @@
     "NoDice": "Sem dados para rolar",
     "NoItem": "O Ator que você controla não possui um Item nomeado",
     "None": "Nenhum(a)",
+    "NoPanicTable": "You need to Import the Panic Table - Configuration> Alien RPG > Re-Import",
     "NoSkill": "Sem Habilidade",
     "NoStress": "Sem estresse",
     "NoSupplys": "Você está sem Abastecimento",

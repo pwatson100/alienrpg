@@ -187,6 +187,7 @@
     "NoDice": "No hay dados para tirar",
     "NoItem": "Tu personaje no tiene un objeto llamado",
     "None": "Ninguno",
+    "NoPanicTable": "You need to Import the Panic Table - Configuration> Alien RPG > Re-Import",
     "NoSkill": "Sin habilidad",
     "NoStress": "Sin Tensión",
     "NoSupplys": "Te has quedado sin reservas",

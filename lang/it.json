@@ -187,6 +187,7 @@
     "NoDice": "Nessun dado da tirare",
     "NoItem": "Il tuo Personaggio controllato non ha un oggetto col nome",
     "None": "Nulla",
+    "NoPanicTable": "You need to Import the Panic Table - Configuration> Alien RPG > Re-Import",
     "NoSkill": "Nessuna Sbilità",
     "NoStress": "Nessuno Stress",
     "NoSupplys": "Hai esaurito le tue scorte",

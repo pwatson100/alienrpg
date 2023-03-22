@@ -481,4 +481,5 @@ Nerves of Steel modifier (- 2 stress dice) being incorrectly deducted from Item 
 Comments on the Item sheets now use the rich text editor.
 Removed settings for fonts that were not available in the browser.
 Updated German language file with thanks to @kingofkong#6768
+Added warning if the Panic Table has not been imported when Stress button pushed.
 

@@ -187,6 +187,7 @@
     "NoDice": "没有骰子可滚",
     "NoItem": "你控制的角色拥有一件未命名的物品",
     "None": "莫",
+    "NoPanicTable": "You need to Import the Panic Table - Configuration> Alien RPG > Re-Import",
     "NoSkill": "没有技能",
     "NoStress": "没有压力",
     "NoSupplys": "你的补给已耗尽。",

@@ -187,6 +187,7 @@
     "NoDice": "No Dice to Roll",
     "NoItem": "Your controlled Actor does not have an item named",
     "None": "None",
+    "NoPanicTable": "You need to Import the Panic Table - Configuration> Alien RPG > Re-Import",
     "NoSkill": "No Skill",
     "NoStress": "No Stress",
     "NoSupplys": "You have run out of supplies",
