@@ -11,29 +11,14 @@
       "savePath": "/css"
     }
   ],
-  "liveSassCompile.settings.excludeList": [
-    "**/node_modules/**",
-    ".vscode/**",
-    ".github/**"
-  ],
+  "liveSassCompile.settings.excludeList": ["/**/node_modules/**", "/.vscode/**", "/.github/**"],
   "liveSassCompile.settings.generateMap": true,
-  "liveSassCompile.settings.autoprefix": [
-    "> 1%",
-    "last 2 versions"
-  ],
+  "liveSassCompile.settings.autoprefix": ["> 1%", "last 2 versions"],
   "files.associations": {
     "*.html": "handlebars"
   },
   "cSpell.language": "en-GB",
-  "cSpell.words": [
-    "armor",
-    "colorset",
-    "FVTT",
-    "gulpfile",
-    "relevent",
-    "reroll",
-    "spbutt",
-    "typhonjs"
-  ],
-  "projectManager.groupList": true
+  "cSpell.words": ["armor", "colorset", "FVTT", "gulpfile", "relevent", "reroll", "spbutt", "typhonjs"],
+  "projectManager.groupList": true,
+  "vscode-edge-devtools.sourceMaps": true
 }

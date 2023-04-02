@@ -10,7 +10,9 @@ export class alienrpgItemSheet extends ItemSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'item', 'item-sheet'],
       width: 675,
-      height: 489 + 'max-content',
+      // height: 489 + 'max-content',
+      // height: 566 - 'max-content',
+      height: 536,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -38,21 +40,11 @@ export class alienrpgItemSheet extends ItemSheet {
   /** @override */
   async getData() {
     const data = await super.getData();
-    // const item = foundry.utils.deepClone(this.item.data);
-    // debugger;
-    // let item = data.item;
     const item = data.item.toJSON();
     // console.log(data);
-
-    // const item = duplicate(this.item.data);
-    // const data = item;
     switch (item.type) {
       case 'planet-system':
-        // this._prepareSystemData(item);
-        let enrichedFields = [
-          "system.misc.comment.value",
-        ];
-        await this._enrichTextFields(item, enrichedFields);
+        this._prepareSystemData(item);
         break;
       case 'critical-injury':
         let enrichedFields1 = [
@@ -74,12 +66,7 @@ export class alienrpgItemSheet extends ItemSheet {
         break;
 
       case 'talent':
-        let enrichedFields6 = [
-          "system.notes.notes",
-          "system.general.comment.value",
-        ];
-        await this._enrichTextFields(item, enrichedFields6);
-
+        await this._prepareTalentData(item)
         break;
 
       default:
@@ -87,6 +74,7 @@ export class alienrpgItemSheet extends ItemSheet {
         let enrichedFieldsDef = [
           "system.notes.notes",
           "system.general.comment.value",
+          "system.attributes.comment.value",
         ];
         await this._enrichTextFields(item, enrichedFieldsDef);
 
@@ -98,14 +86,21 @@ export class alienrpgItemSheet extends ItemSheet {
 
   async _prepareSystemData(data) {
     this.item.update({ img: 'systems/alienrpg/images/icons/solar-system.svg' });
+    let enrichedFields = [
+      "system.misc.comment.value",
+    ];
+    await this._enrichTextFields(data, enrichedFields);
   }
 
   async _prepareAgendaData(data) {
-    this.item.update({ img: 'systems/alienrpg/images/icons/personal-agenda.png' });
     let enrichedFields2 = [
       "system.general.comment.value",
     ];
     await this._enrichTextFields(data, enrichedFields2);
+
+    if (this.item.img == 'icons/svg/item-bag.svg' && this.item.img != this.img) {
+      this.item.update({ img: 'systems/alienrpg/images/icons/personal-agenda.png' });
+    }
 
   }
 
@@ -124,17 +119,13 @@ export class alienrpgItemSheet extends ItemSheet {
     } else {
       this.item.update({ img: 'systems/alienrpg/images/icons/fire-dash.svg' });
     }
-  }
 
-  /** @override */
-  // setPosition(options = {}) {
-  //   const position = super.setPosition(options);
-  //   const sheetBody = this.element.find('.sheet-body');
-  //   // const bodyHeight = position.height - 192;
-  //   const bodyHeight = position.height;
-  //   sheetBody.css('height', bodyHeight);
-  //   return position;
-  // }
+    let enrichedFields6 = [
+      "system.notes.notes",
+      "system.general.comment.value",
+    ];
+    await this._enrichTextFields(data, enrichedFields6);
+  }
 
   /* -------------------------------------------- */
 

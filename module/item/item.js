@@ -37,10 +37,7 @@ export class alienrpgItem extends Item {
     let r2Data = 0;
     let reRoll = false;
     if (this.actor.type === 'character') {
-      let aStressMod = actorData.header.stress.mod;
-
-      r2Data = parseInt(this.actor.getRollData().stress) + parseInt(aStressMod)
-      // r2Data = this.actor.getRollData().stress;
+      r2Data = this.actor.getRollData().stress;
       reRoll = false;
     } else {
       r2Data = 0;
@@ -56,7 +53,7 @@ export class alienrpgItem extends Item {
 
     if (right) {
       // ************************************
-      // Right Click Roll sodisplay modboxes
+      // Right Click Roll so display modboxes
       // ************************************
 
       // call pop up box here to get any mods then update r1Data or rData as appropriate.
@@ -258,10 +255,11 @@ export class alienrpgItem extends Item {
                 let tactorid = fCrew[shooter].firerID;
                 let modifier = parseInt(html.find('[name=modifier]')[0].value);
                 let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
-                let aStressMod = parseInt(game.actors.get(tactorid).system.header?.stress?.mod || 0);
+                // let aStressMod = parseInt(game.actors.get(tactorid).system.header?.stress?.mod || 0);
                 let aStressVal = parseInt(game.actors.get(tactorid).system.header?.stress?.value || 0);
                 let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(tactorid).system.skills.rangedCbt.mod);
-                let r2Data = parseInt(aStressVal + aStressMod + stressMod);
+                // let r2Data = parseInt(aStressVal + aStressMod + stressMod);
+                let r2Data = parseInt(aStressVal + stressMod);
                 label += ` (${this.actor.name}) `;
                 // label += ` (${fCrew[shooter].firerName}) `;
 

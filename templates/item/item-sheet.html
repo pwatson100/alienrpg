@@ -41,7 +41,7 @@
   </nav>
 
   {{!-- Sheet Body --}}
-  <section class="sheet-body" style="height: 300px">
+  <section class="sheet-body" style="height: 250px">
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
       {{#ife system.header.type.value '1'}}
@@ -119,7 +119,9 @@
       {{/ife}}
 
       <h2 class="resource-label">{{localize 'ALIENRPG.Comment'}}</h2>
-      <textarea name="system.attributes.comment.value" rows="12" data-dtype="String">{{system.attributes.comment.value}}</textarea>
+      {{!-- <textarea name="system.attributes.comment.value" rows="12" data-dtype="String">{{system.attributes.comment.value}}</textarea> --}}
+      <div class="tab item" style="border: solid 1px; padding: 5px">{{editor system.attributes.comment.value target="system.attributes.comment.value" button=true owner=owner editable=true}}</div>
+
     </div>
 
     <div class="tab modifiers" data-group="primary" data-tab="modifiers">

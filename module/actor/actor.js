@@ -261,6 +261,9 @@ export class alienrpgActor extends Actor {
         let chatMessage = '';
         const table = game.tables.getName('Panic Table');
         // let aStress = actor.getRollData().stress;
+        if (!table) {
+          return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
+        }
 
         let rollModifier = parseInt(modifier) + parseInt(stressMod);
         // console.log('🚀 ~ file: actor.js ~ line 432 ~ alienrpgActor ~ rollAbility ~ rollModifier', rollModifier);

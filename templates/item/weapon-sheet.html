@@ -1,4 +1,4 @@
-<form class="{{cssClass}} " autocomplete="off">
+<form class="{{cssClass}}" autocomplete="off">
   <header class="vehicle-header">
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize " ALIENRPG.Name"}}" /></h1>
@@ -34,7 +34,7 @@
   </nav>
 
   {{!-- Sheet Body --}}
-  <section class="sheet-body" style="height: 300px">
+  <section class="sheet-body" style="height: 180px">
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
       <div class="grid-weapon-body">
@@ -74,7 +74,9 @@
         <input type="text" class="maxboxsize wCol14" style="margin-top: 5px" name="system.attributes.quantity.value" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
       </div>
       <h2 class="resource-label">{{localize "ALIENRPG.Comment"}}</h2>
-      <textarea name="system.attributes.comment.value" rows="10" data-dtype="String">{{system.attributes.comment.value}}</textarea>
+      {{!-- <textarea name="system.attributes.comment.value" rows="10" data-dtype="String">{{system.attributes.comment.value}}</textarea> --}}
+      <div class="tab item" style="border: solid 1px; padding: 5px">{{editor system.attributes.comment.value target="system.attributes.comment.value" button=true owner=owner editable=true}}</div>
+
     </div>
 
     {{!-- Notes Tab --}}
