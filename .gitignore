@@ -5,3 +5,5 @@ foundry.js
 package-lock.json
 package.json
 alienrpg.lock
+packs/alien-rpg-system/
+macros/create-actor.js
