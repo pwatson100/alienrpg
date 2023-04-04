@@ -191,6 +191,10 @@ a.content-link {
   color: var(--aliengreen);
 }
 
+.dice-tooltip .roll > img {
+  width: 24px;
+}
+
 .dice-tooltip {
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
@@ -375,7 +379,8 @@ a.inline-roll {
   height: 40px;
   // font-size: 25pt;
   font-weight: bold;
-  font-size: clamp(1.5rem, 1.3vw, 4rem);
+  font-size: 2em;
+  /* font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem); */
   text-shadow: 2px 2px hsl(128, 83%, 25%);
   border: 2px solid var(--aliengreen);
   border-radius: 25px;
@@ -423,14 +428,14 @@ button:focus {
 
 .alien-crit-button {
   display: inline-block;
-  // width: 150px;
+  width: 280px;
   height: 26px;
   border: 2px solid var(--aliengreen);
   border-radius: 25px;
   color: var(--aliengreen);
   font-weight: bold;
-  // font-size: var(--fontsize);
-  font-size: clamp(1rem, 1vw, 2rem);
+  font-size: 1.2rem;
+  // font-size: clamp(1rem, 1vw, 2rem);
 
   font-family: var(--alienfont);
   line-height: inherit;
@@ -568,4 +573,37 @@ button:focus {
   border-width: 1px;
   border-style: solid;
   border-color: transparent transparent transparent var(--aliengreen);
+}
+
+// .dice-tooltip .dice-rolls .roll.d6 {
+//   background-image: url(../icons/svg/d6-grey.svg);
+// }
+
+.alienchatwhite {
+  color: var(--alienchatwhite);
+}
+
+.alienchatred {
+  color: var(--alienchatred);
+  font-weight: bolder;
+  font-size: larger;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-color: var(--alienchatredshadow);
+}
+
+.alienchatblue {
+  color: var(--alienchatblue);
+}
+.alienchatlightblue {
+  color: var(--alienchatlightblue);
+  font-weight: bold;
+  font-size: larger;
+}
+.alienchatlightgreen {
+  color: var(--alienchatlightgreen);
+}
+.alienchatgoldenrod {
+  color: var(--alienchatgoldenrod);
+  font-weight: bold;
 }

@@ -459,6 +459,27 @@ It is now possible to create your own Critical Injuries table (See MO/TH/ER Inst
 Encumbrance for PC's with Pack Mule should now display correctly.
 Changed the way "Nerves of Steel" and "Tough" are applied which should/might sort out rare issue with tokens losing the adjusted stat.
 
-
 Version 3.0.1
 Fixed looping issue when adding Tough or Nerves of Steel talents to characters.
+
+Version 3.0.2
+Fixed issue with Skill-Stunts not being installed as part of the import. 
+Fixed issue with "hide Journal background" not working. 
+Adjusted chat colours to make them easier to read. 
+Increased the size of the chat card fonts to make them easier to read.  
+Fixed issue with font sizing of the Attack Roll and Roll Crit buttons on UltrWide screens 
+
+Version 3.0.3
+Fix to chat dice tooltip image size issue caused by Foundry V10.290
+the chat text for Private GM Roll, Blind GM Roll and Self roll now appear in green text for ease of differentiation. 
+
+Version 3.0.4
+CSS update for Whisper.
+
+Version 3.0.5
+Nerves of Steel modifier (- 2 stress dice) being incorrectly deducted from Item rolls on characters and vehicles. 
+Comments on the Item sheets now use the rich text editor.
+Removed settings for fonts that were not available in the browser.
+Updated German language file with thanks to @kingofkong#6768, Tobot and @Raldanash#6529
+Added warning if the Panic Table has not been imported when Stress button pushed.
+

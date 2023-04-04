@@ -325,7 +325,7 @@ combobox:focus {
 }
 
 .chat-message.whisper {
-  color: royalblue;
+  color: var(--alienchatlightblue);
 
   padding: 13px 15px 50px 11px;
   border-width: 0px;
@@ -340,7 +340,9 @@ combobox:focus {
 
 .chat-message.whisper span,
 .chat-message.whisper div {
-  color: royalblue;
+  color: var(--alienchatlightblue);
+
+  // color: royalblue;
 }
 
 .chat-message.whisper h2 {
@@ -398,6 +400,11 @@ combobox:focus {
   margin-bottom: 5px;
   // background-color: red;
   color: white;
+  text-shadow: 0 0 5px red;
+  animation: blink 0.5s 5;
+}
+
+.warnblink {
   text-shadow: 0 0 5px red;
   animation: blink 0.5s 5;
 }
