@@ -10,12 +10,12 @@
   },
   "version": "3.0.5",
   "compatibility": {
-    "minimum": "10",
-    "verified": "10",
+    "minimum": "11",
+    "verified": "11",
     "maximum": "11"
   },
-  "minimumCoreVersion": "10",
-  "compatibleCoreVersion": "10",
+  "minimumCoreVersion": "11",
+  "compatibleCoreVersion": "11",
   "scripts": [],
   "esmodules": ["module/alienrpg.js"],
   "styles": ["css/alienrpg.css"],
