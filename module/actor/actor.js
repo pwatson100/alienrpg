@@ -124,10 +124,10 @@ export class alienrpgActor extends Actor {
       'prototypeToken.name': `${data.name}`,
       'prototypeToken.bar1': { attribute: 'header.health' },
       'prototypeToken.bar2': { attribute: 'None' },
-      'prototypeToken.vision': true,
+      // 'prototypeToken.vision': true,
       'prototypeToken.actorLink': true,
-      'prototypeToken.brightSight': '8',
-      'prototypeToken.dimSight': '12',
+      'prototypeToken.sight.enabled': 'true',
+      'prototypeToken.sight.range': '12',
     };
     if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
       switch (data.type) {
@@ -140,14 +140,14 @@ export class alienrpgActor extends Actor {
         case 'creature':
           tokenProto['prototypeToken.actorLink'] = false;
           tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
-          tokenProto['prototypeToken.vision'] = false;
+          tokenProto['prototypeToken.sight.enabled'] = false;
           break;
         case 'synthetic':
           break;
         case 'territory':
           tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
           tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
-          tokenProto['prototypeToken.vision'] = false;
+          tokenProto['prototypeToken.sight.enabled'] = false;
           break;
       }
     }
