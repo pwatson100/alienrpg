@@ -624,7 +624,8 @@ export class alienrpgActor extends Actor {
 
     if (!existing) {
       effect.label = game.i18n.localize(effect.label);
-      effect['flags.core.statusId'] = effect.id;
+      effect['flags.core.statuses'] = effect.id;
+      effect['statuses'] = effect.id;
       delete effect.id;
       return this.createEmbeddedDocuments('ActiveEffect', [effect]);
     }
@@ -644,7 +645,7 @@ export class alienrpgActor extends Actor {
   }
 
   async hasCondition(conditionKey) {
-    let existing = this.effects.find((i) => i.getFlag('core', 'statusId') == conditionKey);
+    let existing = this.effects.find((i) => i.getFlag('core', 'statuses') == conditionKey);
     return existing;
   }
 
