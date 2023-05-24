@@ -1127,7 +1127,7 @@ export class alienrpgActorSheet extends ActorSheet {
       if (game.settings.get('alienrpg', 'dollar'))
          e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '0.00';
       else
-         e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
+         e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
     }
   }
   async _onOverwatchToggle(event) {
