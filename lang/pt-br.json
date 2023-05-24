@@ -98,6 +98,8 @@
     "DialTitle1": "Modificar Rolagem de ",
     "DialTitle2": " Verifica",
     "Dice": "Dado(s): ",
+    "Dollar": "Add $",
+    "DollarNote": "Automatically add $ symbol after editing Cash or Cost",
     "DRAW": "Desenhar",
     "EditItem": "Clicar Botão Esquerdo para Editar ou Direito para abrir Menu.",
     "EditItemTitle": "Editar Item",

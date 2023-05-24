@@ -98,6 +98,8 @@
     "DialTitle1": "Roll Modified",
     "DialTitle2": "check",
     "Dice": "Dice: ",
+    "Dollar": "Add $",
+    "DollarNote": "Automatically add $ symbol after editing Cash or Cost",
     "DRAW": "Draw",
     "EditItem": "Left Click to Edit, Right click to open context menu.",
     "EditItemTitle": "Edit Item",

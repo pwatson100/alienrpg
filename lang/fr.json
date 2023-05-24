@@ -98,6 +98,8 @@
     "DialTitle1": "Test Modifié",
     "DialTitle2": "Vérifier",
     "Dice": "Dé: ",
+    "Dollar": "Add $",
+    "DollarNote": "Automatically add $ symbol after editing Cash or Cost",
     "DRAW": "Dessiner",
     "EditItem": "Clic gauche pour éditer, clic droit pour ouvrir le menu contextuel.",
     "EditItemTitle": "Editer Equipement",

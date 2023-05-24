@@ -171,6 +171,15 @@ export default function () {
       location.reload();
     },
   });
+  
+  game.settings.register('alienrpg', 'dollar', {
+    name: 'ALIENRPG.Dollar',
+    hint: 'ALIENRPG.DollarNote',
+    scope: 'world',
+    type: Boolean,
+    default: true,
+    config: true,
+  });
 
   game.settings.register('alienrpg', 'ARPGSemaphore', {
     name: 'Semaphore Flag',

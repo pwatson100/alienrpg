@@ -98,6 +98,8 @@
     "DialTitle1": "投骰已修正",
     "DialTitle2": "检定",
     "Dice": "骰子: ",
+    "Dollar": "Add $",
+    "DollarNote": "Automatically add $ symbol after editing Cash or Cost",
     "DRAW": "画",
     "EditItem": "左键单击以进行编辑，右键单击以打开上下文菜单",
     "EditItemTitle": "修改物品",

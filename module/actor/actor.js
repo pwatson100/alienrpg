@@ -1115,7 +1115,10 @@ export class alienrpgActor extends Actor {
             case 'Yes ':
               cFatal = true;
               break;
-            case 'Yes, –1 ':
+            case 'Yes, -1 ':
+              cFatal = true;
+              break;
+            case 'Yes, -2 ':
               cFatal = true;
               break;
             default:
@@ -1136,9 +1139,8 @@ export class alienrpgActor extends Actor {
             case game.i18n.localize('ALIENRPG.OneShift') + ' ':
               healTime = 3;
               break;
-            case game.i18n.localize('ALIENRPG.OneDay'):
-              +' ';
-              healTime = 3;
+            case game.i18n.localize('ALIENRPG.OneDay') +' ':
+              healTime = 4;
               break;
             default:
               healTime = 0;
