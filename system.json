@@ -10,7 +10,7 @@
   },
   "version": "3.0.5",
   "compatibility": {
-    "minimum": "11",
+    "minimum": "10",
     "verified": "11",
     "maximum": "11"
   },
