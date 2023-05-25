@@ -98,6 +98,8 @@
     "DialTitle1": "Wurf modifiziert",
     "DialTitle2": "probe",
     "Dice": "Würfel: ",
+    "Dollar": "Add $",
+    "DollarNote": "Automatically add $ symbol after editing Cash or Cost",
     "DRAW": "ziehen",
     "EditItem": "Linksklick zum Bearbeiten, Rechtsklick zum Öffnen des Kontextmenüs.",
     "EditItemTitle": "Objekt bearbeiten",

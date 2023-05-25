@@ -98,6 +98,8 @@
     "DialTitle1": "Tiro modificato",
     "DialTitle2": "tiro",
     "Dice": "Dadi: ",
+    "Dollar": "Add $",
+    "DollarNote": "Automatically add $ symbol after editing Cash or Cost",
     "DRAW": "Pesca",
     "EditItem": "Click col tasto sinistro per editare, click col tasto destro per aprire il menu di scelta rapida.",
     "EditItemTitle": "Modifica Oggetto",

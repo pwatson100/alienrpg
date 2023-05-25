@@ -98,6 +98,8 @@
     "DialTitle1": "Tirada modificada",
     "DialTitle2": "Chequeo",
     "Dice": "Dado: ",
+    "Dollar": "Añadir $",
+    "DollarNote": "Añadir automaticamente el símbolo $ tras editar Dinero o Coste",
     "DRAW": "Dibujar",
     "EditItem": "Clic izquierdo para editar, clic derecho para abrir el menú contextual.",
     "EditItemTitle": "Editar Objeto",
