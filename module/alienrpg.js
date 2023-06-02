@@ -107,7 +107,7 @@ Hooks.once('init', async function () {
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();
 
-  Handlebars.registerHelper('concat', function () {
+  Handlebars.registerHelper('alienConcat', function () {
     var outStr = '';
     for (var arg in arguments) {
       if (typeof arguments[arg] != 'object') {

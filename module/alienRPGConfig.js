@@ -11,6 +11,7 @@ export class AlienConfig extends FormApplication {
       icon: 'fas fa-cogs',
       template: 'systems/alienrpg/module/alienprgSettings.html',
       width: 400,
+      height: 394,
       closeOnSubmit: true,
     });
   }
@@ -68,7 +69,7 @@ export class AlienConfig extends FormApplication {
     const button = $('#AlienRPGButton');
     const menu = game.settings.menus.get('alienrpg.alienrpgSettings');
 
-   if (button) button.remove();
+    if (button) button.remove();
 
     if (shown) {
       const title = game.i18n.localize('ALIENRPG.MenuLabel');

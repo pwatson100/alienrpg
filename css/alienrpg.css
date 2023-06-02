@@ -83,7 +83,7 @@
   position: absolute;
   left: -900%;
   top: -102%;
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
   color: var(--aliengreen);
@@ -97,14 +97,14 @@
 }
 
 .alienrpg .window-content {
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
 }
 
 .alienrpg form {
   font-family: var(--alienfont);
   color: var(--aliengreen);
   font-size: var(--fontsize);
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -127,9 +127,9 @@
 .journal-sheet select {
   font-family: var(--alienfont);
   color: inherit;
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
   border: var(--aliengreen) 3px;
-  border: 1px solid hsl(53deg, 4%, 46%);
+  border: 1px solid hsl(53, 4%, 46%);
   border-radius: 3px;
   padding: 0 3px;
   text-overflow: ellipsis;
@@ -138,13 +138,13 @@
 .journal-sheet input {
   font-family: var(--alienfont);
   color: inherit;
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
   border: var(--aliengreen) 3px;
 }
 .journal-sheet button {
   font-family: var(--alienfont);
   color: inherit;
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
   border: var(--aliengreen) solid 1px;
   width: 100%;
   margin: 0 1px;
@@ -153,31 +153,31 @@
   line-height: 28px;
 }
 .journal-sheet .tox .tox-editor-container {
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
 }
 
 a.entity-link {
-  color: hsl(0deg, 0%, 100%);
-  background: hsl(0deg, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 0%);
 }
 
 .alienrpg a.entity-link {
-  color: hsl(0deg, 0%, 100%);
-  background: hsl(0deg, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 0%);
 }
 
 a.content-link {
-  color: hsl(0deg, 0%, 100%);
-  background: hsl(0deg, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 0%);
 }
 
 .alienrpg a.content-link {
-  color: hsl(0deg, 0%, 100%);
-  background: hsl(0deg, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 0%);
 }
 
 #chat .message {
-  border: 1px solid hsl(0deg, 8%, 34%);
+  border: 1px solid hsl(0, 8%, 34%);
   border-radius: 1px;
 }
 
@@ -211,16 +211,16 @@ a.content-link {
 }
 
 .chat-message.whisper {
-  background: hsl(0deg, 0%, 9%);
+  background: hsl(0, 0%, 9%);
   color: var(--aliengreen);
 }
 
 .chat-message.blind {
-  background: hsl(0deg, 0%, 9%);
+  background: hsl(0, 0%, 9%);
 }
 
 .chat-message.emote {
-  background: hsl(0deg, 0%, 9%);
+  background: hsl(0, 0%, 9%);
 }
 
 .chat-message .critchat {
@@ -242,15 +242,15 @@ a.content-link {
 .dice-tooltip {
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
 }
 .dice-tooltip .dice-rolls {
   color: inherit;
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
 }
 .dice-tooltip .part-header {
   color: inherit;
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
 }
 
 .dice-tooltip .dice-rolls .roll {
@@ -270,13 +270,13 @@ a.content-link {
 
 .inline-roll .dice-tooltip {
   color: inherit;
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
   border: 2px solid var(--aliengreen);
   border-radius: 2px;
 }
 
 a.inline-roll {
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
   padding: 1px 4px;
   border: 1px solid var(--aliengreen);
   border-radius: 2px;
@@ -329,41 +329,41 @@ a.inline-roll {
 }
 
 .rollable:hover, .rollable:focus {
-  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
+  text-shadow: 0 0 20px hsl(0, 100%, 50%);
   font-size: 95%;
   cursor: pointer;
 }
 
 .rollableVeh:hover, .rollableVeh:focus {
-  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
+  text-shadow: 0 0 20px hsl(0, 100%, 50%);
   font-size: 1.3em;
   font-weight: bolder;
   cursor: pointer;
 }
 
 .creature-acid-roll:hover, .creature-acid-roll:focus {
-  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
+  text-shadow: 0 0 20px hsl(0, 100%, 50%);
   font-size: 95%;
   cursor: pointer;
 }
 
 .rollItem:hover, .rollItem:focus {
-  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
+  text-shadow: 0 0 20px hsl(0, 100%, 50%);
   font-size: 110%;
   font-weight: bolder;
   cursor: pointer;
 }
 
 .openItem:hover, .openItem:focus {
-  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
+  text-shadow: 0 0 20px hsl(0, 100%, 50%);
   font-size: 110%;
   font-weight: bolder;
   cursor: pointer;
 }
 
 .talent-btn:hover, .talent-btn:focus {
-  color: hsl(103deg, 100%, 28%);
-  text-shadow: 0 0 20px hsl(0deg, 100%, 50%);
+  color: hsl(103, 100%, 28%);
+  text-shadow: 0 0 20px hsl(0, 100%, 50%);
   font-weight: bolder;
   cursor: pointer;
 }
@@ -382,7 +382,7 @@ a.inline-roll {
 }
 
 .pwr-btn:hover, .pwr-btn:focus {
-  background-color: hsl(4deg, 69%, 53%);
+  background-color: hsl(4, 69%, 53%);
   font-size: 120%;
   font-weight: bolder;
   cursor: pointer;
@@ -401,7 +401,7 @@ a.inline-roll {
   font-weight: bold;
   font-size: 2em;
   /* font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem); */
-  text-shadow: 2px 2px hsl(128deg, 83%, 25%);
+  text-shadow: 2px 2px hsl(128, 83%, 25%);
   border: 2px solid var(--aliengreen);
   border-radius: 25px;
   color: var(--aliengreen);
@@ -411,8 +411,8 @@ a.inline-roll {
 
 .creature-attack-roll:hover {
   border-radius: 10px;
-  color: hsl(0deg, 100%, 50%);
-  text-shadow: 2px 2px hsl(0deg, 92%, 26%);
+  color: hsl(0, 100%, 50%);
+  text-shadow: 2px 2px hsl(0, 92%, 26%);
 }
 
 .creature-attack-roll:active {
@@ -433,7 +433,7 @@ button:focus {
   display: inline-block;
   width: 260px;
   height: 45px;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   font-weight: bold;
   font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
   font-family: var(--alienfont);
@@ -447,7 +447,7 @@ button:focus {
 
 .alien-Push-button:hover {
   border-radius: 10px;
-  color: hsl(0deg, 100%, 50%);
+  color: hsl(0, 100%, 50%);
 }
 
 .alien-crit-button {
@@ -465,7 +465,7 @@ button:focus {
 
 .alien-crit-button:hover {
   border-radius: 5px;
-  color: hsl(0deg, 100%, 50%);
+  color: hsl(0, 100%, 50%);
 }
 
 .alien-diceface-b0 {
@@ -522,7 +522,7 @@ button:focus {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 250px;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
@@ -552,13 +552,13 @@ button:focus {
 
 .alienrpg .inputtext {
   color: inherit;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
 }
 
 .ctooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted hsl(0deg, 0%, 0%);
+  border-bottom: 1px dotted hsl(0, 0%, 0%);
 }
 
 /* Tooltip text */
@@ -566,7 +566,7 @@ button:focus {
   font-size: small;
   visibility: hidden;
   width: 150px;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   color: var(--aliengreen);
   text-align: center;
   border-radius: 3px;
@@ -2665,10 +2665,10 @@ button:focus {
 }
 
 .alienrpg.actor .encumbrance {
-  background: hsla(0deg, 0%, 0%, 0.1);
+  background: hsla(0, 0%, 0%, 0.1);
   height: 12px;
   margin-top: 5px;
-  border: 1px solid hsl(0deg, 0%, 7%);
+  border: 1px solid hsl(0, 0%, 7%);
   border-radius: 3px;
   position: relative;
   width: calc(100% - 20px);
@@ -2680,7 +2680,7 @@ button:focus {
   left: 1px;
   background: var(--aliengreen);
   height: 8px;
-  border: 1px solid hsl(30deg, 32%, 33%);
+  border: 1px solid hsl(30, 32%, 33%);
   border-radius: 3px;
 }
 
@@ -2690,8 +2690,8 @@ button:focus {
   height: 16px;
   font-size: 16px;
   line-height: 16px;
-  color: hsl(0deg, 0%, 0%);
-  background: hsla(0deg, 0%, 100%, 0.4);
+  color: hsl(0, 0%, 0%);
+  background: hsla(0, 0%, 100%, 0.4);
   padding: 0 3px;
 }
 
@@ -2706,7 +2706,7 @@ button:focus {
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 4px solid hsl(0deg, 0%, 40%);
+  border-bottom: 4px solid hsl(0, 0%, 40%);
 }
 
 .alienrpg.actor .encumbrance .arrow-down {
@@ -2715,24 +2715,24 @@ button:focus {
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid hsl(0deg, 0%, 40%);
+  border-top: 4px solid hsl(0, 0%, 40%);
 }
 
 .alienrpg.actor .encumbrance.encumbered .arrow-up {
-  border-bottom: 4px solid hsl(0deg, 0%, 100%);
+  border-bottom: 4px solid hsl(0, 0%, 100%);
 }
 
 .alienrpg.actor .encumbrance.encumbered .arrow-down {
-  border-top: 4px solid hsl(0deg, 0%, 100%);
+  border-top: 4px solid hsl(0, 0%, 100%);
 }
 
 .alienrpg.actor .encumbrance.encumbered .encumbrance-bar {
   position: absolute;
   top: 1px;
   left: 1px;
-  background: hsl(7deg, 100%, 50%);
+  background: hsl(7, 100%, 50%);
   height: 8px;
-  border: 1px solid hsl(66deg, 75%, 45%);
+  border: 1px solid hsl(66, 75%, 45%);
   border-radius: 3px;
 }
 
@@ -2784,8 +2784,8 @@ button:focus {
           box-sizing: border-box;
   margin: 0;
   border: 1px solid var(--aliengreen);
-  -webkit-box-shadow: 0 1px 0 1px hsla(0deg, 0%, 0%, 0.04);
-          box-shadow: 0 1px 0 1px hsla(0deg, 0%, 0%, 0.04);
+  -webkit-box-shadow: 0 1px 0 1px hsla(0, 0%, 0%, 0.04);
+          box-shadow: 0 1px 0 1px hsla(0, 0%, 0%, 0.04);
   border-radius: 0.5em;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -2821,13 +2821,13 @@ button:focus {
   box-shadow: 0 0 0 1px -moz-mac-focusring var(--aliengreen);
   color: inherit;
   outline: none;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
 }
 
 /* Set options to normal weight */
 .select-css option {
   font-weight: normal;
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
 }
 
 /* Support for rtl text, explicit support for Arabic and Hebrew */
@@ -2848,7 +2848,7 @@ button:focus {
 
 .select-css:disabled:hover,
 .select-css[aria-disabled=true] {
-  border-color: hsl(0deg, 0%, 67%);
+  border-color: hsl(0, 0%, 67%);
 }
 
 /*
@@ -3411,7 +3411,7 @@ combobox:focus {
 }
 
 .sheet.journal-entry .sidebar .directory-header .header-search input {
-  color: hsl(0deg, 0%, 0%);
+  color: hsl(0, 0%, 0%);
 }
 
 .alienrpg .arpgtable {
@@ -3924,7 +3924,7 @@ combobox:focus {
 }
 .alienrpg .item-form {
   font-family: var(--alienfont);
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
 }
 .alienrpg .actor-header {
   -webkit-box-flex: 0;
@@ -3944,7 +3944,7 @@ combobox:focus {
       -ms-flex-pack: start;
           justify-content: flex-start;
   margin-bottom: 1px;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
 }
 .alienrpg .vehicle-header {
   overflow: hidden;
@@ -3952,7 +3952,7 @@ combobox:focus {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1px;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
 }
 .alienrpg .profile-img {
   -webkit-box-flex: 0;
@@ -4011,10 +4011,10 @@ combobox:focus {
 .alienrpg .tab,
 .alienrpg .editor {
   height: 100%;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
 }
 .alienrpg .tox .tox-editor-container {
-  background: hsl(0deg, 0%, 100%);
+  background: hsl(0, 0%, 100%);
 }
 .alienrpg .tox .tox-edit-area {
   padding: 0 8px;
@@ -4022,7 +4022,7 @@ combobox:focus {
 .alienrpg .maxboxsize {
   max-width: 40px;
   color: inherit;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   height: 20px;
   padding: 0;
   margin: 1px;
@@ -4032,7 +4032,7 @@ combobox:focus {
 .alienrpg .healboxsize {
   max-width: 80px;
   color: inherit;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   height: 20px;
   padding: 0;
   margin: 1px;
@@ -4043,13 +4043,13 @@ combobox:focus {
   max-width: 150px;
   color: inherit;
   justify-items: center;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   text-align: center;
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox {
   color: inherit;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   padding: 5px;
   margin: 5px 5px 5px 5px;
   border: 1px solid var(--aliengreen);
@@ -4057,7 +4057,7 @@ combobox:focus {
 .alienrpg .textbox1 {
   color: inherit;
   justify-items: center;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   width: 230px;
   padding: 0;
   margin-top: 1px;
@@ -4067,7 +4067,7 @@ combobox:focus {
 .alienrpg .textbox2 {
   color: inherit;
   justify-items: center;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   width: 400px;
   padding: 0;
   margin-top: 1px;
@@ -4076,7 +4076,7 @@ combobox:focus {
 }
 .alienrpg .textbox3 {
   color: inherit;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   padding: 5px;
   margin: 5px 5px 5px 5px;
   width: 180px;
@@ -4085,7 +4085,7 @@ combobox:focus {
 .alienrpg .textbox4 {
   color: inherit;
   justify-items: center;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   width: 450px;
   padding: 0;
   margin-top: 1px;
@@ -4103,10 +4103,10 @@ combobox:focus {
 .alienrpg form .sheet-content .click-stat-level {
   height: 18px;
   padding: 8px;
-  background: hsl(0deg, 0%, 0%);
+  background: hsl(0, 0%, 0%);
   border-radius: 2px;
-  -webkit-box-shadow: inset 0 0 0 1px hsla(0deg, 0%, 0%, 0.502);
-          box-shadow: inset 0 0 0 1px hsla(0deg, 0%, 0%, 0.502);
+  -webkit-box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.502);
+          box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.502);
   font-family: "Roboto", system, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -4128,8 +4128,8 @@ combobox:focus {
   display: none;
   padding: 2px 4px;
   border-radius: 2px;
-  -webkit-box-shadow: inset 0 0 0 1px hsla(0deg, 0%, 0%, 0.5);
-          box-shadow: inset 0 0 0 1px hsla(0deg, 0%, 0%, 0.5);
+  -webkit-box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.5);
+          box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.5);
   font-family: "Roboto", system, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -4188,7 +4188,7 @@ combobox:focus {
 .alienrpg .tabs {
   height: 30px;
   color: inherit;
-  background-color: hsl(0deg, 0%, 0%);
+  background-color: hsl(0, 0%, 0%);
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .tabs .sheet nav.sheet-tabs {
@@ -4217,7 +4217,7 @@ combobox:focus {
   padding-bottom: 0px;
 }
 .alienrpg .item-header {
-  background-color: hsl(0deg, 5%, 16%);
+  background-color: hsl(0, 5%, 16%);
 }
 .alienrpg .item-name {
   margin: 0;

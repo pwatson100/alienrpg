@@ -166,12 +166,13 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  async rollAbility(actor, dataset) {
+  async rollAbility(actor, dataset, rollMod) {
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
     let actorId = actor.id;
     let effectiveActorType = actor.type;
+    let attrib = dataset.attr;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
 
@@ -253,8 +254,50 @@ export class alienrpgActor extends Actor {
       //
       // TODO
 
-      yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
-      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+
+      if (attrib && actor.type != 'synthetic' && !rollMod) {
+        function myRenderTemplate(template) {
+          let confirmed = false;
+          reRoll = true;
+          renderTemplate(template).then((dlg) => {
+            new Dialog({
+              title: game.i18n.localize('ALIENRPG.Attributes') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+              content: dlg,
+              buttons: {
+                one: {
+                  icon: '<i class="fas fa-check"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialRoll'),
+                  callback: () => (confirmed = true),
+                },
+                four: {
+                  icon: '<i class="fas fa-times"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialCancel'),
+                  callback: () => (confirmed = false),
+                },
+              },
+              close: (html) => {
+                if (confirmed) {
+                  if (!html.find('#fblind')[0].checked) {
+                    r2Data = 0;
+                  };
+                  yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
+                  game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+                }
+              },
+            }).render(true);
+          });
+        }
+
+        if (dataset.roll) {
+          if (actor.type === 'character') {
+            myRenderTemplate('systems/alienrpg/templates/dialog/roll-attr-dialog.html');
+          }
+
+        }
+      } else {
+        yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
+        game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+      }
     } else {
       if (dataset.panicroll) {
         // Roll against the panic table and push the roll to the chat log.
@@ -393,6 +436,7 @@ export class alienrpgActor extends Actor {
     }
   }
 
+
   async rollAbilityMod(actor, dataset) {
     function myRenderTemplate(template) {
       let confirmed = false;
@@ -434,7 +478,7 @@ export class alienrpgActor extends Actor {
 
                   dataset.modifier = modifier;
                   dataset.stressMod = stressMod;
-                  actor.rollAbility(actor, dataset);
+                  actor.rollAbility(actor, dataset, confirmed);
                 }
               },
             }).render(true);
@@ -486,7 +530,7 @@ export class alienrpgActor extends Actor {
                   dataset.stressMod = stressMod;
                   dataset.armorP = armorP;
                   dataset.armorDou = armorDou;
-                  actor.rollAbility(actor, dataset);
+                  actor.rollAbility(actor, dataset, confirmed);
                 }
               },
             }).render(true);
@@ -529,7 +573,7 @@ export class alienrpgActor extends Actor {
 
                   dataset.modifier = modifier;
                   dataset.stressMod = stressMod;
-                  actor.rollAbility(actor, dataset);
+                  actor.rollAbility(actor, dataset, confirmed);
                 }
               },
             }).render(true);
@@ -1140,7 +1184,7 @@ export class alienrpgActor extends Actor {
             case game.i18n.localize('ALIENRPG.OneShift') + ' ':
               healTime = 3;
               break;
-            case game.i18n.localize('ALIENRPG.OneDay') +' ':
+            case game.i18n.localize('ALIENRPG.OneDay') + ' ':
               healTime = 4;
               break;
             default:

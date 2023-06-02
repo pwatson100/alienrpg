@@ -483,3 +483,12 @@ Removed settings for fonts that were not available in the browser.
 Updated German language file with thanks to @kingofkong#6768, Tobot and @Raldanash#6529
 Added warning if the Panic Table has not been imported when Stress button pushed.
 
+Version 3.0.6
+FVTT V11 compatible
+Weapon sheets now show reloads instead of Rounds.
+Localised the concat function so not to interfere with the Foundry version.
+Addressed minor translation bugs.
+Rolling Attributes not pops a box with an option to exclude the Stress dice. These must be manually removed from modified rolls. Additionally no push button is displayed according to the rules (though they are a little vague). 
+With thanks to @Txus#5021
+Added option for the GM to choose if the $ is added or not as the $ sign messes up Item piles and other modules
+Corrected errors in the generation of critical injuries.
