@@ -152,7 +152,10 @@ export class alienrpgItemSheet extends ItemSheet {
 
     function onBlur(e) {
       let value = e.target.value;
-      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
+      if (game.settings.get('alienrpg', 'dollar'))
+         e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '0.00';
+      else
+         e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
       // console.warn(e.target.value);
     }
   }

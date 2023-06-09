@@ -480,5 +480,16 @@ Version 3.0.5
 Nerves of Steel modifier (- 2 stress dice) being incorrectly deducted from Item rolls on characters and vehicles. 
 Comments on the Item sheets now use the rich text editor.
 Removed settings for fonts that were not available in the browser.
-Updated German language file with thanks to @kingofkong#6768
+Updated German language file with thanks to @kingofkong#6768, Tobot and @Raldanash#6529
+Added warning if the Panic Table has not been imported when Stress button pushed.
 
+Version 3.0.6
+FVTT V11 compatible
+Weapon sheets now show reloads instead of Rounds.
+Localised the concat function so not to interfere with the Foundry version.
+Addressed minor translation bugs.
+Rolling Attributes not pops a box with an option to exclude the Stress dice. These must be manually removed from modified rolls. Additionally no push button is displayed according to the rules (though they are a little vague). 
+Added warning to disable the Alien RPG CRT UI modules as it is not being maintained and WILL corrupt actors/items. 
+With thanks to @Txus#5021
+Added option for the GM to choose if the $ is added or not as the $ sign messes up Item piles and other modules
+Corrected errors in the generation of critical injuries.

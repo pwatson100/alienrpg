@@ -66,7 +66,7 @@
         <span class="Col1">
           {{#each actor.system.skills as |skill key|}}
             <span class="ability grid-attr">
-              <h3 for="actor.system.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{localize (concat 'ALIENRPG.Skill' key) }}">{{localize (concat 'ALIENRPG.Skill' key) }} ({{localize (concat 'ALIENRPG.AbilityAbb' skill.ability) }})</h3>
+              <h3 for="actor.system.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{localize (alienConcat 'ALIENRPG.Skill' key) }}">{{localize (alienConcat 'ALIENRPG.Skill' key) }} ({{localize (alienConcat 'ALIENRPG.AbilityAbb' skill.ability) }})</h3>
               <input type="text" class="maxboxsize Attr2" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
               <div class="resource-content">
                 <button type="button" class="stunt-btn Attr3" data-pmbut="{{skill.description}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>

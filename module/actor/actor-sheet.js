@@ -731,6 +731,8 @@ export class alienrpgActorSheet extends ActorSheet {
       // Rollable abilities.
       html.find('.rollable').contextmenu(this._onRoll.bind(this));
 
+      html.find('.rollableattr').contextmenu(this._onRollAttr.bind(this));
+
       html.find('.rollable').click(this._onRollMod.bind(this));
 
       html.find('.rollableVeh').contextmenu(this._onRoll.bind(this));
@@ -745,6 +747,8 @@ export class alienrpgActorSheet extends ActorSheet {
       // Left to Roll and Right toMod
       // Rollable abilities.
       html.find('.rollable').click(this._onRoll.bind(this));
+
+      html.find('.rollableattr').click(this._onRollAttr.bind(this));
 
       html.find('.rollable').contextmenu(this._onRollMod.bind(this));
 
@@ -890,6 +894,13 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
     this.actor.rollAbility(this.actor, dataset);
+  }
+
+  _onRollAttr(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    this.actor.rollAttr(this.actor, dataset);
   }
 
   _onRollMod(event) {
@@ -1130,7 +1141,10 @@ export class alienrpgActorSheet extends ActorSheet {
     }
     function onBlur(e) {
       let value = localStringToNumber(e.target.value);
-      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
+      if (game.settings.get('alienrpg', 'dollar'))
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '0.00';
+      else
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
     }
   }
   async _onOverwatchToggle(event) {
