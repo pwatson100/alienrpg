@@ -17,6 +17,7 @@ import { sendDevMessage } from './devmsg.js';
 import { COMMON } from './common.js';
 import { logger } from './logger.js';
 import { ModuleImport, ImportFormWrapper } from './apps/init.js';
+import { moduleKey, adventurePackName, adventurePack, moduleTitle } from './apps/init.js';
 
 const includeRgx = new RegExp('/systems/alienrpg/module/');
 CONFIG.compatibility.includePatterns.push(includeRgx);
@@ -187,28 +188,9 @@ Hooks.once('ready', async () => {
   // debugger;
 
   sendDevMessage();
-  // if (game.user.isGM) {
-  //   try {
-  //     let motherPack = game.packs.find((p) => p.metadata.label === 'Mother Instructions');
-  //     await motherPack.getIndex();
-  //     let motherIns = motherPack.index.find((j) => j.name === 'MU/TH/ER Instructions.');
+  showReleaseNotes();
+  alienRPGCRTWarning();
 
-  //     const newVer = '9';
-  //     if (game.journal.getName('MU/TH/ER Instructions.') !== undefined) {
-  //       if (game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') < newVer || game.journal.getName('MU/TH/ER Instructions.').getFlag('alienrpg', 'ver') === undefined) {
-  //         await game.journal.getName('MU/TH/ER Instructions.').delete();
-  //         await game.journal.importFromCompendium(motherPack, motherIns._id);
-  //         await game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
-  //         console.log('New version of MU/TH/ER Instructions.');
-  //         await game.journal.getName('MU/TH/ER Instructions.').show();
-  //       }
-  //     } else {
-  //       await game.journal.importFromCompendium(motherPack, motherIns._id);
-  //       game.journal.getName('MU/TH/ER Instructions.').setFlag('alienrpg', 'ver', newVer);
-  //       await game.journal.getName('MU/TH/ER Instructions.').show();
-  //     }
-  //   } catch (error) { }
-  // }
   // Determine whether a system migration is required and feasible
   const currentVersion = game.settings.get('alienrpg', 'systemMigrationVersion');
   const NEEDS_MIGRATION_VERSION = '2.1.0';
@@ -504,6 +486,73 @@ function rollItemMacro(itemName) {
   // Trigger the item roll
   return item.roll();
 }
+
+async function showReleaseNotes() {
+  if (game.user.isGM) {
+    try {
+      const newVer = game.system.version;
+      const releaseNoteName = 'MU/TH/ER Instructions.';
+
+      let currentVer = '0';
+      let oldReleaseNotes = game.journal.getName(releaseNoteName);
+      if (oldReleaseNotes !== undefined && oldReleaseNotes !== null && oldReleaseNotes.getFlag('alienrpg', 'ver') !== undefined) {
+        currentVer = oldReleaseNotes.getFlag('alienrpg', 'ver');
+      }
+      if (newVer === currentVer) {
+        // Up to date
+        return;
+      }
+      const pack = game.packs.get(adventurePack);
+      const adventureId = pack.index.find(a => a.name === adventurePackName)?._id;
+      logger.info(`For ${adventurePackName} the Id is: ${adventureId}`)
+      const adventure = await pack.getDocument(adventureId);
+      const adventureData = adventure.toObject();
+      const newData = { updateAssets: [] };
+
+      const toUpdate = {};
+
+      let newUpdate = [];
+      const selected = game.journal.getName(releaseNoteName).id;
+      const element = selected;
+
+      for (const [field, cls] of Object.entries(Adventure.contentFields)) {
+        if (adventureData[field].length > 0 && field != 'folders') {
+          newData['updateAssets'].push({ section: field, sectionData: adventureData[field] });
+        }
+      }
+
+      newData['updateAssets'].sort((a, b) => (a.section > b.section) ? 1 : ((b.section > a.section) ? -1 : 0))
+      // newData['updateAssets'].sort();
+      let spanner = foundry.utils.mergeObject(newData);
+      newUpdate.push(spanner.updateAssets[1].sectionData[0]);
+      toUpdate[Adventure.contentFields.journal.documentName] = newUpdate;
+
+      if (toUpdate) {
+        for (const [documentName, updateData] of Object.entries(toUpdate)) {
+          const cls = getDocumentClass(documentName);
+          const u = await cls.updateDocuments(updateData, { diff: false, recursive: false, noHook: true });
+        }
+      }
+      let newReleaseJournal = game.journal.getName(releaseNoteName);
+      await newReleaseJournal.setFlag('alienrpg', 'ver', newVer);
+
+      // Show journal
+      await newReleaseJournal.sheet.render(true, { sheetMode: 'text' });
+    } catch (error) {
+      // logger.debug('Error', error);
+    } // end of try
+  } // end of if(isgm)
+}
+
+async function alienRPGCRTWarning() {
+  if (game.user.isGM) {
+    if (game.modules.get("alien-crt-ui")?.active) {
+      // If dice so nice is older than 4.2.2 - lets notify
+      ui.notifications.warn("You need to disable Alien RPG CRT UI as is has not been updated in some time and no longer works with the system and will corrupt your actors/items.  See the MO/TH/ER Instructions as it has been built in to the system for some time.", { permanent: true });
+    }
+  }
+}
+
 
 class Utils {
   /**

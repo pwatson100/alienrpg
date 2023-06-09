@@ -1,7 +1,0 @@
-2023/05/12-13:47:47.696 3478 Recovering log #25
-2023/05/12-13:47:47.700 3478 Delete type=0 #25
-2023/05/12-13:47:47.700 3478 Delete type=3 #24
-2023/05/12-13:50:03.532 5ef4 Level-0 table #29: started
-2023/05/12-13:50:03.532 5ef4 Level-0 table #29: 0 bytes OK
-2023/05/12-13:50:03.532 5ef4 Delete type=0 #27
-2023/05/12-13:50:03.532 5ef4 Manual compaction at level-0 from '!adventures!R8mjiz4iJkZGZMIw' @ 72057594037927935 : 1 .. '!adventures!R8mjiz4iJkZGZMIw' @ 0 : 0; will stop at (end)

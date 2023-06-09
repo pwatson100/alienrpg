@@ -15,7 +15,7 @@
     "maximum": "11"
   },
   "minimumCoreVersion": "10",
-  "compatibleCoreVersion": "11",
+  "compatibleCoreVersion": "10",
   "scripts": [],
   "esmodules": ["module/alienrpg.js"],
   "styles": ["css/alienrpg.css"],
