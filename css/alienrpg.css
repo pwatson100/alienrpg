@@ -152,6 +152,16 @@
   font-size: 14px;
   line-height: 28px;
 }
+.journal-sheet critbutton {
+  font-family: var(--alienfont);
+  color: inherit;
+  background: hsl(0, 0%, 0%);
+  border: var(--aliengreen) solid 1px;
+  margin: 0 1px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 28px;
+}
 .journal-sheet .tox .tox-editor-container {
   background-color: hsl(0, 0%, 100%);
 }
@@ -1425,7 +1435,7 @@ button:focus {
 
 .s1-header {
   display: grid;
-  grid-template-areas: ". . s1h1 s1h1 s1h1 ." "s1h2 s1h2 s1h2 s1h2 s1h2 s1h2" ". . s1h3 s1h3 s1h3 ." "s1h4 s1h4 s1h4 s1h4 s1h4 s1h4" ". . s1h5 s1h5 s1h5 ." "s1h6 s1h6 s1h6 s1h6 s1h6 s1h6" "s1space1 s1h7 s1h8 s1space s1h9 s1h10" "s1space1 s1h11 s1h12 s1space s1h13 s1h14" "s1space1 s1h15 s1h16 s1space s1h17 s1h18" "s1space1 s1h19 s1h20 s1space s1h21 s1h22" "s1h23 s1h23 s1h23 s1h23 s1h23 s1h23" "s1h24 s1h24 s1h24 s1h24 s1h24 s1h24" "s1h25 s1h25 s1h25 s1h25 s1h25 s1h25" "s1h26 s1h26 s1h26 s1h26 s1h26 s1h26";
+  grid-template-areas: ". . s1h1 s1h1 s1h1 ." "s1h2 s1h2 s1h2 s1h2 s1h2 s1h2" ". . s1h3 s1h3 s1h3 ." "s1h4 s1h4 s1h4 s1h4 s1h4 s1h4" ". . s1h5 s1h5 s1h5 ." "s1h6 s1h6 s1h6 s1h6 s1h6 s1h6" "s1space1 s1h7 s1h8 s1space s1h9 s1h10" "s1space1 s1h11 s1h12 s1space s1h13 s1h14" "s1space1 s1h15 s1h16 s1space s1h17 s1h18" "s1space1 s1h19 s1h20 s1space s1h21 s1h22" "s1h23 s1h23 s1h23 s1h23 s1h23 s1h23" "s1h24 s1h24 s1h24 s1h24 s1h24 s1h24" "s1h25 s1h25 s1h25 s1h25 s1h25 s1h25" "s1h26 s1h26 s1h26 s1h26 s1h26 s1h26" "s1h27 s1h27 s1h27 s1h27 s1h27 s1h27";
   grid-template-columns: 5% 10% 30% 5% 30% 10%;
   padding: 0 10px 0px 10px;
 }
@@ -1592,7 +1602,13 @@ button:focus {
 
 .s1h26 {
   grid-area: s1h26;
-  height: 30px;
+  height: 50px;
+  justify-self: center;
+}
+
+.s1h27 {
+  grid-area: s1h27;
+  height: 50px;
   justify-self: center;
 }
 
@@ -1792,6 +1808,40 @@ button:focus {
 
 .wItem7 {
   grid-area: wItem7;
+}
+
+.grid-ship-crit {
+  display: grid;
+  border: 2px solid var(--aliengreen);
+  grid-template-areas: "gcItem1 gcItem2 gcItem2" "gcItem3 gcItem4 gcItem4" "gcItem5 gcItem6 gcItem6";
+  grid-template-columns: 30% 35% 35%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.gcItem1 {
+  grid-area: gcItem1;
+}
+
+.gcItem2 {
+  grid-area: gcItem2;
+}
+
+.gcItem3 {
+  grid-area: gcItem3;
+}
+
+.gcItem4 {
+  grid-area: gcItem4;
+}
+
+.gcItem5 {
+  grid-area: gcItem5;
+}
+
+.gcItem6 {
+  grid-area: gcItem6;
 }
 
 .grid-weapon-body {

@@ -1115,9 +1115,27 @@ export class alienrpgActor extends Actor {
         }
         break;
 
+      case 'spacecraft':
+        debugger;
+        if (dataset.crbut === 'minor') {
+          atable = game.tables.getName('Spaceship Minor Component Damage');
+          if (atable === null || atable === undefined) {
+            ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
+            return;
+          }
+        } else {
+          atable = game.tables.getName('Spaceship Major Component Damage');
+          if (atable === null || atable === undefined) {
+            ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
+            return;
+          }
+        }
+        break;
+
       default:
         return;
     }
+
     if (!manCrit) {
       test1 = await atable.draw({ displayChat: false });
     } else {

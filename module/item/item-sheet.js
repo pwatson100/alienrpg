@@ -24,7 +24,6 @@ export class alienrpgItemSheet extends ItemSheet {
     // return `${path}/item-sheet.html`;
     // Alternatively, you could use the following return statement to do a
     // unique item sheet by type, like `weapon-sheet.html`.
-
     return `${path}/${this.item.type}-sheet.html`;
   }
 
@@ -51,6 +50,10 @@ export class alienrpgItemSheet extends ItemSheet {
           "system.attributes.effects",
         ];
         await this._enrichTextFields(item, enrichedFields1);
+        break;
+      case 'spacecraft-crit':
+        await this._prepareShipCritData(item);
+
         break;
       case 'agenda':
         await this._prepareAgendaData(item);
@@ -127,6 +130,19 @@ export class alienrpgItemSheet extends ItemSheet {
     await this._enrichTextFields(data, enrichedFields6);
   }
 
+  async _prepareShipCritData(data) {
+    if (data.system.header.type.value === '1') {
+      this.item.update({ img: 'systems/alienrpg/images/icons/auto-repair.svg' });
+    } else if (data.system.header.type.value === '0') {
+      this.item.update({ img: 'systems/alienrpg/images/icons/spanner.svg' });
+    }
+
+    let enrichedFields6 = [
+      "system.header.effects",
+    ];
+    await this._enrichTextFields(data, enrichedFields6);
+  }
+
   /* -------------------------------------------- */
 
   /** @override */
@@ -153,9 +169,9 @@ export class alienrpgItemSheet extends ItemSheet {
     function onBlur(e) {
       let value = e.target.value;
       if (game.settings.get('alienrpg', 'dollar'))
-         e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '0.00';
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '0.00';
       else
-         e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
       // console.warn(e.target.value);
     }
   }

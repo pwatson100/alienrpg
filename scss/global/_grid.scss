@@ -203,7 +203,8 @@
     's1h23 s1h23 s1h23 s1h23 s1h23 s1h23'
     's1h24 s1h24 s1h24 s1h24 s1h24 s1h24'
     's1h25 s1h25 s1h25 s1h25 s1h25 s1h25'
-    's1h26 s1h26 s1h26 s1h26 s1h26 s1h26';
+    's1h26 s1h26 s1h26 s1h26 s1h26 s1h26'
+    's1h27 s1h27 s1h27 s1h27 s1h27 s1h27';
   grid-template-columns: 5% 10% 30% 5% 30% 10%;
   padding: 0 10px 0px 10px;
   // background-color: hsl(165, 27%, 50%);
@@ -369,7 +370,13 @@
 .s1h26 {
   grid-area: s1h26;
   // border: 1px solid var(--aliengreen);
-  height: 30px;
+  height: 50px;
+  justify-self: center;
+}
+.s1h27 {
+  grid-area: s1h27;
+  // border: 1px solid var(--aliengreen);
+  height: 50px;
   justify-self: center;
 }
 
@@ -585,6 +592,36 @@
 }
 .wItem7 {
   grid-area: wItem7;
+}
+
+.grid-ship-crit {
+  display: grid;
+  border: 2px solid var(--aliengreen);
+  grid-template-areas:
+    'gcItem1 gcItem2 gcItem2'
+    'gcItem3 gcItem4 gcItem4'
+    'gcItem5 gcItem6 gcItem6';
+  grid-template-columns: 30% 35% 35%;
+  align-items: center;
+}
+
+.gcItem1 {
+  grid-area: gcItem1;
+}
+.gcItem2 {
+  grid-area: gcItem2;
+}
+.gcItem3 {
+  grid-area: gcItem3;
+}
+.gcItem4 {
+  grid-area: gcItem4;
+}
+.gcItem5 {
+  grid-area: gcItem5;
+}
+.gcItem6 {
+  grid-area: gcItem6;
 }
 
 .grid-weapon-body {

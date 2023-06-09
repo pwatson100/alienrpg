@@ -87,6 +87,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
           "actor.system.notes",
         ];
         await this._enrichTextFields(data, enrichedFields);
+        data.actor.system.attributes.damage.icon = this._getClickIcon(data.actor.system.attributes.damage.value, 'damage');
 
         break;
 
@@ -109,86 +110,78 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
    * Organize and classify Owned Items for Character sheets
    * @private
    */
-  async _prepareItems(data) {
-    // Initialize containers.
-    const inventory = {
-      weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
-      item: { section: 'Items', label: game.i18n.localize('ALIENRPG.InventoryItemsHeader'), items: [], dataset: { type: 'item' } },
-      armor: { section: 'Armor', label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'), items: [], dataset: { type: 'armor' } },
-    };
-    // Partition items by category
-    let [items, Weapons, Armor] = data.actor.system.items.reduce(
-      (arr, item) => {
-        // Item details
-        item.img = item.img || DEFAULT_TOKEN;
-        item.isStack = item.system.quantity ? item.system.quantity > 1 : false;
+  // async _prepareItems(data) {
+  //   // Initialize containers.
+  //   const inventory = {
+  //     weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
+  //     item: { section: 'Items', label: game.i18n.localize('ALIENRPG.InventoryItemsHeader'), items: [], dataset: { type: 'item' } },
+  //     armor: { section: 'Armor', label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'), items: [], dataset: { type: 'armor' } },
+  //   };
+  //   // Partition items by category
+  //   let [items, Weapons, Armor] = data.actor.system.items.reduce(
+  //     (arr, item) => {
+  //       // Item details
+  //       item.img = item.img || DEFAULT_TOKEN;
+  //       item.isStack = item.system.quantity ? item.system.quantity > 1 : false;
 
-        // Classify items into types
-        if (item.type === 'Weapons') arr[1].push(item);
-        else if (item.type === 'Armor') arr[2].push(item);
-        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
-        return arr;
-      },
-      [[], [], []]
-    );
+  //       // Classify items into types
+  //       if (item.type === 'Weapons') arr[1].push(item);
+  //       else if (item.type === 'Armor') arr[2].push(item);
+  //       else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+  //       return arr;
+  //     },
+  //     [[], [], []]
+  //   );
 
-    // Apply active item filters
-    items = this._filterItems(items, this._filters.inventory);
+  //   // Apply active item filters
+  //   items = this._filterItems(items, this._filters.inventory);
 
-    const talents = [];
-    const agendas = [];
-    const specialities = [];
-    const critInj = [];
+  //   const talents = [];
+  //   const agendas = [];
+  //   const specialities = [];
 
-    let totalWeight = 0;
+  //   let totalWeight = 0;
 
-    // Iterate through items, allocating to containers
-    for (let i of data.actor.system.items) {
-      let item = i.system;
-      switch (i.type) {
-        case 'critical-injury':
-          critInj.push(i);
-          break;
+  //   // Iterate through items, allocating to containers
+  //   for (let i of data.actor.system.items) {
+  //     let item = i.system;
+  //     switch (i.type) {
+  //       case 'armor':
+  //         if (item.header.active != 'fLocker') {
+  //           i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
+  //           i.totalWeight = i.system.attributes.weight.value;
+  //           totalWeight += i.totalWeight;
+  //         }
+  //         inventory[i.type].items.push(i);
+  //         break;
 
-        case 'armor':
-          if (item.header.active != 'fLocker') {
-            i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
-            i.totalWeight = i.system.attributes.weight.value;
-            totalWeight += i.totalWeight;
-          }
-          inventory[i.type].items.push(i);
-          break;
-
-        case 'weapon':
-          if (item.header.active != 'fLocker') {
-            let ammoweight = 0.25;
-            if (i.system.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
-              ammoweight = 0.5;
-            }
-            i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
-            i.totalWeight = (i.system.attributes.weight.value + i.system.attributes.rounds.value * ammoweight) * i.system.attributes.quantity.value;
-            totalWeight += i.totalWeight;
-          }
-          inventory[i.type].items.push(i);
-
-          break;
-
-        default:
-          // Its just an item
-          if (item.header.active != 'fLocker') {
-            i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
-            i.totalWeight = i.system.attributes.weight.value * i.system.attributes.quantity.value;
-            totalWeight += i.totalWeight;
-          }
-          inventory[i.type].items.push(i);
-          break;
-      }
-    }
-    // Assign and return
-    data.critInj = critInj;
-    // debugger;
-    data.inventory = Object.values(inventory);
-  }
+  //       case 'weapon':
+  //         if (item.header.active != 'fLocker') {
+  //           let ammoweight = 0.25;
+  //           if (i.system.attributes.class.value == 'RPG' || i.name.includes(' RPG ') || i.name.startsWith('RPG') || i.name.endsWith('RPG')) {
+  //             ammoweight = 0.5;
+  //           }
+  //           i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
+  //           i.totalWeight = (i.system.attributes.weight.value + i.system.attributes.rounds.value * ammoweight) * i.system.attributes.quantity.value;
+  //           totalWeight += i.totalWeight;
+  //         }
+  //         inventory[i.type].items.push(i);
+  //         break;
+  //       default:
+  //         // Its just an item
+  //         if (item.header.active != 'fLocker') {
+  //           i.system.attributes.weight.value = i.system.attributes.weight.value || 0;
+  //           i.totalWeight = i.system.attributes.weight.value * i.system.attributes.quantity.value;
+  //           totalWeight += i.totalWeight;
+  //         }
+  //         inventory[i.type].items.push(i);
+  //         break;
+  //     }
+  //   }
+  //   // Assign and return
+  //   // debugger;
+  //   data.inventory = Object.values(inventory);
+  // }
 
   /*
    * Organize and classify Owned Items for Character sheets
@@ -219,32 +212,22 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
-    const talents = [];
-    const agendas = [];
-    const specialities = [];
-    const critInj = [];
+    const critMin = [];
+    const critMaj = [];
 
     // Iterate through items, allocating to containers
     for (let i of data.actor.system.items) {
       let item = i.system;
       switch (i.type) {
-        case 'talent':
-          talents.push(i);
-          break;
-
-        case 'agenda':
-          agendas.push(i);
-          break;
-
-        case 'specialty':
-          if (specialities.length > 1) {
-            break;
-          } else {
-            specialities.push(i);
-            break;
+        case 'spacecraft-crit':
+          switch (i.system.header.type.value) {
+            case '0':
+              critMin.push(i);
+              break;
+            case '1':
+              critMaj.push(i);
+              break;
           }
-        case 'critical-injury':
-          critInj.push(i);
           break;
 
         case 'armor':
@@ -268,6 +251,9 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     }
 
     data.inventory = Object.values(inventory);
+    data.critMin = critMin;
+    data.critMaj = critMaj;
+
   }
 
 
@@ -483,8 +469,11 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
     html.find('.inline-edit').change(this._inlineedit.bind(this));
 
-    html.find('.rollCrit').click(this._rollCrit.bind(this));
-    html.find('.rollCrit').contextmenu(this._rollCritMan.bind(this));
+    html.find('.rollMinorCD').click(this._rollMinorCD.bind(this));
+    html.find('.rollMinorCD').contextmenu(this._rollMinorCDMan.bind(this));
+
+    html.find('.rollMajorCD').click(this._rollMajorCD.bind(this));
+    html.find('.rollMajorCD').contextmenu(this._rollMajorCDMan.bind(this));
 
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
@@ -516,7 +505,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
       synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       creature: ['critical-injury'],
       vehicles: ['item', 'weapon', 'armor'],
-      spacecraft: ['item', 'weapon', 'armor'],
+      spacecraft: ['item', 'weapon', 'armor', "spacecraft-crit"],
       territory: ['planet-system'],
     };
     let allowed = true;
@@ -627,15 +616,26 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
       this.actor.nowRollItem(item);
     }
   }
-  _rollCrit(event) {
+  _rollMinorCD(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
     this.actor.rollCrit(this.actor, this.actor.type, dataset);
   }
-  _rollCritMan(event) {
+  _rollMinorCDMan(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
-    this.actor.rollCritMan(this.actor, this.actor.type, dataset);
+    this.actor.rollCrit(this.actor, this.actor.type, dataset);
+  }
+
+  _rollMajorCD(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCrit(this.actor, this.actor.type, dataset);
+  }
+  _rollMajorCDMan(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCrit(this.actor, this.actor.type, dataset);
   }
 
   _activate(event) {
@@ -768,7 +768,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
    */
 
   _getClickIcon(level, stat) {
-    const maxPoints = this.object.system.general[stat].max;
+    const maxPoints = this.object.system.attributes[stat].max;
     const icons = {};
     const usedPoint = '<i class="far fa-dot-circle"></i>';
     const unUsedPoint = '<i class="far fa-circle"></i>';
@@ -786,7 +786,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     return icons[level];
   }
   _getContitionIcon(level, stat) {
-    const maxPoints = this.object.system.general[stat].max;
+    const maxPoints = this.object.system.attributes[stat].max;
     const icons = {};
     const usedPoint = '<i class="far fa-dot-circle"></i>';
     const unUsedPoint = '<i class="far fa-circle"></i>';

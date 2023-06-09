@@ -9,7 +9,7 @@
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
     <a class="item" data-tab="inventory">{{localize "ALIENRPG.MODULES-UPGRADES"}}</a>
-    <a class="item" data-tab="image">{{localize "ALIENRPG.Description"}}</a>
+    <a class="item" data-tab="image">{{localize "ALIENRPG.Image"}}</a>
     <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
   </nav>
 
@@ -57,7 +57,7 @@
             <input type="text" class="maxboxsize s1h22" name="system.attributes.armor.value" value="{{actor.system.attributes.armor.value}}" data-dtype="Number" />
 
             <label class="s1h23" style="font-weight: bold;">{{ localize "ALIENRPG.DAMAGE"}}</label>
-            <div class="dots damage s1h24">
+            <div class="dots damage s1h24" style="width: 150px; display: inline-flex;margin-bottom: 10px;">
               <input type="hidden" name="system.attributes.damage.value" data-max="{{actor.system.attributes.damage.max}}" value="{{actor.system.attributes.damage.value}}" data-dtype="Number">
               <span class="click-stat-level" title="{{ localize " ALIENRPG.ConButtons"}}">{{{actor.system.attributes.damage.icon}}}
               </span>
@@ -67,40 +67,9 @@
             <input type="text" class="cashboxsize currency s1h26" name="system.attributes.leasecost.value" value="{{actor.system.attributes.leasecost.value}}" />
           </div>
           <br><br>
-          <div>
-            <li class="grid-talents item-header">
-              <h2 class="item talTitle">{{localize "ALIENRPG.MINOR-COMPONENT-DAMAGE"}}</h2>
-              <h3 class="item-name tal1">{{localize "ALIENRPG.Name"}}</h3>
-              <div class="item-controls tal2">
-              </div>
-            </li>
-            {{#each minordamage as |item iid|}}
-              <li class="item grid-talents" data-item-id="{{item._id}}">
-                <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
-                <div class="tal4 item-controls">
-                  <a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
-                </div>
-              </li>
-            {{/each}}
-          </div>
-          <div>
-            <li class="grid-talents item-header">
-              <h2 class="item talTitle">{{localize "ALIENRPG.MAJOR-COMPONENT-DAMAGE"}}</h2>
-              <h3 class="item-name tal1">{{localize "ALIENRPG.Name"}}</h3>
-              <div class="item-controls tal2">
-              </div>
-            </li>
-            {{#each majordamage as |item iid|}}
-              <li class="item grid-talents" data-item-id="{{item._id}}">
-                <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
-                <div class="tal4 item-controls">
-                  <a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
-                </div>
-              </li>
-            {{/each}}
-          </div>
+          <div style="overflow: auto">{{> "systems/alienrpg/templates/actor/tabs/sCraft-minor-crit.html" }}</div>
+          <div style="overflow: auto">{{> "systems/alienrpg/templates/actor/tabs/sCraft-major-crit.html" }}</div>
         </div>
-
         <div class="spacec2">
           <h1>{{localize "ALIENRPG.CREW"}}</h1>
           {{!-- <div class="crew" data-group="primary" data-tab="crew"> --}}

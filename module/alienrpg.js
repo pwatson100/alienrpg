@@ -102,7 +102,7 @@ Hooks.once('init', async function () {
 
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty', 'planet-system', 'critical-injury'], makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty', 'planet-system', 'critical-injury', "spacecraft-crit"], makeDefault: false });
   registerSettings();
   registerActors();
 

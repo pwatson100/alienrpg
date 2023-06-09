@@ -106,6 +106,20 @@
     font-size: 14px;
     line-height: 28px;
   }
+
+  critbutton {
+    font-family: var(--alienfont);
+    //  color: $c-green;
+    color: inherit;
+
+    background: $c-black;
+    border: var(--aliengreen) solid 1px;
+    // width: 100%;
+    margin: 0 1px;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 28px;
+  }
   .tox .tox-editor-container {
     background-color: $c-white;
   }

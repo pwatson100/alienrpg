@@ -610,7 +610,7 @@
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor", "talent", "planet-system", "skill-stunts", "agenda", "specialty", "critical-injury"],
+    "types": ["item", "weapon", "armor", "talent", "planet-system", "skill-stunts", "agenda", "specialty", "critical-injury", "spacecraft-crit"],
     "item": {
       "header": {
         "type": {
@@ -1148,6 +1148,17 @@
             "ability": "wit"
           }
         }
+      }
+    },
+    "spacecraft-crit": {
+      "header": {
+        "type": {
+          "value": 0,
+          "label": "Text"
+        },
+        "damage": "",
+        "effects": "",
+        "repairroll": ""
       }
     }
   }
