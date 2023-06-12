@@ -296,6 +296,47 @@ export class alienrpgActor extends Actor {
           }
 
         }
+      } else if (actor.type === 'spacecraft' && !rollMod) {
+        function myRenderTemplate(template) {
+          let confirmed = false;
+          reRoll = true;
+          renderTemplate(template).then((dlg) => {
+            new Dialog({
+              title: game.i18n.localize('ALIENRPG.Attributes') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+              content: dlg,
+              buttons: {
+                one: {
+                  icon: '<i class="fas fa-check"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialRoll'),
+                  callback: () => (confirmed = true),
+                },
+                four: {
+                  icon: '<i class="fas fa-times"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialCancel'),
+                  callback: () => (confirmed = false),
+                },
+              },
+              default: 'one',
+              close: (html) => {
+                if (confirmed) {
+                  let modifier = parseInt(html.find('[name=sigMod]')[0]?.value);
+                  let targetLock = parseInt(html.find('[name=targetLock]')[0]?.value);
+                  let targetMod = parseInt(html.find('[name=targetMod]')[0]?.value);
+                  modifier = parseInt(modifier);
+                  targetLock = parseInt(targetLock);
+                  targetMod = parseInt(targetMod);
+                  if (isNaN(modifier)) modifier = 0;
+                  if (isNaN(targetLock)) targetLock = 0;
+                  if (isNaN(targetLock)) targetMod = 0;
+                  // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
+                  dataset.modifier = modifier + targetLock + targetMod;
+                  actor.rollAbility(actor, dataset, confirmed);
+                }
+              },
+            }).render(true);
+          });
+        }
+        myRenderTemplate('systems/alienrpg/templates/dialog/spacecomtech.html');
       } else {
         yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
         game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
@@ -604,7 +645,7 @@ export class alienrpgActor extends Actor {
 
   async nowRollItem(item, event) {
     // if (item.type === 'weapon' || item.type === 'armor') {
-    if (item.type === 'weapon') {
+    if (item.type === 'weapon' || item.type === 'spacecraftweapons') {
       // Trigger the item roll
       return item.roll(false);
     }
@@ -1085,12 +1126,12 @@ export class alienrpgActor extends Actor {
     let newHealTime = '';
     let htmlData = '';
     let resultImage = '';
-    let critTable = false;
+    let shipcritTable = '';
     let test1 = '';
     let hFatal = '';
     let hHealTime = '';
     let hTimeLimit = '';
-
+    let shipCritType = '';
     switch (type) {
       case 'character':
         atable = game.tables.getName('Critical injuries');
@@ -1116,15 +1157,16 @@ export class alienrpgActor extends Actor {
         break;
 
       case 'spacecraft':
-        debugger;
         if (dataset.crbut === 'minor') {
           atable = game.tables.getName('Spaceship Minor Component Damage');
+          shipcritTable = '0';
           if (atable === null || atable === undefined) {
             ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
             return;
           }
         } else {
           atable = game.tables.getName('Spaceship Major Component Damage');
+          shipcritTable = '1';
           if (atable === null || atable === undefined) {
             ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
             return;
@@ -1145,20 +1187,6 @@ export class alienrpgActor extends Actor {
       test1 = await atable.draw({ roll: roll, displayChat: false });
     }
 
-    // try {
-    //   if (game.settings.get('alienrpg-corerules', 'imported') === true) {
-    //     critTable = true;
-    //   }
-    // } catch (error) {  }
-
-    // try {
-    //   if (game.settings.get('alienrpg-starterset', 'imported') === true) {
-    //     critTable = true;
-    //   }
-    // } catch (error) { }
-
-    // try {
-    // if (critTable) {
     const messG = test1.results[0].text;
     switch (type) {
       case 'character':
@@ -1277,6 +1305,47 @@ export class alienrpgActor extends Actor {
             img: resultImage,
             name: `#${test1.roll.total} ${testArray[0]}`,
             effects: testArray[1],
+          };
+        }
+        break;
+      case 'spacecraft':
+        {
+          resultImage = test1.results[0].img || 'icons/svg/biohazard.svg';
+
+          factorFour = messG.replace(/(<strong>)|(<\/strong>)/gi, '');
+          testArray = factorFour.split(/[:] |<br \/>/gi);
+
+          //
+          // Now create the item on the sheet
+          //
+          // debugger;
+          await actor.createEmbeddedDocuments('Item', [
+            {
+              type: 'spacecraft-crit',
+              img: resultImage,
+              name: `#${test1.roll.total} ${testArray[0]}`,
+              'system.header.type.value': `${shipcritTable}`,
+              'system.header.effects': testArray[2],
+              'system.header.repairroll': testArray[5],
+            },
+          ]);
+
+          //
+          // Prepare the data for the chat message
+          //
+          if (shipcritTable === '0') {
+            shipCritType = "Minor"
+          } else {
+            shipCritType = "Major"
+
+          }
+          htmlData = {
+            shipCritType: `${shipCritType}`,
+            actorname: actor.name,
+            img: resultImage,
+            name: `#${test1.roll.total} ${testArray[0]}`,
+            ceffects: testArray[2],
+            crepairroll: testArray[5],
           };
         }
         break;

@@ -27,6 +27,7 @@
   // color: var(--aliengreen);
   // font-size: var(--fontsize);
   background: hsl(0deg, 0%, 0%);
+  border: var(--aliengreen) 1px solid;
   // flex-direction: column;
   // flex-wrap: nowrap;
   // padding: 2px;
@@ -541,9 +542,9 @@ button:focus {
   background-color: $c-black;
 }
 
-// .consume-box {
-//   border: 1px solid var(--aliengreen);
-// }
+.box-top {
+  border-top: 3px solid var(--aliengreen);
+}
 
 .ctooltip {
   position: relative;

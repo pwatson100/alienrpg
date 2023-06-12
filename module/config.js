@@ -91,7 +91,7 @@ ALIENRPG.spacecraft = {
     COMMANDER: 'ALIENRPG.CrewCommander',
     PILOT: 'ALIENRPG.CrewPilot',
     GUNNER: 'ALIENRPG.CrewGunner',
-    SENSOROP: 'ALIENRPG.SensorOp',
+    SENSOROP: 'ALIENRPG.SENSOR-OP',
     CREW: 'ALIENRPG.CREW',
     PASSENGER: 'ALIENRPG.CrewPasanger',
   },

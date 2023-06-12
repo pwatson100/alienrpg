@@ -102,7 +102,7 @@ Hooks.once('init', async function () {
 
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty', 'planet-system', 'critical-injury', "spacecraft-crit"], makeDefault: false });
+  Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty', 'planet-system', 'critical-injury', "spacecraft-crit", "spacecraftmods", "spacecraftweapons"], makeDefault: false });
   registerSettings();
   registerActors();
 
@@ -392,7 +392,7 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 
 Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
   let aTarget = game.actors.find((i) => i.name == tokenData.name);
-  if (aTarget.system.header.npc) {
+  if (aTarget.type !== 'spacecraft' && aTarget.system.header.npc) {
     document.data.update({ disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
   }
 });

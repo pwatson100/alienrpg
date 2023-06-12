@@ -98,6 +98,7 @@
 
 .alienrpg .window-content {
   background: hsl(0, 0%, 0%);
+  border: var(--aliengreen) 1px solid;
 }
 
 .alienrpg form {
@@ -563,6 +564,10 @@ button:focus {
 .alienrpg .inputtext {
   color: inherit;
   background-color: hsl(0, 0%, 0%);
+}
+
+.box-top {
+  border-top: 3px solid var(--aliengreen);
 }
 
 .ctooltip {
@@ -1418,17 +1423,19 @@ button:focus {
 .grid-spacecraft {
   display: grid;
   grid-template-areas: "spacec1 spacec2 ";
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 35% 65%;
 }
 
 .spacec1 {
   grid-area: spacec1;
+  border-right: 1px solid var(--aliengreen);
   -ms-flex-line-pack: center;
       align-content: center;
 }
 
 .spacec2 {
   grid-area: spacec2;
+  padding-left: 5px;
   -ms-flex-line-pack: center;
       align-content: center;
 }
@@ -2126,6 +2133,33 @@ button:focus {
   justify-self: right;
 }
 
+.space-critical-inj {
+  display: grid;
+  grid-template-areas: "ScritI1 ScritI2 ScritI4";
+  grid-template-columns: 5% 80% 3%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ScritI1 {
+  grid-area: ScritI1;
+  justify-self: left;
+  padding-right: 4px;
+}
+
+.ScritI2 {
+  grid-area: ScritI2;
+  justify-self: left;
+  font-weight: bold;
+  padding-right: 8px;
+}
+
+.ScritI4 {
+  grid-area: ScritI4;
+  justify-self: right;
+}
+
 .grid-two {
   display: grid;
   grid-template-areas: "box1 box2" "box3 box4";
@@ -2590,6 +2624,52 @@ button:focus {
 .gC8 {
   justify-self: right;
   grid-area: gC8;
+}
+
+.grid-ship-crew {
+  display: grid;
+  grid-template-areas: "gSC1 gSC2 gSC3 gSC4" "gSC5 gSC6 gSC7 gSC8";
+  grid-template-columns: 43% 25% 20% 6%;
+}
+
+.gSC1 {
+  justify-self: center;
+  grid-area: gSC1;
+}
+
+.gSC2 {
+  justify-self: center;
+  grid-area: gSC2;
+}
+
+.gSC3 {
+  justify-self: center;
+  grid-area: gSC3;
+}
+
+.gSC4 {
+  justify-self: right;
+  grid-area: gSC4;
+}
+
+.gSC5 {
+  justify-self: left;
+  grid-area: gSC5;
+}
+
+.gSC6 {
+  justify-self: center;
+  grid-area: gSC6;
+}
+
+.gSC7 {
+  justify-self: center;
+  grid-area: gSC7;
+}
+
+.gSC8 {
+  justify-self: right;
+  grid-area: gSC8;
 }
 
 .grid-actor {

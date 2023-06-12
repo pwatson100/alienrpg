@@ -3,11 +3,10 @@
 </h2>
 <ol class="items-list s1h27">
   {{#each critMaj as |item iid|}}
-    <li class="item critical-inj" data-item-id="{{item.id}}">
-      <a class="item-image crit1"><img src="{{item.img}}" width="24" height="24" /></a>
-      <a class="item-name crit2">{{item.name}}</a>
-      <a class="item-name crit3">{{{striptags item.system.header.damage}}}</a>
-      <a class="crit4 item-control item-edit1" data-item-id="{{item.id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+    <li class="item space-critical-inj" data-item-id="{{item.id}}">
+      <a class="item-image ScritI1"><img src="{{item.img}}" width="24" height="24" /></a>
+      <a class="item-name ScritI2">{{item.name}}</a>
+      <a class="ScritI4 item-control item-edit1" data-item-id="{{item.id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
     </li>
   {{/each}}
 </ol>

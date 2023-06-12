@@ -53,7 +53,6 @@ export class alienrpgItemSheet extends ItemSheet {
         break;
       case 'spacecraft-crit':
         await this._prepareShipCritData(item);
-
         break;
       case 'agenda':
         await this._prepareAgendaData(item);
@@ -67,7 +66,6 @@ export class alienrpgItemSheet extends ItemSheet {
         ];
         await this._enrichTextFields(item, enrichedFields5);
         break;
-
       case 'talent':
         await this._prepareTalentData(item)
         break;

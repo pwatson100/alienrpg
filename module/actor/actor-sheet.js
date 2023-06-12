@@ -143,11 +143,6 @@ export class alienrpgActorSheet extends ActorSheet {
         await this._prepareCrew(data);
         break;
 
-      case 'spacecraft':
-        await this._prepareVehicleItems(data);
-        await this._prepareCrew(data);
-        break;
-
       default:
         break;
     }
@@ -822,7 +817,6 @@ export class alienrpgActorSheet extends ActorSheet {
       synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
       creature: ['critical-injury'],
       vehicles: ['item', 'weapon', 'armor'],
-      spacecraft: ['item', 'weapon', 'armor'],
       territory: ['planet-system'],
     };
     let allowed = true;

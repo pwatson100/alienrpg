@@ -610,7 +610,20 @@
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor", "talent", "planet-system", "skill-stunts", "agenda", "specialty", "critical-injury", "spacecraft-crit"],
+    "types": [
+      "item",
+      "weapon",
+      "armor",
+      "talent",
+      "planet-system",
+      "skill-stunts",
+      "agenda",
+      "specialty",
+      "critical-injury",
+      "spacecraft-crit",
+      "spacecraftmods",
+      "spacecraftweapons"
+    ],
     "item": {
       "header": {
         "type": {
@@ -1159,6 +1172,80 @@
         "damage": "",
         "effects": "",
         "repairroll": ""
+      }
+    },
+    "spacecraftmods": {
+      "header": {
+        "type": {
+          "value": "",
+          "label": "Text"
+        },
+        "active": false
+      },
+      "attributes": {
+        "size": {
+          "value": "",
+          "label": "Text"
+        },
+        "capacity": {
+          "value": "",
+          "label": "Text"
+        },
+        "cost": {
+          "value": 0,
+          "label": "Number"
+        },
+        "comment": {
+          "value": "",
+          "label": "Text"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "notes": {
+          "notes": ""
+        }
+      }
+    },
+    "spacecraftweapons": {
+      "header": {
+        "type": {
+          "value": "",
+          "label": "Text"
+        },
+        "active": false
+      },
+      "attributes": {
+        "bonus": {
+          "value": 0,
+          "label": "Number"
+        },
+        "damage": {
+          "value": 0,
+          "label": "Number"
+        },
+        "hardpoint": {
+          "value": "",
+          "label": "Text"
+        },
+        "cost": {
+          "value": 0,
+          "label": "Number"
+        },
+        "range": {
+          "value": "",
+          "label": "Number"
+        },
+        "comment": {
+          "value": "",
+          "label": "Text"
+        },
+        "quantity": {
+          "value": 1
+        }
+      },
+      "notes": {
+        "notes": ""
       }
     }
   }
