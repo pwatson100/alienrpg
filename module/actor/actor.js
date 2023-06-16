@@ -260,7 +260,7 @@ export class alienrpgActor extends Actor {
       if (attrib && actor.type != 'synthetic' && !rollMod) {
         function myRenderTemplate(template) {
           let confirmed = false;
-          reRoll = true;
+          reRoll = false;
           renderTemplate(template).then((dlg) => {
             new Dialog({
               title: game.i18n.localize('ALIENRPG.Attributes') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
@@ -281,6 +281,8 @@ export class alienrpgActor extends Actor {
                 if (confirmed) {
                   if (!html.find('#fblind')[0].checked) {
                     r2Data = 0;
+                    reRoll = true;
+
                   };
                   yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
