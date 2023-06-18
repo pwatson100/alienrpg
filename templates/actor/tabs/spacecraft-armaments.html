@@ -46,7 +46,8 @@
       {{#ife item.system.header.type.value '2'}}
         <li class="item grid-items" data-item-id="{{item._id}}">
           <div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
-          <span class="item-detail lCol6 ">{{item.name~}}</span>
+          <span class="item-detail lCol6 rollItem" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+
           <span class="item-detail lCol16" data-item="{{system.attributes.bonus.value}}">{{system.attributes.bonus.value}}</span>
           <span class="item-detail lCol12" data-item="{{system.attributes.hardpoint.value}}">{{system.attributes.hardpoint.value}}</span>
 

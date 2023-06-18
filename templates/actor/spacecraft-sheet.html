@@ -96,17 +96,17 @@
                     {{/ife}}
 
                     {{#ife position 'SENSOROP'}}
-                      <h3 for="actor.system.skills.comtech.value" class="resource-label rollable Attr1 gSC7" data-actorid="{{actor.id}}" data-roll="{{actor.system.skills.comtech.mod}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillcomtech'}}">{{localize 'ALIENRPG.Skillcomtech'}}</h3>
+                      <h3 for="actor.system.skills.comtech.value" class="resource-label rollable Attr1 gSC7" data-spbutt="comtech" data-actorid="{{actor.id}}" data-roll="{{actor.system.skills.comtech.mod}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillcomtech'}}">{{localize 'ALIENRPG.Skillcomtech'}}</h3>
                     {{/ife}}
 
                     {{!-- Buttons --}}
                     <div class="gSC8">
                       {{#unless actor.isCrewDeleted}}
-                        <a class="button crew-edit" title="{{localize 'ALIENRPG.ActorSheet.Edit'}}">
+                        <a class="button crew-edit" title="{{localize 'ALIENRPG.EditItem'}}">
                           {{{@root.config.Icons.buttons.edit}}}
                         </a>
                       {{/unless}}
-                      <a class="button crew-remove" title="{{localize 'ALIENRPG.ActorSheet.Delete'}}">
+                      <a class="button crew-remove" title="{{localize 'ALIENRPG.DeleteItem'}}">
                         {{{@root.config.Icons.buttons.remove}}}
                       </a>
                     </div>

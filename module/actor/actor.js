@@ -298,7 +298,7 @@ export class alienrpgActor extends Actor {
           }
 
         }
-      } else if (actor.type === 'spacecraft' && !rollMod) {
+      } else if (actor.type === 'spacecraft' && dataset.spbutt === 'comtech') {
         function myRenderTemplate(template) {
           let confirmed = false;
           reRoll = true;

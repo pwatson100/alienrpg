@@ -203,11 +203,11 @@ export class alienrpgItem extends Item {
       } else {
         // it's a vehicle so no attribute bonus
 
-        if (itemData.header.type.value === '1') {
+        if (itemData.header.type.value === '1' || itemData.header.type.value === '2') {
           let fCrew = [];
           let options = '';
           for (let [index] of actorData.crew.occupants.entries()) {
-            if (actorData.crew.occupants[index].position != 'PASSENGER') {
+            if (actorData.crew.occupants[index].position === 'GUNNER') {
               const firer = game.actors.get(actorData.crew.occupants[index].id);
               fCrew.push({ firerName: firer.name, firerID: firer.id, position: actorData.crew.occupants[index].position });
               options = options.concat(`<option value="${index}">${firer.name}</option>`);
@@ -270,11 +270,13 @@ export class alienrpgItem extends Item {
               }
             },
           }).render(true);
-        } else if (itemData.header.type.value === '2') {
-          let r1Data = itemData.attributes.bonus.value;
-          yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
-          game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
-        } else {
+        }
+        // else if (itemData.header.type.value === '2') {
+        //   let r1Data = itemData.attributes.bonus.value;
+        //   yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
+        //   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+        // }
+        else {
           console.warn('No type on item');
         }
       }

@@ -86,13 +86,13 @@ ALIENRPG.vehicle = {
   },
 };
 ALIENRPG.spacecraft = {
-  crewPositionFlags: ['COMMANDER', 'PILOT', 'GUNNER', 'CREW', 'SENSOROP', 'PASSENGER'],
+  crewPositionFlags: ['CAPTAIN', 'PILOT', 'GUNNER', 'ENGINEER', 'SENSOROP', 'PASSENGER'],
   crewPositionFlagsLocalized: {
-    COMMANDER: 'ALIENRPG.CrewCommander',
+    CAPTAIN: 'ALIENRPG.CAPTAIN',
     PILOT: 'ALIENRPG.CrewPilot',
     GUNNER: 'ALIENRPG.CrewGunner',
     SENSOROP: 'ALIENRPG.SENSOR-OP',
-    CREW: 'ALIENRPG.CREW',
+    ENGINEER: 'ALIENRPG.ENGINEER',
     PASSENGER: 'ALIENRPG.CrewPasanger',
   },
 };
