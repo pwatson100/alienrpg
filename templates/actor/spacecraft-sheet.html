@@ -52,14 +52,14 @@
             <input type="text" class="maxboxsize s1h22" name="system.attributes.armor.value" value="{{actor.system.attributes.armor.value}}" data-dtype="Number" />
 
             <label class="s1h23" style="font-weight: bold;">{{ localize "ALIENRPG.DAMAGE"}}</label>
-            <div class="dots damage s1h24" style="width: 150px; display: inline-flex;margin-bottom: 10px;">
+            <div class="dots damage s1h24" style="width: 200px; display: inline-flex;margin-bottom: 10px;text-align: center;">
               <input type="hidden" name="system.attributes.damage.value" data-max="{{actor.system.attributes.damage.max}}" value="{{actor.system.attributes.damage.value}}" data-dtype="Number">
               <span class="click-stat-level" title="{{ localize " ALIENRPG.ConButtons"}}">{{{actor.system.attributes.damage.icon}}}
               </span>
             </div>
             <br><br>
             <label class="s1h25" style="font-weight: bold;">{{localize "ALIENRPG.LEASE-COST"}}</label>
-            <input type="text" class="cashboxsize currency s1h26" name="system.attributes.leasecost.value" value="{{actor.system.attributes.leasecost.value}}" />
+            <input type="text" class="cashboxsize currency s1h26" style="max-width: 200px;" name="system.attributes.leasecost.value" value="{{actor.system.attributes.leasecost.value}}" />
           </div>
           <br>
           <div class="box-top" style="overflow: auto">{{> "systems/alienrpg/templates/actor/tabs/sCraft-minor-crit.html" }}</div>

@@ -84,6 +84,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
           "actor.system.notes",
         ];
         await this._enrichTextFields(data, enrichedFields);
+        data.actor.system.attributes.damage.max = data.actor.system.attributes.hull.value;
         data.actor.system.attributes.damage.icon = this._getClickIcon(data.actor.system.attributes.damage.value, 'damage');
 
         break;

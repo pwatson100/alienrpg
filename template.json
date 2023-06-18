@@ -583,7 +583,7 @@
         },
         "damage": {
           "value": 0,
-          "max": 10
+          "max": 12
         },
         "leasecost": {
           "value": 0
