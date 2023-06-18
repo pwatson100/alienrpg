@@ -292,8 +292,16 @@ export class alienrpgActorSheet extends ActorSheet {
         attrMod.stress = attrMod.stress += -2;
       }
 
+      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'TAKE CONTROL' && actor.actor.system.attributes.wit.value > actor.actor.system.attributes.emp.value ) {
+        actor.actor.system.skills.manipulation.ability = "wit";
+      }
+
       if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'TOUGH') {
         attrMod.health = attrMod.health += 2;
+      }
+
+      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'STOIC' && actor.actor.system.attributes.wit.value > actor.actor.system.attributes.str.value) {
+        actor.actor.system.skills.stamina.ability = "wit";
       }
 
     }
@@ -1125,7 +1133,7 @@ export class alienrpgActorSheet extends ActorSheet {
     function onBlur(e) {
       let value = localStringToNumber(e.target.value);
       if (game.settings.get('alienrpg', 'dollar'))
-        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '0.00';
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '$0.00';
       else
         e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
     }
