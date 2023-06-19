@@ -63,7 +63,7 @@ export class yze {
     // *******************************************************
     let rType = '';
     // if (reRoll && (hostile === true) === 'character') {
-    if ((reRoll && actortype === 'character' && label != game.i18n.localize('ALIENRPG.Armor') && label != game.i18n.localize('ALIENRPG.Radiation')) && label != game.i18n.localize('ALIENRPG.AbilityStr') && label != game.i18n.localize('ALIENRPG.AbilityAgl') && label != game.i18n.localize('ALIENRPG.AbilityEmp') && label != game.i18n.localize('ALIENRPG.AbilityWit') || reRoll === 'mPush') {
+    if ((reRoll && actortype === 'character' && actortype != 'item' && label != game.i18n.localize('ALIENRPG.Armor') && label != game.i18n.localize('ALIENRPG.Radiation')) && label != game.i18n.localize('ALIENRPG.AbilityStr') && label != game.i18n.localize('ALIENRPG.AbilityAgl') && label != game.i18n.localize('ALIENRPG.AbilityEmp') && label != game.i18n.localize('ALIENRPG.AbilityWit') || reRoll === 'mPush') {
       // if ((reRoll && actortype === 'character' && label != 'Armor' && label != 'Radiation') || reRoll === 'mPush') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {

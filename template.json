@@ -556,6 +556,7 @@
       },
       "attributes": {
         "manufacturer": "",
+        "model": "",
         "ai": "",
         "crew": {
           "value": 0
@@ -583,7 +584,7 @@
         },
         "damage": {
           "value": 0,
-          "max": 12
+          "max": 15
         },
         "leasecost": {
           "value": 0

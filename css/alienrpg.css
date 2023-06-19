@@ -339,7 +339,9 @@ a.inline-roll {
   margin: 0;
 }
 
-.rollable:hover, .rollable:focus {
+.rollable:hover, .rollable:focus,
+.rollcomputer:hover,
+.rollcomputer:focus {
   text-shadow: 0 0 20px hsl(0, 100%, 50%);
   font-size: 95%;
   cursor: pointer;
@@ -1442,7 +1444,7 @@ button:focus {
 
 .s1-header {
   display: grid;
-  grid-template-areas: ". . s1h1 s1h1 s1h1 ." "s1h2 s1h2 s1h2 s1h2 s1h2 s1h2" ". . s1h3 s1h3 s1h3 ." "s1h4 s1h4 s1h4 s1h4 s1h4 s1h4" ". . s1h5 s1h5 s1h5 ." "s1h6 s1h6 s1h6 s1h6 s1h6 s1h6" "s1space1 s1h7 s1h8 s1space s1h9 s1h10" "s1space1 s1h11 s1h12 s1space s1h13 s1h14" "s1space1 s1h15 s1h16 s1space s1h17 s1h18" "s1space1 s1h19 s1h20 s1space s1h21 s1h22" "s1h23 s1h23 s1h23 s1h23 s1h23 s1h23" "s1h24 s1h24 s1h24 s1h24 s1h24 s1h24" "s1h25 s1h25 s1h25 s1h25 s1h25 s1h25" "s1h26 s1h26 s1h26 s1h26 s1h26 s1h26" "s1h27 s1h27 s1h27 s1h27 s1h27 s1h27";
+  grid-template-areas: ". . s1h1 s1h1 s1h1 ." "s1h2 s1h2 s1h2 s1h2 s1h2 s1h2" "s1h3 s1h3 s1h3 s1h4 s1h4 s1h4" "s1h28 s1h28 s1h28 s1h29 s1h29 s1h29" ". . s1h5 s1h5 s1h5 ." "s1h6 s1h6 s1h6 s1h6 s1h6 s1h6" "s1space1 s1h7 s1h8 s1space s1h9 s1h10" "s1space1 s1h11 s1h12 s1space s1h13 s1h14" "s1space1 s1h15 s1h16 s1space s1h17 s1h18" "s1space1 s1h19 s1h20 s1space s1h21 s1h22" "s1h23 s1h23 s1h23 s1h23 s1h23 s1h23" "s1h24 s1h24 s1h24 s1h24 s1h24 s1h24" "s1h25 s1h25 s1h25 s1h25 s1h25 s1h25" "s1h26 s1h26 s1h26 s1h26 s1h26 s1h26" "s1h27 s1h27 s1h27 s1h27 s1h27 s1h27";
   grid-template-columns: 5% 10% 30% 5% 30% 10%;
   padding: 0 10px 0px 10px;
 }
@@ -1479,6 +1481,7 @@ button:focus {
   grid-area: s1h4;
   -ms-flex-line-pack: center;
       align-content: center;
+  font-weight: bolder;
 }
 
 .s1h5 {
@@ -1617,6 +1620,18 @@ button:focus {
   grid-area: s1h27;
   height: 50px;
   justify-self: center;
+}
+
+.s1h28 {
+  grid-area: s1h28;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.s1h29 {
+  grid-area: s1h29;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 .grid-container {

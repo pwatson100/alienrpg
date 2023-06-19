@@ -173,6 +173,7 @@ export class alienrpgActor extends Actor {
     let actorId = actor.id;
     let effectiveActorType = actor.type;
     let attrib = dataset.attr;
+    let blind = false;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
 
@@ -185,13 +186,11 @@ export class alienrpgActor extends Actor {
     dataset.modifier = 0;
     dataset.stressMod = 0;
 
-    // console.log('🚀 ~ file: actor.js ~ line 397 ~ alienrpgActor ~ rollAbility ~ dataset.roll', dataset.roll);
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0) + parseInt(modifier);
       if (dataset.attr) {
         r1Data = parseInt(modifier);
       }
-      // console.log('🚀 ~ file: actor.js ~ line 395 ~ alienrpgActor ~ rollAbility ~ r1Data', r1Data);
 
       reRoll = true;
       r2Data = 0;
@@ -223,12 +222,12 @@ export class alienrpgActor extends Actor {
           break;
       }
 
-      let blind = false;
-      if (dataset.spbutt === 'armor' && r1Data < 1 && !dataset.armorP && !dataset.armorDou) {
-        return;
-      } else if (dataset.spbutt === 'armor') {
+      if (dataset.spbutt === 'armor') {
+
+        if (r1Data < 1 && !dataset.armorP && !dataset.armorDou) {
+          return;
+        }
         label = game.i18n.localize('ALIENRPG.Armor');
-        // label = 'Armor';
         r2Data = 0;
         reRoll = true;
         if (dataset.armorP === 'true') {
@@ -246,15 +245,6 @@ export class alienrpgActor extends Actor {
         reRoll = true;
         r1Data += 1;
       }
-      // if (actor.data.token.disposition === -1) {
-      //   blind = true;
-      // }
-
-      // TODO
-      //
-      // Need to put some code here to pop a message if r1Data and r2Data are zero.  Otherwise it just throws and error.
-      //
-      // TODO
 
 
       if (attrib && actor.type != 'synthetic' && !rollMod) {
@@ -329,10 +319,11 @@ export class alienrpgActor extends Actor {
                   targetMod = parseInt(targetMod);
                   if (isNaN(modifier)) modifier = 0;
                   if (isNaN(targetLock)) targetLock = 0;
-                  if (isNaN(targetLock)) targetMod = 0;
+                  if (isNaN(targetMod)) targetMod = 0;
                   // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
-                  dataset.modifier = modifier + targetLock + targetMod;
-                  actor.rollAbility(actor, dataset, confirmed);
+                  r1Data = r1Data + modifier + targetLock + targetMod;
+                  yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
+                  game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                 }
               },
             }).render(true);

@@ -19,6 +19,7 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/alienrpg/templates/actor/crt/tabs/critical-inj.html',
     'systems/alienrpg/templates/actor/tabs/sCraft-minor-crit.html',
     'systems/alienrpg/templates/actor/tabs/sCraft-major-crit.html',
+    'systems/alienrpg/templates/actor/tabs/spacecraft-combat-phases.html',
   ];
 
   // Load the template parts

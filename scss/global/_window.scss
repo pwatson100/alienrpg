@@ -301,7 +301,8 @@ a.inline-roll {
   }
 }
 
-.rollable {
+.rollable,
+.rollcomputer {
   &:hover,
   &:focus {
     // color: black;

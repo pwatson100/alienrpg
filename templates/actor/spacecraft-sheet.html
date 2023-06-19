@@ -5,6 +5,7 @@
     <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
     <a class="item" data-tab="inventory">{{localize "ALIENRPG.MODULES-UPGRADES"}}</a>
     <a class="item" data-tab="image">{{localize "ALIENRPG.Image"}}</a>
+    <a class="item" data-tab="combatphases">{{localize "ALIENRPG.SpaceCombatPhases"}}</a>
     <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
   </nav>
 
@@ -21,8 +22,11 @@
             <h1 class="resource-label s1h1">{{localize "ALIENRPG.Name"}}</h1>
             <h1 class="charname s1h2"><input name="name" type="text" value="{{actor.name}}" /></h1>
 
-            <h3 class="resource-label s1h3">{{localize "ALIENRPG.Manufacturer"}}</h3>
-            <input class="textbox s1h4" type="text" name="system.attributes.manufacturer" value="{{actor.system.attributes.manufacturer}}" data-dtype="String" />
+            <h3 class="resource-label s1h3">{{localize "ALIENRPG.MODEL"}}</h3>
+            <input class="textbox s1h28" type="text" name="system.attributes.model" value="{{actor.system.attributes.model}}" data-dtype="String" />
+
+            <h3 class="resource-label s1h4">{{localize "ALIENRPG.Manufacturer"}}</h3>
+            <input class="textbox s1h29" type="text" name="system.attributes.manufacturer" value="{{actor.system.attributes.manufacturer}}" data-dtype="String" />
 
             <h3 class="resource-label s1h5">{{localize "ALIENRPG.AI"}}</h3>
             <input class="textbox s1h6" type="text" name="system.attributes.ai" value="{{actor.system.attributes.ai}}" data-dtype="String" />
@@ -52,9 +56,9 @@
             <input type="text" class="maxboxsize s1h22" name="system.attributes.armor.value" value="{{actor.system.attributes.armor.value}}" data-dtype="Number" />
 
             <label class="s1h23" style="font-weight: bold;">{{ localize "ALIENRPG.DAMAGE"}}</label>
-            <div class="dots damage s1h24" style="width: 200px; display: inline-flex;margin-bottom: 10px;text-align: center;">
+            <div class="dots damage s1h24" style="width: 226px; display: inline-flex;margin-bottom: 10px;text-align: center;">
               <input type="hidden" name="system.attributes.damage.value" data-max="{{actor.system.attributes.damage.max}}" value="{{actor.system.attributes.damage.value}}" data-dtype="Number">
-              <span class="click-stat-level" title="{{ localize " ALIENRPG.ConButtons"}}">{{{actor.system.attributes.damage.icon}}}
+              <span class="click-stat-level" title='{{localize "ALIENRPG.ShipConButtons"}}'>{{{actor.system.attributes.damage.icon}}}
               </span>
             </div>
             <br><br>
@@ -132,6 +136,9 @@
     {{!-- Owned Items Tab --}}
     <!-- INVENTORY -->
     <div class="tab inventory" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/tabs/spacecraft-inventory.html" sections=inventory}}</div>
+
+    <!-- Space Combat Phases -->
+    <div class="tab combatphases" data-group="primary" data-tab="combatphases">{{> "systems/alienrpg/templates/actor/tabs/spacecraft-combat-phases.html" sections=combatphases}}</div>
 
     {{!-- Image Tab --}}
     <div class="tab image" style="text-align: center;" data-tab="image">

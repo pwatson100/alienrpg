@@ -368,6 +368,10 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     html.find('.activate').click(this._activate.bind(this));
     html.find('.activate').contextmenu(this._deactivate.bind(this));
 
+    html.find('.sensorsubmit').click(this._shipPhase.bind(this));
+    html.find('.pilotsubmit').click(this._shipPhase.bind(this));
+    html.find('.gunnersubmit').click(this._shipPhase.bind(this));
+    html.find('.engineersubmit').click(this._shipPhase.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -650,7 +654,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
   /**
    * Get the font-awesome icon used to display a certain level of radiation
    * @private
-   */
+  */
 
   _getClickIcon(level, stat) {
     const maxPoints = this.object.system.attributes[stat].max;
@@ -719,32 +723,6 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
         e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
     }
   }
-  // async _onOverwatchToggle(event) {
-  //   let key = $(event.currentTarget).parents('.condition').attr('data-key');
-  //   if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
-  //   else await this.actor.addCondition(key);
-  // }
-
-  // _creatureAcidRoll(event) {
-  //   event.preventDefault();
-  //   // const element = event.currentTarget;
-  //   const dataset = event.currentTarget.dataset;
-  //   this.actor.creatureAcidRoll(this.actor, dataset);
-  // }
-
-  // _creatureAttackRoll(event) {
-  //   event.preventDefault();
-  //   // const element = event.currentTarget;
-  //   const dataset = event.currentTarget.dataset;
-  //   this.actor.creatureAttackRoll(this.actor, dataset);
-  // }
-
-  // _creatureManAttackRoll(event) {
-  //   event.preventDefault();
-  //   // const element = event.currentTarget;
-  //   const dataset = event.currentTarget.dataset;
-  //   this.actor.creatureManAttackRoll(this.actor, dataset);
-  // }
 
   _dropCrew(actorId) {
     const crew = game.actors.get(actorId);
@@ -799,5 +777,41 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     const position = elem.value;
     return this.actor.addVehicleOccupant(crewId, position);
   }
+
+  async _shipPhase(event) {
+    let htmlData = '';
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    const shipName = this.actor.name;
+    const actorID = this.actor.id;
+    const element = dataset.previousElementSibling.selectedOptions[0].label;
+    const phase = game.i18n.localize(`ALIENRPG.${dataset.previousElementSibling.name}`);
+
+    htmlData = {
+      phaseName: `${phase}`,
+      actorname: `${shipName}`,
+      action: `${element}`,
+    };
+
+    // Now push the correct chat message
+    const html = await renderTemplate(`systems/alienrpg/templates/chat/ship-combat.html`, htmlData);
+
+    let chatData = {
+      user: game.user.id,
+      speaker: {
+        actor: actorID,
+      },
+      content: html,
+      other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
+      sound: CONFIG.sounds.lock,
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+    };
+
+    ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
+    return ChatMessage.create(chatData);
+
+  }
+
+
 }
 export default alienrpgSpacecraftSheet;

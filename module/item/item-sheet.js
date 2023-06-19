@@ -149,7 +149,21 @@ export class alienrpgItemSheet extends ItemSheet {
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
+    if (game.settings.get('alienrpg', 'switchMouseKeys')) {
+      // Right to Roll and left to mod
+      // Rollable abilities.
+      html.find('.rollcomputer').contextmenu(this._onRollComputer.bind(this));
 
+      html.find('.rollcomputer').click(this._onRollComputerMod.bind(this));
+
+    } else {
+      // Left to Roll and Right toMod
+      // Rollable abilities.
+      html.find('.rollcomputer').click(this._onRollComputer.bind(this));
+
+      html.find('.rollcomputer').contextmenu(this._onRollComputerMod.bind(this));
+
+    }
     // Roll handlers, click handlers, etc. would go here.
     html.find('.currency').on('change', this._currencyField.bind(this));
   }
@@ -172,5 +186,24 @@ export class alienrpgItemSheet extends ItemSheet {
         e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
       // console.warn(e.target.value);
     }
+
+  }
+  _onRoll(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.item.roll(this.item, dataset);
+  }
+  _onRollComputer(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    this.item.rollComputer(this.item, dataset);
+  }
+
+
+  _onRollComputerMod(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    this.item.rollComputerMod(this.item, dataset);
   }
 }

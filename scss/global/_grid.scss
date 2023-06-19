@@ -192,8 +192,8 @@
   grid-template-areas:
     '. . s1h1 s1h1 s1h1 .'
     's1h2 s1h2 s1h2 s1h2 s1h2 s1h2'
-    '. . s1h3 s1h3 s1h3 .'
-    's1h4 s1h4 s1h4 s1h4 s1h4 s1h4'
+    's1h3 s1h3 s1h3 s1h4 s1h4 s1h4'
+    's1h28 s1h28 s1h28 s1h29 s1h29 s1h29'
     '. . s1h5 s1h5 s1h5 .'
     's1h6 s1h6 s1h6 s1h6 s1h6 s1h6'
     's1space1 s1h7 s1h8 s1space s1h9 s1h10'
@@ -237,6 +237,7 @@
   grid-area: s1h4;
   // border: 1px solid var(--aliengreen);
   align-content: center;
+  font-weight: bolder;
 }
 .s1h5 {
   grid-area: s1h5;
@@ -378,6 +379,16 @@
   // border: 1px solid var(--aliengreen);
   height: 50px;
   justify-self: center;
+}
+.s1h28 {
+  grid-area: s1h28;
+  // border: 1px solid var(--aliengreen);
+  align-content: center;
+}
+.s1h29 {
+  grid-area: s1h29;
+  // border: 1px solid var(--aliengreen);
+  align-content: center;
 }
 
 .grid-container {
