@@ -69,11 +69,11 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     data.actor = actor.toJSON();
 
     data.actor.system.items = this.actor.items.map((i) => {
-      i.labels = i.labels;
+      i.label = i.label;
       return i;
     });
     data.actor.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-    data.actor.system.labels = this.actor.labels || {};
+    data.actor.system.label = this.actor.label || {};
     data.actor.system.filters = this._filters;
 
     switch (this.actor.type) {
@@ -113,8 +113,8 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
       weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
       item: { section: 'Items', label: game.i18n.localize('ALIENRPG.InventoryItemsHeader'), items: [], dataset: { type: 'item' } },
       armor: { section: 'Armor', label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'), items: [], dataset: { type: 'armor' } },
-      spacecraftmods: { section: 'spacecraftmods', label: game.i18n.localize('ALIENRPG.MODULES-UPGRADES'), items: [], dataset: { type: 'spacecraftmods' } },
-      spacecraftweapons: { section: 'spacecraftweapons', label: game.i18n.localize('ALIENRPG.SpacecraftWeapons'), items: [], dataset: { type: 'spacecraftweapons' } },
+      spacecraftmods: { section: 'Spacecraft Mods', label: game.i18n.localize('ALIENRPG.MODULES-UPGRADES'), items: [], dataset: { type: 'spacecraftmods' } },
+      spacecraftweapons: { section: 'Spacecraft Weapons', label: game.i18n.localize('ALIENRPG.SpacecraftWeapons'), items: [], dataset: { type: 'spacecraftweapons' } },
     };
     // Partition items by category
     let [items, Weapons, Armor, spacecraftmods, spacecraftweapons] = data.actor.system.items.reduce(

@@ -26,7 +26,6 @@
             <div class="item-controls lCol9">
               <a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
           </li>
-          <br>
         {{/ife}}
 
       {{/ife}}
@@ -43,18 +42,20 @@
   {{#each inventory as |inv|}}
 
     {{#each inv.items as |item iid|}}
-      {{#ife item.system.header.type.value '2'}}
-        <li class="item grid-items" data-item-id="{{item._id}}">
-          <div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
-          <span class="item-detail lCol6 rollItem" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+      {{#ife item.type 'spacecraftweapons'}}
 
-          <span class="item-detail lCol16" data-item="{{system.attributes.bonus.value}}">{{system.attributes.bonus.value}}</span>
-          <span class="item-detail lCol12" data-item="{{system.attributes.hardpoint.value}}">{{system.attributes.hardpoint.value}}</span>
+        {{#ife item.system.header.type.value '2'}}
+          <li class="item grid-items" data-item-id="{{item._id}}">
+            <div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+            <span class="item-detail lCol6 rollItem" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
 
-          <div class="item-controls lCol9">
-            <a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
-        </li>
-        <br>
+            <span class="item-detail lCol16" data-item="{{system.attributes.bonus.value}}">{{system.attributes.bonus.value}}</span>
+            <span class="item-detail lCol12" data-item="{{system.attributes.hardpoint.value}}">{{system.attributes.hardpoint.value}}</span>
+
+            <div class="item-controls lCol9">
+              <a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+          </li>
+        {{/ife}}
       {{/ife}}
 
     {{/each}}
