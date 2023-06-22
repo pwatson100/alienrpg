@@ -70,13 +70,14 @@
           <div style="overflow: auto">{{> "systems/alienrpg/templates/actor/tabs/sCraft-major-crit.html" }}</div>
         </div>
         <div class="spacec2">
+
           <h1>{{localize "ALIENRPG.CREW"}}</h1>
-          {{!-- <div class="crew" data-group="primary" data-tab="crew"> --}}
           <div class="crew" data-tab="general">
             <div class="grid-ship-crew">
               <label class="resource-label gSC1">Name</label>
               <label class="resource-label gSC2">Position</label>
               <label class="resource-label gSC3">Roll</label>
+              <label class="resource-label gSC4">Panic</label>
             </div>
             <br>
             <div>
@@ -86,25 +87,27 @@
 
                   <div class="grid-ship-crew">
                     {{!-- Name --}}
-                    <div class="gSC5">{{actor.name}}</div>
+                    <div class="gSC6">{{actor.name}}</div>
 
                     {{!-- Position --}}
-                    <div class="gSC6">
+                    <div class="gSC7">
                       <select class="crew-position select-css" style="width:175px">
                         {{selectOptions @root.config.spacecraft.crewPositionFlagsLocalized selected=position localize=true}}
                       </select>
                     </div>
 
                     {{#ife position 'PILOT'}}
-                      <h3 for="actor.system.skills.piloting.value" class="resource-label rollable Attr1 gSC7" data-actorid="{{actor.id}}" data-roll="{{addstats actor.system.skills.piloting.mod @root.actor.system.attributes.thrusters.value}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillpiloting'}}">{{localize 'ALIENRPG.Skillpiloting'}}</h3>
+                      <h3 for="actor.system.skills.piloting.value" class="resource-label rollable Attr1 gSC8" data-actorid="{{actor.id}}" data-roll="{{addstats actor.system.skills.piloting.mod @root.actor.system.attributes.thrusters.value}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillpiloting'}}">{{localize 'ALIENRPG.Skillpiloting'}}</h3>
                     {{/ife}}
 
                     {{#ife position 'SENSOROP'}}
-                      <h3 for="actor.system.skills.comtech.value" class="resource-label rollable Attr1 gSC7" data-spbutt="comtech" data-actorid="{{actor.id}}" data-roll="{{actor.system.skills.comtech.mod}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillcomtech'}}">{{localize 'ALIENRPG.Skillcomtech'}}</h3>
+                      <h3 for="actor.system.skills.comtech.value" class="resource-label rollable Attr1 gSC8" data-spbutt="comtech" data-actorid="{{actor.id}}" data-roll="{{actor.system.skills.comtech.mod}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillcomtech'}}">{{localize 'ALIENRPG.Skillcomtech'}}</h3>
                     {{/ife}}
 
+                    <label type="button" class="crewPanic gSC9" data-shippanicbut="true" data-crewpanic="{{actor.id}}" data-panicroll="true" title="{{localize 'ALIENRPG.RollPanic'}}"><i class="far fa-heart"></i></label>
+
                     {{!-- Buttons --}}
-                    <div class="gSC8">
+                    <div class="gSC10">
                       {{#unless actor.isCrewDeleted}}
                         <a class="button crew-edit" title="{{localize 'ALIENRPG.EditItem'}}">
                           {{{@root.config.Icons.buttons.edit}}}

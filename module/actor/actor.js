@@ -338,10 +338,22 @@ export class alienrpgActor extends Actor {
       if (dataset.panicroll) {
         // Roll against the panic table and push the roll to the chat log.
         let chatMessage = '';
-        const table = game.tables.getName('Panic Table');
-        // let aStress = actor.getRollData().stress;
-        if (!table) {
-          return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
+        let table = "";
+        // debugger;
+        if (dataset.shippanicbut) {
+          table = game.tables.getName('Space Combat Panic Roll');
+          // let aStress = actor.getRollData().stress;
+          if (!table) {
+            return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
+          }
+
+        } else {
+          table = game.tables.getName('Panic Table');
+          // let aStress = actor.getRollData().stress;
+          if (!table) {
+            return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
+          }
+
         }
 
         let rollModifier = parseInt(modifier) + parseInt(stressMod);
@@ -414,14 +426,23 @@ export class alienrpgActor extends Actor {
             ' ' +
             game.i18n.localize('ALIENRPG.Seepage104') +
             '</b></i></h4>';
+          if (dataset.shippanicbut) {
+            chatMessage += this.moreShipPanic(pCheck);
 
-          chatMessage += this.morePanic(pCheck);
+          } else {
+            chatMessage += this.morePanic(pCheck);
+          }
         } else {
           if (actor.type === 'character') actor.update({ 'system.general.panic.lastRoll': customResults.roll.total });
           pCheck = customResults.roll.total;
           chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.Roll') + ' ' + `${pCheck}` + ' </b></i></h4>';
           // chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
-          chatMessage += this.morePanic(pCheck);
+          if (dataset.shippanicbut) {
+            chatMessage += this.moreShipPanic(pCheck);
+
+          } else {
+            chatMessage += this.morePanic(pCheck);
+          }
           if (customResults.roll.total >= 7) {
             chatMessage += `<h4 class="alienchatred"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${pCheck}</b></i></h4>`;
           }
@@ -1104,6 +1125,45 @@ export class alienrpgActor extends Actor {
         break;
       default:
         con = game.i18n.localize('ALIENRPG.Panic15');
+        break;
+    }
+    return con;
+  }
+  moreShipPanic(pCheck) {
+    let con = '';
+    switch (pCheck) {
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+        con = game.i18n.localize('ALIENRPG.Panic1');
+        break;
+      case 7:
+        con = game.i18n.localize('ALIENRPG.ShipPanic7');
+        break;
+      case 8:
+        con = game.i18n.localize('ALIENRPG.ShipPanic8');
+        break;
+      case 9:
+        con = game.i18n.localize('ALIENRPG.ShipPanic9');
+        break;
+      case 10:
+        con = game.i18n.localize('ALIENRPG.ShipPanic10');
+        break;
+      case 11:
+      case 12:
+        con = game.i18n.localize('ALIENRPG.ShipPanic11');
+        break;
+      case 13:
+        con = game.i18n.localize('ALIENRPG.ShipPanic13');
+        break;
+      case 14:
+        con = game.i18n.localize('ALIENRPG.ShipPanic14');
+        break;
+      default:
+        con = game.i18n.localize('ALIENRPG.ShipPanic15');
         break;
     }
     return con;

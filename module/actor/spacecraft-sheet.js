@@ -372,6 +372,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     html.find('.pilotsubmit').click(this._shipPhase.bind(this));
     html.find('.gunnersubmit').click(this._shipPhase.bind(this));
     html.find('.engineersubmit').click(this._shipPhase.bind(this));
+    html.find('.crewPanic').click(this._crewPanic.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -525,6 +526,13 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
     this.actor.rollCrit(this.actor, this.actor.type, dataset);
+  }
+
+  _crewPanic(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    const panicActor = game.actors.get(dataset.crewpanic);
+    this.actor.rollAbility(panicActor, dataset);
   }
 
   _activate(event) {

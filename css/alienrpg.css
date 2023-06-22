@@ -2643,7 +2643,7 @@ button:focus {
 
 .grid-ship-crew {
   display: grid;
-  grid-template-areas: "gSC1 gSC2 gSC3 gSC4" "gSC5 gSC6 gSC7 gSC8";
+  grid-template-areas: "gSC1 gSC2 gSC3 gSC4 gSC5" " gSC6 gSC7 gSC8 gSC9 gSC10";
   grid-template-columns: 43% 25% 20% 6%;
 }
 
@@ -2668,12 +2668,12 @@ button:focus {
 }
 
 .gSC5 {
-  justify-self: left;
+  justify-self: right;
   grid-area: gSC5;
 }
 
 .gSC6 {
-  justify-self: center;
+  justify-self: left;
   grid-area: gSC6;
 }
 
@@ -2685,6 +2685,16 @@ button:focus {
 .gSC8 {
   justify-self: right;
   grid-area: gSC8;
+}
+
+.gSC9 {
+  justify-self: center;
+  grid-area: gSC9;
+}
+
+.gSC10 {
+  justify-self: right;
+  grid-area: gSC10;
 }
 
 .grid-actor {

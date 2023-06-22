@@ -253,7 +253,7 @@ export class alienrpgItem extends Item {
             }
             break;
           case 'spacecraft':
-            if (itemData.header.type.value === '1' || itemData.header.type.value === '2') {
+            if (itemData.header.type.value === '1') {
               let fCrew = [];
               let options = '';
               for (let [index] of actorData.crew.occupants.entries()) {
@@ -333,10 +333,78 @@ export class alienrpgItem extends Item {
                   }
                 },
               }).render(true);
-            }
-            else {
-              console.warn('No type on item');
-            }
+            } else
+              if (itemData.header.type.value === '2') {
+                let fCrew = [];
+                let options = '';
+                for (let [index] of actorData.crew.occupants.entries()) {
+                  if (actorData.crew.occupants[index].position === 'GUNNER') {
+                    const firer = game.actors.get(actorData.crew.occupants[index].id);
+                    let fIndex = fCrew.push({ firerName: firer.name, firerID: firer.id, position: actorData.crew.occupants[index].position }) - 1;
+                    options = options.concat(`<option value="${fIndex}">${firer.name}</option>`);
+                  }
+                }
+                if (fCrew.length === 0) {
+                  return ui.notifications.warn(game.i18n.localize('ALIENRPG.noCrewAssigned'));
+                }
+                let template = `
+      <form>
+      <div class="form-group">
+      <label>${game.i18n.localize('ALIENRPG.SelectFirer')}</label>
+      <select id="FirerSelect" name="FirerSelect">${options}</select>
+      </div>
+       <div class="form-group">
+      <label>${game.i18n.localize('ALIENRPG.BaseMod')}</label>
+      <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus" />
+      </div>
+      <div class="form-group">
+      <label>${game.i18n.localize('ALIENRPG.StressMod')}</label>
+      <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus" />
+      </div>
+    
+    </form>`;
+                new Dialog({
+                  title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+                  content: template,
+                  buttons: {
+                    one: {
+                      icon: '<i class="fas fa-check"></i>',
+                      label: game.i18n.localize('ALIENRPG.DialRoll'),
+                      callback: () => (confirmed = true),
+                    },
+                    two: {
+                      icon: '<i class="fas fa-times"></i>',
+                      label: game.i18n.localize('ALIENRPG.DialCancel'),
+                      callback: () => (confirmed = false),
+                    },
+                  },
+                  default: 'one',
+                  close: (html) => {
+                    if (confirmed) {
+                      let shooter = parseInt(html.find('[name=FirerSelect]')[0].value);
+                      actorid = fCrew[shooter].firerID;
+                      let tactorid = fCrew[shooter].firerID;
+                      let modifier = parseInt(html.find('[name=modifier]')[0].value);
+                      let stressMod = parseInt(html.find('[name=stressMod]')[0].value);
+                      let aStressVal = parseInt(game.actors.get(tactorid).system.header?.stress?.value || 0);
+
+                      let r1Data = parseInt(itemData.attributes.bonus.value + modifier + game.actors.get(tactorid).system.skills.rangedCbt.mod);
+                      // let r2Data = parseInt(aStressVal + aStressMod + stressMod);
+                      let r2Data = parseInt(aStressVal + stressMod);
+                      label += ` (${this.actor.name}) `;
+                      // label += ` (${fCrew[shooter].firerName}) `;
+
+                      reRoll = false;
+                      hostile = 'character';
+                      yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid, tactorid);
+                      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+                    }
+                  },
+                }).render(true);
+              }
+              else {
+                console.warn('No type on item');
+              }
             break;
 
           default:
