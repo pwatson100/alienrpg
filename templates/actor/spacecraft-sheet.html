@@ -74,10 +74,10 @@
           <h1>{{localize "ALIENRPG.CREW"}}</h1>
           <div class="crew" data-tab="general">
             <div class="grid-ship-crew">
-              <label class="resource-label gSC1">Name</label>
-              <label class="resource-label gSC2">Position</label>
-              <label class="resource-label gSC3">Roll</label>
-              <label class="resource-label gSC4">Panic</label>
+              <label class="resource-label gSC1">{{localize 'ALIENRPG.Name'}}</label>
+              <label class="resource-label gSC2">{{localize 'ALIENRPG.Position'}}</label>
+              <label class="resource-label gSC3">{{localize 'ALIENRPG.Roll'}}</label>
+              <label class="resource-label gSC4">{{localize 'ALIENRPG.Panic'}}</label>
             </div>
             <br>
             <div>
@@ -138,7 +138,7 @@
 
     {{!-- Owned Items Tab --}}
     <!-- INVENTORY -->
-    <div class="tab inventory" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/tabs/spacecraft-inventory.html" sections=inventory}}</div>
+    <div class="tab inventory" style="margin-left: 135px; margin-right: 207px;" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/tabs/spacecraft-inventory.html" sections=inventory}}</div>
 
     <!-- Space Combat Phases -->
     <div class="tab combatphases" data-group="primary" data-tab="combatphases">{{> "systems/alienrpg/templates/actor/tabs/spacecraft-combat-phases.html" sections=combatphases}}</div>

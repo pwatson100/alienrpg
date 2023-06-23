@@ -168,6 +168,12 @@ Hooks.once('init', async function () {
       case '5':
         g = game.i18n.localize('ALIENRPG.Extreme');
         return g;
+      case '6':
+        g = game.i18n.localize('ALIENRPG.Contact');
+        return g;
+      case '7':
+        g = game.i18n.localize('ALIENRPG.Surface');
+        return g;
     }
   });
 

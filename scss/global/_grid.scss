@@ -791,6 +791,91 @@
   grid-area: lCol18;
   justify-self: center;
 }
+.grid-modules {
+  display: grid;
+  // border: 2px solid var(--aliengreen);
+  grid-template-areas:
+    'mCol1 mCol2 mCol17 mCol15 mCol13 mCol4'
+    'mCol5 mCol6 mCol18 mCol16 mCol14 mCol8';
+  padding-bottom: 6px;
+  //                      l1 l2    l3 l4  l5  l6  l7   l8  l9
+  grid-template-columns: 30px 270px 75px 90px 269px 30px;
+  // grid-template-columns: 25px 410px 60px 60px 60px 20px;
+  align-items: center;
+}
+
+.mCol1 {
+  grid-area: mCol1;
+  justify-self: left;
+}
+.mCol2 {
+  grid-area: mCol2;
+  justify-self: center;
+}
+.mCol3 {
+  grid-area: mCol3;
+  justify-self: center;
+}
+.mCol4 {
+  grid-area: mCol4;
+  justify-self: right;
+}
+.mCol5 {
+  grid-area: mCol5;
+  justify-self: left;
+}
+.mCol6 {
+  grid-area: mCol6;
+  justify-self: left;
+}
+.mCol7 {
+  grid-area: mCol7;
+  justify-self: center;
+}
+.mCol8 {
+  grid-area: mCol8;
+  justify-self: right;
+}
+.mCol9 {
+  grid-area: mCol9;
+  justify-self: center;
+}
+.mCol10 {
+  grid-area: mCol10;
+  justify-self: center;
+}
+.mCol11 {
+  grid-area: mCol11;
+  justify-self: center;
+}
+.mCol12 {
+  grid-area: mCol12;
+  justify-self: center;
+}
+.mCol13 {
+  grid-area: mCol13;
+  justify-self: center;
+}
+.mCol14 {
+  grid-area: mCol14;
+  word-break: break-word;
+}
+.mCol15 {
+  grid-area: mCol15;
+  justify-self: center;
+}
+.mCol16 {
+  grid-area: mCol16;
+  justify-self: center;
+}
+.mCol17 {
+  grid-area: mCol17;
+  justify-self: center;
+}
+.mCol18 {
+  grid-area: mCol18;
+  justify-self: center;
+}
 
 .grid-talents {
   display: grid;

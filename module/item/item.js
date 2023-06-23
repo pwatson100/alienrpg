@@ -194,7 +194,7 @@ export class alienrpgItem extends Item {
                       <option value="0">${game.i18n.localize('ALIENRPG.Short')}</option>
                       <option value="-1">${game.i18n.localize('ALIENRPG.Medium')}</option>
                       <option value="-2">${game.i18n.localize('ALIENRPG.Long')}</option>
-                        <option value="-3">${game.i18n.localize('ALIENRPG.Extreme')}</option>
+                      <option value="-3">${game.i18n.localize('ALIENRPG.Extreme')}</option>
                         </select>
                     </div>
                     <div class="form-group">

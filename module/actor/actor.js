@@ -311,17 +311,23 @@ export class alienrpgActor extends Actor {
               default: 'one',
               close: (html) => {
                 if (confirmed) {
+                  let baseModifier = parseInt(html.find('[name=baseModifier]')[0]?.value);
+                  let stressMod = html.find('[name=stressMod]')[0]?.value;
                   let modifier = parseInt(html.find('[name=sigMod]')[0]?.value);
                   let targetLock = parseInt(html.find('[name=targetLock]')[0]?.value);
                   let targetMod = parseInt(html.find('[name=targetMod]')[0]?.value);
                   modifier = parseInt(modifier);
                   targetLock = parseInt(targetLock);
                   targetMod = parseInt(targetMod);
+                  baseModifier = parseInt(baseModifier);
+                  if (isNaN(baseModifier)) baseModifier = 0;
+                  if (isNaN(stressMod)) stressMod = 0;
                   if (isNaN(modifier)) modifier = 0;
                   if (isNaN(targetLock)) targetLock = 0;
                   if (isNaN(targetMod)) targetMod = 0;
                   // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
-                  r1Data = r1Data + modifier + targetLock + targetMod;
+                  r1Data = r1Data + baseModifier + modifier + targetLock + targetMod;
+                  r2Data = r2Data + stressMod;
                   yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
                   game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
                 }
@@ -643,7 +649,7 @@ export class alienrpgActor extends Actor {
     if (dataset.roll) {
       // call pop up box here to get any mods then use standard RollAbility()
       // Check that is a character (and not armor) or a synth pretending to be a character.
-      if (((actor.type === 'character' || actor.type === 'vehicles' || actor.type === 'spaceship') && dataset.spbutt != 'armor') || actor.system.header.synthstress) {
+      if (((actor.type === 'character' || actor.type === 'vehicles' || actor.type === 'spacecraft') && dataset.spbutt != 'armor') || actor.system.header.synthstress) {
         myRenderTemplate('systems/alienrpg/templates/dialog/roll-all-dialog.html');
       } else if (actor.type === 'synthetic') {
         myRenderTemplate('systems/alienrpg/templates/dialog/roll-base-dialog.html');
