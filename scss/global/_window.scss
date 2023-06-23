@@ -623,3 +623,9 @@ button:focus {
   color: var(--alienchatgoldenrod);
   font-weight: bold;
 }
+
+.combatbutton {
+  max-width: 200px;
+  color: var(--aliengreen);
+  border: var(--aliengreen) 1px solid;
+}

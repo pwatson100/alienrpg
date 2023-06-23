@@ -643,6 +643,12 @@ button:focus {
   font-weight: bold;
 }
 
+.combatbutton {
+  max-width: 200px;
+  color: var(--aliengreen);
+  border: var(--aliengreen) 1px solid;
+}
+
 .spanner-icon {
   display: inline-block;
   width: 30px;
