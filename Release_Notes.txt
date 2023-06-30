@@ -492,6 +492,8 @@ Rolling Attributes now pops a box with an option to exclude the Stress dice. The
 Added warning to disable the Alien RPG CRT UI modules as it is not being maintained and WILL corrupt actors/items. 
 Added Range Modifier dropdown to the vehicle weapon rolls. 
 Attributes on the Computer item are now rollable. 
+The big one!!   Added Spacecraft sheet and new items for it.
 With thanks to @Txus#5021
 Added option for the GM to choose if the $ is added or not as the $ sign messes up Item piles and other modules
 Corrected errors in the generation of critical injuries.
+Xp on Character and Synthetic sheets now collapses to Campaign/Story vew like the CRT UI sheet. 
