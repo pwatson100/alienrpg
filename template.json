@@ -557,6 +557,8 @@
       "attributes": {
         "manufacturer": "",
         "model": "",
+        "modules": "",
+        "armaments": "",
         "ai": "",
         "crew": {
           "value": 0

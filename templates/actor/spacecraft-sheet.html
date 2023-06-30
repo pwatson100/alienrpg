@@ -10,7 +10,7 @@
   </nav>
 
   {{!-- Sheet Body --}}
-  <section class="sheet-body" style="margin-top: 28px;">
+  <section class="sheet-body" style="margin-top: 10px;">
 
     {{!--General Tab --}}
     <div class="tab general" data-group="primary" data-tab="general">
@@ -27,6 +27,12 @@
 
             <h3 class="resource-label s1h4">{{localize "ALIENRPG.Manufacturer"}}</h3>
             <input class="textbox s1h29" type="text" name="system.attributes.manufacturer" value="{{actor.system.attributes.manufacturer}}" data-dtype="String" />
+
+            <h3 class="resource-label s1h30">{{localize "ALIENRPG.MODULES"}}</h3>
+            <input class="textbox s1h32" type="text" name="system.attributes.modules" value="{{actor.system.attributes.modules}}" data-dtype="String" />
+
+            <h3 class="resource-label s1h31">{{localize "ALIENRPG.ARMAMENTS"}}</h3>
+            <input class="textbox s1h33" type="text" name="system.attributes.armaments" value="{{actor.system.attributes.armaments}}" data-dtype="String" />
 
             <h3 class="resource-label s1h5">{{localize "ALIENRPG.AI"}}</h3>
             <input class="textbox s1h6" type="text" name="system.attributes.ai" value="{{actor.system.attributes.ai}}" data-dtype="String" />
@@ -55,17 +61,16 @@
             <label class="s1h21 rollable" data-roll="{{actor.system.attributes.armor.value}}" data-spbutt="armor" data-label="{{ localize 'ALIENRPG.Armor'}}">{{localize "ALIENRPG.SHIP-ARMOR"}}</label>
             <input type="text" class="maxboxsize s1h22" name="system.attributes.armor.value" value="{{actor.system.attributes.armor.value}}" data-dtype="Number" />
 
-            <label class="s1h23" style="font-weight: bold;">{{ localize "ALIENRPG.DAMAGE"}}</label>
-            <div class="dots damage s1h24" style="width: 226px; display: inline-flex;margin-bottom: 10px;text-align: center;">
+            <label class="s1h23" style="font-weight: bold;">{{localize "ALIENRPG.LEASE-COST"}}</label>
+            <input type="text" class="cashboxsize currency s1h24" style="max-width: 200px; margin-bottom: 5px" name="system.attributes.leasecost.value" value="{{actor.system.attributes.leasecost.value}}" />
+
+            <label class="s1h25" style="font-weight: bold;">{{ localize "ALIENRPG.DAMAGE"}}</label>
+            <div class="dots damage s1h26" style="width: 226px; display: inline-flex;margin-bottom: -21px;text-align: center;">
               <input type="hidden" name="system.attributes.damage.value" data-max="{{actor.system.attributes.damage.max}}" value="{{actor.system.attributes.damage.value}}" data-dtype="Number">
               <span class="click-stat-level" title='{{localize "ALIENRPG.ShipConButtons"}}'>{{{actor.system.attributes.damage.icon}}}
               </span>
             </div>
-            <br><br>
-            <label class="s1h25" style="font-weight: bold;">{{localize "ALIENRPG.LEASE-COST"}}</label>
-            <input type="text" class="cashboxsize currency s1h26" style="max-width: 200px;" name="system.attributes.leasecost.value" value="{{actor.system.attributes.leasecost.value}}" />
           </div>
-          <br>
           <div class="box-top" style="overflow: auto">{{> "systems/alienrpg/templates/actor/tabs/sCraft-minor-crit.html" }}</div>
           <div style="overflow: auto">{{> "systems/alienrpg/templates/actor/tabs/sCraft-major-crit.html" }}</div>
         </div>
