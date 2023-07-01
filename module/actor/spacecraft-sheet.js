@@ -738,21 +738,10 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     if (!crew) return;
     if (crew.type === 'vehicles' && crew.type === 'spacecraft') return ui.notifications.info('Vehicle inceptions are not allowed!');
     if (crew.type !== 'character' && crew.type !== 'synthetic') return;
-    if (actorData.type === 'vehicles') {
-      if (actorData.system.crew.passengerQty >= actorData.system.attributes.passengers.value) {
-        return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
-      }
-      let crewNumber = actorData.system.crew.passengerQty;
-      crewNumber++;
-      actorData.update({ 'system.crew.passengerQty': crewNumber });
-      return this.actor.addVehicleOccupant(actorId);
-    } else if (actorData.type === 'spacecraft') {
+    if (actorData.type === 'spacecraft') {
       if (actorData.system.crew.passengerQty >= actorData.system.attributes.crew.value) {
         return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
       }
-      let crewNumber = actorData.system.crew.passengerQty;
-      crewNumber++;
-      actorData.update({ 'system.crew.passengerQty': crewNumber });
       return this.actor.addVehicleOccupant(actorId);
     }
 

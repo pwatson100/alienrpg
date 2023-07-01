@@ -292,7 +292,7 @@ export class alienrpgActorSheet extends ActorSheet {
         attrMod.stress = attrMod.stress += -2;
       }
 
-      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'TAKE CONTROL' && actor.actor.system.attributes.wit.value > actor.actor.system.attributes.emp.value ) {
+      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'TAKE CONTROL' && actor.actor.system.attributes.wit.value > actor.actor.system.attributes.emp.value) {
         actor.actor.system.skills.manipulation.ability = "wit";
       }
 
@@ -1175,17 +1175,11 @@ export class alienrpgActorSheet extends ActorSheet {
       if (actorData.system.crew.passengerQty >= actorData.system.attributes.passengers.value) {
         return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
       }
-      let crewNumber = actorData.system.crew.passengerQty;
-      crewNumber++;
-      actorData.update({ 'system.crew.passengerQty': crewNumber });
       return this.actor.addVehicleOccupant(actorId);
     } else if (actorData.type === 'spacecraft') {
       if (actorData.system.crew.passengerQty >= actorData.system.attributes.crew.value) {
         return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
       }
-      let crewNumber = actorData.system.crew.passengerQty;
-      crewNumber++;
-      actorData.update({ 'system.crew.passengerQty': crewNumber });
       return this.actor.addVehicleOccupant(actorId);
     }
 

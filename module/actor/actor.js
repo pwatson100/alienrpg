@@ -1529,9 +1529,13 @@ export class alienrpgActor extends Actor {
     };
     // Removes duplicates.
     if (data.crew.occupants.some((o) => o.id === crewId)) this.removeVehicleOccupant(crewId);
+
     // Adds the new occupant.
     data.crew.occupants.push(occupant);
     this.update({ 'data.crew.occupants': data.crew.occupants });
+
+    this.update({ 'data.crew.passengerQty': data.crew.occupants.length });
+
     return occupant;
   }
 
