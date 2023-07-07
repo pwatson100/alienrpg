@@ -629,3 +629,11 @@ button:focus {
   color: var(--aliengreen);
   border: var(--aliengreen) 1px solid;
 }
+
+.prosemirror.editing-source textarea {
+  color: $c-white;
+}
+
+.prosemirror menu .pm-dropdown {
+  color: $c-black;
+}

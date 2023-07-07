@@ -484,7 +484,7 @@ Updated German language file with thanks to @kingofkong#6768, Tobot and @Raldana
 Added warning if the Panic Table has not been imported when Stress button pushed.
 
 Version 3.1.0
-FVTT V11 compatible
+FVTT V10 & V11 compatible
 Weapon sheets now show reloads instead of Rounds.
 Localised the concat function so not to interfere with the Foundry version.
 Addressed minor translation bugs.

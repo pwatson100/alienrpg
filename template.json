@@ -617,15 +617,15 @@
       "item",
       "weapon",
       "armor",
-      "talent",
       "planet-system",
-      "skill-stunts",
+      "talent",
       "agenda",
       "specialty",
       "critical-injury",
       "spacecraft-crit",
       "spacecraftmods",
-      "spacecraftweapons"
+      "spacecraftweapons",
+      "skill-stunts"
     ],
     "item": {
       "header": {

@@ -1,4 +1,12 @@
 {
+  "ACTOR": {
+    "TypeCharacter": "Player Character",
+    "TypeCreature": "Creature",
+    "TypeSpacecraft": "Space Ship",
+    "TypeSynthetic": "Synthetic",
+    "TypeTerritory": "Territory",
+    "TypeVehicles": "Vehicle"
+  },
   "ALIENRPG": {
     "AbbreviationKg": "kg",
     "AbilityAbbagl": "agi",
@@ -341,7 +349,7 @@
     "Skillstamina": "Vigore",
     "Skillsurvival": "Sopravvivenza",
     "SpaceCombatPhases": "Space Combat Phases",
-    "SpacecraftWeapons": "Spacecraft Weapons",
+    "SpacecraftWeapons": "Spaceship Weapons",
     "SpecialAbilities": "Abilità speciali",
     "SPECIALTY": "SPECIALITA'",
     "Speed": "Velocità",
@@ -394,5 +402,19 @@
     "youHave": "Hai ",
     "YourPanicLevel": "Il tuo livello di Panico è aumentato di un livello a ",
     "youTake": "Subisci "
+  },
+  "ITEM": {
+    "TypeAgenda": "Agenda",
+    "TypeArmor": "Armor",
+    "TypeCritical-injury": "Critical Injury",
+    "TypeItem": "Item",
+    "TypePlanet-system": "Planet/System",
+    "TypeSkill-stunts": "Skill Stunts",
+    "TypeSpacecraft-crit": "Spaceship Crit",
+    "TypeSpacecraftmods": "Spaceship Modules/Upgrades",
+    "TypeSpacecraftweapons": "Spaceship Weapons",
+    "TypeSpecialty": "Speciality",
+    "TypeTalent": "Talent",
+    "TypeWeapon": "Weapon"
   }
 }

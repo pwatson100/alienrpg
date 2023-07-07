@@ -649,6 +649,14 @@ button:focus {
   border: var(--aliengreen) 1px solid;
 }
 
+.prosemirror.editing-source textarea {
+  color: hsl(0, 0%, 100%);
+}
+
+.prosemirror menu .pm-dropdown {
+  color: hsl(0, 0%, 0%);
+}
+
 .spanner-icon {
   display: inline-block;
   width: 30px;
@@ -1279,6 +1287,50 @@ button:focus {
   width: 230px;
   height: 207px;
   background: url(../images/mother-instructions/enc-icon.webp);
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+}
+
+.spaceship-sheet-img {
+  display: block;
+  width: 497px;
+  height: 353px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/spaceship-modules.webp);
+}
+
+.spaceship-header1 {
+  display: block;
+  width: 402px;
+  height: 632px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/spaceship-header1.webp);
+}
+
+.spaceship-modules {
+  display: block;
+  width: 497px;
+  height: 353px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: 100%;
+  border: 0;
+  background: url(../images/mother-instructions/spaceship-sheet-img.webp);
+}
+
+.spaceship-comtech {
+  display: block;
+  width: 395px;
+  height: 262px;
+  background: url(../images/mother-instructions/spaceship-comtech.webp);
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
