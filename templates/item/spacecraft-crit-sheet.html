@@ -1,0 +1,40 @@
+<form class="{{cssClass}}" style="min-height: 468px" autocomplete="off">
+  <header class="vehicle-header">
+    <img class="profile-img-item" src="{{img}}" data-edit="img" title="{{name}}" />
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
+
+      <div class="resources grid-ship-crit">
+        <h3 class="resource-label gcItem1">{{localize 'ALIENRPG.Type'}}</h3>
+
+        <select class="select-css gcItem2" name="system.header.type.value" data-dtype="{{system.header.type.value}}">
+          {{#select system.header.type.value}}
+            <!-- <option value=""></option> -->
+            <option value="0">{{localize 'ALIENRPG.MINOR-COMPONENT-DAMAGE'}}</option>
+            <option value="1">{{localize 'ALIENRPG.MAJOR-COMPONENT-DAMAGE'}}</option>
+          {{/select}}
+        </select>
+        <h3 class="resource-label gcItem3">{{localize 'ALIENRPG.REPAIRROLL'}}</h3>
+        <input type="text" class="textbox1 gcItem4" style="width: 336px;" name="system.header.repairroll" value="{{system.header.repairroll}}" data-dtype="String" />
+
+      </div>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="effect">{{localize 'ALIENRPG.Effect'}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body" style="height: 300px">
+    {{!-- Attributes Tab --}}
+    <div class="tab effect" data-group="primary" data-tab="effect">
+      <h2 class="resource-label">{{localize 'ALIENRPG.Effect'}}</h2>
+      <div class="tab item" data-group="primary" data-tab="effect" style="height: 250px">
+        <!-- prettier-ignore -->
+        {{editor system.header.effects target="system.header.effects" button=true owner=owner editable=true}}
+      </div>
+    </div>
+  </section>
+</form>

@@ -483,3 +483,18 @@ Removed settings for fonts that were not available in the browser.
 Updated German language file with thanks to @kingofkong#6768, Tobot and @Raldanash#6529
 Added warning if the Panic Table has not been imported when Stress button pushed.
 
+Version 3.1.0
+FVTT V10 & V11 compatible
+Weapon sheets now show reloads instead of Rounds.
+Localised the concat function so not to interfere with the Foundry version.
+Addressed minor translation bugs.
+Rolling Attributes now pops a box with an option to exclude the Stress dice. These must be manually removed from modified rolls. Additionally no push button is displayed unless stress is included according to the rules. 
+Added warning to disable the Alien RPG CRT UI modules as it is not being maintained and WILL corrupt actors/items. 
+Added Range Modifier dropdown to the vehicle weapon rolls. 
+Attributes on the Computer item are now rollable. 
+Corrected issue when adding the same crew member to a vehicle/spaceship where the crew quantity was incremented even though the actor was not added.
+The big one!!   Added Spacecraft sheet and new items for it.
+With thanks to @Txus#5021
+Added option for the GM to choose if the $ is added or not as the $ sign messes up Item piles and other modules
+Corrected errors in the generation of critical injuries.
+Xp on Character and Synthetic sheets now collapses to Campaign/Story vew like the CRT UI sheet. 

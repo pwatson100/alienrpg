@@ -1,0 +1,161 @@
+{
+  "name": "Spaceship Major Component Damage",
+  "img": "icons/svg/d20-grey.svg",
+  "results": [
+    {
+      "_id": "MH0Q3zho8FyJk9Br",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>A.I. OFFLINE: </strong><br /> The ship A.I. is offline. <br /><br /><strong>Repair Roll: </strong> Comtech x 3",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [2, 2],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    },
+    {
+      "_id": "FqJU5Uxpock9GPz9",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>ESCAPE PODS HEAVILY DAMAGED: </strong><br /> No EEV's can be used. <br /><br /><strong>Repair Roll: </strong> Heavy Machinery, Comtech.",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [3, 3],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    },
+    {
+      "_id": "vQU4P8rflpeUDoXF",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>SENSOR FAILURE: </strong><br /> The ship's sensors fall completely. Target Lock cannot be made. <br /><br /><strong>Repair Roll: </strong> Comtech x 2",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [4, 4],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    },
+    {
+      "_id": "awbBZTBq8e63aeeF",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>DISPLACEMENT DRIVE FAILURE: </strong><br /> No FTL travel possible. <br /><br /><strong>Repair Roll: </strong> Heavy Machinery, Comtech x 2",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [5, 5],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    },
+    {
+      "_id": "V0Fj4vVdwxyUOKNi",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>ARMAMENT DAMAGED: </strong><br /> A random armament on the ship is unusable. <br /><br /><strong>Repair Roll: </strong> Heavy Machinery, Comtech",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [6, 6],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    },
+    {
+      "_id": "RaBNu0kKJ2KSiCXl",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>ENGINE FAILURE: </strong><br /> The ship is dead in space. No pilot actions can be performed. <br /><br /><strong>Repair Roll: </strong> Heavy Machinery x2, Comtech",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [7, 7],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    },
+    {
+      "_id": "V7saBivakzzAejWM",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>CRITICAL CREW INJURY: </strong><br /> A random crew member is Broken and suffers a random critical injury.<strong>Repair Roll: </strong> -",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [8, 8],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    },
+    {
+      "_id": "9jgOXc0HhQAkMIaN",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>BRIDGE EXPOSED TO VACUUM: </strong><br /> The ship can no longer be controlled, and all personnel on the bridge suffer explosive decompression. <br /><br /><strong>Repair Roll: </strong> Heavy Machinery x 2, Comtech",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [9, 9],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    },
+    {
+      "_id": "My8uPXVhdItnXXiu",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>REACTOR BREACH: </strong><br /> The ship loses all propulsion. Strong radiation (1 Rad/Turn) in the reactor control area, weak radiation in the rest of the ship. <br /><br /><strong>Repair Roll: </strong> Heavy Machinery x 2, Comtech",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [10, 10],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    },
+    {
+      "_id": "QIiYKZ5TpEBLHFt6",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>CHAIN REACTION: </strong><br /> Roll twice on this table.<br /><br /><strong>Repair Roll: </strong> -",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [11, 11],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    },
+    {
+      "_id": "zjGZBoDiMI0RJQ19",
+      "flags": {},
+      "type": 0,
+      "text": "<strong>REACTOR DETONATION: </strong><br /> Total loss of the ship and all crew.<br /><br /><strong>Repair Roll: </strong> -",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [12, 12],
+      "drawn": false,
+      "documentCollection": "",
+      "documentId": null
+    }
+  ],
+  "formula": "2d6",
+  "replacement": true,
+  "displayRoll": false,
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.alienrpg-corerules.alienrpg-tables-gm.X5VX4xYJjkEZG60S"
+    },
+    "exportSource": {
+      "world": "1-alien-spacecraft",
+      "system": "alienrpg",
+      "coreVersion": "10.291",
+      "systemVersion": "3.0.6"
+    }
+  },
+  "description": "",
+  "_stats": {
+    "systemId": "alienrpg",
+    "systemVersion": "3.0.6",
+    "coreVersion": "10.291",
+    "createdTime": 1661954251130,
+    "modifiedTime": 1686480341501,
+    "lastModifiedBy": "1e7diQnLzgV93Aal"
+  }
+}

@@ -27,6 +27,7 @@
   // color: var(--aliengreen);
   // font-size: var(--fontsize);
   background: hsl(0deg, 0%, 0%);
+  border: var(--aliengreen) 1px solid;
   // flex-direction: column;
   // flex-wrap: nowrap;
   // padding: 2px;
@@ -106,6 +107,20 @@
     font-size: 14px;
     line-height: 28px;
   }
+
+  critbutton {
+    font-family: var(--alienfont);
+    //  color: $c-green;
+    color: inherit;
+
+    background: $c-black;
+    border: var(--aliengreen) solid 1px;
+    // width: 100%;
+    margin: 0 1px;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 28px;
+  }
   .tox .tox-editor-container {
     background-color: $c-white;
   }
@@ -130,7 +145,7 @@ a.content-link {
   background: $c-black;
 }
 #chat .message {
-  border: 1px solid hsl(0, 8%, 34%);
+  border: 1px solid hsl(0deg, 8%, 34%);
   border-radius: 1px;
 }
 .chat-message {
@@ -286,7 +301,8 @@ a.inline-roll {
   }
 }
 
-.rollable {
+.rollable,
+.rollcomputer {
   &:hover,
   &:focus {
     // color: black;
@@ -527,9 +543,9 @@ button:focus {
   background-color: $c-black;
 }
 
-// .consume-box {
-//   border: 1px solid var(--aliengreen);
-// }
+.box-top {
+  border-top: 3px solid var(--aliengreen);
+}
 
 .ctooltip {
   position: relative;
@@ -606,4 +622,18 @@ button:focus {
 .alienchatgoldenrod {
   color: var(--alienchatgoldenrod);
   font-weight: bold;
+}
+
+.combatbutton {
+  max-width: 200px;
+  color: var(--aliengreen);
+  border: var(--aliengreen) 1px solid;
+}
+
+.prosemirror.editing-source textarea {
+  color: $c-white;
+}
+
+.prosemirror menu .pm-dropdown {
+  color: $c-black;
 }

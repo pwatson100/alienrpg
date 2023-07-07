@@ -24,7 +24,6 @@ export class alienrpgItemSheet extends ItemSheet {
     // return `${path}/item-sheet.html`;
     // Alternatively, you could use the following return statement to do a
     // unique item sheet by type, like `weapon-sheet.html`.
-
     return `${path}/${this.item.type}-sheet.html`;
   }
 
@@ -52,6 +51,9 @@ export class alienrpgItemSheet extends ItemSheet {
         ];
         await this._enrichTextFields(item, enrichedFields1);
         break;
+      case 'spacecraft-crit':
+        await this._prepareShipCritData(item);
+        break;
       case 'agenda':
         await this._prepareAgendaData(item);
         break;
@@ -64,7 +66,6 @@ export class alienrpgItemSheet extends ItemSheet {
         ];
         await this._enrichTextFields(item, enrichedFields5);
         break;
-
       case 'talent':
         await this._prepareTalentData(item)
         break;
@@ -127,6 +128,19 @@ export class alienrpgItemSheet extends ItemSheet {
     await this._enrichTextFields(data, enrichedFields6);
   }
 
+  async _prepareShipCritData(data) {
+    if (data.system.header.type.value === '1') {
+      this.item.update({ img: 'systems/alienrpg/images/icons/auto-repair.svg' });
+    } else if (data.system.header.type.value === '0') {
+      this.item.update({ img: 'systems/alienrpg/images/icons/spanner.svg' });
+    }
+
+    let enrichedFields6 = [
+      "system.header.effects",
+    ];
+    await this._enrichTextFields(data, enrichedFields6);
+  }
+
   /* -------------------------------------------- */
 
   /** @override */
@@ -135,7 +149,21 @@ export class alienrpgItemSheet extends ItemSheet {
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
+    if (game.settings.get('alienrpg', 'switchMouseKeys')) {
+      // Right to Roll and left to mod
+      // Rollable abilities.
+      html.find('.rollcomputer').contextmenu(this._onRollComputer.bind(this));
 
+      html.find('.rollcomputer').click(this._onRollComputerMod.bind(this));
+
+    } else {
+      // Left to Roll and Right toMod
+      // Rollable abilities.
+      html.find('.rollcomputer').click(this._onRollComputer.bind(this));
+
+      html.find('.rollcomputer').contextmenu(this._onRollComputerMod.bind(this));
+
+    }
     // Roll handlers, click handlers, etc. would go here.
     html.find('.currency').on('change', this._currencyField.bind(this));
   }
@@ -152,8 +180,30 @@ export class alienrpgItemSheet extends ItemSheet {
 
     function onBlur(e) {
       let value = e.target.value;
-      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
+      if (game.settings.get('alienrpg', 'dollar'))
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '$0.00';
+      else
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
       // console.warn(e.target.value);
     }
+
+  }
+  _onRoll(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.item.roll(this.item, dataset);
+  }
+  _onRollComputer(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    this.item.rollComputer(this.item, dataset);
+  }
+
+
+  _onRollComputerMod(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    this.item.rollComputerMod(this.item, dataset);
   }
 }

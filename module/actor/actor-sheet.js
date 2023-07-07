@@ -292,8 +292,16 @@ export class alienrpgActorSheet extends ActorSheet {
         attrMod.stress = attrMod.stress += -2;
       }
 
+      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'TAKE CONTROL' && actor.actor.system.attributes.wit.value > actor.actor.system.attributes.emp.value) {
+        actor.actor.system.skills.manipulation.ability = "wit";
+      }
+
       if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'TOUGH') {
         attrMod.health = attrMod.health += 2;
+      }
+
+      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'STOIC' && actor.actor.system.attributes.wit.value > actor.actor.system.attributes.str.value) {
+        actor.actor.system.skills.stamina.ability = "wit";
       }
 
     }
@@ -1124,7 +1132,10 @@ export class alienrpgActorSheet extends ActorSheet {
     }
     function onBlur(e) {
       let value = localStringToNumber(e.target.value);
-      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
+      if (game.settings.get('alienrpg', 'dollar'))
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '$0.00';
+      else
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
     }
   }
   async _onOverwatchToggle(event) {
@@ -1158,15 +1169,21 @@ export class alienrpgActorSheet extends ActorSheet {
     const crew = game.actors.get(actorId);
     const actorData = this.actor;
     if (!crew) return;
-    if (crew.type === 'vehicles') return ui.notifications.info('Vehicle inceptions are not allowed!');
+    if (crew.type === 'vehicles' && crew.type === 'spacecraft') return ui.notifications.info('Vehicle inceptions are not allowed!');
     if (crew.type !== 'character' && crew.type !== 'synthetic') return;
-    if (actorData.system.crew.passengerQty >= actorData.system.attributes.passengers.value) {
-      return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
+    if (actorData.type === 'vehicles') {
+      if (actorData.system.crew.passengerQty >= actorData.system.attributes.passengers.value) {
+        return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
+      }
+      return this.actor.addVehicleOccupant(actorId);
+    } else if (actorData.type === 'spacecraft') {
+      if (actorData.system.crew.passengerQty >= actorData.system.attributes.crew.value) {
+        return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
+      }
+      return this.actor.addVehicleOccupant(actorId);
     }
-    let crewNumber = actorData.system.crew.passengerQty;
-    crewNumber++;
-    actorData.update({ 'system.crew.passengerQty': crewNumber });
-    return this.actor.addVehicleOccupant(actorId);
+
+
   }
   _onCrewEdit(event) {
     event.preventDefault();

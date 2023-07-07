@@ -85,6 +85,17 @@ ALIENRPG.vehicle = {
     PASSENGER: 'ALIENRPG.CrewPasanger',
   },
 };
+ALIENRPG.spacecraft = {
+  crewPositionFlags: ['CAPTAIN', 'PILOT', 'GUNNER', 'ENGINEER', 'SENSOROP', 'PASSENGER'],
+  crewPositionFlagsLocalized: {
+    CAPTAIN: 'ALIENRPG.CAPTAIN',
+    PILOT: 'ALIENRPG.CrewPilot',
+    GUNNER: 'ALIENRPG.CrewGunner',
+    SENSOROP: 'ALIENRPG.SENSOR-OP',
+    ENGINEER: 'ALIENRPG.ENGINEER',
+    PASSENGER: 'ALIENRPG.CrewPasanger',
+  },
+};
 
 ALIENRPG.Icons = {
   buttons: {

@@ -1,0 +1,54 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="vehicle-header">
+    <img class="profile-img-item" src="{{img}}" data-edit="img" title="{{name}}" />
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
+
+      <div class="resources grid-weapon">
+
+        <h3 class="resource-label wItem3">{{localize 'ALIENRPG.Cost'}}</h3>
+        <input type="text" class="wItem4 cashboxsize currency" name="system.attributes.cost.value" value="{{system.attributes.cost.value}}" />
+
+        <h3 class="wItem1 resource-label">{{localize 'ALIENRPG.Type'}}</h3>
+        <div class="wItem2">
+          <select class="select-css" name="system.attributes.size.value" data-dtype="{{system.attributes.size.value}}">
+            {{#select system.attributes.size.value}}
+              <!-- <option value=""></option> -->
+              <option value="I">I</option>
+              <option value="II">II</option>
+              <option value="III">III</option>
+              <option value="IV">IV</option>
+              <option value="V">V</option>
+              <option value="{{localize 'ALIENRPG.upgrade' }}">{{localize 'ALIENRPG.upgrade'}}</option>
+            {{/select}}
+          </select>
+        </div>
+        <h3 class="resource-label wItem6">{{localize "ALIENRPG.CapacityBarLabel"}}</h3>
+        <input type="text" class="wItem7 textbox" style="width: 300px;" name="system.attributes.capacity.value" value="{{system.attributes.capacity.value}}" data-dtype="text" />
+      </div>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="attributes">{{localize 'ALIENRPG.Attributes'}}</a>
+    <a class="item" data-tab="notes">{{localize 'ALIENRPG.Notes'}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body" style="height: 250px">
+    {{!-- Attributes Tab --}}
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
+      <div class="grid-Char-Att">
+        <h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
+        <input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
+      </div>
+      <h2 class="resource-label">{{localize 'ALIENRPG.Comment'}}</h2>
+
+      <div class="tab item" style="border: solid 1px; padding: 5px">{{editor system.attributes.comment.value target="system.attributes.comment.value" button=true owner=owner editable=true}}</div>
+    </div>
+
+    {{!-- Notes Tab --}}
+    <div class="tab item" data-group="primary" data-tab="notes">{{editor system.notes.notes target="system.notes.notes" button=true owner=owner editable=true}}</div>
+  </section>
+</form>

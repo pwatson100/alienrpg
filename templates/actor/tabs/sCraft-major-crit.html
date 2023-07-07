@@ -1,0 +1,12 @@
+<h2 class="item talTitle">{{localize "ALIENRPG.MAJOR-COMPONENT-DAMAGE"}}
+  <label type="button" data-crbut="major" class="resource-label-header rollMajorCD" title="{{localize 'ALIENRPG.RollCrit'}}"><i class="fas fa-toolbox"></i></label>
+</h2>
+<ol class="items-list s1h27">
+  {{#each critMaj as |item iid|}}
+    <li class="item space-critical-inj" data-item-id="{{item.id}}">
+      <a class="item-image ScritI1"><img src="{{item.img}}" width="24" height="24" /></a>
+      <a class="item-name ScritI2">{{item.name}}</a>
+      <a class="ScritI4 item-control item-edit1" data-item-id="{{item.id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+    </li>
+  {{/each}}
+</ol>

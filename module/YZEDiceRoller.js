@@ -63,7 +63,8 @@ export class yze {
     // *******************************************************
     let rType = '';
     // if (reRoll && (hostile === true) === 'character') {
-    if ((reRoll && actortype === 'character' && label != 'Armor' && label != 'Radiation') || reRoll === 'mPush') {
+    if ((reRoll && actortype === 'character' && actortype != 'item' && label != game.i18n.localize('ALIENRPG.Armor') && label != game.i18n.localize('ALIENRPG.Radiation')) && label != game.i18n.localize('ALIENRPG.AbilityStr') && label != game.i18n.localize('ALIENRPG.AbilityAgl') && label != game.i18n.localize('ALIENRPG.AbilityEmp') && label != game.i18n.localize('ALIENRPG.AbilityWit') || reRoll === 'mPush') {
+      // if ((reRoll && actortype === 'character' && label != 'Armor' && label != 'Radiation') || reRoll === 'mPush') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
       rType = game.i18n.localize('ALIENRPG.Rolling');
@@ -172,7 +173,7 @@ export class yze {
     // *******************************************************
 
     function localizedCountOfSuccesses(sTotal) {
-      if (label === 'Radiation') {
+      if (label === game.i18n.localize('ALIENRPG.Radiation')) {
         if (sTotal >= 1) {
           return sTotal + ' ' + '<span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.healthDamage') + '</span>';
           // return sTotal + ' ' + game.i18n.localize('ALIENRPG.healthDamage');
@@ -186,7 +187,7 @@ export class yze {
     }
 
     if (actortype != 'supply') {
-      if (label === 'Radiation') {
+      if (label === game.i18n.localize('ALIENRPG.Radiation')) {
         if (game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount >= 1) {
           chatMessage +=
             '<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' +
@@ -216,7 +217,7 @@ export class yze {
     //  If it's a Push roll and display the total for both rolls.
     // *******************************************************
     // if (reRoll === 'push' || (reRoll === 'mPush' && actortype === 'character' && label != 'Armor')) {
-    if (reRoll === 'push' || (reRoll === 'mPush' && actortype === 'character' && label != 'Armor')) {
+    if (reRoll === 'push' || (reRoll === 'mPush' && actortype === 'character' && label != game.i18n.localize('ALIENRPG.Armor'))) {
       chatMessage +=
         '<hr>' +
         '<div class="alienchatlightblue"' +

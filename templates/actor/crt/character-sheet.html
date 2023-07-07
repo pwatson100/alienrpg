@@ -69,7 +69,7 @@
 				<span class="Col1">
 					{{#each actor.system.skills as |skill key|}}
 						<span class="ability grid-attr">
-							<h3 for="actor.system.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{localize (concat 'ALIENRPG.Skill' key) }}">{{localize (concat 'ALIENRPG.Skill' key) }} ({{localize (concat 'ALIENRPG.AbilityAbb' skill.ability) }})</h3>
+							<h3 for="actor.system.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{localize (alienConcat 'ALIENRPG.Skill' key) }}">{{localize (alienConcat 'ALIENRPG.Skill' key) }} ({{localize (alienConcat 'ALIENRPG.AbilityAbb' skill.ability) }})</h3>
 							<input type="text" class="maxboxsize Attr2" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
 							<div class="resource-content">
 								<button type="button" class="stunt-btn Attr3" data-pmbut="{{skill.description}}"><i class="crt fas fa-tools fa-xs" title="Stunts"></i></button>
@@ -86,7 +86,6 @@
 						<h2 class="item talTitle">{{localize 'ALIENRPG.Talents'}}</h2>
 						<h3 class="item-name tal1">{{localize 'ALIENRPG.Name'}}</h3>
 						<div class="item-controls tal2">
-							{{!-- <a class="item-control item-create" style="font-size: smaller;" title="Create item" data-type="talent"><i class="fas fa-plus"></i> {{localize 'ALIENRPG.AddItem'}}</a> --}}
 						</div>
 					</li>
 
@@ -94,7 +93,7 @@
 						<li class="item grid-talents" data-item-id="{{item._id}}">
 							<h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
 							<div class="tal4 item-controls">
-								<a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+								<a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 
 							</div>
 						</li>
@@ -112,7 +111,7 @@
 						<li class="item grid-talents" data-item-id="{{item._id}}">
 							<h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
 							<div class="tal4 item-controls">
-								<a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+								<a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 
 							</div>
 						</li>

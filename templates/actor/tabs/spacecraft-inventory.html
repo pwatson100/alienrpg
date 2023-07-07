@@ -1,25 +1,237 @@
 <ol class="items-list">
   <!-- Display Active Items -->
+  <h2 style="text-transform: uppercase">{{localize "ALIENRPG.SpacecraftWeapons"}}</h2>
   <li class="grid-items item-header">
-    <div class="item-name lCol1">{{section.label}}</div>
+    <div class="item-name lCol1">{{localize "ALIENRPG.Offensive"}}</div>
     <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
+    <div class="item-detail lCol17">{{localize "ALIENRPG.QuantityLabel"}}</div>
     <div class="item-detail lCol15">{{localize "ALIENRPG.Bonus"}}</div>
     <div class="item-detail lCol13">{{localize "ALIENRPG.Dam"}}</div>
-    <div class="item-detail lCol11">{{localize "ALIENRPG.Range"}}</div>
+    <div class="item-detail lCol11">{{localize "ALIENRPG.hardpoint"}}</div>
+    <div class="item-detail lCol10">{{localize "ALIENRPG.Range"}}</div>
   </li>
+  {{#each inventory as |inv|}}
+    {{#each inv.items as |item iid|}}
+      {{#ife item.type 'spacecraftweapons'}}
+        {{#ife item.system.header.type.value '1'}}
+          <li class="item grid-items" data-item-id="{{item._id}}">
+            <div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+            <span class="item-detail lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+            <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+            <span class="item-detail lCol16" data-item="{{system.attributes.bonus.value}}">{{system.attributes.bonus.value}}</span>
+            <span class="item-detail lCol14" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
+            <span class="item-detail lCol12" data-item="{{system.attributes.hardpoint.value}}">{{system.attributes.hardpoint.value}}</span>
+            <span class="item-detail lCol9" data-item="{{system.attributes.range.value}}">{{gRng system.attributes.range.value}}</span>
 
-  {{#each weapons as |item iid|}}
-  <li class="item grid-items" data-item-id="{{item._id}}">
-    <div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
-    <span class="item-detail lCol6" data-item="{{item.name}}">{{item.name~}}</span>
-    <span class="item-detail lCol16" data-item="{{data.attributes.bonus.value}}">{{data.attributes.bonus.value}}</span>
-    <span class="item-detail lCol14" data-item="{{data.attributes.damage.value}}">{{data.attributes.damage.value}}</span>
-    <span class="item-detail lCol12" data-item="{{data.attributes.range.value}}">{{gRng data.attributes.range.value}}</span>
-
-    <div class="item-controls lCol9">
-      <a class="item-control item-edit" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
-      <!-- <a class="item-control item-delete" title="{{localize "ALIENRPG.DeleteItem"}}"><i class="fas fa-trash"></i></a> -->
-    </div>
+            <div class="item-controls lCol8">
+              <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+            </div>
+          </li>
+        {{/ife}}
+      {{/ife}}
+    {{/each}}
+  {{/each}}
+  <br>
+  <li class="grid-items item-header">
+    <div class="item-name lCol1">{{localize "ALIENRPG.Defensive"}}</div>
+    <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
+    <div class="item-detail lCol17">{{localize "ALIENRPG.QuantityLabel"}}</div>
+    <div class="item-detail lCol15">{{localize "ALIENRPG.Bonus"}}</div>
+    <div class="item-detail lCol11">{{localize "ALIENRPG.hardpoint"}}</div>
   </li>
+  {{#each inventory as |inv|}}
+    {{#each inv.items as |item iid|}}
+      {{#ife item.type 'spacecraftweapons'}}
+        {{#ife item.system.header.type.value '2'}}
+          <li class="item grid-items" data-item-id="{{item._id}}">
+            <div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+            <span class="item-detail lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+            <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+            <span class="item-detail lCol16" data-item="{{system.attributes.bonus.value}}">{{system.attributes.bonus.value}}</span>
+            <span class="item-detail lCol12" data-item="{{system.attributes.hardpoint.value}}">{{system.attributes.hardpoint.value}}</span>
+
+            <div class="item-controls lCol8">
+              <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+            </div>
+          </li>
+        {{/ife}}
+      {{/ife}}
+    {{/each}}
+  {{/each}}
+</ol>
+<br><br>
+
+<ol class="items-list">
+  <!-- Display Active Items -->
+  <h2 style="text-transform: uppercase">{{localize "ALIENRPG.MODULES-UPGRADES"}}</h2>
+  <li class="grid-modules item-header">
+    <div class="item-detail mCol17">{{localize "ALIENRPG.QuantityLabel"}}</div>
+    <div class="item-detail mCol15">{{localize "ALIENRPG.Type"}}</div>
+    <div class="item-detail mCol13">{{localize "ALIENRPG.CapacityBarLabel"}}</div>
+  </li>
+  {{#each inventory as |inv|}}
+
+    {{#each inv.items as |item iid|}}
+
+      {{#ife item.type 'spacecraftmods'}}
+        <li class="item grid-modules" data-item-id="{{item._id}}">
+          <div class="item-image mCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+          <span class="item-detail mCol6" data-item="{{item.name}}">{{item.name~}}</span>
+          <input type="text" class="item-label maxboxsize mCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+          <span class="item-detail mCol16" data-item="{{system.attributes.size.value}}">{{system.attributes.size.value}}</span>
+          <span class="item-detail mCol14" data-item="{{system.attributes.capacity.value}}">{{system.attributes.capacity.value}}</span>
+          <div class="item-controls mCol8">
+            <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+          </div>
+        </li>
+      {{/ife}}
+    {{/each}}
+  {{/each}}
+  {{#each inventory as |inv|}}
+    {{#each inv.items as |item iid|}}
+      {{#ife item.type 'item'}}
+        {{#ife system.header.type.value '9'}}
+          <li class="item grid-items" data-item-id="{{item._id}}">
+            <div class="item-image lCol5" data-item="{{name}}"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+            <span class="item-detail  lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+        {{/ife}}
+        <div class="item-controls lCol8">
+          <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+        </div>
+      {{/ife}}
+    {{/each}}
+  {{/each}}
+</ol>
+<br><br>
+
+{{!-- CARGO SECTION --}}
+<h2 style="text-transform: uppercase">{{localize "ALIENRPG.Cargo"}}</h2>
+<ol class="items-list">
+  <!-- Display Active Items -->
+  <li class="grid-items item-header">
+    <div class="item-name lCol1">{{localize "ALIENRPG.InventoryWeaponsHeader"}}</div>
+    <div class="item-detail lCol17">{{localize "ALIENRPG.QuantityLabel"}}</div>
+    <div class="item-detail lCol15">{{localize "ALIENRPG.Range"}}</div>
+    <div class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</div>
+    <div class="item-detail lCol10">{{localize "ALIENRPG.Dam"}}</div>
+    <div class="item-detail item-weight lCol11">{{localize "ALIENRPG.Rds"}}</div>
+  </li>
+  {{#each inventory as |inv|}}
+
+    {{#each inv.items as |item iid|}}
+
+      {{#ife item.type 'weapon'}}
+        <li class="item grid-items" data-item-id="{{item._id}}">
+          <div class="item-image lCol5" data-item="{{name}}"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+          <span class="item-detail  lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+          {{#ife item.system.header.type.value '1'}}
+            <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+            <span class="item-detail lCol16" data-item="{{system.attributes.range.value}}">{{gRng system.attributes.range.value}}</span>
+            <span class="item-detail lCol14" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+            <input type="text" class="item-detail maxboxsize lCol12 inline-edit" data-mod="system.attributes.rounds.value" name="item.system.attributes.rounds.value" value="{{item.system.attributes.rounds.value}}" data-dtype="String" />
+            <span class="item-detail lCol9" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
+          {{/ife}}
+
+          {{#ife item.system.header.type.value '2'}}
+            <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+            <span class="item-detail lCol16" data-item="{{system.attributes.range.value}}">{{gRng system.attributes.range.value}}</span>
+            <span class="item-detail lCol14" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+            <span class="item-detail lCol9" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
+          {{/ife}}
+          <div class="item-controls lCol8">
+            <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+          </div>
+      {{/ife}}
+    {{/each}}
+  {{/each}}
+
+</ol>
+<ol class="items-list">
+  <!-- Display Active Items -->
+  <li class="grid-items item-header">
+    <div class="item-name lCol1">{{localize "ALIENRPG.InventoryArmorHeader"}}</div>
+    <span class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</span>
+    <div class="item-detail lCol10">{{localize "ALIENRPG.Air"}}</div>
+    <div class="item-detail lCol11">{{localize "ALIENRPG.Armor"}}</div>
+  </li>
+  {{#each inventory as |inv|}}
+
+    {{#each inv.items as |item iid|}}
+
+      {{#ife item.type 'armor'}}
+        <li class="item grid-items" data-item-id="{{item._id}}">
+          <div class="item-image lCol5" data-item="{{name}}"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+          <span class="item-detail  lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+          <span class="item-detail lCol12" data-item="{{system.attributes.armorrating.value}}">{{system.attributes.armorrating.value}}</span>
+          <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="system.attributes.airsupply.value" name="item.system.attributes.airsupply.value" value="{{item.system.attributes.airsupply.value}}" data-dtype="String" />
+          <div class="item-controls lCol8">
+            <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+          </div>
+        </li>
+      {{/ife}}
+
+    {{/each}}
+  {{/each}}
+</ol>
+
+<ol class="items-list">
+  <!-- Display Active Items -->
+  <li class="grid-items item-header">
+    <div class="item-name lCol1">{{localize "ALIENRPG.InventoryItemsHeader"}}</div>
+    <span class="item-detail lCol17">{{localize "ALIENRPG.QuantityLabel"}}</span>
+    <span class="item-detail lCol13">{{localize "ALIENRPG.Pwr"}}</span>
+    <span class="item-detail item-weight lCol11">{{localize "ALIENRPG.Food"}}</span>
+    <span class="item-detail item-weight lCol10">{{localize "ALIENRPG.Water"}}</span>
+  </li>
+  {{#each inventory as |inv|}}
+
+    {{#each inv.items as |item iid|}}
+      {{#ife item.type 'item'}}
+        {{#ifne system.header.type.value '9'}}
+
+          <li class="item grid-items" data-item-id="{{item._id}}">
+            <div class="item-image lCol5" data-item="{{name}}"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+            <span class="item-detail  lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+
+            {{#ife system.header.type.value '1'}}
+              <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+            {{/ife}}
+            {{#ife system.header.type.value '2'}}
+              <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+            {{/ife}}
+
+            {{#ife item.system.header.type.value '3'}}
+              <span class="item-detail  lCol14" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+            {{/ife}}
+
+            {{#ife item.system.header.type.value '4'}}
+              <span class="item-detail lCol14" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+              <span class="item-detail lCol9" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
+            {{/ife}}
+
+            {{#ife item.system.header.type.value '7'}}
+              <input type="text" class="item-label maxboxsize lCol12 inline-edit" data-mod="system.attributes.food.value" name="item.system.attributes.food.value" value="{{item.system.attributes.food.value}}" data-dtype="String" />
+              <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="system.attributes.water.value" name="item.system.attributes.water.value" value="{{item.system.attributes.water.value}}" data-dtype="String" />
+            {{/ife}}
+            {{#ife system.header.type.value '6'}}
+              <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+            {{/ife}}
+
+            {{#ife item.system.header.type.value '10'}}
+              <span class="item-detail lCol14" data-item="{{system.attributes.power.value}}">{{system.attributes.power.value}}</span>
+              <input type="text" class="item-label maxboxsize lCol12 inline-edit" data-mod="system.attributes.food.value" name="item.system.attributes.food.value" value="{{item.system.attributes.food.value}}" data-dtype="String" />
+              <input type="text" class="item-label maxboxsize lCol9 inline-edit" data-mod="system.attributes.water.value" name="item.system.attributes.water.value" value="{{item.system.attributes.water.value}}" data-dtype="String" />
+            {{/ife}}
+
+            {{#ife system.header.type.value '11'}}
+              <input type="text" class="item-label maxboxsize lCol18 inline-edit" data-mod="system.attributes.quantity.value" name="item.system.attributes.quantity.value" value="{{item.system.attributes.quantity.value}}" data-dtype="String" />
+            {{/ife}}
+            <div class="item-controls lCol8">
+              <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+            </div>
+          </li>
+        {{/ifne}}
+      {{/ife}}
+    {{/each}}
   {{/each}}
 </ol>

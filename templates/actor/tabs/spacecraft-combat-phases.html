@@ -1,0 +1,49 @@
+<h1>{{localize "ALIENRPG.SpaceCombatPhases"}}</h1>
+<form>
+  <div class="form-group">
+    <h2 style="max-width: 400px;">{{localize "ALIENRPG.sensorPhase"}}</h2>
+    <select class="select-css" style="max-width: 250px; margin-right:30px" id="sensorPhase" name="sensorPhase">
+      <option value={{localize "ALIENRPG.targetLock" }}>{{localize "ALIENRPG.targetLock"}}</option>
+      <option value={{localize "ALIENRPG.goDark" }}>{{localize "ALIENRPG.goDark"}}</option>
+      <option value={{localize "ALIENRPG.powerUpSensors" }}>{{localize "ALIENRPG.powerUpSensors"}}</option>
+    </select>
+    <button type="button" class="sensorsubmit combatbutton" data-pmbut="sensorsubmit"><b>{{localize 'ALIENRPG.SubmitButton'}}</b></button>
+  </div>
+</form>
+<form>
+  <div class="form-group">
+    <h2 style="max-width: 400px; ">{{localize "ALIENRPG.pilotPhase"}}</h2>
+    <select class="select-css" style="max-width: 250px;margin-right:30px" id="pilotPhase" name="pilotPhase">
+      <option value={{localize "ALIENRPG.accelerate" }}>{{localize "ALIENRPG.accelerate"}}</option>
+      <option value={{localize "ALIENRPG.decelerate" }}>{{localize "ALIENRPG.decelerate"}}</option>
+      <option value={{localize "ALIENRPG.maneuver" }}>{{localize "ALIENRPG.maneuver"}}</option>
+      <option value={{localize "ALIENRPG.ram" }}>{{localize "ALIENRPG.ram"}}</option>
+      <option value={{localize "ALIENRPG.dock" }}>{{localize "ALIENRPG.dock"}}</option>
+    </select>
+    <button type="button" class="pilotsubmit combatbutton" data-pmbut="pilotsubmit"><b>{{localize 'ALIENRPG.SubmitButton'}}</b></button>
+  </div>
+</form>
+<form>
+  <div class="form-group">
+    <h2 style="max-width: 400px; ">{{localize "ALIENRPG.gunnerPhase"}}</h2>
+    <select class="select-css" style="max-width: 250px;margin-right:30px" id="gunnerPhase" name="gunnerPhase">
+      <option value={{localize "ALIENRPG.fireWeapon" }}>{{localize "ALIENRPG.fireWeapon"}}</option>
+      <option value={{localize "ALIENRPG.launchCounter" }}>{{localize "ALIENRPG.launchCounter"}}</option>
+    </select>
+    <button type="button" class="gunnersubmit combatbutton" data-pmbut="gunnersubmit"><b>{{localize 'ALIENRPG.SubmitButton'}}</b></button>
+
+  </div>
+</form>
+<form>
+  <div class="form-group">
+    <h2 style="max-width: 400px; ">{{localize "ALIENRPG.engineerPhase"}}</h2>
+    <select class="select-css" style="max-width: 250px;margin-right:30px" id="engineerPhase" name="engineerPhase">
+      <option value={{localize "ALIENRPG.emergencyRepairs" }}>{{localize "ALIENRPG.emergencyRepairs"}}</option>
+      <option value={{localize "ALIENRPG.powerUpEngine" }}>{{localize "ALIENRPG.powerUpEngine"}}</option>
+      <option value={{localize "ALIENRPG.openAirlock" }}>{{localize "ALIENRPG.openAirlock"}}</option>
+      <option value={{localize "ALIENRPG.reactorOverload" }}>{{localize "ALIENRPG.reactorOverload"}}</option>
+    </select>
+    <button type="button" class="engineersubmit combatbutton" data-pmbut="engineersubmit"><b>{{localize 'ALIENRPG.SubmitButton'}}</b></button>
+
+  </div>
+</form>

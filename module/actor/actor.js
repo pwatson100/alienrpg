@@ -124,10 +124,10 @@ export class alienrpgActor extends Actor {
       'prototypeToken.name': `${data.name}`,
       'prototypeToken.bar1': { attribute: 'header.health' },
       'prototypeToken.bar2': { attribute: 'None' },
-      'prototypeToken.vision': true,
+      // 'prototypeToken.vision': true,
       'prototypeToken.actorLink': true,
-      'prototypeToken.brightSight': '8',
-      'prototypeToken.dimSight': '12',
+      'prototypeToken.sight.enabled': 'true',
+      'prototypeToken.sight.range': '12',
     };
     if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
       switch (data.type) {
@@ -140,14 +140,14 @@ export class alienrpgActor extends Actor {
         case 'creature':
           tokenProto['prototypeToken.actorLink'] = false;
           tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
-          tokenProto['prototypeToken.vision'] = false;
+          tokenProto['prototypeToken.sight.enabled'] = false;
           break;
         case 'synthetic':
           break;
         case 'territory':
           tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
           tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
-          tokenProto['prototypeToken.vision'] = false;
+          tokenProto['prototypeToken.sight.enabled'] = false;
           break;
       }
     }
@@ -166,12 +166,14 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  async rollAbility(actor, dataset) {
+  async rollAbility(actor, dataset, rollMod) {
     let label = dataset.label;
     let r2Data = 0;
     let reRoll = false;
     let actorId = actor.id;
     let effectiveActorType = actor.type;
+    let attrib = dataset.attr;
+    let blind = false;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
 
@@ -184,13 +186,11 @@ export class alienrpgActor extends Actor {
     dataset.modifier = 0;
     dataset.stressMod = 0;
 
-    // console.log('🚀 ~ file: actor.js ~ line 397 ~ alienrpgActor ~ rollAbility ~ dataset.roll', dataset.roll);
     if (dataset.roll) {
       let r1Data = parseInt(dataset.roll || 0) + parseInt(modifier);
       if (dataset.attr) {
         r1Data = parseInt(modifier);
       }
-      // console.log('🚀 ~ file: actor.js ~ line 395 ~ alienrpgActor ~ rollAbility ~ r1Data', r1Data);
 
       reRoll = true;
       r2Data = 0;
@@ -207,7 +207,9 @@ export class alienrpgActor extends Actor {
             reRoll = false;
           }
           break;
+
         case 'vehicles':
+        case 'spacecraft':
           if (dataset.spbutt != 'armor') {
             reRoll = false;
             actorId = dataset.actorid;
@@ -220,12 +222,12 @@ export class alienrpgActor extends Actor {
           break;
       }
 
-      let blind = false;
-      if (dataset.spbutt === 'armor' && r1Data < 1 && !dataset.armorP && !dataset.armorDou) {
-        return;
-      } else if (dataset.spbutt === 'armor') {
+      if (dataset.spbutt === 'armor') {
+
+        if (r1Data < 1 && !dataset.armorP && !dataset.armorDou) {
+          return;
+        }
         label = game.i18n.localize('ALIENRPG.Armor');
-        // label = 'Armor';
         r2Data = 0;
         reRoll = true;
         if (dataset.armorP === 'true') {
@@ -243,26 +245,121 @@ export class alienrpgActor extends Actor {
         reRoll = true;
         r1Data += 1;
       }
-      // if (actor.data.token.disposition === -1) {
-      //   blind = true;
-      // }
 
-      // TODO
-      //
-      // Need to put some code here to pop a message if r1Data and r2Data are zero.  Otherwise it just throws and error.
-      //
-      // TODO
 
-      yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
-      game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+      if (attrib && actor.type != 'synthetic' && !rollMod) {
+        function myRenderTemplate(template) {
+          let confirmed = false;
+          reRoll = false;
+          renderTemplate(template).then((dlg) => {
+            new Dialog({
+              title: game.i18n.localize('ALIENRPG.Attributes') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+              content: dlg,
+              buttons: {
+                one: {
+                  icon: '<i class="fas fa-check"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialRoll'),
+                  callback: () => (confirmed = true),
+                },
+                four: {
+                  icon: '<i class="fas fa-times"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialCancel'),
+                  callback: () => (confirmed = false),
+                },
+              },
+              close: (html) => {
+                if (confirmed) {
+                  if (!html.find('#fblind')[0].checked) {
+                    r2Data = 0;
+                    reRoll = true;
+
+                  };
+                  yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
+                  game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+                }
+              },
+            }).render(true);
+          });
+        }
+
+        if (dataset.roll) {
+          if (actor.type === 'character') {
+            myRenderTemplate('systems/alienrpg/templates/dialog/roll-attr-dialog.html');
+          }
+
+        }
+      } else if (actor.type === 'spacecraft' && dataset.spbutt === 'comtech') {
+        function myRenderTemplate(template) {
+          let confirmed = false;
+          reRoll = true;
+          renderTemplate(template).then((dlg) => {
+            new Dialog({
+              title: game.i18n.localize('ALIENRPG.Attributes') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+              content: dlg,
+              buttons: {
+                one: {
+                  icon: '<i class="fas fa-check"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialRoll'),
+                  callback: () => (confirmed = true),
+                },
+                four: {
+                  icon: '<i class="fas fa-times"></i>',
+                  label: game.i18n.localize('ALIENRPG.DialCancel'),
+                  callback: () => (confirmed = false),
+                },
+              },
+              default: 'one',
+              close: (html) => {
+                if (confirmed) {
+                  let baseModifier = parseInt(html.find('[name=baseModifier]')[0]?.value);
+                  let stressMod = html.find('[name=stressMod]')[0]?.value;
+                  let modifier = parseInt(html.find('[name=sigMod]')[0]?.value);
+                  let targetLock = parseInt(html.find('[name=targetLock]')[0]?.value);
+                  let targetMod = parseInt(html.find('[name=targetMod]')[0]?.value);
+                  modifier = parseInt(modifier);
+                  targetLock = parseInt(targetLock);
+                  targetMod = parseInt(targetMod);
+                  baseModifier = parseInt(baseModifier);
+                  if (isNaN(baseModifier)) baseModifier = 0;
+                  if (isNaN(stressMod)) stressMod = 0;
+                  if (isNaN(modifier)) modifier = 0;
+                  if (isNaN(targetLock)) targetLock = 0;
+                  if (isNaN(targetMod)) targetMod = 0;
+                  // console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
+                  r1Data = r1Data + baseModifier + modifier + targetLock + targetMod;
+                  r2Data = r2Data + stressMod;
+                  yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
+                  game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+                }
+              },
+            }).render(true);
+          });
+        }
+        myRenderTemplate('systems/alienrpg/templates/dialog/spacecomtech.html');
+      } else {
+        yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
+        game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+      }
     } else {
       if (dataset.panicroll) {
         // Roll against the panic table and push the roll to the chat log.
         let chatMessage = '';
-        const table = game.tables.getName('Panic Table');
-        // let aStress = actor.getRollData().stress;
-        if (!table) {
-          return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
+        let table = "";
+        // debugger;
+        if (dataset.shippanicbut) {
+          table = game.tables.getName('Space Combat Panic Roll');
+          // let aStress = actor.getRollData().stress;
+          if (!table) {
+            return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
+          }
+
+        } else {
+          table = game.tables.getName('Panic Table');
+          // let aStress = actor.getRollData().stress;
+          if (!table) {
+            return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
+          }
+
         }
 
         let rollModifier = parseInt(modifier) + parseInt(stressMod);
@@ -335,14 +432,23 @@ export class alienrpgActor extends Actor {
             ' ' +
             game.i18n.localize('ALIENRPG.Seepage104') +
             '</b></i></h4>';
+          if (dataset.shippanicbut) {
+            chatMessage += this.moreShipPanic(pCheck);
 
-          chatMessage += this.morePanic(pCheck);
+          } else {
+            chatMessage += this.morePanic(pCheck);
+          }
         } else {
           if (actor.type === 'character') actor.update({ 'system.general.panic.lastRoll': customResults.roll.total });
           pCheck = customResults.roll.total;
           chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.Roll') + ' ' + `${pCheck}` + ' </b></i></h4>';
           // chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
-          chatMessage += this.morePanic(pCheck);
+          if (dataset.shippanicbut) {
+            chatMessage += this.moreShipPanic(pCheck);
+
+          } else {
+            chatMessage += this.morePanic(pCheck);
+          }
           if (customResults.roll.total >= 7) {
             chatMessage += `<h4 class="alienchatred"><i><b>` + game.i18n.localize('ALIENRPG.YouAreAtPanic') + ` <b>` + game.i18n.localize('ALIENRPG.Level') + ` ${pCheck}</b></i></h4>`;
           }
@@ -393,6 +499,7 @@ export class alienrpgActor extends Actor {
     }
   }
 
+
   async rollAbilityMod(actor, dataset) {
     function myRenderTemplate(template) {
       let confirmed = false;
@@ -434,7 +541,7 @@ export class alienrpgActor extends Actor {
 
                   dataset.modifier = modifier;
                   dataset.stressMod = stressMod;
-                  actor.rollAbility(actor, dataset);
+                  actor.rollAbility(actor, dataset, confirmed);
                 }
               },
             }).render(true);
@@ -486,7 +593,7 @@ export class alienrpgActor extends Actor {
                   dataset.stressMod = stressMod;
                   dataset.armorP = armorP;
                   dataset.armorDou = armorDou;
-                  actor.rollAbility(actor, dataset);
+                  actor.rollAbility(actor, dataset, confirmed);
                 }
               },
             }).render(true);
@@ -529,7 +636,7 @@ export class alienrpgActor extends Actor {
 
                   dataset.modifier = modifier;
                   dataset.stressMod = stressMod;
-                  actor.rollAbility(actor, dataset);
+                  actor.rollAbility(actor, dataset, confirmed);
                 }
               },
             }).render(true);
@@ -542,7 +649,7 @@ export class alienrpgActor extends Actor {
     if (dataset.roll) {
       // call pop up box here to get any mods then use standard RollAbility()
       // Check that is a character (and not armor) or a synth pretending to be a character.
-      if (((actor.type === 'character' || actor.type === 'vehicles') && dataset.spbutt != 'armor') || actor.system.header.synthstress) {
+      if (((actor.type === 'character' || actor.type === 'vehicles' || actor.type === 'spacecraft') && dataset.spbutt != 'armor') || actor.system.header.synthstress) {
         myRenderTemplate('systems/alienrpg/templates/dialog/roll-all-dialog.html');
       } else if (actor.type === 'synthetic') {
         myRenderTemplate('systems/alienrpg/templates/dialog/roll-base-dialog.html');
@@ -558,7 +665,7 @@ export class alienrpgActor extends Actor {
 
   async nowRollItem(item, event) {
     // if (item.type === 'weapon' || item.type === 'armor') {
-    if (item.type === 'weapon') {
+    if (item.type === 'weapon' || item.type === 'spacecraftweapons') {
       // Trigger the item roll
       return item.roll(false);
     }
@@ -624,7 +731,8 @@ export class alienrpgActor extends Actor {
 
     if (!existing) {
       effect.label = game.i18n.localize(effect.label);
-      effect['flags.core.statusId'] = effect.id;
+      effect['flags.core.statuses'] = effect.id;
+      effect['statuses'] = effect.id;
       delete effect.id;
       return this.createEmbeddedDocuments('ActiveEffect', [effect]);
     }
@@ -644,7 +752,7 @@ export class alienrpgActor extends Actor {
   }
 
   async hasCondition(conditionKey) {
-    let existing = this.effects.find((i) => i.getFlag('core', 'statusId') == conditionKey);
+    let existing = this.effects.find((i) => i.getFlag('core', 'statuses') == conditionKey);
     return existing;
   }
 
@@ -1027,6 +1135,45 @@ export class alienrpgActor extends Actor {
     }
     return con;
   }
+  moreShipPanic(pCheck) {
+    let con = '';
+    switch (pCheck) {
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+        con = game.i18n.localize('ALIENRPG.Panic1');
+        break;
+      case 7:
+        con = game.i18n.localize('ALIENRPG.ShipPanic7');
+        break;
+      case 8:
+        con = game.i18n.localize('ALIENRPG.ShipPanic8');
+        break;
+      case 9:
+        con = game.i18n.localize('ALIENRPG.ShipPanic9');
+        break;
+      case 10:
+        con = game.i18n.localize('ALIENRPG.ShipPanic10');
+        break;
+      case 11:
+      case 12:
+        con = game.i18n.localize('ALIENRPG.ShipPanic11');
+        break;
+      case 13:
+        con = game.i18n.localize('ALIENRPG.ShipPanic13');
+        break;
+      case 14:
+        con = game.i18n.localize('ALIENRPG.ShipPanic14');
+        break;
+      default:
+        con = game.i18n.localize('ALIENRPG.ShipPanic15');
+        break;
+    }
+    return con;
+  }
 
   async rollCrit(actor, type, dataset, manCrit) {
     let atable = '';
@@ -1038,12 +1185,12 @@ export class alienrpgActor extends Actor {
     let newHealTime = '';
     let htmlData = '';
     let resultImage = '';
-    let critTable = false;
+    let shipcritTable = '';
     let test1 = '';
     let hFatal = '';
     let hHealTime = '';
     let hTimeLimit = '';
-
+    let shipCritType = '';
     switch (type) {
       case 'character':
         atable = game.tables.getName('Critical injuries');
@@ -1068,9 +1215,28 @@ export class alienrpgActor extends Actor {
         }
         break;
 
+      case 'spacecraft':
+        if (dataset.crbut === 'minor') {
+          atable = game.tables.getName('Spaceship Minor Component Damage');
+          shipcritTable = '0';
+          if (atable === null || atable === undefined) {
+            ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
+            return;
+          }
+        } else {
+          atable = game.tables.getName('Spaceship Major Component Damage');
+          shipcritTable = '1';
+          if (atable === null || atable === undefined) {
+            ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
+            return;
+          }
+        }
+        break;
+
       default:
         return;
     }
+
     if (!manCrit) {
       test1 = await atable.draw({ displayChat: false });
     } else {
@@ -1080,20 +1246,6 @@ export class alienrpgActor extends Actor {
       test1 = await atable.draw({ roll: roll, displayChat: false });
     }
 
-    // try {
-    //   if (game.settings.get('alienrpg-corerules', 'imported') === true) {
-    //     critTable = true;
-    //   }
-    // } catch (error) {  }
-
-    // try {
-    //   if (game.settings.get('alienrpg-starterset', 'imported') === true) {
-    //     critTable = true;
-    //   }
-    // } catch (error) { }
-
-    // try {
-    // if (critTable) {
     const messG = test1.results[0].text;
     switch (type) {
       case 'character':
@@ -1115,7 +1267,10 @@ export class alienrpgActor extends Actor {
             case 'Yes ':
               cFatal = true;
               break;
-            case 'Yes, –1 ':
+            case 'Yes, -1 ':
+              cFatal = true;
+              break;
+            case 'Yes, -2 ':
               cFatal = true;
               break;
             default:
@@ -1136,9 +1291,8 @@ export class alienrpgActor extends Actor {
             case game.i18n.localize('ALIENRPG.OneShift') + ' ':
               healTime = 3;
               break;
-            case game.i18n.localize('ALIENRPG.OneDay'):
-              +' ';
-              healTime = 3;
+            case game.i18n.localize('ALIENRPG.OneDay') + ' ':
+              healTime = 4;
               break;
             default:
               healTime = 0;
@@ -1210,6 +1364,47 @@ export class alienrpgActor extends Actor {
             img: resultImage,
             name: `#${test1.roll.total} ${testArray[0]}`,
             effects: testArray[1],
+          };
+        }
+        break;
+      case 'spacecraft':
+        {
+          resultImage = test1.results[0].img || 'icons/svg/biohazard.svg';
+
+          factorFour = messG.replace(/(<strong>)|(<\/strong>)/gi, '');
+          testArray = factorFour.split(/[:] |<br \/>/gi);
+
+          //
+          // Now create the item on the sheet
+          //
+          // debugger;
+          await actor.createEmbeddedDocuments('Item', [
+            {
+              type: 'spacecraft-crit',
+              img: resultImage,
+              name: `#${test1.roll.total} ${testArray[0]}`,
+              'system.header.type.value': `${shipcritTable}`,
+              'system.header.effects': testArray[2],
+              'system.header.repairroll': testArray[5],
+            },
+          ]);
+
+          //
+          // Prepare the data for the chat message
+          //
+          if (shipcritTable === '0') {
+            shipCritType = "Minor"
+          } else {
+            shipCritType = "Major"
+
+          }
+          htmlData = {
+            shipCritType: `${shipCritType}`,
+            actorname: actor.name,
+            img: resultImage,
+            name: `#${test1.roll.total} ${testArray[0]}`,
+            ceffects: testArray[2],
+            crepairroll: testArray[5],
           };
         }
         break;
@@ -1313,9 +1508,16 @@ export class alienrpgActor extends Actor {
    * @returns {VehicleOccupant}
    */
   addVehicleOccupant(crewId, position = 'PASSENGER') {
-    if (this.type !== 'vehicles') return;
-    if (!ALIENRPG.vehicle.crewPositionFlags.includes(position)) {
-      throw new TypeError(`alienrpg | addVehicleOccupant | Wrong position flag: ${position}`);
+    if (this.type !== 'vehicles' && this.type !== 'spacecraft') return;
+    if (this.type === 'vehicles') {
+      if (!ALIENRPG.vehicle.crewPositionFlags.includes(position)) {
+        throw new TypeError(`alienrpg | addVehicleOccupant | Wrong position flag: ${position}`);
+      }
+    } else if (this.type === 'spacecraft') {
+      // position = 'CREW';
+      if (!ALIENRPG.spacecraft.crewPositionFlags.includes(position)) {
+        throw new TypeError(`alienrpg | addVehicleOccupant | Wrong position flag: ${position}`);
+      }
     }
     const data = this.system;
     // if (!(data.crew.occupants instanceof Array)) {
@@ -1327,9 +1529,13 @@ export class alienrpgActor extends Actor {
     };
     // Removes duplicates.
     if (data.crew.occupants.some((o) => o.id === crewId)) this.removeVehicleOccupant(crewId);
+
     // Adds the new occupant.
     data.crew.occupants.push(occupant);
     this.update({ 'data.crew.occupants': data.crew.occupants });
+
+    this.update({ 'data.crew.passengerQty': data.crew.occupants.length });
+
     return occupant;
   }
 
@@ -1341,7 +1547,7 @@ export class alienrpgActor extends Actor {
    * @return {VehicleOccupant[]}
    */
   removeVehicleOccupant(crewId) {
-    if (this.type !== 'vehicles') return;
+    if (this.type !== 'vehicles' && this.type !== 'spacecraft') return;
     const crew = this.system.crew;
     crew.occupants = crew.occupants.filter((o) => o.id !== crewId);
     return crew.occupants;
@@ -1355,7 +1561,7 @@ export class alienrpgActor extends Actor {
    * @returns {VehicleOccupant|undefined}
    */
   getVehicleOccupant(crewId) {
-    if (this.type !== 'vehicles') return;
+    if (this.type !== 'vehicles' && this.type !== 'spacecraft') return;
     return this.system.crew.occupants.find((o) => o.id === crewId);
   }
 
@@ -1366,7 +1572,7 @@ export class alienrpgActor extends Actor {
    * @returns {Collection<string, Actor>} [id, actor]
    */
   getCrew() {
-    if (this.type !== 'vehicle') return undefined;
+    if (this.type !== 'vehicles' && this.type !== 'spacecraft') return undefined;
     const c = new foundry.utils.Collection();
     for (const o of this.system.crew.occupants) {
       c.set(o.id, game.actors.get(o.id));

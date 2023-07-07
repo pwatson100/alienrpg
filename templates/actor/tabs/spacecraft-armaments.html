@@ -1,0 +1,65 @@
+<ol class="items-list">
+  <!-- Display Active Items -->
+  <h2 class="">{{localize "ALIENRPG.Offensive"}}</h2>
+  <li class="grid-items item-header">
+    <div class="item-name lCol1">{{section.label}}</div>
+    <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
+    <div class="item-detail lCol15">{{localize "ALIENRPG.Bonus"}}</div>
+    <div class="item-detail lCol13">{{localize "ALIENRPG.Dam"}}</div>
+    <div class="item-detail lCol11">{{localize "ALIENRPG.Range"}}</div>
+  </li>
+
+  {{#each inventory as |inv|}}
+
+    {{#each inv.items as |item iid|}}
+
+      {{#ife item.type 'spacecraftweapons'}}
+
+        {{#ife item.system.header.type.value '1'}}
+          <li class="item grid-items" data-item-id="{{item._id}}">
+            <div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+            <span class="item-detail lCol6 rollItem" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+            <span class="item-detail lCol16" data-item="{{system.attributes.bonus.value}}">{{system.attributes.bonus.value}}</span>
+            <span class="item-detail lCol14" data-item="{{system.attributes.damage.value}}">{{system.attributes.damage.value}}</span>
+            <span class="item-detail lCol12" data-item="{{system.attributes.range.value}}">{{gRng system.attributes.range.value}}</span>
+
+            <div class="item-controls lCol9">
+              <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+          </li>
+        {{/ife}}
+
+      {{/ife}}
+    {{/each}}
+  {{/each}}
+
+  <h2 class="">{{localize "ALIENRPG.Defensive"}}</h2>
+  <li class="grid-items item-header">
+    <div class="item-name lCol1">{{section.label}}</div>
+    <div class="item-name lCol2">{{localize "ALIENRPG.Name"}}</div>
+    <div class="item-detail lCol15">{{localize "ALIENRPG.Bonus"}}</div>
+    <div class="item-detail lCol11">{{localize "ALIENRPG.hardpoint"}}</div>
+  </li>
+  {{#each inventory as |inv|}}
+
+    {{#each inv.items as |item iid|}}
+      {{#ife item.type 'spacecraftweapons'}}
+
+        {{#ife item.system.header.type.value '2'}}
+          <li class="item grid-items" data-item-id="{{item._id}}">
+            <div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+            <span class="item-detail lCol6 rollItem" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+
+            <span class="item-detail lCol16" data-item="{{system.attributes.bonus.value}}">{{system.attributes.bonus.value}}</span>
+            <span class="item-detail lCol12" data-item="{{system.attributes.hardpoint.value}}">{{system.attributes.hardpoint.value}}</span>
+
+            <div class="item-controls lCol9">
+              <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+          </li>
+        {{/ife}}
+      {{/ife}}
+
+    {{/each}}
+
+  {{/each}}
+
+</ol>

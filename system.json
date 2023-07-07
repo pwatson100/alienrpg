@@ -8,10 +8,10 @@
   "relationships": {
     "systems": [{ "id": "alienrpg" }]
   },
-  "version": "3.0.5",
+  "version": "3.1.0",
   "compatibility": {
     "minimum": "10",
-    "verified": "10",
+    "verified": "11",
     "maximum": "11"
   },
   "minimumCoreVersion": "10",

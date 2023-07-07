@@ -163,7 +163,7 @@
   display: grid;
   grid-template-areas: 'spacec1 spacec2 ';
 
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 35% 65%;
   // gap: 5px;
   // margin: 5px 0;
   // padding: 0;
@@ -172,7 +172,7 @@
 }
 .spacec1 {
   grid-area: spacec1;
-  // border: 1px solid var(--aliengreen);
+  border-right: 1px solid var(--aliengreen);
   // padding: 4px;
   align-content: center;
   // justify-content: center;
@@ -181,7 +181,7 @@
 .spacec2 {
   grid-area: spacec2;
   // border: 1px solid var(--aliengreen);
-  // padding: 4px;
+  padding-left: 5px;
   align-content: center;
   // justify-content: center;
   // min-height: 53px;
@@ -192,8 +192,12 @@
   grid-template-areas:
     '. . s1h1 s1h1 s1h1 .'
     's1h2 s1h2 s1h2 s1h2 s1h2 s1h2'
-    '. . s1h3 s1h3 s1h3 .'
-    's1h4 s1h4 s1h4 s1h4 s1h4 s1h4'
+    's1h3 s1h3 s1h3 s1h4 s1h4 s1h4'
+    's1h28 s1h28 s1h28 s1h29 s1h29 s1h29'
+    's1h30 s1h30 s1h30 s1h30 s1h30 s1h30 '
+    's1h32 s1h32 s1h32 s1h32 s1h32 s1h32'
+    's1h31 s1h31 s1h31 s1h31 s1h31 s1h31 '
+    's1h33 s1h33 s1h33 s1h33 s1h33 s1h33'
     '. . s1h5 s1h5 s1h5 .'
     's1h6 s1h6 s1h6 s1h6 s1h6 s1h6'
     's1space1 s1h7 s1h8 s1space s1h9 s1h10'
@@ -203,7 +207,8 @@
     's1h23 s1h23 s1h23 s1h23 s1h23 s1h23'
     's1h24 s1h24 s1h24 s1h24 s1h24 s1h24'
     's1h25 s1h25 s1h25 s1h25 s1h25 s1h25'
-    's1h26 s1h26 s1h26 s1h26 s1h26 s1h26';
+    's1h26 s1h26 s1h26 s1h26 s1h26 s1h26'
+    's1h27 s1h27 s1h27 s1h27 s1h27 s1h27';
   grid-template-columns: 5% 10% 30% 5% 30% 10%;
   padding: 0 10px 0px 10px;
   // background-color: hsl(165, 27%, 50%);
@@ -236,6 +241,7 @@
   grid-area: s1h4;
   // border: 1px solid var(--aliengreen);
   align-content: center;
+  font-weight: bolder;
 }
 .s1h5 {
   grid-area: s1h5;
@@ -369,8 +375,46 @@
 .s1h26 {
   grid-area: s1h26;
   // border: 1px solid var(--aliengreen);
-  height: 30px;
+  height: 50px;
   justify-self: center;
+}
+.s1h27 {
+  grid-area: s1h27;
+  // border: 1px solid var(--aliengreen);
+  height: 50px;
+  justify-self: center;
+}
+.s1h28 {
+  grid-area: s1h28;
+  // border: 1px solid var(--aliengreen);
+  align-content: center;
+}
+.s1h29 {
+  grid-area: s1h29;
+  // border: 1px solid var(--aliengreen);
+  align-content: center;
+}
+.s1h30 {
+  grid-area: s1h30;
+  // border: 1px solid var(--aliengreen);
+  align-content: center;
+  font-weight: bolder;
+}
+.s1h31 {
+  grid-area: s1h31;
+  // border: 1px solid var(--aliengreen);
+  align-content: center;
+  font-weight: bolder;
+}
+.s1h32 {
+  grid-area: s1h32;
+  // border: 1px solid var(--aliengreen);
+  align-content: center;
+}
+.s1h33 {
+  grid-area: s1h33;
+  // border: 1px solid var(--aliengreen);
+  align-content: center;
 }
 
 .grid-container {
@@ -587,6 +631,36 @@
   grid-area: wItem7;
 }
 
+.grid-ship-crit {
+  display: grid;
+  border: 2px solid var(--aliengreen);
+  grid-template-areas:
+    'gcItem1 gcItem2 gcItem2'
+    'gcItem3 gcItem4 gcItem4'
+    'gcItem5 gcItem6 gcItem6';
+  grid-template-columns: 30% 35% 35%;
+  align-items: center;
+}
+
+.gcItem1 {
+  grid-area: gcItem1;
+}
+.gcItem2 {
+  grid-area: gcItem2;
+}
+.gcItem3 {
+  grid-area: gcItem3;
+}
+.gcItem4 {
+  grid-area: gcItem4;
+}
+.gcItem5 {
+  grid-area: gcItem5;
+}
+.gcItem6 {
+  grid-area: gcItem6;
+}
+
 .grid-weapon-body {
   display: grid;
   // border: 2px solid var(--aliengreen);
@@ -743,6 +817,91 @@
   grid-area: lCol18;
   justify-self: center;
 }
+.grid-modules {
+  display: grid;
+  // border: 2px solid var(--aliengreen);
+  grid-template-areas:
+    'mCol1 mCol2 mCol17 mCol15 mCol13 mCol4'
+    'mCol5 mCol6 mCol18 mCol16 mCol14 mCol8';
+  padding-bottom: 6px;
+  //                      l1 l2    l3 l4  l5  l6  l7   l8  l9
+  grid-template-columns: 30px 270px 75px 90px 269px 30px;
+  // grid-template-columns: 25px 410px 60px 60px 60px 20px;
+  align-items: center;
+}
+
+.mCol1 {
+  grid-area: mCol1;
+  justify-self: left;
+}
+.mCol2 {
+  grid-area: mCol2;
+  justify-self: center;
+}
+.mCol3 {
+  grid-area: mCol3;
+  justify-self: center;
+}
+.mCol4 {
+  grid-area: mCol4;
+  justify-self: right;
+}
+.mCol5 {
+  grid-area: mCol5;
+  justify-self: left;
+}
+.mCol6 {
+  grid-area: mCol6;
+  justify-self: left;
+}
+.mCol7 {
+  grid-area: mCol7;
+  justify-self: center;
+}
+.mCol8 {
+  grid-area: mCol8;
+  justify-self: right;
+}
+.mCol9 {
+  grid-area: mCol9;
+  justify-self: center;
+}
+.mCol10 {
+  grid-area: mCol10;
+  justify-self: center;
+}
+.mCol11 {
+  grid-area: mCol11;
+  justify-self: center;
+}
+.mCol12 {
+  grid-area: mCol12;
+  justify-self: center;
+}
+.mCol13 {
+  grid-area: mCol13;
+  justify-self: center;
+}
+.mCol14 {
+  grid-area: mCol14;
+  word-break: break-word;
+}
+.mCol15 {
+  grid-area: mCol15;
+  justify-self: center;
+}
+.mCol16 {
+  grid-area: mCol16;
+  justify-self: center;
+}
+.mCol17 {
+  grid-area: mCol17;
+  justify-self: center;
+}
+.mCol18 {
+  grid-area: mCol18;
+  justify-self: center;
+}
 
 .grid-talents {
   display: grid;
@@ -839,6 +998,32 @@
 }
 .crit4 {
   grid-area: crit4;
+  justify-self: right;
+}
+
+.space-critical-inj {
+  display: grid;
+  grid-template-areas: 'ScritI1 ScritI2 ScritI4';
+  // grid-template-rows: 3fr;
+  // padding: 3px;
+  grid-template-columns: 5% 80% 3%;
+  align-items: center;
+}
+
+.ScritI1 {
+  grid-area: ScritI1;
+  justify-self: left;
+  padding-right: 4px;
+}
+.ScritI2 {
+  grid-area: ScritI2;
+  justify-self: left;
+  font-weight: bold;
+  padding-right: 8px;
+}
+
+.ScritI4 {
+  grid-area: ScritI4;
   justify-self: right;
 }
 
@@ -1259,6 +1444,54 @@
 .gC8 {
   justify-self: right;
   grid-area: gC8;
+}
+
+.grid-ship-crew {
+  display: grid;
+  grid-template-areas:
+    'gSC1 gSC2 gSC3 gSC4 gSC5'
+    ' gSC6 gSC7 gSC8 gSC9 gSC10';
+  grid-template-columns: 43% 25% 20% 6%;
+}
+.gSC1 {
+  justify-self: center;
+  grid-area: gSC1;
+}
+.gSC2 {
+  justify-self: center;
+  grid-area: gSC2;
+}
+.gSC3 {
+  justify-self: center;
+  grid-area: gSC3;
+}
+.gSC4 {
+  justify-self: right;
+  grid-area: gSC4;
+}
+.gSC5 {
+  justify-self: right;
+  grid-area: gSC5;
+}
+.gSC6 {
+  justify-self: left;
+  grid-area: gSC6;
+}
+.gSC7 {
+  justify-self: center;
+  grid-area: gSC7;
+}
+.gSC8 {
+  justify-self: right;
+  grid-area: gSC8;
+}
+.gSC9 {
+  justify-self: center;
+  grid-area: gSC9;
+}
+.gSC10 {
+  justify-self: right;
+  grid-area: gSC10;
 }
 
 .grid-actor {

@@ -1,7 +1,8 @@
 import { yze } from '../YZEDiceRoller.js';
 import { toNumber } from '../utils.js';
 import { ALIENRPG } from '../config.js';
-
+import { alienrpgrTableGet } from './rollTableData.js';
+import { logger } from '../logger.js';
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -24,8 +25,8 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'spacecraft-sheet'],
       // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
-      width: 1020,
-      height: 900,
+      width: 1120,
+      height: 800,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -35,10 +36,19 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     return `${path}spacecraft-sheet.html`;
   }
 
+
+
   /* -------------------------------------------- */
+  async _enrichTextFields(data, fieldNameArr) {
+    for (let t = 0; t < fieldNameArr.length; t++) {
+      if (hasProperty(data, fieldNameArr[t])) {
+        setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(getProperty(data, fieldNameArr[t]), { async: true }));
+      }
+    };
+  }
 
   /** @override */
-  getData(options) {
+  async getData(options) {
     // Basic data
     const isOwner = this.document.isOwner;
     const data = {
@@ -48,97 +58,161 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
       options: this.options,
       editable: this.isEditable,
       cssClass: isOwner ? 'editable' : 'locked',
-      isCharacter: this.object.data.type === 'character',
-      isEnc: this.object.data.type === 'character' || this.object.data.type === 'synthetic',
-      isSynthetic: this.object.data.type === 'synthetic',
-      isVehicles: this.object.data.type === 'vehicles',
-      isCreature: this.object.data.type === 'creature',
-      isSpacecraft: this.object.data.type === 'spacecraft',
-      isNPC: this.object.data.data.header.npc,
+      isCharacter: this.object.system.type === 'character',
+      // isEnc: true,
+      isVehicles: this.object.system.type === 'vehicles',
       isGM: game.user.isGM,
       config: CONFIG.ALIENRPG,
     };
 
-    // The Actor and its Items
-    data.actor = foundry.utils.deepClone(this.actor.data);
+    let actor = this.object;
+    data.actor = actor.toJSON();
 
-    data.items = this.actor.items.map((i) => {
-      i.data.labels = i.labels;
-      return i.data;
+    data.actor.system.items = this.actor.items.map((i) => {
+      i.label = i.label;
+      return i;
     });
-    data.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-    data.data = data.actor.data;
-    data.labels = this.actor.labels || {};
-    data.filters = this._filters;
+    data.actor.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+    data.actor.system.label = this.actor.label || {};
+    data.actor.system.filters = this._filters;
 
-    // data.actor.data.general.radiation.icon = this._getClickIcon(data.actor.data.general.radiation.value, 'radiation');
-    data.actor.data.attributes.damage.icon = this._getClickIcon(data.actor.data.attributes.damage.value, 'damage');
-    // data.actor.data.general.sp.icon = this._getClickIcon(data.actor.data.general.sp.value, 'sp');
-    // data.actor.data.general.starving.icon = this._getContitionIcon(data.actor.data.general.starving.value, 'starving');
-    // data.actor.data.general.dehydrated.icon = this._getContitionIcon(data.actor.data.general.dehydrated.value, 'dehydrated');
-    // data.actor.data.general.exhausted.icon = this._getContitionIcon(data.actor.data.general.exhausted.value, 'exhausted');
-    // data.actor.data.general.freezing.icon = this._getContitionIcon(data.actor.data.general.freezing.value, 'freezing');
-    // data.actor.data.general.panic.icon = this._getContitionIcon(data.actor.data.general.panic.value, 'panic');
-    // Prepare items.
-    this._prepareItems(data); // Return data to the sheet
+    switch (this.actor.type) {
+      case 'spacecraft':
+        await this._prepareVehicleItems(data);
+        await this._prepareCrew(data);
+        let enrichedFields = [
+          "actor.system.notes",
+        ];
+        await this._enrichTextFields(data, enrichedFields);
+        data.actor.system.attributes.damage.max = data.actor.system.attributes.hull.value;
+        data.actor.system.attributes.damage.icon = this._getClickIcon(data.actor.system.attributes.damage.value, 'damage');
 
+        break;
+
+      default:
+        break;
+    }
+    logger.debug('Actor Sheet derived data:', data);
     //Return data to the sheet
     return data;
   }
+
 
   _findActiveList() {
     return this.element.find('.tab.active .directory-list');
   }
 
+
   /*
    * Organize and classify Owned Items for Character sheets
    * @private
    */
-  _prepareItems(data) {
+  async _prepareVehicleItems(data) {
     // Initialize containers.
+    const inventory = {
+      weapon: { section: 'Weapons', label: game.i18n.localize('ALIENRPG.InventoryWeaponsHeader'), items: [], dataset: { type: 'weapon' } },
+      item: { section: 'Items', label: game.i18n.localize('ALIENRPG.InventoryItemsHeader'), items: [], dataset: { type: 'item' } },
+      armor: { section: 'Armor', label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'), items: [], dataset: { type: 'armor' } },
+      spacecraftmods: { section: 'Spacecraft Mods', label: game.i18n.localize('ALIENRPG.MODULES-UPGRADES'), items: [], dataset: { type: 'spacecraftmods' } },
+      spacecraftweapons: { section: 'Spacecraft Weapons', label: game.i18n.localize('ALIENRPG.SpacecraftWeapons'), items: [], dataset: { type: 'spacecraftweapons' } },
+    };
+    // Partition items by category
+    let [items, Weapons, Armor, spacecraftmods, spacecraftweapons] = data.actor.system.items.reduce(
+      (arr, item) => {
+        // Item details
+        item.img = item.img || DEFAULT_TOKEN;
+        item.isStack = item.system.quantity ? item.system.quantity > 1 : false;
 
-    const weapons = [];
+        // Classify items into types
+        if (item.type === 'Weapons') arr[1].push(item);
+        else if (item.type === 'Armor') arr[2].push(item);
+        else if (item.type === 'spacecraftmods') arr[3].push(item);
+        else if (item.type === 'spacecraftweapons') arr[4].push(item);
+        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+        return arr;
+      },
+      [[], [], [], [], []]
+    );
+
+    // Apply active item filters
+    items = this._filterItems(items, this._filters.inventory);
+    const critMin = [];
+    const critMaj = [];
 
     // Iterate through items, allocating to containers
-    // let totalWeight = 0;
-    for (let i of data.items) {
-      let item = i.data;
-      // Append to gear.
-      if (i.type === 'weapon') {
-        weapons.push(i);
+    for (let i of data.actor.system.items) {
+      let item = i.system;
+      switch (i.type) {
+        case 'spacecraft-crit':
+          switch (i.system.header.type.value) {
+            case '0':
+              critMin.push(i);
+              break;
+            case '1':
+              critMaj.push(i);
+              break;
+          }
+          break;
+        case 'spacecraftmods':
+          inventory[i.type].items.push(i);
+          break;
+        case 'spacecraftweapons':
+          inventory[i.type].items.push(i);
+          break;
+
+        case 'armor':
+          inventory[i.type].items.push(i);
+          break;
+
+        case 'weapon':
+          if (item.header.active != 'fLocker') {
+          }
+          inventory[i.type].items.push(i);
+
+          break;
+
+        default:
+          // Its just an item
+          if (item.header.active != 'fLocker') {
+          }
+          inventory[i.type].items.push(i);
+          break;
       }
     }
 
-    // Assign and return
-    data.weapons = weapons;
+    data.inventory = Object.values(inventory);
+    data.critMin = critMin;
+    data.critMaj = critMaj;
+
   }
-  /*
-   * Compute the level and percentage of encumbrance for an Actor.
-   *
-   * Optionally include the weight of carried currency across all denominations by applying the standard rule
-   * from the PHB pg. 143
-   *
-   * @param {Number} totalWeight    The cumulative item weight from inventory items
-   * @param {Object} actorData      The data object for the Actor being rendered
-   * @return {Object}               An object describing the character's encumbrance level
-   * @private
-   */
-  // _computeEncumbrance(totalWeight, actorData) {
-  //   // Compute Encumbrance percentage
-  //   const enc = {
-  //     max: actorData.data.attributes.str.value * 4,
-  //     value: Math.round(totalWeight * 10) / 10,
-  //     value: totalWeight,
-  //   };
-  //   enc.pct = Math.min((enc.value * 100) / enc.max, 99);
-  //   enc.encumbered = enc.pct > 50;
-  //   for (let i of actorData.talents) {
-  //     if (i.name.toUpperCase() === 'PACK MULE') {
-  //       enc.encumbered = enc.pct > 75;
-  //     }
-  //   }
-  //   return enc;
-  // }
+
+
+  async _prepareCrew(sheetData) {
+    sheetData.crew = sheetData.actor.system.crew.occupants.reduce((arr, o) => {
+      o.actor = game.actors.get(o.id);
+      // Creates a fake actor if it doesn't exist anymore in the database.
+      if (!o.actor) {
+        o.actor = {
+          name: '{MISSING_CREW}',
+          system: { system: { health: { value: 0, max: 0 } } },
+          isCrewDeleted: true,
+        };
+      }
+      arr.push(o);
+      return arr;
+    }, []);
+    sheetData.actor.system.crew.occupants.sort((o1, o2) => {
+      const pos1 = ALIENRPG.spacecraft.crewPositionFlags.indexOf(o1.position);
+      const pos2 = ALIENRPG.spacecraft.crewPositionFlags.indexOf(o2.position);
+      if (pos1 < pos2) return -1;
+      if (pos1 > pos2) return 1;
+      // If they are at the same position, sort by their actor's names.
+      if (o1.actor.name < o2.actor.name) return -1;
+      if (o1.actor.name > o2.actor.name) return 1;
+      return 0;
+    });
+    return sheetData;
+  }
 
   /**
    * Determine whether an Owned Item will be shown based on the current set of filters
@@ -147,7 +221,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
    */
   _filterItems(items, filters) {
     return items.filter((item) => {
-      const data = item.data;
+      const data = item.system;
       return true;
     });
   }
@@ -158,6 +232,22 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
     const itemContextMenu = [
+      {
+        name: game.i18n.localize('ALIENRPG.addToFLocker'),
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'system.header.active': 'fLocker' });
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'system.header.active': false });
+        },
+      },
       {
         name: game.i18n.localize('ALIENRPG.EditItemTitle'),
         icon: '<i class="fas fa-edit"></i>',
@@ -170,7 +260,6 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
         name: game.i18n.localize('ALIENRPG.DeleteItem'),
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
-          // this.actor.deleteOwnedItem(element.data('item-id'));
           let itemDel = this.actor.items.get(element.data('item-id'));
           itemDel.delete();
         },
@@ -180,8 +269,44 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     // Add Inventory Item
     new ContextMenu(html, '.item-edit', itemContextMenu);
 
+    const itemContextMenu1 = [
+      {
+        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+        icon: '<i class="fas fa-edit"></i>',
+        callback: (element) => {
+          const item = this.actor.items.get(element.data('item-id'));
+          item.sheet.render(true);
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.DeleteItem'),
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (element) => {
+          let itemDel = this.actor.items.get(element.data('item-id'));
+          itemDel.delete();
+        },
+      },
+    ];
+
+    // Add Inventory Item
+    new ContextMenu(html, '.item-edit1', itemContextMenu1);
+
+    html.find('.item-create').click(this._onItemCreate.bind(this));
+    // Update Inventory Item
+    html.find('.openItem').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
     // Update Inventory Item
     html.find('.item-edit').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
+    html.find('.item-edit1').click((ev) => {
       const li = $(ev.currentTarget).parents('.item');
       const item = this.actor.items.get(li.data('itemId'));
       item.sheet.render(true);
@@ -194,6 +319,10 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
       html.find('.rollable').click(this._onRollMod.bind(this));
 
+      html.find('.rollableVeh').contextmenu(this._onRoll.bind(this));
+
+      html.find('.rollableVeh').click(this._onRollMod.bind(this));
+
       // Rollable Items.
       html.find('.rollItem').contextmenu(this._rollItem.bind(this));
 
@@ -205,6 +334,10 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
       html.find('.rollable').contextmenu(this._onRollMod.bind(this));
 
+      html.find('.rollableVeh').click(this._onRoll.bind(this));
+
+      html.find('.rollableVeh').contextmenu(this._onRollMod.bind(this));
+
       // Rollable Items.
       html.find('.rollItem').click(this._rollItem.bind(this));
 
@@ -213,27 +346,33 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
     html.find('.currency').on('change', this._currencyField.bind(this));
     // minus from health and stress
-    // html.find('.minus-btn').click(this._plusMinusButton.bind(this));
+    html.find('.minus-btn').click(this._plusMinusButton.bind(this));
 
     // plus tohealth and stress
-    // html.find('.plus-btn').click(this._plusMinusButton.bind(this));
+    html.find('.plus-btn').click(this._plusMinusButton.bind(this));
 
     html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
+    html.find('.click-stat-level-con').on('click contextmenu', this._onClickStatLevelCon.bind(this)); // Toggle for radio buttons
 
-    // html.find('.supply-btn').click(this._supplyRoll.bind(this));
 
     // html.find('.pwr-btn').click(this._supplyRoll.bind(this));
 
-    // html.find('.stunt-btn').click(this._stuntBtn.bind(this));
-
-    // html.find('.talent-btn').click(this._talentBtn.bind(this));
-
     html.find('.inline-edit').change(this._inlineedit.bind(this));
 
-    // html.find('.rollCrit').click(this._rollCrit.bind(this));
+    html.find('.rollMinorCD').click(this._rollMinorCD.bind(this));
+    html.find('.rollMinorCD').contextmenu(this._rollMinorCDMan.bind(this));
 
-    // html.find('.activate').click(this._activate.bind(this));
-    // html.find('.activate').contextmenu(this._deactivate.bind(this));
+    html.find('.rollMajorCD').click(this._rollMajorCD.bind(this));
+    html.find('.rollMajorCD').contextmenu(this._rollMajorCDMan.bind(this));
+
+    html.find('.activate').click(this._activate.bind(this));
+    html.find('.activate').contextmenu(this._deactivate.bind(this));
+
+    html.find('.sensorsubmit').click(this._shipPhase.bind(this));
+    html.find('.pilotsubmit').click(this._shipPhase.bind(this));
+    html.find('.gunnersubmit').click(this._shipPhase.bind(this));
+    html.find('.engineersubmit').click(this._shipPhase.bind(this));
+    html.find('.crewPanic').click(this._crewPanic.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -247,23 +386,21 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
         li.addEventListener('dragstart', handler, false);
       });
     }
+
+    html.find('.crew-edit').click(this._onCrewEdit.bind(this));
+    html.find('.crew-remove').click(this._onCrewRemove.bind(this));
+    html.find('.crew-position').change(this._onChangePosition.bind(this));
   }
   /** @override */
   async _onDropItemCreate(itemData) {
     const type = itemData.type;
     const alwaysAllowedItems = ALIENRPG.physicalItems;
     const allowedItems = {
-      character: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
-      synthetic: ['item', 'weapon', 'armor', 'talent', 'agenda', 'specialty', 'critical-injury'],
-      vehicles: ['item', 'weapon'],
-      territory: ['planet-system'],
-      spacecraft: ['weapon'],
+      spacecraft: ['item', 'weapon', 'armor', "spacecraft-crit", "spacecraftmods", "spacecraftweapons"],
     };
     let allowed = true;
 
-    if (this.actor.type === 'creature') {
-      allowed = false;
-    } else if (!alwaysAllowedItems.includes(type)) {
+    if (!alwaysAllowedItems.includes(type)) {
       if (!allowedItems[this.actor.type].includes(type)) {
         allowed = false;
       }
@@ -273,8 +410,6 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
       const msg = game.i18n.format('ALIENRPG.NotifWrongItemType', {
         type: type,
         actor: this.actor.type,
-        // type: game.i18n.localize(`T2K4E.ItemTypes.${type}`),
-        // actor: game.i18n.localize(`T2K4E.ActorTypes.${this.actor.type}`),
       });
       console.warn(`Alien RPG | ${msg}`);
       ui.notifications.warn(msg);
@@ -301,13 +436,14 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     const itemData = {
       name: iName,
       type: type,
-      data: data,
+      system: system,
     };
     // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.data['type'];
+    delete itemData.system['type'];
 
     // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
+    // return this.actor.createOwnedItem(itemData);
+    return this.actor.createEmbeddedDocuments(itemData);
   }
 
   _inlineedit(event) {
@@ -326,6 +462,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
+
   _onRoll(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
@@ -341,44 +478,84 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
   _onRollItemMod(event) {
     event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.items.get(itemId);
-    this.actor.rollItemMod(item);
+    if (item.type === 'armor') {
+      dataset.roll = this.actor.system.general.armor.value;
+      dataset.mod = 0;
+      dataset.spbutt = 'armor';
+      this.actor.rollAbilityMod(this.actor, dataset);
+    } else {
+      this.actor.rollItemMod(item);
+    }
   }
   _rollItem(event) {
     event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.items.get(itemId);
-    this.actor.nowRollItem(item);
+    if (item.type === 'armor') {
+      dataset.roll = this.actor.system.general.armor.value;
+      dataset.mod = 0;
+      dataset.spbutt = 'armor';
+      this.actor.rollAbility(this.actor, dataset);
+    } else {
+      this.actor.nowRollItem(item);
+    }
   }
-  // _rollCrit(event) {
-  //   event.preventDefault();
-  //   const dataset = event.currentTarget.dataset;
-  //   this.actor.rollCrit(this.actor.data.type, dataset);
-  // }
+  _rollMinorCD(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCrit(this.actor, this.actor.type, dataset);
+  }
+  _rollMinorCDMan(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCrit(this.actor, this.actor.type, dataset);
+  }
 
-  // _activate(event) {
-  //   event.preventDefault();
-  //   const dataset = event.currentTarget;
-  //   let itemId = dataset.parentElement.dataset.itemId;
-  //   let item = this.actor.items.get(itemId);
-  //   item.update({ 'data.header.active': true });
-  // }
-  // _deactivate(event) {
-  //   event.preventDefault();
-  //   const dataset = event.currentTarget;
-  //   let itemId = dataset.parentElement.dataset.itemId;
-  //   let item = this.actor.items.get(itemId);
-  //   item.update({ 'data.header.active': false });
-  // }
+  _rollMajorCD(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCrit(this.actor, this.actor.type, dataset);
+  }
+  _rollMajorCDMan(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    this.actor.rollCrit(this.actor, this.actor.type, dataset);
+  }
 
-  // _plusMinusButton(event) {
-  //   event.preventDefault();
-  //   const element = event.currentTarget;
-  //   const dataset = element.dataset;
-  //   // console.warn('alienrpgActorSheet -> _minusButton -> elemdatasetent', dataset);
-  //   this.actor.stressChange(this.actor, dataset);
-  // }
+  _crewPanic(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    const panicActor = game.actors.get(dataset.crewpanic);
+    this.actor.rollAbility(panicActor, dataset);
+  }
+
+  _activate(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    let itemId = dataset.parentElement.dataset.itemId;
+    let item = this.actor.items.get(itemId);
+    item.update({ 'system.header.active': true });
+  }
+  _deactivate(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    let itemId = dataset.parentElement.dataset.itemId;
+    let item = this.actor.items.get(itemId);
+    item.update({ 'system.header.active': false });
+  }
+
+  _plusMinusButton(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    this.actor.stressChange(this.actor, dataset);
+  }
 
   // _stuntBtn(event) {
   //   event.preventDefault();
@@ -400,9 +577,9 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
   //   try {
   //     item = game.items.getName(dataset.pmbut);
   //     str = item.name;
-  //     temp2 = item.data.data.description;
+  //     temp2 = item.system.description;
   //     if (temp2 != null || temp2.length) {
-  //       chatData = item.data.data.description;
+  //       chatData = item.system.description;
   //     }
   //     if (temp3.startsWith('<ol>') && chatData.startsWith('<h2>No Stunts Entered</h2>')) {
   //       chatData = temp3;
@@ -441,9 +618,9 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
   //   item = this.actor.items.get(dataset.pmbut);
   //   str = item.name;
-  //   temp2 = item.data.data.general.comment.value;
+  //   temp2 = item.system.general.comment.value;
   //   if (temp2 != null && temp2.length > 0) {
-  //     chatData = item.data.data.general.comment.value;
+  //     chatData = item.system.general.comment.value;
   //   } else {
   //     // item = dataset.pmbut;
   //     // str = item;
@@ -457,7 +634,6 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
   //     }
   //   }
 
-  //   // let chatData = item.data.data.general.comment.value;
   //   let div = $(`<div class="panel Col3">${chatData}</div>`);
 
   //   // Toggle summary
@@ -477,13 +653,19 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     this._onSubmit(event);
   }
 
+  _onClickStatLevelCon(event) {
+    event.preventDefault();
+    this.actor.conCheckMarks(this.actor, event);
+    this._onSubmit(event);
+  }
+
   /**
    * Get the font-awesome icon used to display a certain level of radiation
    * @private
-   */
+  */
 
   _getClickIcon(level, stat) {
-    const maxPoints = this.object.data.data.attributes[stat].max;
+    const maxPoints = this.object.system.attributes[stat].max;
     const icons = {};
     const usedPoint = '<i class="far fa-dot-circle"></i>';
     const unUsedPoint = '<i class="far fa-circle"></i>';
@@ -501,7 +683,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     return icons[level];
   }
   _getContitionIcon(level, stat) {
-    const maxPoints = this.object.data.data.attributes[stat].max;
+    const maxPoints = this.object.system.attributes[stat].max;
     const icons = {};
     const usedPoint = '<i class="far fa-dot-circle"></i>';
     const unUsedPoint = '<i class="far fa-circle"></i>';
@@ -543,9 +725,90 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     }
     function onBlur(e) {
       let value = localStringToNumber(e.target.value);
-      e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '';
-      // console.warn(e.target.value);
+      if (game.settings.get('alienrpg', 'dollar'))
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '$0.00';
+      else
+        e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
     }
   }
+
+  _dropCrew(actorId) {
+    const crew = game.actors.get(actorId);
+    const actorData = this.actor;
+    if (!crew) return;
+    if (crew.type === 'vehicles' && crew.type === 'spacecraft') return ui.notifications.info('Vehicle inceptions are not allowed!');
+    if (crew.type !== 'character' && crew.type !== 'synthetic') return;
+    if (actorData.type === 'spacecraft') {
+      if (actorData.system.crew.passengerQty >= actorData.system.attributes.crew.value) {
+        return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
+      }
+      return this.actor.addVehicleOccupant(actorId);
+    }
+
+
+  }
+  _onCrewEdit(event) {
+    event.preventDefault();
+    const elem = event.currentTarget;
+    const crewId = elem.closest('.occupant').dataset.crewId;
+    const actor = game.actors.get(crewId);
+    return actor.sheet.render(true);
+  }
+
+  _onCrewRemove(event) {
+    event.preventDefault();
+    const actorData = this.actor;
+    const elem = event.currentTarget;
+    const crewId = elem.closest('.occupant').dataset.crewId;
+    const occupants = this.actor.removeVehicleOccupant(crewId);
+    let crewNumber = actorData.system.crew.passengerQty;
+    crewNumber--;
+    actorData.update({ 'system.crew.passengerQty': crewNumber });
+    return this.actor.update({ 'system.crew.occupants': occupants });
+  }
+
+  _onChangePosition(event) {
+    event.preventDefault();
+    const elem = event.currentTarget;
+    const crewId = elem.closest('.occupant').dataset.crewId;
+    const position = elem.value;
+    return this.actor.addVehicleOccupant(crewId, position);
+  }
+
+  async _shipPhase(event) {
+    let htmlData = '';
+    event.preventDefault();
+    const dataset = event.currentTarget;
+    const shipName = this.actor.name;
+    const actorID = this.actor.id;
+    const element = dataset.previousElementSibling.selectedOptions[0].label;
+    const phase = game.i18n.localize(`ALIENRPG.${dataset.previousElementSibling.name}`);
+
+    htmlData = {
+      phaseName: `${phase}`,
+      actorname: `${shipName}`,
+      action: `${element}`,
+    };
+
+    // Now push the correct chat message
+    const html = await renderTemplate(`systems/alienrpg/templates/chat/ship-combat.html`, htmlData);
+
+    let chatData = {
+      user: game.user.id,
+      speaker: {
+        actor: actorID,
+      },
+      content: html,
+      other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
+      sound: CONFIG.sounds.lock,
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+    };
+
+    ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
+    return ChatMessage.create(chatData);
+
+  }
+
+
 }
 export default alienrpgSpacecraftSheet;

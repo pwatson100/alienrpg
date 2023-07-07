@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "synthetic", "vehicles", "creature", "territory"],
+    "types": ["character", "synthetic", "vehicles", "creature", "territory", "spacecraft"],
     "character": {
       "header": {
         "health": {
@@ -547,6 +547,62 @@
         "label": "Text"
       }
     },
+    "spacecraft": {
+      "header": {
+        "type": {
+          "value": "",
+          "label": "Text"
+        }
+      },
+      "attributes": {
+        "manufacturer": "",
+        "model": "",
+        "modules": "",
+        "armaments": "",
+        "ai": "",
+        "crew": {
+          "value": 0
+        },
+        "passengers": {
+          "value": 0
+        },
+        "length": {
+          "value": 0
+        },
+        "ftlrating": {
+          "value": 0
+        },
+        "signature": {
+          "value": 0
+        },
+        "thrusters": {
+          "value": 0
+        },
+        "hull": {
+          "value": 0
+        },
+        "armor": {
+          "value": 0
+        },
+        "damage": {
+          "value": 0,
+          "max": 15
+        },
+        "leasecost": {
+          "value": 0
+        }
+      },
+      "crew": {
+        "occupants": [],
+        "passengerQty": 0
+      },
+      "general": {
+        "misc": {
+          "value": ""
+        }
+      },
+      "notes": ""
+    },
     "general": {
       "misc": {
         "value": ""
@@ -557,7 +613,20 @@
     }
   },
   "Item": {
-    "types": ["item", "weapon", "armor", "talent", "planet-system", "skill-stunts", "agenda", "specialty", "critical-injury"],
+    "types": [
+      "item",
+      "weapon",
+      "armor",
+      "planet-system",
+      "talent",
+      "agenda",
+      "specialty",
+      "critical-injury",
+      "spacecraft-crit",
+      "spacecraftmods",
+      "spacecraftweapons",
+      "skill-stunts"
+    ],
     "item": {
       "header": {
         "type": {
@@ -1095,6 +1164,91 @@
             "ability": "wit"
           }
         }
+      }
+    },
+    "spacecraft-crit": {
+      "header": {
+        "type": {
+          "value": 0,
+          "label": "Text"
+        },
+        "damage": "",
+        "effects": "",
+        "repairroll": ""
+      }
+    },
+    "spacecraftmods": {
+      "header": {
+        "type": {
+          "value": "",
+          "label": "Text"
+        },
+        "active": false
+      },
+      "attributes": {
+        "size": {
+          "value": "",
+          "label": "Text"
+        },
+        "capacity": {
+          "value": "",
+          "label": "Text"
+        },
+        "cost": {
+          "value": 0,
+          "label": "Number"
+        },
+        "comment": {
+          "value": "",
+          "label": "Text"
+        },
+        "quantity": {
+          "value": 1
+        },
+        "notes": {
+          "notes": ""
+        }
+      }
+    },
+    "spacecraftweapons": {
+      "header": {
+        "type": {
+          "value": "",
+          "label": "Text"
+        },
+        "active": false
+      },
+      "attributes": {
+        "bonus": {
+          "value": 0,
+          "label": "Number"
+        },
+        "damage": {
+          "value": 0,
+          "label": "Number"
+        },
+        "hardpoint": {
+          "value": "",
+          "label": "Text"
+        },
+        "cost": {
+          "value": 0,
+          "label": "Number"
+        },
+        "range": {
+          "value": "",
+          "label": "Number"
+        },
+        "comment": {
+          "value": "",
+          "label": "Text"
+        },
+        "quantity": {
+          "value": 1
+        }
+      },
+      "notes": {
+        "notes": ""
       }
     }
   }

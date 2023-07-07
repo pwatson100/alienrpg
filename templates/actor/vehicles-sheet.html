@@ -53,9 +53,9 @@
     <div class="tab crew" data-group="primary" data-tab="crew">
       <div class="grid-crew">
 
-        <label class="resource-label gC1">Name</label>
-        <label class="resource-label gC2">Position</label>
-        <label class="resource-label gC3">Roll</label>
+        <label class="resource-label gC1">{{localize 'ALIENRPG.Name'}}</label>
+        <label class="resource-label gC2">{{localize 'ALIENRPG.Position'}}</label>
+        <label class="resource-label gC3">{{localize 'ALIENRPG.Roll'}}</label>
       </div>
       <br>
       <div>
@@ -80,11 +80,11 @@
               {{!-- Buttons --}}
               <div class="gC8">
                 {{#unless actor.isCrewDeleted}}
-                  <a class="button crew-edit" title="{{localize 'ALIENRPG.ActorSheet.Edit'}}">
+                  <a class="button crew-edit" title="{{localize 'ALIENRPG.EditItem'}}">
                     {{{@root.config.Icons.buttons.edit}}}
                   </a>
                 {{/unless}}
-                <a class="button crew-remove" title="{{localize 'ALIENRPG.ActorSheet.Delete'}}">
+                <a class="button crew-remove" title="{{localize 'ALIENRPG.DeleteItem'}}">
                   {{{@root.config.Icons.buttons.remove}}}
                 </a>
               </div>

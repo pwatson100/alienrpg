@@ -66,7 +66,7 @@
         <span class="Col1">
           {{#each actor.system.skills as |skill key|}}
             <span class="ability grid-attr">
-              <h3 for="actor.system.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{localize (concat 'ALIENRPG.Skill' key) }}">{{localize (concat 'ALIENRPG.Skill' key) }} ({{localize (concat 'ALIENRPG.AbilityAbb' skill.ability) }})</h3>
+              <h3 for="actor.system.skills.{{key}}.value" class="resource-label rollable Attr1" data-roll="{{skill.mod}}" data-label="{{localize (alienConcat 'ALIENRPG.Skill' key) }}">{{localize (alienConcat 'ALIENRPG.Skill' key) }} ({{localize (alienConcat 'ALIENRPG.AbilityAbb' skill.ability) }})</h3>
               <input type="text" class="maxboxsize Attr2" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
               <div class="resource-content">
                 <button type="button" class="stunt-btn Attr3" data-pmbut="{{skill.description}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>
@@ -78,41 +78,41 @@
 
         <!-- Col2 -->
         <div class="Col2">
-          <li class="grid-talents item-header">
-            <h2 class="item talTitle">{{localize 'ALIENRPG.Talents'}}</h2>
-            <h3 class="item-name tal1">{{localize 'ALIENRPG.Name'}}</h3>
-            <div class="item-controls tal2">
-            </div>
-          </li>
-
-          {{#each talents as |item iid|}}
-            <li class="item grid-talents" data-item-id="{{item._id}}">
-              <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
-              <div class="tal4 item-controls">
-                <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
-
+          <ol>
+            <li class="grid-talents item-header">
+              <h2 class="item talTitle">{{localize 'ALIENRPG.Talents'}}</h2>
+              <h3 class="item-name tal1">{{localize 'ALIENRPG.Name'}}</h3>
+              <div class="item-controls tal2">
               </div>
             </li>
-          {{/each}}
+            {{#each talents as |item iid|}}
+              <li class="item grid-talents" data-item-id="{{item._id}}">
+                <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
+                <div class="tal4 item-controls">
+                  <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+                </div>
+              </li>
+            {{/each}}
+          </ol>
         </div>
 
         <div class="Col4">
-          <li class="grid-talents item-header">
-            <h2 class="item talTitle">{{localize 'ALIENRPG.AgendaStory'}}</h2>
-            <h3 class="item-name tal1">{{localize 'ALIENRPG.Name'}}</h3>
-            <div class="item-controls tal2">
-            </div>
-          </li>
-
-          {{#each agendas as |item iid|}}
-            <li class="item grid-talents" data-item-id="{{item._id}}">
-              <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
-              <div class="tal4 item-controls">
-                <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
-
+          <ol>
+            <li class="grid-talents item-header">
+              <h2 class="item talTitle">{{localize 'ALIENRPG.AgendaStory'}}</h2>
+              <h3 class="item-name tal1">{{localize 'ALIENRPG.Name'}}</h3>
+              <div class="item-controls tal2">
               </div>
             </li>
-          {{/each}}
+            {{#each agendas as |item iid|}}
+              <li class="item grid-talents" data-item-id="{{item._id}}">
+                <h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
+                <div class="tal4 item-controls">
+                  <a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+                </div>
+              </li>
+            {{/each}}
+          </ol>
         </div>
 
         {{!-- Stunts/Talents pop up    DO NOT TOUCH THE DIV BELOW --}}
@@ -134,18 +134,39 @@
 
         <!-- Col1 -->
         <div class="Item1">
-          <h3 class="resource-label" style="font-weight: bold;">{{ localize 'ALIENRPG.XP'}}</h3>
-          <div class="dots experience" style="width: 150px; display: inline-flex;margin-bottom: 10px;">
-            <input type="hidden" name="system.general.xp.value" data-max="{{actor.system.general.xp.max}}" value="{{actor.system.general.xp.value}}" data-dtype="Number">
-            <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.xp.icon}}}
-            </span>
-          </div>
-          <br>
-          <h3 class="resource-label" style="font-weight: bold;">{{localize 'ALIENRPG.StoryPoints'}}</h3>
-          <div class="dots experience">
-            <input type="hidden" name="system.general.sp.value" data-max="{{actor.system.general.sp.max}}" value="{{actor.system.general.sp.value}}" data-dtype="Number">
-            <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.sp.icon}}}</span>
-          </div>
+          {{#if actor.system.general.xp.value}}
+            <div class="dots experience" style="width: 150px; display: inline-flex;margin-bottom: 10px;">
+              <h2 class="resource-label">{{localize 'ALIENRPG.campaign'}}</h2>
+              <div class="xp_dots_pos">
+                <h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
+                <input type="hidden" name="system.general.xp.value" data-max="{{actor.system.general.xp.max}}" value="{{actor.system.general.xp.value}}" data-dtype="Number">
+                <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.xp.icon}}}</span>
+                <br><br>
+              </div>
+            </div>
+          {{else if actor.system.general.sp.value}}
+            <div class="dots experience">
+              <h2 class="resource-label">{{localize 'ALIENRPG.cinematic'}}</h2>
+              <div class="xp_dots_pos">
+                <br>
+                <h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
+                <input type="hidden" name="system.general.sp.value" data-max="{{actor.system.general.sp.max}}" value="{{actor.system.general.sp.value}}" data-dtype="Number">
+                <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.sp.icon}}}</span>
+                <br>
+              </div>
+            </div>
+          {{else}}
+            <div class="dots experience" style="width: 150px; display: inline-flex;margin-bottom: 10px;">
+              <h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
+              <input type="hidden" name="system.general.xp.value" data-max="{{actor.system.general.xp.max}}" value="{{actor.system.general.xp.value}}" data-dtype="Number">
+              <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.xp.icon}}}</span>
+            </div>
+            <div class="dots experience sp_faded">
+              <h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
+              <input type="hidden" name="system.general.sp.value" data-max="{{actor.system.general.sp.max}}" value="{{actor.system.general.sp.value}}" data-dtype="Number">
+              <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.sp.icon}}}</span>
+            </div>
+          {{/if}}
           <br>
           <div style="margin-top: 6px;">
             <label class="resource-label">{{localize 'ALIENRPG.Cash'}}</label>
