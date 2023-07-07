@@ -1,20 +1,24 @@
 {
-    "messages": [
-        {
-           "version": 12,
-            "message": "<h1>New Release available 2.1.2</h1><br>FranzWarm wrote a really great add-on module called CRT UI.  Unfortunately he no longer supports the module so I have incorporated it into the core system.<br>The UI components are now on by default and the sheets can be changed, by the players, selecting the CRT UI button on the 'Configure Alien RPG Settings' menu.<br><strong>Remember...</strong> Back up your worlds before upgrading to the new version. <br>Please read the @JournalEntry[MU/TH/ER Instructions.] to get the most benefit out of using the system and new features."
-        },
-               {
-           "version": 13,
-            "message": "<h1>Alien RPG V10</h1><br />Next week I am going to release Alien RPG for Foundry VTT V10.<br/>As always, take care and be in no hurry to upgrade.  There are only minor fixes in this version - the majority of work has to make it fully compatible with Foundry VTT V10.</p><p>Before you upgrade, remember<strong> make a backup</strong> - see this on how to make a <a href='https://www.youtube.com/watch?v=OmbxMmqNNXU'><b>backup</b></a>.  Once a world has been upgraded to V10, you can not go back.</p><p>The foundry discord have channel #v10-update-troubleshooting to help with upgrades if you run into problems,  but as long as you have a backup, you can always rescue your world.</p>"
-        },
-               {
-           "version": 14,
-"message":"<h1>Alien released for v10</h1><p>The Alien system has now gone to v10, with the Free-League modules as well.  PLEASE, make a <a href='https://www.youtube.com/watch?v=OmbxMmqNNXU'>backup</a>, especially if you are going from Foundry v9 to Foundry v10. There are a couple of new features in v10 and some bugs squashed, but the majority of work has been to make it stable and ready for Foundry v10.</p><p>Note that while Alien v9 and the modules works perfectly fine, there are no plans to enhance them further nor provide further bug-fixes for them going forward. </p>I am active in the <a href='https://discord.gg/foundryvtt'>#free-league</a> channel on the Foundry discord.</a>.</p>"
-        },
+  "messages": [
+    {
+      "version": 12,
+      "message": "<h1>New Release available 2.1.2</h1><br>FranzWarm wrote a really great add-on module called CRT UI.  Unfortunately he no longer supports the module so I have incorporated it into the core system.<br>The UI components are now on by default and the sheets can be changed, by the players, selecting the CRT UI button on the 'Configure Alien RPG Settings' menu.<br><strong>Remember...</strong> Back up your worlds before upgrading to the new version. <br>Please read the @JournalEntry[MU/TH/ER Instructions.] to get the most benefit out of using the system and new features."
+    },
+    {
+      "version": 13,
+      "message": "<h1>Alien RPG V10</h1><br />Next week I am going to release Alien RPG for Foundry VTT V10.<br/>As always, take care and be in no hurry to upgrade.  There are only minor fixes in this version - the majority of work has to make it fully compatible with Foundry VTT V10.</p><p>Before you upgrade, remember<strong> make a backup</strong> - see this on how to make a <a href='https://www.youtube.com/watch?v=OmbxMmqNNXU'><b>backup</b></a>.  Once a world has been upgraded to V10, you can not go back.</p><p>The foundry discord have channel #v10-update-troubleshooting to help with upgrades if you run into problems,  but as long as you have a backup, you can always rescue your world.</p>"
+    },
+    {
+      "version": 14,
+      "message": "<h1>Alien released for v10</h1><p>The Alien system has now gone to v10, with the Free-League modules as well.  PLEASE, make a <a href='https://www.youtube.com/watch?v=OmbxMmqNNXU'>backup</a>, especially if you are going from Foundry v9 to Foundry v10. There are a couple of new features in v10 and some bugs squashed, but the majority of work has been to make it stable and ready for Foundry v10.</p><p>Note that while Alien v9 and the modules works perfectly fine, there are no plans to enhance them further nor provide further bug-fixes for them going forward. </p>I am active in the <a href='https://discord.gg/foundryvtt'>#free-league</a> channel on the Foundry discord.</a>.</p>"
+    },
     {
       "version": 15,
       "message": "<h1>Alien Development Update</h1><p><strong>Spaceship sheets are coming!</strong><br />I have been working for sometime on the spaceship, weapons & upgrades sheets and am pleased say they are nearly there.  I have a couple of kind souls (Bekradan & Txus) who are doing some final testing for me and along with other fixes I hope to have the new version out soon.<br /><strong>Premium Modules</strong><br />I am in the process of updating the modules, correcting typos (thank you mogrogh) as well as adding the Spaceships, Weapons etc.  As soon as they are completed I will send them to Free League to update their source.<br />Overall my goal for the system and modules is to support FVTT V10 & V11 for the foreseeable future.</p>I am active in the <a href='https://discord.gg/foundryvtt'>#free-league</a> channel on the Foundry discord.</a>.</p>"
+    },
+    {
+      "version": 16,
+      "message": "<h1>Alien for Foundry v10 &amp; v11</h1><br /> We've released Alien for Foundry v10 &amp;  v11, with Free League pushing the premium modules for both  v10 &amp; v11 now.  <br/>Before you get to installing the new version of Foundry, here are some healthy and good tips.<br /> <h2>Make a backup</h2> See <a href='https://www.youtube.com/watch?v=OmbxMmqNNXU' >Foundry tutorial for backups</a><br /><br/><h2>Check your other systems</h2> To avoid issues, check that your favourite systems and modules are updated to v11<br /><br/> <b>And finally, once again, make a backup - with Foundry, only you can prevent data loss</b><br/> <br/>I am active in the <a href='https://discord.gg/foundryvtt'>#free-league</a> channel on the Foundry discord.</a>."
     }
-    ]
+  ]
 }
