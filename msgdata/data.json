@@ -16,9 +16,8 @@
       "version": 15,
       "message": "<h1>Alien Development Update</h1><p><strong>Spaceship sheets are coming!</strong><br />I have been working for sometime on the spaceship, weapons & upgrades sheets and am pleased say they are nearly there.  I have a couple of kind souls (Bekradan & Txus) who are doing some final testing for me and along with other fixes I hope to have the new version out soon.<br /><strong>Premium Modules</strong><br />I am in the process of updating the modules, correcting typos (thank you mogrogh) as well as adding the Spaceships, Weapons etc.  As soon as they are completed I will send them to Free League to update their source.<br />Overall my goal for the system and modules is to support FVTT V10 & V11 for the foreseeable future.</p>I am active in the <a href='https://discord.gg/foundryvtt'>#free-league</a> channel on the Foundry discord.</a>.</p>"
     },
-    {
-      "version": 16,
-      "message": "<h1>Alien for Foundry v10 &amp; v11</h1><br /> We've released Alien for Foundry v10 &amp;  v11, with Free League pushing the premium modules for both  v10 &amp; v11 now.  <br/>Before you get to installing the new version of Foundry, here are some healthy and good tips.<br /> <h2>Make a backup</h2> See <a href='https://www.youtube.com/watch?v=OmbxMmqNNXU' >Foundry tutorial for backups</a><br /><br/><h2>Check your other systems</h2> To avoid issues, check that your favourite systems and modules are updated to v11<br /><br/> <b>And finally, once again, make a backup - with Foundry, only you can prevent data loss</b><br/> <br/>I am active in the <a href='https://discord.gg/foundryvtt'>#free-league</a> channel on the Foundry discord.</a>."
-    }
-  ]
+        {
+            "version":16,
+            "message":"<h1>Alien for Foundry v10 &amp; v11</h1><br /> We've released Alien for Foundry v10 &amp;  v11, with Free League pushing the premium modules for both  v10 &amp; v11 now.  <br/>Before you get to installing the new version of Foundry, here are some healthy and good tips.<br /> <h2>Make a backup</h2> See <a href='https://www.youtube.com/watch?v=OmbxMmqNNXU' >Foundry tutorial for backups</a><br /><br/><h2>Check your other systems</h2> To avoid issues, check that your favourite systems and modules are updated to v11<br /><br/> <b>And finally, once again, make a backup - with Foundry, only you can prevent data loss</b><br/> <br/>I am active in the <a href='https://discord.gg/foundryvtt'>#free-league</a> channel on the Foundry discord.</a>."
+        }
 }
