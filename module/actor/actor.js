@@ -730,11 +730,17 @@ export class alienrpgActor extends Actor {
     let existing = await this.hasCondition(effect.id);
 
     if (!existing) {
-      effect.label = game.i18n.localize(effect.label);
-      effect['flags.core.statuses'] = effect.id;
-      effect['statuses'] = effect.id;
+      effect.label = game.i18n.localize(effect.label).toLowerCase();
+
+      if (game.version < '11') {
+        effect['flags.core.statusId'] = effect.id;
+      } else {
+        effect['statuses'] = effect.id;
+      }
+
       delete effect.id;
-      return this.createEmbeddedDocuments('ActiveEffect', [effect]);
+
+      return await this.createEmbeddedDocuments('ActiveEffect', [effect]);
     }
   }
 
@@ -745,14 +751,25 @@ export class alienrpgActor extends Actor {
     if (!effect.id) return 'Conditions require an id field';
 
     let existing = await this.hasCondition(effect.id);
-
     if (existing) {
-      return existing.delete();
+      let spud = existing.id
+      return await this.deleteEmbeddedDocuments('ActiveEffect', [spud]);
+
+      // return existing.delete();
     }
   }
 
   async hasCondition(conditionKey) {
-    let existing = this.effects.find((i) => i.getFlag('core', 'statuses') == conditionKey);
+    let existing = '';
+    if (game.version < '11') {
+      existing = this.effects.find((i) => i.getFlag('core', 'statusId') == conditionKey);
+    } else {
+      existing = this.effects.find((i) => (
+        i.name == conditionKey
+      )
+      );
+    }
+
     return existing;
   }
 
@@ -771,7 +788,7 @@ export class alienrpgActor extends Actor {
         actor.checkAndEndPanic(actor);
       }
     } // Update the field value and save the form
-    field.val(newLevel);
+    field[0].value = newLevel;
     return event;
   }
 
@@ -788,23 +805,24 @@ export class alienrpgActor extends Actor {
 
       switch (field[0].name) {
         case 'system.general.starving.value':
-          actor.addCondition('starving');
+          await actor.addCondition('starving');
           break;
 
         case 'system.general.dehydrated.value':
-          actor.addCondition('dehydrated');
+          await actor.addCondition('dehydrated');
           break;
 
         case 'system.general.exhausted.value':
-          actor.addCondition('exhausted');
+          await actor.addCondition('exhausted');
           break;
 
         case 'system.general.freezing.value':
-          actor.addCondition('freezing');
+          await actor.addCondition('freezing');
+
           break;
 
         case 'system.general.radiation.value':
-          actor.addCondition('radiation');
+          await actor.addCondition('radiation');
           actor.rollAbility(actor, event.currentTarget.dataset);
 
           break;
@@ -819,24 +837,24 @@ export class alienrpgActor extends Actor {
       // }
       switch (field[0].name) {
         case 'system.general.starving.value':
-          actor.removeCondition('starving');
+          await actor.removeCondition('starving');
           break;
 
         case 'system.general.dehydrated.value':
-          actor.removeCondition('dehydrated');
+          await actor.removeCondition('dehydrated');
           break;
 
         case 'system.general.exhausted.value':
-          actor.removeCondition('exhausted');
+          await actor.removeCondition('exhausted');
           break;
 
         case 'system.general.freezing.value':
-          actor.removeCondition('freezing');
+          await actor.removeCondition('freezing');
           break;
 
         case 'system.general.radiation.value':
           if (actor.system.general.radiation.value <= 1) {
-            actor.removeCondition('radiation');
+            await actor.removeCondition('radiation');
           }
           break;
 
@@ -844,7 +862,9 @@ export class alienrpgActor extends Actor {
           break;
       }
     } // Update the field value and save the form
-    field.val(newLevel);
+    // console.log(field[0].value);
+    field[0].value = newLevel;
+    // console.log(field[0].value);
     return event;
   }
 

@@ -1054,16 +1054,16 @@ export class alienrpgActorSheet extends ActorSheet {
     li2.toggleClass('expanded');
   }
 
-  _onClickStatLevel(event) {
+  async _onClickStatLevel(event) {
     event.preventDefault();
-    this.actor.checkMarks(this.actor, event);
-    this._onSubmit(event);
+    await this.actor.checkMarks(this.actor, event);
+    await this.submit(event);
   }
 
-  _onClickStatLevelCon(event) {
+  async _onClickStatLevelCon(event) {
     event.preventDefault();
-    this.actor.conCheckMarks(this.actor, event);
-    this._onSubmit(event);
+    await this.actor.conCheckMarks(this.actor, event);
+    await this.submit(event);
   }
 
   /**
