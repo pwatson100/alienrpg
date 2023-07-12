@@ -498,3 +498,6 @@ With thanks to @Txus#5021
 Added option for the GM to choose if the $ is added or not as the $ sign messes up Item piles and other modules
 Corrected errors in the generation of critical injuries.
 Xp on Character and Synthetic sheets now collapses to Campaign/Story vew like the CRT UI sheet. 
+
+Version 3.1.1
+Fixed bug for V10 and V11 where condition icons were not being displayed on the token properly. 

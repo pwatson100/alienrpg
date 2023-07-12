@@ -650,13 +650,13 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
   _onClickStatLevel(event) {
     event.preventDefault();
     this.actor.checkMarks(this.actor, event);
-    this._onSubmit(event);
+    this.submit(event);
   }
 
   _onClickStatLevelCon(event) {
     event.preventDefault();
     this.actor.conCheckMarks(this.actor, event);
-    this._onSubmit(event);
+    this.submit(event);
   }
 
   /**
