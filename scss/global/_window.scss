@@ -301,16 +301,33 @@ a.inline-roll {
   }
 }
 
-.rollable,
-.rollcomputer {
-  &:hover,
-  &:focus {
-    // color: black;
-    text-shadow: 0 0 20px hsl(0, 100%, 50%);
-    font-size: 95%;
-    cursor: pointer;
-  }
+.rollable:hover,
+.rollcomputer:hover {
+  color: var(--aliengreen);
+  background-color: #000;
+  border: 0px solid var(--aliengreen);
+  font-weight: 1;
+  font-size: 120%;
+  box-shadow: 0 0 0px var(--aliengreen);
+  animation: textShadow 1s infinite;
 }
+
+.far.fa-heart:hover {
+  color: red;
+  animation: textShadow 1s infinite;
+}
+
+// .rollable,
+// .rollcomputer {
+//   &:hover,
+//   &:focus {
+//     // color: black;
+//     text-shadow: 0 0 20px hsl(0, 100%, 50%);
+//     font-size: 95%;
+//     cursor: pointer;
+//   }
+// }
+
 .rollableVeh {
   &:hover,
   &:focus {

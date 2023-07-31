@@ -16,7 +16,7 @@
         </div>
         <h3 class="gaItem3">{{ localize 'ALIENRPG.Synthetic'}}</h3>
         {{#if actor.system.header.synthstress}}
-          <h3 for="0" class="resource-label rollable gaItem4" data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h3>
+          <h3 for="0" class="resource-label rollable gaItem4" data-panicroll="0" data-mod="0"><i class="far fa-heart"></i> {{localize 'ALIENRPG.Stress'}}</h3>
         {{else}}
           <h3 for="0" class="resource-label gaItem4" data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h3>
         {{/if}}
@@ -42,7 +42,8 @@
             </div>
             <input class="gCol10 NPC" name="system.header.npc" type="checkbox" {{checked actor.system.header.npc}} />
           {{/if}}
-
+          <h4 class="gCol11" style="text-align: center;">{{localize 'ALIENRPG.SynthStress'}}</h4>
+          <input class="gCol12" name="system.header.synthstress" type="checkbox" {{checked actor.system.header.synthstress}} />
         </div>
       </div>
     </div>
@@ -177,50 +178,97 @@
             <input type="text" class="cashboxsize currency" name="system.general.cash.value" value="{{actor.system.general.cash.value}}" />
           </div>
         </div>
-        <div class="Item8">
+        <div class="Item8" style="height: 217px;">
           <h2 class="resource-label">{{ localize 'ALIENRPG.Conditions'}}</h2>
-          <div>{{localize 'ALIENRPG.SynthDontNeed'}}</div>
-          <br>
-          <h3 class="condition" data-key="overwatch">
-            <a class="overwatch-toggle">
-              {{#if actor.system.general.overwatch}}
-                <i class="far fa-check-square"></i>
-              {{else}}
-                <i class="far fa-square"></i>
-              {{/if}}
-            </a>
-            {{localize 'ALIENRPG.Overwatch'}}
-          </h3>
-
-          <br>
-          <h3 style="text-align: center; font-weight: bold;" class="resource-label">{{ localize 'ALIENRPG.Radiation'}}</h3>
-          <div class="dots radiation">
-            <input type="hidden" name="system.general.radiation.value" data-max="{{actor.system.general.radiation.max}}" value="{{actor.system.general.radiation.value}}" data-dtype="Number">
-            <span style="text-align: center;" class="click-stat-level-con" title="{{ localize 'ALIENRPG.ConButtons'}}" data-label="{{ localize 'ALIENRPG.Radiation'}}" data-roll="{{actor.system.general.radiation.value}}">{{{actor.system.general.radiation.icon}}}
-            </span>
+          {{#if actor.system.header.synthstress}}
+            <div style="margin-bottom: 31px;">
+              <div class="dots starving ">
+                <input type="hidden" name="system.general.starving.value" data-max="{{actor.system.general.starving.max}}" value="{{{actor.system.general.starving.value}}}" data-dtype="Number">
+                <h3 class="click-stat-level-con resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.starving.icon}}} {{ localize 'ALIENRPG.Starving'}}
+                </h3>
+              </div>
+              <div class="dots dehydrated">
+                <input type="hidden" name="system.general.dehydrated.value" data-max="{{actor.system.general.dehydrated.max}}" value="{{{actor.system.general.dehydrated.value}}}" data-dtype="Number">
+                <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.dehydrated.icon}}} {{ localize 'ALIENRPG.Dehydrated'}}
+                </h3>
+              </div>
+              <div class="dots exhausted">
+                <input type="hidden" name="system.general.exhausted.value" data-max="{{actor.system.general.exhausted.max}}" value="{{{actor.system.general.exhausted.value}}}" data-dtype="Number">
+                <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.exhausted.icon}}} {{ localize 'ALIENRPG.Exhausted'}}
+                </h3>
+              </div>
+              <div class="dots freezing">
+                <input type="hidden" name="system.general.freezing.value" data-max="{{actor.system.general.freezing.max}}" value="{{{actor.system.general.freezing.value}}}" data-dtype="Number">
+                <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
+                </h3>
+              </div>
+            </div>
+          {{else}}
+            <div style="margin-bottom: 19px;">{{localize 'ALIENRPG.SynthDontNeed'}}</div>
+          {{/if}}
+          <div style="margin-bottom: 10px;">
+            <h3 class="condition" style="margin-left: 7px;" data-key="overwatch">
+              <a class="overwatch-toggle">
+                {{#if actor.system.general.overwatch}}
+                  <i class="far fa-check-square"></i>
+                {{else}}
+                  <i class="far fa-square"></i>
+                {{/if}}
+              </a>
+              {{localize 'ALIENRPG.Overwatch'}}
+            </h3>
           </div>
-        </div>
-
-        <div class="Item9">
-          <div class="consumables grid grid-Consumables">
-            <h2 class="Heading " style="margin-bottom: 0; border-bottom: 0">{{localize 'ALIENRPG.Consumables'}}</h2>
-            <h3 class="Air1 resource-label">{{localize 'ALIENRPG.Power'}}</h3>
-            <div class="resource-content">
-              <input type="text" style="border: 1px solid yellowgreen;" class="maxboxsize" style="margin-top: 6px;" name="system.consumables.power.value" value="{{actor.system.consumables.power.value}}" data-dtype="Number" disabled />
+          <div>
+            <h3 style="text-align: center; font-weight: bold;" class="resource-label">{{ localize 'ALIENRPG.Radiation'}}</h3>
+            <div class="dots radiation">
+              <input type="hidden" name="system.general.radiation.value" data-max="{{actor.system.general.radiation.max}}" value="{{actor.system.general.radiation.value}}" data-dtype="Number">
+              <span style="text-align: center;" class="click-stat-level-con" title="{{ localize 'ALIENRPG.ConButtons'}}" data-label="{{ localize 'ALIENRPG.Radiation'}}" data-roll="{{actor.system.general.radiation.value}}">{{{actor.system.general.radiation.icon}}}
+              </span>
             </div>
           </div>
+        </div>
 
-          <div class="Item10">
-            <span class="grid-2col-border">
-              <label class="resource-label rollable" data-roll="{{actor.system.general.armor.value}}" data-spbutt="armor" data-label="{{ localize 'ALIENRPG.Armor'}}">{{ localize 'ALIENRPG.Armor'}} </label>
-              <input type="text" class="maxboxsize" name="system.general.armor.value" value="{{actor.system.general.armor.value}}" data-dtype="Number" disabled />
-            </span>
-          </div>
-          <div style="border-top: 1px solid yellowgreen;">
-            <h4 style="margin-top: 10px;">{{localize 'ALIENRPG.SynthStress'}}</h4>
-            <input style="margin-left: 50%" name="system.header.synthstress" type="checkbox" {{checked actor.system.header.synthstress}} />
+        <div class="Item9" style="height: 142px;">
+          <div class="consumables grid grid-Consumables">
+            <h2 class="Heading" style="margin-bottom: 0; border-bottom: 0">{{localize 'ALIENRPG.Consumables'}}</h2>
+            {{#if actor.system.header.synthstress}}
+              <h3 class="Air1 resource-label">{{localize 'ALIENRPG.Air'}}</h3>
+              <div class="resource-content">
+                <input type="text" class="maxboxsize" name="system.consumables.air.value" value="{{actor.system.consumables.air.value}}" data-dtype="Number" disabled />
+                <button type="button" class="supply-btn Air2" data-spbutt="Air"><i class="fas fa-parachute-box fa-xs" title="{{localize 'ALIENRPG.Supply'}}"></i></button>
+              </div>
+
+              <h3 class="Food1 resource-label">{{localize 'ALIENRPG.Food'}}</h3>
+              <div class="resource-content">
+                <input type="text" class="maxboxsize" name="system.consumables.food.value" value="{{actor.system.consumables.food.value}}" data-dtype="Number" disabled />
+                <button type="button" class="supply-btn Food2" data-spbutt="Food"><i class="fas fa-parachute-box fa-xs" title="{{localize 'ALIENRPG.Supply'}}"></i></button>
+              </div>
+
+              <h3 class="Water1 resource-label">{{localize 'ALIENRPG.Water'}}</h3>
+              <div class="resource-content">
+                <input type="text" class="maxboxsize" name="system.consumables.water.value" value="{{actor.system.consumables.water.value}}" data-dtype="Number" disabled />
+                <button type="button" class="supply-btn Water2" data-spbutt="Water"><i class="fas fa-parachute-box fa-xs" title="{{localize 'ALIENRPG.Supply'}}"></i></button>
+              </div>
+              <h3 class="Power1 resource-label">{{localize 'ALIENRPG.Power'}}</h3>
+              <div class="resource-content">
+                <input type="text" style="border: 1px solid yellowgreen;" class="maxboxsize" style="margin-top: 6px;" name="system.consumables.power.value" value="{{actor.system.consumables.power.value}}" data-dtype="Number" disabled />
+              </div>
+            {{else}}
+              <h3 class="Air1 resource-label">{{localize 'ALIENRPG.Power'}}</h3>
+              <div class="resource-content">
+                <input type="text" style="border: 1px solid yellowgreen;" class="maxboxsize" style="margin-top: 6px;" name="system.consumables.power.value" value="{{actor.system.consumables.power.value}}" data-dtype="Number" disabled />
+              </div>
+            {{/if}}
           </div>
         </div>
+
+        <div class="Item10">
+          <span class="grid-2col-border">
+            <label class="resource-label rollable" data-roll="{{actor.system.general.armor.value}}" data-spbutt="armor" data-label="{{ localize 'ALIENRPG.Armor'}}">{{ localize 'ALIENRPG.Armor'}} </label>
+            <input type="text" class="maxboxsize" name="system.general.armor.value" value="{{actor.system.general.armor.value}}" data-dtype="Number" disabled />
+          </span>
+        </div>
+
 
         <!-- Col 2 -->
         <div class="Item2">
@@ -263,7 +311,7 @@
         <div class="Item4">
           <label class="resource-label" style="font-weight: bold;">{{ localize 'ALIENRPG.Appearance'}}</label>
           <br>
-          <textarea name="system.general.appearance.value" rows="10" data-dtype="String">{{actor.system.general.appearance.value}}</textarea>
+          <textarea name="system.general.appearance.value" rows="8" data-dtype="String">{{actor.system.general.appearance.value}}</textarea>
         </div>
 
 

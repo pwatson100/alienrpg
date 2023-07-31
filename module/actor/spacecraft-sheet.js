@@ -33,10 +33,14 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
   get template() {
     const path = 'systems/alienrpg/templates/actor/';
-    return `${path}spacecraft-sheet.html`;
+    // return `${path}actor-sheet.html`;
+    // unique item sheet by type, like `weapon-sheet.html`.
+    if (game.settings.get('alienrpg', 'aliencrt')) {
+      return `systems/alienrpg/templates/actor/crt/${this.actor.type}-sheet.html`;
+    } else {
+      return `${path}${this.actor.type}-sheet.html`;
+    }
   }
-
-
 
   /* -------------------------------------------- */
   async _enrichTextFields(data, fieldNameArr) {
@@ -327,6 +331,11 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
       html.find('.rollItem').contextmenu(this._rollItem.bind(this));
 
       html.find('.rollItem').click(this._onRollItemMod.bind(this));
+
+      html.find('.crewPanic').contextmenu(this._crewPanic.bind(this));
+
+      html.find('.crewPanic').click(this._crewPanicMod.bind(this));
+
     } else {
       // Left to Roll and Right toMod
       // Rollable abilities.
@@ -342,6 +351,11 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
       html.find('.rollItem').click(this._rollItem.bind(this));
 
       html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
+
+      html.find('.crewPanic').click(this._crewPanic.bind(this));
+
+      html.find('.crewPanic').contextmenu(this._crewPanicMod.bind(this));
+
     }
 
     html.find('.currency').on('change', this._currencyField.bind(this));
@@ -372,7 +386,6 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     html.find('.pilotsubmit').click(this._shipPhase.bind(this));
     html.find('.gunnersubmit').click(this._shipPhase.bind(this));
     html.find('.engineersubmit').click(this._shipPhase.bind(this));
-    html.find('.crewPanic').click(this._crewPanic.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -533,6 +546,12 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     const dataset = event.currentTarget.dataset;
     const panicActor = game.actors.get(dataset.crewpanic);
     this.actor.rollAbility(panicActor, dataset);
+  }
+  _crewPanicMod(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    const panicActor = game.actors.get(dataset.crewpanic);
+    this.actor.rollAbilityMod(panicActor, dataset);
   }
 
   _activate(event) {

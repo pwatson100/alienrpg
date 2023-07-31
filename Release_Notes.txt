@@ -501,3 +501,11 @@ Xp on Character and Synthetic sheets now collapses to Campaign/Story vew like th
 
 Version 3.1.1
 Fixed bug for V10 and V11 where condition icons were not being displayed on the token properly. 
+
+Version 3.1.2
+German Language translation updated with thanks to @Moradion
+Added Panic icon to the vehicle sheet that rolls on the character panic table. 
+Right clicking on the heart icon will allow modifiers to be added to panic rolls. 
+If the "Human Panic, Push..." checkbox is checked the sheet will now display Conditions and Consumables for the player allowing them to set the conditions and roll against supplied to help simulate a human in play. 
+Updated CRT UI Spaceship sheet.
+ 

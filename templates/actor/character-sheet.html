@@ -14,7 +14,8 @@
           <input type="text" class="maxboxsize" name="actor.system.header.health.calculatedMax" value="{{actor.system.header.health.calculatedMax}}" data-dtype="Number" disabled />
           <button type="button" class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
         </div>
-        <h2 for="actor.system.header.stress.value" class="resource-label rollable gaItem3" title="{{localize 'ALIENRPG.RollPanic'}}" data-panicroll="{{actor.system.header.stress.value}}" data-mod="{{actor.system.header.stress.mod}}" data-label="{{localize 'ALIENRPG.Stress'}}">{{localize 'ALIENRPG.Stress'}}</h2>
+        <h2 for="actor.system.header.stress.value" class="resource-label rollable gaItem3" style="padding-left: 0px; margin-left: 0px;" title="{{localize 'ALIENRPG.RollPanic'}}" data-panicroll="{{actor.system.header.stress.value}}" data-mod="{{actor.system.header.stress.mod}}" data-label="{{localize 'ALIENRPG.Stress'}}">{{localize 'ALIENRPG.Stress'}} <i class="far fa-heart fa-sm"></i></h2>
+
         <div class="resource-content gaItem4">
           <button type="button" class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
           <input type="text" class="maxboxsize minStress" name="actor.system.header.stress.value" value="{{actor.system.header.stress.value}}" data-dtype="Number" />
@@ -209,7 +210,7 @@
             {{/if}}
           </div>
           <br>
-          <h3 class="condition" data-key="overwatch">
+          <h3 class="condition" style="margin-left: 7px;" data-key="overwatch">
             <a class="overwatch-toggle">
               {{#ife actor.system.general.overwatch true}}
                 <i class="far fa-check-square"></i>

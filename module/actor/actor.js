@@ -682,23 +682,23 @@ export class alienrpgActor extends Actor {
     switch (dataset.pmbut) {
       case 'minusStress':
         if (actor.system.header.stress.value <= 0) {
-          actor.update({ 'system.header.stress.value': (actor.system.header.stress.value = 0) });
+          await actor.update({ 'system.header.stress.value': (actor.system.header.stress.value = 0) });
         } else {
-          actor.update({ 'system.header.stress.value': actor.system.header.stress.value - 1 });
+          await actor.update({ 'system.header.stress.value': actor.system.header.stress.value - 1 });
         }
         break;
       case 'plusStress':
-        actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
+        await actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
         break;
       case 'minusHealth':
         if (actor.system.header.health.value <= 0) {
-          actor.update({ 'system.header.health.value': (actor.system.header.health.value = 0) });
+          await actor.update({ 'system.header.health.value': (actor.system.header.health.value = 0) });
         } else {
-          actor.update({ 'system.header.health.value': actor.system.header.health.value - 1 });
+          await actor.update({ 'system.header.health.value': actor.system.header.health.value - 1 });
         }
         break;
       case 'plusHealth':
-        actor.update({ 'system.header.health.value': actor.system.header.health.value + 1 });
+        await actor.update({ 'system.header.health.value': actor.system.header.health.value + 1 });
         break;
 
       default:
@@ -868,10 +868,13 @@ export class alienrpgActor extends Actor {
     return event;
   }
 
-  async consumablesCheck(actor, consUme, label, tItem) {
+  async consumablesCheck(actor, consUme, label, tItem, supplyModifier) {
     let r1Data = 0;
     let r2Data = 0;
-    r2Data = actor._source.system.consumables[`${consUme}`].value;
+    if (!supplyModifier) {
+      supplyModifier = 0;
+    }
+    r2Data = actor._source.system.consumables[`${consUme}`].value + supplyModifier;
     let reRoll = true;
     // let hostile = this.actor.system.type;
     let blind = false;
@@ -961,6 +964,41 @@ export class alienrpgActor extends Actor {
         await aActor.update({ [aField]: `system.consumables.${aconsUme}.value` - tNum });
       }
     }
+  }
+  async consumablesCheckMod(actor, consUme, label, tItem) {
+    const template = 'systems/alienrpg/templates/dialog/roll-supplymod-dialog.html';
+    let confirmed = false;
+    let supplyModifier = 0;
+    renderTemplate(template).then((dlg) => {
+      new Dialog({
+        title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
+        content: dlg,
+        buttons: {
+          one: {
+            icon: '<i class="fas fa-check"></i>',
+            label: game.i18n.localize('ALIENRPG.DialRoll'),
+            callback: () => (confirmed = true),
+          },
+          two: {
+            icon: '<i class="fas fa-times"></i>',
+            label: game.i18n.localize('ALIENRPG.DialCancel'),
+            callback: () => (confirmed = false),
+          },
+        },
+        default: 'one',
+        close: (html) => {
+          if (confirmed) {
+            let modifier = parseInt(html.find('[name=modifier]')[0].value);
+            if (modifier == 'undefined') {
+              modifier = 0;
+            } else modifier = parseInt(modifier);
+
+            actor.consumablesCheck(actor, consUme, label, tItem, modifier);
+
+          }
+        },
+      }).render(true);
+    });
   }
 
   async creatureAcidRoll(actor, dataset) {

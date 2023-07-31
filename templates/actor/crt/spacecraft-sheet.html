@@ -1,0 +1,158 @@
+<form class="{{cssClass}} crt" autocomplete="off">
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
+    <a class="item" data-tab="inventory">{{localize "ALIENRPG.MODULES-UPGRADES"}}</a>
+    <a class="item" data-tab="image">{{localize "ALIENRPG.Image"}}</a>
+    <a class="item" data-tab="combatphases">{{localize "ALIENRPG.SpaceCombatPhases"}}</a>
+    <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body" style="margin-top: 10px;">
+
+    {{!--General Tab --}}
+    <div class="tab general" data-group="primary" data-tab="general">
+      <div class="grid-spacecraft">
+
+        <!-- Col1 -->
+        <div class="spacec1">
+          <div class="s1-header">
+            <h1 class="resource-label s1h1">{{localize "ALIENRPG.Name"}}</h1>
+            <h1 class="charname s1h2"><input name="name" type="text" value="{{actor.name}}" /></h1>
+
+            <h3 class="resource-label s1h3">{{localize "ALIENRPG.MODEL"}}</h3>
+            <input class="textbox s1h28" type="text" name="system.attributes.model" value="{{actor.system.attributes.model}}" data-dtype="String" />
+
+            <h3 class="resource-label s1h4">{{localize "ALIENRPG.Manufacturer"}}</h3>
+            <input class="textbox s1h29" type="text" name="system.attributes.manufacturer" value="{{actor.system.attributes.manufacturer}}" data-dtype="String" />
+
+            <h3 class="resource-label s1h30">{{localize "ALIENRPG.MODULES"}}</h3>
+            <input class="textbox s1h32" type="text" name="system.attributes.modules" value="{{actor.system.attributes.modules}}" data-dtype="String" />
+
+            <h3 class="resource-label s1h31">{{localize "ALIENRPG.ARMAMENTS"}}</h3>
+            <input class="textbox s1h33" type="text" name="system.attributes.armaments" value="{{actor.system.attributes.armaments}}" data-dtype="String" />
+
+            <h3 class="resource-label s1h5">{{localize "ALIENRPG.AI"}}</h3>
+            <input class="textbox s1h6" type="text" name="system.attributes.ai" value="{{actor.system.attributes.ai}}" data-dtype="String" />
+
+            <label class="s1h8" data-attr="attribute" data-roll="{{actor.system.attributes.crew.value}}" data-mod="{{actor.system.attributes.crew.mod}}">{{localize "ALIENRPG.CREW"}}</label>
+            <input type="text" class="maxboxsize s1h7" name="system.attributes.crew.value" value="{{actor.system.attributes.crew.value}}" data-dtype="Number" />
+
+            <label class="s1h9" data-attr="attribute" data-roll="{{actor.system.attributes.passengers.value}}" data-mod="{{actor.system.attributes.passengers.mod}}">{{localize "ALIENRPG.PASSENGERS"}}</label>
+            <input type="text" class="maxboxsize s1h10" name="system.attributes.passengers.value" value="{{actor.system.attributes.passengers.value}}" data-dtype="Number" />
+
+            <label class="s1h12" data-attr="attribute" data-roll="{{actor.system.attributes.length.value}}" data-mod="{{actor.system.attributes.length.mod}}">{{localize "ALIENRPG.LENGTH"}}</label>
+            <input type="text" class="maxboxsize s1h11" name="system.attributes.length.value" value="{{actor.system.attributes.length.value}}" data-dtype="Number" />
+
+            <label class="s1h13" data-attr="attribute" data-roll="{{actor.system.attributes.ftlrating.value}}" data-mod="{{actor.system.attributes.ftlrating.mod}}">{{localize "ALIENRPG.FTL-RATING"}}</label>
+            <input type="text" class="maxboxsize s1h14" name="system.attributes.ftlrating.value" value="{{actor.system.attributes.ftlrating.value}}" data-dtype="Number" />
+
+            <label class="s1h16" data-attr="attribute" data-roll="{{actor.system.attributes.signature.value}}" data-mod="{{actor.system.attributes.signature.mod}}">{{localize "ALIENRPG.SIGNATURE"}}</label>
+            <input type="text" class="maxboxsize s1h15" name="system.attributes.signature.value" value="{{actor.system.attributes.signature.value}}" data-dtype="Number" />
+
+            <label class="s1h17" data-attr="attribute" data-roll="{{actor.system.attributes.thrusters.value}}" data-mod="{{actor.system.attributes.thrusters.mod}}">{{localize "ALIENRPG.THRUSTERS"}}</label>
+            <input type="text" class="maxboxsize s1h18" name="system.attributes.thrusters.value" value="{{actor.system.attributes.thrusters.value}}" data-dtype="Number" />
+
+            <label class="s1h20" data-attr="attribute" data-roll="{{actor.system.attributes.hull.value}}" data-mod="{{actor.system.attributes.hull.mod}}">{{localize "ALIENRPG.HULL"}}</label>
+            <input type="text" class="maxboxsize s1h19" name="system.attributes.hull.value" value="{{actor.system.attributes.hull.value}}" data-dtype="Number" />
+
+            <label class="s1h21 rollable" data-roll="{{actor.system.attributes.armor.value}}" data-spbutt="armor" data-label="{{ localize 'ALIENRPG.Armor'}}">{{localize "ALIENRPG.SHIP-ARMOR"}}</label>
+            <input type="text" class="maxboxsize s1h22" name="system.attributes.armor.value" value="{{actor.system.attributes.armor.value}}" data-dtype="Number" />
+
+            <label class="s1h23" style="font-weight: bold;">{{localize "ALIENRPG.LEASE-COST"}}</label>
+            <input type="text" class="cashboxsize currency s1h24" style="max-width: 200px; margin-bottom: 5px" name="system.attributes.leasecost.value" value="{{actor.system.attributes.leasecost.value}}" />
+
+            <label class="s1h25" style="font-weight: bold;">{{ localize "ALIENRPG.DAMAGE"}}</label>
+            <div class="dots damage s1h26" style="width: 242px; display: inline-flex;margin-bottom: -21px;text-align: center;">
+              <input type="hidden" name="system.attributes.damage.value" data-max="{{actor.system.attributes.damage.max}}" value="{{actor.system.attributes.damage.value}}" data-dtype="Number">
+              <span class="click-stat-level" title='{{localize "ALIENRPG.ShipConButtons"}}'>{{{actor.system.attributes.damage.icon}}}
+              </span>
+            </div>
+          </div>
+          <div class="box-top" style="overflow: auto">{{> "systems/alienrpg/templates/actor/crt/tabs/sCraft-minor-crit.html" }}</div>
+          <div style="overflow: auto">{{> "systems/alienrpg/templates/actor/crt/tabs/sCraft-major-crit.html" }}</div>
+        </div>
+        <div class="spacec2">
+
+          <h1>{{localize "ALIENRPG.CREW"}}</h1>
+          <div class="crew" data-tab="general">
+            <div class="grid-ship-crew">
+              <label class="resource-label gSC1">{{localize 'ALIENRPG.Name'}}</label>
+              <label class="resource-label gSC2">{{localize 'ALIENRPG.Position'}}</label>
+              <label class="resource-label gSC3">{{localize 'ALIENRPG.Roll'}}</label>
+              <label class="resource-label gSC4">{{localize 'ALIENRPG.Panic'}}</label>
+            </div>
+            <br>
+            <div>
+              {{#each actor.system.crew.occupants}}
+                <div class="occupant 
+                {{#if (eq position " PASSENGER")}} passenger{{/if}}" data-crew-id="{{id}}">
+
+                  <div class="grid-ship-crew">
+                    {{!-- Name --}}
+                    <div class="gSC6">{{actor.name}}</div>
+
+                    {{!-- Position --}}
+                    <div class="gSC7">
+                      <select class="crew-position select-css" style="width:175px">
+                        {{selectOptions @root.config.spacecraft.crewPositionFlagsLocalized selected=position localize=true}}
+                      </select>
+                    </div>
+
+                    {{#ife position 'PILOT'}}
+                      <h3 for="actor.system.skills.piloting.value" class="resource-label rollable Attr1 gSC8" data-actorid="{{actor.id}}" data-roll="{{addstats actor.system.skills.piloting.mod @root.actor.system.attributes.thrusters.value}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillpiloting'}}">{{localize 'ALIENRPG.Skillpiloting'}}</h3>
+                    {{/ife}}
+
+                    {{#ife position 'SENSOROP'}}
+                      <h3 for="actor.system.skills.comtech.value" class="resource-label rollable Attr1 gSC8" data-spbutt="comtech" data-actorid="{{actor.id}}" data-roll="{{actor.system.skills.comtech.mod}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillcomtech'}}">{{localize 'ALIENRPG.Skillcomtech'}}</h3>
+                    {{/ife}}
+
+                    <label type="button" class="crewPanic gSC9" data-shippanicbut="true" data-crewpanic="{{actor.id}}" data-panicroll="true" title="{{localize 'ALIENRPG.RollPanic'}}"><i class="far fa-heart"></i></label>
+
+                    {{!-- Buttons --}}
+                    <div class="gSC10">
+                      {{#unless actor.isCrewDeleted}}
+                        <a class="button crew-edit" title="{{localize 'ALIENRPG.EditItem'}}">
+                          {{{@root.config.Icons.buttons.edit}}}
+                        </a>
+                      {{/unless}}
+                      <a class="button crew-remove" title="{{localize 'ALIENRPG.DeleteItem'}}">
+                        {{{@root.config.Icons.buttons.remove}}}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              {{else}}
+                <div class="crew-empty">{{localize 'ALIENRPG.EmptyCrew'}}</div>
+              {{/each}}
+            </div>
+          </div>
+
+          <div class="box-top" style="margin-top: 40px;">
+            <h1>{{localize "ALIENRPG.ARMAMENTS"}}</h1>
+            <div>{{> "systems/alienrpg/templates/actor/tabs/spacecraft-armaments.html" sections=inventory}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Biography Tab --}}
+    <div class="tab biog-full " data-group="primary" data-tab="description">{{editor actor.system.notes target="system.notes" button=true owner=owner editable=true}}</div>
+
+    {{!-- Owned Items Tab --}}
+    <!-- INVENTORY -->
+    <div class="tab inventory" style="margin-left: 135px; margin-right: 207px;" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/tabs/spacecraft-inventory.html" sections=inventory}}</div>
+
+    <!-- Space Combat Phases -->
+    <div class="tab combatphases" data-group="primary" data-tab="combatphases">{{> "systems/alienrpg/templates/actor/tabs/spacecraft-combat-phases.html" sections=combatphases}}</div>
+
+    {{!-- Image Tab --}}
+    <div class="tab image" style="text-align: center;" data-tab="image">
+      <img src="{{actor.img}}" data-edit="img" title="{{actor.img}}" />
+
+    </div>
+  </section>
+
+</form>
