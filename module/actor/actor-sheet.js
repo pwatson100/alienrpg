@@ -1088,6 +1088,7 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     await this.actor.checkMarks(this.actor, event);
     await this.submit(event);
+
   }
 
   async _onClickStatLevelCon(event) {

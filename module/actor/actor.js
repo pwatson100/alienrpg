@@ -710,14 +710,17 @@ export class alienrpgActor extends Actor {
     if (actor.type != 'character') return;
 
     if (actor.system.general.panic.lastRoll > 0) {
-      actor.update({ 'system.general.panic.lastRoll': 0 });
+      actor.update({
+        'system.general.panic.lastRoll': 0
+      });
       actor.removeCondition('panicked');
+
       ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
     }
   }
 
   async causePanic(actor) {
-    actor.update({ 'system.general.panic.value': actor.system.general.panic.value + 1 });
+    actor.update({ 'system.general.panic.value': 1 });
     actor.addCondition('panicked');
   }
 
@@ -753,6 +756,7 @@ export class alienrpgActor extends Actor {
     let existing = await this.hasCondition(effect.id);
     if (existing) {
       let spud = existing.id
+
       return await this.deleteEmbeddedDocuments('ActiveEffect', [spud]);
 
       // return existing.delete();
@@ -782,12 +786,15 @@ export class alienrpgActor extends Actor {
 
     if (event.type === 'click') {
       newLevel = Math.clamped(level + 1, 0, max);
+
     } else if (event.type === 'contextmenu') {
       newLevel = Math.clamped(level - 1, 0, max);
-      if (field[0].name === 'system.general.panic.value') {
+      if (statIsItemType === 'panic') {
         actor.checkAndEndPanic(actor);
+
       }
-    } // Update the field value and save the form
+    }
+    // Update the field value and save the form
     field[0].value = newLevel;
     return event;
   }
