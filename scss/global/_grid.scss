@@ -68,7 +68,6 @@
     'Item11 Item11 Item11';
   // 'Item11 Item10 Item10'
   // 'Item11 Item10 Item10';
-
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -1288,9 +1287,9 @@
   border-color: var(--aliengreen);
   align-items: center;
   grid-template-areas:
-    'gCol1 gCol2 gCol3 gCol4 gCol5'
-    'gCol6 gCol7 gCol8 gCol9 gCol10';
-  grid-template-columns: 110px 50px 110px 50px 65px;
+    'gCol1 gCol2 gCol3 gCol4 gCol5 gCol11'
+    'gCol6 gCol7 gCol8 gCol9 gCol10 gCol12';
+  grid-template-columns: 110px 50px 110px 50px 65px 130px;
 }
 
 .gCol1 {
@@ -1335,6 +1334,14 @@
 }
 .gCol10 {
   grid-area: gCol10;
+  justify-self: center;
+}
+.gCol11 {
+  grid-area: gCol11;
+  justify-self: center;
+}
+.gCol12 {
+  grid-area: gCol12;
   justify-self: center;
 }
 

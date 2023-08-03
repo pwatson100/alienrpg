@@ -173,7 +173,7 @@ export class alienrpgItem extends Item {
               let fCrew = [];
               let options = '';
               for (let [index] of actorData.crew.occupants.entries()) {
-                if (actorData.crew.occupants[index].position === 'GUNNER') {
+                if (actorData.crew.occupants[index].position != 'PASSENGER') {
                   const firer = game.actors.get(actorData.crew.occupants[index].id);
                   let fIndex = fCrew.push({ firerName: firer.name, firerID: firer.id, position: actorData.crew.occupants[index].position }) - 1;
                   options = options.concat(`<option value="${fIndex}">${firer.name}</option>`);

@@ -124,6 +124,11 @@ export class alienrpgActorSheet extends ActorSheet {
         data.actor.system.general.radiation.icon = this._getClickIcon(data.actor.system.general.radiation.value, 'radiation');
         data.actor.system.general.xp.icon = this._getClickIcon(data.actor.system.general.xp.value, 'xp');
         data.actor.system.general.sp.icon = this._getClickIcon(data.actor.system.general.sp.value, 'sp');
+        data.actor.system.general.starving.icon = this._getContitionIcon(data.actor.system.general.starving.value, 'starving');
+        data.actor.system.general.dehydrated.icon = this._getContitionIcon(data.actor.system.general.dehydrated.value, 'dehydrated');
+        data.actor.system.general.exhausted.icon = this._getContitionIcon(data.actor.system.general.exhausted.value, 'exhausted');
+        data.actor.system.general.freezing.icon = this._getContitionIcon(data.actor.system.general.freezing.value, 'freezing');
+
         await this._characterData(data);
         await this.actor._checkOverwatch(data);
         await this._prepareItems(data);
@@ -150,6 +155,199 @@ export class alienrpgActorSheet extends ActorSheet {
     //Return data to the sheet
     return data;
   }
+
+  /** @override */
+  activateListeners(html) {
+    super.activateListeners(html);
+    // Everything below here is only needed if the sheet is editable
+    if (!this.options.editable) return;
+    const itemContextMenu = [
+      {
+        name: game.i18n.localize('ALIENRPG.addToFLocker'),
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'system.header.active': 'fLocker' });
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
+        icon: '<i class="fas fa-archive"></i>',
+        callback: (element) => {
+          let item = this.actor.items.get(element.data('item-id'));
+          item.update({ 'system.header.active': false });
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+        icon: '<i class="fas fa-edit"></i>',
+        callback: (element) => {
+          const item = this.actor.items.get(element.data('item-id'));
+          item.sheet.render(true);
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.DeleteItem'),
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (element) => {
+          let itemDel = this.actor.items.get(element.data('item-id'));
+          itemDel.delete();
+        },
+      },
+    ];
+
+    // Add Inventory Item
+    new ContextMenu(html, '.item-edit', itemContextMenu);
+
+    const itemContextMenu1 = [
+      {
+        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+        icon: '<i class="fas fa-edit"></i>',
+        callback: (element) => {
+          const item = this.actor.items.get(element.data('item-id'));
+          item.sheet.render(true);
+        },
+      },
+      {
+        name: game.i18n.localize('ALIENRPG.DeleteItem'),
+        icon: '<i class="fas fa-trash"></i>',
+        callback: (element) => {
+          let itemDel = this.actor.items.get(element.data('item-id'));
+          itemDel.delete();
+        },
+      },
+    ];
+
+    // Add Inventory Item
+    new ContextMenu(html, '.item-edit1', itemContextMenu1);
+
+    html.find('.item-create').click(this._onItemCreate.bind(this));
+    // Update Inventory Item
+    html.find('.openItem').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
+    // Update Inventory Item
+    html.find('.item-edit').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
+    html.find('.item-edit1').click((ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
+    if (game.settings.get('alienrpg', 'switchMouseKeys')) {
+      // Right to Roll and left to mod
+      // Rollable abilities.
+      html.find('.rollable').contextmenu(this._onRoll.bind(this));
+
+      html.find('.rollable').click(this._onRollMod.bind(this));
+
+      html.find('.rollableVeh').contextmenu(this._onRoll.bind(this));
+
+      html.find('.rollableVeh').click(this._onRollMod.bind(this));
+
+      // Rollable Items.
+      html.find('.rollItem').contextmenu(this._rollItem.bind(this));
+
+      html.find('.rollItem').click(this._onRollItemMod.bind(this));
+
+      html.find('.crewPanic').contextmenu(this._crewPanic.bind(this));
+
+      html.find('.crewPanic').click(this._crewPanicMod.bind(this));
+
+      html.find('.rollCrit').contextmenu(this._rollCrit.bind(this));
+      html.find('.rollCrit').click(this._rollCritMan.bind(this));
+
+      html.find('.activate').contextmenu(this._activate.bind(this));
+      html.find('.activate').click(this._deactivate.bind(this));
+
+
+    } else {
+      // Left to Roll and Right toMod
+      // Rollable abilities.
+      html.find('.rollable').click(this._onRoll.bind(this));
+
+      html.find('.rollable').contextmenu(this._onRollMod.bind(this));
+
+      html.find('.rollableVeh').click(this._onRoll.bind(this));
+
+      html.find('.rollableVeh').contextmenu(this._onRollMod.bind(this));
+
+      // Rollable Items.
+      html.find('.rollItem').click(this._rollItem.bind(this));
+
+      html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
+
+      html.find('.crewPanic').click(this._crewPanic.bind(this));
+
+      html.find('.crewPanic').contextmenu(this._crewPanicMod.bind(this));
+
+      html.find('.rollCrit').click(this._rollCrit.bind(this));
+      html.find('.rollCrit').contextmenu(this._rollCritMan.bind(this));
+
+      html.find('.activate').click(this._activate.bind(this));
+      html.find('.activate').contextmenu(this._deactivate.bind(this));
+
+      html.find('.supply-btn').click(this._supplyRoll.bind(this));
+
+      html.find('.supply-btn').contextmenu(this._supplyRollMod.bind(this));
+    }
+
+    html.find('.currency').on('change', this._currencyField.bind(this));
+    // minus from health and stress
+    html.find('.minus-btn').click(this._plusMinusButton.bind(this));
+
+    // plus tohealth and stress
+    html.find('.plus-btn').click(this._plusMinusButton.bind(this));
+
+    html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
+    html.find('.click-stat-level-con').on('click contextmenu', this._onClickStatLevelCon.bind(this)); // Toggle for radio buttons
+
+
+    html.find('.pwr-btn').click(this._supplyRoll.bind(this));
+
+    html.find('.stunt-btn').click(this._stuntBtn.bind(this));
+
+    html.find('.talent-btn').click(this._talentBtn.bind(this));
+
+    html.find('.inline-edit').change(this._inlineedit.bind(this));
+
+
+    html.find('.overwatch-toggle').click(this._onOverwatchToggle.bind(this));
+
+    // Creature sheet
+    html.find('.creature-attack-roll').click(this._creatureAttackRoll.bind(this));
+    html.find('.creature-attack-roll').contextmenu(this._creatureManAttackRoll.bind(this));
+
+    html.find('.creature-acid-roll').click(this._creatureAcidRoll.bind(this));
+
+
+    // Drag events for macros.
+    if (this.actor.isOwner) {
+      let handler = (ev) => this._onDragStart(ev);
+      // Find all items on the character sheet.
+      html.find('li.item').each((i, li) => {
+        // Ignore for the header row.
+        if (li.classList.contains('item-header')) return;
+        // Add draggable attribute and dragstart listener.
+        li.setAttribute('draggable', true);
+        li.addEventListener('dragstart', handler, false);
+      });
+    }
+
+    html.find('.crew-edit').click(this._onCrewEdit.bind(this));
+    html.find('.crew-remove').click(this._onCrewRemove.bind(this));
+    html.find('.crew-position').change(this._onChangePosition.bind(this));
+  }
+
+
 
   async _characterData(actor) {
     const aData = actor.actor.system;
@@ -643,175 +841,7 @@ export class alienrpgActorSheet extends ActorSheet {
     });
   }
 
-  /** @override */
-  activateListeners(html) {
-    super.activateListeners(html);
-    // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) return;
-    const itemContextMenu = [
-      {
-        name: game.i18n.localize('ALIENRPG.addToFLocker'),
-        icon: '<i class="fas fa-archive"></i>',
-        callback: (element) => {
-          let item = this.actor.items.get(element.data('item-id'));
-          item.update({ 'system.header.active': 'fLocker' });
-        },
-      },
-      {
-        name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
-        icon: '<i class="fas fa-archive"></i>',
-        callback: (element) => {
-          let item = this.actor.items.get(element.data('item-id'));
-          item.update({ 'system.header.active': false });
-        },
-      },
-      {
-        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
-        icon: '<i class="fas fa-edit"></i>',
-        callback: (element) => {
-          const item = this.actor.items.get(element.data('item-id'));
-          item.sheet.render(true);
-        },
-      },
-      {
-        name: game.i18n.localize('ALIENRPG.DeleteItem'),
-        icon: '<i class="fas fa-trash"></i>',
-        callback: (element) => {
-          let itemDel = this.actor.items.get(element.data('item-id'));
-          itemDel.delete();
-        },
-      },
-    ];
 
-    // Add Inventory Item
-    new ContextMenu(html, '.item-edit', itemContextMenu);
-
-    const itemContextMenu1 = [
-      {
-        name: game.i18n.localize('ALIENRPG.EditItemTitle'),
-        icon: '<i class="fas fa-edit"></i>',
-        callback: (element) => {
-          const item = this.actor.items.get(element.data('item-id'));
-          item.sheet.render(true);
-        },
-      },
-      {
-        name: game.i18n.localize('ALIENRPG.DeleteItem'),
-        icon: '<i class="fas fa-trash"></i>',
-        callback: (element) => {
-          let itemDel = this.actor.items.get(element.data('item-id'));
-          itemDel.delete();
-        },
-      },
-    ];
-
-    // Add Inventory Item
-    new ContextMenu(html, '.item-edit1', itemContextMenu1);
-
-    html.find('.item-create').click(this._onItemCreate.bind(this));
-    // Update Inventory Item
-    html.find('.openItem').click((ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.items.get(li.data('itemId'));
-      item.sheet.render(true);
-    });
-
-    // Update Inventory Item
-    html.find('.item-edit').click((ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.items.get(li.data('itemId'));
-      item.sheet.render(true);
-    });
-
-    html.find('.item-edit1').click((ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      const item = this.actor.items.get(li.data('itemId'));
-      item.sheet.render(true);
-    });
-
-    if (game.settings.get('alienrpg', 'switchMouseKeys')) {
-      // Right to Roll and left to mod
-      // Rollable abilities.
-      html.find('.rollable').contextmenu(this._onRoll.bind(this));
-
-      html.find('.rollable').click(this._onRollMod.bind(this));
-
-      html.find('.rollableVeh').contextmenu(this._onRoll.bind(this));
-
-      html.find('.rollableVeh').click(this._onRollMod.bind(this));
-
-      // Rollable Items.
-      html.find('.rollItem').contextmenu(this._rollItem.bind(this));
-
-      html.find('.rollItem').click(this._onRollItemMod.bind(this));
-    } else {
-      // Left to Roll and Right toMod
-      // Rollable abilities.
-      html.find('.rollable').click(this._onRoll.bind(this));
-
-      html.find('.rollable').contextmenu(this._onRollMod.bind(this));
-
-      html.find('.rollableVeh').click(this._onRoll.bind(this));
-
-      html.find('.rollableVeh').contextmenu(this._onRollMod.bind(this));
-
-      // Rollable Items.
-      html.find('.rollItem').click(this._rollItem.bind(this));
-
-      html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
-    }
-
-    html.find('.currency').on('change', this._currencyField.bind(this));
-    // minus from health and stress
-    html.find('.minus-btn').click(this._plusMinusButton.bind(this));
-
-    // plus tohealth and stress
-    html.find('.plus-btn').click(this._plusMinusButton.bind(this));
-
-    html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
-    html.find('.click-stat-level-con').on('click contextmenu', this._onClickStatLevelCon.bind(this)); // Toggle for radio buttons
-
-    html.find('.supply-btn').click(this._supplyRoll.bind(this));
-
-    html.find('.pwr-btn').click(this._supplyRoll.bind(this));
-
-    html.find('.stunt-btn').click(this._stuntBtn.bind(this));
-
-    html.find('.talent-btn').click(this._talentBtn.bind(this));
-
-    html.find('.inline-edit').change(this._inlineedit.bind(this));
-
-    html.find('.rollCrit').click(this._rollCrit.bind(this));
-    html.find('.rollCrit').contextmenu(this._rollCritMan.bind(this));
-
-    html.find('.activate').click(this._activate.bind(this));
-    html.find('.activate').contextmenu(this._deactivate.bind(this));
-
-    html.find('.overwatch-toggle').click(this._onOverwatchToggle.bind(this));
-
-    // Creature sheet
-    html.find('.creature-attack-roll').click(this._creatureAttackRoll.bind(this));
-    html.find('.creature-attack-roll').contextmenu(this._creatureManAttackRoll.bind(this));
-
-    html.find('.creature-acid-roll').click(this._creatureAcidRoll.bind(this));
-
-    // Drag events for macros.
-    if (this.actor.isOwner) {
-      let handler = (ev) => this._onDragStart(ev);
-      // Find all items on the character sheet.
-      html.find('li.item').each((i, li) => {
-        // Ignore for the header row.
-        if (li.classList.contains('item-header')) return;
-        // Add draggable attribute and dragstart listener.
-        li.setAttribute('draggable', true);
-        li.addEventListener('dragstart', handler, false);
-      });
-    }
-
-    html.find('.crew-edit').click(this._onCrewEdit.bind(this));
-    html.find('.crew-remove').click(this._onCrewRemove.bind(this));
-    html.find('.crew-position').change(this._onChangePosition.bind(this));
-  }
   /** @override */
   async _onDropItemCreate(itemData) {
     const type = itemData.type;
@@ -1058,6 +1088,7 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     await this.actor.checkMarks(this.actor, event);
     await this.submit(event);
+
   }
 
   async _onClickStatLevelCon(event) {
@@ -1111,6 +1142,7 @@ export class alienrpgActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
+
     // If it's a power roll it will have an item number so test if it's zero
     if (dataset.item === '0') return;
     const lTemp = 'ALIENRPG.' + dataset.spbutt;
@@ -1119,6 +1151,20 @@ export class alienrpgActorSheet extends ActorSheet {
     const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
     const consUme = dataset.spbutt.toLowerCase();
     this.actor.consumablesCheck(this.actor, consUme, label, tItem);
+  }
+
+  _supplyRollMod(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    // If it's a power roll it will have an item number so test if it's zero
+    if (dataset.item === '0') return;
+    const lTemp = 'ALIENRPG.' + dataset.spbutt;
+    // If this is a power roll get the exact id of the item to process
+    const tItem = dataset.id || 0;
+    const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
+    const consUme = dataset.spbutt.toLowerCase();
+    this.actor.consumablesCheckMod(this.actor, consUme, label, tItem);
   }
 
   _currencyField(event) {
@@ -1212,5 +1258,21 @@ export class alienrpgActorSheet extends ActorSheet {
     const position = elem.value;
     return this.actor.addVehicleOccupant(crewId, position);
   }
+
+  _crewPanic(event) {
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    const panicActor = game.actors.get(dataset.crewpanic);
+    this.actor.rollAbility(panicActor, dataset);
+  }
+
+  _crewPanicMod(event) {
+    console.log('Crew Panic Mod')
+    event.preventDefault();
+    const dataset = event.currentTarget.dataset;
+    const panicActor = game.actors.get(dataset.crewpanic);
+    this.actor.rollAbilityMod(panicActor, dataset);
+  }
 }
+
 export default alienrpgActorSheet;

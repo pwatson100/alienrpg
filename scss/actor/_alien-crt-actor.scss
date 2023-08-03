@@ -30,7 +30,8 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
   z-index: 2;
   background-size: 100% 2px, 3px 100%;
   pointer-events: none;
@@ -159,6 +160,16 @@
   font-weight: 1;
   font-size: 150%;
   box-shadow: 0 0 0px var(--aliengreen);
+  animation: textShadow 1s infinite;
+}
+
+.crt .fa-solid.fa-wrench:hover,
+.crt .fa-solid.fa-toolbox:hover {
+  color: red;
+  animation: textShadow 1s infinite;
+}
+.crt .far.fa-heart:hover {
+  color: red;
   animation: textShadow 1s infinite;
 }
 
@@ -360,7 +371,7 @@
 
 .crt .crt_Item1 {
   text-align: center;
-  height: 130px;
+  /* height: 130px; */
 }
 
 .crt .crt_Item1 .sp_faded {
@@ -394,7 +405,7 @@
 }
 .crt .crt_Item2_synth {
   position: relative;
-  height: 370px;
+  // height: 370px;
 }
 
 .crt .dots_conditions .dots {
@@ -448,8 +459,8 @@
   border: 1px dashed var(--alienitemselect);
   color: var(--alienitemselect);
   width: 98%;
-  padding-top: 4px;
-  padding-bottom: 38px;
+  padding-top: 16px;
+  padding-bottom: 19px;
   align-items: center;
   flex-wrap: nowrap;
   margin: 2px;
@@ -686,17 +697,31 @@
   text-align: center;
 }
 
-.crt .rollable:hover,
-.crt .rollable:focus {
-  color: #000;
-  font-size: 110%;
-  font-weight: bolder;
-  background-color: var(--aliengreen);
-  border: 1px solid var(--aliengreen);
-  text-shadow: 0 0 0px var(--aliengreen);
-  box-shadow: 0 0 5px var(--aliengreen);
-  cursor: pointer;
+.rollable:hover,
+.rollcomputer:hover {
+  color: var(--aliengreen);
+  background-color: #000;
+  border: 0px solid var(--aliengreen);
+  font-weight: 1;
+  font-size: 130%;
+  box-shadow: 0 0 0px var(--aliengreen);
+  animation: textShadow 1s infinite;
 }
+
+// .crt .rollable:hover,
+// .crt .rollable:focus {
+//   color: #000;
+//   animation: textShadow 1s infinite;
+//   font-weight: 1;
+
+//   // font-size: 110%;
+//   // font-weight: bolder;
+//   background-color: var(--aliengreen);
+//   border: 1px solid var(--aliengreen);
+//   text-shadow: 0 0 0px var(--aliengreen);
+//   box-shadow: 0 0 5px var(--aliengreen);
+//   cursor: pointer;
+// }
 
 .crt .rollItem,
 .crt .creature-acid-roll {

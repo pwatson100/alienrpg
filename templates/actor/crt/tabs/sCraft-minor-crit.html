@@ -1,0 +1,15 @@
+<div class="crt">
+  <h2 class="item talTitle" style="margin-top: 10px;">{{localize "ALIENRPG.MINOR-COMPONENT-DAMAGE"}}&nbsp;&nbsp;
+
+    <label data-crbut="minor" class="rollMinorCD" title="{{localize 'ALIENRPG.RollCrit'}}"><i class="fa-solid fa-wrench"></i></label>
+  </h2>
+  <ol class="items-list s1h26">
+    {{#each critMin as |item iid|}}
+      <li class="item space-critical-inj" data-item-id="{{item.id}}">
+        <a class="item-image ScritI1"><img src="{{item.img}}" width="24" height="24" /></a>
+        <a class="item-name ScritI2">{{item.name}}</a>
+        <a class="ScritI4 item-control item-edit1" data-item-id="{{item.id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+      </li>
+    {{/each}}
+  </ol>
+</div>

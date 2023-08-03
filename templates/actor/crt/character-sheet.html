@@ -15,7 +15,7 @@
 
 					<button type="button" class="plus-btn" data-pmbut="plusHealth"><i class="fas fa-plus-square fa-xs" title="Plus"></i></button>
 				</div>
-				<h2 for="actor.system.header.stress.value" class="resource-label rollable rollable-stress gaItem3" style="margin-bottom: 8px;" title="Roll Stress" data-panicroll="{{actor.system.header.stress.value}}" data-mod="{{actor.system.header.stress.mod}}" data-label="{{localize 'ALIENRPG.Stress'}}">{{localize 'ALIENRPG.Stress'}}</h2>
+				<h2 for="actor.system.header.stress.value" class="resource-label rollable rollable-stress gaItem3" style="padding-left: 0px; margin-left: 0px;" title="{{localize 'ALIENRPG.RollPanic'}}" data-panicroll="{{actor.system.header.stress.value}}" data-mod="{{actor.system.header.stress.mod}}" data-label="{{localize 'ALIENRPG.Stress'}}">{{localize 'ALIENRPG.Stress'}} <i class="far fa-heart fa-sm"></i></h2>
 				<div class="resource-content gaItem4">
 					<button type="button" class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs" title="Minus"></i></button>
 					<input type="text" class="maxboxsize" name="actor.system.header.stress.value" value="{{actor.system.header.stress.value}}" data-dtype="Number" />
@@ -206,29 +206,31 @@
 										<input type="text" class="maxboxsize panicked-textarea" name="system.general.panic.lastRoll" value="{{actor.system.general.panic.lastRoll}}" data-dtype="Number">
 									</h4>
 								{{else}}
-									<h4 class="click-stat-level resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}} </h4>
+									<h4 class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}} </h4>
 								{{/if}}
 							</div>
+							<div>
 
-							<h3 class="condition overwatch" data-key="overwatch">
-								<a class="overwatch-toggle">
-									{{#if actor.system.general.overwatch}}
-										<i class="far fa-check-square"></i>
-									{{else}}
-										<i class="far fa-square"></i>
-									{{/if}}
-								</a>
-								{{localize 'ALIENRPG.Overwatch'}}
-							</h3>
+								<h3 class="condition overwatch" data-key="overwatch">
+									<a class="overwatch-toggle">
+										{{#if actor.system.general.overwatch}}
+											<i class="far fa-check-square"></i>
+										{{else}}
+											<i class="far fa-square"></i>
+										{{/if}}
+									</a>
+									{{localize 'ALIENRPG.Overwatch'}}
+								</h3>
+							</div>
 
 							{{#if actor.system.general.radiation.value}}
-								<div class="dots radiation rad_glow radglow_char" id="bottom">
+								<div class="dots radiation rad_glow" style="height: auto;">
 									<h4 class="resource-label">{{ localize 'ALIENRPG.Radiation'}}</h4>
 									<input type="hidden" name="system.general.radiation.value" data-max="{{actor.system.general.radiation.max}}" value="{{actor.system.general.radiation.value}}" data-dtype="Number">
 									<span class="click-stat-level-con" title="{{ localize 'ALIENRPG.ConButtons'}}" data-label="{{ localize 'ALIENRPG.Radiation'}}" data-roll="{{actor.system.general.radiation.value}}">{{{actor.system.general.radiation.icon}}}</span>
 								</div>
 							{{else}}
-								<div class="dots radiation radbox_char" id="bottom">
+								<div class="dots radiation" style="height: auto;">
 									<h4 class="resource-label">{{ localize 'ALIENRPG.Radiation'}}</h4>
 									<input type="hidden" name="system.general.radiation.value" data-max="{{actor.system.general.radiation.max}}" value="{{actor.system.general.radiation.value}}" data-dtype="Number">
 									<span class="click-stat-level-con" title="{{ localize 'ALIENRPG.ConButtons'}}" data-label="{{ localize 'ALIENRPG.Radiation'}}" data-roll="{{actor.system.general.radiation.value}}">{{{actor.system.general.radiation.icon}}}</span>
