@@ -117,53 +117,132 @@ export class alienrpgActor extends Actor {
   // *************************************************
   async _preCreate(data, options, user) {
     await super._preCreate(data, options, user);
-    let tokenProto = {
-      'prototypeToken.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      'prototypeToken.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-      'prototypeToken.name': `${data.name}`,
-      'prototypeToken.bar1': { attribute: 'header.health' },
-      'prototypeToken.bar2': { attribute: 'None' },
-      // 'prototypeToken.vision': true,
-      'prototypeToken.actorLink': true,
-      'prototypeToken.sight.enabled': 'true',
-      'prototypeToken.sight.range': '12',
-    };
-    if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
-      switch (data.type) {
-        case 'character':
-          tokenProto['prototypeToken.bar2'] = { attribute: 'header.stress' };
-          break;
-        case 'vehicles':
-          tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
-          break;
-        case 'creature':
-          tokenProto['prototypeToken.actorLink'] = false;
-          tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
-          tokenProto['prototypeToken.sight.enabled'] = false;
-          break;
-        case 'synthetic':
-          break;
-        case 'territory':
-          tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
-          tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
-          tokenProto['prototypeToken.sight.enabled'] = false;
-          break;
-      }
-    }
-    this.updateSource(tokenProto);
+    let createData = {};
+
+    let defaultToken = game.settings.get("core", "defaultToken");
+
+    if (!data.prototypeToken)
+      mergeObject(createData,
+        {
+          'prototypeToken.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+          'prototypeToken.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+          'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+          'prototypeToken.name': `${data.name}`,
+          'prototypeToken.bar1': { attribute: 'header.health' },
+          'prototypeToken.bar2': { attribute: 'None' },
+          // 'prototypeToken.vision': true,
+          'prototypeToken.actorLink': true,
+          'prototypeToken.sight.enabled': 'true',
+          'prototypeToken.sight.range': '12',
+        });
+    else if (data.prototypeToken)
+      createData.prototypeToken = data.prototypeToken;
+
+
+
+    // let tokenProto = {
+    //   'prototypeToken.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+    //   'prototypeToken.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+    //   'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+    //   'prototypeToken.name': `${data.name}`,
+    //   'prototypeToken.bar1': { attribute: 'header.health' },
+    //   'prototypeToken.bar2': { attribute: 'None' },
+    //   // 'prototypeToken.vision': true,
+    //   'prototypeToken.actorLink': true,
+    //   'prototypeToken.sight.enabled': 'true',
+    //   'prototypeToken.sight.range': '12',
+    // };
+    // if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
+    //   switch (data.type) {
+    //     case 'character':
+    //       tokenProto['prototypeToken.bar2'] = { attribute: 'header.stress' };
+    //       break;
+    //     case 'vehicles':
+    //       tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
+    //       break;
+    //     case 'creature':
+    //       tokenProto['prototypeToken.actorLink'] = false;
+    //       tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+    //       tokenProto['prototypeToken.sight.enabled'] = false;
+    //       break;
+    //     case 'synthetic':
+    //       break;
+    //     case 'territory':
+    //       tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
+    //       tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
+    //       tokenProto['prototypeToken.sight.enabled'] = false;
+    //       break;
+    //   }
+    // }
+    // this.updateSource(tokenProto);
+    this.updateSource(createData);
   }
 
   async _checkOverwatch(actorData) {
-    let conDition = await this.hasCondition('overwatch');
-    // if (await this.hasCondition('overwatch')) {
+    // debugger;
+    const conditions =
+      [
+        'starving',
+        'dehydrated',
+        'exhausted',
+        'freezing',
+        'overwatch',
+        'panicked'
+      ];
+
+
+    let conDition = this.hasCondition('overwatch');
     if (conDition != undefined || conDition) {
-      // await this.updateSource({ 'system.general.overwatch': true });
-      setProperty(actorData.actor, 'system.general.overwatch', true);
+      setProperty(actorData, 'system.general.overwatch', true);
     } else {
-      // await this.updateSource({ 'system.general.overwatch': false });
-      setProperty(actorData.actor, 'system.general.overwatch', false);
+      setProperty(actorData, 'system.general.overwatch', false);
     }
+
+
+    let conDition2 = this.hasCondition('starving');
+    if (conDition2 != undefined || conDition2) {
+      setProperty(actorData, 'system.general.starving.value', true);
+    } else {
+      setProperty(actorData, 'system.general.starving.value', false);
+    }
+    let conDition3 = this.hasCondition('dehydrated');
+    if (conDition3 != undefined || conDition3) {
+      setProperty(actorData, 'system.general.dehydrated.value', true);
+    } else {
+      setProperty(actorData, 'system.general.dehydrated.value', false);
+    }
+    let conDition4 = this.hasCondition('exhausted');
+    if (conDition4 != undefined || conDition4) {
+      setProperty(actorData, 'system.general.exhausted.value', true);
+    } else {
+      setProperty(actorData, 'system.general.exhausted.value', false);
+    }
+    let conDition5 = this.hasCondition('freezing');
+    if (conDition5 != undefined || conDition5) {
+      setProperty(actorData, 'system.general.freezing.value', true);
+    } else {
+      setProperty(actorData, 'system.general.freezing.value', false);
+    }
+    let conDition6 = this.hasCondition('panicked');
+    // debugger;
+    if (conDition6 != undefined || conDition6) {
+      setProperty(actorData, 'system.general.panic.value', true);
+    } else {
+      setProperty(actorData, 'system.general.panic.value', false);
+    }
+
+    // conditions.forEach(statCheck);
+
+    // function statCheck(value) {
+    //   let conDition2 = this.hasCondition(value);
+    //   if (conDition2 != undefined || conDition2) {
+    //     setProperty(actorData, `system.general.${value}.value`, true);
+    //   } else {
+    //     setProperty(actorData, `system.general.${value}.value`, false);
+    //   }
+    // }
+
+
   }
 
   async rollAbility(actor, dataset, rollMod) {
@@ -223,7 +302,6 @@ export class alienrpgActor extends Actor {
       }
 
       if (dataset.spbutt === 'armor') {
-
         if (r1Data < 1 && !dataset.armorP && !dataset.armorDou) {
           return;
         }
@@ -239,7 +317,6 @@ export class alienrpgActor extends Actor {
           dataset.armorDou = 'false';
         }
       }
-
       if (label === game.i18n.localize('ALIENRPG.Radiation')) {
         r2Data = 0;
         reRoll = true;
@@ -380,9 +457,13 @@ export class alienrpgActor extends Actor {
         const roll = new Roll(modRoll);
         roll.evaluate({ async: false });
         const customResults = await table.roll({ roll });
+        console.warn('customResults', customResults);
         let oldPanic = actor.system.general.panic.lastRoll;
-
+        debugger;
+        let manicvaluenew = actor.system.general.panic.value;
         if (customResults.roll.total >= 7 && actor.system.general.panic.value === 0) {
+          // await actor.addCondition('panicked');
+
           this.causePanic(actor);
         }
 
@@ -503,8 +584,8 @@ export class alienrpgActor extends Actor {
   async rollAbilityMod(actor, dataset) {
     function myRenderTemplate(template) {
       let confirmed = false;
-      let armorP = false;
-      let armorDou = false;
+      let armorP = 'false';
+      let armorDou = 'false';
       switch (dataset.spbutt) {
         case 'armorVfire':
           renderTemplate(template).then((dlg) => {
@@ -557,20 +638,20 @@ export class alienrpgActor extends Actor {
                 one: {
                   icon: '<i class="fas fa-check"></i>',
                   label: game.i18n.localize('ALIENRPG.DialRoll'),
-                  callback: () => (confirmed = true),
+                  callback: () => (confirmed = 'true'),
                 },
                 two: {
                   label: game.i18n.localize('ALIENRPG.ArmorPiercing'),
-                  callback: () => (armorP = true),
+                  callback: () => (armorP = 'true'),
                 },
                 three: {
                   label: game.i18n.localize('ALIENRPG.ArmorDoubled'),
-                  callback: () => (armorDou = true),
+                  callback: () => (armorDou = 'true'),
                 },
                 four: {
                   icon: '<i class="fas fa-times"></i>',
                   label: game.i18n.localize('ALIENRPG.DialCancel'),
-                  callback: () => (confirmed = false),
+                  callback: () => (confirmed = 'false'),
                 },
               },
               default: 'one',
@@ -710,36 +791,38 @@ export class alienrpgActor extends Actor {
     if (actor.type != 'character') return;
 
     if (actor.system.general.panic.lastRoll > 0) {
+      actor.removeCondition('panicked');
       actor.update({
         'system.general.panic.lastRoll': 0
       });
-      actor.removeCondition('panicked');
 
       ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
     }
   }
 
   async causePanic(actor) {
-    actor.update({ 'system.general.panic.value': 1 });
-    actor.addCondition('panicked');
+    await actor.addCondition('panicked');
+    // actor.update({ 'system.general.panic.value': true });
   }
 
   async addCondition(effect) {
     if (typeof effect === 'string') effect = duplicate(ALIENRPG.conditionEffects.find((e) => e.id == effect));
     if (!effect) return 'No Effect Found';
-
     if (!effect.id) return 'Conditions require an id field';
 
-    let existing = await this.hasCondition(effect.id);
+    let existing = this.hasCondition(effect.id);
 
     if (!existing) {
-      effect.label = game.i18n.localize(effect.label).toLowerCase();
 
-      if (game.version < '11') {
-        effect['flags.core.statusId'] = effect.id;
-      } else {
-        effect['statuses'] = effect.id;
-      }
+      // if (game.version < '11') {
+      effect.label = game.i18n.localize(effect.label).toLowerCase();
+      effect.name = game.i18n.localize(effect.name).toLowerCase();
+
+      effect['flags.core.statusId'] = effect.id;
+      effect['statuses'] = effect.id;
+
+      // } else {
+      // }
 
       delete effect.id;
 
@@ -752,10 +835,10 @@ export class alienrpgActor extends Actor {
     if (!effect) return 'No Effect Found';
 
     if (!effect.id) return 'Conditions require an id field';
-
-    let existing = await this.hasCondition(effect.id);
+    // debugger;
+    let existing = this.hasCondition(effect.id);
     if (existing) {
-      let spud = existing.id
+      let spud = existing._id
 
       return await this.deleteEmbeddedDocuments('ActiveEffect', [spud]);
 
@@ -763,7 +846,7 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  async hasCondition(conditionKey) {
+  hasCondition(conditionKey) {
     let existing = '';
     if (game.version < '11') {
       existing = this.effects.find((i) => i.getFlag('core', 'statusId') == conditionKey);
@@ -806,28 +889,11 @@ export class alienrpgActor extends Actor {
     const level = parseFloat(field.val());
     let newLevel = ''; // Toggle next level - forward on click, backwards on right
     let aTokens = '';
-
+    // debugger;
     if (event.type === 'click') {
       newLevel = Math.clamped(level + 1, 0, max);
 
       switch (field[0].name) {
-        case 'system.general.starving.value':
-          await actor.addCondition('starving');
-          break;
-
-        case 'system.general.dehydrated.value':
-          await actor.addCondition('dehydrated');
-          break;
-
-        case 'system.general.exhausted.value':
-          await actor.addCondition('exhausted');
-          break;
-
-        case 'system.general.freezing.value':
-          await actor.addCondition('freezing');
-
-          break;
-
         case 'system.general.radiation.value':
           await actor.addCondition('radiation');
           actor.rollAbility(actor, event.currentTarget.dataset);
@@ -839,30 +905,15 @@ export class alienrpgActor extends Actor {
       }
     } else if (event.type === 'contextmenu') {
       newLevel = Math.clamped(level - 1, 0, max);
-      // if (field[0].name === 'system.general.panic.value') {
-      //   actor.checkAndEndPanic(actor);
-      // }
       switch (field[0].name) {
-        case 'system.general.starving.value':
-          await actor.removeCondition('starving');
-          break;
-
-        case 'system.general.dehydrated.value':
-          await actor.removeCondition('dehydrated');
-          break;
-
-        case 'system.general.exhausted.value':
-          await actor.removeCondition('exhausted');
-          break;
-
-        case 'system.general.freezing.value':
-          await actor.removeCondition('freezing');
-          break;
-
         case 'system.general.radiation.value':
-          if (actor.system.general.radiation.value <= 1) {
-            await actor.removeCondition('radiation');
+          {
+            if (actor.system.general.radiation.value <= 1) {
+              await actor.removeCondition('radiation');
+            }
+            await this.createChatMessage(game.i18n.localize('ALIENRPG.RadiationReduced'), actor.id)
           }
+
           break;
 
         default:
@@ -1643,6 +1694,22 @@ export class alienrpgActor extends Actor {
       c.set(o.id, game.actors.get(o.id));
     }
     return c;
+  }
+
+  async createChatMessage(message, actorID) {
+    let chatData = {
+      user: game.user.id,
+      speaker: {
+        actor: actorID,
+      },
+      content: new Handlebars.SafeString(message),
+      other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
+      sound: CONFIG.sounds.lock,
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+    };
+
+    ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
+    ChatMessage.create(chatData);
   }
 }
 export default alienrpgActor;

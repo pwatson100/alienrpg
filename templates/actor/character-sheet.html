@@ -177,40 +177,71 @@
 
         <div class="Item8">
           <h2 class="resource-label">{{ localize 'ALIENRPG.Conditions'}}</h2>
-          <div class="dots starving">
-            <input type="hidden" name="system.general.starving.value" data-max="{{actor.system.general.starving.max}}" value="{{{actor.system.general.starving.value}}}" data-dtype="Number">
-            <h3 class="click-stat-level-con resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.starving.icon}}} {{ localize 'ALIENRPG.Starving'}}
+          <div class="starving">
+            <h3 class="condition resource-label" data-key="starving" title="{{ localize 'ALIENRPG.ConButtons'}}">
+              <a class="overwatch-toggle">
+                {{#ife actor.system.general.starving.value true}}
+                  <i class="far fa-check-square"></i>
+                  {{else}}
+                    <i class="far fa-square"></i>
+                {{/ife}}
+              </a>
+              {{localize 'ALIENRPG.Starving'}}
             </h3>
           </div>
-          <div class="dots dehydrated">
-            <input type="hidden" name="system.general.dehydrated.value" data-max="{{actor.system.general.dehydrated.max}}" value="{{{actor.system.general.dehydrated.value}}}" data-dtype="Number">
-            <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.dehydrated.icon}}} {{ localize 'ALIENRPG.Dehydrated'}}
+          <div class="dehydrated">
+            <h3 class="condition resource-label" data-key="dehydrated" title="{{ localize 'ALIENRPG.ConButtons'}}">
+              <a class="overwatch-toggle">
+                {{#ife actor.system.general.dehydrated.value true}}
+                  <i class="far fa-check-square"></i>
+                  {{else}}
+                    <i class="far fa-square"></i>
+                {{/ife}}
+              </a>
+              {{ localize 'ALIENRPG.Dehydrated'}}
             </h3>
           </div>
 
-          <div class="dots exhausted">
-            <input type="hidden" name="system.general.exhausted.value" data-max="{{actor.system.general.exhausted.max}}" value="{{{actor.system.general.exhausted.value}}}" data-dtype="Number">
-            <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.exhausted.icon}}} {{ localize 'ALIENRPG.Exhausted'}}
+          <div class="exhausted">
+            <h3 class="condition resource-label" data-key="exhausted" title="{{ localize 'ALIENRPG.ConButtons'}}">
+              <a class="overwatch-toggle">
+                {{#ife actor.system.general.exhausted.value true}}
+                  <i class="far fa-check-square"></i>
+                  {{else}}
+                    <i class="far fa-square"></i>
+                {{/ife}}
+              </a>
+              {{ localize 'ALIENRPG.Exhausted'}}
             </h3>
           </div>
 
-          <div class="dots freezing">
-            <input type="hidden" name="system.general.freezing.value" data-max="{{actor.system.general.freezing.max}}" value="{{{actor.system.general.freezing.value}}}" data-dtype="Number">
-            <h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
+          <div class="freezing">
+            <h3 class="condition resource-label" data-key="freezing" title="{{ localize 'ALIENRPG.ConButtons'}}">
+              <a class="overwatch-toggle">
+                {{#ife actor.system.general.freezing.value true}}
+                  <i class="far fa-check-square"></i>
+                  {{else}}
+                    <i class="far fa-square"></i>
+                {{/ife}}
+              </a>
+              {{ localize 'ALIENRPG.Freezing'}}
             </h3>
           </div>
-          <div class="dots panic" style="height: 22px">
-            <input type="hidden" name="system.general.panic.value" data-max="{{actor.system.general.panic.max}}" value="{{{actor.system.general.panic.value}}}" data-dtype="Number" data-stat-type="panic">
+          <div class="panic" style="height: 22px">
             {{#if actor.system.general.panic.value}}
-              <h3 class="click-stat-level resource-label " style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}}
+              <h3 class="condition resource-label " data-key="panicked" style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}"><a class="overwatch-toggle">
+                  <i class="far fa-check-square"></i>
+                </a>{{ localize 'ALIENRPG.Panicked'}}
                 <input type="text" class="maxboxsize" name="system.general.panic.lastRoll" value="{{actor.system.general.panic.lastRoll}}" data-dtype="Number">
               </h3>
             {{else}}
-              <h3 class="click-stat-level resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.panic.icon}}} {{ localize 'ALIENRPG.Panicked'}} </h3>
+              <h3 class="condition resource-label" data-key="panicked" title="{{ localize 'ALIENRPG.ConButtons'}}"><a class="overwatch-toggle">
+                  <i class="far fa-square"></i>
+                </a> {{ localize 'ALIENRPG.Panicked'}} </h3>
             {{/if}}
           </div>
           <br>
-          <h3 class="condition" style="margin-left: 7px;" data-key="overwatch">
+          <h3 class="condition resource-label" data-key="overwatch">
             <a class="overwatch-toggle">
               {{#ife actor.system.general.overwatch true}}
                 <i class="far fa-check-square"></i>

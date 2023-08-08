@@ -94,13 +94,13 @@ export class alienrpgActorSheet extends ActorSheet {
         data.actor.system.general.radiation.icon = this._getClickIcon(data.actor.system.general.radiation.value, 'radiation');
         data.actor.system.general.xp.icon = this._getClickIcon(data.actor.system.general.xp.value, 'xp');
         data.actor.system.general.sp.icon = this._getClickIcon(data.actor.system.general.sp.value, 'sp');
-        data.actor.system.general.starving.icon = this._getContitionIcon(data.actor.system.general.starving.value, 'starving');
-        data.actor.system.general.dehydrated.icon = this._getContitionIcon(data.actor.system.general.dehydrated.value, 'dehydrated');
-        data.actor.system.general.exhausted.icon = this._getContitionIcon(data.actor.system.general.exhausted.value, 'exhausted');
-        data.actor.system.general.freezing.icon = this._getContitionIcon(data.actor.system.general.freezing.value, 'freezing');
-        data.actor.system.general.panic.icon = this._getContitionIcon(data.actor.system.general.panic.value, 'panic');
+        // data.actor.system.general.starving.icon = this._getContitionIcon(data.actor.system.general.starving.value, 'starving');
+        // data.actor.system.general.dehydrated.icon = this._getContitionIcon(data.actor.system.general.dehydrated.value, 'dehydrated');
+        // data.actor.system.general.exhausted.icon = this._getContitionIcon(data.actor.system.general.exhausted.value, 'exhausted');
+        // data.actor.system.general.freezing.icon = this._getContitionIcon(data.actor.system.general.freezing.value, 'freezing');
+        // data.actor.system.general.panic.icon = this._getContitionIcon(data.actor.system.general.panic.value, 'panic');
         await this._characterData(data);
-        await this.actor._checkOverwatch(data);
+        await this.actor._checkOverwatch(data.actor);
         await this._prepareItems(data);
         let enrichedFields = [
           "actor.system.notes",
@@ -124,13 +124,13 @@ export class alienrpgActorSheet extends ActorSheet {
         data.actor.system.general.radiation.icon = this._getClickIcon(data.actor.system.general.radiation.value, 'radiation');
         data.actor.system.general.xp.icon = this._getClickIcon(data.actor.system.general.xp.value, 'xp');
         data.actor.system.general.sp.icon = this._getClickIcon(data.actor.system.general.sp.value, 'sp');
-        data.actor.system.general.starving.icon = this._getContitionIcon(data.actor.system.general.starving.value, 'starving');
-        data.actor.system.general.dehydrated.icon = this._getContitionIcon(data.actor.system.general.dehydrated.value, 'dehydrated');
-        data.actor.system.general.exhausted.icon = this._getContitionIcon(data.actor.system.general.exhausted.value, 'exhausted');
-        data.actor.system.general.freezing.icon = this._getContitionIcon(data.actor.system.general.freezing.value, 'freezing');
+        // data.actor.system.general.starving.icon = this._getContitionIcon(data.actor.system.general.starving.value, 'starving');
+        // data.actor.system.general.dehydrated.icon = this._getContitionIcon(data.actor.system.general.dehydrated.value, 'dehydrated');
+        // data.actor.system.general.exhausted.icon = this._getContitionIcon(data.actor.system.general.exhausted.value, 'exhausted');
+        // data.actor.system.general.freezing.icon = this._getContitionIcon(data.actor.system.general.freezing.value, 'freezing');
 
         await this._characterData(data);
-        await this.actor._checkOverwatch(data);
+        await this.actor._checkOverwatch(data.actor);
         await this._prepareItems(data);
         let enrichedFields3 = [
           "actor.system.notes",
@@ -320,7 +320,7 @@ export class alienrpgActorSheet extends ActorSheet {
     html.find('.inline-edit').change(this._inlineedit.bind(this));
 
 
-    html.find('.overwatch-toggle').click(this._onOverwatchToggle.bind(this));
+    html.find('.overwatch-toggle').on('click contextmenu', this._onOverwatchToggle.bind(this));
 
     // Creature sheet
     html.find('.creature-attack-roll').click(this._creatureAttackRoll.bind(this));
@@ -531,9 +531,9 @@ export class alienrpgActorSheet extends ActorSheet {
       'system.general.armor.value': (aData.general.armor.value = parseInt(totalAc || 0)),
       'system.general.radiation.calculatedMax': (aData.general.radiation.calculatedMax = aData.general.radiation.max),
       'system.general.xp.calculatedMax': (aData.general.xp.calculatedMax = aData.general.xp.max),
-      'system.general.dehydrated.calculatedMax': (aData.general.dehydrated.calculatedMax = aData.general.dehydrated.max),
-      'system.general.exhausted.calculatedMax': (aData.general.exhausted.calculatedMax = aData.general.exhausted.max),
-      'system.general.freezing.calculatedMax': (aData.general.freezing.calculatedMax = aData.general.freezing.max),
+      // 'system.general.dehydrated.calculatedMax': (aData.general.dehydrated.calculatedMax = aData.general.dehydrated.max),
+      // 'system.general.exhausted.calculatedMax': (aData.general.exhausted.calculatedMax = aData.general.exhausted.max),
+      // 'system.general.freezing.calculatedMax': (aData.general.freezing.calculatedMax = aData.general.freezing.max),
       'system.header.health.max': (aData.attributes.str.value + aData.header.health.mod),
       'system.header.health.calculatedMax': (aData.header.health.calculatedMax = aData.attributes.str.value + aData.header.health.mod),
       'system.header.health.mod': (aData.header.health.mod = parseInt(attrMod.health || 0)),
@@ -541,7 +541,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
     if (actor.actor.type === 'character') {
       await this.actor.update({
-        'system.general.panic.calculatedMax': (aData.general.panic.calculatedMax = aData.general.panic.max),
+        // 'system.general.panic.calculatedMax': (aData.general.panic.calculatedMax = aData.general.panic.max),
         'system.header.stress.mod': (aData.header.stress.mod = parseInt(attrMod.stress || 0)),
 
       });
@@ -1186,8 +1186,16 @@ export class alienrpgActorSheet extends ActorSheet {
   }
   async _onOverwatchToggle(event) {
     let key = $(event.currentTarget).parents('.condition').attr('data-key');
-    if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
-    else await this.actor.addCondition(key);
+    if (key === 'overwatch') {
+      if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
+      else await this.actor.addCondition(key);
+    } else {
+      if (event.type === 'click') {
+        if (!await this.actor.hasCondition(key)) await this.actor.addCondition(key);
+      } else {
+        if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
+      }
+    }
   }
 
   _creatureAcidRoll(event) {

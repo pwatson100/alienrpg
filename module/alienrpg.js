@@ -100,6 +100,7 @@ Hooks.once('init', async function () {
   CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
   CONFIG.ImportFormWrapper = ImportFormWrapper;
 
+  game.alienrpg.config = ALIENRPG;
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty', 'planet-system', 'critical-injury', "spacecraft-crit", "spacecraftmods", "spacecraftweapons"], makeDefault: false });
@@ -404,7 +405,7 @@ Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
 });
 
 Hooks.once('setup', function () {
-  const toLocalize = ['skills', 'attributes'];
+  const toLocalize = ['skills', 'attributes', 'creatureattributes', 'creaturedefence', 'general'];
   for (let o of toLocalize) {
     CONFIG.ALIENRPG[o] = Object.entries(CONFIG.ALIENRPG[o]).reduce((obj, e) => {
       obj[e[0]] = game.i18n.localize(e[1]);
