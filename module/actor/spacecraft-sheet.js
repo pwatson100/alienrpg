@@ -79,23 +79,18 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     data.actor.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
     data.actor.system.label = this.actor.label || {};
     data.actor.system.filters = this._filters;
+    data.actor.system.attributes.damage.max = data.actor.system.attributes.hull.value;
+    data.maxDAM = data.actor.system.attributes.damage.max;
+    data.currentDAM = data.actor.system.attributes.damage.value;
+    data.lostDAM = data.maxDAM - data.currentDAM;
 
-    switch (this.actor.type) {
-      case 'spacecraft':
-        await this._prepareVehicleItems(data);
-        await this._prepareCrew(data);
-        let enrichedFields = [
-          "actor.system.notes",
-        ];
-        await this._enrichTextFields(data, enrichedFields);
-        data.actor.system.attributes.damage.max = data.actor.system.attributes.hull.value;
-        data.actor.system.attributes.damage.icon = this._getClickIcon(data.actor.system.attributes.damage.value, 'damage');
+    await this._prepareVehicleItems(data);
+    await this._prepareCrew(data);
+    let enrichedFields = [
+      "actor.system.notes",
+    ];
+    await this._enrichTextFields(data, enrichedFields);
 
-        break;
-
-      default:
-        break;
-    }
     logger.debug('Actor Sheet derived data:', data);
     //Return data to the sheet
     return data;
@@ -187,7 +182,12 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     data.inventory = Object.values(inventory);
     data.critMin = critMin;
     data.critMaj = critMaj;
+    console.log(data.critMin.length, data.critMaj.length);
+    await this.actor.update({
+      'system.general.critMin': (data.critMin.length),
+      'system.general.critMaj': (data.critMaj.length),
 
+    });
   }
 
 
@@ -287,6 +287,22 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
           let itemDel = this.actor.items.get(element.data('item-id'));
+          if (itemDel.type === 'spacecraft-crit') {
+            switch (itemDel.system.header.type.value) {
+              case '0':
+                if (this.actor.system.general.critMin <= 1) {
+                  this.actor.removeCondition('shipminor');
+                }
+                break;
+              case '1':
+                if (this.actor.system.general.critMaj <= 1) {
+                  this.actor.removeCondition('shipmajor');
+                }
+                break;
+              default:
+                break;
+            }
+          }
           itemDel.delete();
         },
       },
@@ -364,12 +380,8 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
     // plus tohealth and stress
     html.find('.plus-btn').click(this._plusMinusButton.bind(this));
+    html.find('.click-damage-level').on('click contextmenu', this._onClickDamageLevel.bind(this)); // Toggle for radio buttons
 
-    html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
-    html.find('.click-stat-level-con').on('click contextmenu', this._onClickStatLevelCon.bind(this)); // Toggle for radio buttons
-
-
-    // html.find('.pwr-btn').click(this._supplyRoll.bind(this));
 
     html.find('.inline-edit').change(this._inlineedit.bind(this));
 
@@ -459,7 +471,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     return this.actor.createEmbeddedDocuments(itemData);
   }
 
-  _inlineedit(event) {
+  async _inlineedit(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
     // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
@@ -467,7 +479,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     let item = this.actor.items.get(itemId);
     let temp = dataset.dataset.mod;
     // let field = temp.slice(5);
-    return item.update({ [temp]: dataset.value }, {});
+    return await item.update({ [temp]: dataset.value }, {});
   }
 
   /**
@@ -527,7 +539,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
   _rollMinorCDMan(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
-    this.actor.rollCrit(this.actor, this.actor.type, dataset);
+    this.actor.rollCritMan(this.actor, this.actor.type, dataset);
   }
 
   _rollMajorCD(event) {
@@ -538,7 +550,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
   _rollMajorCDMan(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
-    this.actor.rollCrit(this.actor, this.actor.type, dataset);
+    this.actor.rollCritMan(this.actor, this.actor.type, dataset);
   }
 
   _crewPanic(event) {
@@ -554,19 +566,19 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     this.actor.rollAbilityMod(panicActor, dataset);
   }
 
-  _activate(event) {
+  async _activate(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
-    item.update({ 'system.header.active': true });
+    await item.update({ 'system.header.active': true });
   }
-  _deactivate(event) {
+  async _deactivate(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
-    item.update({ 'system.header.active': false });
+    await item.update({ 'system.header.active': false });
   }
 
   _plusMinusButton(event) {
@@ -576,162 +588,25 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     this.actor.stressChange(this.actor, dataset);
   }
 
-  // _stuntBtn(event) {
-  //   event.preventDefault();
-  //   let li = $(event.currentTarget).parents('.grid-container');
-  //   let li2 = li.children('#panel');
-  //   let item = '';
-  //   let str = '';
-  //   let chatData = '';
-  //   let temp2 = '';
-  //   let temp3 = '';
-  //   const dataset = event.currentTarget.dataset;
-  //   let langItem = dataset.pmbut;
-  //   let langStr = langItem;
-
-  //   var newLangStr = langStr.replace(/\s+/g, '');
-  //   let langTemp = 'ALIENRPG.' + [newLangStr];
-  //   temp3 = game.i18n.localize(langTemp);
-
-  //   try {
-  //     item = game.items.getName(dataset.pmbut);
-  //     str = item.name;
-  //     temp2 = item.system.description;
-  //     if (temp2 != null || temp2.length) {
-  //       chatData = item.system.description;
-  //     }
-  //     if (temp3.startsWith('<ol>') && chatData.startsWith('<h2>No Stunts Entered</h2>')) {
-  //       chatData = temp3;
-  //     }
-  //   } catch {
-  //     if (temp3.startsWith('<ol>')) {
-  //       chatData = temp3;
-  //     } else {
-  //       chatData = '<h2>No Stunts Entered</h2>';
-  //     }
-  //   }
-
-  //   let div = $(`<div class="panel Col3">${chatData}</div>`);
-  //   // Toggle summary
-  //   if (li2.hasClass('expanded')) {
-  //     let summary = li2.children('.panel');
-  //     summary.slideUp(200, () => summary.remove());
-  //   } else {
-  //     li2.append(div.hide());
-  //     div.slideDown(200);
-  //   }
-  //   li2.toggleClass('expanded');
-  // }
-
-  // _talentBtn(event) {
-  //   event.preventDefault();
-  //   let li = $(event.currentTarget).parents('.grid-container');
-  //   let li2 = li.children('#panel');
-  //   let item = '';
-  //   let str = '';
-  //   let temp1 = '';
-  //   let temp2 = '';
-  //   let temp3 = '';
-  //   let chatData = '';
-  //   const dataset = event.currentTarget.dataset;
-
-  //   item = this.actor.items.get(dataset.pmbut);
-  //   str = item.name;
-  //   temp2 = item.system.general.comment.value;
-  //   if (temp2 != null && temp2.length > 0) {
-  //     chatData = item.system.general.comment.value;
-  //   } else {
-  //     // item = dataset.pmbut;
-  //     // str = item;
-  //     var newStr = str.replace(/\s+/g, '');
-  //     temp1 = 'ALIENRPG.' + [newStr];
-  //     temp3 = game.i18n.localize(temp1);
-  //     if (temp3.startsWith('<p>')) {
-  //       chatData = temp3;
-  //     } else {
-  //       chatData = '<p style="font-size: xx-large;">👾</p>';
-  //     }
-  //   }
-
-  //   let div = $(`<div class="panel Col3">${chatData}</div>`);
-
-  //   // Toggle summary
-  //   if (li2.hasClass('expanded')) {
-  //     let summary = li2.children('.panel');
-  //     summary.slideUp(200, () => summary.remove());
-  //   } else {
-  //     li2.append(div.hide());
-  //     div.slideDown(200);
-  //   }
-  //   li2.toggleClass('expanded');
-  // }
-
-  _onClickStatLevel(event) {
+  async _onClickDamageLevel(event) {
     event.preventDefault();
-    this.actor.checkMarks(this.actor, event);
-    this.submit(event);
-  }
-
-  _onClickStatLevelCon(event) {
-    event.preventDefault();
-    this.actor.conCheckMarks(this.actor, event);
-    this.submit(event);
-  }
-
-  /**
-   * Get the font-awesome icon used to display a certain level of radiation
-   * @private
-  */
-
-  _getClickIcon(level, stat) {
-    const maxPoints = this.object.system.attributes[stat].max;
-    const icons = {};
-    const usedPoint = '<i class="far fa-dot-circle"></i>';
-    const unUsedPoint = '<i class="far fa-circle"></i>';
-
-    for (let i = 0; i <= maxPoints; i++) {
-      let iconHtml = '';
-
-      for (let iconColumn = 1; iconColumn <= maxPoints; iconColumn++) {
-        iconHtml += iconColumn <= i ? usedPoint : unUsedPoint;
+    let damage = this.actor.system.attributes.damage;
+    if (event.type == "contextmenu") { // left click
+      if (damage.value > 0) {
+        if (damage.value === 0) {
+          return;
+        }
+        return await this.actor.update({ ["system.attributes.damage.value"]: damage.value - 1 });
       }
-
-      icons[i] = iconHtml;
-    }
-
-    return icons[level];
-  }
-  _getContitionIcon(level, stat) {
-    const maxPoints = this.object.system.attributes[stat].max;
-    const icons = {};
-    const usedPoint = '<i class="far fa-dot-circle"></i>';
-    const unUsedPoint = '<i class="far fa-circle"></i>';
-
-    for (let i = 0; i <= maxPoints; i++) {
-      let iconHtml = '';
-
-      for (let iconColumn = 1; iconColumn <= maxPoints; iconColumn++) {
-        iconHtml += iconColumn <= i ? usedPoint : unUsedPoint;
+    } else { // right click
+      if (damage.value < damage.max) {
+        if (damage.value >= 20) {
+          return;
+        }
+        return await this.actor.update({ ["system.attributes.damage.value"]: damage.value + 1 });
       }
-
-      icons[i] = iconHtml;
     }
-    return icons[level];
   }
-
-  // _supplyRoll(event) {
-  //   event.preventDefault();
-  //   const element = event.currentTarget;
-  //   const dataset = element.dataset;
-  //   // If it's a power roll it will have an item number so test if it's zero
-  //   if (dataset.item === '0') return;
-  //   const lTemp = 'ALIENRPG.' + dataset.spbutt;
-  //   // If this is a power roll get the exact id of the item to process
-  //   const tItem = dataset.id || 0;
-  //   const label = game.i18n.localize(lTemp) + ' ' + game.i18n.localize('ALIENRPG.Supply');
-  //   const consUme = dataset.spbutt.toLowerCase();
-  //   this.actor.consumablesCheck(this.actor, consUme, label, tItem);
-  // }
 
   _currencyField(event) {
     event.preventDefault();
@@ -763,8 +638,6 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
       }
       return this.actor.addVehicleOccupant(actorId);
     }
-
-
   }
   _onCrewEdit(event) {
     event.preventDefault();
@@ -774,7 +647,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     return actor.sheet.render(true);
   }
 
-  _onCrewRemove(event) {
+  async _onCrewRemove(event) {
     event.preventDefault();
     const actorData = this.actor;
     const elem = event.currentTarget;
@@ -782,16 +655,17 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     const occupants = this.actor.removeVehicleOccupant(crewId);
     let crewNumber = actorData.system.crew.passengerQty;
     crewNumber--;
-    actorData.update({ 'system.crew.passengerQty': crewNumber });
-    return this.actor.update({ 'system.crew.occupants': occupants });
+    await actorData.update({ 'system.crew.passengerQty': crewNumber });
+    return await actorData.update({ 'system.crew.occupants': occupants });
+
   }
 
-  _onChangePosition(event) {
+  async _onChangePosition(event) {
     event.preventDefault();
     const elem = event.currentTarget;
     const crewId = elem.closest('.occupant').dataset.crewId;
     const position = elem.value;
-    return this.actor.addVehicleOccupant(crewId, position);
+    return await this.actor.addVehicleOccupant(crewId, position);
   }
 
   async _shipPhase(event) {

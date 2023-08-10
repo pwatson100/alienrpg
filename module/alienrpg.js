@@ -188,6 +188,16 @@ Hooks.once('init', async function () {
     return txt.replace(regexp, '');
   });
 
+  /*
+* Repeat given markup with n times
+*/
+  Handlebars.registerHelper("times", function (n, block) {
+    var result = "";
+    for (let i = 0; i < n; ++i) {
+      result += block.fn(i);
+    }
+    return result;
+  });
 
 });
 

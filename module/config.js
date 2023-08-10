@@ -92,6 +92,24 @@ ALIENRPG.conditionEffects = [
     label: 'ALIENRPG.Radiation',
     icon: 'icons/svg/radiation.svg',
   },
+  {
+    id: 'criticalinj',
+    name: 'ALIENRPG.CriticalInjuries',
+    label: 'ALIENRPG.CriticalInjuries',
+    icon: 'icons/skills/wounds/injury-pain-body-orange.webp',
+  },
+  {
+    id: 'shipminor',
+    name: 'ALIENRPG.MINOR-COMPONENT-DAMAGE',
+    label: 'ALIENRPG.MINOR-COMPONENT-DAMAGE',
+    icon: 'systems/alienrpg/images/lightning-spanner.webp',
+  },
+  {
+    id: 'shipmajor',
+    name: 'ALIENRPG.MAJOR-COMPONENT-DAMAGE',
+    label: 'ALIENRPG.MAJOR-COMPONENT-DAMAGE',
+    icon: 'systems/alienrpg/images/cogsplosion.webp',
+  },
 ];
 
 ALIENRPG.vehicle = {

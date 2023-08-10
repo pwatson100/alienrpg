@@ -296,6 +296,8 @@
     "rollManCreAttMax": "Number must be between 1 and 6",
     "rollManCreatureAttack": "Roll Manual Creature Attack.",
     "RollManCrit": "Roll Manual Critical Injury",
+    "RollManShipMajorCrit": "Number must be between 2 and 12",
+    "RollManShipMinorCrit": "Number must be between 1 and 44",
     "RollManSynCrit": "Enter D6 Number",
     "RollMod": "Roll Modifier",
     "ROLLONCREATURETABLE": " Draw Alien Creature Tables",

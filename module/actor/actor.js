@@ -180,24 +180,12 @@ export class alienrpgActor extends Actor {
 
   async _checkOverwatch(actorData) {
     // debugger;
-    const conditions =
-      [
-        'starving',
-        'dehydrated',
-        'exhausted',
-        'freezing',
-        'overwatch',
-        'panicked'
-      ];
-
-
     let conDition = this.hasCondition('overwatch');
     if (conDition != undefined || conDition) {
       setProperty(actorData, 'system.general.overwatch', true);
     } else {
       setProperty(actorData, 'system.general.overwatch', false);
     }
-
 
     let conDition2 = this.hasCondition('starving');
     if (conDition2 != undefined || conDition2) {
@@ -226,22 +214,10 @@ export class alienrpgActor extends Actor {
     let conDition6 = this.hasCondition('panicked');
     // debugger;
     if (conDition6 != undefined || conDition6) {
-      setProperty(actorData, 'system.general.panic.value', true);
+      setProperty(actorData, 'system.general.panic.value', 1);
     } else {
-      setProperty(actorData, 'system.general.panic.value', false);
+      setProperty(actorData, 'system.general.panic.value', 0);
     }
-
-    // conditions.forEach(statCheck);
-
-    // function statCheck(value) {
-    //   let conDition2 = this.hasCondition(value);
-    //   if (conDition2 != undefined || conDition2) {
-    //     setProperty(actorData, `system.general.${value}.value`, true);
-    //   } else {
-    //     setProperty(actorData, `system.general.${value}.value`, false);
-    //   }
-    // }
-
 
   }
 
@@ -253,6 +229,7 @@ export class alienrpgActor extends Actor {
     let effectiveActorType = actor.type;
     let attrib = dataset.attr;
     let blind = false;
+    let oldPanic = 0;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
 
@@ -394,6 +371,7 @@ export class alienrpgActor extends Actor {
                   let targetLock = parseInt(html.find('[name=targetLock]')[0]?.value);
                   let targetMod = parseInt(html.find('[name=targetMod]')[0]?.value);
                   modifier = parseInt(modifier);
+                  stressMod = parseInt(stressMod);
                   targetLock = parseInt(targetLock);
                   targetMod = parseInt(targetMod);
                   baseModifier = parseInt(baseModifier);
@@ -457,13 +435,10 @@ export class alienrpgActor extends Actor {
         const roll = new Roll(modRoll);
         roll.evaluate({ async: false });
         const customResults = await table.roll({ roll });
-        console.warn('customResults', customResults);
-        let oldPanic = actor.system.general.panic.lastRoll;
-        debugger;
-        let manicvaluenew = actor.system.general.panic.value;
-        if (customResults.roll.total >= 7 && actor.system.general.panic.value === 0) {
-          // await actor.addCondition('panicked');
 
+        oldPanic = actor.system.general.panic.lastRoll;
+
+        if (customResults.roll.total >= 7 && (actor.system.general.panic.value === 0)) {
           this.causePanic(actor);
         }
 
@@ -488,10 +463,11 @@ export class alienrpgActor extends Actor {
           '</span></h2>';
 
         let mPanic = customResults.roll.total < actor.system.general.panic.lastRoll;
-
         let pCheck = oldPanic + 1;
-        if (actor.system.general.panic.value && mPanic) {
-          actor.update({ 'system.general.panic.lastRoll': pCheck });
+        console.log(mPanic, pCheck, oldPanic);
+        // debugger;
+        if (mPanic && (actor.system.general.panic.value === 1)) {
+          await actor.update({ 'system.general.panic.lastRoll': pCheck });
 
           chatMessage +=
             '<h4 style="font-weight: bolder"><i><b>' +
@@ -520,7 +496,7 @@ export class alienrpgActor extends Actor {
             chatMessage += this.morePanic(pCheck);
           }
         } else {
-          if (actor.type === 'character') actor.update({ 'system.general.panic.lastRoll': customResults.roll.total });
+          if (actor.type === 'character') await actor.update({ 'system.general.panic.lastRoll': customResults.roll.total });
           pCheck = customResults.roll.total;
           chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.Roll') + ' ' + `${pCheck}` + ' </b></i></h4>';
           // chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
@@ -791,22 +767,27 @@ export class alienrpgActor extends Actor {
     if (actor.type != 'character') return;
 
     if (actor.system.general.panic.lastRoll > 0) {
-      actor.removeCondition('panicked');
-      actor.update({
-        'system.general.panic.lastRoll': 0
+      await actor.update({
+        'system.general.panic.lastRoll': 0,
+        'system.general.panic.value': 0,
       });
 
+      await actor.removeCondition('panicked');
+      ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+    } else {
+      await actor.removeCondition('panicked');
       ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
     }
   }
 
   async causePanic(actor) {
+    await actor.update({ 'system.general.panic.value': 1 });
     await actor.addCondition('panicked');
-    // actor.update({ 'system.general.panic.value': true });
+    return;
   }
 
   async addCondition(effect) {
-    if (typeof effect === 'string') effect = duplicate(ALIENRPG.conditionEffects.find((e) => e.id == effect));
+    if (typeof (effect) === "string") effect = duplicate(game.alienrpg.config.conditionEffects.find(e => e.id == effect));
     if (!effect) return 'No Effect Found';
     if (!effect.id) return 'Conditions require an id field';
 
@@ -817,32 +798,21 @@ export class alienrpgActor extends Actor {
       // if (game.version < '11') {
       effect.label = game.i18n.localize(effect.label).toLowerCase();
       effect.name = game.i18n.localize(effect.name).toLowerCase();
-
       effect['flags.core.statusId'] = effect.id;
       effect['statuses'] = effect.id;
-
-      // } else {
-      // }
-
       delete effect.id;
-
       return await this.createEmbeddedDocuments('ActiveEffect', [effect]);
     }
   }
 
   async removeCondition(effect) {
-    if (typeof effect === 'string') effect = duplicate(ALIENRPG.conditionEffects.find((e) => e.id == effect));
+    if (typeof (effect) === "string") effect = duplicate(game.alienrpg.config.conditionEffects.find(e => e.id == effect));
     if (!effect) return 'No Effect Found';
-
     if (!effect.id) return 'Conditions require an id field';
     // debugger;
     let existing = this.hasCondition(effect.id);
     if (existing) {
-      let spud = existing._id
-
-      return await this.deleteEmbeddedDocuments('ActiveEffect', [spud]);
-
-      // return existing.delete();
+      return await this.deleteEmbeddedDocuments('ActiveEffect', [existing._id]);
     }
   }
 
@@ -852,78 +822,12 @@ export class alienrpgActor extends Actor {
       existing = this.effects.find((i) => i.getFlag('core', 'statusId') == conditionKey);
     } else {
       existing = this.effects.find((i) => (
-        i.name == conditionKey
+        i.name === conditionKey
       )
       );
     }
 
     return existing;
-  }
-
-  async checkMarks(actor, event) {
-    const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    const max = field.data('max') == undefined ? 4 : field.data('max');
-    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
-    const level = parseFloat(field.val());
-    let newLevel = ''; // Toggle next level - forward on click, backwards on right
-
-    if (event.type === 'click') {
-      newLevel = Math.clamped(level + 1, 0, max);
-
-    } else if (event.type === 'contextmenu') {
-      newLevel = Math.clamped(level - 1, 0, max);
-      if (statIsItemType === 'panic') {
-        actor.checkAndEndPanic(actor);
-
-      }
-    }
-    // Update the field value and save the form
-    field[0].value = newLevel;
-    return event;
-  }
-
-  async conCheckMarks(actor, event) {
-    const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    const max = field.data('max') == undefined ? 4 : field.data('max');
-    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
-    const level = parseFloat(field.val());
-    let newLevel = ''; // Toggle next level - forward on click, backwards on right
-    let aTokens = '';
-    // debugger;
-    if (event.type === 'click') {
-      newLevel = Math.clamped(level + 1, 0, max);
-
-      switch (field[0].name) {
-        case 'system.general.radiation.value':
-          await actor.addCondition('radiation');
-          actor.rollAbility(actor, event.currentTarget.dataset);
-
-          break;
-
-        default:
-          break;
-      }
-    } else if (event.type === 'contextmenu') {
-      newLevel = Math.clamped(level - 1, 0, max);
-      switch (field[0].name) {
-        case 'system.general.radiation.value':
-          {
-            if (actor.system.general.radiation.value <= 1) {
-              await actor.removeCondition('radiation');
-            }
-            await this.createChatMessage(game.i18n.localize('ALIENRPG.RadiationReduced'), actor.id)
-          }
-
-          break;
-
-        default:
-          break;
-      }
-    } // Update the field value and save the form
-    // console.log(field[0].value);
-    field[0].value = newLevel;
-    // console.log(field[0].value);
-    return event;
   }
 
   async consumablesCheck(actor, consUme, label, tItem, supplyModifier) {
@@ -1361,7 +1265,6 @@ export class alienrpgActor extends Actor {
       roll.evaluate({ async: false });
       test1 = await atable.draw({ roll: roll, displayChat: false });
     }
-
     const messG = test1.results[0].text;
     switch (type) {
       case 'character':
@@ -1380,14 +1283,20 @@ export class alienrpgActor extends Actor {
             }
           }
           switch (testArray[3]) {
-            case 'Yes ':
+            case `Yes `:
               cFatal = true;
               break;
-            case 'Yes, -1 ':
-              cFatal = true;
+            case `Yes, –1 `:
+              {
+                cFatal = true;
+                speanex += '<br> -1 to <strong>MEDICAL</strong> roll';
+              }
               break;
-            case 'Yes, -2 ':
-              cFatal = true;
+            case `Yes, –2 `:
+              {
+                cFatal = true;
+                speanex += '<br> -2 to <strong>MEDICAL</strong> roll';
+              }
               break;
             default:
               cFatal = false;
@@ -1542,10 +1451,30 @@ export class alienrpgActor extends Actor {
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
     };
 
+    switch (type) {
+      case 'spacecraft':
+        if (shipCritType === 'Minor') {
+          await this.addCondition('shipminor');
+        } else {
+          await this.addCondition('shipmajor');
+        }
+        break;
+      case 'character':
+      case 'synthetic':
+        await this.addCondition('criticalinj');
+        break;
+      case 'creature':
+        console.log("it's a Creature Crit")
+        break;
+
+      default:
+        break;
+    }
+
+
+
     ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
     return ChatMessage.create(chatData);
-    // }
-    // } catch (error) { }
   }
 
   async rollCritMan(actor, type, dataset) {
@@ -1578,15 +1507,30 @@ export class alienrpgActor extends Actor {
               switch (type) {
                 case 'synthetic':
                   if (manCrit > 6) {
-                    ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+                    ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManSynCrit'));
                     return;
                   }
                   break;
 
                 case 'character':
                   if (!manCrit.match(/^[1-6]?[1-6]$/gm)) {
-                    ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+                    ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManCharCrit'));
                     return;
+                  }
+                  break;
+                case 'spacecraft':
+                  if (dataset.crbut === 'minor') {
+                    if (!manCrit.match(/^[1-44]?[1-44]$/gm)) {
+                      ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManShipMajorCrit'));
+                      return;
+                    }
+                  } else {
+                    if (dataset.crbut === 'major') {
+                      if (!manCrit.match(/^[1-12]?[1-12]$/gm)) {
+                        ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManShipMajorCrit'));
+                        return;
+                      }
+                    }
                   }
                   break;
                 default:
@@ -1607,6 +1551,14 @@ export class alienrpgActor extends Actor {
       case 'creature':
         myRenderTemplate('systems/alienrpg/templates/dialog/roll-syn-manual-crit-dialog.html');
         break;
+      case 'spacecraft':
+        if (dataset.crbut === 'minor') {
+          myRenderTemplate('systems/alienrpg/templates/dialog/roll-spacecraft-minor-crit-dialog.html');
+        } else {
+          myRenderTemplate('systems/alienrpg/templates/dialog/roll-spacecraft-major-crit-dialog.html');
+        }
+
+        break;
 
       default:
         break;
@@ -1623,7 +1575,7 @@ export class alienrpgActor extends Actor {
    * @param {boolean} [isExposed=false]   Whether it's an exposed position
    * @returns {VehicleOccupant}
    */
-  addVehicleOccupant(crewId, position = 'PASSENGER') {
+  async addVehicleOccupant(crewId, position = 'PASSENGER') {
     if (this.type !== 'vehicles' && this.type !== 'spacecraft') return;
     if (this.type === 'vehicles') {
       if (!ALIENRPG.vehicle.crewPositionFlags.includes(position)) {
@@ -1648,9 +1600,9 @@ export class alienrpgActor extends Actor {
 
     // Adds the new occupant.
     data.crew.occupants.push(occupant);
-    this.update({ 'data.crew.occupants': data.crew.occupants });
+    await this.update({ 'data.crew.occupants': data.crew.occupants });
 
-    this.update({ 'data.crew.passengerQty': data.crew.occupants.length });
+    await this.update({ 'data.crew.passengerQty': data.crew.occupants.length });
 
     return occupant;
   }
@@ -1709,7 +1661,7 @@ export class alienrpgActor extends Actor {
     };
 
     ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
-    ChatMessage.create(chatData);
+    return ChatMessage.create(chatData);
   }
 }
 export default alienrpgActor;

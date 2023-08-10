@@ -145,59 +145,101 @@
 						{{#if actor.system.general.sp.value}}
 							<div class="dots experience">
 								<h2 class="resource-label">{{localize 'ALIENRPG.cinematic'}}</h2>
-								<div class="xp_dots_pos">
-									<h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
-									<input type="hidden" name="system.general.sp.value" data-max="{{actor.system.general.sp.max}}" value="{{actor.system.general.sp.value}}" data-dtype="Number">
-									<span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.sp.icon}}}</span>
+								<h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
+								<div class="xp_dots_pos newdots click-sp-stat-level">
+									{{#times currentSP}}
+										<i class=" far fa-dot-circle "></i>
+									{{/times}}
+									{{#times lostSP}}
+										<i class=" far fa-circle "></i>
+									{{/times}}
 								</div>
+
 							</div>
 						{{else if actor.system.general.xp.value }}
 							<div class="dots experience">
 								<h2 class="resource-label">{{localize 'ALIENRPG.campaign'}}</h2>
-								<div class="xp_dots_pos">
-									<h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
-									<input type="hidden" name="system.general.xp.value" data-max="{{actor.system.general.xp.max}}" value="{{actor.system.general.xp.value}}" data-dtype="Number">
-									<span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.xp.icon}}}</span>
+								<h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
+								<div class="xp_dots_pos newdots click-xp-stat-level">
+									{{#times currentXP}}
+										<i class=" far fa-dot-circle "></i>
+									{{/times}}
+									{{#times lostXP}}
+										<i class=" far fa-circle "></i>
+									{{/times}}
 								</div>
 							</div>
 						{{else}}
-							<div class="dots experience sp_faded">
-								<h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
-								<input type="hidden" name="system.general.sp.value" data-max="{{actor.system.general.sp.max}}" value="{{actor.system.general.sp.value}}" data-dtype="Number">
-								<span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.sp.icon}}}</span>
+							<h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
+
+							<div class="newdots click-sp-stat-level sp_faded">
+								{{#times currentSP}}
+									<i class=" far fa-dot-circle "></i>
+								{{/times}}
+								{{#times lostSP}}
+									<i class=" far fa-circle "></i>
+								{{/times}}
 							</div>
-							<div class="dots experience xp_faded">
-								<h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
-								<input type="hidden" name="system.general.xp.value" data-max="{{actor.system.general.xp.max}}" value="{{actor.system.general.xp.value}}" data-dtype="Number">
-								<span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.xp.icon}}}</span>
+							<h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
+							<div class="newdots click-xp-stat-level xp_faded">
+								{{#times currentXP}}
+									<i class=" far fa-dot-circle "></i>
+								{{/times}}
+								{{#times lostXP}}
+									<i class=" far fa-circle "></i>
+								{{/times}}
 							</div>
 						{{/if}}
 					</div>
 
+
 					<div class="crt_Item2_synth">
 						<h2 class="Heading">{{ localize 'ALIENRPG.Conditions'}}</h2>
 						{{#if actor.system.header.synthstress}}
-							<div class="dots starving ">
-								<input type="hidden" name="system.general.starving.value" data-max="{{actor.system.general.starving.max}}" value="{{{actor.system.general.starving.value}}}" data-dtype="Number">
-								<h3 class="click-stat-level-con resource-label " title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.starving.icon}}} {{ localize 'ALIENRPG.Starving'}}
-								</h3>
-							</div>
-							<div class="dots dehydrated ">
-								<input type="hidden" name="system.general.dehydrated.value" data-max="{{actor.system.general.dehydrated.max}}" value="{{{actor.system.general.dehydrated.value}}}" data-dtype="Number">
-								<h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.dehydrated.icon}}} {{ localize 'ALIENRPG.Dehydrated'}}
-								</h3>
-							</div>
+							<div class="dots_conditions">
+								<div class="dots starving ">
+									<h4 class="condition resource-label" data-key="starving" title="{{ localize 'ALIENRPG.ConButtons'}}"> <a class="overwatch-toggle">
+											{{#ife actor.system.general.starving.value true}}
+												<i class="far fa-check-square"></i>
+						{{else}}
+							<i class="far fa-square"></i>
+											{{/ife}}
+										</a>{{ localize 'ALIENRPG.Starving'}}
+									</h4>
+								</div>
+								<div class="dots dehydrated ">
 
-							<div class="dots exhausted ">
-								<input type="hidden" name="system.general.exhausted.value" data-max="{{actor.system.general.exhausted.max}}" value="{{{actor.system.general.exhausted.value}}}" data-dtype="Number">
-								<h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}"> {{{actor.system.general.exhausted.icon}}} {{ localize 'ALIENRPG.Exhausted'}}
-								</h3>
-							</div>
+									<h4 class="condition resource-label" data-key="dehydrated" title="{{ localize 'ALIENRPG.ConButtons'}}"> <a class="overwatch-toggle">
+											{{#ife actor.system.general.dehydrated.value true}}
+												<i class="far fa-check-square"></i>
+						{{else}}
+							<i class="far fa-square"></i>
+											{{/ife}}
+										</a> {{ localize 'ALIENRPG.Dehydrated'}}
+									</h4>
+								</div>
+								<div class="dots exhausted ">
 
-							<div class="dots freezing ">
-								<input type="hidden" name="system.general.freezing.value" data-max="{{actor.system.general.freezing.max}}" value="{{{actor.system.general.freezing.value}}}" data-dtype="Number">
-								<h3 class="click-stat-level-con resource-label" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.freezing.icon}}} {{ localize 'ALIENRPG.Freezing'}}
-								</h3>
+									<h4 class="condition resource-label" data-key="exhausted" title="{{ localize 'ALIENRPG.ConButtons'}}"> <a class="overwatch-toggle">
+											{{#ife actor.system.general.exhausted.value true}}
+												<i class="far fa-check-square"></i>
+						{{else}}
+							<i class="far fa-square"></i>
+											{{/ife}}
+										</a> {{ localize 'ALIENRPG.Exhausted'}}
+									</h4>
+								</div>
+								<div class="dots freezing ">
+
+									<h4 class="condition resource-label" data-key="freezing" title="{{ localize 'ALIENRPG.ConButtons'}}"> <a class="overwatch-toggle">
+											{{#ife actor.system.general.freezing.value true}}
+												<i class="far fa-check-square"></i>
+						{{else}}
+							<i class="far fa-square"></i>
+											{{/ife}}
+										</a> {{ localize 'ALIENRPG.Freezing'}}
+									</h4>
+								</div>
 							</div>
 						{{else}}
 							<div style="margin-bottom: 10px;">{{localize 'ALIENRPG.SynthDontNeed'}}</div>
@@ -214,6 +256,7 @@
 								</a>
 								{{localize 'ALIENRPG.Overwatch'}}
 							</h3>
+
 						</div>
 						<div class="crt_grid_SynthStress synth_fake_check" style="margin-bottom: 10px;">
 							<div class="imitate-human_left">
@@ -227,14 +270,26 @@
 						{{#if actor.system.general.radiation.value}}
 							<div class="dots radiation rad_glow" style="height: auto;">
 								<h4 class="resource-label">{{ localize 'ALIENRPG.Radiation'}}</h4>
-								<input type="hidden" name="system.general.radiation.value" data-max="{{actor.system.general.radiation.max}}" value="{{actor.system.general.radiation.value}}" data-dtype="Number">
-								<span class="click-stat-level-con" title="{{ localize 'ALIENRPG.ConButtons'}}" data-label="{{ localize 'ALIENRPG.Radiation'}}" data-roll="{{actor.system.general.radiation.value}}">{{{actor.system.general.radiation.icon}}}</span>
+								<div class="newdots click-stat-level-con">
+									{{#times currentRAD}}
+										<i class=" far fa-dot-circle "></i>
+									{{/times}}
+									{{#times lostRAD}}
+										<i class=" far fa-circle "></i>
+									{{/times}}
+								</div>
 							</div>
 						{{else}}
 							<div class="dots radiation" style="height: auto;">
 								<h4 class="resource-label">{{ localize 'ALIENRPG.Radiation'}}</h4>
-								<input type="hidden" name="system.general.radiation.value" data-max="{{actor.system.general.radiation.max}}" value="{{actor.system.general.radiation.value}}" data-dtype="Number">
-								<span class="click-stat-level-con" title="{{ localize 'ALIENRPG.ConButtons'}}" data-label="{{ localize 'ALIENRPG.Radiation'}}" data-roll="{{actor.system.general.radiation.value}}">{{{actor.system.general.radiation.icon}}}</span>
+								<div class="newdots click-stat-level-con">
+									{{#times currentRAD}}
+										<i class=" far fa-dot-circle "></i>
+									{{/times}}
+									{{#times lostRAD}}
+										<i class=" far fa-circle "></i>
+									{{/times}}
+								</div>
 							</div>
 						{{/if}}
 					</div>

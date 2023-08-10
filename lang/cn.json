@@ -296,6 +296,8 @@
     "rollManCreAttMax": "数字必须介于 1 和 6 之间",
     "rollManCreatureAttack": "滚动手动生物攻击。",
     "RollManCrit": "滚动手动重伤",
+    "RollManShipMajorCrit": "数字必须介于 2 和 12 之间",
+    "RollManShipMinorCrit": "数字必须介于 1 和 44 之间",
     "RollManSynCrit": "输入 D6 号码",
     "RollMod": "投掷修正值",
     "ROLLONCREATURETABLE": "绘制外星生物表",

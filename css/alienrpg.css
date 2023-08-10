@@ -2309,7 +2309,7 @@ button:focus {
 .critical-inj {
   display: grid;
   grid-template-areas: "crit1 crit2 crit3 crit4";
-  grid-template-columns: 5% 21% 70% 3%;
+  grid-template-columns: 5% 31% 60% 3%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -4519,6 +4519,17 @@ combobox:focus {
   margin-right: 8px;
   font-weight: 700;
   font-size: 15px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.alienrpg .newdots {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }

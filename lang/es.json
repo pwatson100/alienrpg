@@ -296,6 +296,8 @@
     "rollManCreAttMax": "El número debe estar entre 1 y 6",
     "rollManCreatureAttack": "Tira Ataque de criatura manual.",
     "RollManCrit": "Roll Manual Lesiones Críticas",
+    "RollManShipMajorCrit": "El número debe estar entre 2 y 12",
+    "RollManShipMinorCrit": "El número debe estar entre 1 y 44",
     "RollManSynCrit": "Ingrese el número D6",
     "RollMod": "Modificador de tirada",
     "ROLLONCREATURETABLE": "Dibujar tablas de criaturas alienígenas",

@@ -25,13 +25,8 @@ export class alienrpgActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
-      // template: 'systems/alienrpg/templates/actor/actor-sheet.html',
       width: 800,
       height: 900 - 'min-content',
-      // height: 900,
-      // Creature sheet size
-      //       width: 750,
-      //       height: 650,
       tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
     });
   }
@@ -91,14 +86,21 @@ export class alienrpgActorSheet extends ActorSheet {
 
     switch (this.actor.type) {
       case 'character':
-        data.actor.system.general.radiation.icon = this._getClickIcon(data.actor.system.general.radiation.value, 'radiation');
-        data.actor.system.general.xp.icon = this._getClickIcon(data.actor.system.general.xp.value, 'xp');
-        data.actor.system.general.sp.icon = this._getClickIcon(data.actor.system.general.sp.value, 'sp');
-        // data.actor.system.general.starving.icon = this._getContitionIcon(data.actor.system.general.starving.value, 'starving');
-        // data.actor.system.general.dehydrated.icon = this._getContitionIcon(data.actor.system.general.dehydrated.value, 'dehydrated');
-        // data.actor.system.general.exhausted.icon = this._getContitionIcon(data.actor.system.general.exhausted.value, 'exhausted');
-        // data.actor.system.general.freezing.icon = this._getContitionIcon(data.actor.system.general.freezing.value, 'freezing');
-        // data.actor.system.general.panic.icon = this._getContitionIcon(data.actor.system.general.panic.value, 'panic');
+        data.maxRAD = data.actor.system.general.radiation.max;
+        data.currentRAD = data.actor.system.general.radiation.value;
+        data.lostRAD = data.maxRAD - data.currentRAD;
+        data.fillRAD = data.maxRAD < 10 ? 10 - data.maxRAD : 0; // needed for layout
+        // 
+        data.maxXP = data.actor.system.general.xp.max;
+        data.currentXP = data.actor.system.general.xp.value;
+        data.lostXP = data.maxXP - data.currentXP;
+        data.fillXP = data.maxXP < 20 ? 20 - data.maxXP : 0; // needed for layout
+        // 
+        data.maxSP = data.actor.system.general.sp.max;
+        data.currentSP = data.actor.system.general.sp.value;
+        data.lostSP = data.maxSP - data.currentSP;
+        data.fillSP = data.maxSP < 3 ? 3 - data.maxSP : 0; // needed for layout
+
         await this._characterData(data);
         await this.actor._checkOverwatch(data.actor);
         await this._prepareItems(data);
@@ -121,13 +123,20 @@ export class alienrpgActorSheet extends ActorSheet {
         break;
 
       case 'synthetic':
-        data.actor.system.general.radiation.icon = this._getClickIcon(data.actor.system.general.radiation.value, 'radiation');
-        data.actor.system.general.xp.icon = this._getClickIcon(data.actor.system.general.xp.value, 'xp');
-        data.actor.system.general.sp.icon = this._getClickIcon(data.actor.system.general.sp.value, 'sp');
-        // data.actor.system.general.starving.icon = this._getContitionIcon(data.actor.system.general.starving.value, 'starving');
-        // data.actor.system.general.dehydrated.icon = this._getContitionIcon(data.actor.system.general.dehydrated.value, 'dehydrated');
-        // data.actor.system.general.exhausted.icon = this._getContitionIcon(data.actor.system.general.exhausted.value, 'exhausted');
-        // data.actor.system.general.freezing.icon = this._getContitionIcon(data.actor.system.general.freezing.value, 'freezing');
+        data.maxRAD = data.actor.system.general.radiation.max;
+        data.currentRAD = data.actor.system.general.radiation.value;
+        data.lostRAD = data.maxRAD - data.currentRAD;
+        data.fillRAD = data.maxRAD < 10 ? 10 - data.maxRAD : 0; // needed for layout
+
+        data.maxXP = data.actor.system.general.xp.max;
+        data.currentXP = data.actor.system.general.xp.value;
+        data.lostXP = data.maxXP - data.currentXP;
+        data.fillXP = data.maxXP < 20 ? 20 - data.maxXP : 0; // needed for layout
+
+        data.maxSP = data.actor.system.general.sp.max;
+        data.currentSP = data.actor.system.general.sp.value;
+        data.lostSP = data.maxSP - data.currentSP;
+        data.fillSP = data.maxSP < 3 ? 3 - data.maxSP : 0; // needed for layout
 
         await this._characterData(data);
         await this.actor._checkOverwatch(data.actor);
@@ -213,6 +222,9 @@ export class alienrpgActorSheet extends ActorSheet {
         icon: '<i class="fas fa-trash"></i>',
         callback: (element) => {
           let itemDel = this.actor.items.get(element.data('item-id'));
+          if (itemDel.type === 'critical-injury' && this.actor.system.general.critInj.value <= 1) {
+            this.actor.removeCondition('criticalinj');
+          }
           itemDel.delete();
         },
       },
@@ -307,8 +319,11 @@ export class alienrpgActorSheet extends ActorSheet {
     // plus tohealth and stress
     html.find('.plus-btn').click(this._plusMinusButton.bind(this));
 
-    html.find('.click-stat-level').on('click contextmenu', this._onClickStatLevel.bind(this)); // Toggle for radio buttons
-    html.find('.click-stat-level-con').on('click contextmenu', this._onClickStatLevelCon.bind(this)); // Toggle for radio buttons
+    html.find('.click-xp-stat-level').on('click contextmenu', this._onClickXPStatLevel.bind(this)); // Toggle for radio buttons
+    html.find('.click-sp-stat-level').on('click contextmenu', this._onClickSPStatLevel.bind(this)); // Toggle for radio buttons
+    html.find(".click-stat-level-con").on('click contextmenu', this._onRadPointClick.bind(this));
+
+    // html.find('.click-stat-level-con').on('click contextmenu', this._onClickStatLevelCon.bind(this)); // Toggle for radio buttons
 
 
     html.find('.pwr-btn').click(this._supplyRoll.bind(this));
@@ -379,6 +394,7 @@ export class alienrpgActorSheet extends ActorSheet {
     let totalFood = 0;
     let totalAir = 0;
     let totalPower = 0;
+    let myCrit = 0;
 
     for (let [skey, Attrib] of Object.entries(this.actor.items.contents)) {
       if (Attrib.system.attributes?.armorrating?.value && Attrib.system.header.active === true) {
@@ -407,7 +423,6 @@ export class alienrpgActorSheet extends ActorSheet {
         totalPower += Attrib.totalPower;
       }
 
-      // debugger;
       if (Attrib.type === 'item' || Attrib.type === 'critical-injury' || Attrib.type === 'armor') {
         if (Attrib.system.header.active === true) {
           let base = Attrib.system.modifiers.attributes;
@@ -483,6 +498,10 @@ export class alienrpgActorSheet extends ActorSheet {
             }
           }
         }
+        if (Attrib.type === 'critical-injury') {
+          myCrit++;
+          console.log(myCrit);
+        }
 
       }
 
@@ -529,7 +548,7 @@ export class alienrpgActorSheet extends ActorSheet {
       'system.consumables.air.value': (aData.consumables.air.value = parseInt(totalAir || 0)),
       'system.consumables.power.value': (aData.consumables.power.value = parseInt(totalPower || 0)),
       'system.general.armor.value': (aData.general.armor.value = parseInt(totalAc || 0)),
-      'system.general.radiation.calculatedMax': (aData.general.radiation.calculatedMax = aData.general.radiation.max),
+      // 'system.general.radiation.calculatedMax': (aData.general.radiation.calculatedMax = aData.general.radiation.max),
       'system.general.xp.calculatedMax': (aData.general.xp.calculatedMax = aData.general.xp.max),
       // 'system.general.dehydrated.calculatedMax': (aData.general.dehydrated.calculatedMax = aData.general.dehydrated.max),
       // 'system.general.exhausted.calculatedMax': (aData.general.exhausted.calculatedMax = aData.general.exhausted.max),
@@ -543,6 +562,7 @@ export class alienrpgActorSheet extends ActorSheet {
       await this.actor.update({
         // 'system.general.panic.calculatedMax': (aData.general.panic.calculatedMax = aData.general.panic.max),
         'system.header.stress.mod': (aData.header.stress.mod = parseInt(attrMod.stress || 0)),
+        'system.general.critInj.value': (myCrit),
 
       });
 
@@ -668,8 +688,8 @@ export class alienrpgActorSheet extends ActorSheet {
     data.agendas = agendas;
     data.specialities = specialities;
     data.critInj = critInj;
-    // debugger;
-    data.actor.system.general.encumbrance = await this._computeEncumbrance(totalWeight, data);
+
+    data.actor.system.general.encumbrance = this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
   }
 
@@ -878,7 +898,7 @@ export class alienrpgActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onItemCreate(event) {
+  async _onItemCreate(event) {
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.
@@ -898,10 +918,10 @@ export class alienrpgActorSheet extends ActorSheet {
 
     // Finally, create the item!
     // return this.actor.createOwnedItem(itemData);
-    return this.actor.createEmbeddedDocuments(itemData);
+    return await this.actor.createEmbeddedDocuments(itemData);
   }
 
-  _inlineedit(event) {
+  async _inlineedit(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
     // console.log('alienrpgActorSheet -> _inlineedit -> dataset', dataset);
@@ -909,7 +929,7 @@ export class alienrpgActorSheet extends ActorSheet {
     let item = this.actor.items.get(itemId);
     let temp = dataset.dataset.mod;
     // let field = temp.slice(5);
-    return item.update({ [temp]: dataset.value }, {});
+    return await item.update({ [temp]: dataset.value }, {});
   }
 
   /**
@@ -972,19 +992,19 @@ export class alienrpgActorSheet extends ActorSheet {
     this.actor.rollCritMan(this.actor, this.actor.type, dataset);
   }
 
-  _activate(event) {
+  async _activate(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
-    item.update({ 'system.header.active': true });
+    await item.update({ 'system.header.active': true });
   }
-  _deactivate(event) {
+  async _deactivate(event) {
     event.preventDefault();
     const dataset = event.currentTarget;
     let itemId = dataset.parentElement.dataset.itemId;
     let item = this.actor.items.get(itemId);
-    item.update({ 'system.header.active': false });
+    await item.update({ 'system.header.active': false });
   }
 
   _plusMinusButton(event) {
@@ -1084,58 +1104,77 @@ export class alienrpgActorSheet extends ActorSheet {
     li2.toggleClass('expanded');
   }
 
-  async _onClickStatLevel(event) {
+  async _onClickXPStatLevel(event) {
     event.preventDefault();
-    await this.actor.checkMarks(this.actor, event);
-    await this.submit(event);
-
+    let xp = this.actor.system.general.xp;
+    if (event.type == "contextmenu") { // left click
+      if (xp.value > 0) {
+        if (xp.value === 0) {
+          return;
+        }
+        return await this.actor.update({ ["system.general.xp.value"]: xp.value - 1 });
+      }
+    } else { // right click
+      if (xp.value < xp.max) {
+        if (xp.value >= 20) {
+          return;
+        }
+        return await this.actor.update({ ["system.general.xp.value"]: xp.value + 1 });
+      }
+    }
   }
-
-  async _onClickStatLevelCon(event) {
+  async _onClickSPStatLevel(event) {
     event.preventDefault();
-    await this.actor.conCheckMarks(this.actor, event);
-    await this.submit(event);
+    let sp = this.actor.system.general.sp;
+    if (event.type == "contextmenu") { // left click
+      if (sp.value > 0) {
+        if (sp.value === 0) {
+          return;
+        }
+        return await this.actor.update({ ["system.general.sp.value"]: sp.value - 1 });
+      }
+    } else { // right click
+      if (sp.value < sp.max) {
+        if (sp.value >= 3) {
+          return;
+        }
+        return await this.actor.update({ ["system.general.sp.value"]: sp.value + 1 });
+      }
+    }
   }
 
-  /**
-   * Get the font-awesome icon used to display a certain level of radiation
-   * @private
-   */
 
-  _getClickIcon(level, stat) {
-    const maxPoints = this.object.system.general[stat].max;
-    const icons = {};
-    const usedPoint = '<i class="far fa-dot-circle"></i>';
-    const unUsedPoint = '<i class="far fa-circle"></i>';
+  async _onRadPointClick(event) {
+    event.preventDefault();
+    let rad = this.actor.system.general.radiation;
+    if (event.type == "contextmenu") { // left click
+      if (rad.value > 0) {
 
-    for (let i = 0; i <= maxPoints; i++) {
-      let iconHtml = '';
-
-      for (let iconColumn = 1; iconColumn <= maxPoints; iconColumn++) {
-        iconHtml += iconColumn <= i ? usedPoint : unUsedPoint;
+        switch (rad.value - 1) {
+          case 0:
+            await this.actor.removeCondition('radiation');
+            await this.actor.update({ ["system.general.radiation.value"]: rad.value - 1 });
+            this.actor.createChatMessage(game.i18n.localize('ALIENRPG.RadiationReduced'), this.actor.id)
+            break;
+          default:
+            await this.actor.update({ ["system.general.radiation.value"]: rad.value - 1 });
+            this.actor.createChatMessage(game.i18n.localize('ALIENRPG.RadiationReduced'), this.actor.id)
+            break;
+        }
+        //   if (rad.value - 1 === 0) {
+        //     this.actor.removeCondition('radiation');
+        //   }
+        //   this.actor.update({ ["system.general.radiation.value"]: rad.value - 1 });
+        //  return this.actor.createChatMessage(game.i18n.localize('ALIENRPG.RadiationReduced'), this.actor.id)
       }
-
-      icons[i] = iconHtml;
-    }
-
-    return icons[level];
-  }
-  _getContitionIcon(level, stat) {
-    const maxPoints = this.object.system.general[stat].max;
-    const icons = {};
-    const usedPoint = '<i class="far fa-dot-circle"></i>';
-    const unUsedPoint = '<i class="far fa-circle"></i>';
-
-    for (let i = 0; i <= maxPoints; i++) {
-      let iconHtml = '';
-
-      for (let iconColumn = 1; iconColumn <= maxPoints; iconColumn++) {
-        iconHtml += iconColumn <= i ? usedPoint : unUsedPoint;
+    } else { // right click
+      if (rad.value < rad.max) {
+        if (rad.value <= 0) {
+          await this.actor.addCondition('radiation');
+        }
+        return await this.actor.update({ ["system.general.radiation.value"]: rad.value + 1 });
       }
-
-      icons[i] = iconHtml;
     }
-    return icons[level];
   }
 
   _supplyRoll(event) {
@@ -1187,13 +1226,20 @@ export class alienrpgActorSheet extends ActorSheet {
   async _onOverwatchToggle(event) {
     let key = $(event.currentTarget).parents('.condition').attr('data-key');
     if (key === 'overwatch') {
-      if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
+      if (this.actor.hasCondition(key)) await this.actor.removeCondition(key);
       else await this.actor.addCondition(key);
     } else {
       if (event.type === 'click') {
-        if (!await this.actor.hasCondition(key)) await this.actor.addCondition(key);
+        if (!this.actor.hasCondition(key)) await this.actor.addCondition(key);
       } else {
-        if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
+        if (key === 'panicked') {
+          if (this.actor.hasCondition(key)) await this.actor.checkAndEndPanic(this.actor);
+          // this.actor.update({ ['system.general.panic.lastRoll']: 0 });
+          // this.actor.ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+
+        } else {
+          if (this.actor.hasCondition(key)) await this.actor.removeCondition(key);
+        }
       }
     }
   }
@@ -1247,7 +1293,7 @@ export class alienrpgActorSheet extends ActorSheet {
     return actor.sheet.render(true);
   }
 
-  _onCrewRemove(event) {
+  async _onCrewRemove(event) {
     event.preventDefault();
     const actorData = this.actor;
     const elem = event.currentTarget;
@@ -1255,31 +1301,31 @@ export class alienrpgActorSheet extends ActorSheet {
     const occupants = this.actor.removeVehicleOccupant(crewId);
     let crewNumber = actorData.system.crew.passengerQty;
     crewNumber--;
-    actorData.update({ 'system.crew.passengerQty': crewNumber });
-    return this.actor.update({ 'system.crew.occupants': occupants });
+    await actorData.update({ 'system.crew.passengerQty': crewNumber });
+    return await actorData.update({ 'system.crew.occupants': occupants });
   }
 
-  _onChangePosition(event) {
+  async _onChangePosition(event) {
     event.preventDefault();
     const elem = event.currentTarget;
     const crewId = elem.closest('.occupant').dataset.crewId;
     const position = elem.value;
-    return this.actor.addVehicleOccupant(crewId, position);
+    return await this.actor.addVehicleOccupant(crewId, position);
   }
 
-  _crewPanic(event) {
+  async _crewPanic(event) {
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
     const panicActor = game.actors.get(dataset.crewpanic);
-    this.actor.rollAbility(panicActor, dataset);
+    return await this.actor.rollAbility(panicActor, dataset);
   }
 
-  _crewPanicMod(event) {
+  async _crewPanicMod(event) {
     console.log('Crew Panic Mod')
     event.preventDefault();
     const dataset = event.currentTarget.dataset;
     const panicActor = game.actors.get(dataset.crewpanic);
-    this.actor.rollAbilityMod(panicActor, dataset);
+    return await this.actor.rollAbilityMod(panicActor, dataset);
   }
 }
 

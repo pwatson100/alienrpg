@@ -296,6 +296,8 @@
     "rollManCreAttMax": "Il numero deve essere tra 1 e 6",
     "rollManCreatureAttack": "Tira l'attacco manuale della Creatura.",
     "RollManCrit": "Tira per Ferita Critica manuale",
+    "RollManShipMajorCrit": "Il numero deve essere tra 2 e 12",
+    "RollManShipMinorCrit": "Il numero deve essere tra 1 e 44",
     "RollManSynCrit": "Inserisci il numero D6",
     "RollMod": "Modificatore del tiro",
     "ROLLONCREATURETABLE": " Pesca dalle Tabelle delle Creature Aliene",

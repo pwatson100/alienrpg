@@ -296,6 +296,8 @@
     "rollManCreAttMax": "O número deve estar entre 1 e 6",
     "rollManCreatureAttack": "Role o Ataque Manual da Criatura.",
     "RollManCrit": "Rolar Lesão Crítica Manual",
+    "RollManShipMajorCrit": "O número deve estar entre 2 e 12",
+    "RollManShipMinorCrit": "O número deve estar entre 1 e 44",
     "RollManSynCrit": "Digite o número D6",
     "RollMod": "Modificador da Rolagem",
     "ROLLONCREATURETABLE": "Desenhe tabelas de criaturas alienígenas",

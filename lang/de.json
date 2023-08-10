@@ -295,6 +295,8 @@
     "rollManCreAttMax": "Zahl muss zwischen 1 und 6 liegen",
     "rollManCreatureAttack": "Würfle einen manuellen Kreaturen-Angriff.",
     "RollManCrit": "Würfle eine manuelle kritische Verletzung",
+    "RollManShipMajorCrit": "Zahl muss zwischen 2 und 12 liegen",
+    "RollManShipMinorCrit": "Zahl muss zwischen 1 und 44 liegen",
     "RollManSynCrit": "Gib die W6-Nummer ein",
     "RollMod": "Wurf Modifikator ",
     "ROLLONCREATURETABLE": "Generiere außerirdische Kreaturentabellen",

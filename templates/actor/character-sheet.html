@@ -136,36 +136,56 @@
         <!-- Col1 -->
         <div class="Item1">
           {{#if actor.system.general.xp.value}}
-            <div class="dots experience" style="width: 150px; display: inline-flex;margin-bottom: 10px;">
+            <div style="margin-bottom: 10px; width: 150px; margin-left: auto; margin-right: auto;">
               <h2 class="resource-label">{{localize 'ALIENRPG.campaign'}}</h2>
-              <div class="xp_dots_pos">
-                <h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
-                <input type="hidden" name="system.general.xp.value" data-max="{{actor.system.general.xp.max}}" value="{{actor.system.general.xp.value}}" data-dtype="Number">
-                <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.xp.icon}}}</span>
-                <br><br>
+              <h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
+              <div class="newdots click-xp-stat-level">
+                {{#times currentXP}}
+                  <i class=" far fa-dot-circle "></i>
+                {{/times}}
+                {{#times lostXP}}
+                  <i class=" far fa-circle "></i>
+                {{/times}}
               </div>
             </div>
           {{else if actor.system.general.sp.value}}
-            <div class="dots experience">
+            <div style="margin-bottom: 10px; width: 150px; margin-left: auto; margin-right: auto;">
               <h2 class="resource-label">{{localize 'ALIENRPG.cinematic'}}</h2>
-              <div class="xp_dots_pos">
+              <div>
                 <br>
                 <h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
-                <input type="hidden" name="system.general.sp.value" data-max="{{actor.system.general.sp.max}}" value="{{actor.system.general.sp.value}}" data-dtype="Number">
-                <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.sp.icon}}}</span>
-                <br>
+                <div class="newdots click-sp-stat-level">
+                  {{#times currentSP}}
+                    <i class=" far fa-dot-circle "></i>
+                  {{/times}}
+                  {{#times lostSP}}
+                    <i class=" far fa-circle "></i>
+                  {{/times}}
+                </div>
               </div>
             </div>
           {{else}}
-            <div class="dots experience" style="width: 150px; display: inline-flex;margin-bottom: 10px;">
+            <div style="margin-bottom: 10px; width: 150px; margin-left: auto; margin-right: auto;">
               <h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
-              <input type="hidden" name="system.general.xp.value" data-max="{{actor.system.general.xp.max}}" value="{{actor.system.general.xp.value}}" data-dtype="Number">
-              <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.xp.icon}}}</span>
+              <div class="newdots click-xp-stat-level">
+                {{#times currentXP}}
+                  <i class=" far fa-dot-circle "></i>
+                {{/times}}
+                {{#times lostXP}}
+                  <i class=" far fa-circle "></i>
+                {{/times}}
+              </div>
             </div>
-            <div class="dots experience sp_faded">
+            <div class="sp_faded">
               <h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
-              <input type="hidden" name="system.general.sp.value" data-max="{{actor.system.general.sp.max}}" value="{{actor.system.general.sp.value}}" data-dtype="Number">
-              <span class="click-stat-level" title="{{ localize 'ALIENRPG.ConButtons'}}">{{{actor.system.general.sp.icon}}}</span>
+              <div class="newdots click-sp-stat-level">
+                {{#times currentSP}}
+                  <i class=" far fa-dot-circle "></i>
+                {{/times}}
+                {{#times lostSP}}
+                  <i class=" far fa-circle "></i>
+                {{/times}}
+              </div>
             </div>
           {{/if}}
           <br>
@@ -228,17 +248,21 @@
             </h3>
           </div>
           <div class="panic" style="height: 22px">
-            {{#if actor.system.general.panic.value}}
-              <h3 class="condition resource-label " data-key="panicked" style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}"><a class="overwatch-toggle">
+            {{#ife actor.system.general.panic.value 1}}
+              <h3 class="condition resource-label" data-key="panicked" style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}">
+                <a class="overwatch-toggle">
                   <i class="far fa-check-square"></i>
                 </a>{{ localize 'ALIENRPG.Panicked'}}
                 <input type="text" class="maxboxsize" name="system.general.panic.lastRoll" value="{{actor.system.general.panic.lastRoll}}" data-dtype="Number">
               </h3>
-            {{else}}
-              <h3 class="condition resource-label" data-key="panicked" title="{{ localize 'ALIENRPG.ConButtons'}}"><a class="overwatch-toggle">
-                  <i class="far fa-square"></i>
-                </a> {{ localize 'ALIENRPG.Panicked'}} </h3>
-            {{/if}}
+              {{else}}
+                <h3 class="condition resource-label" data-key="panicked" title="{{ localize 'ALIENRPG.ConButtons'}}">
+                  <a class="overwatch-toggle">
+                    <i class="far fa-square"></i>
+                  </a>
+                  {{ localize 'ALIENRPG.Panicked'}}
+                </h3>
+            {{/ife}}
           </div>
           <br>
           <h3 class="condition resource-label" data-key="overwatch">
@@ -253,15 +277,18 @@
           </h3>
           <br>
           <h3 style="text-align: center; font-weight: bold;" class="resource-label">{{ localize 'ALIENRPG.Radiation'}}</h3>
-          <div class="dots radiation">
-            <input type="hidden" name="system.general.radiation.value" data-max="{{actor.system.general.radiation.max}}" value="{{actor.system.general.radiation.value}}" data-dtype="Number">
-            <span style="text-align: center;" class="click-stat-level-con" title="{{ localize 'ALIENRPG.ConButtons'}}" data-label="{{ localize 'ALIENRPG.Radiation'}}" data-roll="{{actor.system.general.radiation.value}}">{{{actor.system.general.radiation.icon}}}
-            </span>
+          <div class="newdots click-stat-level-con">
+            {{#times currentRAD}}
+              <i class=" far fa-dot-circle "></i>
+            {{/times}}
+            {{#times lostRAD}}
+              <i class=" far fa-circle "></i>
+            {{/times}}
           </div>
-
         </div>
 
-        <div class="Item9">
+
+        <div class=" Item9">
           <div class="consumables grid-Consumables">
             <h2 class="Heading" style="margin-bottom: 0; border-bottom: 0 ">{{localize 'ALIENRPG.Consumables'}}</h2>
 

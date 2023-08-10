@@ -65,10 +65,13 @@
             <input type="text" class="cashboxsize currency s1h24" style="max-width: 200px; margin-bottom: 5px" name="system.attributes.leasecost.value" value="{{actor.system.attributes.leasecost.value}}" />
 
             <label class="s1h25" style="font-weight: bold;">{{ localize "ALIENRPG.DAMAGE"}}</label>
-            <div class="dots damage s1h26" style="width: 242px; display: inline-flex;margin-bottom: -21px;text-align: center;">
-              <input type="hidden" name="system.attributes.damage.value" data-max="{{actor.system.attributes.damage.max}}" value="{{actor.system.attributes.damage.value}}" data-dtype="Number">
-              <span class="click-stat-level" title='{{localize "ALIENRPG.ShipConButtons"}}'>{{{actor.system.attributes.damage.icon}}}
-              </span>
+            <div class="newdots click-damage-level s1h26" style="height:29px; ">
+              {{#times currentDAM}}
+                <i class=" far fa-dot-circle "></i>
+              {{/times}}
+              {{#times lostDAM}}
+                <i class=" far fa-circle "></i>
+              {{/times}}
             </div>
           </div>
           <div class="box-top" style="overflow: auto">{{> "systems/alienrpg/templates/actor/crt/tabs/sCraft-minor-crit.html" }}</div>

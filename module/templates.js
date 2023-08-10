@@ -16,7 +16,6 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/alienrpg/templates/actor/tabs/actor-systems.html',
     'systems/alienrpg/templates/actor/crt/tabs/actor-systems.html',
     'systems/alienrpg/templates/actor/tabs/critical-inj.html',
-    'systems/alienrpg/templates/actor/crt/tabs/critical-inj.html',
     'systems/alienrpg/templates/actor/tabs/sCraft-minor-crit.html',
     'systems/alienrpg/templates/actor/crt/tabs/sCraft-minor-crit.html',
     'systems/alienrpg/templates/actor/tabs/sCraft-major-crit.html',

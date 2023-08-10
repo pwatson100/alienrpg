@@ -296,6 +296,8 @@
     "rollManCreAttMax": "Le nombre doit être compris entre 1 et 6",
     "rollManCreatureAttack": "Lancez l'attaque de créature manuelle.",
     "RollManCrit": "Blessures Critiques Manuelles",
+    "RollManShipMajorCrit": "Le nombre doit être compris entre 2 et 12",
+    "RollManShipMinorCrit": "Le nombre doit être compris entre 1 et 44",
     "RollManSynCrit": "Entrez le numéro D6",
     "RollMod": "Modificateur de test",
     "ROLLONCREATURETABLE": "Dessiner des tables de créatures extraterrestres",
