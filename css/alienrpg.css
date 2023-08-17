@@ -5293,7 +5293,7 @@ combobox:focus {
   border: 0px solid var(--aliengreen);
 }
 .alienrpg .crt .Item11 .items-list {
-  height: 179px;
+  height: auto;
 }
 .alienrpg .crt .critical-inj {
   padding-bottom: 10px;

@@ -53,62 +53,82 @@ export class alienrpgActorSheet extends ActorSheet {
   /** @override */
   async getData(options) {
     // Basic data
-    const isOwner = this.document.isOwner;
-    const data = {
-      actor: this.object,
-      owner: this.object.isOwner,
-      limited: this.object.limited,
-      options: this.options,
-      editable: this.isEditable,
-      cssClass: isOwner ? 'editable' : 'locked',
-      isCharacter: this.object.system.type === 'character',
-      isEnc: this.object.type === 'character' || this.object.type === 'synthetic',
-      // isEnc: true,
-      isSynthetic: this.object.system.type === 'synthetic',
-      isVehicles: this.object.system.type === 'vehicles',
-      isCreature: this.object.system.type === 'creature',
-      isNPC: this.object.system.header.npc,
+    // const isOwner = this.document.isOwner;
+    // const data = {
+    //   actor: this.object,
+    //   owner: this.object.isOwner,
+    //   limited: this.object.limited,
+    //   options: this.options,
+    //   editable: this.isEditable,
+    //   cssClass: isOwner ? 'editable' : 'locked',
+    //   isCharacter: this.object.system.type === 'character',
+    //   isEnc: this.object.type === 'character' || this.object.type === 'synthetic',
+    //   // isEnc: true,
+    //   isSynthetic: this.object.system.type === 'synthetic',
+    //   isVehicles: this.object.system.type === 'vehicles',
+    //   isCreature: this.object.system.type === 'creature',
+    //   isNPC: this.object.system.header.npc,
 
-      isGM: game.user.isGM,
+    //   isGM: game.user.isGM,
+    //   config: CONFIG.ALIENRPG,
+    // };
+
+    // let actor = this.object;
+    // data.actor = actor.toJSON();
+
+
+    // data.actor.system.items = this.actor.items.map((i) => {
+    //   i.labels = i.labels;
+    //   return i;
+    // });
+    // data.actor.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+    // data.actor.system.labels = this.actor.labels || {};
+    // data.actor.system.filters = this._filters;
+
+    let data = {
+      id: this.actor.id,
+      actor: foundry.utils.deepClone(this.actor),
+      system: foundry.utils.deepClone(this.actor.system),
+      isEnc: this.actor.type === 'character' || this.actor.type === 'synthetic',
+      options: options,
       config: CONFIG.ALIENRPG,
-    };
 
-    let actor = this.object;
-    data.actor = actor.toJSON();
-
-    data.actor.system.items = this.actor.items.map((i) => {
+    }
+    // debugger;
+    data.system.items = this.actor.items.map((i) => {
       i.labels = i.labels;
       return i;
     });
-    data.actor.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-    data.actor.system.labels = this.actor.labels || {};
-    data.actor.system.filters = this._filters;
+    data.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+    data.system.labels = this.actor.labels || {};
+    data.system.filters = this._filters;
+
 
     switch (this.actor.type) {
       case 'character':
-        data.maxRAD = data.actor.system.general.radiation.max;
-        data.currentRAD = data.actor.system.general.radiation.value;
-        data.lostRAD = data.maxRAD - data.currentRAD;
-        data.fillRAD = data.maxRAD < 10 ? 10 - data.maxRAD : 0; // needed for layout
-        // 
-        data.maxXP = data.actor.system.general.xp.max;
-        data.currentXP = data.actor.system.general.xp.value;
-        data.lostXP = data.maxXP - data.currentXP;
-        data.fillXP = data.maxXP < 20 ? 20 - data.maxXP : 0; // needed for layout
-        // 
-        data.maxSP = data.actor.system.general.sp.max;
-        data.currentSP = data.actor.system.general.sp.value;
-        data.lostSP = data.maxSP - data.currentSP;
-        data.fillSP = data.maxSP < 3 ? 3 - data.maxSP : 0; // needed for layout
-
         await this._characterData(data);
-        await this.actor._checkOverwatch(data.actor);
+        await this.actor._checkOverwatch(data);
         await this._prepareItems(data);
         let enrichedFields = [
           "actor.system.notes",
           "actor.system.adhocitems",
         ];
         await this._enrichTextFields(data, enrichedFields);
+
+        data.system.RADmax = data.system.general.radiation.max;
+        data.system.RADcurrent = data.system.general.radiation.value;
+        data.system.RADfill = data.system?.RADmax - data.system.general.radiation?.calculatedMax || 0;
+        data.system.RADlost = data.system.RADmax - data.system.RADcurrent - data.system?.RADfill || 0;
+        // 
+        data.system.XPmax = data.system.general.xp.max;
+        data.system.XPcurrent = data.system.general.xp.value;
+        data.system.XPlost = data.system.XPmax - data.system.XPcurrent;
+        data.system.XPfill = data.system.XPmax < 20 ? 20 - data.system.XPmax : 0;
+        // 
+        data.system.SPmax = data.system.general.sp.max;
+        data.system.SPcurrent = data.system.general.sp.value;
+        data.system.SPlost = data.system.SPmax - data.system.SPcurrent;
+        data.system.SPfill = data.system.SPmax < 3 ? 3 - data.system.SPmax : 0;
         break;
 
       case 'creature':
@@ -123,29 +143,28 @@ export class alienrpgActorSheet extends ActorSheet {
         break;
 
       case 'synthetic':
-        data.maxRAD = data.actor.system.general.radiation.max;
-        data.currentRAD = data.actor.system.general.radiation.value;
-        data.lostRAD = data.maxRAD - data.currentRAD;
-        data.fillRAD = data.maxRAD < 10 ? 10 - data.maxRAD : 0; // needed for layout
-
-        data.maxXP = data.actor.system.general.xp.max;
-        data.currentXP = data.actor.system.general.xp.value;
-        data.lostXP = data.maxXP - data.currentXP;
-        data.fillXP = data.maxXP < 20 ? 20 - data.maxXP : 0; // needed for layout
-
-        data.maxSP = data.actor.system.general.sp.max;
-        data.currentSP = data.actor.system.general.sp.value;
-        data.lostSP = data.maxSP - data.currentSP;
-        data.fillSP = data.maxSP < 3 ? 3 - data.maxSP : 0; // needed for layout
-
         await this._characterData(data);
-        await this.actor._checkOverwatch(data.actor);
+        await this.actor._checkOverwatch(data);
         await this._prepareItems(data);
         let enrichedFields3 = [
           "actor.system.notes",
           "actor.system.adhocitems",
         ];
         await this._enrichTextFields(data, enrichedFields3);
+        data.system.RADmax = data.system.general.radiation.max;
+        data.system.RADcurrent = data.system.general.radiation.value;
+        data.system.RADfill = data.system?.RADmax - data.system.general.radiation?.calculatedMax || 0;
+        data.system.RADlost = data.system.RADmax - data.system.RADcurrent - data.system?.RADfill || 0;
+
+        data.system.XPmax = data.system.general.xp.max;
+        data.system.XPcurrent = data.system.general.xp.value;
+        data.system.XPlost = data.system.XPmax - data.system.XPcurrent;
+        data.system.XPfill = data.system.XPmax < 20 ? 20 - data.system.XPmax : 0;
+        // 
+        data.system.SPmax = data.system.general.sp.max;
+        data.system.SPcurrent = data.system.general.sp.value;
+        data.system.SPlost = data.system.SPmax - data.system.SPcurrent;
+        data.system.SPfill = data.system.SPmax < 3 ? 3 - data.system.SPmax : 0;
 
         break;
       case 'territory':
@@ -226,6 +245,7 @@ export class alienrpgActorSheet extends ActorSheet {
             this.actor.removeCondition('criticalinj');
           }
           itemDel.delete();
+
         },
       },
     ];
@@ -365,7 +385,7 @@ export class alienrpgActorSheet extends ActorSheet {
 
 
   async _characterData(actor) {
-    const aData = actor.actor.system;
+    const aData = actor.system;
     var attrMod = {
       str: 0,
       agl: 0,
@@ -509,16 +529,16 @@ export class alienrpgActorSheet extends ActorSheet {
         attrMod.stress = attrMod.stress += -2;
       }
 
-      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'TAKE CONTROL' && actor.actor.system.attributes.wit.value > actor.actor.system.attributes.emp.value) {
-        actor.actor.system.skills.manipulation.ability = "wit";
+      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'TAKE CONTROL' && aData.attributes.wit.value > aData.attributes.emp.value) {
+        aData.skills.manipulation.ability = "wit";
       }
 
       if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'TOUGH') {
         attrMod.health = attrMod.health += 2;
       }
 
-      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'STOIC' && actor.actor.system.attributes.wit.value > actor.actor.system.attributes.str.value) {
-        actor.actor.system.skills.stamina.ability = "wit";
+      if (Attrib.type === 'talent' && Attrib.name.toUpperCase() === 'STOIC' && aData.attributes.wit.value > aData.attributes.str.value) {
+        aData.skills.stamina.ability = "wit";
       }
 
     }
@@ -542,32 +562,30 @@ export class alienrpgActorSheet extends ActorSheet {
       skl.label = CONFIG.ALIENRPG.skills[s];
     }
 
+
     await this.actor.update({
+      'system.general.radiation.permanent': (aData.general.radiation.permanent ?? 0),
       'system.consumables.water.value': (aData.consumables.water.value = parseInt(totalWat || 0)),
       'system.consumables.food.value': (aData.consumables.food.value = parseInt(totalFood || 0)),
       'system.consumables.air.value': (aData.consumables.air.value = parseInt(totalAir || 0)),
       'system.consumables.power.value': (aData.consumables.power.value = parseInt(totalPower || 0)),
       'system.general.armor.value': (aData.general.armor.value = parseInt(totalAc || 0)),
-      // 'system.general.radiation.calculatedMax': (aData.general.radiation.calculatedMax = aData.general.radiation.max),
+      'system.general.radiation.calculatedMax': (aData.general.radiation.calculatedMax = parseInt(aData.general.radiation.max - (aData.general.radiation.permanent ?? 0)) || 0),
       'system.general.xp.calculatedMax': (aData.general.xp.calculatedMax = aData.general.xp.max),
-      // 'system.general.dehydrated.calculatedMax': (aData.general.dehydrated.calculatedMax = aData.general.dehydrated.max),
-      // 'system.general.exhausted.calculatedMax': (aData.general.exhausted.calculatedMax = aData.general.exhausted.max),
-      // 'system.general.freezing.calculatedMax': (aData.general.freezing.calculatedMax = aData.general.freezing.max),
       'system.header.health.max': (aData.attributes.str.value + aData.header.health.mod),
-      'system.header.health.calculatedMax': (aData.header.health.calculatedMax = aData.attributes.str.value + aData.header.health.mod),
       'system.header.health.mod': (aData.header.health.mod = parseInt(attrMod.health || 0)),
+      'system.header.health.calculatedMax': (aData.header.health.calculatedMax = aData.attributes.str.value + aData.header.health.mod),
     });
 
     if (actor.actor.type === 'character') {
       await this.actor.update({
-        // 'system.general.panic.calculatedMax': (aData.general.panic.calculatedMax = aData.general.panic.max),
         'system.header.stress.mod': (aData.header.stress.mod = parseInt(attrMod.stress || 0)),
         'system.general.critInj.value': (myCrit),
-
       });
 
     }
   }
+
 
   _findActiveList() {
     return this.element.find('.tab.active .directory-list');
@@ -577,7 +595,7 @@ export class alienrpgActorSheet extends ActorSheet {
     const systems = [];
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
-    for (let i of data.actor.system.items) {
+    for (let i of data.system.items) {
       let item = i.system;
       // Append to gear.
       if (i.type === 'planet-system') {
@@ -601,7 +619,7 @@ export class alienrpgActorSheet extends ActorSheet {
       armor: { section: 'Armor', label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'), items: [], dataset: { type: 'armor' } },
     };
     // Partition items by category
-    let [items, Weapons, Armor] = data.actor.system.items.reduce(
+    let [items, Weapons, Armor] = data.system.items.reduce(
       (arr, item) => {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
@@ -627,7 +645,7 @@ export class alienrpgActorSheet extends ActorSheet {
     let totalWeight = 0;
 
     // Iterate through items, allocating to containers
-    for (let i of data.actor.system.items) {
+    for (let i of data.actor.items) {
       let item = i.system;
       switch (i.type) {
         case 'talent':
@@ -689,7 +707,7 @@ export class alienrpgActorSheet extends ActorSheet {
     data.specialities = specialities;
     data.critInj = critInj;
 
-    data.actor.system.general.encumbrance = this._computeEncumbrance(totalWeight, data);
+    data.system.general.encumbrance = this._computeEncumbrance(totalWeight, data);
     data.inventory = Object.values(inventory);
   }
 
@@ -705,7 +723,7 @@ export class alienrpgActorSheet extends ActorSheet {
       armor: { section: 'Armor', label: game.i18n.localize('ALIENRPG.InventoryArmorHeader'), items: [], dataset: { type: 'armor' } },
     };
     // Partition items by category
-    let [items, Weapons, Armor] = data.actor.system.items.reduce(
+    let [items, Weapons, Armor] = data.system.items.reduce(
       (arr, item) => {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
@@ -728,7 +746,7 @@ export class alienrpgActorSheet extends ActorSheet {
     const critInj = [];
 
     // Iterate through items, allocating to containers
-    for (let i of data.actor.system.items) {
+    for (let i of data.system.items) {
       let item = i.system;
       switch (i.type) {
         case 'talent':
@@ -777,7 +795,7 @@ export class alienrpgActorSheet extends ActorSheet {
     const critInj = [];
 
     // Iterate through items, allocating to containers
-    for (let i of sheetData.actor.system.items) {
+    for (let i of sheetData.system.items) {
       critInj.push(i);
     }
     sheetData.critInj = critInj;
@@ -821,7 +839,7 @@ export class alienrpgActorSheet extends ActorSheet {
    * @return {Object}               An object describing the character's encumbrance level
    * @private
    */
-  async _computeEncumbrance(totalWeight, actorData) {
+  _computeEncumbrance(totalWeight, actorData) {
     // Compute Encumbrance percentage
     let enc = {
       max: actorData.actor.system.attributes.str.value * 4,
@@ -842,9 +860,9 @@ export class alienrpgActorSheet extends ActorSheet {
     enc.encumbered = enc.pct > 50;
     let aTokens = '';
     if (enc.encumbered) {
-      await this.actor.addCondition('encumbered');
+      this.actor.addCondition('encumbered');
     } else {
-      await this.actor.removeCondition('encumbered');
+      this.actor.removeCondition('encumbered');
     }
     return enc;
   }
@@ -890,6 +908,7 @@ export class alienrpgActorSheet extends ActorSheet {
       ui.notifications.warn(msg);
       return false;
     }
+
     return super._onDropItemCreate(itemData);
   }
   /* -------------------------------------------- */
@@ -1146,35 +1165,79 @@ export class alienrpgActorSheet extends ActorSheet {
 
   async _onRadPointClick(event) {
     event.preventDefault();
-    let rad = this.actor.system.general.radiation;
-    if (event.type == "contextmenu") { // left click
-      if (rad.value > 0) {
+    let actorID = this.actor.id;
+    let chatMessage = `<div class="chatBG" + ${actorID} ">`;
+    let addRad = `<span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">` + game.i18n.localize('ALIENRPG.PermanentRadiationAdded') + `</span></div>`;
+    let takeRad = `<span class="warnblink alienchatlightgreen"; style="font-weight: bold; font-size: larger">` + game.i18n.localize('ALIENRPG.PermanentRadiationRemoved') + `</span></div>`;
 
-        switch (rad.value - 1) {
-          case 0:
-            await this.actor.removeCondition('radiation');
-            await this.actor.update({ ["system.general.radiation.value"]: rad.value - 1 });
-            this.actor.createChatMessage(game.i18n.localize('ALIENRPG.RadiationReduced'), this.actor.id)
+    let rad = this.actor.system.general.radiation;
+    switch (event.ctrlKey) {
+      case false:
+        switch (event.type) {
+          case 'contextmenu':
+            if (rad.value > 0) {
+
+              switch (rad.value - 1 === 0) {
+                case true:
+                  if (!rad.permanent) {
+                    await this.actor.removeCondition('radiation');
+                  }
+                  this.actor.reduceRadiation(this.actor, event.currentTarget.dataset);
+                  break;
+                default:
+                  this.actor.reduceRadiation(this.actor, event.currentTarget.dataset);
+                  break;
+              }
+            }
             break;
-          default:
-            await this.actor.update({ ["system.general.radiation.value"]: rad.value - 1 });
-            this.actor.createChatMessage(game.i18n.localize('ALIENRPG.RadiationReduced'), this.actor.id)
+          case 'click':
+            if (rad.value < rad.calculatedMax) {
+              if (rad.value <= 0) {
+                await this.actor.addCondition('radiation');
+              }
+              this.actor.rollAbility(this.actor, event.currentTarget.dataset);
+              await this.actor.update({ ["system.general.radiation.value"]: rad.value + 1 });
+              return;
+            }
+
+        }
+        break;
+      case true:
+        switch (event.type) {
+          case 'contextmenu':
+            if (rad.permanent > 0) {
+              switch ((rad.permanent - 1 === 0) && rad.value === 0) {
+                case true:
+                  {
+                    await this.actor.removeCondition('radiation');
+                    await this.actor.update({ ["system.general.radiation.permanent"]: rad.permanent - 1 });
+                    this.actor.createChatMessage((chatMessage += takeRad), actorID);
+                    return;
+                  }
+                default:
+                  {
+                    await this.actor.update({ ["system.general.radiation.permanent"]: rad.permanent - 1 });
+                    this.actor.createChatMessage((chatMessage += takeRad), actorID);
+                    return;
+                  }
+              }
+            }
             break;
+          case 'click':
+            if (rad.permanent < 10) {
+              if (rad.permanent <= 0) {
+                await this.actor.addCondition('radiation');
+              }
+              await this.actor.update({ ["system.general.radiation.permanent"]: rad.permanent + 1 });
+              this.actor.createChatMessage((chatMessage += addRad), actorID);
+              return;
+            }
+
         }
-        //   if (rad.value - 1 === 0) {
-        //     this.actor.removeCondition('radiation');
-        //   }
-        //   this.actor.update({ ["system.general.radiation.value"]: rad.value - 1 });
-        //  return this.actor.createChatMessage(game.i18n.localize('ALIENRPG.RadiationReduced'), this.actor.id)
-      }
-    } else { // right click
-      if (rad.value < rad.max) {
-        if (rad.value <= 0) {
-          await this.actor.addCondition('radiation');
-        }
-        return await this.actor.update({ ["system.general.radiation.value"]: rad.value + 1 });
-      }
+
     }
+
+
   }
 
   _supplyRoll(event) {

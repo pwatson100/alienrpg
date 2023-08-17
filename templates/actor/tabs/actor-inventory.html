@@ -1,6 +1,6 @@
 <ol class="items-list">
   {{#if isEnc }}
-    {{#with actor.system.general.encumbrance}}
+    {{#with system.general.encumbrance}}
       <div class="encumbrance-label">{{localize "ALIENRPG.Encumbrance"}} - {{value}}{{localize "ALIENRPG.AbbreviationKg"}} / {{max}}{{localize "ALIENRPG.AbbreviationKg"}}</div>
       <div class="encumbrance {{#if encumbered}}encumbered blink{{/if}}">
         <span class="encumbrance-bar" style="width:{{pct}}%"></span>
@@ -348,5 +348,5 @@
 <h1 class="" style="text-align: center;">{{localize 'ALIENRPG.AdHoc'}}</h1>
 
 <div class="biog" data-group="primary" style="height: 180px;" data-tab="description">
-  {{editor actor.system.adhocitems target="system.adhocitems" button=true owner=owner editable=true}}
+  {{editor system.adhocitems target="system.adhocitems" button=true owner=owner editable=true}}
 </div>

@@ -54,35 +54,54 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
   /** @override */
   async getData(options) {
     // Basic data
-    const isOwner = this.document.isOwner;
-    const data = {
-      actor: this.object,
-      owner: this.object.isOwner,
-      limited: this.object.limited,
-      options: this.options,
-      editable: this.isEditable,
-      cssClass: isOwner ? 'editable' : 'locked',
-      isCharacter: this.object.system.type === 'character',
-      // isEnc: true,
-      isVehicles: this.object.system.type === 'vehicles',
-      isGM: game.user.isGM,
+    // const isOwner = this.document.isOwner;
+    // const data = {
+    //   actor: this.object,
+    //   owner: this.object.isOwner,
+    //   limited: this.object.limited,
+    //   options: this.options,
+    //   editable: this.isEditable,
+    //   cssClass: isOwner ? 'editable' : 'locked',
+    //   isCharacter: this.object.system.type === 'character',
+    //   // isEnc: true,
+    //   isVehicles: this.object.system.type === 'vehicles',
+    //   isGM: game.user.isGM,
+    //   config: CONFIG.ALIENRPG,
+    // };
+
+    // let actor = this.object;
+    // data.actor = actor.toJSON();
+
+    // data.actor.system.items = this.actor.items.map((i) => {
+    //   i.label = i.label;
+    //   return i;
+    // });
+
+    // data.actor.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+    // data.actor.system.label = this.actor.label || {};
+    // data.actor.system.filters = this._filters;
+    let data = {
+      id: this.actor.id,
+      actor: foundry.utils.deepClone(this.actor),
+      system: foundry.utils.deepClone(this.actor.system),
+      isEnc: this.actor.type === 'character' || this.actor.type === 'synthetic',
+      options: options,
       config: CONFIG.ALIENRPG,
-    };
-
-    let actor = this.object;
-    data.actor = actor.toJSON();
-
-    data.actor.system.items = this.actor.items.map((i) => {
-      i.label = i.label;
+    }
+    // debugger;
+    data.system.items = this.actor.items.map((i) => {
+      i.labels = i.labels;
       return i;
     });
-    data.actor.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-    data.actor.system.label = this.actor.label || {};
-    data.actor.system.filters = this._filters;
-    data.actor.system.attributes.damage.max = data.actor.system.attributes.hull.value;
-    data.maxDAM = data.actor.system.attributes.damage.max;
-    data.currentDAM = data.actor.system.attributes.damage.value;
-    data.lostDAM = data.maxDAM - data.currentDAM;
+
+    data.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+    data.system.labels = this.actor.labels || {};
+    data.system.filters = this._filters;
+
+    data.system.attributes.damage.max = data.system.attributes.hull.value;
+    data.system.DAMmax = data.system.attributes.damage.max;
+    data.system.DAMcurrent = data.system.attributes.damage.value;
+    data.system.DAMlost = data.system.DAMmax - data.system.DAMcurrent;
 
     await this._prepareVehicleItems(data);
     await this._prepareCrew(data);
@@ -116,7 +135,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
       spacecraftweapons: { section: 'Spacecraft Weapons', label: game.i18n.localize('ALIENRPG.SpacecraftWeapons'), items: [], dataset: { type: 'spacecraftweapons' } },
     };
     // Partition items by category
-    let [items, Weapons, Armor, spacecraftmods, spacecraftweapons] = data.actor.system.items.reduce(
+    let [items, Weapons, Armor, spacecraftmods, spacecraftweapons] = data.system.items.reduce(
       (arr, item) => {
         // Item details
         item.img = item.img || DEFAULT_TOKEN;
@@ -139,7 +158,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
     const critMaj = [];
 
     // Iterate through items, allocating to containers
-    for (let i of data.actor.system.items) {
+    for (let i of data.system.items) {
       let item = i.system;
       switch (i.type) {
         case 'spacecraft-crit':

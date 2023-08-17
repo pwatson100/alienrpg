@@ -1,6 +1,6 @@
 <ol class="items-list crt">
   {{#if isEnc }}
-    {{#with actor.system.general.encumbrance}}
+    {{#with system.general.encumbrance}}
       <div class="encumbrance-label">{{localize 'ALIENRPG.Encumbrance'}} - {{value}}{{localize 'ALIENRPG.AbbreviationKg'}} / {{max}}{{localize 'ALIENRPG.AbbreviationKg'}}</div>
       <div class="crt encumbrance {{#if encumbered}} crt encumbered blink{{/if}}">
         <span class="crt encumbrance-bar" style="width:{{pct}}%"></span>
@@ -266,4 +266,4 @@
 {{!-- Biography Tab --}}
 <h1 class="" style="text-align: center;">{{localize 'ALIENRPG.AdHoc'}}</h1>
 
-<div class="biog" style="height: 180px;" data-group="primary" data-tab="description">{{editor actor.system.adhocitems target="system.adhocitems" button=true owner=owner editable=true}}</div>
+<div class="biog" style="height: 180px;" data-group="primary" data-tab="description">{{editor system.adhocitems target="system.adhocitems" button=true owner=owner editable=true}}</div>

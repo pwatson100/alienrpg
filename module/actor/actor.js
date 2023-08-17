@@ -71,7 +71,7 @@ export class alienrpgActor extends Actor {
     switch (this.type) {
       case 'character':
       case 'synthetic':
-        this._prepareCharacterData(actorData, flags);
+        this._prepareCharacterData(actorData);
         // debugger;
         break;
       case 'vehicles':
@@ -117,65 +117,46 @@ export class alienrpgActor extends Actor {
   // *************************************************
   async _preCreate(data, options, user) {
     await super._preCreate(data, options, user);
-    let createData = {};
+    let tokenProto = {
+      'prototypeToken.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      'prototypeToken.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+      'prototypeToken.name': `${data.name}`,
+      'prototypeToken.bar1': { attribute: 'header.health' },
+      'prototypeToken.bar2': { attribute: 'None' },
+      // 'prototypeToken.vision': true,
+      'prototypeToken.actorLink': true,
+      'prototypeToken.sight.enabled': 'true',
+      'prototypeToken.sight.range': '12',
+    };
+    if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
+      switch (data.type) {
+        case 'character':
+          tokenProto['prototypeToken.bar2'] = { attribute: 'header.stress' };
+          break;
+        case 'vehicles':
+          tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
+          break;
+        case 'creature':
+          tokenProto['prototypeToken.actorLink'] = false;
+          tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
+          tokenProto['prototypeToken.sight.enabled'] = false;
+          break;
+        case 'synthetic':
+          break;
+        case 'territory':
+          tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
+          tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
+          tokenProto['prototypeToken.sight.enabled'] = false;
+          break;
+        case 'spacecraft':
+          tokenProto['prototypeToken.bar1'] = { attribute: 'attributes.damage' };
+          break;
+      }
+    }
 
-    let defaultToken = game.settings.get("core", "defaultToken");
-
-    if (!data.prototypeToken)
-      mergeObject(createData,
-        {
-          'prototypeToken.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-          'prototypeToken.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-          'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-          'prototypeToken.name': `${data.name}`,
-          'prototypeToken.bar1': { attribute: 'header.health' },
-          'prototypeToken.bar2': { attribute: 'None' },
-          // 'prototypeToken.vision': true,
-          'prototypeToken.actorLink': true,
-          'prototypeToken.sight.enabled': 'true',
-          'prototypeToken.sight.range': '12',
-        });
-    else if (data.prototypeToken)
-      createData.prototypeToken = data.prototypeToken;
-
-
-
-    // let tokenProto = {
-    //   'prototypeToken.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-    //   'prototypeToken.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-    //   'prototypeToken.disposition': CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-    //   'prototypeToken.name': `${data.name}`,
-    //   'prototypeToken.bar1': { attribute: 'header.health' },
-    //   'prototypeToken.bar2': { attribute: 'None' },
-    //   // 'prototypeToken.vision': true,
-    //   'prototypeToken.actorLink': true,
-    //   'prototypeToken.sight.enabled': 'true',
-    //   'prototypeToken.sight.range': '12',
-    // };
-    // if (game.settings.get('alienrpg', 'defaultTokenSettings')) {
-    //   switch (data.type) {
-    //     case 'character':
-    //       tokenProto['prototypeToken.bar2'] = { attribute: 'header.stress' };
-    //       break;
-    //     case 'vehicles':
-    //       tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
-    //       break;
-    //     case 'creature':
-    //       tokenProto['prototypeToken.actorLink'] = false;
-    //       tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.HOSTILE;
-    //       tokenProto['prototypeToken.sight.enabled'] = false;
-    //       break;
-    //     case 'synthetic':
-    //       break;
-    //     case 'territory':
-    //       tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
-    //       tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
-    //       tokenProto['prototypeToken.sight.enabled'] = false;
-    //       break;
-    //   }
-    // }
-    // this.updateSource(tokenProto);
-    this.updateSource(createData);
+    this.updateSource(tokenProto);
+    // this.updateSource(createData);
   }
 
   async _checkOverwatch(actorData) {
@@ -556,12 +537,37 @@ export class alienrpgActor extends Actor {
     }
   }
 
+  async reduceRadiation(actor, dataset) {
+    let rad = actor.system.general.radiation;
+    let label = game.i18n.localize('ALIENRPG.RadiationReduced')
+    let r1Data = 0;
+    let reRoll = true;
+    let actorId = actor.id;
+    let effectiveActorType = actor.type;
+    let blind = false;
+    // debugger;
+    let r2Data = 1;
+    let radMax = actor.getRollData().general.radiation.max;
+    yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
+
+    if (game.alienrpg.rollArr.r2One === 1) {
+
+      await actor.update({
+        'system.general.radiation.permanent': rad.permanent + 1,
+        'system.RADfill': actor.system.RADfill + 1,
+        'system.RADlost': actor.system.RADlost - 1,
+        'system.general.radiation.value': rad.value - 1,
+      });
+    } else {
+      await actor.update({ ["system.general.radiation.value"]: rad.value - 1 });
+    }
+  }
 
   async rollAbilityMod(actor, dataset) {
     function myRenderTemplate(template) {
       let confirmed = false;
-      let armorP = 'false';
-      let armorDou = 'false';
+      let armorP = false;
+      let armorDou = false;
       switch (dataset.spbutt) {
         case 'armorVfire':
           renderTemplate(template).then((dlg) => {
@@ -614,20 +620,20 @@ export class alienrpgActor extends Actor {
                 one: {
                   icon: '<i class="fas fa-check"></i>',
                   label: game.i18n.localize('ALIENRPG.DialRoll'),
-                  callback: () => (confirmed = 'true'),
+                  callback: () => (confirmed = true),
                 },
                 two: {
                   label: game.i18n.localize('ALIENRPG.ArmorPiercing'),
-                  callback: () => (armorP = 'true'),
+                  callback: () => (armorP = true),
                 },
                 three: {
                   label: game.i18n.localize('ALIENRPG.ArmorDoubled'),
-                  callback: () => (armorDou = 'true'),
+                  callback: () => (armorDou = true),
                 },
                 four: {
                   icon: '<i class="fas fa-times"></i>',
                   label: game.i18n.localize('ALIENRPG.DialCancel'),
-                  callback: () => (confirmed = 'false'),
+                  callback: () => (confirmed = false),
                 },
               },
               default: 'one',
