@@ -378,6 +378,13 @@ a.inline-roll {
   cursor: pointer;
 }
 
+.rollVehicleWeapon:hover, .rollVehicleWeapon:focus {
+  text-shadow: 0 0 20px hsl(0, 100%, 50%);
+  font-size: 110%;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
 .openItem:hover, .openItem:focus {
   text-shadow: 0 0 20px hsl(0, 100%, 50%);
   font-size: 110%;
@@ -2309,7 +2316,7 @@ button:focus {
 .critical-inj {
   display: grid;
   grid-template-areas: "crit1 crit2 crit3 crit4";
-  grid-template-columns: 5% 21% 70% 3%;
+  grid-template-columns: 5% 31% 60% 3%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -4522,6 +4529,17 @@ combobox:focus {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
+.alienrpg .newdots {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
 .alienrpg .resource-label {
   font-family: var(--alienfont);
   text-transform: uppercase;
@@ -5229,6 +5247,17 @@ combobox:focus {
   font-weight: bolder;
   text-transform: uppercase;
 }
+.alienrpg .crt .rollVehicleWeapon:hover,
+.alienrpg .crt .rollVehicleWeapon:focus {
+  text-shadow: 0 0 15px var(--aliengreen);
+  -webkit-box-shadow: 0 0 7px var(--aliengreen);
+          box-shadow: 0 0 7px var(--aliengreen);
+  background-color: var(--aliengreen);
+  color: #000;
+  font-size: 100%;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
 .alienrpg .crt .grid-talents {
   text-align: center;
   grid-template-columns: 90% 10%;
@@ -5282,7 +5311,7 @@ combobox:focus {
   border: 0px solid var(--aliengreen);
 }
 .alienrpg .crt .Item11 .items-list {
-  height: 179px;
+  height: auto;
 }
 .alienrpg .crt .critical-inj {
   padding-bottom: 10px;

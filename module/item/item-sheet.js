@@ -39,7 +39,8 @@ export class alienrpgItemSheet extends ItemSheet {
   /** @override */
   async getData() {
     const data = await super.getData();
-    const item = data.item.toJSON();
+    // const item = data.item.toJSON();
+    const item = foundry.utils.deepClone(this.item);
     // console.log(data);
     switch (item.type) {
       case 'planet-system':

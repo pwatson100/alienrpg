@@ -8,19 +8,19 @@
       <div class="resources grid-vehicle">
         <h2 class="vItem1">{{ localize 'ALIENRPG.Hull'}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem2" name="system.attributes.hull.value" value="{{actor.system.attributes.hull.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem2" name="system.attributes.hull.value" value="{{system.attributes.hull.value}}" data-dtype="Number" />
         </div>
         <h2 class="vItem3">{{localize 'ALIENRPG.ArmorRating'}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem4" name="system.attributes.armorrating.value" value="{{actor.system.attributes.armorrating.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem4" name="system.attributes.armorrating.value" value="{{system.attributes.armorrating.value}}" data-dtype="Number" />
         </div>
         <h2 class="vItem5">{{localize 'ALIENRPG.Speed'}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem6" name="system.attributes.speed.value" value="{{actor.system.attributes.speed.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem6" name="system.attributes.speed.value" value="{{system.attributes.speed.value}}" data-dtype="Number" />
         </div>
         <h2 class="vItem7">{{localize 'ALIENRPG.Manoeuvrability'}}</h2>
         <div class="resource-label">
-          <input type="text" class="maxboxsize vItem8" name="system.attributes.manoeuvrability.value" value="{{actor.system.attributes.manoeuvrability.value}}" data-dtype="Number" />
+          <input type="text" class="maxboxsize vItem8" name="system.attributes.manoeuvrability.value" value="{{system.attributes.manoeuvrability.value}}" data-dtype="Number" />
         </div>
       </div>
     </div>
@@ -37,13 +37,13 @@
   <section class="sheet-body">
     <div class="tab attributes" data-group="primary" data-tab="general">
       <label class="resource-label">{{localize 'ALIENRPG.Passengers'}}</label>
-      <input type="text" class="maxboxsize" name="system.attributes.passengers.value" value="{{actor.system.attributes.passengers.value}}" data-dtype="Number" />
+      <input type="text" class="maxboxsize" name="system.attributes.passengers.value" value="{{system.attributes.passengers.value}}" data-dtype="Number" />
 
       <label class="resource-label">{{localize 'ALIENRPG.Cost'}}</label>
-      <input type="text" class="cashboxsize currency" name="system.attributes.cost.value" value="{{actor.system.attributes.cost.value}}" />
+      <input type="text" class="cashboxsize currency" name="system.attributes.cost.value" value="{{system.attributes.cost.value}}" />
       <br />
       <h3 class="resource-label">{{localize 'ALIENRPG.Description'}}</h3>
-      <textarea name="system.attributes.comment.value" rows="14" data-dtype="String">{{actor.system.attributes.comment.value}}</textarea>
+      <textarea name="system.attributes.comment.value" rows="14" data-dtype="String">{{system.attributes.comment.value}}</textarea>
     </div>
 
     <div class="tab crew" data-group="primary" data-tab="crew">

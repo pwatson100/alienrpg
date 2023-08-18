@@ -100,6 +100,7 @@ Hooks.once('init', async function () {
   CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
   CONFIG.ImportFormWrapper = ImportFormWrapper;
 
+  game.alienrpg.config = ALIENRPG;
   // Register sheet application classes
   Items.unregisterSheet('core', ItemSheet);
   Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty', 'planet-system', 'critical-injury', "spacecraft-crit", "spacecraftmods", "spacecraftweapons"], makeDefault: false });
@@ -187,8 +188,19 @@ Hooks.once('init', async function () {
     return txt.replace(regexp, '');
   });
 
+  /*
+* Repeat given markup with n times
+*/
+  Handlebars.registerHelper("times", function (n, block) {
+    var result = "";
+    for (let i = 0; i < n; ++i) {
+      result += block.fn(i);
+    }
+    return result;
+  });
 
 });
+
 
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
@@ -257,6 +269,14 @@ Hooks.on('hotbarDrop', (bar, data, slot) => {
 
 Hooks.on("renderPause", (_app, html, options) => {
   html.find('img[src="icons/svg/clockwork.svg"]').attr("src", "systems/alienrpg/images/paused-alien.png");
+});
+
+// prevent players from deleting messages with rolls
+Hooks.on('preDeleteChatMessage', (message) => {
+  if (!game.user.isGM && message.rolls?.length) {
+    ui.notifications.warn("No deleting messages");
+    return false;
+  }
 });
 
 
@@ -390,6 +410,8 @@ Hooks.on('renderChatMessage', (message, html, data) => {
       }
     });
   });
+
+
 });
 
 // // **********************************
@@ -397,14 +419,23 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 // // **********************************
 
 Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
+  let createChanges = {};
   let aTarget = game.actors.find((i) => i.name == tokenData.name);
   if (aTarget.type !== 'spacecraft' && aTarget.system.header.npc) {
-    document.data.update({ disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
+    mergeObject(createChanges, {
+      'disposition': CONST.TOKEN_DISPOSITIONS.HOSTILE,
+      'actorLink': false,
+    });
+    document.updateSource(createChanges);
+
+    // await document.data.update({ disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
+
   }
 });
 
+
 Hooks.once('setup', function () {
-  const toLocalize = ['skills', 'attributes'];
+  const toLocalize = ['skills', 'attributes', 'creatureattributes', 'creaturedefence', 'general'];
   for (let o of toLocalize) {
     CONFIG.ALIENRPG[o] = Object.entries(CONFIG.ALIENRPG[o]).reduce((obj, e) => {
       obj[e[0]] = game.i18n.localize(e[1]);

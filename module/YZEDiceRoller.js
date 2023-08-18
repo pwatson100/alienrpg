@@ -22,7 +22,7 @@ export class yze {
    * const dataset = element.dataset;
    * let label = dataset.label;
    * let r1Data = parseInt(dataset.roll || 0);
-   * let r2Data = this.actor.getRollData().stress;
+   * let r2Data = this.actor.getRollData().header.stress.value;
    * let reRoll = false;
    * yze.yzeRoll(actortype, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
@@ -63,11 +63,15 @@ export class yze {
     // *******************************************************
     let rType = '';
     // if (reRoll && (hostile === true) === 'character') {
-    if ((reRoll && actortype === 'character' && actortype != 'item' && label != game.i18n.localize('ALIENRPG.Armor') && label != game.i18n.localize('ALIENRPG.Radiation')) && label != game.i18n.localize('ALIENRPG.AbilityStr') && label != game.i18n.localize('ALIENRPG.AbilityAgl') && label != game.i18n.localize('ALIENRPG.AbilityEmp') && label != game.i18n.localize('ALIENRPG.AbilityWit') || reRoll === 'mPush') {
+    if ((reRoll && actortype === 'character' && actortype != 'item' && label != game.i18n.localize('ALIENRPG.Armor') && label != game.i18n.localize('ALIENRPG.Radiation')) && label != game.i18n.localize('ALIENRPG.RadiationReduced') && label != game.i18n.localize('ALIENRPG.AbilityStr') && label != game.i18n.localize('ALIENRPG.AbilityAgl') && label != game.i18n.localize('ALIENRPG.AbilityEmp') && label != game.i18n.localize('ALIENRPG.AbilityWit') || reRoll === 'mPush') {
       // if ((reRoll && actortype === 'character' && label != 'Armor' && label != 'Radiation') || reRoll === 'mPush') {
       rType = game.i18n.localize('ALIENRPG.Push');
     } else {
-      rType = game.i18n.localize('ALIENRPG.Rolling');
+      if (label === game.i18n.localize('ALIENRPG.RadiationReduced')) {
+        rType = '';
+      } else {
+        rType = game.i18n.localize('ALIENRPG.Rolling');
+      }
     }
 
     // *******************************************************
@@ -128,7 +132,7 @@ export class yze {
     if (r2Dice >= 1) {
       let roll2 = `${r2Dice}` + 'ds';
       let com;
-      if (actortype === 'supply') {
+      if (actortype === 'supply' || (label === game.i18n.localize('ALIENRPG.RadiationReduced'))) {
         if (r2Dice > 6) {
           r2Dice = 6;
           com = `${r2Dice}` + 'ds';
@@ -149,7 +153,6 @@ export class yze {
       // *******************************************************
       // Set reroll
       // *******************************************************
-      // debugger;
       if (game.alienrpg.rollArr.r2One > 0) {
         if (reRoll === 'push' || reRoll === 'mPush') {
           spud = true;
@@ -161,7 +164,7 @@ export class yze {
       // Display message if there is a 1> on the stress dice.  Display appropriate message if its a Supply roll.
       // *******************************************************
       if (actortype != 'supply') {
-        if (game.alienrpg.rollArr.r2One >= 1) {
+        if (game.alienrpg.rollArr.r2One >= 1 && label != game.i18n.localize('ALIENRPG.RadiationReduced')) {
           chatMessage += '<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.rollStress') + '</div>';
         }
       } else if (game.alienrpg.rollArr.r2One >= 1) {
@@ -173,44 +176,75 @@ export class yze {
     // *******************************************************
 
     function localizedCountOfSuccesses(sTotal) {
-      if (label === game.i18n.localize('ALIENRPG.Radiation')) {
-        if (sTotal >= 1) {
-          return sTotal + ' ' + '<span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.healthDamage') + '</span>';
-          // return sTotal + ' ' + game.i18n.localize('ALIENRPG.healthDamage');
-        } else {
-          return sTotal + ' ' + game.i18n.localize('ALIENRPG.healthDamage');
-        }
-      } else {
-        if (sTotal === 1) return '1 ' + game.i18n.localize('ALIENRPG.sucess');
-        else return sTotal + ' ' + game.i18n.localize('ALIENRPG.sucesses');
+
+      switch (label) {
+        case game.i18n.localize('ALIENRPG.Radiation'):
+          {
+            if (sTotal >= 1) {
+              return sTotal + ' ' + '<span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.healthDamage') + '</span>';
+              // return sTotal + ' ' + game.i18n.localize('ALIENRPG.healthDamage');
+            } else {
+              return sTotal + ' ' + game.i18n.localize('ALIENRPG.healthDamage');
+            }
+
+          }
+        case game.i18n.localize('ALIENRPG.RadiationReduced'):
+          {
+            if (game.alienrpg.rollArr.r2One) {
+              return '<span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.PermanentRadiation') + '</span>';
+            } else {
+              return game.i18n.localize('ALIENRPG.RadiationReduced');
+            }
+          }
+
+        default:
+          if (sTotal === 1) return '1 ' + game.i18n.localize('ALIENRPG.sucess');
+          else return sTotal + ' ' + game.i18n.localize('ALIENRPG.sucesses');
       }
+
     }
 
     if (actortype != 'supply') {
-      if (label === game.i18n.localize('ALIENRPG.Radiation')) {
-        if (game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount >= 1) {
-          chatMessage +=
-            '<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' +
-            game.i18n.localize('ALIENRPG.youTake') +
-            ' ' +
-            localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
-            ' </div>';
-        } else {
-          chatMessage +=
-            '<div class="alienchatlightblue">' +
-            game.i18n.localize('ALIENRPG.youTake') +
-            ' ' +
-            localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
-            ' </div>';
-        }
-      } else {
-        chatMessage +=
-          '<div class="alienchatlightblue">' +
-          game.i18n.localize('ALIENRPG.youHave') +
-          ' ' +
-          localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
-          ' </div>';
+      switch (label) {
+        case game.i18n.localize('ALIENRPG.Radiation'):
+          {
+            if (game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount >= 1) {
+              chatMessage +=
+                '<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' +
+                game.i18n.localize('ALIENRPG.youTake') +
+                ' ' +
+                localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+                ' </div>';
+            } else {
+              chatMessage +=
+                '<div class="alienchatlightblue">' +
+                game.i18n.localize('ALIENRPG.youTake') +
+                ' ' +
+                localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+                ' </div>';
+            }
+          }
+          break;
+        case game.i18n.localize('ALIENRPG.RadiationReduced'):
+          {
+            if (game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount === 6) {
+              chatMessage +=
+                '<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' +
+                localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+                ' </div>';
+            } else {
+              chatMessage +=
+                '<div class="alienchatlightblue">' +
+                localizedCountOfSuccesses(game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six + game.alienrpg.rollArr.sCount) +
+                ' </div>';
+            }
+          }
+          break;
+
+        default:
+          break;
       }
+
     }
 
     // *******************************************************
@@ -274,6 +308,7 @@ export class yze {
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: mr,
         rollMode: game.settings.get('core', 'rollMode'),
+
       });
     } else {
       ChatMessage.create({
@@ -333,7 +368,7 @@ export class yze {
         }
         chatMessage += '</div>';
       } else {
-        if (actortype != 'supply') {
+        if (actortype != 'supply' && label != game.i18n.localize('ALIENRPG.RadiationReduced')) {
           for (let index = 0; index < mr.terms[0].results.length; index++) {
             let spanner = flattenObj(mr.terms[0].results[index]);
             numbers.push(spanner.result);
@@ -361,7 +396,7 @@ export class yze {
           }
           chatMessage += '</div>';
         }
-        if (actortype === 'supply') {
+        if (actortype === 'supply' || (actortype != 'supply' && label === game.i18n.localize('ALIENRPG.RadiationReduced'))) {
           for (let index = 0; index < mr.terms[0].results.length; index++) {
             let spanner = flattenObj(mr.terms[0].results[index]);
             numbers.push(spanner.result);
@@ -370,7 +405,8 @@ export class yze {
           mrterms = mr.terms[0].number;
           RY6 = numbers.filter(myFunSix);
           RY1 = numbers.filter(myFunOne);
-        } else {
+        }
+        else {
           for (let index = 0; index < mr.terms[2].results.length; index++) {
             let spanner = flattenObj(mr.terms[2].results[index]);
             numbers2.push(spanner.result);

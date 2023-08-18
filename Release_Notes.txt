@@ -509,3 +509,13 @@ Right clicking on the heart icon will allow modifiers to be added to panic rolls
 If the "Human Panic, Push..." checkbox is checked the sheet will now display Conditions and Consumables for the player allowing them to set the conditions and roll against supplied to help simulate a human in play. 
 Updated CRT UI Spaceship sheet.
  
+Version 3.1.3
+Minor & Major component damage on a ship now add a condition icon to the token.
+Right click on the Minor/Major component damage icon to manually roll to add selected component damage.
+Spaceship damage dots automatically resize based on the ships "Hull" value.
+Reducing radiation now makes permanent radiation checks.  On a facehugger permanent radiation will be added from the right side.   
+This can ONLY be removed by the GM (see MO/TH/ER Instructions).
+Corrected issue with character critical injuries creation as the Fatal box was not being checked.  
+They also now show any modifiers to Medical Aid rolls. 
+Code refactoring and backend changes for better V11 compatibility. 
+

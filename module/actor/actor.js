@@ -9,70 +9,21 @@ import { logger } from '../logger.js';
  */
 
 export class alienrpgActor extends Actor {
-  /** @override */
-  getRollData() {
-    const rData = super.getRollData();
-    const shorthand = game.settings.get('alienrpg', 'macroShorthand');
-
-    // Re-map all attributes onto the base roll data
-    if (!!shorthand) {
-      for (let [k, v] of Object.entries(rData.attributes)) {
-        if (!(k in rData)) rData[k] = v.value;
-      }
-    }
-    if (!!shorthand) {
-      for (let [k, v] of Object.entries(rData.header)) {
-        if (!(k in rData)) rData[k] = v.value;
-      }
-    }
-    if (!!shorthand) {
-      for (let [k, v] of Object.entries(rData.general)) {
-        if (!(k in rData)) rData[k] = v.value;
-      }
-    }
-    if (this.type === 'character' || this.type === 'synthetic') {
-      if (!!shorthand) {
-        for (let [k, v] of Object.entries(rData.skills)) {
-          if (!(k in rData)) rData[k] = v.value;
-        }
-      }
-    }
-
-    // Map all items data using their slugified names
-    rData.items = this.items.reduce((obj, i) => {
-      let key = i.name.slugify({ strict: true });
-      let itemData = duplicate(i.system);
-      if (itemData.skill) {
-        return;
-      }
-      if (!!shorthand && !!itemData.skill) {
-        for (let [k, v] of Object.entries(itemData.attributes)) {
-          if (!(k in itemData)) itemData[k] = v.value;
-        }
-        // delete itemData['attributes'];
-      }
-      obj[key] = itemData;
-      return obj;
-    }, {});
-
-    return rData;
-  }
 
   /**
    * Augment the basic actor data with additional dynamic data.
    */
   prepareData() {
     super.prepareData();
-
-    const actorData = this._source;
+    // const actorData = this._source;
+    const actorData = this.system;
     // console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareBaseData ~ actorData', actorData);
     const data = actorData.system;
     const flags = this.flags;
     switch (this.type) {
       case 'character':
       case 'synthetic':
-        this._prepareCharacterData(actorData, flags);
-        // debugger;
+        this._prepareCharacterData(actorData);
         break;
       case 'vehicles':
       case 'spacecraft':
@@ -149,21 +100,55 @@ export class alienrpgActor extends Actor {
           tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
           tokenProto['prototypeToken.sight.enabled'] = false;
           break;
+        case 'spacecraft':
+          tokenProto['prototypeToken.bar1'] = { attribute: 'attributes.damage' };
+          break;
       }
     }
+
     this.updateSource(tokenProto);
+    // this.updateSource(createData);
   }
 
   async _checkOverwatch(actorData) {
-    let conDition = await this.hasCondition('overwatch');
-    // if (await this.hasCondition('overwatch')) {
+    let conDition = this.hasCondition('overwatch');
     if (conDition != undefined || conDition) {
-      // await this.updateSource({ 'system.general.overwatch': true });
-      setProperty(actorData.actor, 'system.general.overwatch', true);
+      setProperty(actorData, 'system.general.overwatch', true);
     } else {
-      // await this.updateSource({ 'system.general.overwatch': false });
-      setProperty(actorData.actor, 'system.general.overwatch', false);
+      setProperty(actorData, 'system.general.overwatch', false);
     }
+
+    let conDition2 = this.hasCondition('starving');
+    if (conDition2 != undefined || conDition2) {
+      setProperty(actorData, 'system.general.starving.value', true);
+    } else {
+      setProperty(actorData, 'system.general.starving.value', false);
+    }
+    let conDition3 = this.hasCondition('dehydrated');
+    if (conDition3 != undefined || conDition3) {
+      setProperty(actorData, 'system.general.dehydrated.value', true);
+    } else {
+      setProperty(actorData, 'system.general.dehydrated.value', false);
+    }
+    let conDition4 = this.hasCondition('exhausted');
+    if (conDition4 != undefined || conDition4) {
+      setProperty(actorData, 'system.general.exhausted.value', true);
+    } else {
+      setProperty(actorData, 'system.general.exhausted.value', false);
+    }
+    let conDition5 = this.hasCondition('freezing');
+    if (conDition5 != undefined || conDition5) {
+      setProperty(actorData, 'system.general.freezing.value', true);
+    } else {
+      setProperty(actorData, 'system.general.freezing.value', false);
+    }
+    // let conDition6 = this.hasCondition('panicked');
+    // if (conDition6 != undefined || conDition6) {
+    //   setProperty(actorData, 'system.general.panic.value', 1);
+    // } else {
+    //   setProperty(actorData, 'system.general.panic.value', 0);
+    // }
+
   }
 
   async rollAbility(actor, dataset, rollMod) {
@@ -174,9 +159,9 @@ export class alienrpgActor extends Actor {
     let effectiveActorType = actor.type;
     let attrib = dataset.attr;
     let blind = false;
+    let oldPanic = 0;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
-
     let modifier = parseInt(dataset?.mod ?? 0) + parseInt(dataset?.modifier ?? 0);
     let stressMod = parseInt(dataset?.stressMod ?? 0);
 
@@ -198,7 +183,7 @@ export class alienrpgActor extends Actor {
       switch (actor.type) {
         case 'character':
           reRoll = false;
-          r2Data = actor.getRollData().stress + parseInt(stressMod);
+          r2Data = actor.getRollData().header.stress.value + parseInt(stressMod);
           break;
         case 'synthetic':
           if (actor.system.header.synthstress) {
@@ -214,7 +199,7 @@ export class alienrpgActor extends Actor {
             reRoll = false;
             actorId = dataset.actorid;
             let pilotData = game.actors.get(dataset.actorid);
-            r2Data = pilotData.getRollData().stress + parseInt(stressMod) || 0;
+            r2Data = pilotData.getRollData().header.stress.value + parseInt(stressMod) || 0;
           }
           break;
 
@@ -223,7 +208,6 @@ export class alienrpgActor extends Actor {
       }
 
       if (dataset.spbutt === 'armor') {
-
         if (r1Data < 1 && !dataset.armorP && !dataset.armorDou) {
           return;
         }
@@ -239,7 +223,6 @@ export class alienrpgActor extends Actor {
           dataset.armorDou = 'false';
         }
       }
-
       if (label === game.i18n.localize('ALIENRPG.Radiation')) {
         r2Data = 0;
         reRoll = true;
@@ -317,6 +300,7 @@ export class alienrpgActor extends Actor {
                   let targetLock = parseInt(html.find('[name=targetLock]')[0]?.value);
                   let targetMod = parseInt(html.find('[name=targetMod]')[0]?.value);
                   modifier = parseInt(modifier);
+                  stressMod = parseInt(stressMod);
                   targetLock = parseInt(targetLock);
                   targetMod = parseInt(targetMod);
                   baseModifier = parseInt(baseModifier);
@@ -345,17 +329,14 @@ export class alienrpgActor extends Actor {
         // Roll against the panic table and push the roll to the chat log.
         let chatMessage = '';
         let table = "";
-        // debugger;
         if (dataset.shippanicbut) {
           table = game.tables.getName('Space Combat Panic Roll');
-          // let aStress = actor.getRollData().stress;
           if (!table) {
             return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
           }
 
         } else {
           table = game.tables.getName('Panic Table');
-          // let aStress = actor.getRollData().stress;
           if (!table) {
             return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
           }
@@ -373,16 +354,17 @@ export class alienrpgActor extends Actor {
           actor.system.header.stress = new Object({ mod: '0' });
           actor.system.general.panic = new Object({ lastRoll: '0', value: '0' });
           aStress = 0;
-        } else aStress = actor.getRollData().stress + rollModifier;
+        } else aStress = actor.getRollData().header.stress.value + rollModifier;
 
         let modRoll = '1d6' + '+' + parseInt(aStress);
-        console.warn('rolling stress', modRoll);
         const roll = new Roll(modRoll);
         roll.evaluate({ async: false });
         const customResults = await table.roll({ roll });
-        let oldPanic = actor.system.general.panic.lastRoll;
+        console.warn(`Rolling stress, ${modRoll}, Panic Value ${actor.system.general.panic.value}, Last ${actor.system.general.panic.lastRoll}, Roll ${customResults.roll.total}`);
 
-        if (customResults.roll.total >= 7 && actor.system.general.panic.value === 0) {
+        oldPanic = actor.system.general.panic.lastRoll;
+
+        if (customResults.roll.total >= 7 && (actor.system.general.panic.value === 0)) {
           this.causePanic(actor);
         }
 
@@ -394,7 +376,7 @@ export class alienrpgActor extends Actor {
           '<span class="ctooltiptext">' +
           game.i18n.localize('ALIENRPG.Stress') +
           ' + (' +
-          (actor.getRollData().stress || 0) +
+          (actor.getRollData().header.stress.value || 0) +
           ') <br>+ ' +
           game.i18n.localize('ALIENRPG.StressMod') +
           ' + (' +
@@ -407,10 +389,10 @@ export class alienrpgActor extends Actor {
           '</span></h2>';
 
         let mPanic = customResults.roll.total < actor.system.general.panic.lastRoll;
-
         let pCheck = oldPanic + 1;
-        if (actor.system.general.panic.value && mPanic) {
-          actor.update({ 'system.general.panic.lastRoll': pCheck });
+        console.log(mPanic, pCheck, oldPanic);
+        if (mPanic && (actor.system.general.panic.value === 1)) {
+          await actor.update({ 'system.general.panic.lastRoll': pCheck });
 
           chatMessage +=
             '<h4 style="font-weight: bolder"><i><b>' +
@@ -439,7 +421,7 @@ export class alienrpgActor extends Actor {
             chatMessage += this.morePanic(pCheck);
           }
         } else {
-          if (actor.type === 'character') actor.update({ 'system.general.panic.lastRoll': customResults.roll.total });
+          if (actor.type === 'character') await actor.update({ 'system.general.panic.lastRoll': customResults.roll.total });
           pCheck = customResults.roll.total;
           chatMessage += '<h4><i><b>' + game.i18n.localize('ALIENRPG.Roll') + ' ' + `${pCheck}` + ' </b></i></h4>';
           // chatMessage += game.i18n.localize(`ALIENRPG.${customResults.results[0].text}`);
@@ -499,6 +481,30 @@ export class alienrpgActor extends Actor {
     }
   }
 
+  async reduceRadiation(actor, dataset) {
+    let rad = actor.system.general.radiation;
+    let label = game.i18n.localize('ALIENRPG.RadiationReduced')
+    let r1Data = 0;
+    let reRoll = true;
+    let actorId = actor.id;
+    let effectiveActorType = actor.type;
+    let blind = false;
+    let r2Data = 1;
+    let radMax = actor.getRollData().general.radiation.max;
+    yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
+
+    if (game.alienrpg.rollArr.r2One === 1) {
+
+      await actor.update({
+        'system.general.radiation.permanent': rad.permanent + 1,
+        'system.RADfill': actor.system.RADfill + 1,
+        'system.RADlost': actor.system.RADlost - 1,
+        'system.general.radiation.value': rad.value - 1,
+      });
+    } else {
+      await actor.update({ ["system.general.radiation.value"]: rad.value - 1 });
+    }
+  }
 
   async rollAbilityMod(actor, dataset) {
     function myRenderTemplate(template) {
@@ -710,169 +716,66 @@ export class alienrpgActor extends Actor {
     if (actor.type != 'character') return;
 
     if (actor.system.general.panic.lastRoll > 0) {
-      actor.update({
-        'system.general.panic.lastRoll': 0
+      await actor.update({
+        'system.general.panic.lastRoll': 0,
+        'system.general.panic.value': 0,
       });
-      actor.removeCondition('panicked');
 
+      await actor.removeCondition('panicked');
+      ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+    } else {
+      await actor.removeCondition('panicked');
       ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
     }
   }
 
   async causePanic(actor) {
-    actor.update({ 'system.general.panic.value': 1 });
-    actor.addCondition('panicked');
+    await actor.update({ 'system.general.panic.value': 1 });
+    await actor.addCondition('panicked');
+    return;
   }
 
   async addCondition(effect) {
-    if (typeof effect === 'string') effect = duplicate(ALIENRPG.conditionEffects.find((e) => e.id == effect));
+    if (typeof (effect) === "string") effect = duplicate(game.alienrpg.config.conditionEffects.find(e => e.id == effect));
     if (!effect) return 'No Effect Found';
-
     if (!effect.id) return 'Conditions require an id field';
 
-    let existing = await this.hasCondition(effect.id);
+    let existing = this.hasCondition(effect.id);
 
     if (!existing) {
+
+      // if (game.version < '11') {
       effect.label = game.i18n.localize(effect.label).toLowerCase();
-
-      if (game.version < '11') {
-        effect['flags.core.statusId'] = effect.id;
-      } else {
-        effect['statuses'] = effect.id;
-      }
-
+      effect.name = game.i18n.localize(effect.name).toLowerCase();
+      effect['flags.core.statusId'] = effect.id;
+      effect['statuses'] = effect.id;
       delete effect.id;
-
       return await this.createEmbeddedDocuments('ActiveEffect', [effect]);
     }
   }
 
   async removeCondition(effect) {
-    if (typeof effect === 'string') effect = duplicate(ALIENRPG.conditionEffects.find((e) => e.id == effect));
+    if (typeof (effect) === "string") effect = duplicate(game.alienrpg.config.conditionEffects.find(e => e.id == effect));
     if (!effect) return 'No Effect Found';
-
     if (!effect.id) return 'Conditions require an id field';
-
-    let existing = await this.hasCondition(effect.id);
+    let existing = this.hasCondition(effect.id);
     if (existing) {
-      let spud = existing.id
-
-      return await this.deleteEmbeddedDocuments('ActiveEffect', [spud]);
-
-      // return existing.delete();
+      return await this.deleteEmbeddedDocuments('ActiveEffect', [existing._id]);
     }
   }
 
-  async hasCondition(conditionKey) {
+  hasCondition(conditionKey) {
     let existing = '';
     if (game.version < '11') {
       existing = this.effects.find((i) => i.getFlag('core', 'statusId') == conditionKey);
     } else {
       existing = this.effects.find((i) => (
-        i.name == conditionKey
+        i.name === conditionKey
       )
       );
     }
 
     return existing;
-  }
-
-  async checkMarks(actor, event) {
-    const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    const max = field.data('max') == undefined ? 4 : field.data('max');
-    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
-    const level = parseFloat(field.val());
-    let newLevel = ''; // Toggle next level - forward on click, backwards on right
-
-    if (event.type === 'click') {
-      newLevel = Math.clamped(level + 1, 0, max);
-
-    } else if (event.type === 'contextmenu') {
-      newLevel = Math.clamped(level - 1, 0, max);
-      if (statIsItemType === 'panic') {
-        actor.checkAndEndPanic(actor);
-
-      }
-    }
-    // Update the field value and save the form
-    field[0].value = newLevel;
-    return event;
-  }
-
-  async conCheckMarks(actor, event) {
-    const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    const max = field.data('max') == undefined ? 4 : field.data('max');
-    const statIsItemType = field.data('stat-type') == undefined ? false : field.data('stat-type'); // Get the current level and the array of levels
-    const level = parseFloat(field.val());
-    let newLevel = ''; // Toggle next level - forward on click, backwards on right
-    let aTokens = '';
-
-    if (event.type === 'click') {
-      newLevel = Math.clamped(level + 1, 0, max);
-
-      switch (field[0].name) {
-        case 'system.general.starving.value':
-          await actor.addCondition('starving');
-          break;
-
-        case 'system.general.dehydrated.value':
-          await actor.addCondition('dehydrated');
-          break;
-
-        case 'system.general.exhausted.value':
-          await actor.addCondition('exhausted');
-          break;
-
-        case 'system.general.freezing.value':
-          await actor.addCondition('freezing');
-
-          break;
-
-        case 'system.general.radiation.value':
-          await actor.addCondition('radiation');
-          actor.rollAbility(actor, event.currentTarget.dataset);
-
-          break;
-
-        default:
-          break;
-      }
-    } else if (event.type === 'contextmenu') {
-      newLevel = Math.clamped(level - 1, 0, max);
-      // if (field[0].name === 'system.general.panic.value') {
-      //   actor.checkAndEndPanic(actor);
-      // }
-      switch (field[0].name) {
-        case 'system.general.starving.value':
-          await actor.removeCondition('starving');
-          break;
-
-        case 'system.general.dehydrated.value':
-          await actor.removeCondition('dehydrated');
-          break;
-
-        case 'system.general.exhausted.value':
-          await actor.removeCondition('exhausted');
-          break;
-
-        case 'system.general.freezing.value':
-          await actor.removeCondition('freezing');
-          break;
-
-        case 'system.general.radiation.value':
-          if (actor.system.general.radiation.value <= 1) {
-            await actor.removeCondition('radiation');
-          }
-          break;
-
-        default:
-          break;
-      }
-    } // Update the field value and save the form
-    // console.log(field[0].value);
-    field[0].value = newLevel;
-    // console.log(field[0].value);
-    return event;
   }
 
   async consumablesCheck(actor, consUme, label, tItem, supplyModifier) {
@@ -892,7 +795,6 @@ export class alienrpgActor extends Actor {
       return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSupplys'));
     } else {
       yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
-      // debugger;
       if (game.alienrpg.rollArr.r2One) {
         getItems(actor, consUme, tItem);
       }
@@ -1310,7 +1212,6 @@ export class alienrpgActor extends Actor {
       roll.evaluate({ async: false });
       test1 = await atable.draw({ roll: roll, displayChat: false });
     }
-
     const messG = test1.results[0].text;
     switch (type) {
       case 'character':
@@ -1329,14 +1230,20 @@ export class alienrpgActor extends Actor {
             }
           }
           switch (testArray[3]) {
-            case 'Yes ':
+            case `Yes `:
               cFatal = true;
               break;
-            case 'Yes, -1 ':
-              cFatal = true;
+            case `Yes, –1 `:
+              {
+                cFatal = true;
+                speanex += '<br> -1 to <strong>MEDICAL</strong> roll';
+              }
               break;
-            case 'Yes, -2 ':
-              cFatal = true;
+            case `Yes, –2 `:
+              {
+                cFatal = true;
+                speanex += '<br> -2 to <strong>MEDICAL</strong> roll';
+              }
               break;
             default:
               cFatal = false;
@@ -1442,7 +1349,6 @@ export class alienrpgActor extends Actor {
           //
           // Now create the item on the sheet
           //
-          // debugger;
           await actor.createEmbeddedDocuments('Item', [
             {
               type: 'spacecraft-crit',
@@ -1491,10 +1397,30 @@ export class alienrpgActor extends Actor {
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
     };
 
+    switch (type) {
+      case 'spacecraft':
+        if (shipCritType === 'Minor') {
+          await this.addCondition('shipminor');
+        } else {
+          await this.addCondition('shipmajor');
+        }
+        break;
+      case 'character':
+      case 'synthetic':
+        await this.addCondition('criticalinj');
+        break;
+      case 'creature':
+        console.log("it's a Creature Crit")
+        break;
+
+      default:
+        break;
+    }
+
+
+
     ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
     return ChatMessage.create(chatData);
-    // }
-    // } catch (error) { }
   }
 
   async rollCritMan(actor, type, dataset) {
@@ -1527,15 +1453,30 @@ export class alienrpgActor extends Actor {
               switch (type) {
                 case 'synthetic':
                   if (manCrit > 6) {
-                    ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+                    ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManSynCrit'));
                     return;
                   }
                   break;
 
                 case 'character':
                   if (!manCrit.match(/^[1-6]?[1-6]$/gm)) {
-                    ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
+                    ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManCharCrit'));
                     return;
+                  }
+                  break;
+                case 'spacecraft':
+                  if (dataset.crbut === 'minor') {
+                    if (!manCrit.match(/^[1-44]?[1-44]$/gm)) {
+                      ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManShipMajorCrit'));
+                      return;
+                    }
+                  } else {
+                    if (dataset.crbut === 'major') {
+                      if (!manCrit.match(/^[1-12]?[1-12]$/gm)) {
+                        ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManShipMajorCrit'));
+                        return;
+                      }
+                    }
                   }
                   break;
                 default:
@@ -1556,6 +1497,14 @@ export class alienrpgActor extends Actor {
       case 'creature':
         myRenderTemplate('systems/alienrpg/templates/dialog/roll-syn-manual-crit-dialog.html');
         break;
+      case 'spacecraft':
+        if (dataset.crbut === 'minor') {
+          myRenderTemplate('systems/alienrpg/templates/dialog/roll-spacecraft-minor-crit-dialog.html');
+        } else {
+          myRenderTemplate('systems/alienrpg/templates/dialog/roll-spacecraft-major-crit-dialog.html');
+        }
+
+        break;
 
       default:
         break;
@@ -1572,7 +1521,7 @@ export class alienrpgActor extends Actor {
    * @param {boolean} [isExposed=false]   Whether it's an exposed position
    * @returns {VehicleOccupant}
    */
-  addVehicleOccupant(crewId, position = 'PASSENGER') {
+  async addVehicleOccupant(crewId, position = 'PASSENGER') {
     if (this.type !== 'vehicles' && this.type !== 'spacecraft') return;
     if (this.type === 'vehicles') {
       if (!ALIENRPG.vehicle.crewPositionFlags.includes(position)) {
@@ -1597,9 +1546,9 @@ export class alienrpgActor extends Actor {
 
     // Adds the new occupant.
     data.crew.occupants.push(occupant);
-    this.update({ 'data.crew.occupants': data.crew.occupants });
+    await this.update({ 'data.crew.occupants': data.crew.occupants });
 
-    this.update({ 'data.crew.passengerQty': data.crew.occupants.length });
+    await this.update({ 'data.crew.passengerQty': data.crew.occupants.length });
 
     return occupant;
   }
@@ -1643,6 +1592,22 @@ export class alienrpgActor extends Actor {
       c.set(o.id, game.actors.get(o.id));
     }
     return c;
+  }
+
+  async createChatMessage(message, actorID) {
+    let chatData = {
+      user: game.user.id,
+      speaker: {
+        actor: actorID,
+      },
+      content: new Handlebars.SafeString(message),
+      other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
+      sound: CONFIG.sounds.lock,
+      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+    };
+
+    ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
+    return ChatMessage.create(chatData);
   }
 }
 export default alienrpgActor;

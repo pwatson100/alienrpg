@@ -11,6 +11,16 @@ ALIENRPG.attributes = {
   agl: 'ALIENRPG.AbilityAgl',
   emp: 'ALIENRPG.AbilityEmp',
 };
+ALIENRPG.creatureattributes = {
+  speed: 'ALIENRPG.Speed',
+  mobility: 'ALIENRPG.Skillmobility',
+  observation: 'ALIENRPG.Skillobservation',
+};
+ALIENRPG.creaturedefence = {
+  armorrating: 'ALIENRPG.ArmorRating',
+  armorvfire: 'ALIENRPG.ArmorVsFire',
+  acidSplash: 'ALIENRPG.SkillAcidSplash',
+};
 ALIENRPG.skills = {
   heavyMach: 'ALIENRPG.SkillheavyMach',
   closeCbt: 'ALIENRPG.SkillcloseCbt',
@@ -36,43 +46,69 @@ ALIENRPG.physicalItems = [];
 ALIENRPG.conditionEffects = [
   {
     id: 'starving',
+    name: 'ALIENRPG.Starving',
     label: 'ALIENRPG.Starving',
     icon: 'systems/alienrpg/images/starving.webp',
   },
   {
     id: 'dehydrated',
+    name: 'ALIENRPG.Dehydrated',
     label: 'ALIENRPG.Dehydrated',
     icon: 'systems/alienrpg/images/water-flask.webp',
   },
   {
     id: 'exhausted',
+    name: 'ALIENRPG.Exhausted',
     label: 'ALIENRPG.Exhausted',
     icon: 'systems/alienrpg/images/exhausted.webp',
   },
   {
     id: 'freezing',
+    name: 'ALIENRPG.Freezing',
     label: 'ALIENRPG.Freezing',
     icon: 'systems/alienrpg/images/frozen.webp',
   },
   {
     id: 'encumbered',
+    name: 'ALIENRPG.Encumbered',
     label: 'ALIENRPG.Encumbered',
     icon: 'systems/alienrpg/images/weight.webp',
   },
   {
     id: 'panicked',
+    name: 'ALIENRPG.Panicked',
     label: 'ALIENRPG.Panicked',
     icon: 'icons/svg/terror.svg',
   },
   {
     id: 'overwatch',
+    name: 'ALIENRPG.Overwatch',
     label: 'ALIENRPG.Overwatch',
     icon: 'systems/alienrpg/images/eye-target.webp',
   },
   {
     id: 'radiation',
+    name: 'ALIENRPG.Radiation',
     label: 'ALIENRPG.Radiation',
     icon: 'icons/svg/radiation.svg',
+  },
+  {
+    id: 'criticalinj',
+    name: 'ALIENRPG.CriticalInjuries',
+    label: 'ALIENRPG.CriticalInjuries',
+    icon: 'icons/skills/wounds/injury-pain-body-orange.webp',
+  },
+  {
+    id: 'shipminor',
+    name: 'ALIENRPG.MINOR-COMPONENT-DAMAGE',
+    label: 'ALIENRPG.MINOR-COMPONENT-DAMAGE',
+    icon: 'systems/alienrpg/images/lightning-spanner.webp',
+  },
+  {
+    id: 'shipmajor',
+    name: 'ALIENRPG.MAJOR-COMPONENT-DAMAGE',
+    label: 'ALIENRPG.MAJOR-COMPONENT-DAMAGE',
+    icon: 'systems/alienrpg/images/cogsplosion.webp',
   },
 ];
 
