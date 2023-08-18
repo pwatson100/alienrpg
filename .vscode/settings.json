@@ -18,7 +18,7 @@
     "*.html": "handlebars"
   },
   "cSpell.language": "en-GB",
-  "cSpell.words": ["armor", "colorset", "FVTT", "gulpfile", "ifne", "newdots", "relevent", "reroll", "spbutt", "typhonjs"],
+  "cSpell.words": ["armor", "colorset", "facehugger", "FVTT", "gulpfile", "ifne", "imagecontainer", "newdots", "relevent", "reroll", "spbutt", "typhonjs"],
   "projectManager.groupList": true,
   "vscode-edge-devtools.sourceMaps": true
 }

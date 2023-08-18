@@ -9,62 +9,14 @@ import { logger } from '../logger.js';
  */
 
 export class alienrpgActor extends Actor {
-  /** @override */
-  getRollData() {
-    const rData = super.getRollData();
-    const shorthand = game.settings.get('alienrpg', 'macroShorthand');
-
-    // Re-map all attributes onto the base roll data
-    if (!!shorthand) {
-      for (let [k, v] of Object.entries(rData.attributes)) {
-        if (!(k in rData)) rData[k] = v.value;
-      }
-    }
-    if (!!shorthand) {
-      for (let [k, v] of Object.entries(rData.header)) {
-        if (!(k in rData)) rData[k] = v.value;
-      }
-    }
-    if (!!shorthand) {
-      for (let [k, v] of Object.entries(rData.general)) {
-        if (!(k in rData)) rData[k] = v.value;
-      }
-    }
-    if (this.type === 'character' || this.type === 'synthetic') {
-      if (!!shorthand) {
-        for (let [k, v] of Object.entries(rData.skills)) {
-          if (!(k in rData)) rData[k] = v.value;
-        }
-      }
-    }
-
-    // Map all items data using their slugified names
-    rData.items = this.items.reduce((obj, i) => {
-      let key = i.name.slugify({ strict: true });
-      let itemData = duplicate(i.system);
-      if (itemData.skill) {
-        return;
-      }
-      if (!!shorthand && !!itemData.skill) {
-        for (let [k, v] of Object.entries(itemData.attributes)) {
-          if (!(k in itemData)) itemData[k] = v.value;
-        }
-        // delete itemData['attributes'];
-      }
-      obj[key] = itemData;
-      return obj;
-    }, {});
-
-    return rData;
-  }
 
   /**
    * Augment the basic actor data with additional dynamic data.
    */
   prepareData() {
     super.prepareData();
-
-    const actorData = this._source;
+    // const actorData = this._source;
+    const actorData = this.system;
     // console.log('🚀 ~ file: actor.js ~ line 69 ~ alienrpgActor ~ prepareBaseData ~ actorData', actorData);
     const data = actorData.system;
     const flags = this.flags;
@@ -72,7 +24,6 @@ export class alienrpgActor extends Actor {
       case 'character':
       case 'synthetic':
         this._prepareCharacterData(actorData);
-        // debugger;
         break;
       case 'vehicles':
       case 'spacecraft':
@@ -160,7 +111,6 @@ export class alienrpgActor extends Actor {
   }
 
   async _checkOverwatch(actorData) {
-    // debugger;
     let conDition = this.hasCondition('overwatch');
     if (conDition != undefined || conDition) {
       setProperty(actorData, 'system.general.overwatch', true);
@@ -192,13 +142,12 @@ export class alienrpgActor extends Actor {
     } else {
       setProperty(actorData, 'system.general.freezing.value', false);
     }
-    let conDition6 = this.hasCondition('panicked');
-    // debugger;
-    if (conDition6 != undefined || conDition6) {
-      setProperty(actorData, 'system.general.panic.value', 1);
-    } else {
-      setProperty(actorData, 'system.general.panic.value', 0);
-    }
+    // let conDition6 = this.hasCondition('panicked');
+    // if (conDition6 != undefined || conDition6) {
+    //   setProperty(actorData, 'system.general.panic.value', 1);
+    // } else {
+    //   setProperty(actorData, 'system.general.panic.value', 0);
+    // }
 
   }
 
@@ -213,7 +162,6 @@ export class alienrpgActor extends Actor {
     let oldPanic = 0;
     game.alienrpg.rollArr.sCount = 0;
     game.alienrpg.rollArr.multiPush = 0;
-
     let modifier = parseInt(dataset?.mod ?? 0) + parseInt(dataset?.modifier ?? 0);
     let stressMod = parseInt(dataset?.stressMod ?? 0);
 
@@ -235,7 +183,7 @@ export class alienrpgActor extends Actor {
       switch (actor.type) {
         case 'character':
           reRoll = false;
-          r2Data = actor.getRollData().stress + parseInt(stressMod);
+          r2Data = actor.getRollData().header.stress.value + parseInt(stressMod);
           break;
         case 'synthetic':
           if (actor.system.header.synthstress) {
@@ -251,7 +199,7 @@ export class alienrpgActor extends Actor {
             reRoll = false;
             actorId = dataset.actorid;
             let pilotData = game.actors.get(dataset.actorid);
-            r2Data = pilotData.getRollData().stress + parseInt(stressMod) || 0;
+            r2Data = pilotData.getRollData().header.stress.value + parseInt(stressMod) || 0;
           }
           break;
 
@@ -381,17 +329,14 @@ export class alienrpgActor extends Actor {
         // Roll against the panic table and push the roll to the chat log.
         let chatMessage = '';
         let table = "";
-        // debugger;
         if (dataset.shippanicbut) {
           table = game.tables.getName('Space Combat Panic Roll');
-          // let aStress = actor.getRollData().stress;
           if (!table) {
             return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
           }
 
         } else {
           table = game.tables.getName('Panic Table');
-          // let aStress = actor.getRollData().stress;
           if (!table) {
             return ui.notifications.error(game.i18n.localize('ALIENRPG.NoPanicTable'));
           }
@@ -409,13 +354,13 @@ export class alienrpgActor extends Actor {
           actor.system.header.stress = new Object({ mod: '0' });
           actor.system.general.panic = new Object({ lastRoll: '0', value: '0' });
           aStress = 0;
-        } else aStress = actor.getRollData().stress + rollModifier;
+        } else aStress = actor.getRollData().header.stress.value + rollModifier;
 
         let modRoll = '1d6' + '+' + parseInt(aStress);
-        console.warn('rolling stress', modRoll);
         const roll = new Roll(modRoll);
         roll.evaluate({ async: false });
         const customResults = await table.roll({ roll });
+        console.warn(`Rolling stress, ${modRoll}, Panic Value ${actor.system.general.panic.value}, Last ${actor.system.general.panic.lastRoll}, Roll ${customResults.roll.total}`);
 
         oldPanic = actor.system.general.panic.lastRoll;
 
@@ -431,7 +376,7 @@ export class alienrpgActor extends Actor {
           '<span class="ctooltiptext">' +
           game.i18n.localize('ALIENRPG.Stress') +
           ' + (' +
-          (actor.getRollData().stress || 0) +
+          (actor.getRollData().header.stress.value || 0) +
           ') <br>+ ' +
           game.i18n.localize('ALIENRPG.StressMod') +
           ' + (' +
@@ -446,7 +391,6 @@ export class alienrpgActor extends Actor {
         let mPanic = customResults.roll.total < actor.system.general.panic.lastRoll;
         let pCheck = oldPanic + 1;
         console.log(mPanic, pCheck, oldPanic);
-        // debugger;
         if (mPanic && (actor.system.general.panic.value === 1)) {
           await actor.update({ 'system.general.panic.lastRoll': pCheck });
 
@@ -545,7 +489,6 @@ export class alienrpgActor extends Actor {
     let actorId = actor.id;
     let effectiveActorType = actor.type;
     let blind = false;
-    // debugger;
     let r2Data = 1;
     let radMax = actor.getRollData().general.radiation.max;
     yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
@@ -815,7 +758,6 @@ export class alienrpgActor extends Actor {
     if (typeof (effect) === "string") effect = duplicate(game.alienrpg.config.conditionEffects.find(e => e.id == effect));
     if (!effect) return 'No Effect Found';
     if (!effect.id) return 'Conditions require an id field';
-    // debugger;
     let existing = this.hasCondition(effect.id);
     if (existing) {
       return await this.deleteEmbeddedDocuments('ActiveEffect', [existing._id]);
@@ -853,7 +795,6 @@ export class alienrpgActor extends Actor {
       return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSupplys'));
     } else {
       yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
-      // debugger;
       if (game.alienrpg.rollArr.r2One) {
         getItems(actor, consUme, tItem);
       }
@@ -1408,7 +1349,6 @@ export class alienrpgActor extends Actor {
           //
           // Now create the item on the sheet
           //
-          // debugger;
           await actor.createEmbeddedDocuments('Item', [
             {
               type: 'spacecraft-crit',

@@ -33,7 +33,7 @@
       {{#ifne item.system.header.active 'fLocker' }}
         <li class="item grid-items" data-item-id="{{item._id}}">
           <div class="item-image lCol5 activate"><img src="{{item.img}}" data-item="{{item.system.header.active}}" title="{{item.name}}" width="24" height="24" /></div>
-          <span class="item-detail rollItem lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
+          <span class="item-detail rollVehicleWeapon lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
 
           {{#ife item.type 'weapon'}}
             {{#ife item.system.header.type.value '1'}}

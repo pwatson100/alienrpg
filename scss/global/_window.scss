@@ -356,6 +356,16 @@ a.inline-roll {
     cursor: pointer;
   }
 }
+.rollVehicleWeapon {
+  &:hover,
+  &:focus {
+    // color: black;
+    text-shadow: 0 0 20px hsl(0, 100%, 50%);
+    font-size: 110%;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+}
 .openItem {
   &:hover,
   &:focus {

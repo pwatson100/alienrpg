@@ -53,48 +53,19 @@ export class alienrpgActorSheet extends ActorSheet {
   /** @override */
   async getData(options) {
     // Basic data
-    // const isOwner = this.document.isOwner;
-    // const data = {
-    //   actor: this.object,
-    //   owner: this.object.isOwner,
-    //   limited: this.object.limited,
-    //   options: this.options,
-    //   editable: this.isEditable,
-    //   cssClass: isOwner ? 'editable' : 'locked',
-    //   isCharacter: this.object.system.type === 'character',
-    //   isEnc: this.object.type === 'character' || this.object.type === 'synthetic',
-    //   // isEnc: true,
-    //   isSynthetic: this.object.system.type === 'synthetic',
-    //   isVehicles: this.object.system.type === 'vehicles',
-    //   isCreature: this.object.system.type === 'creature',
-    //   isNPC: this.object.system.header.npc,
 
-    //   isGM: game.user.isGM,
-    //   config: CONFIG.ALIENRPG,
-    // };
-
-    // let actor = this.object;
-    // data.actor = actor.toJSON();
-
-
-    // data.actor.system.items = this.actor.items.map((i) => {
-    //   i.labels = i.labels;
-    //   return i;
-    // });
-    // data.actor.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-    // data.actor.system.labels = this.actor.labels || {};
-    // data.actor.system.filters = this._filters;
-
+    const isOwner = this.document.isOwner;
     let data = {
       id: this.actor.id,
       actor: foundry.utils.deepClone(this.actor),
       system: foundry.utils.deepClone(this.actor.system),
       isEnc: this.actor.type === 'character' || this.actor.type === 'synthetic',
+      isGM: game.user.isGM,
+      owner: this.object.isOwner,
       options: options,
       config: CONFIG.ALIENRPG,
 
     }
-    // debugger;
     data.system.items = this.actor.items.map((i) => {
       i.labels = i.labels;
       return i;
@@ -103,15 +74,14 @@ export class alienrpgActorSheet extends ActorSheet {
     data.system.labels = this.actor.labels || {};
     data.system.filters = this._filters;
 
-
     switch (this.actor.type) {
       case 'character':
         await this._characterData(data);
         await this.actor._checkOverwatch(data);
         await this._prepareItems(data);
         let enrichedFields = [
-          "actor.system.notes",
-          "actor.system.adhocitems",
+          "system.notes",
+          "system.adhocitems",
         ];
         await this._enrichTextFields(data, enrichedFields);
 
@@ -290,6 +260,8 @@ export class alienrpgActorSheet extends ActorSheet {
 
       html.find('.rollItem').click(this._onRollItemMod.bind(this));
 
+      html.find('.rollVehicleWeapon').contextmenu(this._rollItem.bind(this));
+
       html.find('.crewPanic').contextmenu(this._crewPanic.bind(this));
 
       html.find('.crewPanic').click(this._crewPanicMod.bind(this));
@@ -316,6 +288,8 @@ export class alienrpgActorSheet extends ActorSheet {
       html.find('.rollItem').click(this._rollItem.bind(this));
 
       html.find('.rollItem').contextmenu(this._onRollItemMod.bind(this));
+
+      html.find('.rollVehicleWeapon').click(this._rollItem.bind(this));
 
       html.find('.crewPanic').click(this._crewPanic.bind(this));
 
@@ -1297,8 +1271,6 @@ export class alienrpgActorSheet extends ActorSheet {
       } else {
         if (key === 'panicked') {
           if (this.actor.hasCondition(key)) await this.actor.checkAndEndPanic(this.actor);
-          // this.actor.update({ ['system.general.panic.lastRoll']: 0 });
-          // this.actor.ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
 
         } else {
           if (this.actor.hasCondition(key)) await this.actor.removeCondition(key);

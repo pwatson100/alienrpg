@@ -54,41 +54,19 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
   /** @override */
   async getData(options) {
     // Basic data
-    // const isOwner = this.document.isOwner;
-    // const data = {
-    //   actor: this.object,
-    //   owner: this.object.isOwner,
-    //   limited: this.object.limited,
-    //   options: this.options,
-    //   editable: this.isEditable,
-    //   cssClass: isOwner ? 'editable' : 'locked',
-    //   isCharacter: this.object.system.type === 'character',
-    //   // isEnc: true,
-    //   isVehicles: this.object.system.type === 'vehicles',
-    //   isGM: game.user.isGM,
-    //   config: CONFIG.ALIENRPG,
-    // };
 
-    // let actor = this.object;
-    // data.actor = actor.toJSON();
+    const isOwner = this.document.isOwner;
 
-    // data.actor.system.items = this.actor.items.map((i) => {
-    //   i.label = i.label;
-    //   return i;
-    // });
-
-    // data.actor.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-    // data.actor.system.label = this.actor.label || {};
-    // data.actor.system.filters = this._filters;
     let data = {
       id: this.actor.id,
       actor: foundry.utils.deepClone(this.actor),
       system: foundry.utils.deepClone(this.actor.system),
       isEnc: this.actor.type === 'character' || this.actor.type === 'synthetic',
+      isGM: game.user.isGM,
+      owner: this.object.isOwner,
       options: options,
       config: CONFIG.ALIENRPG,
     }
-    // debugger;
     data.system.items = this.actor.items.map((i) => {
       i.labels = i.labels;
       return i;

@@ -378,6 +378,13 @@ a.inline-roll {
   cursor: pointer;
 }
 
+.rollVehicleWeapon:hover, .rollVehicleWeapon:focus {
+  text-shadow: 0 0 20px hsl(0, 100%, 50%);
+  font-size: 110%;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
 .openItem:hover, .openItem:focus {
   text-shadow: 0 0 20px hsl(0, 100%, 50%);
   font-size: 110%;
@@ -5231,6 +5238,17 @@ combobox:focus {
 }
 .alienrpg .crt .rollItem:hover,
 .alienrpg .crt .rollItem:focus {
+  text-shadow: 0 0 15px var(--aliengreen);
+  -webkit-box-shadow: 0 0 7px var(--aliengreen);
+          box-shadow: 0 0 7px var(--aliengreen);
+  background-color: var(--aliengreen);
+  color: #000;
+  font-size: 100%;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+.alienrpg .crt .rollVehicleWeapon:hover,
+.alienrpg .crt .rollVehicleWeapon:focus {
   text-shadow: 0 0 15px var(--aliengreen);
   -webkit-box-shadow: 0 0 7px var(--aliengreen);
           box-shadow: 0 0 7px var(--aliengreen);

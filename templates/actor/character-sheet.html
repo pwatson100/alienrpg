@@ -201,9 +201,9 @@
             <h3 class="condition resource-label" data-key="starving" title="{{ localize 'ALIENRPG.ConButtons'}}">
               <a class="overwatch-toggle">
                 {{#ife system.general.starving.value true}}
-                  <i class="far fa-check-square"></i>
+                  <i class="far fa-dot-circle"></i>
                   {{else}}
-                    <i class="far fa-square"></i>
+                    <i class="far fa-circle"></i>
                 {{/ife}}
               </a>
               {{localize 'ALIENRPG.Starving'}}
@@ -213,9 +213,9 @@
             <h3 class="condition resource-label" data-key="dehydrated" title="{{ localize 'ALIENRPG.ConButtons'}}">
               <a class="overwatch-toggle">
                 {{#ife system.general.dehydrated.value true}}
-                  <i class="far fa-check-square"></i>
+                  <i class="far fa-dot-circle"></i>
                   {{else}}
-                    <i class="far fa-square"></i>
+                    <i class="far fa-circle"></i>
                 {{/ife}}
               </a>
               {{ localize 'ALIENRPG.Dehydrated'}}
@@ -226,9 +226,9 @@
             <h3 class="condition resource-label" data-key="exhausted" title="{{ localize 'ALIENRPG.ConButtons'}}">
               <a class="overwatch-toggle">
                 {{#ife system.general.exhausted.value true}}
-                  <i class="far fa-check-square"></i>
+                  <i class="far fa-dot-circle"></i>
                   {{else}}
-                    <i class="far fa-square"></i>
+                    <i class="far fa-circle"></i>
                 {{/ife}}
               </a>
               {{ localize 'ALIENRPG.Exhausted'}}
@@ -239,9 +239,9 @@
             <h3 class="condition resource-label" data-key="freezing" title="{{ localize 'ALIENRPG.ConButtons'}}">
               <a class="overwatch-toggle">
                 {{#ife system.general.freezing.value true}}
-                  <i class="far fa-check-square"></i>
+                  <i class="far fa-dot-circle"></i>
                   {{else}}
-                    <i class="far fa-square"></i>
+                    <i class="far fa-circle"></i>
                 {{/ife}}
               </a>
               {{ localize 'ALIENRPG.Freezing'}}
@@ -251,14 +251,14 @@
             {{#ife system.general.panic.value 1}}
               <h3 class="condition resource-label" data-key="panicked" style="color: red;" title="{{ localize 'ALIENRPG.ConButtons'}}">
                 <a class="overwatch-toggle">
-                  <i class="far fa-check-square"></i>
+                  <i class="far fa-dot-circle"></i>
                 </a>{{ localize 'ALIENRPG.Panicked'}}
                 <input type="text" class="maxboxsize" name="system.general.panic.lastRoll" value="{{system.general.panic.lastRoll}}" data-dtype="Number">
               </h3>
               {{else}}
                 <h3 class="condition resource-label" data-key="panicked" title="{{ localize 'ALIENRPG.ConButtons'}}">
                   <a class="overwatch-toggle">
-                    <i class="far fa-square"></i>
+                    <i class="far fa-circle"></i>
                   </a>
                   {{ localize 'ALIENRPG.Panicked'}}
                 </h3>

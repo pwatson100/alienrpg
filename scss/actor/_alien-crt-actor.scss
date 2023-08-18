@@ -739,6 +739,16 @@
   font-weight: bolder;
   text-transform: uppercase;
 }
+.crt .rollVehicleWeapon:hover,
+.crt .rollVehicleWeapon:focus {
+  text-shadow: 0 0 15px var(--aliengreen);
+  box-shadow: 0 0 7px var(--aliengreen);
+  background-color: var(--aliengreen);
+  color: #000;
+  font-size: 100%;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
 
 .crt .grid-talents {
   text-align: center;

@@ -22,7 +22,7 @@ export class yze {
    * const dataset = element.dataset;
    * let label = dataset.label;
    * let r1Data = parseInt(dataset.roll || 0);
-   * let r2Data = this.actor.getRollData().stress;
+   * let r2Data = this.actor.getRollData().header.stress.value;
    * let reRoll = false;
    * yze.yzeRoll(actortype, blind, reRoll, label, r1Data, 'Black', r2Data, 'Yellow');
    *
@@ -153,7 +153,6 @@ export class yze {
       // *******************************************************
       // Set reroll
       // *******************************************************
-      // debugger;
       if (game.alienrpg.rollArr.r2One > 0) {
         if (reRoll === 'push' || reRoll === 'mPush') {
           spud = true;
