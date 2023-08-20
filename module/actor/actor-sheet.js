@@ -1150,7 +1150,6 @@ export class alienrpgActorSheet extends ActorSheet {
         switch (event.type) {
           case 'contextmenu':
             if (rad.value > 0) {
-
               switch (rad.value - 1 === 0) {
                 case true:
                   if (!rad.permanent) {
@@ -1166,10 +1165,10 @@ export class alienrpgActorSheet extends ActorSheet {
             break;
           case 'click':
             if (rad.value < rad.calculatedMax) {
-              if (rad.value <= 0) {
+              if (rad.value === 0) {
                 await this.actor.addCondition('radiation');
               }
-              this.actor.rollAbility(this.actor, event.currentTarget.dataset);
+              await this.actor.rollAbility(this.actor, event.currentTarget.dataset);
               await this.actor.update({ ["system.general.radiation.value"]: rad.value + 1 });
               return;
             }
@@ -1263,21 +1262,42 @@ export class alienrpgActorSheet extends ActorSheet {
   async _onOverwatchToggle(event) {
     let key = $(event.currentTarget).parents('.condition').attr('data-key');
     if (key === 'overwatch') {
-      if (this.actor.hasCondition(key)) await this.actor.removeCondition(key);
+      if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
       else await this.actor.addCondition(key);
     } else {
       if (event.type === 'click') {
-        if (!this.actor.hasCondition(key)) await this.actor.addCondition(key);
+        if (!await this.actor.hasCondition(key)) await this.actor.addCondition(key);
       } else {
         if (key === 'panicked') {
-          if (this.actor.hasCondition(key)) await this.actor.checkAndEndPanic(this.actor);
+          if (await this.actor.hasCondition(key)) await this.checkAndEndPanic(this.actor);
 
         } else {
-          if (this.actor.hasCondition(key)) await this.actor.removeCondition(key);
+          if (await this.actor.hasCondition(key)) await this.actor.removeCondition(key);
         }
       }
     }
   }
+
+  async checkAndEndPanic(actor) {
+    if (this.actor.type != 'character') return;
+
+    if (this.actor.system.general.panic.lastRoll > 0) {
+      await this.actor.update({
+        'system.general.panic.value': 0,
+      });
+      await this.actor.update({
+        'system.general.panic.lastRoll': 0,
+      });
+
+      await this.actor.removeCondition('panicked');
+      ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+    } else {
+      await this.actor.removeCondition('panicked');
+      ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+    }
+  }
+
+
 
   _creatureAcidRoll(event) {
     event.preventDefault();

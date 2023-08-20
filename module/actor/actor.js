@@ -111,43 +111,43 @@ export class alienrpgActor extends Actor {
   }
 
   async _checkOverwatch(actorData) {
-    let conDition = this.hasCondition('overwatch');
+    let conDition = await this.hasCondition('overwatch');
     if (conDition != undefined || conDition) {
       setProperty(actorData, 'system.general.overwatch', true);
     } else {
       setProperty(actorData, 'system.general.overwatch', false);
     }
 
-    let conDition2 = this.hasCondition('starving');
+    let conDition2 = await this.hasCondition('starving');
     if (conDition2 != undefined || conDition2) {
       setProperty(actorData, 'system.general.starving.value', true);
     } else {
       setProperty(actorData, 'system.general.starving.value', false);
     }
-    let conDition3 = this.hasCondition('dehydrated');
+    let conDition3 = await this.hasCondition('dehydrated');
     if (conDition3 != undefined || conDition3) {
       setProperty(actorData, 'system.general.dehydrated.value', true);
     } else {
       setProperty(actorData, 'system.general.dehydrated.value', false);
     }
-    let conDition4 = this.hasCondition('exhausted');
+    let conDition4 = await this.hasCondition('exhausted');
     if (conDition4 != undefined || conDition4) {
       setProperty(actorData, 'system.general.exhausted.value', true);
     } else {
       setProperty(actorData, 'system.general.exhausted.value', false);
     }
-    let conDition5 = this.hasCondition('freezing');
+    let conDition5 = await this.hasCondition('freezing');
     if (conDition5 != undefined || conDition5) {
       setProperty(actorData, 'system.general.freezing.value', true);
     } else {
       setProperty(actorData, 'system.general.freezing.value', false);
     }
-    // let conDition6 = this.hasCondition('panicked');
-    // if (conDition6 != undefined || conDition6) {
-    //   setProperty(actorData, 'system.general.panic.value', 1);
-    // } else {
-    //   setProperty(actorData, 'system.general.panic.value', 0);
-    // }
+    let conDition6 = await this.hasCondition('panicked');
+    if (conDition6 != undefined || conDition6) {
+      setProperty(actorData, 'system.general.panic.value', 1);
+    } else {
+      setProperty(actorData, 'system.general.panic.value', 0);
+    }
 
   }
 
@@ -365,7 +365,8 @@ export class alienrpgActor extends Actor {
         oldPanic = actor.system.general.panic.lastRoll;
 
         if (customResults.roll.total >= 7 && (actor.system.general.panic.value === 0)) {
-          this.causePanic(actor);
+          await actor.update({ 'system.general.panic.value': 1 });
+          await this.causePanic(actor);
         }
 
         chatMessage +=
@@ -712,25 +713,25 @@ export class alienrpgActor extends Actor {
     }
   }
 
-  async checkAndEndPanic(actor) {
-    if (actor.type != 'character') return;
+  // async checkAndEndPanic(actor) {
+  //   if (actor.type != 'character') return;
 
-    if (actor.system.general.panic.lastRoll > 0) {
-      await actor.update({
-        'system.general.panic.lastRoll': 0,
-        'system.general.panic.value': 0,
-      });
+  //   if (actor.system.general.panic.lastRoll > 0) {
+  //     await actor.removeCondition('panicked');
+  //     await actor.update({
+  //       'system.general.panic.lastRoll': 0,
+  //       'system.general.panic.value': 0,
+  //     });
 
-      await actor.removeCondition('panicked');
-      ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
-    } else {
-      await actor.removeCondition('panicked');
-      ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
-    }
-  }
+  //     ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+  //   } else {
+  //     await actor.removeCondition('panicked');
+  //     ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+  //   }
+  // }
 
   async causePanic(actor) {
-    await actor.update({ 'system.general.panic.value': 1 });
+    // await actor.update({ 'system.general.panic.value': 1 });
     await actor.addCondition('panicked');
     return;
   }
@@ -740,13 +741,13 @@ export class alienrpgActor extends Actor {
     if (!effect) return 'No Effect Found';
     if (!effect.id) return 'Conditions require an id field';
 
-    let existing = this.hasCondition(effect.id);
+    let existing = await this.hasCondition(effect.id);
 
     if (!existing) {
 
       // if (game.version < '11') {
-      effect.label = game.i18n.localize(effect.label).toLowerCase();
-      effect.name = game.i18n.localize(effect.name).toLowerCase();
+      effect.label = game.i18n.localize(effect.label).replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+      effect.name = game.i18n.localize(effect.name).replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
       effect['flags.core.statusId'] = effect.id;
       effect['statuses'] = effect.id;
       delete effect.id;
@@ -758,21 +759,18 @@ export class alienrpgActor extends Actor {
     if (typeof (effect) === "string") effect = duplicate(game.alienrpg.config.conditionEffects.find(e => e.id == effect));
     if (!effect) return 'No Effect Found';
     if (!effect.id) return 'Conditions require an id field';
-    let existing = this.hasCondition(effect.id);
+    let existing = await this.hasCondition(effect.id);
     if (existing) {
       return await this.deleteEmbeddedDocuments('ActiveEffect', [existing._id]);
     }
   }
 
-  hasCondition(conditionKey) {
+  async hasCondition(conditionKey) {
     let existing = '';
     if (game.version < '11') {
       existing = this.effects.find((i) => i.getFlag('core', 'statusId') == conditionKey);
     } else {
-      existing = this.effects.find((i) => (
-        i.name === conditionKey
-      )
-      );
+      existing = this.effects.find(effect => effect.statuses.has(conditionKey));
     }
 
     return existing;
@@ -784,7 +782,7 @@ export class alienrpgActor extends Actor {
     if (!supplyModifier) {
       supplyModifier = 0;
     }
-    r2Data = actor._source.system.consumables[`${consUme}`].value + supplyModifier;
+    r2Data = actor.system.consumables[`${consUme}`].value + supplyModifier;
     let reRoll = true;
     // let hostile = this.actor.system.type;
     let blind = false;
