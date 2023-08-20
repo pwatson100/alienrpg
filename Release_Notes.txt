@@ -519,3 +519,5 @@ Corrected issue with character critical injuries creation as the Fatal box was n
 They also now show any modifiers to Medical Aid rolls. 
 Code refactoring and backend changes for better V11 compatibility. 
 
+Version 3.1.4
+Corrected bug with conditions that occurred when using languages other then English.
