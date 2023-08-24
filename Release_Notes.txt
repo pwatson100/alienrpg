@@ -521,3 +521,7 @@ Code refactoring and backend changes for better V11 compatibility.
 
 Version 3.1.4
 Corrected bug with conditions that occurred when using languages other then English.
+
+Version 3.1.5
+Corrected bug in the Vehicle sheet when making Piloting rolls.
+Corrected warning messages with respect to euclidianDistances
