@@ -27,7 +27,7 @@ CONFIG.compatibility.includePatterns.push(includeRgx);
 
 const euclidianDistances = function (segments, options = {}) {
   const canvasSize = canvas.dimensions.size;
-  const gridDistance = canvas.scene.data.gridDistance;
+  const gridDistance = canvas.scene.grid.distance;
 
   return segments.map((s) => {
     let ray = s.ray;

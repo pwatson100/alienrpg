@@ -75,7 +75,7 @@
                 </div>
 
                 {{#ife position 'PILOT'}}
-                  <h3 for="actor.system.skills.piloting.value" class="resource-label rollable Attr1 gSC8" data-actorid="{{actor.id}}" data-roll="{{addstats actor.system.skills.piloting.mod @root.actor.system.attributes.thrusters.value}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillpiloting'}}">{{localize 'ALIENRPG.Skillpiloting'}}</h3>
+                  <h3 for="actor.system.skills.piloting.value" class="resource-label rollable Attr1 gSC8" data-actorid="{{actor.id}}" data-roll="{{addstats actor.system.skills.piloting.mod @root.actor.system.attributes.manoeuvrability.value}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillpiloting'}}">{{localize 'ALIENRPG.Skillpiloting'}}</h3>
                 {{/ife}}
 
                 <label type="button" class="crewPanic gSC9" data-crewpanic="{{actor.id}}" data-panicroll="true" title="{{localize 'ALIENRPG.RollPanic'}}"><i class="far fa-heart"></i></label>
