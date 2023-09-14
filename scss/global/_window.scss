@@ -5,11 +5,11 @@
   // width: 100%;
   width: auto;
   height: max-content;
-  min-width: 150px;
+  min-width: 156px;
   max-width: 360px;
   position: absolute;
-  left: -900%;
-  top: -102%;
+  left: -998%;
+  top: -50%;
   background: $c-black;
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
@@ -17,6 +17,7 @@
   text-align: left;
   font-size: smaller;
   z-index: 1;
+  
 }
 .alienrpg #context-menu li.context-item {
   line-height: 16px;

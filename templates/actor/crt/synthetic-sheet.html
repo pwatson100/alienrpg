@@ -83,13 +83,14 @@
 
 				<!-- Col2 -->
 				<div class="Col2">
+					<ol>
 					<li class="grid-talents item-header">
 						<h2 class="item talTitle">{{localize 'ALIENRPG.Talents'}}</h2>
 						<h3 class="item-name tal1">{{localize 'ALIENRPG.Name'}}</h3>
 						<div class="item-controls tal2">
 						</div>
 					</li>
-
+            <div style="height: 155px; overflow-x: auto;">
 					{{#each talents as |item iid|}}
 						<li class="item grid-talents" data-item-id="{{item._id}}">
 							<h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
@@ -99,15 +100,18 @@
 							</div>
 						</li>
 					{{/each}}
-				</div>
+			</div>
+			</ol>	
+			</div>
 				<div class="Col4">
+					<ol>
 					<li class="grid-talents item-header">
 						<h2 class="item talTitle">{{localize 'ALIENRPG.AgendaStory'}}</h2>
 						<h3 class="item-name tal1">{{localize 'ALIENRPG.Name'}}</h3>
 						<div class="item-controls tal2">
 						</div>
 					</li>
-
+            <div style="height: 70px; overflow-x: auto;">
 					{{#each agendas as |item iid|}}
 						<li class="item grid-talents" data-item-id="{{item._id}}">
 							<h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}} </h4>
@@ -117,6 +121,8 @@
 							</div>
 						</li>
 					{{/each}}
+				</div>
+			</ol>
 				</div>
 
 

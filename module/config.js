@@ -21,6 +21,21 @@ ALIENRPG.creaturedefence = {
   armorvfire: 'ALIENRPG.ArmorVsFire',
   acidSplash: 'ALIENRPG.SkillAcidSplash',
 };
+ALIENRPG.vehicleattributes = {
+  hull: 'ALIENRPG.Hull',
+  speed: 'ALIENRPG.Speed',
+  armorrating: 'ALIENRPG.ArmorRating',
+  manoeuvrability: 'ALIENRPG.Manoeuvrability',
+};
+ALIENRPG.spacecraftattributes = {
+  crew: 'ALIENRPG.CREW',
+  passengers: 'ALIENRPG.PASSENGERS',
+  ftlrating: 'ALIENRPG.FTL-RATING',
+  signature: 'ALIENRPG.SIGNATURE',
+  thrusters: 'ALIENRPG.THRUSTERS',
+  hull: 'ALIENRPG.HULL',
+  armor: 'ALIENRPG.SHIP-ARMOR',
+};
 ALIENRPG.skills = {
   heavyMach: 'ALIENRPG.SkillheavyMach',
   closeCbt: 'ALIENRPG.SkillcloseCbt',
