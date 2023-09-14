@@ -435,7 +435,7 @@ Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
 
 
 Hooks.once('setup', function () {
-  const toLocalize = ['skills', 'attributes', 'creatureattributes', 'creaturedefence', 'general'];
+  const toLocalize = ['skills', 'attributes', 'creatureattributes', 'creaturedefence', 'general','vehicleattributes','spacecraftattributes'];
   for (let o of toLocalize) {
     CONFIG.ALIENRPG[o] = Object.entries(CONFIG.ALIENRPG[o]).reduce((obj, e) => {
       obj[e[0]] = game.i18n.localize(e[1]);

@@ -568,11 +568,11 @@ export class alienrpgActor extends Actor {
                 },
                 two: {
                   label: game.i18n.localize('ALIENRPG.ArmorPiercing'),
-                  callback: () => (armorP = true),
+                  callback: () => (armorP = 'true'),
                 },
                 three: {
                   label: game.i18n.localize('ALIENRPG.ArmorDoubled'),
-                  callback: () => (armorDou = true),
+                  callback: () => (armorDou = 'true'),
                 },
                 four: {
                   icon: '<i class="fas fa-times"></i>',
@@ -730,6 +730,24 @@ export class alienrpgActor extends Actor {
   //   }
   // }
 
+  async checkAndEndPanic(actor) {
+    if (actor.type != 'character') return;
+
+    if (actor.system.general.panic.lastRoll > 0) {
+        await actor.update({
+            'system.general.panic.value': 0,
+        });
+        await actor.update({
+            'system.general.panic.lastRoll': 0,
+        });
+
+        await actor.removeCondition('panicked');
+        ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+    } else {
+        await actor.removeCondition('panicked');
+        ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+    }
+}
   async causePanic(actor) {
     // await actor.update({ 'system.general.panic.value': 1 });
     await actor.addCondition('panicked');

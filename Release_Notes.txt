@@ -525,3 +525,8 @@ Corrected bug with conditions that occurred when using languages other then Engl
 Version 3.1.5
 Corrected bug in the Vehicle sheet when making Piloting rolls.
 Corrected warning messages with respect to euclidianDistances
+
+Version 3.1.6
+More work to correct stuck ActiveEffects (Radiation) in V11.
+Added scrollable containers for Talents and Agendas (preserves sheet formatting).
+Updates for the new Token-Action-HUD-Alien module (Token-Action-HUD-Core required).

@@ -78,11 +78,11 @@
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  min-width: 150px;
+  min-width: 156px;
   max-width: 360px;
   position: absolute;
-  left: -900%;
-  top: -102%;
+  left: -998%;
+  top: -50%;
   background: hsl(0, 0%, 0%);
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
