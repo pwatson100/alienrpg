@@ -19,6 +19,7 @@ import { COMMON } from './common.js';
 import { logger } from './logger.js';
 import { ModuleImport, ImportFormWrapper } from './apps/init.js';
 import { moduleKey, adventurePackName, adventurePack, moduleTitle } from './apps/init.js';
+import { enrichTextEditors } from './enricher.js';
 
 const includeRgx = new RegExp('/systems/alienrpg/module/');
 CONFIG.compatibility.includePatterns.push(includeRgx);
@@ -106,6 +107,8 @@ Hooks.once('init', async function () {
   Items.registerSheet('alienrpg', alienrpgItemSheet, { types: ['item', 'weapon', 'armor', 'talent', 'skill-stunts', 'agenda', 'specialty', 'planet-system', 'critical-injury', "spacecraft-crit", "spacecraftmods", "spacecraftweapons"], makeDefault: false });
   registerSettings();
   registerActors();
+
+  enrichTextEditors();
 
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();
