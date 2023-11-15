@@ -530,3 +530,17 @@ Version 3.1.6
 More work to correct stuck ActiveEffects (Radiation) in V11.
 Added scrollable containers for Talents and Agendas (preserves sheet formatting).
 Updates for the new Token-Action-HUD-Alien module (Token-Action-HUD-Core required).
+
+Version 3.1.7
+Added Wildcatter and Entertainer archetypes from BBW.
+
+On rolling a Facehugger the system will automatically make a panic roll for the player.  
+    This can be turned off in the Alien PRG configuration by unchecking "Automatically Roll Panic"
+
+Depending on the result Panic rolls will now: 
+1. Increment/Decrement the panicking actors stress.
+2. Create an item to impose the modification (-2 Agility). 
+3. Add text to the chat for rolls >=10 saying that the action has failed.
+When panic is removed the -2 Agility modification item is automatically deleted.
+
+
