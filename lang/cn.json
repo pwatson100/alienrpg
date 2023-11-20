@@ -2,6 +2,7 @@
   "ACTOR": {
     "TypeCharacter": "Player Character",
     "TypeCreature": "Creature",
+    "TypePlanet": "Colony Planet",
     "TypeSpacecraft": "Space Ship",
     "TypeSynthetic": "Synthetic",
     "TypeTerritory": "Territory",

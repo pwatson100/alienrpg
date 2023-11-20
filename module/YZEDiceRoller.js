@@ -175,20 +175,21 @@ export class yze {
 			// *******************************************************
 			// Display message if there is a 1> on the stress dice.  Display appropriate message if its a Supply roll.
 			// *******************************************************
-			if (actortype != 'supply') {
-				if (game.alienrpg.rollArr.r2One >= 1 && label != game.i18n.localize('ALIENRPG.RadiationReduced')) {
-					chatMessage +=
-						'<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.rollStress') + '</div>';
-					if (game.settings.get('alienrpg', 'autopanic')) {
-						const myActor = game.actors.get(actorid);
-						let dataset = {
-							panicroll: myActor.getRollData().header.stress.value,
-							mod: myActor.getRollData().header.stress.mod,
-							label: game.i18n.localize('ALIENRPG.Stress'),
-						};
-						myActor.rollAbility(myActor, dataset);
-					}
+			if (actortype != 'supply' && game.alienrpg.rollArr.r2One >= 1 && label != game.i18n.localize('ALIENRPG.RadiationReduced')) {
+				logger.warn('! Supply ', 'r2One ', game.alienrpg.rollArr.r2One, 'Label', label, 'reRoll', reRoll, 'spud', spud);
+				// if (game.alienrpg.rollArr.r2One >= 1 && label != game.i18n.localize('ALIENRPG.RadiationReduced')) {
+				chatMessage +=
+					'<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.rollStress') + '</div>';
+				if (game.settings.get('alienrpg', 'autopanic')) {
+					const myActor = game.actors.get(actorid);
+					let dataset = {
+						panicroll: myActor.getRollData().header.stress.value,
+						mod: myActor.getRollData().header.stress.mod,
+						label: game.i18n.localize('ALIENRPG.Stress'),
+					};
+					myActor.rollAbility(myActor, dataset);
 				}
+				// }
 			} else if (game.alienrpg.rollArr.r2One >= 1) {
 				chatMessage +=
 					'<div class="alienchatblue warnblink"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.supplyDecreases') + '</div>';

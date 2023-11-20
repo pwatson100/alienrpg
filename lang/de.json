@@ -2,6 +2,7 @@
   "ACTOR": {
     "TypeCharacter": "Akteur",
     "TypeCreature": "Kreatur",
+    "TypePlanet": "Colony Planet",
     "TypeSpacecraft": "Raumschiff",
     "TypeSynthetic": "Android",
     "TypeTerritory": "Region",

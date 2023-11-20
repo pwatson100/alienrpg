@@ -19,6 +19,7 @@ export default function () {
 		type: Boolean,
 		default: true,
 		config: true,
+		restricted: true,
 	});
 
 	game.settings.register('alienrpg', 'dollar', {

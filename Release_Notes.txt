@@ -535,7 +535,7 @@ Version 3.1.7
 Added Wildcatter and Entertainer archetypes from BBW.
 
 On rolling a Facehugger the system will automatically make a panic roll for the player.  
-    This can be turned off in the Alien PRG configuration by unchecking "Automatically Roll Panic"
+    This can be turned off, by the GM,  in the Alien PRG configuration by unchecking "Automatically Roll Panic"
 
 Depending on the result Panic rolls will now: 
 1. Increment/Decrement the panicking actors stress.
