@@ -647,7 +647,7 @@
 				"nhwest": "",
 				"rpnhwest": false,
 				"nhsouth": "",
-				"rpnhsouth": false,
+				"rpshwest": false,
 				"nheast": "",
 				"rpnheast": false,
 				"sheast": "",
