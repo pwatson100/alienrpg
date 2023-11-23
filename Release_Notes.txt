@@ -542,5 +542,5 @@ Depending on the result Panic rolls will now:
 2. Create an item to impose the modification (-2 Agility). 
 3. Add text to the chat for rolls >=10 saying that the action has failed.
 When panic is removed the -2 Agility modification item is automatically deleted.
-
+Critical Injuries are now created with the PC's Skill modifiers applied to the item.  
 

@@ -1245,6 +1245,12 @@ export class alienrpgActor extends Actor {
 		let hHealTime = '';
 		let hTimeLimit = '';
 		let shipCritType = '';
+		let mobility = 0;
+		let rangedcombat = 0;
+		let observation = 0;
+		let manipulation = 0;
+		let closecombat = 0;
+		let stamina = 0;
 		switch (type) {
 			case 'character':
 				atable = game.tables.getName('Critical injuries');
@@ -1357,6 +1363,53 @@ export class alienrpgActor extends Actor {
 							healTime = 0;
 							break;
 					}
+
+					switch (test1.roll._total) {
+						case 14:
+							mobility = -2;
+							break;
+						case 15:
+							rangedcombat = -2;
+							observation = -2;
+							break;
+						case 16:
+							mobility = -2;
+							break;
+						case 21:
+							observation = -2;
+							break;
+						case 24:
+							manipulation = -2;
+							break;
+						case 31:
+							observation = -2;
+							manipulation = -2;
+							break;
+						case 33:
+							mobility = -2;
+							closecombat = -2;
+							break;
+						case 34:
+							rangedcombat = -2;
+							observation = -2;
+							break;
+						case 44:
+							mobility = -2;
+							stamina = -2;
+							break;
+						case 51:
+							mobility = -2;
+							break;
+						case 61:
+							stamina = -1;
+							break;
+						case 62:
+							stamina = -2;
+							break;
+
+						default:
+							break;
+					}
 					//
 					// Now create the item on the sheet
 					//
@@ -1368,6 +1421,12 @@ export class alienrpgActor extends Actor {
 						'data.attributes.timelimit.value': healTime,
 						'data.attributes.healingtime.value': testArray[9],
 						'data.attributes.effects': speanex,
+						'data.modifiers.skills.mobility.value': mobility,
+						'data.modifiers.skills.rangedCbt.value': rangedcombat,
+						'data.modifiers.skills.observation.value': observation,
+						'data.modifiers.skills.manipulation.value': manipulation,
+						'data.modifiers.skills.closeCbt.value': closecombat,
+						'data.modifiers.skills.stamina.value': stamina,
 					};
 
 					await this.createEmbeddedDocuments('Item', [rollData]);
