@@ -539,8 +539,10 @@ On rolling a Facehugger the system will automatically make a panic roll for the 
 
 Depending on the result Panic rolls will now: 
 1. Increment/Decrement the panicking actors stress.
-2. Create an item to impose the modification (-2 Agility). 
+2. Create an item to impose the modification (-2 Agility or -2 All Skills for Space Combat Panic Roll). 
 3. Add text to the chat for rolls >=10 saying that the action has failed.
-When panic is removed the -2 Agility modification item is automatically deleted.
+When panic is removed the -2 Agility/-2 All Skills modification items are automatically deleted.
 Critical Injuries are now created with the PC's Skill modifiers applied to the item.  
-
+Fixed issue on Vehicles and Starships where Android crew could not fire weapons or make piloting/comtech rolls.
+Fixed issue will supply rolls not working when the mouse keys are switched.
+Panic on Ship rolls now use the correct table "Space Combat Panic Roll".

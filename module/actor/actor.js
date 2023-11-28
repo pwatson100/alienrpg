@@ -194,10 +194,15 @@ export class alienrpgActor extends Actor {
 				case 'vehicles':
 				case 'spacecraft':
 					if (dataset.spbutt != 'armor') {
-						reRoll = false;
 						actorId = dataset.actorid;
 						let pilotData = game.actors.get(dataset.actorid);
-						r2Data = pilotData.getRollData().header.stress.value + parseInt(stressMod) || 0;
+						if (pilotData.type === 'synthetic') {
+							r2Data = 0;
+							reRoll = true;
+						} else {
+							r2Data = pilotData.getRollData().header.stress.value + parseInt(stressMod) || 0;
+							reRoll = false;
+						}
 					}
 					break;
 
@@ -279,7 +284,7 @@ export class alienrpgActor extends Actor {
 			} else if (actor.type === 'spacecraft' && dataset.spbutt === 'comtech') {
 				function myRenderTemplate(template) {
 					let confirmed = false;
-					reRoll = true;
+					// reRoll = false;
 					renderTemplate(template).then((dlg) => {
 						new Dialog({
 							title: game.i18n.localize('ALIENRPG.Attributes') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
@@ -506,42 +511,93 @@ export class alienrpgActor extends Actor {
 						);
 					}
 				}
+				if (dataset.shippanicbut) {
+					switch (pCheck) {
+						case 7:
+						case 9:
+						case 11:
+						case 12:
+							// increase
+							await actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
+							break;
 
-				switch (customResults.roll.total) {
-					case 7:
-					case 9:
-					case 10:
-						// increase
-						await actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
-						break;
+						case 8:
+							// Agility -2
+							const allSkillsModName =
+								game.i18n.localize('ALIENRPG.PanicCondition') + ' - ' + game.i18n.localize('ALIENRPG.TREMBLE') + ' -2 ' + game.i18n.localize('ALIENRPG.Skills');
+							// const allSkillsMod = actor.items.getName(allSkillsModName);
+							if (!actor.items.getName(allSkillsModName)) {
+								const rollData = {
+									type: 'item',
+									img: '/systems/alienrpg/images/panic.svg',
+									name: allSkillsModName,
+									'system.header.type.value': 5,
+									'system.attributes.comment.value': game.i18n.localize('ALIENRPG.ShipPanic8'),
+									'system.modifiers.skills.agl.value': -2,
+									'system.modifiers.skills.heavyMach.value': -2,
+									'system.modifiers.skills.closeCbt.value': -2,
+									'system.modifiers.skills.stamina.value': -2,
+									'system.modifiers.skills.rangedCbt.value': -2,
+									'system.modifiers.skills.mobility.value': -2,
+									'system.modifiers.skills.piloting.value': -2,
+									'system.modifiers.skills.command.value': -2,
+									'system.modifiers.skills.manipulation.value': -2,
+									'system.modifiers.skills.medicalAid.value': -2,
+									'system.modifiers.skills.observation.value': -2,
+									'system.modifiers.skills.survival.value': -2,
+									'system.modifiers.skills.comtech.value': -2,
+									'system.header.active': true,
+								};
+								await actor.createEmbeddedDocuments('Item', [rollData]);
+							}
+							break;
 
-					case 8:
-						// Agility -2
-						const agilityModName = game.i18n.localize('ALIENRPG.PanicCondition') + ' - ' + game.i18n.localize('ALIENRPG.AbilityAgl') + ' -2';
-						// const agilityMod = actor.items.getName(agilityModName);
-						if (!actor.items.getName(agilityModName)) {
-							const rollData = {
-								type: 'item',
-								img: '/systems/alienrpg/images/panic.svg',
-								name: game.i18n.localize('ALIENRPG.PanicCondition') + ' - ' + game.i18n.localize('ALIENRPG.AbilityAgl') + ' -2',
-								'system.header.type.value': 5,
-								'system.attributes.comment.value': game.i18n.localize('ALIENRPG.Panic8'),
-								'system.modifiers.attributes.agl.value': -2,
-								'system.header.active': true,
-							};
-							await this.createEmbeddedDocuments('Item', [rollData]);
-						}
-						break;
+						case 10:
+						case 13:
+							//decrease
+							await actor.update({ 'system.header.stress.value': actor.system.header.stress.value - 1 });
+							break;
 
-					case 11:
-					case 12:
-					case 13:
-						//decrease
-						await actor.update({ 'system.header.stress.value': actor.system.header.stress.value - 1 });
-						break;
+						default:
+							break;
+					}
+				} else {
+					switch (pCheck) {
+						case 7:
+						case 9:
+						case 10:
+							// increase
+							await actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
+							break;
 
-					default:
-						break;
+						case 8:
+							// Agility -2
+							const agilityModName = game.i18n.localize('ALIENRPG.PanicCondition') + ' - ' + game.i18n.localize('ALIENRPG.AbilityAgl') + ' -2';
+							// const agilityMod = actor.items.getName(agilityModName);
+							if (!actor.items.getName(agilityModName)) {
+								const rollData = {
+									type: 'item',
+									img: '/systems/alienrpg/images/panic.svg',
+									name: agilityModName,
+									'system.header.type.value': 5,
+									'system.attributes.comment.value': game.i18n.localize('ALIENRPG.Panic8'),
+									'system.modifiers.attributes.agl.value': -2,
+									'system.header.active': true,
+								};
+								await this.createEmbeddedDocuments('Item', [rollData]);
+							}
+							break;
+
+						case 11:
+						case 12:
+						case 13:
+							//decrease
+							await actor.update({ 'system.header.stress.value': actor.system.header.stress.value - 1 });
+							break;
+
+						default:
+							break;
+					}
 				}
 
 				ChatMessage.create({
@@ -796,6 +852,9 @@ export class alienrpgActor extends Actor {
 	async checkAndEndPanic(actor) {
 		let itemDel = '';
 		const agilityModName = game.i18n.localize('ALIENRPG.PanicCondition') + ' - ' + game.i18n.localize('ALIENRPG.AbilityAgl') + ' -2';
+		const allSkillsModName =
+			game.i18n.localize('ALIENRPG.PanicCondition') + ' - ' + game.i18n.localize('ALIENRPG.TREMBLE') + ' -2 ' + game.i18n.localize('ALIENRPG.Skills');
+
 		if (actor.type != 'character') return;
 
 		if (actor.system.general.panic.lastRoll > 0) {
@@ -812,10 +871,18 @@ export class alienrpgActor extends Actor {
 			if (itemDel) {
 				itemDel.delete();
 			}
+			itemDel = actor.items.getName(allSkillsModName);
+			if (itemDel) {
+				itemDel.delete();
+			}
 		} else {
 			await actor.removeCondition('panicked');
 			ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
 			itemDel = actor.items.getName(agilityModName);
+			if (itemDel) {
+				itemDel.delete();
+			}
+			itemDel = actor.items.getName(allSkillsModName);
 			if (itemDel) {
 				itemDel.delete();
 			}

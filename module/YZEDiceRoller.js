@@ -38,6 +38,8 @@ export class yze {
 		// Is Dice So Nice enabled ?
 		// *******************************************************
 		let niceDice = '';
+		let myActor = '';
+		let dataset = '';
 
 		try {
 			niceDice = true;
@@ -181,13 +183,26 @@ export class yze {
 				chatMessage +=
 					'<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.rollStress') + '</div>';
 				if (game.settings.get('alienrpg', 'autopanic')) {
-					const myActor = game.actors.get(actorid);
-					let dataset = {
-						panicroll: myActor.getRollData().header.stress.value,
-						mod: myActor.getRollData().header.stress.mod,
-						label: game.i18n.localize('ALIENRPG.Stress'),
-					};
-					myActor.rollAbility(myActor, dataset);
+					if (tactorid != 'spacecraft') {
+						myActor = game.actors.get(actorid);
+						console.log('PC Panic');
+						dataset = {
+							panicroll: myActor.getRollData().header.stress.value,
+							mod: myActor.getRollData().header.stress.mod,
+							label: game.i18n.localize('ALIENRPG.Stress'),
+						};
+						myActor.rollAbility(myActor, dataset);
+					} else {
+						myActor = game.actors.get(actorid);
+						console.log('Crew Panic');
+						dataset = {
+							panicroll: myActor.getRollData().header.stress.value,
+							mod: myActor.getRollData().header.stress.mod,
+							label: game.i18n.localize('ALIENRPG.Stress'),
+							shippanicbut: 'true',
+						};
+						myActor.rollAbility(myActor, dataset);
+					}
 				}
 				// }
 			} else if (game.alienrpg.rollArr.r2One >= 1) {
@@ -340,6 +355,7 @@ export class yze {
 				type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 				roll: mr,
 				rollMode: game.settings.get('core', 'rollMode'),
+				flags: { tactorid },
 			});
 		} else {
 			ChatMessage.create({
@@ -353,6 +369,7 @@ export class yze {
 				type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 				roll: mr,
 				rollMode: game.settings.get('core', 'rollMode'),
+				flags: { tactorid },
 			});
 		}
 		// }
