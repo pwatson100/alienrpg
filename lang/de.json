@@ -405,6 +405,7 @@
     "targetLock": "Ziel anvisieren",
     "targetMod": "Ziel-Modifikator",
     "TargetShipEnginesOffline": "Antrieb des Ziel-Schiffs ist ausgeschaltet",
+    "TargetShipEnginesSensorsOffline": "Target Ships Sensors & Engines Offline",
     "TargetShipSensorsOffline": "Sensoren des Ziel-Schiffs sind ausgeschaltet",
     "terrain": "Gelände",
     "THRUSTERS": "SCHUBDÜSEN",

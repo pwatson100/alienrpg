@@ -1,36 +1,35 @@
 <p>{{localize "ALIENRPG.DialText"}}</p>
 <form>
-  <div class="form-group">
-    <label>{{localize "ALIENRPG.SigMod"}}</label>
-    <input type="text" id="sigMod" name="sigMod" value="0" autofocus="autofocus" />
-  </div>
-  <div class="form-group">
-    <label>{{localize "ALIENRPG.targetLock"}} {{localize "ALIENRPG.MODIFIER"}}</label>
-    <select id="targetLock" name="targetLock">
-      <option value="-2">{{localize "ALIENRPG.Extreme"}}</option>
-      <option value="-1">{{localize "ALIENRPG.Long"}}</option>
-      <option value="0">{{localize "ALIENRPG.Medium"}}</option>
-      <option value="+1">{{localize "ALIENRPG.Short"}}</option>
-      <option value="+2">{{localize "ALIENRPG.Contact"}}</option>
-
-    </select>
-  </div>
-  <div class="form-group">
-    <label>{{localize "ALIENRPG.targetMod"}}</label>
-    <select id="targetMod" name="targetMod">
-      <option value="0">{{localize "ALIENRPG.None"}}</option>
-      <option value="-2">{{localize "ALIENRPG.MalfunctioningSensors"}}</option>
-      <option value="-1">{{localize "ALIENRPG.TargetShipSensorsOffline"}}</option>
-      <option value="-2">{{localize "ALIENRPG.TargetShipEnginesOffline"}}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>{{localize "ALIENRPG.BaseMod"}}</label>
-    <input type="text" id="baseModifier" name="baseModifier" value="0" autofocus="autofocus" />
-  </div>
-  <div class="form-group">
-    <label>{{localize "ALIENRPG.StressMod"}}</label>
-    <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus" />
-  </div>
-
+	<div class="form-group">
+		<label>{{localize "ALIENRPG.SigMod"}}</label>
+		<input type="text" id="sigMod" name="sigMod" value="0" autofocus="autofocus" />
+	</div>
+	<div class="form-group">
+		<label>{{localize "ALIENRPG.targetLock"}} {{localize "ALIENRPG.MODIFIER"}}</label>
+		<select id="targetLock" name="targetLock">
+			<option value="-2">{{localize "ALIENRPG.Extreme"}}</option>
+			<option value="-1">{{localize "ALIENRPG.Long"}}</option>
+			<option value="0">{{localize "ALIENRPG.Medium"}}</option>
+			<option value="+1">{{localize "ALIENRPG.Short"}}</option>
+			<option value="+2">{{localize "ALIENRPG.Contact"}}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>{{localize "ALIENRPG.targetMod"}}</label>
+		<select id="targetMod" name="targetMod">
+			<option value="0">{{localize "ALIENRPG.None"}}</option>
+			<option value="-2">{{localize "ALIENRPG.MalfunctioningSensors"}}</option>
+			<option value="-1">{{localize "ALIENRPG.TargetShipSensorsOffline"}}</option>
+			<option value="-2">{{localize "ALIENRPG.TargetShipEnginesOffline"}}</option>
+			<option value="-3">{{localize "ALIENRPG.TargetShipEnginesSensorsOffline"}}</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>{{localize "ALIENRPG.BaseMod"}}</label>
+		<input type="text" id="baseModifier" name="baseModifier" value="0" autofocus="autofocus" />
+	</div>
+	<div class="form-group">
+		<label>{{localize "ALIENRPG.StressMod"}}</label>
+		<input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus" />
+	</div>
 </form>

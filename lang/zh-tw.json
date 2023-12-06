@@ -406,6 +406,7 @@
     "targetLock": "Target Lock",
     "targetMod": "Factor Modifier",
     "TargetShipEnginesOffline": "Target Ship Engines Offline",
+    "TargetShipEnginesSensorsOffline": "Target Ships Sensors & Engines Offline",
     "TargetShipSensorsOffline": "Target Ship Sensors Offline",
     "terrain": "地形",
     "THRUSTERS": "推进器",

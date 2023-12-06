@@ -608,7 +608,8 @@
 				"type": {
 					"value": "",
 					"label": "Text"
-				}
+				},
+				"colonyname": ""
 			},
 			"attributes": {
 				"parentstar": "",
