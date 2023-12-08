@@ -1,6 +1,6 @@
 {
 	"Actor": {
-		"types": ["character", "synthetic", "vehicles", "creature", "territory", "spacecraft", "planet"],
+		"types": ["character", "synthetic", "vehicles", "creature", "territory", "spacecraft", "planet", "colony"],
 		"character": {
 			"header": {
 				"health": {
@@ -662,6 +662,68 @@
 			},
 			"notes": ""
 		},
+		"colony": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				},
+				"colonyname": ""
+			},
+			"attributes": {
+				"location": "",
+				"mission": "",
+				"established": "",
+				"cycles": "",
+				"sponsor": "",
+				"population": 0,
+				"commander": "",
+				"economydirector": "",
+				"potentialname": "",
+				"productivityname": "",
+				"maintenancename": "",
+				"sciencename": "",
+				"spiritname": ""
+			},
+			"stats": {
+				"economy": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"potential": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"productivity": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"maintenance": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"science": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"spirit": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"developmenttotal": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				}
+			},
+			"notes": ""
+		},
 		"general": {
 			"misc": {
 				"value": ""
@@ -684,7 +746,8 @@
 			"spacecraft-crit",
 			"spacecraftmods",
 			"spacecraftweapons",
-			"skill-stunts"
+			"skill-stunts",
+			"colony-initiative"
 		],
 		"item": {
 			"header": {
@@ -692,7 +755,8 @@
 					"value": "",
 					"label": "Text"
 				},
-				"active": false
+				"active": false,
+				"completed": false
 			},
 			"attributes": {
 				"weight": {
@@ -1309,6 +1373,34 @@
 			"notes": {
 				"notes": ""
 			}
+		},
+		"colony-initiative": {
+			"header": {
+				"type": 0,
+				"comment": "",
+				"active": true
+			},
+			"modifiers": {
+				"economy": {
+					"value": 0
+				},
+				"potential": {
+					"value": 0
+				},
+				"productivity": {
+					"value": 0
+				},
+				"maintenance": {
+					"value": 0
+				},
+				"science": {
+					"value": 0
+				},
+				"spirit": {
+					"value": 0
+				}
+			},
+			"notes": ""
 		}
 	}
 }
