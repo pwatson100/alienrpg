@@ -535,8 +535,8 @@ Version 3.1.7
 Added Wildcatter and Entertainer archetypes from BBW.
 Added System sheet for BBW
 Added Colony sheet for BBW along with a new item for adding Colony Initiatives.  Drag and drop onto the sheet.  Modifiers are automatically added to the developme t total. 
-Added pop-up boxes to show the modifier totals for the ket sats and Development total. 
-  
+Added pop-up boxes to show the modifier totals for the key stats and Development total. 
+
 On rolling a Facehugger the system will automatically make a panic roll for the player.  
     This can be turned off, by the GM,  in the Alien PRG configuration by unchecking "Automatically Roll Panic"
 
