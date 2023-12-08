@@ -118,6 +118,7 @@ Hooks.once('init', async function () {
 			'spacecraft-crit',
 			'spacecraftmods',
 			'spacecraftweapons',
+			'colony-initiative',
 		],
 		makeDefault: false,
 	});
@@ -164,9 +165,14 @@ Hooks.once('init', async function () {
 		if (v1 === v2) return options.fn(this);
 		else return options.inverse(this);
 	});
-	// if equal
+	// if Greater than
 	Handlebars.registerHelper('ifgt', function (v1, v2, options) {
 		if (v1 > v2) return options.fn(this);
+		else return options.inverse(this);
+	});
+	// if Less than
+	Handlebars.registerHelper('iflt', function (v1, v2, options) {
+		if (v1 < v2) return options.fn(this);
 		else return options.inverse(this);
 	});
 

@@ -1,0 +1,16 @@
+<ol class="items-list" style="color: black">
+	{{#each projects as |item iid|}}
+	<li class="item" id="rcorners" style="margin-bottom: 15px" data-item-id="{{item.id}}">
+		<a class="item-name" style="font-weight: bolder">{{item.name}}:</a>
+		<br />
+		<a class="item-name">{{{striptags item.system.header.comment}}}</a>
+		<h4 class="wItem3 resource-label" style="font-weight: bolder">
+			{{localize 'ALIENRPG.completed'}}
+			<input style="vertical-align: middle" name="item.system.header.completed" type="checkbox" disabled="true" {{checked item.system.header.completed}} />
+		</h4>
+		<div style="text-align: right">
+			<a class="item-control item-edit" data-item-id="{{item.id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+		</div>
+	</li>
+	{{/each}}
+</ol>

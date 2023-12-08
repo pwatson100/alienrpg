@@ -564,6 +564,42 @@ button:focus {
 .tooltip:hover .tooltiptext {
 	visibility: visible;
 }
+.tooltip2 {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+
+.tooltip2 .tooltiptext2 {
+	visibility: hidden;
+	background-color: $c-black;
+	//  color: $c-green;
+	text-align: center;
+	border-radius: 6px;
+	position: absolute;
+	z-index: 1;
+	border-style: solid;
+	border-color: var(--aliengreen);
+	padding: 0px;
+	font-family: 'Times New Roman', Times, serif;
+	width: 150px;
+	top: -30px;
+	right: -160px;
+	margin-left: auto;
+}
+.tooltip2 .tooltiptext2::after {
+	content: ' ';
+	position: absolute;
+	top: 50%;
+	left: 100%; /* To the right of the tooltip */
+	margin-top: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent transparent var(--aliengreen);
+}
+.tooltip2:hover .tooltiptext2 {
+	visibility: visible;
+}
 
 .alienrpg .inputtext {
 	color: inherit;
@@ -663,4 +699,10 @@ button:focus {
 
 .prosemirror menu .pm-dropdown {
 	color: $c-black;
+}
+
+#overlay {
+	height: 200%;
+	background-color: hsl(120deg 64% 43% / 30%); /* Black background with opacity */
+	z-index: 2;
 }

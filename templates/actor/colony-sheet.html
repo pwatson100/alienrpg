@@ -10,261 +10,247 @@
 		{{!--General Tab --}}
 		<div class="tab general" data-group="primary" data-tab="general">
 			<div style="background-image: url(systems/alienrpg/images/colony-sheet.webp); background-repeat: no-repeat; height: 848px">
-				<div class="grid-colony-planet1">
-					<h6 class="resource-label gcp4">SOLAR SYSTEM</h6>
-				</div>
-				<div class="grid-colony-planet2">
-					<h2 class="gcp14">
-						<input name="name" style="max-width: 351px; margin: 3px 0px 0px -4px" type="text" value="{{actor.name}}" />
-					</h2>
-				</div>
-				<div class="grid-colony-planet3a">
-					<h6 class="resource-label gcp3a1">PARENT STAR</h6>
-					<h6 class="resource-label gcp3a7">RADIATION</h6>
-				</div>
-				<div class="grid-colony-planet3">
-					<input
-						class="gcp31 planetboxsize"
-						style="max-width: 216px; margin: 5px 0px 0px -3px; text-align: center"
-						type="text"
-						name="system.attributes.parentstar"
-						value="{{system.attributes.parentstar}}"
-						data-dtype="String"
-					/>
-					<input
-						class="gcp37 planetboxsize"
-						style="max-width: 100px; margin: 3px 0px 0px 10px; text-align: center"
-						type="text"
-						name="system.attributes.radiation"
-						value="{{system.attributes.radiation}}"
-						data-dtype="String"
-					/>
-				</div>
-				<div class="grid-colony-planet4a">
-					<h6 class="resource-label gcp4a2" style="font-size: smaller">SURVEYED PLANETS POSITION</h6>
-					<h6 class="resource-label gcp4a3">GAS GIANTS</h6>
-					<h6 class="resource-label gcp4a4">ROCKY<br />PLANETS</h6>
-					<h6 class="resource-label gcp4a5">ICE PLANETS</h6>
-					<h6 class="resource-label gcp4a6">ASTEROID<br />BELTS</h6>
-				</div>
-				<div class="grid-colony-planet4">
-					<input
-						class="gcp42 planetboxsize"
-						style="max-width: 50px; margin: -10px 0px 0px 93px; text-align: center"
-						type="text"
-						name="system.attributes.planetposition.value"
-						value="{{system.attributes.planetposition.value}}"
-						data-dtype="Number"
-					/>
-					<input
-						class="gcp43 planetboxsize"
-						type="text"
-						style="max-width: 50px; margin: 7px 0px 0px 35px; text-align: center"
-						name="system.attributes.gasgiants.value"
-						value="{{system.attributes.gasgiants.value}}"
-						data-dtype="Number"
-					/>
-					<input
-						class="gcp44 planetboxsize"
-						type="text"
-						style="max-width: 50px; margin: 4px 0px 0px 41px; text-align: center"
-						name="system.attributes.rockyplanets.value"
-						value="{{system.attributes.rockyplanets.value}}"
-						data-dtype="Number"
-					/>
-					<input
-						class="gcp45 planetboxsize"
-						type="text"
-						style="max-width: 50px; margin: -10px 0px 0px 50px; text-align: center"
-						name="system.attributes.iceplanets.value"
-						value="{{system.attributes.iceplanets.value}}"
-						data-dtype="Number"
-					/>
-					<input
-						class="gcp46 planetboxsize"
-						type="text"
-						style="max-width: 50px; margin: -13px 0px 0px 56px; text-align: center"
-						name="system.attributes.asteroidbelts.value"
-						value="{{system.attributes.asteroidbelts.value}}"
-						data-dtype="Number"
-					/>
-				</div>
-				<div class="grid-colony-planet6a">
-					<h6 class="resource-label gcp6a1">PLANET SIZE</h6>
-					<h6 class="resource-label gcp6a2">ATMOSPHERE</h6>
-					<h6 class="resource-label gcp6a4">HYDROSPHERE</h6>
-					<h6 class="resource-label gcp6a6">DAY LENGTH</h6>
-					<h6 class="resource-label gcp6a7">AXIAL TILT</h6>
-				</div>
-				<div class="grid-colony-planet6">
-					<input
-						class="gcp61 planetboxsize"
-						style="max-width: 190px; margin: 10px 0px 0px 0px; text-align: center"
-						type="text"
-						name="system.attributes.planetsize"
-						value="{{system.attributes.planetsize}}"
-						data-dtype="String"
-					/>
-					<input
-						class="gcp62 planetboxsize"
-						style="max-width: 190px; margin: -9px 0px 0px -14px; text-align: center"
-						type="text"
-						name="system.attributes.atmosphere"
-						value="{{system.attributes.atmosphere}}"
-						data-dtype="String"
-					/>
-					<input
-						class="gcp64 planetboxsize"
-						style="max-width: 180px; margin: -26px 0px 0px -5px; text-align: center"
-						type="text"
-						name="system.attributes.hydrosphere"
-						value="{{system.attributes.hydrosphere}}"
-						data-dtype="String"
-					/>
-					<input
-						class="gcp66 planetboxsize"
-						style="max-width: 190px; margin: -9px 0px 0px -10px; text-align: center"
-						type="text"
-						name="system.attributes.daylength"
-						value="{{system.attributes.daylength}}"
-						data-dtype="String"
-					/>
-					<input
-						class="gcp67 planetboxsize"
-						style="max-width: 190px; margin: 10px 0px 0px 3px; text-align: center"
-						type="text"
-						name="system.attributes.axialtilt"
-						value="{{system.attributes.axialtilt}}"
-						data-dtype="String"
-					/>
-				</div>
-				<div class="grid-colony-planet7a">
-					<h6 class="resource-label gcp7a1">GRAVITY</h6>
-					<h6 class="resource-label gcp7a2">CLIMATE</h6>
-					<h6 class="resource-label gcp7a4">GLOBAL FEATURE</h6>
-					<h6 class="resource-label gcp7a6">ORBITAL PERIOD</h6>
-					<h6 class="resource-label gcp7a7">PLANETARY PERSONALITY</h6>
-				</div>
-				<div class="grid-colony-planet7">
-					<input
-						class="gcp71 planetboxsize"
-						style="max-width: 190px; margin: 44px 0px 0px 4px; text-align: center"
-						type="text"
-						name="system.attributes.gravity"
-						value="{{system.attributes.gravity}}"
-						data-dtype="String"
-					/>
-					<input
-						class="gcp72 planetboxsize"
-						style="max-width: 190px; margin: 25px 0px 0px -8px; text-align: center"
-						type="text"
-						name="system.attributes.climate"
-						value="{{system.attributes.climate}}"
-						data-dtype="String"
-					/>
-
-					<textarea class="gcp74 colony-planet1" style="text-align: center" name="system.attributes.globalfeature" rows="3" data-dtype="String">
-{{system.attributes.globalfeature}}</textarea
-					>
-					<input
-						class="gcp76 planetboxsize"
-						style="max-width: 190px; margin: 25px 0px 0px -4px; text-align: center"
-						type="text"
-						name="system.attributes.orbitalperiod"
-						value="{{system.attributes.orbitalperiod}}"
-						data-dtype="String"
-					/>
-					<input
-						class="gcp77 planetboxsize"
-						style="max-width: 190px; margin: 44px 0px 0px 8px; text-align: center"
-						type="text"
-						name="system.attributes.personality"
-						value="{{system.attributes.personality}}"
-						data-dtype="String"
-					/>
-				</div>
-				<div class="grid-colony-planet8a">
-					<h6 class="resource-label gcp8a4">NORTH POLE</h6>
-				</div>
-				<div class="grid-colony-planet8">
-					<textarea class="gcp84 colony-planet2" name="system.attributes.northpole" rows="4" data-dtype="String">{{system.attributes.northpole}}</textarea>
-				</div>
-				<div class="grid-colony-planet9">
-					<h6 class="resource-label gcp94">RESOURCE POTENTIAL</h6>
-					<input
-						class="gcp96"
-						style="margin: 31px 0px 0px 5px"
-						name="system.attributes.rpnorthpole"
-						type="checkbox"
-						{{checked
-						system.attributes.rpnorthpole}}
-					/>
-				</div>
-				<div class="grid-colony-planet10a">
-					<h6 class="resource-label gcp10a1">
-						NORTHERN <br />
-						HEMISPHERE WEST
-					</h6>
-					<h6 class="resource-label gcp10a4">EQUATOR</h6>
-					<h6 class="resource-label gcp10a7">
-						NORTHERN <br />
-						HEMISPHERE EAST
-					</h6>
-				</div>
-				<div class="grid-colony-planet10">
-					<textarea class="gcp101 colony-planet2" name="system.attributes.nhwest" rows="4" data-dtype="String">{{system.attributes.nhwest}}</textarea>
-					<textarea class="gcp104 colony-planet2" style="margin-top: 73px" name="system.attributes.equator" rows="4" data-dtype="String">
-{{system.attributes.equator}}</textarea
-					>
-					<textarea class="gcp107 colony-planet2" name="system.attributes.nheast" rows="4" data-dtype="String">{{system.attributes.nheast}}</textarea>
-				</div>
-
-				<div class="grid-colony-planet11">
-					<h6 class="resource-label gcp111">RESOURCE POTENTIAL</h6>
-					<input class="gcp112" style="margin: 27px 0px 0px -6px" name="system.attributes.rpnhwest" type="checkbox" {{checked system.attributes.rpnhwest}} />
-					<h6 class="resource-label gcp113">RESOURCE POTENTIAL</h6>
-					<input class="gcp114" style="margin: 105px 0px 0px -5px" name="system.attributes.rpequator" type="checkbox" {{checked system.attributes.rpequator}} />
-					<h6 class="resource-label gcp115">RESOURCE POTENTIAL</h6>
-					<input class="gcp116" style="margin: 27px 0px 0px -6px" name="system.attributes.rpnheast" type="checkbox" {{checked system.attributes.rpnheast}} />
-				</div>
-
-				<div class="grid-colony-planet12a">
-					<h6 class="resource-label gcp12a1">
-						SOUTHERN <br />
-						HEMISPHERE WEST
-					</h6>
-					<h6 class="resource-label gcp12a4">SOUTH POLE</h6>
-					<h6 class="resource-label gcp12a7">
-						SOUTHERN <br />
-						HEMISPHERE EAST
-					</h6>
-				</div>
-				<div class="grid-colony-planet12">
-					<textarea class="gcp121 colony-planet2" name="system.attributes.shwest" rows="4" data-dtype="String">{{system.attributes.shwest}}</textarea>
-
-					<textarea class="gcp124 colony-planet2" style="margin-top: 67px" name="system.attributes.southpole" rows="4" data-dtype="String">
-{{system.attributes.southpole}}</textarea
-					>
-					<textarea class="gcp127 colony-planet2" name="system.attributes.sheast" rows="4" data-dtype="String">{{system.attributes.sheast}}</textarea>
-				</div>
-
-				<div class="grid-colony-planet13a">
-					<h6 class="resource-label gcp13a1">RESOURCE POTENTIAL</h6>
-
-					<input class="gcp13a2" style="margin: 27px 0px 0px -6px" name="system.attributes.rpshwest" type="checkbox" {{checked system.attributes.rpshwest}} />
-
-					<h6 class="resource-label gcp13a3">RESOURCE POTENTIAL</h6>
-					<input
-						class="gcp13a4"
-						style="margin: 105px 0px 0px -5px"
-						name="system.attributes.rpsouthpole"
-						type="checkbox"
-						{{checked
-						system.attributes.rpsouthpole}}
-					/>
-
-					<h6 class="resource-label gcp13a5">RESOURCE POTENTIAL</h6>
-					<input class="gcp13a6" style="margin: 27px 0px 0px -6px" name="system.attributes.rpsheast" type="checkbox" {{checked system.attributes.rpsheast}} />
+				<div class="grid-colony-sheet">
+					<div class="gcs1 grid-colony-header">
+						<input
+							class="gch2 charname"
+							style="max-width: 216px; margin: 5px 0px 0px s3px; text-align: center"
+							type="text"
+							name="name"
+							value="{{actor.name}}"
+							placeholder="{{localize 'ALIENRPG.Name'}}"
+						/>
+						<input
+							class="gch4 planetboxsize"
+							style="max-width: 216px; margin: 23px 0px 0px 42px; text-align: center"
+							type="text"
+							name="system.attributes.location"
+							value="{{system.attributes.location}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gch6 planetboxsize"
+							style="max-width: 216px; margin: 23px 0px 0px -46px; text-align: center"
+							type="text"
+							name="system.attributes.mission"
+							value="{{system.attributes.mission}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gch7 planetboxsize"
+							style="max-width: 216px; margin: 28px 0px 0px 55px; text-align: center"
+							type="text"
+							name="system.attributes.established"
+							value="{{system.attributes.established}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gch9 planetboxsize"
+							style="max-width: 216px; margin: 28px 0px 0px -46px; text-align: center"
+							type="text"
+							name="system.attributes.cycles"
+							value="{{system.attributes.cycles}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gch10 planetboxsize"
+							style="max-width: 216px; margin: 28px 0px 0px 55px; text-align: center"
+							type="text"
+							name="system.attributes.sponsor"
+							value="{{system.attributes.sponsor}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gch12 planetboxsize"
+							style="max-width: 150px; margin: 28px 0px 0px -40px; text-align: center"
+							type="text"
+							name="system.attributes.population.value"
+							value="{{system.attributes.population.value}}"
+							data-dtype="Number"
+						/>
+					</div>
+					<div class="gcs5 grid-colony-stats">
+						<input
+							class="gcst1 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.commander"
+							value="{{system.attributes.commander}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gcst3 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.economydirector"
+							value="{{system.attributes.economydirector}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst4">
+							<input
+								class="gcst4 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.economy.value"
+								value="{{system.stats.economy.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.economy'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.economy.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.economy.mod}}
+							</span>
+						</div>
+						<input
+							class="gcst5 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.potentialname"
+							value="{{system.attributes.potentialname}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst6">
+							<input
+								class="gcst6 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.potential.value"
+								value="{{system.stats.potential.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.potential'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.potential.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.potential.mod}}
+							</span>
+						</div>
+						<input
+							class="gcst7 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.productivityname"
+							value="{{system.attributes.productivityname}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst8">
+							<input
+								class="gcst8 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.productivity.value"
+								value="{{system.stats.productivity.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.productivity'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.productivity.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.productivity.mod}}
+							</span>
+						</div>
+						<input
+							class="gcst9 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.maintenancename"
+							value="{{system.attributes.maintenancename}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst10">
+							<input
+								class="gcst10 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.maintenance.value"
+								value="{{system.stats.maintenance.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.maintenance'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.maintenance.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.maintenance.mod}}
+							</span>
+						</div>
+						<input
+							class="gcst11 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.sciencename"
+							value="{{system.attributes.sciencename}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst12">
+							<input
+								class="gcst12 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.science.value"
+								value="{{system.stats.science.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.science'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.science.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.science.mod}}
+							</span>
+						</div>
+						<input
+							class="gcst13 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.spiritname"
+							value="{{system.attributes.spiritname}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst14">
+							<input
+								class="gcst14 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.spirit.value"
+								value="{{system.stats.spirit.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.spirit'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.spirit.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.spirit.mod}}
+							</span>
+						</div>
+						<div class="tooltip2 gcst16">
+							<input
+								class="gcst16 planetboxsize"
+								style="max-width: 50px; margin-top: 3px; text-align: center"
+								type="text"
+								disabled="true"
+								name="system.stats.developmenttotal.total"
+								value="{{system.stats.developmenttotal.total}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2" style="width: 230px; right: -255px">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.developmenttotal'}}</h4>
+								{{localize 'ALIENRPG.valueTotal'}}: {{system.stats.developmenttotal.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.developmenttotal.mod}}
+							</span>
+						</div>
+					</div>
+					<div class="gcs7 grid-colony-level">
+						{{#ifgt system.stats.developmenttotal.total 85}}
+						<span class="gclv6" id="overlay">&nbsp;</span>
+						{{/ifgt}} {{#ifgt system.stats.developmenttotal.total 68}}
+						<span class="gclv5" id="overlay">&nbsp;</span>
+						{{/ifgt}} {{#ifgt system.stats.developmenttotal.total 53}}
+						<span class="gclv4" id="overlay">&nbsp;</span>
+						{{/ifgt}} {{#ifgt system.stats.developmenttotal.total 40}}
+						<span class="gclv3" id="overlay">&nbsp;</span>
+						{{/ifgt}} {{#ifgt system.stats.developmenttotal.total 30}}
+						<span class="gclv2" id="overlay">&nbsp;</span>
+						{{/ifgt}} {{#ifgt system.stats.developmenttotal.total 5}}
+						<span class="gclv1" id="overlay">&nbsp;</span>
+						{{/ifgt}}
+					</div>
+					<div class="gcs2 items-list" style="height: 730px; overflow-x: auto">{{> "systems/alienrpg/templates/actor/tabs/colony-policies.html" }}</div>
+					<div class="gcs3 items-list" style="height: 730px; overflow-x: auto">{{> "systems/alienrpg/templates/actor/tabs/colony-installations.html" }}</div>
+					<div class="gcs4 items-list" style="height: 730px; overflow-x: auto">{{> "systems/alienrpg/templates/actor/tabs/colony-projects.html" }}</div>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,7 @@
 import alienrpgActorSheet from './actor/actor-sheet.js';
 import alienrpgSpacecraftSheet from './actor/spacecraft-sheet.js';
 import alienrpgPlanetSheet from './actor/planet-sheet.js';
+import alienrpgColonySheet from './actor/colony-sheet.js';
 
 function registerActors() {
 	Actors.unregisterSheet('core', ActorSheet); // Register Character Sheet
@@ -19,6 +20,11 @@ function registerActors() {
 		types: ['planet'],
 		makeDefault: true,
 	}); // Register Planet Sheet
+
+	Actors.registerSheet('alienrpg', alienrpgColonySheet, {
+		types: ['colony'],
+		makeDefault: true,
+	}); // Register Colony Sheet
 }
 
 export default registerActors;

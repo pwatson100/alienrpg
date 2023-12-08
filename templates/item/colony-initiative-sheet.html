@@ -1,0 +1,78 @@
+<form class="{{cssClass}}" autocomplete="off">
+	<header class="vehicle-header">
+		<img class="profile-img-item" src="{{img}}" data-edit="img" title="{{name}}" />
+		<div class="header-fields">
+			<h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
+
+			<div class="resources grid-weapon">
+				<h3 class="wItem1 resource-label">{{localize 'ALIENRPG.Type'}}</h3>
+				<div class="wItem2">
+					<select class="select-css" name="system.header.type" data-dtype="{{system.header.type}}">
+						{{#select system.header.type}}
+						<!-- <option value=""></option> -->
+						<option value="1">{{localize 'ALIENRPG.Policies'}}</option>
+						<option value="2">{{localize 'ALIENRPG.Installations'}}</option>
+						<option value="3">{{localize 'ALIENRPG.Projects'}}</option>
+						{{/select}}
+					</select>
+				</div>
+				<h3 class="wItem3 resource-label">{{localize 'ALIENRPG.completed'}}</h3>
+				<div class="wItem4">
+					<input name="system.header.completed" type="checkbox" {{checked system.header.completed}} />
+				</div>
+			</div>
+		</div>
+	</header>
+
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		<a class="item" data-tab="general">{{localize 'ALIENRPG.General'}}</a>
+		<a class="item" data-tab="notes">{{localize 'ALIENRPG.Notes'}}</a>
+	</nav>
+
+	{{!-- Sheet Body --}}
+	<section class="sheet-body" style="height: 250px">
+		<div class="tab general" data-group="primary" data-tab="general">
+			<h2 class="resource-label" style="margin-top: 5px">{{localize 'ALIENRPG.Comment'}}</h2>
+			<div class="tab item" style="border: solid 1px; padding: 5px; height: 210px; margin-bottom: 10px">
+				{{editor system.header.comment target="system.header.comment" button=true owner=owner editable=true}}
+			</div>
+			<h2 class="resource-label">{{localize 'ALIENRPG.Modifiers'}}</h2>
+			<div class="grid-2col">
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.economy.value" class="resource-label">{{localize 'ALIENRPG.economy'}}</label>
+					<input type="text" class="maxboxsize" name="system.modifiers.economy.value" value="{{system.modifiers.economy.value}}" data-dtype="Number" />
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.potential.value" class="resource-label">{{localize 'ALIENRPG.potential'}}</label>
+					<input type="text" class="maxboxsize" name="system.modifiers.potential.value" value="{{system.modifiers.potential.value}}" data-dtype="Number" />
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.productivity.value" class="resource-label">{{localize 'ALIENRPG.productivity'}}</label>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.productivity.value"
+						value="{{system.modifiers.productivity.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.maintenance.value" class="resource-label">{{localize 'ALIENRPG.maintenance'}}</label>
+					<input type="text" class="maxboxsize" name="system.modifiers.maintenance.value" value="{{system.modifiers.maintenance.value}}" data-dtype="Number" />
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.science.value" class="resource-label">{{localize 'ALIENRPG.science'}}</label>
+					<input type="text" class="maxboxsize" name="system.modifiers.science.value" value="{{system.modifiers.science.value}}" data-dtype="Number" />
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.spirit.value" class="resource-label">{{localize 'ALIENRPG.spirit'}}</label>
+					<input type="text" class="maxboxsize" name="system.modifiers.spirit.value" value="{{system.modifiers.spirit.value}}" data-dtype="Number" />
+				</div>
+			</div>
+		</div>
+
+		{{!-- Notes Tab --}}
+		<div class="tab item" data-group="primary" data-tab="notes">{{editor system.notes target="system.notes" button=true owner=owner editable=true}}</div>
+	</section>
+</form>
