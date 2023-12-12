@@ -67,10 +67,7 @@ export class alienrpgItemSheet extends ItemSheet {
 				await this._prepareTalentData(item);
 				break;
 			case 'colony-initiative':
-				// await this._prepareTalentData(item)
-				// let enrichedFields6 = ['system.notes', 'system.header.comment'];
-				// await this._enrichTextFields(item, enrichedFields6);
-
+				await this._prepareColonyInitiativeData(item);
 				break;
 
 			default:
@@ -125,6 +122,24 @@ export class alienrpgItemSheet extends ItemSheet {
 
 		let enrichedFields6 = ['system.header.effects'];
 		await this._enrichTextFields(data, enrichedFields6);
+	}
+	async _prepareColonyInitiativeData(item) {
+		switch (item.system.header.type) {
+			case '1':
+				item.update({ img: 'systems/alienrpg/images/icons/full-folder.svg' });
+				break;
+			case '2':
+				item.update({ img: 'systems/alienrpg/images/icons/habitat-dome.svg' });
+				break;
+			case '3':
+				item.update({ img: 'systems/alienrpg/images/icons/diagram.svg' });
+				break;
+
+			default:
+				break;
+		}
+		let enrichedFields6 = ['system.notes', 'system.header.comment'];
+		await this._enrichTextFields(item, enrichedFields6);
 	}
 
 	/* -------------------------------------------- */

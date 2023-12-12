@@ -407,8 +407,6 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 
 				hostile = actor.type;
 				let blind = false;
-				//  Initialse the chat message
-				let chatMessage = '';
 
 				if (actor.prototypeToken.disposition === -1) {
 					blind = true;
@@ -416,28 +414,11 @@ Hooks.on('renderChatMessage', (message, html, data) => {
 
 				switch (actor.type) {
 					case 'character':
-						actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
+						actor.pushRoll(actor, reRoll, hostile, blind, message);
 						break;
-
 					default:
 						return;
 				}
-
-				const reRoll1 = game.alienrpg.rollArr.r1Dice - game.alienrpg.rollArr.r1Six;
-				const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
-				yze.yzeRoll(
-					hostile,
-					blind,
-					reRoll,
-					game.alienrpg.rollArr.tLabel,
-					reRoll1,
-					game.i18n.localize('ALIENRPG.Black'),
-					reRoll2,
-					game.i18n.localize('ALIENRPG.Yellow'),
-					actor.id,
-					0,
-					message.flags.tactorid
-				);
 			}
 		});
 	});

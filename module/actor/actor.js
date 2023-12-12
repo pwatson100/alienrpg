@@ -34,6 +34,12 @@ export class alienrpgActor extends Actor {
 			case 'territory':
 				this._prepareTeritoryData(actorData, flags);
 				break;
+			case 'colony':
+				this._prepareColonyData(actorData, flags);
+				break;
+			case 'planet':
+				this._preparePlanetData(actorData, flags);
+				break;
 
 			default:
 				break;
@@ -52,6 +58,12 @@ export class alienrpgActor extends Actor {
 	_prepareCreatureData(actorData) {}
 	_prepareTeritoryData(data) {
 		this.img = 'systems/alienrpg/images/icons/nested-eclipses.svg';
+	}
+	_prepareColonyData(data) {
+		this.img = 'systems/alienrpg/images/icons/digital-trace.svg';
+	}
+	_preparePlanetData(data) {
+		this.img = 'systems/alienrpg/images/icons/double-ringed-orb.svg';
 	}
 
 	_prepareTokenImg() {
@@ -102,6 +114,18 @@ export class alienrpgActor extends Actor {
 				case 'spacecraft':
 					tokenProto['prototypeToken.bar1'] = { attribute: 'attributes.damage' };
 					break;
+				case 'colony':
+					tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
+					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/digital-trace.svg';
+					tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
+					tokenProto['prototypeToken.sight.enabled'] = false;
+					break;
+				case 'planet':
+					tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
+					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/double-ringed-orb.svg';
+					tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
+					tokenProto['prototypeToken.sight.enabled'] = false;
+					break;
 			}
 		}
 
@@ -147,6 +171,25 @@ export class alienrpgActor extends Actor {
 		} else {
 			setProperty(actorData, 'system.general.panic.value', 0);
 		}
+	}
+
+	async pushRoll(actor, reRoll, hostile, blind, message) {
+		await actor.update({ 'system.header.stress.value': actor.system.header.stress.value + 1 });
+		const reRoll1 = game.alienrpg.rollArr.r1Dice - game.alienrpg.rollArr.r1Six;
+		const reRoll2 = game.alienrpg.rollArr.r2Dice + 1 - (game.alienrpg.rollArr.r2One + game.alienrpg.rollArr.r2Six);
+		await yze.yzeRoll(
+			hostile,
+			blind,
+			reRoll,
+			game.alienrpg.rollArr.tLabel,
+			reRoll1,
+			game.i18n.localize('ALIENRPG.Black'),
+			reRoll2,
+			game.i18n.localize('ALIENRPG.Yellow'),
+			actor.id,
+			0,
+			message.flags.tactorid
+		);
 	}
 
 	async rollAbility(actor, dataset, rollMod) {

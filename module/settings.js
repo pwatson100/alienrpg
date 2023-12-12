@@ -15,7 +15,7 @@ export default function () {
 	game.settings.register('alienrpg', 'autopanic', {
 		name: 'ALIENRPG.AutoPanic',
 		hint: 'ALIENRPG.AutoPanicHint',
-		scope: 'client',
+		scope: 'world',
 		type: Boolean,
 		default: true,
 		config: true,

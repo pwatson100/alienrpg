@@ -257,12 +257,12 @@ export class alienrpgColonySheet extends ActorSheet {
 		}
 
 		await this.actor.update({
-			'system.stats.economy.total': (aData.stats.economy.mod = parseInt(attrMod.economy || 0)),
-			'system.stats.potential.total': (aData.stats.potential.mod = parseInt(attrMod.potential || 0)),
-			'system.stats.productivity.total': (aData.stats.productivity.mod = parseInt(attrMod.productivity || 0)),
-			'system.stats.maintenance.total': (aData.stats.maintenance.mod = parseInt(attrMod.maintenance || 0)),
-			'system.stats.science.total': (aData.stats.science.mod = parseInt(attrMod.science || 0)),
-			'system.stats.spirit.total': (aData.stats.spirit.mod = parseInt(attrMod.spirit || 0)),
+			'system.stats.economy.mod': (aData.stats.economy.mod = parseInt(attrMod.economy || 0)),
+			'system.stats.potential.mod': (aData.stats.potential.mod = parseInt(attrMod.potential || 0)),
+			'system.stats.productivity.mod': (aData.stats.productivity.mod = parseInt(attrMod.productivity || 0)),
+			'system.stats.maintenance.mod': (aData.stats.maintenance.mod = parseInt(attrMod.maintenance || 0)),
+			'system.stats.science.mod': (aData.stats.science.mod = parseInt(attrMod.science || 0)),
+			'system.stats.spirit.mod': (aData.stats.spirit.mod = parseInt(attrMod.spirit || 0)),
 			'system.stats.developmenttotal.value': (aData.stats.developmenttotal.value =
 				aData.stats.economy.value +
 				aData.stats.potential.value +
