@@ -551,6 +551,7 @@ Critical Injuries are now created with any PC's Skill modifiers applied to the i
 Added a Swap Initiative option to the Combat tracker to allow the GM to swap player initiative.
 
 Bug Fixes:
+Fixed issue with Critical Injury #31 that was applying -2 modifiers rather than -1 modifiers. 
 Fixed issue on Vehicles and Starships where Android crew could not fire weapons or make piloting/comtech rolls.
 Fixed issue will supply rolls not working when the mouse keys are switched.
 Panic on Ship rolls now use the correct table "Space Combat Panic Roll".

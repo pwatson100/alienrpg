@@ -1492,8 +1492,8 @@ export class alienrpgActor extends Actor {
 							manipulation = -2;
 							break;
 						case 31:
-							observation = -2;
-							manipulation = -2;
+							observation = -1;
+							manipulation = -1;
 							break;
 						case 33:
 							mobility = -2;

@@ -5373,6 +5373,13 @@ combobox:focus {
   width: 20%;
 }
 
+.alienrpg .bbw-table1 {
+  width: 169px;
+  vertical-align: top;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
 .alienrpg {
   /* Styles limited to alienrpg sheets */
   /*
