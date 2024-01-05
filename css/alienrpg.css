@@ -1565,7 +1565,7 @@ button:focus {
 .s1-header {
   display: grid;
   grid-template-areas: ". . s1h1 s1h1 s1h1 ." "s1h2 s1h2 s1h2 s1h2 s1h2 s1h2" "s1h3 s1h3 s1h3 s1h4 s1h4 s1h4" "s1h28 s1h28 s1h28 s1h29 s1h29 s1h29" "s1h30 s1h30 s1h30 s1h30 s1h30 s1h30 " "s1h32 s1h32 s1h32 s1h32 s1h32 s1h32" "s1h31 s1h31 s1h31 s1h31 s1h31 s1h31 " "s1h33 s1h33 s1h33 s1h33 s1h33 s1h33" ". . s1h5 s1h5 s1h5 ." "s1h6 s1h6 s1h6 s1h6 s1h6 s1h6" "s1space1 s1h7 s1h8 s1space s1h9 s1h10" "s1space1 s1h11 s1h12 s1space s1h13 s1h14" "s1space1 s1h15 s1h16 s1space s1h17 s1h18" "s1space1 s1h19 s1h20 s1space s1h21 s1h22" "s1h23 s1h23 s1h23 s1h23 s1h23 s1h23" "s1h24 s1h24 s1h24 s1h24 s1h24 s1h24" "s1h25 s1h25 s1h25 s1h25 s1h25 s1h25" "s1h26 s1h26 s1h26 s1h26 s1h26 s1h26" "s1h27 s1h27 s1h27 s1h27 s1h27 s1h27";
-  grid-template-columns: 5% 10% 30% 5% 30% 10%;
+  grid-template-columns: 19px 50px 100px 19px 100px 57px;
   padding: 0 10px 0px 10px;
 }
 
@@ -1707,7 +1707,7 @@ button:focus {
 .s1h22 {
   grid-area: s1h22;
   height: 30px;
-  justify-self: center;
+  /* justify-self: center; */
 }
 
 .s1h23 {

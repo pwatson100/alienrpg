@@ -208,7 +208,7 @@
 		's1h25 s1h25 s1h25 s1h25 s1h25 s1h25'
 		's1h26 s1h26 s1h26 s1h26 s1h26 s1h26'
 		's1h27 s1h27 s1h27 s1h27 s1h27 s1h27';
-	grid-template-columns: 5% 10% 30% 5% 30% 10%;
+	grid-template-columns: 19px 50px 100px 19px 100px 57px;
 	padding: 0 10px 0px 10px;
 	// background-color: hsl(165, 27%, 50%);
 	// color: hsl(120, 94%, 6%);
@@ -349,7 +349,7 @@
 	grid-area: s1h22;
 	// border: 1px solid var(--aliengreen);
 	height: 30px;
-	justify-self: center;
+	/* justify-self: center; */
 }
 .s1h23 {
 	grid-area: s1h23;
