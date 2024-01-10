@@ -1,7 +1,7 @@
 <form class="{{cssClass}} crt" autocomplete="off">
 	{{!-- CRT Sheet Header --}}
 	<header class="actor-header">
-		<img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" />
+		<img class="profile-img" style="max-width: 157px" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" />
 		<div class="header-fields" style="width: 50%">
 			<h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
 			<div class="resources grid grid-actor">
@@ -302,9 +302,7 @@
 								/>
 								{{#ife system.general.panic.value 1}}
 								<h4 class="condition resource-label panicked" data-key="panicked" title="{{ localize 'ALIENRPG.ConButtons'}}">
-									<a class="overwatch-toggle">
-										<i class="far fa-check-square"></i> </a
-									>{{ localize 'ALIENRPG.Panicked'}}
+									<a class="overwatch-toggle"> <i class="far fa-check-square"></i> </a>{{ localize 'ALIENRPG.Panicked'}}
 									<input type="text" class="maxboxsize" name="system.general.panic.lastRoll" value="{{system.general.panic.lastRoll}}" data-dtype="Number" />
 								</h4>
 								{{else}}
