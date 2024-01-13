@@ -1,74 +1,74 @@
 <form class="{{cssClass}}" autocomplete="off">
-  <header class="vehicle-header">
-    <!-- <img class=profile-img-item" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" /> -->
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
+	<header class="vehicle-header">
+		<!-- <img class=profile-img-item" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" /> -->
+		<div class="header-fields">
+			<h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize "ALIENRPG.Name"}}" /></h1>
 
-      <div class="resources grid-planet-header">
-        <h3 class="resource-label hplan1">{{localize "ALIENRPG.CommonName"}}</h3>
+			<div class="resources grid-planet-header">
+				<h3 class="resource-label hplan1">{{localize "ALIENRPG.CommonName"}}</h3>
 
-        <textarea class="hplan2" name="system.header.commonName.value" rows="1" data-dtype="String">{{system.header.commonName.value}}</textarea>
+				<textarea class="hplan2" name="system.header.commonName.value" rows="1" data-dtype="String">{{system.header.commonName.value}}</textarea>
 
-        <h3 class="resource-label hplan3">{{localize "ALIENRPG.System"}}</h3>
-        <input type="text" class="hplan4 textbox2" name="system.header.system.value" value="{{system.header.system.value}}" data-dtype="text" />
+				<h3 class="resource-label hplan3">{{localize "ALIENRPG.System"}}</h3>
+				<input type="text" class="hplan4 textbox2" name="system.header.system.value" value="{{system.header.system.value}}" data-dtype="text" />
 
-        <h3 class="resource-label hplan5">{{localize "ALIENRPG.Sector"}}</h3>
-        <input type="text" class="hplan6 textbox2" name="system.header.sector.value" value="{{system.header.sector.value}}" data-dtype="text" />
+				<h3 class="resource-label hplan5">{{localize "ALIENRPG.Sector"}}</h3>
+				<input type="text" class="hplan6 textbox2" name="system.header.sector.value" value="{{system.header.sector.value}}" data-dtype="text" />
 
-        <h3 class="resource-label hplan7">{{localize "ALIENRPG.Location"}}</h3>
-        <input type="text" class="hplan8 textbox2" name="system.header.location.value" value="{{system.header.location.value}}" data-dtype="text" />
-      </div>
-    </div>
-  </header>
+				<h3 class="resource-label hplan7">{{localize "ALIENRPG.Location"}}</h3>
+				<input type="text" class="hplan8 textbox2" name="system.header.location.value" value="{{system.header.location.value}}" data-dtype="text" />
+			</div>
+		</div>
+	</header>
 
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="details">{{localize "ALIENRPG.Details"}}</a>
-    <a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
-  </nav>
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		<a class="item" data-tab="details">{{localize "ALIENRPG.Details"}}</a>
+		<a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
+	</nav>
 
-  {{!-- Sheet Body --}}
-  <section class="sheet-body">
-    {{!-- Attributes Tab --}}
-    <div class="tab details" data-group="primary" data-tab="details">
-      <div class="plan1">
-        <label class="resource-label">{{localize "ALIENRPG.Affiliation"}}</label>
-        <textarea name="system.details.affiliation.value" rows="2" data-dtype="String">{{system.details.affiliation.value}}</textarea>
-      </div>
-      <div class="grid-planet">
-        <div class="plan2">
-          <label class="resource-label">{{localize "ALIENRPG.Classification"}}</label> <br />
+	{{!-- Sheet Body --}}
+	<section class="sheet-body">
+		{{!-- Attributes Tab --}}
+		<div class="tab details" data-group="primary" data-tab="details">
+			<div class="plan1">
+				<label class="resource-label">{{localize "ALIENRPG.Affiliation"}}</label>
+				<textarea name="system.details.affiliation.value" rows="2" data-dtype="String">{{system.details.affiliation.value}}</textarea>
+			</div>
+			<div class="grid-planet">
+				<div class="plan2">
+					<label class="resource-label">{{localize "ALIENRPG.Classification"}}</label> <br />
 
-          <textarea class="textbox4" name="system.details.classification.value" rows="1" data-dtype="String">{{system.details.classification.value}}</textarea>
-        </div>
-        <div class="plan3">
-          <label class="resource-label">{{localize "ALIENRPG.population"}}</label> <br />
-          <input type="text" class="textbox3" name="system.details.population.value" value="{{system.details.population.value}}" data-dtype="text" />
-        </div>
-        <div class="plan4">
-          <label class="resource-label">{{localize "ALIENRPG.meanTemperature"}}</label> <br />
-          <input type="text" class="textbox2" name="system.details.meanTemperature.value" value="{{system.details.meanTemperature.value}}" data-dtype="text" />
-        </div>
-      </div>
-      <label class="resource-label">{{localize "ALIENRPG.climate"}}</label>
-      <textarea name="system.details.climate.value" rows="2" data-dtype="String">{{system.details.climate.value}}</textarea>
+					<textarea class="textbox4" name="system.details.classification.value" rows="1" data-dtype="String">{{system.details.classification.value}}</textarea>
+				</div>
+				<div class="plan3">
+					<label class="resource-label">{{localize "ALIENRPG.population"}}</label> <br />
+					<input type="text" class="textbox3" name="system.details.population.value" value="{{system.details.population.value}}" data-dtype="text" />
+				</div>
+				<div class="plan4">
+					<label class="resource-label">{{localize "ALIENRPG.meanTemperature"}}</label> <br />
+					<input type="text" class="textbox2" name="system.details.meanTemperature.value" value="{{system.details.meanTemperature.value}}" data-dtype="text" />
+				</div>
+			</div>
+			<label class="resource-label">{{localize "ALIENRPG.climate"}}</label>
+			<textarea name="system.details.climate.value" rows="2" data-dtype="String">{{system.details.climate.value}}</textarea>
 
-      <label class="resource-label">{{localize "ALIENRPG.terrain"}}</label>
-      <textarea name="system.details.terrain.value" rows="2" data-dtype="String">{{system.details.terrain.value}}</textarea>
+			<label class="resource-label">{{localize "ALIENRPG.terrain"}}</label>
+			<textarea name="system.details.terrain.value" rows="2" data-dtype="String">{{system.details.terrain.value}}</textarea>
 
-      <label class="resource-label">{{localize "ALIENRPG.colonies"}}</label>
-      <textarea name="system.details.colonies.value" rows="2" data-dtype="String">{{system.details.colonies.value}}</textarea>
+			<label class="resource-label">{{localize "ALIENRPG.colonies"}}</label>
+			<textarea name="system.details.colonies.value" rows="2" data-dtype="String">{{system.details.colonies.value}}</textarea>
 
-      <label class="resource-label">{{localize "ALIENRPG.keyResources"}}</label>
-      <textarea name="system.details.keyResources.value" rows="2" data-dtype="String">{{system.details.keyResources.value}}</textarea>
-    </div>
+			<label class="resource-label">{{localize "ALIENRPG.keyResources"}}</label>
+			<textarea name="system.details.keyResources.value" rows="2" data-dtype="String">{{system.details.keyResources.value}}</textarea>
+		</div>
 
-    {{!-- Notes Tab --}}
-    <div class="tab item" data-group="primary" data-tab="description">
-      {{!-- Biography Tab --}}
-      <div class="tab biog" style="height: 450px" data-group="primary" data-tab="description">
-        {{editor system.misc.comment.value target="system.misc.comment.value" button=true owner=owner editable=true}}
-      </div>
-    </div>
-  </section>
+		{{!-- Notes Tab --}}
+		<div class="tab item" data-group="primary" data-tab="description">
+			{{!-- Biography Tab --}}
+			<div class="tab biog" style="height: 450px" data-group="primary" data-tab="description">
+				{{editor system.misc.comment.value target="system.misc.comment.value" button=true owner=owner editable=true}}
+			</div>
+		</div>
+	</section>
 </form>

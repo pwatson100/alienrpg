@@ -1,1255 +1,1406 @@
 {
-  "Actor": {
-    "types": ["character", "synthetic", "vehicles", "creature", "territory", "spacecraft"],
-    "character": {
-      "header": {
-        "health": {
-          "value": 0,
-          "label": "Health",
-          "mod": 0,
-          "max": 0
-        },
-        "stress": {
-          "value": 0,
-          "label": "Stress",
-          "mod": 0,
-          "max": 10
-        },
-        "npc": false
-      },
-      "attributes": {
-        "str": {
-          "value": 0,
-          "label": "Strength",
-          "mod": 0
-        },
-        "wit": {
-          "value": 0,
-          "label": "Wits",
-          "mod": 0
-        },
-        "agl": {
-          "value": 0,
-          "label": "Agility",
-          "mod": 0
-        },
-        "emp": {
-          "value": 0,
-          "label": "Empathy",
-          "mod": 0
-        }
-      },
-      "skills": {
-        "heavyMach": {
-          "value": 0,
-          "label": "Heavy Machinery",
-          "ability": "str",
-          "description": "Heavy Machinery"
-        },
-        "closeCbt": {
-          "value": 0,
-          "label": "Close Combat",
-          "ability": "str",
-          "description": "Close Combat"
-        },
-        "stamina": {
-          "value": 0,
-          "label": "Stamina",
-          "ability": "str",
-          "description": "Stamina"
-        },
-        "rangedCbt": {
-          "value": 0,
-          "label": "Ranged Combat",
-          "ability": "agl",
-          "description": "Ranged Combat"
-        },
-        "mobility": {
-          "value": 0,
-          "label": "Mobility",
-          "ability": "agl",
-          "description": "Mobility"
-        },
-        "piloting": {
-          "value": 0,
-          "label": "Piloting",
-          "ability": "agl",
-          "description": "Piloting"
-        },
-        "command": {
-          "value": 0,
-          "label": "Command",
-          "ability": "emp",
-          "description": "Command"
-        },
-        "manipulation": {
-          "value": 0,
-          "label": "Manipulation",
-          "ability": "emp",
-          "description": "Manipulation"
-        },
-        "medicalAid": {
-          "value": 0,
-          "label": "Medical Aid",
-          "ability": "emp",
-          "description": "Medical Aid"
-        },
-        "observation": {
-          "value": 0,
-          "label": "Observation",
-          "ability": "wit",
-          "description": "Observation"
-        },
-        "survival": {
-          "value": 0,
-          "label": "Survival",
-          "ability": "wit",
-          "description": "Survival"
-        },
-        "comtech": {
-          "value": 0,
-          "label": "Comtech",
-          "ability": "wit",
-          "description": "Comtech"
-        }
-      },
-      "general": {
-        "career": {
-          "value": "",
-          "label": "career"
-        },
-        "appearance": {
-          "value": "",
-          "label": "appearance"
-        },
-        "sigItem": {
-          "value": "",
-          "label": "sigItem"
-        },
-        "agenda": {
-          "value": "",
-          "label": "agenda"
-        },
-        "relOne": {
-          "value": "",
-          "label": "relOne"
-        },
-        "relTwo": {
-          "value": "",
-          "label": "relTwo"
-        },
-        "xp": {
-          "value": 0,
-          "max": 20
-        },
-        "sp": {
-          "value": 0,
-          "max": 3
-        },
-        "radiation": {
-          "value": 0,
-          "max": 10
-        },
-        "starving": {
-          "value": 0,
-          "max": 1
-        },
-        "dehydrated": {
-          "value": 0,
-          "max": 1
-        },
-        "exhausted": {
-          "value": 0,
-          "max": 1
-        },
-        "freezing": {
-          "value": 0,
-          "max": 1
-        },
-        "critInj": {
-          "value": ""
-        },
-        "armor": {
-          "value": 0,
-          "max": 10
-        },
-        "panic": {
-          "value": 0,
-          "max": 1,
-          "lastRoll": 0
-        },
-        "cash": {
-          "value": 0,
-          "label": "Number"
-        }
-      },
-      "consumables": {
-        "air": {
-          "value": 0,
-          "min": 0,
-          "max": 5
-        },
-        "power": {
-          "value": 0,
-          "min": 0,
-          "max": 5
-        },
-        "food": {
-          "value": 0,
-          "min": 0,
-          "max": 5
-        },
-        "water": {
-          "value": 0,
-          "min": 0,
-          "max": 5
-        }
-      },
-      "notes": "",
-      "adhocitems": ""
-    },
-    "synthetic": {
-      "header": {
-        "health": {
-          "value": 0,
-          "label": "Health",
-          "mod": 0,
-          "max": 0
-        },
-        "npc": false,
-        "synthstress": false
-      },
-      "attributes": {
-        "str": {
-          "value": 0,
-          "label": "Strength",
-          "mod": 0,
-          "proficient": 0
-        },
-        "wit": {
-          "value": 0,
-          "mod": 0,
-          "label": "Wits"
-        },
-        "agl": {
-          "value": 0,
-          "mod": 0,
-          "label": "Agility"
-        },
-        "emp": {
-          "value": 0,
-          "mod": 0,
-          "label": "Empathy"
-        }
-      },
-      "skills": {
-        "heavyMach": {
-          "value": 0,
-          "label": "Heavy Machinery",
-          "ability": "str",
-          "description": "Heavy Machinery"
-        },
-        "closeCbt": {
-          "value": 0,
-          "label": "Close Combat",
-          "ability": "str",
-          "description": "Close Combat"
-        },
-        "stamina": {
-          "value": 0,
-          "label": "Stamina",
-          "ability": "str",
-          "description": "Stamina"
-        },
-        "rangedCbt": {
-          "value": 0,
-          "label": "Ranged Combat",
-          "ability": "agl",
-          "description": "Ranged Combat"
-        },
-        "mobility": {
-          "value": 0,
-          "label": "Mobility",
-          "ability": "agl",
-          "description": "Mobility"
-        },
-        "piloting": {
-          "value": 0,
-          "label": "Piloting",
-          "ability": "agl",
-          "description": "Piloting"
-        },
-        "command": {
-          "value": 0,
-          "label": "Command",
-          "ability": "emp",
-          "description": "Command"
-        },
-        "manipulation": {
-          "value": 0,
-          "label": "Manipulation",
-          "ability": "emp",
-          "description": "Manipulation"
-        },
-        "medicalAid": {
-          "value": 0,
-          "label": "Medical Aid",
-          "ability": "emp",
-          "description": "Medical Aid"
-        },
-        "observation": {
-          "value": 0,
-          "label": "Observation",
-          "ability": "wit",
-          "description": "Observation"
-        },
-        "survival": {
-          "value": 0,
-          "label": "Survival",
-          "ability": "wit",
-          "description": "Survival"
-        },
-        "comtech": {
-          "value": 0,
-          "label": "Comtech",
-          "ability": "wit",
-          "description": "Comtech"
-        }
-      },
-      "general": {
-        "career": {
-          "value": "",
-          "label": "career"
-        },
-        "appearance": {
-          "value": "",
-          "label": "appearance"
-        },
-        "sigItem": {
-          "value": "",
-          "label": "sigItem"
-        },
-        "agenda": {
-          "value": "",
-          "label": "agenda"
-        },
-        "relOne": {
-          "value": "",
-          "label": "relOne"
-        },
-        "relTwo": {
-          "value": "",
-          "label": "relTwo"
-        },
-        "xp": {
-          "value": 0,
-          "max": 20
-        },
-        "sp": {
-          "value": 0,
-          "max": 3
-        },
-        "radiation": {
-          "value": 0,
-          "max": 10
-        },
-        "starving": {
-          "value": 0,
-          "max": 1
-        },
-        "dehydrated": {
-          "value": 0,
-          "max": 1
-        },
-        "exhausted": {
-          "value": 0,
-          "max": 1
-        },
-        "freezing": {
-          "value": 0,
-          "max": 1
-        },
-        "critInj": {
-          "value": ""
-        },
-        "armor": {
-          "value": 0,
-          "max": 10
-        },
-        "cash": {
-          "value": 0,
-          "label": "Number"
-        }
-      },
-      "consumables": {
-        "air": {
-          "value": 0,
-          "min": 0,
-          "max": 5
-        },
-        "power": {
-          "value": 0,
-          "min": 0,
-          "max": 5
-        },
-        "food": {
-          "value": 0,
-          "min": 0,
-          "max": 5
-        },
-        "water": {
-          "value": 0,
-          "min": 0,
-          "max": 5
-        }
-      },
-      "notes": "",
-      "adhocitems": ""
-    },
-    "creature": {
-      "header": {
-        "health": {
-          "value": 0,
-          "label": "Health",
-          "max": 0
-        }
-      },
-      "attributes": {
-        "speed": {
-          "value": 0,
-          "label": "Speed"
-        },
-        "armorrating": {
-          "value": 0,
-          "label": "Number",
-          "max": 10
-        },
-        "armorvfire": {
-          "value": 0,
-          "label": "Number",
-          "max": 10
-        }
-      },
-      "general": {
-        "mobility": {
-          "value": "-",
-          "label": "Mobility"
-        },
-        "observation": {
-          "value": "-",
-          "label": "Observation"
-        },
-        "comment": {
-          "value": "",
-          "label": "Text"
-        },
-        "special": {
-          "value": "",
-          "label": "Text"
-        },
-        "acidSplash": {
-          "value": "-",
-          "label": "Acid Splash"
-        },
-        "critInj": {
-          "value": ""
-        }
-      },
-      "notes": {
-        "notes": ""
-      },
-      "rTables": "",
-      "cTables": ""
-    },
-    "vehicles": {
-      "header": {
-        "type": {
-          "value": "",
-          "label": "Text"
-        }
-      },
-      "attributes": {
-        "weight": {
-          "value": 0,
-          "label": "Number"
-        },
-        "cost": {
-          "value": 0,
-          "label": "Number"
-        },
-        "armorrating": {
-          "value": 0,
-          "label": "Number",
-          "max": 10
-        },
-        "comment": {
-          "value": "",
-          "label": "Text"
-        },
-        "hull": {
-          "value": 0,
-          "label": "Number",
-          "max": 0
-        },
-        "passengers": {
-          "value": 0,
-          "label": "Number"
-        },
-        "speed": {
-          "value": 0,
-          "label": "Number"
-        },
-        "manoeuvrability": {
-          "value": 0,
-          "label": "Number"
-        }
-      },
-      "modifiers": {
-        "gunnerName": "",
-        "rangedCbt": {
-          "value": 0,
-          "label": "Ranged Combat",
-          "ability": "agl"
-        },
-        "pilotName": "",
-        "piloting": {
-          "value": 0,
-          "label": "Piloting",
-          "ability": "agl"
-        }
-      },
-      "general": {
-        "misc": {
-          "value": ""
-        }
-      },
-      "notes": {
-        "notes": ""
-      },
-      "crew": {
-        "occupants": [],
-        "passengerQty": 0
-      }
-    },
-    "territory": {
-      "header": {
-        "type": {
-          "value": "",
-          "label": "Text"
-        }
-      },
-      "comment": {
-        "value": "",
-        "label": "Text"
-      },
-      "sectors": {
-        "value": "",
-        "label": "Text"
-      }
-    },
-    "spacecraft": {
-      "header": {
-        "type": {
-          "value": "",
-          "label": "Text"
-        }
-      },
-      "attributes": {
-        "manufacturer": "",
-        "model": "",
-        "modules": "",
-        "armaments": "",
-        "ai": "",
-        "crew": {
-          "value": 0
-        },
-        "passengers": {
-          "value": 0
-        },
-        "length": {
-          "value": 0
-        },
-        "ftlrating": {
-          "value": 0
-        },
-        "signature": {
-          "value": 0
-        },
-        "thrusters": {
-          "value": 0
-        },
-        "hull": {
-          "value": 0
-        },
-        "armor": {
-          "value": 0
-        },
-        "damage": {
-          "value": 0,
-          "max": 15
-        },
-        "leasecost": {
-          "value": 0
-        }
-      },
-      "crew": {
-        "occupants": [],
-        "passengerQty": 0
-      },
-      "general": {
-        "misc": {
-          "value": ""
-        }
-      },
-      "notes": ""
-    },
-    "general": {
-      "misc": {
-        "value": ""
-      }
-    },
-    "notes": {
-      "notes": ""
-    }
-  },
-  "Item": {
-    "types": [
-      "item",
-      "weapon",
-      "armor",
-      "planet-system",
-      "talent",
-      "agenda",
-      "specialty",
-      "critical-injury",
-      "spacecraft-crit",
-      "spacecraftmods",
-      "spacecraftweapons",
-      "skill-stunts"
-    ],
-    "item": {
-      "header": {
-        "type": {
-          "value": "",
-          "label": "Text"
-        },
-        "active": false
-      },
-      "attributes": {
-        "weight": {
-          "value": 0,
-          "label": "Number"
-        },
-        "cost": {
-          "value": 0,
-          "label": "Number"
-        },
-        "comment": {
-          "value": "",
-          "label": "Text"
-        },
-        "food": {
-          "value": 0,
-          "label": "Number"
-        },
-        "water": {
-          "value": 0,
-          "label": "Number"
-        },
-        "power": {
-          "value": 0,
-          "label": "Stress"
-        },
-        "airsupply": {
-          "value": 0,
-          "label": "Number"
-        },
-        "quantity": {
-          "value": 1
-        },
-        "notes": {
-          "notes": ""
-        }
-      },
-      "modifiers": {
-        "attributes": {
-          "health": {
-            "value": 0,
-            "label": "Health"
-          },
-          "stress": {
-            "value": 0,
-            "label": "Stress"
-          },
-          "str": {
-            "value": 0,
-            "label": "Strength"
-          },
-          "wit": {
-            "value": 0,
-            "label": "Wits"
-          },
-          "agl": {
-            "value": 0,
-            "label": "Agility"
-          },
-          "emp": {
-            "value": 0,
-            "label": "Empathy"
-          }
-        },
-        "skills": {
-          "heavyMach": {
-            "value": 0,
-            "label": "Heavy Machinery",
-            "ability": "str"
-          },
-          "closeCbt": {
-            "value": 0,
-            "label": "Close Combat",
-            "ability": "str"
-          },
-          "stamina": {
-            "value": 0,
-            "label": "Stamina",
-            "ability": "str"
-          },
-          "rangedCbt": {
-            "value": 0,
-            "label": "Ranged Combat",
-            "ability": "agl"
-          },
-          "mobility": {
-            "value": 0,
-            "label": "Mobility",
-            "ability": "agl"
-          },
-          "piloting": {
-            "value": 0,
-            "label": "Piloting",
-            "ability": "agl"
-          },
-          "command": {
-            "value": 0,
-            "label": "Command",
-            "ability": "emp"
-          },
-          "manipulation": {
-            "value": 0,
-            "label": "Manipulation",
-            "ability": "emp"
-          },
-          "medicalAid": {
-            "value": 0,
-            "label": "Medical Aid",
-            "ability": "emp"
-          },
-          "observation": {
-            "value": 0,
-            "label": "Observation",
-            "ability": "wit"
-          },
-          "survival": {
-            "value": 0,
-            "label": "Survival",
-            "ability": "wit"
-          },
-          "comtech": {
-            "value": 0,
-            "label": "Comtech",
-            "ability": "wit"
-          }
-        }
-      }
-    },
-    "weapon": {
-      "header": {
-        "type": {
-          "value": "",
-          "label": "Text"
-        },
-        "active": false
-      },
-      "attributes": {
-        "bonus": {
-          "value": 0,
-          "label": "Number"
-        },
-        "damage": {
-          "value": 0,
-          "label": "Number"
-        },
-        "weight": {
-          "value": 0,
-          "label": "Number"
-        },
-        "cost": {
-          "value": 0,
-          "label": "Number"
-        },
-        "range": {
-          "value": "",
-          "label": "Number"
-        },
-        "class": {
-          "value": "",
-          "label": "Text"
-        },
-        "rounds": {
-          "value": 0,
-          "label": "Number"
-        },
-        "power": {
-          "value": 0,
-          "label": "Number"
-        },
-        "comment": {
-          "value": "",
-          "label": "Text"
-        },
-        "quantity": {
-          "value": 1
-        }
-      },
-      "notes": {
-        "notes": ""
-      }
-    },
-    "armor": {
-      "header": {
-        "active": false
-      },
-      "attributes": {
-        "weight": {
-          "value": 0,
-          "label": "Number"
-        },
-        "cost": {
-          "value": 0,
-          "label": "Number"
-        },
-        "armorrating": {
-          "value": 0,
-          "label": "Number"
-        },
-        "airsupply": {
-          "value": 0,
-          "label": "Number"
-        },
-        "comment": {
-          "value": "",
-          "label": "Text"
-        }
-      },
-      "modifiers": {
-        "attributes": {
-          "health": {
-            "value": 0,
-            "label": "Health"
-          },
-          "stress": {
-            "value": 0,
-            "label": "Stress"
-          },
-          "str": {
-            "value": 0,
-            "label": "Strength"
-          },
-          "wit": {
-            "value": 0,
-            "label": "Wits"
-          },
-          "agl": {
-            "value": 0,
-            "label": "Agility"
-          },
-          "emp": {
-            "value": 0,
-            "label": "Empathy"
-          }
-        },
-        "skills": {
-          "heavyMach": {
-            "value": 0,
-            "label": "Heavy Machinery",
-            "ability": "str"
-          },
-          "closeCbt": {
-            "value": 0,
-            "label": "Close Combat",
-            "ability": "str"
-          },
-          "stamina": {
-            "value": 0,
-            "label": "Stamina",
-            "ability": "str"
-          },
-          "rangedCbt": {
-            "value": 0,
-            "label": "Ranged Combat",
-            "ability": "agl"
-          },
-          "mobility": {
-            "value": 0,
-            "label": "Mobility",
-            "ability": "agl"
-          },
-          "piloting": {
-            "value": 0,
-            "label": "Piloting",
-            "ability": "agl"
-          },
-          "command": {
-            "value": 0,
-            "label": "Command",
-            "ability": "emp"
-          },
-          "manipulation": {
-            "value": 0,
-            "label": "Manipulation",
-            "ability": "emp"
-          },
-          "medicalAid": {
-            "value": 0,
-            "label": "Medical Aid",
-            "ability": "emp"
-          },
-          "observation": {
-            "value": 0,
-            "label": "Observation",
-            "ability": "wit"
-          },
-          "survival": {
-            "value": 0,
-            "label": "Survival",
-            "ability": "wit"
-          },
-          "comtech": {
-            "value": 0,
-            "label": "Comtech",
-            "ability": "wit"
-          }
-        }
-      },
-      "notes": {
-        "notes": ""
-      }
-    },
-    "talent": {
-      "attributes": {
-        "flag": {
-          "value": 0,
-          "label": "Flag"
-        }
-      },
-      "general": {
-        "career": {
-          "value": "",
-          "label": "career"
-        },
-        "comment": {
-          "value": "",
-          "label": "Text"
-        }
-      },
-      "notes": {
-        "notes": ""
-      }
-    },
-    "specialty": {
-      "attributes": {
-        "flag": {
-          "value": 0,
-          "label": "Flag"
-        }
-      },
-      "general": {
-        "comment": {
-          "value": "",
-          "label": "Text"
-        }
-      },
-      "notes": {
-        "notes": ""
-      }
-    },
-    "agenda": {
-      "attributes": {
-        "flag": {
-          "value": 0,
-          "label": "Flag"
-        }
-      },
-      "general": {
-        "comment": {
-          "value": "",
-          "label": "Text"
-        }
-      },
-      "notes": {
-        "notes": ""
-      }
-    },
-    "planet-system": {
-      "header": {
-        "commonName": {
-          "value": "",
-          "label": "Text"
-        },
-        "system": {
-          "value": "",
-          "label": "Text"
-        },
-        "sector": {
-          "value": "",
-          "label": "Text"
-        },
-        "location": {
-          "value": "",
-          "label": "Text"
-        }
-      },
-      "details": {
-        "affiliation": {
-          "value": "",
-          "label": "Affiliation"
-        },
-        "classification": {
-          "value": "",
-          "label": "Classification"
-        },
-        "climate": {
-          "value": "",
-          "label": "Climate"
-        },
-        "meanTemperature": {
-          "value": "",
-          "label": "Mean Temperature"
-        },
-        "terrain": {
-          "value": "",
-          "label": "Terrain"
-        },
-        "colonies": {
-          "value": "",
-          "label": "Colonies"
-        },
-        "population": {
-          "value": 0,
-          "label": "Population"
-        },
-        "keyResources": {
-          "value": "",
-          "label": "Key Resources"
-        }
-      },
-      "misc": {
-        "description": {
-          "value": "",
-          "label": "Description"
-        },
-        "notes": {
-          "notes": ""
-        }
-      }
-    },
-    "skill-stunts": {
-      "skill": "",
-      "description": ""
-    },
-    "critical-injury": {
-      "header": {
-        "type": {
-          "value": "",
-          "label": "Text"
-        },
-        "active": true
-      },
-      "attributes": {
-        "fatal": false,
-        "effects": "",
-        "timelimit": {
-          "value": 0
-        },
-        "healingtime": {
-          "value": 0
-        }
-      },
-      "modifiers": {
-        "attributes": {
-          "health": {
-            "value": 0,
-            "label": "Health"
-          },
-          "stress": {
-            "value": 0,
-            "label": "Stress"
-          },
-          "str": {
-            "value": 0,
-            "label": "Strength"
-          },
-          "wit": {
-            "value": 0,
-            "label": "Wits"
-          },
-          "agl": {
-            "value": 0,
-            "label": "Agility"
-          },
-          "emp": {
-            "value": 0,
-            "label": "Empathy"
-          }
-        },
-        "skills": {
-          "heavyMach": {
-            "value": 0,
-            "label": "Heavy Machinery",
-            "ability": "str"
-          },
-          "closeCbt": {
-            "value": 0,
-            "label": "Close Combat",
-            "ability": "str"
-          },
-          "stamina": {
-            "value": 0,
-            "label": "Stamina",
-            "ability": "str"
-          },
-          "rangedCbt": {
-            "value": 0,
-            "label": "Ranged Combat",
-            "ability": "agl"
-          },
-          "mobility": {
-            "value": 0,
-            "label": "Mobility",
-            "ability": "agl"
-          },
-          "piloting": {
-            "value": 0,
-            "label": "Piloting",
-            "ability": "agl"
-          },
-          "command": {
-            "value": 0,
-            "label": "Command",
-            "ability": "emp"
-          },
-          "manipulation": {
-            "value": 0,
-            "label": "Manipulation",
-            "ability": "emp"
-          },
-          "medicalAid": {
-            "value": 0,
-            "label": "Medical Aid",
-            "ability": "emp"
-          },
-          "observation": {
-            "value": 0,
-            "label": "Observation",
-            "ability": "wit"
-          },
-          "survival": {
-            "value": 0,
-            "label": "Survival",
-            "ability": "wit"
-          },
-          "comtech": {
-            "value": 0,
-            "label": "Comtech",
-            "ability": "wit"
-          }
-        }
-      }
-    },
-    "spacecraft-crit": {
-      "header": {
-        "type": {
-          "value": 0,
-          "label": "Text"
-        },
-        "damage": "",
-        "effects": "",
-        "repairroll": ""
-      }
-    },
-    "spacecraftmods": {
-      "header": {
-        "type": {
-          "value": "",
-          "label": "Text"
-        },
-        "active": false
-      },
-      "attributes": {
-        "size": {
-          "value": "",
-          "label": "Text"
-        },
-        "capacity": {
-          "value": "",
-          "label": "Text"
-        },
-        "cost": {
-          "value": 0,
-          "label": "Number"
-        },
-        "comment": {
-          "value": "",
-          "label": "Text"
-        },
-        "quantity": {
-          "value": 1
-        },
-        "notes": {
-          "notes": ""
-        }
-      }
-    },
-    "spacecraftweapons": {
-      "header": {
-        "type": {
-          "value": "",
-          "label": "Text"
-        },
-        "active": false
-      },
-      "attributes": {
-        "bonus": {
-          "value": 0,
-          "label": "Number"
-        },
-        "damage": {
-          "value": 0,
-          "label": "Number"
-        },
-        "hardpoint": {
-          "value": "",
-          "label": "Text"
-        },
-        "cost": {
-          "value": 0,
-          "label": "Number"
-        },
-        "range": {
-          "value": "",
-          "label": "Number"
-        },
-        "comment": {
-          "value": "",
-          "label": "Text"
-        },
-        "quantity": {
-          "value": 1
-        }
-      },
-      "notes": {
-        "notes": ""
-      }
-    }
-  }
+	"Actor": {
+		"types": ["character", "synthetic", "vehicles", "creature", "territory", "spacecraft", "planet", "colony"],
+		"character": {
+			"header": {
+				"health": {
+					"value": 0,
+					"label": "Health",
+					"mod": 0,
+					"max": 0
+				},
+				"stress": {
+					"value": 0,
+					"label": "Stress",
+					"mod": 0,
+					"max": 10
+				},
+				"npc": false
+			},
+			"attributes": {
+				"str": {
+					"value": 0,
+					"label": "Strength",
+					"mod": 0
+				},
+				"wit": {
+					"value": 0,
+					"label": "Wits",
+					"mod": 0
+				},
+				"agl": {
+					"value": 0,
+					"label": "Agility",
+					"mod": 0
+				},
+				"emp": {
+					"value": 0,
+					"label": "Empathy",
+					"mod": 0
+				}
+			},
+			"skills": {
+				"heavyMach": {
+					"value": 0,
+					"label": "Heavy Machinery",
+					"ability": "str",
+					"description": "Heavy Machinery"
+				},
+				"closeCbt": {
+					"value": 0,
+					"label": "Close Combat",
+					"ability": "str",
+					"description": "Close Combat"
+				},
+				"stamina": {
+					"value": 0,
+					"label": "Stamina",
+					"ability": "str",
+					"description": "Stamina"
+				},
+				"rangedCbt": {
+					"value": 0,
+					"label": "Ranged Combat",
+					"ability": "agl",
+					"description": "Ranged Combat"
+				},
+				"mobility": {
+					"value": 0,
+					"label": "Mobility",
+					"ability": "agl",
+					"description": "Mobility"
+				},
+				"piloting": {
+					"value": 0,
+					"label": "Piloting",
+					"ability": "agl",
+					"description": "Piloting"
+				},
+				"command": {
+					"value": 0,
+					"label": "Command",
+					"ability": "emp",
+					"description": "Command"
+				},
+				"manipulation": {
+					"value": 0,
+					"label": "Manipulation",
+					"ability": "emp",
+					"description": "Manipulation"
+				},
+				"medicalAid": {
+					"value": 0,
+					"label": "Medical Aid",
+					"ability": "emp",
+					"description": "Medical Aid"
+				},
+				"observation": {
+					"value": 0,
+					"label": "Observation",
+					"ability": "wit",
+					"description": "Observation"
+				},
+				"survival": {
+					"value": 0,
+					"label": "Survival",
+					"ability": "wit",
+					"description": "Survival"
+				},
+				"comtech": {
+					"value": 0,
+					"label": "Comtech",
+					"ability": "wit",
+					"description": "Comtech"
+				}
+			},
+			"general": {
+				"career": {
+					"value": "",
+					"label": "career"
+				},
+				"appearance": {
+					"value": "",
+					"label": "appearance"
+				},
+				"sigItem": {
+					"value": "",
+					"label": "sigItem"
+				},
+				"agenda": {
+					"value": "",
+					"label": "agenda"
+				},
+				"relOne": {
+					"value": "",
+					"label": "relOne"
+				},
+				"relTwo": {
+					"value": "",
+					"label": "relTwo"
+				},
+				"xp": {
+					"value": 0,
+					"max": 20
+				},
+				"sp": {
+					"value": 0,
+					"max": 3
+				},
+				"radiation": {
+					"value": 0,
+					"max": 10
+				},
+				"starving": {
+					"value": 0,
+					"max": 1
+				},
+				"dehydrated": {
+					"value": 0,
+					"max": 1
+				},
+				"exhausted": {
+					"value": 0,
+					"max": 1
+				},
+				"freezing": {
+					"value": 0,
+					"max": 1
+				},
+				"critInj": {
+					"value": ""
+				},
+				"armor": {
+					"value": 0,
+					"max": 10
+				},
+				"panic": {
+					"value": 0,
+					"max": 1,
+					"lastRoll": 0
+				},
+				"cash": {
+					"value": 0,
+					"label": "Number"
+				}
+			},
+			"consumables": {
+				"air": {
+					"value": 0,
+					"min": 0,
+					"max": 5
+				},
+				"power": {
+					"value": 0,
+					"min": 0,
+					"max": 5
+				},
+				"food": {
+					"value": 0,
+					"min": 0,
+					"max": 5
+				},
+				"water": {
+					"value": 0,
+					"min": 0,
+					"max": 5
+				}
+			},
+			"notes": "",
+			"adhocitems": ""
+		},
+		"synthetic": {
+			"header": {
+				"health": {
+					"value": 0,
+					"label": "Health",
+					"mod": 0,
+					"max": 0
+				},
+				"npc": false,
+				"synthstress": false
+			},
+			"attributes": {
+				"str": {
+					"value": 0,
+					"label": "Strength",
+					"mod": 0,
+					"proficient": 0
+				},
+				"wit": {
+					"value": 0,
+					"mod": 0,
+					"label": "Wits"
+				},
+				"agl": {
+					"value": 0,
+					"mod": 0,
+					"label": "Agility"
+				},
+				"emp": {
+					"value": 0,
+					"mod": 0,
+					"label": "Empathy"
+				}
+			},
+			"skills": {
+				"heavyMach": {
+					"value": 0,
+					"label": "Heavy Machinery",
+					"ability": "str",
+					"description": "Heavy Machinery"
+				},
+				"closeCbt": {
+					"value": 0,
+					"label": "Close Combat",
+					"ability": "str",
+					"description": "Close Combat"
+				},
+				"stamina": {
+					"value": 0,
+					"label": "Stamina",
+					"ability": "str",
+					"description": "Stamina"
+				},
+				"rangedCbt": {
+					"value": 0,
+					"label": "Ranged Combat",
+					"ability": "agl",
+					"description": "Ranged Combat"
+				},
+				"mobility": {
+					"value": 0,
+					"label": "Mobility",
+					"ability": "agl",
+					"description": "Mobility"
+				},
+				"piloting": {
+					"value": 0,
+					"label": "Piloting",
+					"ability": "agl",
+					"description": "Piloting"
+				},
+				"command": {
+					"value": 0,
+					"label": "Command",
+					"ability": "emp",
+					"description": "Command"
+				},
+				"manipulation": {
+					"value": 0,
+					"label": "Manipulation",
+					"ability": "emp",
+					"description": "Manipulation"
+				},
+				"medicalAid": {
+					"value": 0,
+					"label": "Medical Aid",
+					"ability": "emp",
+					"description": "Medical Aid"
+				},
+				"observation": {
+					"value": 0,
+					"label": "Observation",
+					"ability": "wit",
+					"description": "Observation"
+				},
+				"survival": {
+					"value": 0,
+					"label": "Survival",
+					"ability": "wit",
+					"description": "Survival"
+				},
+				"comtech": {
+					"value": 0,
+					"label": "Comtech",
+					"ability": "wit",
+					"description": "Comtech"
+				}
+			},
+			"general": {
+				"career": {
+					"value": "",
+					"label": "career"
+				},
+				"appearance": {
+					"value": "",
+					"label": "appearance"
+				},
+				"sigItem": {
+					"value": "",
+					"label": "sigItem"
+				},
+				"agenda": {
+					"value": "",
+					"label": "agenda"
+				},
+				"relOne": {
+					"value": "",
+					"label": "relOne"
+				},
+				"relTwo": {
+					"value": "",
+					"label": "relTwo"
+				},
+				"xp": {
+					"value": 0,
+					"max": 20
+				},
+				"sp": {
+					"value": 0,
+					"max": 3
+				},
+				"radiation": {
+					"value": 0,
+					"max": 10
+				},
+				"starving": {
+					"value": 0,
+					"max": 1
+				},
+				"dehydrated": {
+					"value": 0,
+					"max": 1
+				},
+				"exhausted": {
+					"value": 0,
+					"max": 1
+				},
+				"freezing": {
+					"value": 0,
+					"max": 1
+				},
+				"critInj": {
+					"value": ""
+				},
+				"armor": {
+					"value": 0,
+					"max": 10
+				},
+				"cash": {
+					"value": 0,
+					"label": "Number"
+				}
+			},
+			"consumables": {
+				"air": {
+					"value": 0,
+					"min": 0,
+					"max": 5
+				},
+				"power": {
+					"value": 0,
+					"min": 0,
+					"max": 5
+				},
+				"food": {
+					"value": 0,
+					"min": 0,
+					"max": 5
+				},
+				"water": {
+					"value": 0,
+					"min": 0,
+					"max": 5
+				}
+			},
+			"notes": "",
+			"adhocitems": ""
+		},
+		"creature": {
+			"header": {
+				"health": {
+					"value": 0,
+					"label": "Health",
+					"max": 0
+				}
+			},
+			"attributes": {
+				"speed": {
+					"value": 0,
+					"label": "Speed"
+				},
+				"armorrating": {
+					"value": 0,
+					"label": "Number",
+					"max": 10
+				},
+				"armorvfire": {
+					"value": 0,
+					"label": "Number",
+					"max": 10
+				}
+			},
+			"general": {
+				"mobility": {
+					"value": "-",
+					"label": "Mobility"
+				},
+				"observation": {
+					"value": "-",
+					"label": "Observation"
+				},
+				"comment": {
+					"value": "",
+					"label": "Text"
+				},
+				"special": {
+					"value": "",
+					"label": "Text"
+				},
+				"acidSplash": {
+					"value": "-",
+					"label": "Acid Splash"
+				},
+				"critInj": {
+					"value": ""
+				}
+			},
+			"notes": {
+				"notes": ""
+			},
+			"rTables": "",
+			"cTables": ""
+		},
+		"vehicles": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				}
+			},
+			"attributes": {
+				"weight": {
+					"value": 0,
+					"label": "Number"
+				},
+				"cost": {
+					"value": 0,
+					"label": "Number"
+				},
+				"armorrating": {
+					"value": 0,
+					"label": "Number",
+					"max": 10
+				},
+				"comment": {
+					"value": "",
+					"label": "Text"
+				},
+				"hull": {
+					"value": 0,
+					"label": "Number",
+					"max": 0
+				},
+				"passengers": {
+					"value": 0,
+					"label": "Number"
+				},
+				"speed": {
+					"value": 0,
+					"label": "Number"
+				},
+				"manoeuvrability": {
+					"value": 0,
+					"label": "Number"
+				}
+			},
+			"modifiers": {
+				"gunnerName": "",
+				"rangedCbt": {
+					"value": 0,
+					"label": "Ranged Combat",
+					"ability": "agl"
+				},
+				"pilotName": "",
+				"piloting": {
+					"value": 0,
+					"label": "Piloting",
+					"ability": "agl"
+				}
+			},
+			"general": {
+				"misc": {
+					"value": ""
+				}
+			},
+			"notes": {
+				"notes": ""
+			},
+			"crew": {
+				"occupants": [],
+				"passengerQty": 0
+			}
+		},
+		"territory": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				}
+			},
+			"comment": {
+				"value": "",
+				"label": "Text"
+			},
+			"sectors": {
+				"value": "",
+				"label": "Text"
+			}
+		},
+		"spacecraft": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				}
+			},
+			"attributes": {
+				"manufacturer": "",
+				"model": "",
+				"modules": "",
+				"armaments": "",
+				"ai": "",
+				"crew": {
+					"value": 0
+				},
+				"passengers": {
+					"value": 0
+				},
+				"length": {
+					"value": 0
+				},
+				"ftlrating": {
+					"value": 0
+				},
+				"signature": {
+					"value": 0
+				},
+				"thrusters": {
+					"value": 0
+				},
+				"hull": {
+					"value": 0
+				},
+				"armor": {
+					"value": 0
+				},
+				"damage": {
+					"value": 0,
+					"max": 15
+				},
+				"leasecost": {
+					"value": 0
+				}
+			},
+			"crew": {
+				"occupants": [],
+				"passengerQty": 0
+			},
+			"general": {
+				"misc": {
+					"value": ""
+				}
+			},
+			"notes": ""
+		},
+		"planet": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				},
+				"colonyname": ""
+			},
+			"attributes": {
+				"parentstar": "",
+				"planetposition": {
+					"value": 0
+				},
+				"gasgiants": {
+					"value": 0
+				},
+				"rockyplanets": {
+					"value": 0
+				},
+				"iceplanets": {
+					"value": 0
+				},
+				"asteroidbelts": {
+					"value": 0
+				},
+				"radiation": "",
+				"planetsize": "",
+				"atmosphere": "",
+				"hydrosphere": "",
+				"daylength": "",
+				"axialtilt": "",
+				"gravity": "",
+				"climate": "",
+				"globalfeature": "",
+				"orbitalperiod": "",
+				"personality": "",
+				"northpole": "",
+				"rpnorthpole": false,
+				"equator": "",
+				"rpequator": false,
+				"southpole": "",
+				"rpsouthpole": false,
+				"nhwest": "",
+				"rpnhwest": false,
+				"nhsouth": "",
+				"rpshwest": false,
+				"nheast": "",
+				"rpnheast": false,
+				"sheast": "",
+				"rpsheast": false
+			},
+
+			"general": {
+				"misc": {
+					"value": ""
+				}
+			},
+			"notes": ""
+		},
+		"colony": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				},
+				"colonyname": ""
+			},
+			"attributes": {
+				"location": "",
+				"mission": "",
+				"established": "",
+				"cycles": "",
+				"sponsor": "",
+				"population": 0,
+				"commander": "",
+				"economydirector": "",
+				"potentialname": "",
+				"productivityname": "",
+				"maintenancename": "",
+				"sciencename": "",
+				"spiritname": ""
+			},
+			"stats": {
+				"economy": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"potential": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"productivity": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"maintenance": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"science": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"spirit": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				},
+				"developmenttotal": {
+					"value": 0,
+					"mod": 0,
+					"total": 0
+				}
+			},
+			"notes": ""
+		},
+		"general": {
+			"misc": {
+				"value": ""
+			}
+		},
+		"notes": {
+			"notes": ""
+		}
+	},
+	"Item": {
+		"types": [
+			"item",
+			"weapon",
+			"armor",
+			"planet-system",
+			"talent",
+			"agenda",
+			"specialty",
+			"critical-injury",
+			"spacecraft-crit",
+			"spacecraftmods",
+			"spacecraftweapons",
+			"skill-stunts",
+			"colony-initiative"
+		],
+		"item": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				},
+				"active": false,
+				"completed": false
+			},
+			"attributes": {
+				"weight": {
+					"value": 0,
+					"label": "Number"
+				},
+				"cost": {
+					"value": 0,
+					"label": "Number"
+				},
+				"comment": {
+					"value": "",
+					"label": "Text"
+				},
+				"food": {
+					"value": 0,
+					"label": "Number"
+				},
+				"water": {
+					"value": 0,
+					"label": "Number"
+				},
+				"power": {
+					"value": 0,
+					"label": "Stress"
+				},
+				"airsupply": {
+					"value": 0,
+					"label": "Number"
+				},
+				"quantity": {
+					"value": 1
+				},
+				"notes": {
+					"notes": ""
+				}
+			},
+			"modifiers": {
+				"attributes": {
+					"health": {
+						"value": 0,
+						"label": "Health"
+					},
+					"stress": {
+						"value": 0,
+						"label": "Stress"
+					},
+					"str": {
+						"value": 0,
+						"label": "Strength"
+					},
+					"wit": {
+						"value": 0,
+						"label": "Wits"
+					},
+					"agl": {
+						"value": 0,
+						"label": "Agility"
+					},
+					"emp": {
+						"value": 0,
+						"label": "Empathy"
+					}
+				},
+				"skills": {
+					"heavyMach": {
+						"value": 0,
+						"label": "Heavy Machinery",
+						"ability": "str"
+					},
+					"closeCbt": {
+						"value": 0,
+						"label": "Close Combat",
+						"ability": "str"
+					},
+					"stamina": {
+						"value": 0,
+						"label": "Stamina",
+						"ability": "str"
+					},
+					"rangedCbt": {
+						"value": 0,
+						"label": "Ranged Combat",
+						"ability": "agl"
+					},
+					"mobility": {
+						"value": 0,
+						"label": "Mobility",
+						"ability": "agl"
+					},
+					"piloting": {
+						"value": 0,
+						"label": "Piloting",
+						"ability": "agl"
+					},
+					"command": {
+						"value": 0,
+						"label": "Command",
+						"ability": "emp"
+					},
+					"manipulation": {
+						"value": 0,
+						"label": "Manipulation",
+						"ability": "emp"
+					},
+					"medicalAid": {
+						"value": 0,
+						"label": "Medical Aid",
+						"ability": "emp"
+					},
+					"observation": {
+						"value": 0,
+						"label": "Observation",
+						"ability": "wit"
+					},
+					"survival": {
+						"value": 0,
+						"label": "Survival",
+						"ability": "wit"
+					},
+					"comtech": {
+						"value": 0,
+						"label": "Comtech",
+						"ability": "wit"
+					}
+				}
+			}
+		},
+		"weapon": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				},
+				"active": false
+			},
+			"attributes": {
+				"bonus": {
+					"value": 0,
+					"label": "Number"
+				},
+				"damage": {
+					"value": 0,
+					"label": "Number"
+				},
+				"weight": {
+					"value": 0,
+					"label": "Number"
+				},
+				"cost": {
+					"value": 0,
+					"label": "Number"
+				},
+				"range": {
+					"value": "",
+					"label": "Number"
+				},
+				"class": {
+					"value": "",
+					"label": "Text"
+				},
+				"rounds": {
+					"value": 0,
+					"label": "Number"
+				},
+				"power": {
+					"value": 0,
+					"label": "Number"
+				},
+				"comment": {
+					"value": "",
+					"label": "Text"
+				},
+				"quantity": {
+					"value": 1
+				}
+			},
+			"notes": {
+				"notes": ""
+			}
+		},
+		"armor": {
+			"header": {
+				"active": false
+			},
+			"attributes": {
+				"weight": {
+					"value": 0,
+					"label": "Number"
+				},
+				"cost": {
+					"value": 0,
+					"label": "Number"
+				},
+				"armorrating": {
+					"value": 0,
+					"label": "Number"
+				},
+				"airsupply": {
+					"value": 0,
+					"label": "Number"
+				},
+				"comment": {
+					"value": "",
+					"label": "Text"
+				}
+			},
+			"modifiers": {
+				"attributes": {
+					"health": {
+						"value": 0,
+						"label": "Health"
+					},
+					"stress": {
+						"value": 0,
+						"label": "Stress"
+					},
+					"str": {
+						"value": 0,
+						"label": "Strength"
+					},
+					"wit": {
+						"value": 0,
+						"label": "Wits"
+					},
+					"agl": {
+						"value": 0,
+						"label": "Agility"
+					},
+					"emp": {
+						"value": 0,
+						"label": "Empathy"
+					}
+				},
+				"skills": {
+					"heavyMach": {
+						"value": 0,
+						"label": "Heavy Machinery",
+						"ability": "str"
+					},
+					"closeCbt": {
+						"value": 0,
+						"label": "Close Combat",
+						"ability": "str"
+					},
+					"stamina": {
+						"value": 0,
+						"label": "Stamina",
+						"ability": "str"
+					},
+					"rangedCbt": {
+						"value": 0,
+						"label": "Ranged Combat",
+						"ability": "agl"
+					},
+					"mobility": {
+						"value": 0,
+						"label": "Mobility",
+						"ability": "agl"
+					},
+					"piloting": {
+						"value": 0,
+						"label": "Piloting",
+						"ability": "agl"
+					},
+					"command": {
+						"value": 0,
+						"label": "Command",
+						"ability": "emp"
+					},
+					"manipulation": {
+						"value": 0,
+						"label": "Manipulation",
+						"ability": "emp"
+					},
+					"medicalAid": {
+						"value": 0,
+						"label": "Medical Aid",
+						"ability": "emp"
+					},
+					"observation": {
+						"value": 0,
+						"label": "Observation",
+						"ability": "wit"
+					},
+					"survival": {
+						"value": 0,
+						"label": "Survival",
+						"ability": "wit"
+					},
+					"comtech": {
+						"value": 0,
+						"label": "Comtech",
+						"ability": "wit"
+					}
+				}
+			},
+			"notes": {
+				"notes": ""
+			}
+		},
+		"talent": {
+			"attributes": {
+				"flag": {
+					"value": 0,
+					"label": "Flag"
+				}
+			},
+			"general": {
+				"career": {
+					"value": "",
+					"label": "career"
+				},
+				"comment": {
+					"value": "",
+					"label": "Text"
+				}
+			},
+			"notes": {
+				"notes": ""
+			}
+		},
+		"specialty": {
+			"attributes": {
+				"flag": {
+					"value": 0,
+					"label": "Flag"
+				}
+			},
+			"general": {
+				"comment": {
+					"value": "",
+					"label": "Text"
+				}
+			},
+			"notes": {
+				"notes": ""
+			}
+		},
+		"agenda": {
+			"attributes": {
+				"flag": {
+					"value": 0,
+					"label": "Flag"
+				}
+			},
+			"general": {
+				"comment": {
+					"value": "",
+					"label": "Text"
+				}
+			},
+			"notes": {
+				"notes": ""
+			}
+		},
+		"planet-system": {
+			"header": {
+				"commonName": {
+					"value": "",
+					"label": "Text"
+				},
+				"system": {
+					"value": "",
+					"label": "Text"
+				},
+				"sector": {
+					"value": "",
+					"label": "Text"
+				},
+				"location": {
+					"value": "",
+					"label": "Text"
+				}
+			},
+			"details": {
+				"affiliation": {
+					"value": "",
+					"label": "Affiliation"
+				},
+				"classification": {
+					"value": "",
+					"label": "Classification"
+				},
+				"climate": {
+					"value": "",
+					"label": "Climate"
+				},
+				"meanTemperature": {
+					"value": "",
+					"label": "Mean Temperature"
+				},
+				"terrain": {
+					"value": "",
+					"label": "Terrain"
+				},
+				"colonies": {
+					"value": "",
+					"label": "Colonies"
+				},
+				"population": {
+					"value": 0,
+					"label": "Population"
+				},
+				"keyResources": {
+					"value": "",
+					"label": "Key Resources"
+				}
+			},
+			"misc": {
+				"description": {
+					"value": "",
+					"label": "Description"
+				},
+				"notes": {
+					"notes": ""
+				}
+			}
+		},
+		"skill-stunts": {
+			"skill": "",
+			"description": ""
+		},
+		"critical-injury": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				},
+				"active": true
+			},
+			"attributes": {
+				"fatal": false,
+				"effects": "",
+				"timelimit": {
+					"value": 0
+				},
+				"healingtime": {
+					"value": 0
+				}
+			},
+			"modifiers": {
+				"attributes": {
+					"health": {
+						"value": 0,
+						"label": "Health"
+					},
+					"stress": {
+						"value": 0,
+						"label": "Stress"
+					},
+					"str": {
+						"value": 0,
+						"label": "Strength"
+					},
+					"wit": {
+						"value": 0,
+						"label": "Wits"
+					},
+					"agl": {
+						"value": 0,
+						"label": "Agility"
+					},
+					"emp": {
+						"value": 0,
+						"label": "Empathy"
+					}
+				},
+				"skills": {
+					"heavyMach": {
+						"value": 0,
+						"label": "Heavy Machinery",
+						"ability": "str"
+					},
+					"closeCbt": {
+						"value": 0,
+						"label": "Close Combat",
+						"ability": "str"
+					},
+					"stamina": {
+						"value": 0,
+						"label": "Stamina",
+						"ability": "str"
+					},
+					"rangedCbt": {
+						"value": 0,
+						"label": "Ranged Combat",
+						"ability": "agl"
+					},
+					"mobility": {
+						"value": 0,
+						"label": "Mobility",
+						"ability": "agl"
+					},
+					"piloting": {
+						"value": 0,
+						"label": "Piloting",
+						"ability": "agl"
+					},
+					"command": {
+						"value": 0,
+						"label": "Command",
+						"ability": "emp"
+					},
+					"manipulation": {
+						"value": 0,
+						"label": "Manipulation",
+						"ability": "emp"
+					},
+					"medicalAid": {
+						"value": 0,
+						"label": "Medical Aid",
+						"ability": "emp"
+					},
+					"observation": {
+						"value": 0,
+						"label": "Observation",
+						"ability": "wit"
+					},
+					"survival": {
+						"value": 0,
+						"label": "Survival",
+						"ability": "wit"
+					},
+					"comtech": {
+						"value": 0,
+						"label": "Comtech",
+						"ability": "wit"
+					}
+				}
+			}
+		},
+		"spacecraft-crit": {
+			"header": {
+				"type": {
+					"value": 0,
+					"label": "Text"
+				},
+				"damage": "",
+				"effects": "",
+				"repairroll": ""
+			}
+		},
+		"spacecraftmods": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				},
+				"active": false
+			},
+			"attributes": {
+				"size": {
+					"value": "",
+					"label": "Text"
+				},
+				"capacity": {
+					"value": "",
+					"label": "Text"
+				},
+				"cost": {
+					"value": 0,
+					"label": "Number"
+				},
+				"comment": {
+					"value": "",
+					"label": "Text"
+				},
+				"quantity": {
+					"value": 1
+				},
+				"notes": {
+					"notes": ""
+				}
+			}
+		},
+		"spacecraftweapons": {
+			"header": {
+				"type": {
+					"value": "",
+					"label": "Text"
+				},
+				"active": false
+			},
+			"attributes": {
+				"bonus": {
+					"value": 0,
+					"label": "Number"
+				},
+				"damage": {
+					"value": 0,
+					"label": "Number"
+				},
+				"hardpoint": {
+					"value": "",
+					"label": "Text"
+				},
+				"cost": {
+					"value": 0,
+					"label": "Number"
+				},
+				"range": {
+					"value": "",
+					"label": "Number"
+				},
+				"comment": {
+					"value": "",
+					"label": "Text"
+				},
+				"quantity": {
+					"value": 1
+				}
+			},
+			"notes": {
+				"notes": ""
+			}
+		},
+		"colony-initiative": {
+			"header": {
+				"type": 0,
+				"comment": "",
+				"active": true
+			},
+			"modifiers": {
+				"economy": {
+					"value": 0
+				},
+				"potential": {
+					"value": 0
+				},
+				"productivity": {
+					"value": 0
+				},
+				"maintenance": {
+					"value": 0
+				},
+				"science": {
+					"value": 0
+				},
+				"spirit": {
+					"value": 0
+				}
+			},
+			"notes": ""
+		}
+	}
 }

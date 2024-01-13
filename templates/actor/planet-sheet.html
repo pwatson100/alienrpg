@@ -1,0 +1,276 @@
+<form class="{{cssClass}}" autocomplete="off">
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		<a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
+		<a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
+	</nav>
+
+	{{!-- Sheet Body --}}
+	<section class="sheet-body" style="margin-top: 10px">
+		{{!--General Tab --}}
+		<div class="tab general" data-group="primary" data-tab="general">
+			<div style="background-image: url(systems/alienrpg/images/planet-sheet.webp); background-repeat: no-repeat; height: 848px">
+				<div class="grid-colony-planet1">
+					<h6 class="resource-label gcp4">SOLAR SYSTEM</h6>
+				</div>
+				<div class="grid-colony-planet2">
+					<h2 class="gcp14">
+						<input name="name" style="max-width: 351px; margin: 3px 0px 0px -4px" type="text" value="{{actor.name}}" />
+					</h2>
+				</div>
+				<div class="grid-colony-planet3a">
+					<h6 class="resource-label gcp3a1">PARENT STAR</h6>
+					<h6 class="resource-label gcp3a7">RADIATION</h6>
+				</div>
+				<div class="grid-colony-planet3">
+					<input
+						class="gcp31 planetboxsize"
+						style="max-width: 216px; margin: 5px 0px 0px -3px; text-align: center"
+						type="text"
+						name="system.attributes.parentstar"
+						value="{{system.attributes.parentstar}}"
+						data-dtype="String"
+					/>
+					<input
+						class="gcp37 planetboxsize"
+						style="max-width: 100px; margin: 3px 0px 0px 10px; text-align: center"
+						type="text"
+						name="system.attributes.radiation"
+						value="{{system.attributes.radiation}}"
+						data-dtype="String"
+					/>
+				</div>
+				<div class="grid-colony-planet4a">
+					<h6 class="resource-label gcp4a2" style="font-size: smaller">SURVEYED PLANETS POSITION</h6>
+					<h6 class="resource-label gcp4a3">GAS GIANTS</h6>
+					<h6 class="resource-label gcp4a4">ROCKY<br />PLANETS</h6>
+					<h6 class="resource-label gcp4a5">ICE PLANETS</h6>
+					<h6 class="resource-label gcp4a6">ASTEROID<br />BELTS</h6>
+				</div>
+				<div class="grid-colony-planet4">
+					<input
+						class="gcp42 planetboxsize"
+						style="max-width: 50px; margin: -10px 0px 0px 93px; text-align: center"
+						type="text"
+						name="system.attributes.planetposition.value"
+						value="{{system.attributes.planetposition.value}}"
+						data-dtype="Number"
+					/>
+					<input
+						class="gcp43 planetboxsize"
+						type="text"
+						style="max-width: 50px; margin: 7px 0px 0px 35px; text-align: center"
+						name="system.attributes.gasgiants.value"
+						value="{{system.attributes.gasgiants.value}}"
+						data-dtype="Number"
+					/>
+					<input
+						class="gcp44 planetboxsize"
+						type="text"
+						style="max-width: 50px; margin: 4px 0px 0px 41px; text-align: center"
+						name="system.attributes.rockyplanets.value"
+						value="{{system.attributes.rockyplanets.value}}"
+						data-dtype="Number"
+					/>
+					<input
+						class="gcp45 planetboxsize"
+						type="text"
+						style="max-width: 50px; margin: -10px 0px 0px 50px; text-align: center"
+						name="system.attributes.iceplanets.value"
+						value="{{system.attributes.iceplanets.value}}"
+						data-dtype="Number"
+					/>
+					<input
+						class="gcp46 planetboxsize"
+						type="text"
+						style="max-width: 50px; margin: -13px 0px 0px 56px; text-align: center"
+						name="system.attributes.asteroidbelts.value"
+						value="{{system.attributes.asteroidbelts.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="grid-colony-planet6a">
+					<h6 class="resource-label gcp6a1">PLANET SIZE</h6>
+					<h6 class="resource-label gcp6a2">ATMOSPHERE</h6>
+					<h6 class="resource-label gcp6a4">HYDROSPHERE</h6>
+					<h6 class="resource-label gcp6a6">DAY LENGTH</h6>
+					<h6 class="resource-label gcp6a7">AXIAL TILT</h6>
+				</div>
+				<div class="grid-colony-planet6">
+					<input
+						class="gcp61 planetboxsize"
+						style="max-width: 190px; margin: 10px 0px 0px 0px; text-align: center"
+						type="text"
+						name="system.attributes.planetsize"
+						value="{{system.attributes.planetsize}}"
+						data-dtype="String"
+					/>
+					<input
+						class="gcp62 planetboxsize"
+						style="max-width: 190px; margin: -9px 0px 0px -14px; text-align: center"
+						type="text"
+						name="system.attributes.atmosphere"
+						value="{{system.attributes.atmosphere}}"
+						data-dtype="String"
+					/>
+					<input
+						class="gcp64 planetboxsize"
+						style="max-width: 180px; margin: -26px 0px 0px -5px; text-align: center"
+						type="text"
+						name="system.attributes.hydrosphere"
+						value="{{system.attributes.hydrosphere}}"
+						data-dtype="String"
+					/>
+					<input
+						class="gcp66 planetboxsize"
+						style="max-width: 190px; margin: -9px 0px 0px -10px; text-align: center"
+						type="text"
+						name="system.attributes.daylength"
+						value="{{system.attributes.daylength}}"
+						data-dtype="String"
+					/>
+					<input
+						class="gcp67 planetboxsize"
+						style="max-width: 190px; margin: 10px 0px 0px 3px; text-align: center"
+						type="text"
+						name="system.attributes.axialtilt"
+						value="{{system.attributes.axialtilt}}"
+						data-dtype="String"
+					/>
+				</div>
+				<div class="grid-colony-planet7a">
+					<h6 class="resource-label gcp7a1">GRAVITY</h6>
+					<h6 class="resource-label gcp7a2">CLIMATE</h6>
+					<h6 class="resource-label gcp7a4">GLOBAL FEATURE</h6>
+					<h6 class="resource-label gcp7a6">ORBITAL PERIOD</h6>
+					<h6 class="resource-label gcp7a7">PLANETARY PERSONALITY</h6>
+				</div>
+				<div class="grid-colony-planet7">
+					<input
+						class="gcp71 planetboxsize"
+						style="max-width: 190px; margin: 44px 0px 0px 4px; text-align: center"
+						type="text"
+						name="system.attributes.gravity"
+						value="{{system.attributes.gravity}}"
+						data-dtype="String"
+					/>
+					<input
+						class="gcp72 planetboxsize"
+						style="max-width: 190px; margin: 25px 0px 0px -8px; text-align: center"
+						type="text"
+						name="system.attributes.climate"
+						value="{{system.attributes.climate}}"
+						data-dtype="String"
+					/>
+
+					<textarea class="gcp74 colony-planet1" style="text-align: center" name="system.attributes.globalfeature" rows="3" data-dtype="String">
+{{system.attributes.globalfeature}}</textarea
+					>
+					<input
+						class="gcp76 planetboxsize"
+						style="max-width: 190px; margin: 25px 0px 0px -4px; text-align: center"
+						type="text"
+						name="system.attributes.orbitalperiod"
+						value="{{system.attributes.orbitalperiod}}"
+						data-dtype="String"
+					/>
+					<input
+						class="gcp77 planetboxsize"
+						style="max-width: 190px; margin: 44px 0px 0px 8px; text-align: center"
+						type="text"
+						name="system.attributes.personality"
+						value="{{system.attributes.personality}}"
+						data-dtype="String"
+					/>
+				</div>
+				<div class="grid-colony-planet8a">
+					<h6 class="resource-label gcp8a4">NORTH POLE</h6>
+				</div>
+				<div class="grid-colony-planet8">
+					<textarea class="gcp84 colony-planet2" name="system.attributes.northpole" rows="4" data-dtype="String">{{system.attributes.northpole}}</textarea>
+				</div>
+				<div class="grid-colony-planet9">
+					<h6 class="resource-label gcp94">RESOURCE POTENTIAL</h6>
+					<input
+						class="gcp96"
+						style="margin: 31px 0px 0px 5px"
+						name="system.attributes.rpnorthpole"
+						type="checkbox"
+						{{checked
+						system.attributes.rpnorthpole}}
+					/>
+				</div>
+				<div class="grid-colony-planet10a">
+					<h6 class="resource-label gcp10a1">
+						NORTHERN <br />
+						HEMISPHERE WEST
+					</h6>
+					<h6 class="resource-label gcp10a4">EQUATOR</h6>
+					<h6 class="resource-label gcp10a7">
+						NORTHERN <br />
+						HEMISPHERE EAST
+					</h6>
+				</div>
+				<div class="grid-colony-planet10">
+					<textarea class="gcp101 colony-planet2" name="system.attributes.nhwest" rows="4" data-dtype="String">{{system.attributes.nhwest}}</textarea>
+					<textarea class="gcp104 colony-planet2" style="margin-top: 73px" name="system.attributes.equator" rows="4" data-dtype="String">
+{{system.attributes.equator}}</textarea
+					>
+					<textarea class="gcp107 colony-planet2" name="system.attributes.nheast" rows="4" data-dtype="String">{{system.attributes.nheast}}</textarea>
+				</div>
+
+				<div class="grid-colony-planet11">
+					<h6 class="resource-label gcp111">RESOURCE POTENTIAL</h6>
+					<input class="gcp112" style="margin: 27px 0px 0px -6px" name="system.attributes.rpnhwest" type="checkbox" {{checked system.attributes.rpnhwest}} />
+					<h6 class="resource-label gcp113">RESOURCE POTENTIAL</h6>
+					<input class="gcp114" style="margin: 105px 0px 0px -5px" name="system.attributes.rpequator" type="checkbox" {{checked system.attributes.rpequator}} />
+					<h6 class="resource-label gcp115">RESOURCE POTENTIAL</h6>
+					<input class="gcp116" style="margin: 27px 0px 0px -6px" name="system.attributes.rpnheast" type="checkbox" {{checked system.attributes.rpnheast}} />
+				</div>
+
+				<div class="grid-colony-planet12a">
+					<h6 class="resource-label gcp12a1">
+						SOUTHERN <br />
+						HEMISPHERE WEST
+					</h6>
+					<h6 class="resource-label gcp12a4">SOUTH POLE</h6>
+					<h6 class="resource-label gcp12a7">
+						SOUTHERN <br />
+						HEMISPHERE EAST
+					</h6>
+				</div>
+				<div class="grid-colony-planet12">
+					<textarea class="gcp121 colony-planet2" name="system.attributes.shwest" rows="4" data-dtype="String">{{system.attributes.shwest}}</textarea>
+
+					<textarea class="gcp124 colony-planet2" style="margin-top: 67px" name="system.attributes.southpole" rows="4" data-dtype="String">
+{{system.attributes.southpole}}</textarea
+					>
+					<textarea class="gcp127 colony-planet2" name="system.attributes.sheast" rows="4" data-dtype="String">{{system.attributes.sheast}}</textarea>
+				</div>
+
+				<div class="grid-colony-planet13a">
+					<h6 class="resource-label gcp13a1">RESOURCE POTENTIAL</h6>
+
+					<input class="gcp13a2" style="margin: 27px 0px 0px -6px" name="system.attributes.rpshwest" type="checkbox" {{checked system.attributes.rpshwest}} />
+
+					<h6 class="resource-label gcp13a3">RESOURCE POTENTIAL</h6>
+					<input
+						class="gcp13a4"
+						style="margin: 105px 0px 0px -5px"
+						name="system.attributes.rpsouthpole"
+						type="checkbox"
+						{{checked
+						system.attributes.rpsouthpole}}
+					/>
+
+					<h6 class="resource-label gcp13a5">RESOURCE POTENTIAL</h6>
+					<input class="gcp13a6" style="margin: 27px 0px 0px -6px" name="system.attributes.rpsheast" type="checkbox" {{checked system.attributes.rpsheast}} />
+				</div>
+			</div>
+		</div>
+		{{!-- Biography Tab --}}
+		<div class="tab biog-full" data-group="primary" data-tab="description">
+			{{editor system.notes target="system.notes" button=true owner=owner editable=true}}
+		</div>
+	</section>
+</form>

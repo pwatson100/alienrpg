@@ -1,0 +1,262 @@
+<form class="{{cssClass}}" autocomplete="off">
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		<a class="item" data-tab="general">{{localize "ALIENRPG.General"}}</a>
+		<a class="item" data-tab="description">{{localize "ALIENRPG.Description"}}</a>
+	</nav>
+
+	{{!-- Sheet Body --}}
+	<section class="sheet-body" style="margin-top: 10px">
+		{{!--General Tab --}}
+		<div class="tab general" data-group="primary" data-tab="general">
+			<div style="background-image: url(systems/alienrpg/images/colony-sheet.webp); background-repeat: no-repeat; height: 848px">
+				<div class="grid-colony-sheet">
+					<div class="gcs1 grid-colony-header">
+						<input
+							class="gch2 charname"
+							style="max-width: 216px; margin: 5px 0px 0px s3px; text-align: center"
+							type="text"
+							name="name"
+							value="{{actor.name}}"
+							placeholder="{{localize 'ALIENRPG.Name'}}"
+						/>
+						<input
+							class="gch4 planetboxsize"
+							style="max-width: 216px; margin: 23px 0px 0px 42px; text-align: center"
+							type="text"
+							name="system.attributes.location"
+							value="{{system.attributes.location}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gch6 planetboxsize"
+							style="max-width: 216px; margin: 23px 0px 0px -46px; text-align: center"
+							type="text"
+							name="system.attributes.mission"
+							value="{{system.attributes.mission}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gch7 planetboxsize"
+							style="max-width: 216px; margin: 28px 0px 0px 55px; text-align: center"
+							type="text"
+							name="system.attributes.established"
+							value="{{system.attributes.established}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gch9 planetboxsize"
+							style="max-width: 216px; margin: 28px 0px 0px -46px; text-align: center"
+							type="text"
+							name="system.attributes.cycles"
+							value="{{system.attributes.cycles}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gch10 planetboxsize"
+							style="max-width: 216px; margin: 28px 0px 0px 55px; text-align: center"
+							type="text"
+							name="system.attributes.sponsor"
+							value="{{system.attributes.sponsor}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gch12 planetboxsize"
+							style="max-width: 150px; margin: 28px 0px 0px -40px; text-align: center"
+							type="text"
+							name="system.attributes.population.value"
+							value="{{system.attributes.population.value}}"
+							data-dtype="Number"
+						/>
+					</div>
+					<div class="gcs5 grid-colony-stats">
+						<input
+							class="gcst1 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.commander"
+							value="{{system.attributes.commander}}"
+							data-dtype="String"
+						/>
+						<input
+							class="gcst3 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.economydirector"
+							value="{{system.attributes.economydirector}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst4">
+							<input
+								class="gcst4 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.economy.value"
+								value="{{system.stats.economy.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.economy'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.economy.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.economy.mod}}
+							</span>
+						</div>
+						<input
+							class="gcst5 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.potentialname"
+							value="{{system.attributes.potentialname}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst6">
+							<input
+								class="gcst6 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.potential.value"
+								value="{{system.stats.potential.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.potential'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.potential.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.potential.mod}}
+							</span>
+						</div>
+						<input
+							class="gcst7 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.productivityname"
+							value="{{system.attributes.productivityname}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst8">
+							<input
+								class="gcst8 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.productivity.value"
+								value="{{system.stats.productivity.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.productivity'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.productivity.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.productivity.mod}}
+							</span>
+						</div>
+						<input
+							class="gcst9 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.maintenancename"
+							value="{{system.attributes.maintenancename}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst10">
+							<input
+								class="gcst10 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.maintenance.value"
+								value="{{system.stats.maintenance.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.maintenance'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.maintenance.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.maintenance.mod}}
+							</span>
+						</div>
+						<input
+							class="gcst11 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.sciencename"
+							value="{{system.attributes.sciencename}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst12">
+							<input
+								class="gcst12 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.science.value"
+								value="{{system.stats.science.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.science'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.science.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.science.mod}}
+							</span>
+						</div>
+						<input
+							class="gcst13 planetboxsize"
+							style="max-width: 216px; text-align: center"
+							type="text"
+							name="system.attributes.spiritname"
+							value="{{system.attributes.spiritname}}"
+							data-dtype="String"
+						/>
+						<div class="tooltip2 gcst14">
+							<input
+								class="gcst14 planetboxsize"
+								style="max-width: 50px; text-align: center"
+								type="text"
+								name="system.stats.spirit.value"
+								value="{{system.stats.spirit.value}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.spirit'}}</h4>
+								{{localize 'ALIENRPG.value'}}: {{system.stats.spirit.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.spirit.mod}}
+							</span>
+						</div>
+						<div class="tooltip2 gcst16">
+							<input
+								class="gcst16 planetboxsize"
+								style="max-width: 50px; margin-top: 3px; text-align: center"
+								type="text"
+								disabled="true"
+								name="system.stats.developmenttotal.total"
+								value="{{system.stats.developmenttotal.total}}"
+								data-dtype="Number"
+							/>
+							<span class="tooltiptext2" style="width: 230px; right: -255px">
+								<h4 style="text-transform: uppercase">{{localize 'ALIENRPG.developmenttotal'}}</h4>
+								{{localize 'ALIENRPG.valueTotal'}}: {{system.stats.developmenttotal.value}} <br />
+								{{localize 'ALIENRPG.ModifierTotal'}}: {{system.stats.developmenttotal.mod}}
+							</span>
+						</div>
+					</div>
+					<div class="gcs7 grid-colony-level">
+						{{#ifgt system.stats.developmenttotal.total 85}}
+						<span class="gclv6" id="overlay">&nbsp;</span>
+						{{/ifgt}} {{#ifgt system.stats.developmenttotal.total 68}}
+						<span class="gclv5" id="overlay">&nbsp;</span>
+						{{/ifgt}} {{#ifgt system.stats.developmenttotal.total 53}}
+						<span class="gclv4" id="overlay">&nbsp;</span>
+						{{/ifgt}} {{#ifgt system.stats.developmenttotal.total 40}}
+						<span class="gclv3" id="overlay">&nbsp;</span>
+						{{/ifgt}} {{#ifgt system.stats.developmenttotal.total 30}}
+						<span class="gclv2" id="overlay">&nbsp;</span>
+						{{/ifgt}} {{#ifgt system.stats.developmenttotal.total 5}}
+						<span class="gclv1" id="overlay">&nbsp;</span>
+						{{/ifgt}}
+					</div>
+					<div class="gcs2 items-list" style="height: 730px; overflow-x: auto">{{> "systems/alienrpg/templates/actor/tabs/colony-policies.html" }}</div>
+					<div class="gcs3 items-list" style="height: 730px; overflow-x: auto">{{> "systems/alienrpg/templates/actor/tabs/colony-installations.html" }}</div>
+					<div class="gcs4 items-list" style="height: 730px; overflow-x: auto">{{> "systems/alienrpg/templates/actor/tabs/colony-projects.html" }}</div>
+				</div>
+			</div>
+		</div>
+		{{!-- Biography Tab --}}
+		<div class="tab biog-full" data-group="primary" data-tab="description">
+			{{editor system.notes target="system.notes" button=true owner=owner editable=true}}
+		</div>
+	</section>
+</form>

@@ -1,0 +1,10 @@
+<form autocomplete="off">
+	<div class="form-group">
+		<label>{{localize "ALIENRPG.SwapWith"}}</label>
+		<select id="initiative-swap">
+			{{#each combatants}}
+			<option value="{{id}}">{{initiative}} - {{name}}</option>
+			{{/each}}
+		</select>
+	</div>
+</form>

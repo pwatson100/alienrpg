@@ -1,236 +1,263 @@
 .item-form {
-  font-family: var(--alienfont);
-  background: $c-black;
+	font-family: var(--alienfont);
+	background: $c-black;
 }
 
 .actor-header {
-  flex: 0 0 180px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-bottom: 1px;
-  background-color: $c-black;
-  //  color: $c-green;
+	flex: 0 0 180px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin-bottom: 1px;
+	background-color: $c-black;
+	//  color: $c-green;
 }
 
 .vehicle-header {
-  overflow: hidden;
-  display: flex;
-  margin-bottom: 1px;
-  background-color: $c-black;
-  //  color: $c-green;
+	overflow: hidden;
+	display: flex;
+	margin-bottom: 1px;
+	background-color: $c-black;
+	//  color: $c-green;
 }
 
 .profile-img {
-  flex: 0 0 100px;
-  height: 150px;
-  // margin-right: 10px;
-  width: auto;
+	flex: 0 0 100px;
+	height: 150px;
+	// margin-right: 10px;
+	width: auto;
 }
 .profile-img-item {
-  flex: 0 0 100px;
-  height: 100px;
-  margin-right: 10px;
-  width: auto;
-  justify-self: center;
+	flex: 0 0 100px;
+	height: 100px;
+	margin-right: 10px;
+	width: auto;
+	justify-self: center;
 }
 .profile-img-vehicle {
-  flex: 0 0 100px;
-  height: 160px;
-  margin-right: 10px;
-  width: 300px;
+	flex: 0 0 100px;
+	height: 160px;
+	margin-right: 10px;
+	width: 300px;
 }
 
 .header-fields {
-  flex: 1;
+	flex: 1;
 }
 
 h1.charname {
-  height: 50px;
-  padding: 0px;
-  margin: 0 5px 5px 5px;
-  border-bottom: 0;
-  border: 1px solid var(--aliengreen);
+	height: 50px;
+	padding: 0px;
+	margin: 0 5px 5px 5px;
+	border-bottom: 0;
+	border: 1px solid var(--aliengreen);
 
-  input {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    color: inherit;
-    border: 1px solid var(--aliengreen);
-  }
+	input {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		color: inherit;
+		border: 1px solid var(--aliengreen);
+	}
 }
 .sheet nav.sheet-tabs {
-  border-top: 1px solid var(--aliengreen) !important;
-  border-bottom: 1px solid var(--aliengreen) !important;
+	border-top: 1px solid var(--aliengreen) !important;
+	border-bottom: 1px solid var(--aliengreen) !important;
 }
 .sheet-tabs {
-  flex: 0;
-  // border: 1px solid var(--aliengreen);
-  border-top: 1px solid var(--aliengreen) !important;
-  border-bottom: 1px solid var(--aliengreen) !important;
-  //  color: $c-green;
+	flex: 0;
+	// border: 1px solid var(--aliengreen);
+	border-top: 1px solid var(--aliengreen) !important;
+	border-bottom: 1px solid var(--aliengreen) !important;
+	//  color: $c-green;
 }
 
 // .sheet-body,
 .tab,
 .editor {
-  height: 100%; //  Do not change this or notes will stop working
-  background-color: $c-black;
-  //  color: $c-green;
-  // overflow: hidden;
+	height: 100%; //  Do not change this or notes will stop working
+	background-color: $c-black;
+	//  color: $c-green;
+	// overflow: hidden;
 }
 
 .tox {
-  .tox-editor-container {
-    background: $c-white;
-  }
+	.tox-editor-container {
+		background: $c-white;
+	}
 
-  .tox-edit-area {
-    padding: 0 8px;
-  }
+	.tox-edit-area {
+		padding: 0 8px;
+	}
 }
 .maxboxsize {
-  max-width: 40px;
-  color: inherit;
-  background-color: $c-black;
-  height: 20px;
-  padding: 0;
-  margin: 1px;
-  text-align: center;
-  border: 1px solid var(--aliengreen);
+	max-width: 40px;
+	color: inherit;
+	background-color: $c-black;
+	height: 20px;
+	padding: 0;
+	margin: 1px;
+	text-align: center;
+	border: 1px solid var(--aliengreen);
 }
 .healboxsize {
-  max-width: 80px;
-  color: inherit;
-  background-color: $c-black;
-  height: 20px;
-  padding: 0;
-  margin: 1px;
-  text-align: center;
-  border: 1px solid var(--aliengreen);
+	max-width: 80px;
+	color: inherit;
+	background-color: $c-black;
+	height: 20px;
+	padding: 0;
+	margin: 1px;
+	text-align: center;
+	border: 1px solid var(--aliengreen);
 }
 .cashboxsize {
-  max-width: 150px;
-  color: inherit;
-  justify-items: center;
-  background-color: $c-black;
-  text-align: center;
-  border: 1px solid var(--aliengreen);
+	max-width: 150px;
+	color: inherit;
+	justify-items: center;
+	background-color: $c-black;
+	text-align: center;
+	border: 1px solid var(--aliengreen);
 }
 
 .textbox {
-  color: inherit;
-  // justify-items: center;
-  background-color: $c-black;
-  padding: 5px;
-  margin: 5px 5px 5px 5px;
-  border: 1px solid var(--aliengreen);
+	color: inherit;
+	// justify-items: center;
+	background-color: $c-black;
+	padding: 5px;
+	margin: 5px 5px 5px 5px;
+	border: 1px solid var(--aliengreen);
 
-  // width: 180px;
+	// width: 180px;
 }
 .textbox1 {
-  color: inherit;
-  justify-items: center;
-  background-color: $c-black;
-  width: 230px;
-  padding: 0;
-  margin-top: 1px;
-  margin-bottom: 1px;
-  border: 1px solid var(--aliengreen);
+	color: inherit;
+	justify-items: center;
+	background-color: $c-black;
+	width: 230px;
+	padding: 0;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border: 1px solid var(--aliengreen);
 }
 .textbox2 {
-  color: inherit;
-  justify-items: center;
-  background-color: $c-black;
-  width: 400px;
-  padding: 0;
-  margin-top: 1px;
-  margin-bottom: 1px;
-  border: 1px solid var(--aliengreen);
+	color: inherit;
+	justify-items: center;
+	background-color: $c-black;
+	width: 400px;
+	padding: 0;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border: 1px solid var(--aliengreen);
 }
 .textbox3 {
-  color: inherit;
-  // justify-items: center;
-  background-color: $c-black;
-  padding: 5px;
-  margin: 5px 5px 5px 5px;
-  width: 180px;
-  border: 1px solid var(--aliengreen);
+	color: inherit;
+	// justify-items: center;
+	background-color: $c-black;
+	padding: 5px;
+	margin: 5px 5px 5px 5px;
+	width: 180px;
+	border: 1px solid var(--aliengreen);
 }
 .textbox4 {
-  color: inherit;
-  justify-items: center;
-  background-color: $c-black;
-  width: 450px;
-  padding: 0;
-  margin-top: 1px;
-  margin-bottom: 1px;
-  border: 1px solid var(--aliengreen);
+	color: inherit;
+	justify-items: center;
+	background-color: $c-black;
+	width: 450px;
+	padding: 0;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border: 1px solid var(--aliengreen);
 }
 
 textarea {
-  resize: none;
-  padding: 2;
-  // color: $c-green;
-  color: inherit;
-  border: 1px solid var(--aliengreen);
-  font-family: var(--alienfont);
-  // font-size: medium;
-  font-size: var(--fontsize);
+	resize: none;
+	padding: 2;
+	// color: $c-green;
+	color: inherit;
+	border: 1px solid var(--aliengreen);
+	font-family: var(--alienfont);
+	// font-size: medium;
+	font-size: var(--fontsize);
 }
 
 form .sheet-content .click-stat-level {
-  height: 18px;
-  padding: 8px;
-  background: $c-black;
-  border-radius: 2px;
-  box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.502);
-  font-family: 'Roboto', system, -apple-system, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.25px;
-  //  color: $c-green;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+	height: 18px;
+	padding: 8px;
+	background: $c-black;
+	border-radius: 2px;
+	box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.502);
+	font-family: 'Roboto', system, -apple-system, sans-serif;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 0.25px;
+	//  color: $c-green;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
 }
 .click-stat-level .fas {
-  display: none;
-  padding: 2px 4px;
-  border-radius: 2px;
-  box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.5);
-  font-family: 'Roboto', system, -apple-system, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.25px;
-  //  color: $c-green;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+	display: none;
+	padding: 2px 4px;
+	border-radius: 2px;
+	box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.5);
+	font-family: 'Roboto', system, -apple-system, sans-serif;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 0.25px;
+	//  color: $c-green;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
 }
 .dots {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  //  color: $c-green;
-  margin-right: 8px;
-  font-weight: 700;
-  font-size: 15px;
-  flex-wrap: wrap;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	//  color: $c-green;
+	margin-right: 8px;
+	font-weight: 700;
+	font-size: 15px;
+	flex-wrap: wrap;
 }
 
 .newdots {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.planetboxsize {
+	max-width: 40px;
+	color: $c-black;
+	height: 20px;
+	padding: 0;
+	margin: 1px;
+	text-align: center;
+	border: 1px solid var(--aliengreen);
+}
+
+.colony-planet1 {
+	max-width: 190px;
+	margin: -5px 0px 0px -3px;
+	height: max-content;
+	color: var(--color-text-dark-primary) !important;
+	border-radius: 0px;
+	border: 1px solid var(--aliendarkergreen) !important;
+}
+.colony-planet2 {
+	max-width: 250px;
+	// margin: -10px 0px 0px -14px;
+	height: max-content;
+	color: var(--color-text-dark-primary) !important;
+	border-radius: 0px;
+	border: 1px solid var(--aliendarkergreen) !important;
 }
