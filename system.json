@@ -13,14 +13,13 @@
 	"relationships": {
 		"systems": [{ "id": "alienrpg" }]
 	},
-	"version": "3.1.7",
+	"version": "3.2.0",
 	"compatibility": {
-		"minimum": "10",
+		"minimum": "11",
 		"verified": "11",
-		"maximum": "11"
+		"maximum": "12"
 	},
-	"minimumCoreVersion": "10",
-	"compatibleCoreVersion": "10",
+
 	"scripts": [],
 	"esmodules": ["module/alienrpg.js"],
 	"styles": ["css/alienrpg.css"],
@@ -82,8 +81,8 @@
 	"download": "https://github.com/pwatson100/alienrpg/releases/download/3.1.7/master.zip",
 	"protected": false,
 	"initiative": "1d10",
-	"gridDistance": 5,
-	"gridUnits": "m",
+	"grid.distance": 5,
+	"grid.units": "m",
 	"primaryTokenAttribute": "health",
 	"secondaryTokenAttribute": "stress"
 }

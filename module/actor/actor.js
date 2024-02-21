@@ -136,40 +136,40 @@ export class alienrpgActor extends Actor {
 	async _checkOverwatch(actorData) {
 		let conDition = await this.hasCondition('overwatch');
 		if (conDition != undefined || conDition) {
-			setProperty(actorData, 'system.general.overwatch', true);
+			foundry.utils.foundry.utils.setProperty(actorData, 'system.general.overwatch', true);
 		} else {
-			setProperty(actorData, 'system.general.overwatch', false);
+			foundry.utils.setProperty(actorData, 'system.general.overwatch', false);
 		}
 
 		let conDition2 = await this.hasCondition('starving');
 		if (conDition2 != undefined || conDition2) {
-			setProperty(actorData, 'system.general.starving.value', true);
+			foundry.utils.setProperty(actorData, 'system.general.starving.value', true);
 		} else {
-			setProperty(actorData, 'system.general.starving.value', false);
+			foundry.utils.setProperty(actorData, 'system.general.starving.value', false);
 		}
 		let conDition3 = await this.hasCondition('dehydrated');
 		if (conDition3 != undefined || conDition3) {
-			setProperty(actorData, 'system.general.dehydrated.value', true);
+			foundry.utils.setProperty(actorData, 'system.general.dehydrated.value', true);
 		} else {
-			setProperty(actorData, 'system.general.dehydrated.value', false);
+			foundry.utils.setProperty(actorData, 'system.general.dehydrated.value', false);
 		}
 		let conDition4 = await this.hasCondition('exhausted');
 		if (conDition4 != undefined || conDition4) {
-			setProperty(actorData, 'system.general.exhausted.value', true);
+			foundry.utils.setProperty(actorData, 'system.general.exhausted.value', true);
 		} else {
-			setProperty(actorData, 'system.general.exhausted.value', false);
+			foundry.utils.setProperty(actorData, 'system.general.exhausted.value', false);
 		}
 		let conDition5 = await this.hasCondition('freezing');
 		if (conDition5 != undefined || conDition5) {
-			setProperty(actorData, 'system.general.freezing.value', true);
+			foundry.utils.setProperty(actorData, 'system.general.freezing.value', true);
 		} else {
-			setProperty(actorData, 'system.general.freezing.value', false);
+			foundry.utils.setProperty(actorData, 'system.general.freezing.value', false);
 		}
 		let conDition6 = await this.hasCondition('panicked');
 		if (conDition6 != undefined || conDition6) {
-			setProperty(actorData, 'system.general.panic.value', 1);
+			foundry.utils.setProperty(actorData, 'system.general.panic.value', 1);
 		} else {
-			setProperty(actorData, 'system.general.panic.value', 0);
+			foundry.utils.setProperty(actorData, 'system.general.panic.value', 0);
 		}
 	}
 

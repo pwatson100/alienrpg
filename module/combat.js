@@ -72,7 +72,7 @@ export default class AlienRPGCombat extends Combat {
 					}
 
 					// Construct chat message data
-					let messageData = mergeObject(
+					let messageData = foundry.utils.mergeObject(
 						{
 							speaker: {
 								scene: canvas.scene.id,
@@ -109,7 +109,7 @@ export default class AlienRPGCombat extends Combat {
 					rollMode = 'gmroll';
 				}
 				if (!game.settings.get('alienrpg', 'alienrpgHideInitChat')) {
-					let messageData = mergeObject(
+					let messageData = foundry.utils.mergeObject(
 						{
 							speaker: {
 								scene: canvas.scene.id,

@@ -21,7 +21,7 @@ export class alienrpgColonySheet extends ActorSheet {
 
 	/** @override */
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['alienrpg', 'sheet', 'actor', 'colony-sheet'],
 			// template: 'systems/alienrpg/templates/actor/actor-sheet.html',
 			width: 1120,
@@ -44,8 +44,8 @@ export class alienrpgColonySheet extends ActorSheet {
 	/* -------------------------------------------- */
 	async _enrichTextFields(data, fieldNameArr) {
 		for (let t = 0; t < fieldNameArr.length; t++) {
-			if (hasProperty(data, fieldNameArr[t])) {
-				setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(getProperty(data, fieldNameArr[t]), { async: true }));
+			if (foundry.utils.hasProperty(data, fieldNameArr[t])) {
+				foundry.utils.setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true }));
 			}
 		}
 	}
