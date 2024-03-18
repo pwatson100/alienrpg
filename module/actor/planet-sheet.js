@@ -19,25 +19,25 @@ export class alienrpgPlanetSheet extends ActorSheet {
 
 	/** @override */
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['alienrpg', 'sheet', 'actor', 'planet-sheet'],
-			// template: 'systems/alienrpg/templates/actor/actor-sheet.html',
+			template: 'systems/alienrpg/templates/actor/planet-sheet.html',
 			width: 1120,
 			height: 900,
 			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
 		});
 	}
 
-	get template() {
-		const path = 'systems/alienrpg/templates/actor/';
-		// return `${path}actor-sheet.html`;
-		// unique item sheet by type, like `weapon-sheet.html`.
-		if (game.settings.get('alienrpg', 'aliencrt')) {
-			return `systems/alienrpg/templates/actor/crt/${this.actor.type}-sheet.html`;
-		} else {
-			return `${path}${this.actor.type}-sheet.html`;
-		}
-	}
+	// get template() {
+	// 	const path = 'systems/alienrpg/templates/actor/';
+	// 	// return `${path}actor-sheet.html`;
+	// 	// unique item sheet by type, like `weapon-sheet.html`.
+	// 	// if (game.settings.get('alienrpg', 'aliencrt')) {
+	// 	// 	return `systems/alienrpg/templates/actor/crt/${this.actor.type}-sheet.html`;
+	// 	// } else {
+	// 	return `${path}${this.actor.type}-sheet.html`;
+	// 	// }
+	// }
 
 	/* -------------------------------------------- */
 	async _enrichTextFields(data, fieldNameArr) {
@@ -63,6 +63,9 @@ export class alienrpgPlanetSheet extends ActorSheet {
 			options: options,
 			config: CONFIG.ALIENRPG,
 		};
+
+		let enrichedFields = ['system.notes'];
+		await this._enrichTextFields(data, enrichedFields);
 
 		logger.debug('Actor Sheet derived data:', data);
 		//Return data to the sheet

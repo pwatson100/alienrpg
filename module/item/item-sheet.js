@@ -7,7 +7,7 @@ import { logger } from '../logger.js';
 export class alienrpgItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['alienrpg', 'sheet', 'item', 'item-sheet'],
 			width: 675,
 			// height: 489 + 'max-content',

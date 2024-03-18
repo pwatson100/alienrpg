@@ -22,7 +22,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
 	/** @override */
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['alienrpg', 'sheet', 'actor', 'spacecraft-sheet'],
 			// template: 'systems/alienrpg/templates/actor/actor-sheet.html',
 			width: 1120,
@@ -35,11 +35,11 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 		const path = 'systems/alienrpg/templates/actor/';
 		// return `${path}actor-sheet.html`;
 		// unique item sheet by type, like `weapon-sheet.html`.
-		if (game.settings.get('alienrpg', 'aliencrt')) {
-			return `systems/alienrpg/templates/actor/crt/${this.actor.type}-sheet.html`;
-		} else {
-			return `${path}${this.actor.type}-sheet.html`;
-		}
+		// if (game.settings.get('alienrpg', 'aliencrt')) {
+		// 	return `systems/alienrpg/templates/actor/crt/${this.actor.type}-sheet.html`;
+		// } else {
+		return `${path}${this.actor.type}-sheet.html`;
+		// }
 	}
 
 	/* -------------------------------------------- */
