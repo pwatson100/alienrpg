@@ -55,7 +55,7 @@ export default class AlienRPGCombat extends Combat {
 				if (!game.settings.get('alienrpg', 'alienrpgHideInitChat')) {
 					// Determine the roll mode
 					let rollMode = messageOptions.rollMode || game.settings.get('core', 'rollMode');
-					if ((combatant.token.hidden || combatant.hidden) && rollMode === 'roll') {
+					if ((combatant.token.hidden || combatant.hidden) && rollMode === 'publicroll') {
 						rollMode = 'gmroll';
 					}
 					let cardPath = `<div style="text-align: center;"><img width="125" height="175" src="systems/alienrpg/images/cards/card-${broll.total}.png"></div>`;
@@ -105,7 +105,7 @@ export default class AlienRPGCombat extends Combat {
 				updates.push({ _id: id, initiative: broll.total });
 
 				let rollMode = messageOptions.rollMode || game.settings.get('core', 'rollMode');
-				if ((combatant.token.hidden || combatant.hidden) && rollMode === 'roll') {
+				if ((combatant.token.hidden || combatant.hidden) && rollMode === 'publicroll') {
 					rollMode = 'gmroll';
 				}
 				if (!game.settings.get('alienrpg', 'alienrpgHideInitChat')) {

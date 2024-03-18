@@ -55,13 +55,13 @@
   --blue: hsl(224, 75%, 62%);
   --black: hsl(0, 0%, 0%);
   --white: hsl(0, 0%, 100%);
-  --alientextjournal: #b1e0e7;
+  --alientextjournal: hsl(187, 52%, 80%);
   --journalback: url(../images/mother-instructions/indbackground2.png);
   --chatbackground: url(/systems/alienrpg/images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
   --alienchatwhite: hsl(0, 0%, 100%);
   --alienchatred: hsl(0, 100%, 50%);
-  --alienchatredshadow: rgb(230 230 230);
+  --alienchatredshadow: hsl(0, 0%, 90%);
   --alienchatblue: hsl(240deg 42% 72%);
   --alienchatlightblue: hsl(120, 97%, 41%);
   --alienchatlightgreen: hsl(120, 97%, 41%);
@@ -4806,13 +4806,12 @@ combobox:focus {
 
 /* .journal-sheet form { */
 .sheet.journal-entry .journal-entry-content {
-  color: var(--aliengreen);
   background: #000;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
   background: var(--journalback) top left !important;
   background-size: cover;
-  color: powderblue;
+  color: var(--alientextjournal) !important;
 }
 
 .sheet.journal-entry .sidebar .directory-header .header-search input {

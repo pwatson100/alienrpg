@@ -34,11 +34,11 @@ export class alienrpgColonySheet extends ActorSheet {
 		const path = 'systems/alienrpg/templates/actor/';
 		// return `${path}actor-sheet.html`;
 		// unique item sheet by type, like `weapon-sheet.html`.
-		if (game.settings.get('alienrpg', 'aliencrt')) {
-			return `systems/alienrpg/templates/actor/crt/${this.actor.type}-sheet.html`;
-		} else {
-			return `${path}${this.actor.type}-sheet.html`;
-		}
+		// if (game.settings.get('alienrpg', 'aliencrt')) {
+		// 	return `systems/alienrpg/templates/actor/crt/${this.actor.type}-sheet.html`;
+		// } else {
+		return `${path}${this.actor.type}-sheet.html`;
+		// }
 	}
 
 	/* -------------------------------------------- */

@@ -14,6 +14,7 @@
 		"systems": [{ "id": "alienrpg" }]
 	},
 	"version": "3.2.0",
+
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11",
@@ -77,8 +78,8 @@
 		}
 	],
 	"socket": true,
-	"manifest": "https://github.com/pwatson100/alienrpg/releases/download/3.1.7/system.json",
-	"download": "https://github.com/pwatson100/alienrpg/releases/download/3.1.7/master.zip",
+	"manifest": "https://github.com/pwatson100/alienrpg/releases/download/3.1.8/system.json",
+	"download": "https://github.com/pwatson100/alienrpg/releases/download/3.1.8/master.zip",
 	"protected": false,
 	"initiative": "1d10",
 	"grid.distance": 5,
