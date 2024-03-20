@@ -136,7 +136,7 @@ export class alienrpgActor extends Actor {
 	async _checkOverwatch(actorData) {
 		let conDition = await this.hasCondition('overwatch');
 		if (conDition != undefined || conDition) {
-			foundry.utils.foundry.utils.setProperty(actorData, 'system.general.overwatch', true);
+			foundry.utils.setProperty(actorData, 'system.general.overwatch', true);
 		} else {
 			foundry.utils.setProperty(actorData, 'system.general.overwatch', false);
 		}
@@ -428,8 +428,7 @@ export class alienrpgActor extends Actor {
 				} else aStress = actor.getRollData().header.stress.value + rollModifier;
 
 				let modRoll = '1d6' + '+' + parseInt(aStress);
-				const roll = new Roll(modRoll);
-				roll.evaluate({ async: false });
+				const roll = await Roll.create(modRoll).evaluate();
 				const customResults = await table.roll({ roll });
 				console.warn(
 					`Rolling stress, ${modRoll}, Panic Value ${actor.system.general.panic.value}, Last ${actor.system.general.panic.lastRoll}, Roll ${customResults.roll.total}`
@@ -545,7 +544,7 @@ export class alienrpgActor extends Actor {
 							let selftarget = [];
 							selftarget.push(game.user._id);
 
-							ChatMessage.create({ speaker: { actor: actorId }, content, whisper: selftarget, type: CONST.CHAT_MESSAGE_TYPES.OTHER, sound, blind: false });
+							ChatMessage.create({ speaker: { actor: actorId }, content, whisper: selftarget, type: CONST.CHAT_MESSAGE_STYLES.OTHER, sound, blind: false });
 						}
 
 						SelfMessage(
@@ -651,7 +650,6 @@ export class alienrpgActor extends Actor {
 					content: chatMessage,
 					whisper: whispertarget,
 					roll: customResults.roll,
-					type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 					sound: CONFIG.sounds.dice,
 					blind,
 				});
@@ -669,7 +667,17 @@ export class alienrpgActor extends Actor {
 		let blind = false;
 		let r2Data = 1;
 		let radMax = actor.getRollData().general.radiation.max;
-		yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
+		await yze.yzeRoll(
+			effectiveActorType,
+			blind,
+			reRoll,
+			label,
+			r1Data,
+			game.i18n.localize('ALIENRPG.Black'),
+			r2Data,
+			game.i18n.localize('ALIENRPG.Yellow'),
+			actorId
+		);
 
 		if (game.alienrpg.rollArr.r2One === 1) {
 			await actor.update({
@@ -909,7 +917,7 @@ export class alienrpgActor extends Actor {
 			});
 
 			await actor.removeCondition('panicked');
-			ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+			ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_STYLES.OTHER });
 			itemDel = actor.items.getName(agilityModName);
 			if (itemDel) {
 				itemDel.delete();
@@ -920,7 +928,7 @@ export class alienrpgActor extends Actor {
 			}
 		} else {
 			await actor.removeCondition('panicked');
-			ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_TYPES.OTHER });
+			ChatMessage.create({ speaker: { actor: actor.id }, content: 'Panic is over', type: CONST.CHAT_MESSAGE_STYLES.OTHER });
 			itemDel = actor.items.getName(agilityModName);
 			if (itemDel) {
 				itemDel.delete();
@@ -938,7 +946,7 @@ export class alienrpgActor extends Actor {
 	}
 
 	async addCondition(effect) {
-		if (typeof effect === 'string') effect = duplicate(game.alienrpg.config.conditionEffects.find((e) => e.id == effect));
+		if (typeof effect === 'string') effect = foundry.utils.duplicate(game.alienrpg.config.conditionEffects.find((e) => e.id == effect));
 		if (!effect) return 'No Effect Found';
 		if (!effect.id) return 'Conditions require an id field';
 
@@ -948,7 +956,7 @@ export class alienrpgActor extends Actor {
 			// if (game.version < '11') {
 			effect.label = game.i18n.localize(effect.label).replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
 			effect.name = game.i18n.localize(effect.name).replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
-			effect['flags.core.statusId'] = effect.id;
+			// effect['flags.core.statusId'] = effect.id;
 			effect['statuses'] = effect.id;
 			delete effect.id;
 			return await this.createEmbeddedDocuments('ActiveEffect', [effect]);
@@ -956,7 +964,7 @@ export class alienrpgActor extends Actor {
 	}
 
 	async removeCondition(effect) {
-		if (typeof effect === 'string') effect = duplicate(game.alienrpg.config.conditionEffects.find((e) => e.id == effect));
+		if (typeof effect === 'string') effect = foundry.utils.duplicate(game.alienrpg.config.conditionEffects.find((e) => e.id == effect));
 		if (!effect) return 'No Effect Found';
 		if (!effect.id) return 'Conditions require an id field';
 		let existing = await this.hasCondition(effect.id);
@@ -992,7 +1000,7 @@ export class alienrpgActor extends Actor {
 		if (r2Data <= 0) {
 			return ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSupplys'));
 		} else {
-			yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
+			await yze.yzeRoll('supply', blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actor.id);
 			if (game.alienrpg.rollArr.r2One) {
 				getItems(actor, consUme, tItem);
 			}
@@ -1187,19 +1195,16 @@ export class alienrpgActor extends Actor {
 			return;
 		}
 		const table = game.tables.contents.find((b) => b.name === targetTable);
-		const roll = new Roll('1d6');
+
+		const roll = await Roll.create('1d6').evaluate();
 
 		if (!manCrit) {
-			roll.evaluate({ async: false });
 			customResults = await table.roll({ roll });
 		} else {
 			const formula = manCrit;
-			const roll = new Roll(formula);
-			roll.evaluate({ async: false });
+			const roll = await Roll.create(formula).evaluate();
 			customResults = await table.roll({ roll });
 		}
-
-		// roll.evaluate({ async: false });
 
 		// const customResults = await table.roll({ roll });
 
@@ -1214,7 +1219,7 @@ export class alienrpgActor extends Actor {
 			roll: customResults.roll,
 			content: chatMessage,
 			// whisper: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
-			type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+			// type: CONST.CHAT_MESSAGE_STYLES.ROLL,
 		});
 	}
 
@@ -1411,8 +1416,7 @@ export class alienrpgActor extends Actor {
 			test1 = await atable.draw({ displayChat: false });
 		} else {
 			const formula = manCrit;
-			const roll = new Roll(formula);
-			roll.evaluate({ async: false });
+			const roll = await Roll.create(formula).evaluate();
 			test1 = await atable.draw({ roll: roll, displayChat: false });
 		}
 		const messG = test1.results[0].text;
@@ -1427,7 +1431,8 @@ export class alienrpgActor extends Actor {
 						if (testArray[9].length > 0) {
 							rollheal = testArray[9].match(/^\[\[([0-9]d[0-9]+)]/)[1];
 							newHealTime = testArray[9].match(/^\[\[([0-9]d[0-9]+)\]\] ?(.*)/)[2];
-							testArray[9] = new Roll(`${rollheal}`).evaluate({ async: false }).result + ' ' + newHealTime;
+							testArray[9] = (await Roll.create(`${rollheal}`).evaluate()).result + ' ' + newHealTime;
+							// testArray[9] = (await Roll.create(`${rollheal}`).evaluate().result) + ' ' + newHealTime;
 						} else {
 							testArray[9] = 'None';
 						}
@@ -1527,16 +1532,16 @@ export class alienrpgActor extends Actor {
 						type: 'critical-injury',
 						img: resultImage,
 						name: `#${test1.roll._total} ${testArray[1]}`,
-						'data.attributes.fatal': cFatal,
-						'data.attributes.timelimit.value': healTime,
-						'data.attributes.healingtime.value': testArray[9],
-						'data.attributes.effects': speanex,
-						'data.modifiers.skills.mobility.value': mobility,
-						'data.modifiers.skills.rangedCbt.value': rangedcombat,
-						'data.modifiers.skills.observation.value': observation,
-						'data.modifiers.skills.manipulation.value': manipulation,
-						'data.modifiers.skills.closeCbt.value': closecombat,
-						'data.modifiers.skills.stamina.value': stamina,
+						'system.attributes.fatal': cFatal,
+						'system.attributes.timelimit.value': healTime,
+						'system.attributes.healingtime.value': testArray[9],
+						'system.attributes.effects': speanex,
+						'system.modifiers.skills.mobility.value': mobility,
+						'system.modifiers.skills.rangedCbt.value': rangedcombat,
+						'system.modifiers.skills.observation.value': observation,
+						'system.modifiers.skills.manipulation.value': manipulation,
+						'system.modifiers.skills.closeCbt.value': closecombat,
+						'system.modifiers.skills.stamina.value': stamina,
 					};
 
 					await this.createEmbeddedDocuments('Item', [rollData]);
@@ -1649,7 +1654,6 @@ export class alienrpgActor extends Actor {
 			content: html,
 			other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
 			sound: CONFIG.sounds.dice,
-			type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 		};
 
 		switch (type) {
@@ -1856,7 +1860,6 @@ export class alienrpgActor extends Actor {
 			content: new Handlebars.SafeString(message),
 			other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
 			sound: CONFIG.sounds.lock,
-			type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 		};
 
 		ChatMessage.applyRollMode(chatData, game.settings.get('core', 'rollMode'));
