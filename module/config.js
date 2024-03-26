@@ -63,7 +63,7 @@ ALIENRPG.conditionEffects = [
 		id: 'starving',
 		name: 'ALIENRPG.Starving',
 		label: 'ALIENRPG.Starving',
-		icon: 'systems/alienrpg/images/starving.svg',
+		icon: 'systems/alienrpg/images/starving.webp',
 	},
 	{
 		id: 'dehydrated',
@@ -81,7 +81,7 @@ ALIENRPG.conditionEffects = [
 		id: 'freezing',
 		name: 'ALIENRPG.Freezing',
 		label: 'ALIENRPG.Freezing',
-		icon: 'systems/alienrpg/images/freezing.svg',
+		icon: 'systems/alienrpg/images/freezing.webp',
 	},
 	{
 		id: 'encumbered',
@@ -93,19 +93,19 @@ ALIENRPG.conditionEffects = [
 		id: 'panicked',
 		name: 'ALIENRPG.Panicked',
 		label: 'ALIENRPG.Panicked',
-		icon: 'systems/alienrpg/images/panic.svg',
+		icon: 'systems/alienrpg/images/panic.webp',
 	},
 	{
 		id: 'overwatch',
 		name: 'ALIENRPG.Overwatch',
 		label: 'ALIENRPG.Overwatch',
-		icon: 'systems/alienrpg/images/overwatch.svg',
+		icon: 'systems/alienrpg/images/overwatch.webp',
 	},
 	{
 		id: 'radiation',
 		name: 'ALIENRPG.Radiation',
 		label: 'ALIENRPG.Radiation',
-		icon: 'systems/alienrpg/images/radiation.svg',
+		icon: 'systems/alienrpg/images/radiation.webp',
 	},
 	{
 		id: 'criticalinj',
