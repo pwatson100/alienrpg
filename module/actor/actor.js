@@ -57,13 +57,13 @@ export class alienrpgActor extends Actor {
 	_prepareVehicleData(data) {}
 	_prepareCreatureData(actorData) {}
 	_prepareTeritoryData(data) {
-		this.img = 'systems/alienrpg/images/icons/nested-eclipses.svg';
+		this.img = 'systems/alienrpg/images/icons/nested-eclipses.webp';
 	}
 	_prepareColonyData(data) {
-		this.img = 'systems/alienrpg/images/icons/digital-trace.svg';
+		this.img = 'systems/alienrpg/images/icons/digital-trace.webp';
 	}
 	_preparePlanetData(data) {
-		this.img = 'systems/alienrpg/images/icons/double-ringed-orb.svg';
+		this.img = 'systems/alienrpg/images/icons/double-ringed-orb.webp';
 	}
 
 	_prepareTokenImg() {
@@ -109,6 +109,7 @@ export class alienrpgActor extends Actor {
 				case 'territory':
 					tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
 					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
+					tokenProto['prototypeToken.texture.src'] = 'systems/alienrpg/images/icons/nested-eclipses.webp';
 					tokenProto['prototypeToken.sight.enabled'] = false;
 					break;
 				case 'spacecraft':
@@ -116,13 +117,15 @@ export class alienrpgActor extends Actor {
 					break;
 				case 'colony':
 					tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
-					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/digital-trace.svg';
+					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/digital-trace.webp';
+					tokenProto['prototypeToken.texture.src'] = 'systems/alienrpg/images/icons/digital-trace.webp';
 					tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
 					tokenProto['prototypeToken.sight.enabled'] = false;
 					break;
 				case 'planet':
 					tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
-					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/double-ringed-orb.svg';
+					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/double-ringed-orb.webp';
+					tokenProto['prototypeToken.texture.src'] = 'systems/alienrpg/images/icons/double-ringed-orb.webp';
 					tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
 					tokenProto['prototypeToken.sight.enabled'] = false;
 					break;
@@ -571,7 +574,7 @@ export class alienrpgActor extends Actor {
 							if (!actor.items.getName(allSkillsModName)) {
 								const rollData = {
 									type: 'item',
-									img: '/systems/alienrpg/images/panic.svg',
+									img: '/systems/alienrpg/images/panic.webp',
 									name: allSkillsModName,
 									'system.header.type.value': 5,
 									'system.attributes.comment.value': game.i18n.localize('ALIENRPG.ShipPanic8'),
@@ -619,7 +622,7 @@ export class alienrpgActor extends Actor {
 							if (!actor.items.getName(agilityModName)) {
 								const rollData = {
 									type: 'item',
-									img: '/systems/alienrpg/images/panic.svg',
+									img: '/systems/alienrpg/images/panic.webp',
 									name: agilityModName,
 									'system.header.type.value': 5,
 									'system.attributes.comment.value': game.i18n.localize('ALIENRPG.Panic8'),
@@ -1569,9 +1572,9 @@ export class alienrpgActor extends Actor {
 			case 'synthetic':
 			case 'creature':
 				{
-					resultImage = test1.results[0].img || 'icons/svg/biohazard.svg';
+					resultImage = test1.results[0].img || 'icons/svg/biohazard.webp';
 					if (type === 'creature') {
-						resultImage = 'icons/svg/biohazard.svg';
+						resultImage = 'icons/svg/biohazard.webp';
 					}
 					factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
 					testArray = factorFour.split(/[:] |<br \/>/gi);
@@ -1602,7 +1605,7 @@ export class alienrpgActor extends Actor {
 				break;
 			case 'spacecraft':
 				{
-					resultImage = test1.results[0].img || 'icons/svg/biohazard.svg';
+					resultImage = test1.results[0].img || 'icons/svg/biohazard.webp';
 
 					factorFour = messG.replace(/(<strong>)|(<\/strong>)/gi, '');
 					testArray = factorFour.split(/[:] |<br \/>/gi);
