@@ -82,7 +82,7 @@ export class alienrpgItemSheet extends ItemSheet {
 	}
 
 	async _prepareSystemData(data) {
-		this.item.update({ img: 'systems/alienrpg/images/icons/solar-system.svg' });
+		this.item.update({ img: 'systems/alienrpg/images/icons/solar-system.webp' });
 		let enrichedFields = ['system.misc.comment.value'];
 		await this._enrichTextFields(data, enrichedFields);
 	}
@@ -104,9 +104,9 @@ export class alienrpgItemSheet extends ItemSheet {
 
 	async _prepareTalentData(data) {
 		if (data.system.general.career.value === '1' || data.system.general.career.value === '') {
-			this.item.update({ img: 'systems/alienrpg/images/icons/sprint.svg' });
+			this.item.update({ img: 'systems/alienrpg/images/icons/sprint.webp' });
 		} else {
-			this.item.update({ img: 'systems/alienrpg/images/icons/fire-dash.svg' });
+			this.item.update({ img: 'systems/alienrpg/images/icons/fire-dash.webp' });
 		}
 
 		let enrichedFields6 = ['system.notes.notes', 'system.general.comment.value'];
@@ -115,9 +115,9 @@ export class alienrpgItemSheet extends ItemSheet {
 
 	async _prepareShipCritData(data) {
 		if (data.system.header.type.value === '1') {
-			this.item.update({ img: 'systems/alienrpg/images/icons/auto-repair.svg' });
+			this.item.update({ img: 'systems/alienrpg/images/icons/auto-repair.webp' });
 		} else if (data.system.header.type.value === '0') {
-			this.item.update({ img: 'systems/alienrpg/images/icons/spanner.svg' });
+			this.item.update({ img: 'systems/alienrpg/images/icons/spanner.webp' });
 		}
 
 		let enrichedFields6 = ['system.header.effects'];
@@ -126,13 +126,13 @@ export class alienrpgItemSheet extends ItemSheet {
 	async _prepareColonyInitiativeData(item) {
 		switch (item.system.header.type) {
 			case '1':
-				item.update({ img: 'systems/alienrpg/images/icons/full-folder.svg' });
+				item.update({ img: 'systems/alienrpg/images/icons/full-folder.sebp' });
 				break;
 			case '2':
-				item.update({ img: 'systems/alienrpg/images/icons/habitat-dome.svg' });
+				item.update({ img: 'systems/alienrpg/images/icons/habitat-dome.webp' });
 				break;
 			case '3':
-				item.update({ img: 'systems/alienrpg/images/icons/diagram.svg' });
+				item.update({ img: 'systems/alienrpg/images/icons/diagram.webp' });
 				break;
 
 			default:
