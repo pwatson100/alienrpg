@@ -42,7 +42,7 @@ const euclidianDistances = function (segments, options = {}) {
 };
 
 Hooks.on('canvasInit', function () {
-	SquareGrid.prototype.measureDistances = euclidianDistances;
+	foundry.grid.SquareGrid.prototype.measureDistances = euclidianDistances;
 });
 
 /*
