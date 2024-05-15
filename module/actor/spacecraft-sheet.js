@@ -72,6 +72,8 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 			return i;
 		});
 
+		data.sensor_list = CONFIG.ALIENRPG.sensor_list;
+
 		data.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
 		data.system.labels = this.actor.labels || {};
 		data.system.filters = this._filters;

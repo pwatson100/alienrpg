@@ -155,3 +155,26 @@ ALIENRPG.Icons = {
 		remove: '<i class="fas fa-times"></i>',
 	},
 };
+
+ALIENRPG.career_list = {
+	1: { id: 1, label: 'ALIENRPG.ColonialMarine' },
+	2: { id: 2, label: 'ALIENRPG.ColonialMarshal' },
+	3: { id: 3, label: 'ALIENRPG.CompanyAgent' },
+	4: { id: 4, label: 'ALIENRPG.Kid' },
+	5: { id: 5, label: 'ALIENRPG.Medic' },
+	6: { id: 6, label: 'ALIENRPG.Mercenary' },
+	7: { id: 7, label: 'ALIENRPG.Officer' },
+	8: { id: 8, label: 'ALIENRPG.Pilot' },
+	9: { id: 9, label: 'ALIENRPG.Roughneck' },
+	10: { id: 10, label: 'ALIENRPG.Scientist' },
+	13: { id: 13, label: 'ALIENRPG.Wildcatter' },
+	14: { id: 14, label: 'ALIENRPG.Entertainer' },
+	11: { id: 11, label: 'ALIENRPG.Synthetic' },
+	12: { id: 12, label: 'ALIENRPG.Homebrew' },
+};
+
+ALIENRPG.sensor_list = {
+	1: { key: 'ALIENRPG.targetLock', label: 'ALIENRPG.targetLock' },
+	2: { key: 'ALIENRPG.goDark', label: 'ALIENRPG.goDark' },
+	3: { key: 'ALIENRPG.powerUpSensors', label: 'ALIENRPG.powerUpSensors' },
+};

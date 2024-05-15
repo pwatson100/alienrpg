@@ -406,9 +406,12 @@
 				<div class="Item2">
 					<div class="grid-two">
 						<label class="resource-label" style="font-weight: bold">{{localize 'ALIENRPG.Career'}}</label>
-						<select class="select-css" name="system.general.career.value" data-dtype="{{system.general.career.value}}">
+						<select class="select-css" id="system.general.career.value" name="system.general.career.value">
+							{{selectOptions career_list selected=system.general.career.value labelAttr="label" localize=true}}
+						</select>
+
+						<!-- <select class="select-css" name="system.general.career.value" data-dtype="{{system.general.career.value}}">
 							{{#select system.general.career.value}}
-							<!-- <option value=""></option> -->
 							<option value="1">{{localize 'ALIENRPG.ColonialMarine'}}</option>
 							<option value="2">{{localize 'ALIENRPG.ColonialMarshal'}}</option>
 							<option value="3">{{localize 'ALIENRPG.CompanyAgent'}}</option>
@@ -424,7 +427,8 @@
 							<option value="11">{{localize 'ALIENRPG.Synthetic'}}</option>
 							<option value="12">{{localize 'ALIENRPG.Homebrew'}}</option>
 							{{/select}}
-						</select>
+						</select> -->
+
 						<div class="box3 resource-label">
 							<label class="speciality-label" style="font-weight: bold">{{localize 'ALIENRPG.SPECIALTY'}}</label>
 							<div class="item-controls"></div>
