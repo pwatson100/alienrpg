@@ -49,6 +49,7 @@ export class alienrpgItemSheet extends ItemSheet {
 			case 'critical-injury':
 				let enrichedFields1 = ['system.attributes.effects'];
 				await this._enrichTextFields(item, enrichedFields1);
+				item.crit_timelimit_list = CONFIG.ALIENRPG.crit_timelimit_list;
 				break;
 			case 'spacecraft-crit':
 				await this._prepareShipCritData(item);
@@ -62,6 +63,8 @@ export class alienrpgItemSheet extends ItemSheet {
 			case 'skill-stunts':
 				let enrichedFields5 = ['system.description'];
 				await this._enrichTextFields(item, enrichedFields5);
+				item.skills_list = CONFIG.ALIENRPG.skills_list;
+
 				break;
 			case 'talent':
 				await this._prepareTalentData(item);
@@ -74,6 +77,13 @@ export class alienrpgItemSheet extends ItemSheet {
 				// item, weapon, armor
 				let enrichedFieldsDef = ['system.notes.notes', 'system.general.comment.value', 'system.attributes.comment.value'];
 				await this._enrichTextFields(item, enrichedFieldsDef);
+				item.weapon_type_list = CONFIG.ALIENRPG.weapon_type_list;
+				item.weapon_range_list = CONFIG.ALIENRPG.weapon_range_list;
+				item.ship_weapon_type_list = CONFIG.ALIENRPG.ship_weapon_type_list;
+				item.ship_weapon_range_list = CONFIG.ALIENRPG.ship_weapon_range_list;
+				item.ship_hardpoint_list = CONFIG.ALIENRPG.ship_hardpoint_list;
+				item.ship_attributes_list = CONFIG.ALIENRPG.ship_attributes_list;
+				item.item_types_list = CONFIG.ALIENRPG.item_types_list;
 
 				break;
 		}
@@ -111,6 +121,7 @@ export class alienrpgItemSheet extends ItemSheet {
 
 		let enrichedFields6 = ['system.notes.notes', 'system.general.comment.value'];
 		await this._enrichTextFields(data, enrichedFields6);
+		data.career_list = CONFIG.ALIENRPG.career_list;
 	}
 
 	async _prepareShipCritData(data) {
@@ -122,11 +133,13 @@ export class alienrpgItemSheet extends ItemSheet {
 
 		let enrichedFields6 = ['system.header.effects'];
 		await this._enrichTextFields(data, enrichedFields6);
+		data.crit_list = CONFIG.ALIENRPG.crit_list;
 	}
+
 	async _prepareColonyInitiativeData(item) {
 		switch (item.system.header.type) {
 			case '1':
-				item.update({ img: 'systems/alienrpg/images/icons/full-folder.sebp' });
+				item.update({ img: 'systems/alienrpg/images/icons/full-folder.webp' });
 				break;
 			case '2':
 				item.update({ img: 'systems/alienrpg/images/icons/habitat-dome.webp' });
@@ -140,6 +153,7 @@ export class alienrpgItemSheet extends ItemSheet {
 		}
 		let enrichedFields6 = ['system.notes', 'system.header.comment'];
 		await this._enrichTextFields(item, enrichedFields6);
+		item.colony_policy_list = CONFIG.ALIENRPG.colony_policy_list;
 	}
 
 	/* -------------------------------------------- */

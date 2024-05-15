@@ -178,3 +178,113 @@ ALIENRPG.sensor_list = {
 	2: { key: 'ALIENRPG.goDark', label: 'ALIENRPG.goDark' },
 	3: { key: 'ALIENRPG.powerUpSensors', label: 'ALIENRPG.powerUpSensors' },
 };
+
+ALIENRPG.pilot_list = {
+	1: { key: 'ALIENRPG.accelerate', label: 'ALIENRPG.accelerate' },
+	2: { key: 'ALIENRPG.decelerate', label: 'ALIENRPG.decelerate' },
+	3: { key: 'ALIENRPG.maneuver', label: 'ALIENRPG.maneuver' },
+	4: { key: 'ALIENRPG.ram', label: 'ALIENRPG.ram' },
+	5: { key: 'ALIENRPG.dock', label: 'ALIENRPG.dock' },
+};
+
+ALIENRPG.gunner_list = {
+	1: { key: 'ALIENRPG.fireWeapon', label: 'ALIENRPG.fireWeapon' },
+	2: { key: 'ALIENRPG.launchCounter', label: 'ALIENRPG.launchCounter' },
+};
+
+ALIENRPG.engineer_list = {
+	1: { key: 'ALIENRPG.emergencyRepairs', label: 'ALIENRPG.emergencyRepairs' },
+	2: { key: 'ALIENRPG.powerUpEngine', label: 'ALIENRPG.powerUpEngine' },
+	3: { key: 'ALIENRPG.openAirlock', label: 'ALIENRPG.openAirlock' },
+	4: { key: 'ALIENRPG.reactorOverload', label: 'ALIENRPG.reactorOverload' },
+};
+
+ALIENRPG.weapon_range_list = {
+	1: { id: 1, label: 'ALIENRPG.Engaged' },
+	2: { id: 2, label: 'ALIENRPG.Short' },
+	3: { id: 3, label: 'ALIENRPG.Medium' },
+	4: { id: 4, label: 'ALIENRPG.Long' },
+	5: { id: 5, label: 'ALIENRPG.Extreme' },
+};
+
+ALIENRPG.weapon_type_list = {
+	// 0: { id: 0, label: 'ALIENRPG.None' },
+	1: { id: 1, label: 'ALIENRPG.WepTypeRanged' },
+	2: { id: 2, label: 'ALIENRPG.WepTypeMelee' },
+};
+
+ALIENRPG.skills_list = {
+	1: { key: 'Heavy Machinery', label: 'ALIENRPG.SkillheavyMach' },
+	2: { key: 'Close Combat', label: 'ALIENRPG.SkillcloseCbt' },
+	3: { key: 'Stamina', label: 'ALIENRPG.Skillstamina' },
+	4: { key: 'Ranged Combat', label: 'ALIENRPG.SkillrangedCbt' },
+	5: { key: 'Mobility', label: 'ALIENRPG.Skillmobility' },
+	6: { key: 'Piloting', label: 'ALIENRPG.Skillpiloting' },
+	7: { key: 'Command', label: 'ALIENRPG.Skillcommand' },
+	8: { key: 'Manipulation', label: 'ALIENRPG.Skillmanipulation' },
+	9: { key: 'Medical Aid', label: 'ALIENRPG.SkillmedicalAid' },
+	10: { key: 'Observation', label: 'ALIENRPG.Skillobservation' },
+	11: { key: 'Survival', label: 'ALIENRPG.Skillsurvival' },
+	12: { key: 'Comtech', label: 'ALIENRPG.Skillcomtech' },
+};
+
+ALIENRPG.ship_weapon_type_list = {
+	1: { id: 1, label: 'ALIENRPG.Offensive' },
+	2: { id: 2, label: 'ALIENRPG.Defensive' },
+};
+ALIENRPG.ship_weapon_range_list = {
+	6: { key: 6, label: 'ALIENRPG.Contact' },
+	2: { key: 2, label: 'ALIENRPG.Short' },
+	3: { key: 3, label: 'ALIENRPG.Medium' },
+	4: { key: 4, label: 'ALIENRPG.Long' },
+	5: { key: 5, label: 'ALIENRPG.Extreme' },
+	7: { key: 7, label: 'ALIENRPG.Surface' },
+};
+
+ALIENRPG.ship_hardpoint_list = {
+	1: { key: 'I', label: 'ALIENRPG.Size1' },
+	2: { key: 'II', label: 'ALIENRPG.Size2' },
+	3: { key: 'III', label: 'ALIENRPG.Size3' },
+};
+
+ALIENRPG.ship_attributes_list = {
+	1: { key: 'I', label: 'I' },
+	2: { key: 'II', label: 'II' },
+	3: { key: 'III', label: 'III' },
+	4: { key: 'IV', label: 'IV' },
+	5: { key: 'V', label: 'V' },
+	6: { key: 'ALIENRPG.upgrade', label: 'ALIENRPG.upgrade' },
+};
+
+ALIENRPG.crit_list = {
+	0: { id: 0, label: 'ALIENRPG.MINOR-COMPONENT-DAMAGE' },
+	1: { id: 1, label: 'ALIENRPG.MAJOR-COMPONENT-DAMAGE' },
+};
+
+ALIENRPG.item_types_list = {
+	1: { id: 1, label: 'ALIENRPG.DataStorage' },
+	2: { id: 2, label: 'ALIENRPG.DiagnosticsDisplay' },
+	3: { id: 3, label: 'ALIENRPG.VisionDevices' },
+	4: { id: 4, label: 'ALIENRPG.Tools' },
+	5: { id: 5, label: 'ALIENRPG.MedicalSupplies' },
+	6: { id: 6, label: 'ALIENRPG.Pharmaceuticals' },
+	7: { id: 7, label: 'ALIENRPG.FoodDrink' },
+	8: { id: 8, label: 'ALIENRPG.Power' },
+	9: { id: 9, label: 'ALIENRPG.ComputerMainframes' },
+	10: { id: 10, label: 'ALIENRPG.Consumables' },
+	11: { id: 11, label: 'ALIENRPG.Clothing' },
+};
+
+ALIENRPG.crit_timelimit_list = {
+	0: { id: 0, label: 'ALIENRPG.None' },
+	1: { id: 1, label: 'ALIENRPG.OneRound' },
+	2: { id: 2, label: 'ALIENRPG.OneTurn' },
+	3: { id: 3, label: 'ALIENRPG.OneShift' },
+	4: { id: 4, label: 'ALIENRPG.OneDay' },
+};
+
+ALIENRPG.colony_policy_list = {
+	1: { id: 1, label: 'ALIENRPG.Policies' },
+	2: { id: 2, label: 'ALIENRPG.Installations' },
+	3: { id: 3, label: 'ALIENRPG.Projects' },
+};

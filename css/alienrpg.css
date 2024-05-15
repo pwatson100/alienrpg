@@ -1558,8 +1558,7 @@ button:focus {
 .spacec2 {
   grid-area: spacec2;
   padding-left: 5px;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  /* align-content: center; */
 }
 
 .s1-header {

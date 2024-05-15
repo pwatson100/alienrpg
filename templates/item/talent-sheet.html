@@ -9,23 +9,7 @@
 				<h3 class="wItem2 resource-label">{{localize "ALIENRPG.Career"}}</h3>
 				<div class="wItem3">
 					<select class="select-css" name="system.general.career.value" data-dcareer="{{system.general.career.value}}">
-						{{#select system.general.career.value}}
-						<!-- <option value=""></option> -->
-						<option value="0"></option>
-						<option value="1">{{localize "ALIENRPG.GeneralTalent"}}</option>
-						<option value="2">{{localize "ALIENRPG.ColonialMarine"}}</option>
-						<option value="3">{{localize "ALIENRPG.ColonialMarshal"}}</option>
-						<option value="4">{{localize "ALIENRPG.CompanyAgent"}}</option>
-						<option value="5">{{localize "ALIENRPG.Kid"}}</option>
-						<option value="6">{{localize "ALIENRPG.Medic"}}</option>
-						<option value="7">{{localize "ALIENRPG.Mercenary"}}</option>
-						<option value="8">{{localize "ALIENRPG.Officer"}}</option>
-						<option value="9">{{localize "ALIENRPG.Pilot"}}</option>
-						<option value="10">{{localize "ALIENRPG.Roughneck"}}</option>
-						<option value="11">{{localize "ALIENRPG.Scientist"}}</option>
-						<option value="12">{{localize 'ALIENRPG.Wildcatter'}}</option>
-						<option value="13">{{localize 'ALIENRPG.Entertainer'}}</option>
-						{{/select}}
+						{{selectOptions career_list selected=system.general.career.value labelAttr="label" localize=true}}
 					</select>
 				</div>
 			</div>
