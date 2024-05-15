@@ -1558,8 +1558,7 @@ button:focus {
 .spacec2 {
   grid-area: spacec2;
   padding-left: 5px;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  /* align-content: center; */
 }
 
 .s1-header {
@@ -5771,7 +5770,7 @@ combobox:focus {
   padding-left: 5px;
 }
 .alienrpg .biog {
-  height: 300px;
+  height: 570px;
   padding: 3px 0;
   width: 1fr;
   font-family: var(--alienfont);

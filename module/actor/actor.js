@@ -1572,9 +1572,9 @@ export class alienrpgActor extends Actor {
 			case 'synthetic':
 			case 'creature':
 				{
-					resultImage = test1.results[0].img || 'icons/svg/biohazard.webp';
+					resultImage = test1.results[0].img || 'icons/svg/biohazard.svg';
 					if (type === 'creature') {
-						resultImage = 'icons/svg/biohazard.webp';
+						resultImage = 'icons/svg/biohazard.svg';
 					}
 					factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
 					testArray = factorFour.split(/[:] |<br \/>/gi);
@@ -1605,7 +1605,7 @@ export class alienrpgActor extends Actor {
 				break;
 			case 'spacecraft':
 				{
-					resultImage = test1.results[0].img || 'icons/svg/biohazard.webp';
+					resultImage = test1.results[0].img || 'icons/svg/biohazard.svg';
 
 					factorFour = messG.replace(/(<strong>)|(<\/strong>)/gi, '');
 					testArray = factorFour.split(/[:] |<br \/>/gi);
