@@ -432,7 +432,7 @@ Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
 	let createChanges = {};
 	let aTarget = game.actors.find((i) => i.name == tokenData.name);
 	if (aTarget.type !== 'spacecraft' && aTarget.system.header.npc) {
-		mergeObject(createChanges, {
+		foundry.utils.mergeObject(createChanges, {
 			disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE,
 			actorLink: false,
 		});
