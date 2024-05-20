@@ -6,8 +6,8 @@
 	"url": "https://github.com/pwatson100/alienrpg",
 	"flags": {
 		"hotReload": {
-			"extensions": ["css", "js", "json"],
-			"paths": ["alienrpg.css", "templates", "lang"]
+			"extensions": ["css", "js", "html", "json"],
+			"paths": ["./css/alienrpg.css", "templates", "lang"]
 		}
 	},
 	"relationships": {
@@ -16,8 +16,8 @@
 	"version": "3.2.0",
 
 	"compatibility": {
-		"minimum": "11",
-		"verified": "11",
+		"minimum": "12",
+		"verified": "12",
 		"maximum": "12"
 	},
 
@@ -73,7 +73,7 @@
 			"path": "packs/alien-rpg-system.db",
 			"type": "Adventure",
 			"module": "AlienRPG",
-			"private": false,
+			"owners": false,
 			"system": "alienrpg"
 		}
 	],
@@ -82,8 +82,11 @@
 	"download": "https://github.com/pwatson100/alienrpg/releases/download/3.1.8/master.zip",
 	"protected": false,
 	"initiative": "1d10",
-	"grid.distance": 5,
-	"grid.units": "m",
+
+	"grid": {
+		"distance": 5,
+		"units": "m"
+	},
 	"primaryTokenAttribute": "health",
 	"secondaryTokenAttribute": "stress"
 }
