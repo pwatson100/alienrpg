@@ -6,8 +6,8 @@
 	"url": "https://github.com/pwatson100/alienrpg",
 	"flags": {
 		"hotReload": {
-			"extensions": ["css", "js", "json"],
-			"paths": ["alienrpg.css", "templates", "lang"]
+			"extensions": ["css", "js", "html", "json"],
+			"paths": ["./css/alienrpg.css", "templates", "lang"]
 		}
 	},
 	"relationships": {
