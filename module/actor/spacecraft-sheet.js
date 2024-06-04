@@ -628,7 +628,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 		}
 	}
 
-	_dropCrew(actorId) {
+	async _dropCrew(actorId) {
 		const crew = game.actors.get(actorId);
 		const actorData = this.actor;
 		if (!crew) return;
@@ -638,10 +638,10 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 			if (actorData.system.crew.passengerQty >= actorData.system.attributes.crew.value) {
 				return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
 			}
-			return this.actor.addVehicleOccupant(actorId);
+			return await this.actor.addVehicleOccupant(actorId);
 		}
 	}
-	_onCrewEdit(event) {
+	async _onCrewEdit(event) {
 		event.preventDefault();
 		const elem = event.currentTarget;
 		const crewId = elem.closest('.occupant').dataset.crewId;

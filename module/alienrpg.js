@@ -458,7 +458,7 @@ Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
 	if (actor.type === 'vehicles' || actor.type === 'spacecraft') {
 		// When dropping an actor on a vehicle sheet.
 		let crew = await fromUuid(data.uuid);
-		if (data.type === 'Actor') sheet._dropCrew(crew.id);
+		if (data.type === 'Actor') await sheet._dropCrew(crew.id);
 	}
 });
 
