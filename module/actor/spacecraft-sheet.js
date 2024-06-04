@@ -638,7 +638,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 			if (actorData.system.crew.passengerQty >= actorData.system.attributes.crew.value) {
 				return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
 			}
-			return await this.actor.addVehicleOccupant(actorId);
+			return await actorData.addVehicleOccupant(actorId);
 		}
 	}
 	async _onCrewEdit(event) {

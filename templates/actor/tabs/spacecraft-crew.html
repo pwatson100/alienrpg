@@ -16,7 +16,8 @@
 				{{!-- Position --}}
 				<div class="gSC7">
 					<select class="crew-position select-css" style="width: 175px">
-						{{selectOptions @root.config.spacecraft.crewPositionFlagsLocalized selected=position localize=true}}
+						{{#ife ...actor.type 'spacecraft'}} {{selectOptions @root.config.spacecraft.crewPositionFlagsLocalized selected=position localize=true}} {{else}}
+						{{selectOptions @root.config.vehicle.crewPositionFlagsLocalized selected=position localize=true}} {{/ife}}
 					</select>
 				</div>
 

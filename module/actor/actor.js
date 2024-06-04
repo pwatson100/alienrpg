@@ -1793,22 +1793,21 @@ export class alienrpgActor extends Actor {
 				throw new TypeError(`alienrpg | addVehicleOccupant | Wrong position flag: ${position}`);
 			}
 		}
-		const data = this.system;
-		// if (!(data.crew.occupants instanceof Array)) {
-		//   data.crew.occupants = [];
+		const system = this.system;
+		// if (!(system.crew.occupants instanceof Array)) {
+		//   system.crew.occupants = [];
 		// }
 		const occupant = {
 			id: crewId,
 			position,
 		};
 		// Removes duplicates.
-		if (data.crew.occupants.some((o) => o.id === crewId)) this.removeVehicleOccupant(crewId);
-
+		if (system.crew.occupants.some((o) => o.id === crewId)) this.removeVehicleOccupant(crewId);
 		// Adds the new occupant.
-		data.crew.occupants.push(occupant);
-		await this.update({ 'data.crew.occupants': data.crew.occupants });
+		system.crew.occupants.push(occupant);
+		await this.update({ 'system.crew.occupants': system.crew.occupants });
 
-		await this.update({ 'data.crew.passengerQty': data.crew.occupants.length });
+		await this.update({ 'system.crew.passengerQty': system.crew.occupants.length });
 
 		return occupant;
 	}
