@@ -124,8 +124,7 @@ export class yze {
 		if (r1Dice >= 1) {
 			roll1 = `${r1Dice}` + 'db';
 			if (r2Dice <= 0) {
-				mr = new Roll(`${roll1}`).evaluate({ async: false });
-				// await mr.evaluate({ async: true });
+				mr = await Roll.create(`${roll1}`).evaluate();
 				buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
 				// console.log('yze -> yzeRoll -> mr', mr);
 			}
@@ -158,10 +157,11 @@ export class yze {
 				com = `${roll1}` + '+' + `${roll2}`;
 				// mr = '';
 			}
+			mr = await Roll.create(`${com}`).evaluate();
 
-			mr = new Roll(`${com}`).evaluate({ async: false });
+			// mr = new Roll(`${com}`).evaluate({ async: false });
 			// await mr.evaluate({ async: true });
-			// // console.log('yze -> yzeRoll -> mr', mr);
+			// console.log('yze -> yzeRoll -> mr', mr);
 			buildChat(mr, r1Dice, 'Stress');
 
 			// *******************************************************
@@ -205,7 +205,7 @@ export class yze {
 					}
 				}
 				// }
-			} else if (game.alienrpg.rollArr.r2One >= 1) {
+			} else if (game.alienrpg.rollArr.r2One >= 1 && label != game.i18n.localize('ALIENRPG.RadiationReduced')) {
 				chatMessage +=
 					'<div class="alienchatblue warnblink"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.supplyDecreases') + '</div>';
 			}
@@ -352,7 +352,7 @@ export class yze {
 				content: chatMessage,
 				other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
 				sound: CONFIG.sounds.dice,
-				type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+				// type: CONST.CHAT_MESSAGE_STYLES.ROLL,
 				roll: mr,
 				rollMode: game.settings.get('core', 'rollMode'),
 				flags: { tactorid },
@@ -366,7 +366,7 @@ export class yze {
 				content: chatMessage,
 				whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
 				blind: true,
-				type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+				// type: CONST.CHAT_MESSAGE_STYLES.ROLL,
 				roll: mr,
 				rollMode: game.settings.get('core', 'rollMode'),
 				flags: { tactorid },

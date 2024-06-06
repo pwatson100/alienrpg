@@ -149,8 +149,8 @@ export default class AlienRPGCombat extends Combat {
 	}
 
 	async getInit(c, cf, updates, roll) {
-		if (isNewerVersion(game.version, '0.8.9')) {
-			roll = await c.getInitiativeRoll(cf).evaluate({ async: true });
+		if (foundry.utils.isNewerVersion(game.version, '0.8.9')) {
+			roll = await c.getInitiativeRoll(cf).evaluate();
 		} else {
 			roll = await c.getInitiativeRoll(cf);
 		}

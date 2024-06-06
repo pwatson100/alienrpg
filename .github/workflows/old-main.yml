@@ -1,37 +1,15 @@
-# This is a basic workflow that is manually triggered
 name: Release Creation
 
-# Controls when the action will run. Workflow runs when release is published.
 on:
   release:
     types: [published]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called buildPacks
-  buildPacks:
-    # The type of runner that the job will run on. This must be ubuntu for the zip command to work.
+  build:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Each step runs a single command using the runners shell.
-      # 1. Checkout our repository so we can do things on it.
-      - name: Checkout
-        uses: actions/checkout@v4
-        # 2. Make sure node is set up. This may be an unecessary step.
-      - name: Node Setup
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-        # 3. Install the FoundryVTT CLI.
-      - run: npm install -g @foundryvtt/foundryvtt-cli
-        # 4. Configure the datapath as the github workspace variable.
-      - run: fvtt configure set "dataPath" ${GITHUB_WORKSPACE}
-        # 5. Tell the FVTT CLI that we are working on a "system" package.
-      - run: fvtt package workon fvtt package workon "alienrpg" --type "System"
-        # 6-11. Package each folder of source json files into the appropriate LevelDB pack.
-      - run: fvtt package pack "alien-rpg-system" --in "src/packs/alien-rpg-system" --out "packs"
+      - uses: actions/checkout@v3
+
       #Substitute the Manifest and Download URLs in the module.json
       - name: Substitute Manifest and Download Links For Versioned Ones
         id: sub_release_manifest_version

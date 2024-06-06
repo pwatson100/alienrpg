@@ -1,107 +1,75 @@
 <form class="{{cssClass}}" autocomplete="off">
-  {{!-- Sheet Header --}}
-  <header class="vehicle-header">
-    <img class="profile-img-vehicle" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
+	{{!-- Sheet Header --}}
+	<header class="vehicle-header">
+		<img class="profile-img-vehicle" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" height="100" width="100" />
+		<div class="header-fields">
+			<h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
 
-      <div class="resources grid-vehicle">
-        <h2 class="vItem1">{{ localize 'ALIENRPG.Hull'}}</h2>
-        <div class="resource-label">
-          <input type="text" class="maxboxsize vItem2" name="system.attributes.hull.value" value="{{system.attributes.hull.value}}" data-dtype="Number" />
-          <label class="box23"> / </label>
-          <input type="text" class="maxboxsize " name="system.attributes.hull.max" value="{{system.attributes.hull.max}}" data-dtype="Number" />
+			<div class="resources grid-vehicle">
+				<h2 class="vItem1">{{ localize 'ALIENRPG.Hull'}}</h2>
+				<div class="resource-label">
+					<input type="text" class="maxboxsize vItem2" name="system.attributes.hull.value" value="{{system.attributes.hull.value}}" data-dtype="Number" />
+					<label class="box23"> / </label>
+					<input type="text" class="maxboxsize" name="system.attributes.hull.max" value="{{system.attributes.hull.max}}" data-dtype="Number" />
+				</div>
+				<h2 class="vItem3 rollableVeh" data-roll="{{system.attributes.armorrating.value}}" data-label="{{localize 'ALIENRPG.ArmorRating'}}" data-spbutt="armor">
+					{{localize 'ALIENRPG.ArmorRating'}}
+				</h2>
+				<div class="resource-label">
+					<input
+						type="text"
+						class="maxboxsize vItem4"
+						name="system.attributes.armorrating.value"
+						value="{{system.attributes.armorrating.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<h2 class="vItem5">{{localize 'ALIENRPG.Speed'}}</h2>
+				<div class="resource-label">
+					<input type="text" class="maxboxsize vItem6" name="system.attributes.speed.value" value="{{system.attributes.speed.value}}" data-dtype="Number" />
+				</div>
+				<h2 class="vItem7">{{localize 'ALIENRPG.Manoeuvrability'}}</h2>
+				<div class="resource-label">
+					<input
+						type="text"
+						class="maxboxsize vItem8"
+						name="system.attributes.manoeuvrability.value"
+						value="{{system.attributes.manoeuvrability.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			</div>
+		</div>
+	</header>
 
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		<a class="item" data-tab="general">{{localize 'ALIENRPG.General'}}</a>
+		<a class="item" data-tab="inventory">{{localize 'ALIENRPG.Inventory'}}</a>
+		<a class="item" data-tab="crew">{{localize 'ALIENRPG.Crew'}}</a>
+	</nav>
 
-        </div>
-        <h2 class="vItem3 rollableVeh" data-roll="{{system.attributes.armorrating.value}}" data-label="{{localize 'ALIENRPG.ArmorRating'}}" data-spbutt="armor">{{localize 'ALIENRPG.ArmorRating'}}</h2>
-        <div class="resource-label">
-          <input type="text" class="maxboxsize vItem4" name="system.attributes.armorrating.value" value="{{system.attributes.armorrating.value}}" data-dtype="Number" />
-        </div>
-        <h2 class="vItem5">{{localize 'ALIENRPG.Speed'}}</h2>
-        <div class="resource-label">
-          <input type="text" class="maxboxsize vItem6" name="system.attributes.speed.value" value="{{system.attributes.speed.value}}" data-dtype="Number" />
-        </div>
-        <h2 class="vItem7">{{localize 'ALIENRPG.Manoeuvrability'}}</h2>
-        <div class="resource-label">
-          <input type="text" class="maxboxsize vItem8" name="system.attributes.manoeuvrability.value" value="{{system.attributes.manoeuvrability.value}}" data-dtype="Number" />
-        </div>
-      </div>
-    </div>
-  </header>
+	{{!-- Sheet Body --}}
+	<section class="sheet-body">
+		<div class="tab attributes" data-group="primary" data-tab="general">
+			<label class="resource-label">{{localize 'ALIENRPG.Passengers'}}</label>
+			<input type="text" class="maxboxsize" name="system.attributes.passengers.value" value="{{system.attributes.passengers.value}}" data-dtype="Number" />
 
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="general">{{localize 'ALIENRPG.General'}}</a>
-    <a class="item" data-tab="inventory">{{localize 'ALIENRPG.Inventory'}}</a>
-    <a class="item" data-tab="crew">{{localize 'ALIENRPG.Crew'}}</a>
-  </nav>
+			<label class="resource-label">{{localize 'ALIENRPG.Cost'}}</label>
+			<input type="text" class="cashboxsize currency" name="system.attributes.cost.value" value="{{system.attributes.cost.value}}" />
+			<br />
+			<h3 class="resource-label">{{localize 'ALIENRPG.Description'}}</h3>
+			<textarea name="system.attributes.comment.value" rows="18" data-dtype="String">{{system.attributes.comment.value}}</textarea>
+		</div>
 
-  {{!-- Sheet Body --}}
-  <section class="sheet-body">
-    <div class="tab attributes" data-group="primary" data-tab="general">
-      <label class="resource-label">{{localize 'ALIENRPG.Passengers'}}</label>
-      <input type="text" class="maxboxsize" name="system.attributes.passengers.value" value="{{system.attributes.passengers.value}}" data-dtype="Number" />
+		<div class="tab crew" data-group="primary" data-tab="crew">
+			<div>{{> "systems/alienrpg/templates/actor/tabs/spacecraft-crew.html" sections=inventory}}</div>
+		</div>
 
-      <label class="resource-label">{{localize 'ALIENRPG.Cost'}}</label>
-      <input type="text" class="cashboxsize currency" name="system.attributes.cost.value" value="{{system.attributes.cost.value}}" />
-      <br />
-      <h3 class="resource-label">{{localize 'ALIENRPG.Description'}}</h3>
-      <textarea name="system.attributes.comment.value" rows="18" data-dtype="String">{{system.attributes.comment.value}}</textarea>
-    </div>
-
-    <div class="tab crew" data-group="primary" data-tab="crew">
-      <div class="crew" data-tab="general">
-        <div class="grid-ship-crew">
-          <label class="resource-label gSC1">{{localize 'ALIENRPG.Name'}}</label>
-          <label class="resource-label gSC2">{{localize 'ALIENRPG.Position'}}</label>
-          <label class="resource-label gSC3">{{localize 'ALIENRPG.Roll'}}</label>
-          <label class="resource-label gSC4">{{localize 'ALIENRPG.Panic'}}</label>
-        </div>
-        <br>
-        <div>
-          {{#each actor.system.crew.occupants}}
-            <div class="occupant {{#if (eq position " PASSENGER")}} passenger{{/if}}" data-crew-id="{{id}}">
-
-              <div class="grid-ship-crew">
-                {{!-- Name --}}
-                <div class="gSC6">{{actor.name}}</div>
-
-                {{!-- Position --}}
-                <div class="gSC7">
-                  <select class="crew-position select-css" style="width:175px">
-                    {{selectOptions @root.config.vehicle.crewPositionFlagsLocalized selected=position localize=true}}
-                  </select>
-                </div>
-
-                {{#ife position 'PILOT'}}
-                  <h3 for="actor.system.skills.piloting.value" class="resource-label rollable Attr1 gSC8" data-actorid="{{actor.id}}" data-roll="{{addstats actor.system.skills.piloting.mod @root.actor.system.attributes.manoeuvrability.value}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillpiloting'}}">{{localize 'ALIENRPG.Skillpiloting'}}</h3>
-                {{/ife}}
-
-                <label type="button" class="crewPanic gSC9" data-crewpanic="{{actor.id}}" data-panicroll="true" title="{{localize 'ALIENRPG.RollPanic'}}"><i class="far fa-heart"></i></label>
-
-                {{!-- Buttons --}}
-                <div class="gSC10">
-                  {{#unless actor.isCrewDeleted}}
-                    <a class="button crew-edit" title="{{localize 'ALIENRPG.EditItem'}}">
-                      {{{@root.config.Icons.buttons.edit}}}
-                    </a>
-                  {{/unless}}
-                  <a class="button crew-remove" title="{{localize 'ALIENRPG.DeleteItem'}}">
-                    {{{@root.config.Icons.buttons.remove}}}
-                  </a>
-                </div>
-              </div>
-            </div>
-          {{else}}
-            <div class="crew-empty">{{localize 'ALIENRPG.EmptyCrew'}}</div>
-          {{/each}}
-        </div>
-      </div>
-    </div>
-
-    {{!-- Owned Items Tab --}}
-    <!-- INVENTORY -->
-    <div class="tab inventory" data-group="primary" data-tab="inventory">{{> "systems/alienrpg/templates/actor/tabs/vehicle-inventory.html" sections=inventory}}</div>
-  </section>
+		{{!-- Owned Items Tab --}}
+		<!-- INVENTORY -->
+		<div class="tab inventory" data-group="primary" data-tab="inventory">
+			{{> "systems/alienrpg/templates/actor/tabs/vehicle-inventory.html" sections=inventory}}
+		</div>
+	</section>
 </form>
