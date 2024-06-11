@@ -31,7 +31,7 @@ jobs:
         # 5. Tell the FVTT CLI that we are working on a "system" package.
       - run: fvtt package workon fvtt package workon "alienrpg" --type "System"
         # 6-11. Package each folder of source json files into the appropriate LevelDB pack.
-      - run: fvtt package pack "alien-rpg-system" --in "/packs/source/alien-rpg-system" --out "packs"
+      - run: fvtt package pack "alien-rpg-system" --in "src/packs/alien-rpg-system" --out "packs"
       #Substitute the Manifest and Download URLs in the module.json
       - name: Substitute Manifest and Download Links For Versioned Ones
         id: sub_release_manifest_version
@@ -45,7 +45,7 @@ jobs:
           download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/master.zip
 
       # create a zip file with all files required by the module to add to the release
-      - run: zip -r ./master.zip --exclude="*packs/source/*" system.json template.json README.md Realease_Notes.txt ui/ templates/ packs/ module/ macros/ lang/ images/ css/ fonts/
+      - run: zip -r ./master.zip system.json template.json README.md Realease_Notes.txt ui/ templates/ packs/ module/ macros/ lang/ images/ css/ fonts/
 
       # Create a release for this specific version
       - name: Update Release with Files
