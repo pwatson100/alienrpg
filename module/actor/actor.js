@@ -57,13 +57,13 @@ export class alienrpgActor extends Actor {
 	_prepareVehicleData(data) {}
 	_prepareCreatureData(actorData) {}
 	_prepareTeritoryData(data) {
-		this.img = 'systems/alienrpg/images/icons/nested-eclipses.webp';
+		this.img = 'systems/alienrpg/images/icons/nested-eclipses.svg';
 	}
 	_prepareColonyData(data) {
-		this.img = 'systems/alienrpg/images/icons/digital-trace.webp';
+		this.img = 'systems/alienrpg/images/icons/digital-trace.svg';
 	}
 	_preparePlanetData(data) {
-		this.img = 'systems/alienrpg/images/icons/double-ringed-orb.webp';
+		this.img = 'systems/alienrpg/images/icons/double-ringed-orb.svg';
 	}
 
 	_prepareTokenImg() {
@@ -109,7 +109,6 @@ export class alienrpgActor extends Actor {
 				case 'territory':
 					tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
 					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/nested-eclipses.svg';
-					tokenProto['prototypeToken.texture.src'] = 'systems/alienrpg/images/icons/nested-eclipses.webp';
 					tokenProto['prototypeToken.sight.enabled'] = false;
 					break;
 				case 'spacecraft':
@@ -117,15 +116,13 @@ export class alienrpgActor extends Actor {
 					break;
 				case 'colony':
 					tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
-					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/digital-trace.webp';
-					tokenProto['prototypeToken.texture.src'] = 'systems/alienrpg/images/icons/digital-trace.webp';
+					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/digital-trace.svg';
 					tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
 					tokenProto['prototypeToken.sight.enabled'] = false;
 					break;
 				case 'planet':
 					tokenProto['prototypeToken.bar1'] = { attribute: 'None' };
-					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/double-ringed-orb.webp';
-					tokenProto['prototypeToken.texture.src'] = 'systems/alienrpg/images/icons/double-ringed-orb.webp';
+					tokenProto['prototypeToken.img'] = 'systems/alienrpg/images/icons/double-ringed-orb.svg';
 					tokenProto['prototypeToken.disposition'] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
 					tokenProto['prototypeToken.sight.enabled'] = false;
 					break;
@@ -575,7 +572,7 @@ export class alienrpgActor extends Actor {
 							if (!actor.items.getName(allSkillsModName)) {
 								const rollData = {
 									type: 'item',
-									img: '/systems/alienrpg/images/panic.webp',
+									img: '/systems/alienrpg/images/panic.svg',
 									name: allSkillsModName,
 									'system.header.type.value': 5,
 									'system.attributes.comment.value': game.i18n.localize('ALIENRPG.ShipPanic8'),
@@ -623,7 +620,7 @@ export class alienrpgActor extends Actor {
 							if (!actor.items.getName(agilityModName)) {
 								const rollData = {
 									type: 'item',
-									img: '/systems/alienrpg/images/panic.webp',
+									img: '/systems/alienrpg/images/panic.svg',
 									name: agilityModName,
 									'system.header.type.value': 5,
 									'system.attributes.comment.value': game.i18n.localize('ALIENRPG.Panic8'),
@@ -951,7 +948,7 @@ export class alienrpgActor extends Actor {
 			// if (game.version < '11') {
 			effect.label = game.i18n.localize(effect.label).replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
 			effect.name = game.i18n.localize(effect.name).replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
-			// effect['flags.core.statusId'] = effect.id;
+			effect['flags.core.statusId'] = effect.id;
 			effect['statuses'] = effect.id;
 			delete effect.id;
 			return await this.createEmbeddedDocuments('ActiveEffect', [effect]);
