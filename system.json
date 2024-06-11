@@ -72,6 +72,7 @@
 			"label": "Alien RPG System",
 			"type": "Adventure",
 			"module": "AlienRPG",
+			"owners": false,
 			"system": "alienrpg"
 		}
 	],
