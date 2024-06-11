@@ -55,13 +55,13 @@
   --blue: hsl(224, 75%, 62%);
   --black: hsl(0, 0%, 0%);
   --white: hsl(0, 0%, 100%);
-  --alientextjournal: #b1e0e7;
+  --alientextjournal: hsl(187, 52%, 80%);
   --journalback: url(../images/mother-instructions/indbackground2.png);
   --chatbackground: url(/systems/alienrpg/images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
   --alienchatwhite: hsl(0, 0%, 100%);
   --alienchatred: hsl(0, 100%, 50%);
-  --alienchatredshadow: rgb(230 230 230);
+  --alienchatredshadow: hsl(0, 0%, 90%);
   --alienchatblue: hsl(240deg 42% 72%);
   --alienchatlightblue: hsl(120, 97%, 41%);
   --alienchatlightgreen: hsl(120, 97%, 41%);
@@ -1558,8 +1558,7 @@ button:focus {
 .spacec2 {
   grid-area: spacec2;
   padding-left: 5px;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  /* align-content: center; */
 }
 
 .s1-header {
@@ -4190,7 +4189,7 @@ button:focus {
   	for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
 
   */
-  background-image: url(../images/downarrow.svg);
+  background-image: url(../images/downarrow.webp);
   background-repeat: no-repeat, repeat;
   /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
   background-position: right 0.7em top 50%, 0 0;
@@ -4238,7 +4237,7 @@ button:focus {
 .select-css:disabled,
 .select-css[aria-disabled=true] {
   color: var(--aliengreen);
-  background-image: url(../images/downarrow.svg);
+  background-image: url(../images/downarrow.webp);
   background-repeat: no-repeat, repeat;
 }
 
@@ -4806,13 +4805,12 @@ combobox:focus {
 
 /* .journal-sheet form { */
 .sheet.journal-entry .journal-entry-content {
-  color: var(--aliengreen);
   background: #000;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
   background: var(--journalback) top left !important;
   background-size: cover;
-  color: powderblue;
+  color: var(--alientextjournal) !important;
 }
 
 .sheet.journal-entry .sidebar .directory-header .header-search input {
@@ -5772,7 +5770,7 @@ combobox:focus {
   padding-left: 5px;
 }
 .alienrpg .biog {
-  height: 300px;
+  height: 570px;
   padding: 3px 0;
   width: 1fr;
   font-family: var(--alienfont);

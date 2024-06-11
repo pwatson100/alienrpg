@@ -17,13 +17,13 @@ export default class AlienRPGCombat extends Combat {
 	}
 
 	async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
+		let messageData = '';
 		// Structure input data
 		ids = typeof ids === 'string' ? [ids] : ids;
 		const currentId = this.id;
 		const draw = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false };
 		let drawn = 0;
 		// Iterate over Combatants, performing an initiative roll for each
-		// const [updates, messages] = ids.reduce(
 		if (this.combatants.contents > 0) {
 			this.combatants.contents.forEach((inIt) => {
 				if (inIt.initiative) {
@@ -48,49 +48,48 @@ export default class AlienRPGCombat extends Combat {
 
 				draw[broll.total] = true;
 				drawn++;
-				// updates.push({ _id: id, initiative: roll.total });
-				// let broll = this.getInit(combatant, cf, updates);
 				updates.push({ _id: id, initiative: broll.total });
 
 				if (!game.settings.get('alienrpg', 'alienrpgHideInitChat')) {
+					let cardPath = `<div style="text-align: center;"><img width="125" height="175" src="systems/alienrpg/images/cards/card-${broll.total}.png"></div>`;
 					// Determine the roll mode
 					let rollMode = messageOptions.rollMode || game.settings.get('core', 'rollMode');
-					if ((combatant.token.hidden || combatant.hidden) && rollMode === 'roll') {
-						rollMode = 'gmroll';
-					}
-					let cardPath = `<div style="text-align: center;"><img width="125" height="175" src="systems/alienrpg/images/cards/card-${broll.total}.png"></div>`;
-					try {
-						if (game.settings.get('alienrpg-corerules', 'imported')) {
-							cardPath = `<div style="text-align: center;"><img width="125" height="175" src="modules/alienrpg-corerules/images/cards/card-${broll.total}.png"></div>`;
-						}
-					} catch (error) {
+					if (!combatant.token.hidden || !combatant.hidden) {
 						try {
-							if (game.settings.get('alienrpg-starterset', 'imported')) {
-								cardPath = `<div style="text-align: center;"><img width="125" height="175" src="modules/alienrpg-starterset/images/cards/card-${broll.total}.png"></div>`;
+							if (game.settings.get('alienrpg-corerules', 'imported')) {
+								cardPath = `<div style="text-align: center;"><img width="125" height="175" src="modules/alienrpg-corerules/images/cards/card-${broll.total}.png"></div>`;
 							}
-						} catch (error) {}
+						} catch (error) {
+							try {
+								if (game.settings.get('alienrpg-starterset', 'imported')) {
+									cardPath = `<div style="text-align: center;"><img width="125" height="175" src="modules/alienrpg-starterset/images/cards/card-${broll.total}.png"></div>`;
+								}
+							} catch (error) {}
+						}
 					}
 
-					// Construct chat message data
-					let messageData = mergeObject(
-						{
-							speaker: {
-								scene: canvas.scene.id,
-								actor: combatant.actor ? combatant.actor.id : null,
-								token: combatant.token.id,
-								alias: combatant.token.name,
+					if (!combatant.token.hidden || !combatant.hidden) {
+						// Construct chat message data
+						messageData = foundry.utils.mergeObject(
+							{
+								speaker: {
+									scene: canvas.scene.id,
+									actor: combatant.actor ? combatant.actor.id : null,
+									token: combatant.token.id,
+									alias: combatant.token.name,
+								},
+								flavor: `${combatant.token.name} rolls for Initiative! <br> ${cardPath}`,
+								flags: { 'core.initiativeRoll': true },
 							},
-							flavor: `${combatant.token.name} rolls for Initiative! <br> ${cardPath}`,
-							flags: { 'core.initiativeRoll': true },
-						},
-						messageOptions
-					);
+							messageOptions
+						);
 
-					const chatData = await broll.toMessage(messageData, { create: false, rollMode });
+						const chatData = await broll.toMessage(messageData, { create: false, rollMode });
 
-					// Play 1 sound for the whole rolled set
-					if (i > 0) chatData.sound = null;
-					messages.push(chatData);
+						// Play 1 sound for the whole rolled set
+						if (i > 0) chatData.sound = null;
+						messages.push(chatData);
+					}
 				}
 			} else {
 				const combatant = this.combatants.get(id);
@@ -105,33 +104,32 @@ export default class AlienRPGCombat extends Combat {
 				updates.push({ _id: id, initiative: broll.total });
 
 				let rollMode = messageOptions.rollMode || game.settings.get('core', 'rollMode');
-				if ((combatant.token.hidden || combatant.hidden) && rollMode === 'roll') {
-					rollMode = 'gmroll';
-				}
+				// if ((combatant.token.hidden || combatant.hidden) && rollMode === 'publicroll') {
+				// 	rollMode = 'gmroll';
+				// }
 				if (!game.settings.get('alienrpg', 'alienrpgHideInitChat')) {
-					let messageData = mergeObject(
-						{
-							speaker: {
-								scene: canvas.scene.id,
-								actor: combatant.actor ? combatant.actor.id : null,
-								token: combatant.token.id,
-								alias: combatant.token.name,
+					if (!combatant.token.hidden || !combatant.hidden) {
+						messageData = foundry.utils.mergeObject(
+							{
+								speaker: {
+									scene: canvas.scene.id,
+									actor: combatant.actor ? combatant.actor.id : null,
+									token: combatant.token.id,
+									alias: combatant.token.name,
+								},
+								flavor: `${combatant.token.name} rolls for Initiative! <br> `,
+								flags: { 'core.initiativeRoll': true },
 							},
-							flavor: `${combatant.token.name} rolls for Initiative! <br> `,
-							flags: { 'core.initiativeRoll': true },
-						},
-						messageOptions
-					);
+							messageOptions
+						);
 
-					const chatData = await broll.toMessage(messageData, { create: false, rollMode });
+						const chatData = await broll.toMessage(messageData, { create: false, rollMode });
 
-					// Play 1 sound for the whole rolled set
-					if (i > 0) chatData.sound = null;
-					messages.push(chatData);
+						// Play 1 sound for the whole rolled set
+						if (i > 0) chatData.sound = null;
+						messages.push(chatData);
+					}
 				}
-				// ui.notifications.error(
-				//   `You can only automatically roll Initiative for 10 PCs/NPCs.  Roll initiative manually for the remaining actors or split in to multiple encounters in the Combat Tracker`
-				// );
 			}
 		}
 		if (!updates.length) return this;
@@ -210,49 +208,4 @@ export default class AlienRPGCombat extends Combat {
 		});
 		return creationData;
 	}
-
-	// async _swapInitiative(combatant, donerInit, combatants, content) {
-	// 	const targetId = await Dialog.prompt({
-	// 		title: game.i18n.localize('ALIENRPG.SwapInitiative'),
-	// 		content,
-	// 		callback: (html) => html.find('#initiative-swap')[0]?.value,
-	// 	});
-
-	// 	let confirmed = false;
-	// 	renderTemplate(content).then((dlg) => {
-	// 		new Dialog({
-	// 			title: game.i18n.localize('ALIENRPG.SwapInitiative'),
-	// 			content: dlg,
-	// 			buttons: {
-	// 				one: {
-	// 					icon: '<i class="fas fa-check"></i>',
-	// 					label: 'OK',
-	// 					callback: () => (confirmed = true),
-	// 				},
-	// 				four: {
-	// 					icon: '<i class="fas fa-times"></i>',
-	// 					label: game.i18n.localize('ALIENRPG.DialCancel'),
-	// 					callback: () => (confirmed = false),
-	// 				},
-	// 			},
-	// 			close: (html) => {
-	// 				if (confirmed) {
-	// 					const targetActor = combatants.get(targetId);
-	// 					const targetInit = targetActor.initiative;
-	// 					const updates = [
-	// 						{
-	// 							_id: combatant.id,
-	// 							initiative: targetInit,
-	// 						},
-	// 						{
-	// 							_id: targetId,
-	// 							initiative: donerInit,
-	// 						},
-	// 					];
-	// 					return game.combat.updateEmbeddedDocuments('Combatant', updates);
-	// 				}
-	// 			},
-	// 		}).render(true);
-	// 	});
-	// }
 }

@@ -8,12 +8,7 @@
 				<h3 class="wItem1 resource-label">{{localize 'ALIENRPG.Type'}}</h3>
 				<div class="wItem2">
 					<select class="select-css" name="system.header.type" data-dtype="{{system.header.type}}">
-						{{#select system.header.type}}
-						<!-- <option value=""></option> -->
-						<option value="1">{{localize 'ALIENRPG.Policies'}}</option>
-						<option value="2">{{localize 'ALIENRPG.Installations'}}</option>
-						<option value="3">{{localize 'ALIENRPG.Projects'}}</option>
-						{{/select}}
+						{{selectOptions colony_policy_list selected=system.header.type labelAttr="label" localize=true}}
 					</select>
 				</div>
 				<h3 class="wItem3 resource-label">{{localize 'ALIENRPG.completed'}}</h3>

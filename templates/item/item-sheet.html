@@ -1,222 +1,398 @@
 <form class="{{cssClass}}" autocomplete="off">
-  <header class="vehicle-header">
-    <img class="profile-img-item" src="{{img}}" data-edit="img" title="{{name}}" />
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
+	<header class="vehicle-header">
+		<img class="profile-img-item" src="{{img}}" data-edit="img" title="{{name}}" />
+		<div class="header-fields">
+			<h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize 'ALIENRPG.Name'}}" /></h1>
 
-      <div class="resources grid-weapon">
-        <h3 class="resource-label wItem1">{{localize 'ALIENRPG.Weight'}}</h3>
-        <input type="text" name="system.attributes.weight.value" class="maxboxsize wItem2" value="{{system.attributes.weight.value}}" data-dtype="Number" />
-        <h3 class="resource-label wItem3">{{localize 'ALIENRPG.Cost'}}</h3>
-        <input type="text" class="wItem4 cashboxsize currency" name="system.attributes.cost.value" value="{{system.attributes.cost.value}}" />
+			<div class="resources grid-weapon">
+				<h3 class="resource-label wItem1">{{localize 'ALIENRPG.Weight'}}</h3>
+				<input type="text" name="system.attributes.weight.value" class="maxboxsize wItem2" value="{{system.attributes.weight.value}}" data-dtype="Number" />
+				<h3 class="resource-label wItem3">{{localize 'ALIENRPG.Cost'}}</h3>
+				<input type="text" class="wItem4 cashboxsize currency" name="system.attributes.cost.value" value="{{system.attributes.cost.value}}" />
 
-        <h3 class="wItem6 resource-label">{{localize 'ALIENRPG.Type'}}</h3>
-        <div class="wItem7">
-          <select class="select-css" name="system.header.type.value" data-dtype="{{system.header.type.value}}">
-            {{#select system.header.type.value}}
-              <!-- <option value=""></option> -->
-              <option value="1">{{localize 'ALIENRPG.DataStorage'}}</option>
-              <option value="2">{{localize 'ALIENRPG.DiagnosticsDisplay'}}</option>
-              <option value="3">{{localize 'ALIENRPG.VisionDevices'}}</option>
-              <option value="4">{{localize 'ALIENRPG.Tools'}}</option>
-              <option value="5">{{localize 'ALIENRPG.MedicalSupplies'}}</option>
-              <option value="6">{{localize 'ALIENRPG.Pharmaceuticals'}}</option>
-              <option value="7">{{localize 'ALIENRPG.FoodDrink'}}</option>
-              <option value="8">{{localize 'ALIENRPG.Power'}}</option>
-              <option value="9">{{localize 'ALIENRPG.ComputerMainframes'}}</option>
-              <option value="10">{{localize 'ALIENRPG.Consumables'}}</option>
-              <option value="11">{{localize 'ALIENRPG.Clothing'}}</option>
-            {{/select}}
-          </select>
-        </div>
-      </div>
-    </div>
-  </header>
+				<h3 class="wItem6 resource-label">{{localize 'ALIENRPG.Type'}}</h3>
+				<div class="wItem7">
+					<select class="select-css" name="system.header.type.value" data-dtype="{{system.header.type.value}}">
+						{{selectOptions item_types_list selected=system.header.type.value labelAttr="label" localize=true}}
+					</select>
+				</div>
+			</div>
+		</div>
+	</header>
 
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="attributes">{{localize 'ALIENRPG.Attributes'}}</a>
-    <a class="item" data-tab="notes">{{localize 'ALIENRPG.Notes'}}</a>
-    <a class="item" data-tab="modifiers">{{localize 'ALIENRPG.Modifiers'}}</a>
-  </nav>
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		<a class="item" data-tab="attributes">{{localize 'ALIENRPG.Attributes'}}</a>
+		<a class="item" data-tab="notes">{{localize 'ALIENRPG.Notes'}}</a>
+		<a class="item" data-tab="modifiers">{{localize 'ALIENRPG.Modifiers'}}</a>
+	</nav>
 
-  {{!-- Sheet Body --}}
-  <section class="sheet-body" style="height: 250px">
-    {{!-- Attributes Tab --}}
-    <div class="tab attributes" data-group="primary" data-tab="attributes">
-      {{#ife system.header.type.value '1'}}
-        <div class="grid-Char-Att">
-          <h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
-          <input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
-        </div>
-      {{/ife}} {{#ife system.header.type.value '2'}}
-        <div class="grid-Char-Att">
-          <h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
-          <input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
-        </div>
-      {{/ife}} {{#ife system.header.type.value '3'}}
-        <div class="grid-Char-Att">
-          <h3 class="resource-label gCol1">{{localize 'ALIENRPG.Power'}}</h3>
-          <input type="text" name="system.attributes.power.value" class="maxboxsize gCol2" value="{{system.attributes.power.value}}" data-dtype="Number" />
-        </div>
-      {{/ife}} {{#ife system.header.type.value '4'}}
-        <div class="grid-Char-Att">
-          <h3 class="resource-label gCol1">{{localize 'ALIENRPG.Power'}}</h3>
-          <input type="text" name="system.attributes.power.value" class="maxboxsize gCol2" value="{{system.attributes.power.value}}" data-dtype="Number" />
-        </div>
-      {{/ife}} {{#ife system.header.type.value '6'}}
-        <div class="grid-Char-Att">
-          <h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
-          <input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
-        </div>
-      {{/ife}} {{#ife system.header.type.value '7'}}
-        <div class="grid-Char-Att">
-          <h3 class="resource-label gCol1">{{localize 'ALIENRPG.Food'}}</h3>
-          <input type="text" name="system.attributes.food.value" class="maxboxsize gCol2" value="{{system.attributes.food.value}}" data-dtype="Number" />
-          <h3 class="resource-label gCol3">{{localize 'ALIENRPG.Water'}}</h3>
-          <input type="text" name="system.attributes.water.value" class="maxboxsize gCol4" value="{{system.attributes.water.value}}" data-dtype="Number" />
-        </div>
-      {{/ife}} {{#ife system.header.type.value '8'}}
-        <div class="grid-Char-Att">
-          <h3 class="resource-label gCol1">{{localize 'ALIENRPG.Power'}}</h3>
-          <input type="text" class="maxboxsize gCol2" name="system.attributes.power.value" value="{{system.attributes.power.value}}" data-dtype="Number" />
-        </div>
-      {{/ife}} {{#ife system.header.type.value '9'}}
-        <div class="grid-2col">
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.skills.comtech.value" class="resource-label rollcomputer" data-roll="{{system.modifiers.skills.comtech.value}}" data-label="{{localize 'ALIENRPG.Skillcomtech'}}">{{localize 'ALIENRPG.Skillcomtech'}} ({{system.modifiers.skills.comtech.ability}})</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.skills.comtech.value" value="{{system.modifiers.skills.comtech.value}}" data-dtype="Number" />
-          </div>
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.skills.piloting.value" class="resource-label rollcomputer" data-roll="{{system.modifiers.skills.piloting.value}}" data-label="{{localize 'ALIENRPG.Skillpiloting'}}">{{localize 'ALIENRPG.Skillpiloting'}} ({{system.modifiers.skills.piloting.ability}})</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.skills.piloting.value" value="{{system.modifiers.skills.piloting.value}}" data-dtype="Number" />
-          </div>
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.skills.observation.value" class="resource-label rollcomputer" data-roll="{{system.modifiers.skills.observation.value}}" data-label="{{localize 'ALIENRPG.Skillobservation'}}">{{localize 'ALIENRPG.Skillobservation'}} ({{system.modifiers.skills.observation.ability}})</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.skills.observation.value" value="{{system.modifiers.skills.observation.value}}" data-dtype="Number" />
-          </div>
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.skills.rangedCbt.value" class="resource-label rollcomputer" data-roll="{{system.modifiers.skills.rangedCbt.value}}" data-label="{{localize 'ALIENRPG.SkillrangedCbt'}}">{{localize 'ALIENRPG.SkillrangedCbt'}} ({{system.modifiers.skills.rangedCbt.ability}})</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.skills.rangedCbt.value" value="{{system.modifiers.skills.rangedCbt.value}}" data-dtype="Number" />
-          </div>
-        </div>
-      {{/ife}} {{#ife system.header.type.value '10'}}
-        <div class="grid-item-xtras">
-          <h3 class="resource-label xCol1">{{localize 'ALIENRPG.Power'}}</h3>
-          <input type="text" name="system.attributes.power.value" class="maxboxsize xCol2" value="{{system.attributes.power.value}}" data-dtype="Number" />
-          <h3 class="resource-label xCol3">{{localize 'ALIENRPG.Food'}}</h3>
-          <input type="text" name="system.attributes.food.value" class="maxboxsize xCol4" value="{{system.attributes.food.value}}" data-dtype="Number" />
-          <h3 class="resource-label xCol5">{{localize 'ALIENRPG.Water'}}</h3>
-          <input type="text" name="system.attributes.water.value" class="maxboxsize xCol6" value="{{system.attributes.water.value}}" data-dtype="Number" />
-          <h3 class="resource-label xCol7">{{localize 'ALIENRPG.AirSupply'}}</h3>
-          <input type="text" class="maxboxsize xCol8" name="system.attributes.airsupply.value" value="{{system.attributes.airsupply.value}}" data-dtype="Number" />
-        </div>
-      {{/ife}} {{#ife system.header.type.value '11'}}
-        <div class="grid-Char-Att">
-          <h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
-          <input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
-        </div>
-      {{/ife}}
+	{{!-- Sheet Body --}}
+	<section class="sheet-body" style="height: 250px">
+		{{!-- Attributes Tab --}}
+		<div class="tab attributes" data-group="primary" data-tab="attributes">
+			{{#ife system.header.type.value '1'}}
+			<div class="grid-Char-Att">
+				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
+				<input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
+			</div>
+			{{/ife}} {{#ife system.header.type.value '2'}}
+			<div class="grid-Char-Att">
+				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
+				<input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
+			</div>
+			{{/ife}} {{#ife system.header.type.value '3'}}
+			<div class="grid-Char-Att">
+				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.Power'}}</h3>
+				<input type="text" name="system.attributes.power.value" class="maxboxsize gCol2" value="{{system.attributes.power.value}}" data-dtype="Number" />
+			</div>
+			{{/ife}} {{#ife system.header.type.value '4'}}
+			<div class="grid-Char-Att">
+				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.Power'}}</h3>
+				<input type="text" name="system.attributes.power.value" class="maxboxsize gCol2" value="{{system.attributes.power.value}}" data-dtype="Number" />
+			</div>
+			{{/ife}} {{#ife system.header.type.value '6'}}
+			<div class="grid-Char-Att">
+				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
+				<input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
+			</div>
+			{{/ife}} {{#ife system.header.type.value '7'}}
+			<div class="grid-Char-Att">
+				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.Food'}}</h3>
+				<input type="text" name="system.attributes.food.value" class="maxboxsize gCol2" value="{{system.attributes.food.value}}" data-dtype="Number" />
+				<h3 class="resource-label gCol3">{{localize 'ALIENRPG.Water'}}</h3>
+				<input type="text" name="system.attributes.water.value" class="maxboxsize gCol4" value="{{system.attributes.water.value}}" data-dtype="Number" />
+			</div>
+			{{/ife}} {{#ife system.header.type.value '8'}}
+			<div class="grid-Char-Att">
+				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.Power'}}</h3>
+				<input type="text" class="maxboxsize gCol2" name="system.attributes.power.value" value="{{system.attributes.power.value}}" data-dtype="Number" />
+			</div>
+			{{/ife}} {{#ife system.header.type.value '9'}}
+			<div class="grid-2col">
+				<div class="modifiers flexrow flex-group-center">
+					<label
+						for="system.modifiers.skills.comtech.value"
+						class="resource-label rollcomputer"
+						data-roll="{{system.modifiers.skills.comtech.value}}"
+						data-label="{{localize 'ALIENRPG.Skillcomtech'}}"
+						>{{localize 'ALIENRPG.Skillcomtech'}} ({{system.modifiers.skills.comtech.ability}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.comtech.value"
+						value="{{system.modifiers.skills.comtech.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label
+						for="system.modifiers.skills.piloting.value"
+						class="resource-label rollcomputer"
+						data-roll="{{system.modifiers.skills.piloting.value}}"
+						data-label="{{localize 'ALIENRPG.Skillpiloting'}}"
+						>{{localize 'ALIENRPG.Skillpiloting'}} ({{system.modifiers.skills.piloting.ability}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.piloting.value"
+						value="{{system.modifiers.skills.piloting.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label
+						for="system.modifiers.skills.observation.value"
+						class="resource-label rollcomputer"
+						data-roll="{{system.modifiers.skills.observation.value}}"
+						data-label="{{localize 'ALIENRPG.Skillobservation'}}"
+						>{{localize 'ALIENRPG.Skillobservation'}} ({{system.modifiers.skills.observation.ability}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.observation.value"
+						value="{{system.modifiers.skills.observation.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label
+						for="system.modifiers.skills.rangedCbt.value"
+						class="resource-label rollcomputer"
+						data-roll="{{system.modifiers.skills.rangedCbt.value}}"
+						data-label="{{localize 'ALIENRPG.SkillrangedCbt'}}"
+						>{{localize 'ALIENRPG.SkillrangedCbt'}} ({{system.modifiers.skills.rangedCbt.ability}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.rangedCbt.value"
+						value="{{system.modifiers.skills.rangedCbt.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			</div>
+			{{/ife}} {{#ife system.header.type.value '10'}}
+			<div class="grid-item-xtras">
+				<h3 class="resource-label xCol1">{{localize 'ALIENRPG.Power'}}</h3>
+				<input type="text" name="system.attributes.power.value" class="maxboxsize xCol2" value="{{system.attributes.power.value}}" data-dtype="Number" />
+				<h3 class="resource-label xCol3">{{localize 'ALIENRPG.Food'}}</h3>
+				<input type="text" name="system.attributes.food.value" class="maxboxsize xCol4" value="{{system.attributes.food.value}}" data-dtype="Number" />
+				<h3 class="resource-label xCol5">{{localize 'ALIENRPG.Water'}}</h3>
+				<input type="text" name="system.attributes.water.value" class="maxboxsize xCol6" value="{{system.attributes.water.value}}" data-dtype="Number" />
+				<h3 class="resource-label xCol7">{{localize 'ALIENRPG.AirSupply'}}</h3>
+				<input
+					type="text"
+					class="maxboxsize xCol8"
+					name="system.attributes.airsupply.value"
+					value="{{system.attributes.airsupply.value}}"
+					data-dtype="Number"
+				/>
+			</div>
+			{{/ife}} {{#ife system.header.type.value '11'}}
+			<div class="grid-Char-Att">
+				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
+				<input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
+			</div>
+			{{/ife}}
 
-      <h2 class="resource-label">{{localize 'ALIENRPG.Comment'}}</h2>
-      {{!-- <textarea name="system.attributes.comment.value" rows="12" data-dtype="String">{{system.attributes.comment.value}}</textarea> --}}
-      <div class="tab item" style="border: solid 1px; padding: 5px">{{editor system.attributes.comment.value target="system.attributes.comment.value" button=true owner=owner editable=true}}</div>
+			<h2 class="resource-label">{{localize 'ALIENRPG.Comment'}}</h2>
+			{{!-- <textarea name="system.attributes.comment.value" rows="12" data-dtype="String">{{system.attributes.comment.value}}</textarea> --}}
+			<div class="tab item" style="border: solid 1px; padding: 5px">
+				{{editor system.attributes.comment.value target="system.attributes.comment.value" button=true owner=owner editable=true}}
+			</div>
+		</div>
 
-    </div>
+		<div class="tab modifiers" data-group="primary" data-tab="modifiers">
+			{{#ifne system.header.type.value '9'}}
+			<h2 class="resource-label">{{localize 'ALIENRPG.Attributes'}}</h2>
+			<div class="grid-2col">
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.attributes.health.value" class="resource-label">{{localize 'ALIENRPG.Health'}}</label>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.attributes.health.value"
+						value="{{system.modifiers.attributes.health.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.attributes.stress.value" class="resource-label">{{localize 'ALIENRPG.Stress'}}</label>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.attributes.stress.value"
+						value="{{system.modifiers.attributes.stress.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.attributes.str.value" class="resource-label">{{localize 'ALIENRPG.AbilityStr'}}</label>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.attributes.str.value"
+						value="{{system.modifiers.attributes.str.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.attributes.wit.value" class="resource-label">{{localize 'ALIENRPG.AbilityWit'}}</label>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.attributes.wit.value"
+						value="{{system.modifiers.attributes.wit.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.attributes.agl.value" class="resource-label">{{localize 'ALIENRPG.AbilityAgl'}}</label>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.attributes.agl.value"
+						value="{{system.modifiers.attributes.agl.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.attributes.emp.value" class="resource-label">{{localize 'ALIENRPG.AbilityEmp'}}</label>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.attributes.emp.value"
+						value="{{system.modifiers.attributes.emp.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			</div>
+			{{/ifne}}
 
-    <div class="tab modifiers" data-group="primary" data-tab="modifiers">
-      {{#ifne system.header.type.value '9'}}
-        <h2 class="resource-label">{{localize 'ALIENRPG.Attributes'}}</h2>
-        <div class="grid-2col">
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.attributes.health.value" class="resource-label">{{localize 'ALIENRPG.Health'}}</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.attributes.health.value" value="{{system.modifiers.attributes.health.value}}" data-dtype="Number" />
-          </div>
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.attributes.stress.value" class="resource-label">{{localize 'ALIENRPG.Stress'}}</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.attributes.stress.value" value="{{system.modifiers.attributes.stress.value}}" data-dtype="Number" />
-          </div>
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.attributes.str.value" class="resource-label">{{localize 'ALIENRPG.AbilityStr'}}</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.attributes.str.value" value="{{system.modifiers.attributes.str.value}}" data-dtype="Number" />
-          </div>
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.attributes.wit.value" class="resource-label">{{localize 'ALIENRPG.AbilityWit'}}</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.attributes.wit.value" value="{{system.modifiers.attributes.wit.value}}" data-dtype="Number" />
-          </div>
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.attributes.agl.value" class="resource-label">{{localize 'ALIENRPG.AbilityAgl'}}</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.attributes.agl.value" value="{{system.modifiers.attributes.agl.value}}" data-dtype="Number" />
-          </div>
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.attributes.emp.value" class="resource-label">{{localize 'ALIENRPG.AbilityEmp'}}</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.attributes.emp.value" value="{{system.modifiers.attributes.emp.value}}" data-dtype="Number" />
-          </div>
-        </div>
-      {{/ifne}}
+			<h2 class="resource-label">{{localize 'ALIENRPG.Skills'}}</h2>
+			<div class="grid-2col">
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.heavyMach.value" class="resource-label"
+						>{{localize 'ALIENRPG.SkillheavyMach'}} ({{localize 'ALIENRPG.AbilityAbbstr'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.heavyMach.value"
+						value="{{system.modifiers.skills.heavyMach.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.closeCbt.value" class="resource-label"
+						>{{localize 'ALIENRPG.SkillcloseCbt'}} ({{localize 'ALIENRPG.AbilityAbbstr'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.closeCbt.value"
+						value="{{system.modifiers.skills.closeCbt.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.stamina.value" class="resource-label"
+						>{{localize 'ALIENRPG.Skillstamina'}} ({{localize 'ALIENRPG.AbilityAbbstr'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.stamina.value"
+						value="{{system.modifiers.skills.stamina.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				{{#ifne system.header.type.value '9'}}
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.rangedCbt.value" class="resource-label"
+						>{{localize 'ALIENRPG.SkillrangedCbt'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.rangedCbt.value"
+						value="{{system.modifiers.skills.rangedCbt.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				{{/ifne}}
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.mobility.value" class="resource-label"
+						>{{localize 'ALIENRPG.Skillmobility'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.mobility.value"
+						value="{{system.modifiers.skills.mobility.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				{{#ifne system.header.type.value '9'}}
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.piloting.value" class="resource-label"
+						>{{localize 'ALIENRPG.Skillpiloting'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.piloting.value"
+						value="{{system.modifiers.skills.piloting.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				{{/ifne}}
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.command.value" class="resource-label"
+						>{{localize 'ALIENRPG.Skillcommand'}} ({{localize 'ALIENRPG.AbilityAbbemp'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.command.value"
+						value="{{system.modifiers.skills.command.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.manipulation.value" class="resource-label"
+						>{{localize 'ALIENRPG.Skillmanipulation'}} ({{localize 'ALIENRPG.AbilityAbbemp'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.manipulation.value"
+						value="{{system.modifiers.skills.manipulation.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.medicalAid.value" class="resource-label"
+						>{{localize 'ALIENRPG.SkillmedicalAid'}} ({{localize 'ALIENRPG.AbilityAbbemp'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.medicalAid.value"
+						value="{{system.modifiers.skills.medicalAid.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				{{#ifne system.header.type.value '9'}}
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.observation.value" class="resource-label"
+						>{{localize 'ALIENRPG.Skillobservation'}} ({{localize 'ALIENRPG.AbilityAbbwit'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.observation.value"
+						value="{{system.modifiers.skills.observation.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				{{/ifne}}
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.survival.value" class="resource-label"
+						>{{localize 'ALIENRPG.Skillsurvival'}} ({{localize 'ALIENRPG.AbilityAbbwit'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.survival.value"
+						value="{{system.modifiers.skills.survival.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				{{#ifne system.header.type.value '9'}}
+				<div class="modifiers flexrow flex-group-center">
+					<label for="system.modifiers.skills.comtech.value" class="resource-label"
+						>{{localize 'ALIENRPG.Skillcomtech'}} ({{localize 'ALIENRPG.AbilityAbbwit'}})</label
+					>
+					<input
+						type="text"
+						class="maxboxsize"
+						name="system.modifiers.skills.comtech.value"
+						value="{{system.modifiers.skills.comtech.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+				{{/ifne}}
+			</div>
+		</div>
 
-      <h2 class="resource-label">{{localize 'ALIENRPG.Skills'}}</h2>
-      <div class="grid-2col">
-        <div class="modifiers flexrow flex-group-center">
-          <label for="system.modifiers.skills.heavyMach.value" class="resource-label">{{localize 'ALIENRPG.SkillheavyMach'}} ({{localize 'ALIENRPG.AbilityAbbstr'}})</label>
-          <input type="text" class="maxboxsize" name="system.modifiers.skills.heavyMach.value" value="{{system.modifiers.skills.heavyMach.value}}" data-dtype="Number" />
-        </div>
-        <div class="modifiers flexrow flex-group-center">
-          <label for="system.modifiers.skills.closeCbt.value" class="resource-label">{{localize 'ALIENRPG.SkillcloseCbt'}} ({{localize 'ALIENRPG.AbilityAbbstr'}})</label>
-          <input type="text" class="maxboxsize" name="system.modifiers.skills.closeCbt.value" value="{{system.modifiers.skills.closeCbt.value}}" data-dtype="Number" />
-        </div>
-        <div class="modifiers flexrow flex-group-center">
-          <label for="system.modifiers.skills.stamina.value" class="resource-label">{{localize 'ALIENRPG.Skillstamina'}} ({{localize 'ALIENRPG.AbilityAbbstr'}})</label>
-          <input type="text" class="maxboxsize" name="system.modifiers.skills.stamina.value" value="{{system.modifiers.skills.stamina.value}}" data-dtype="Number" />
-        </div>
-        {{#ifne system.header.type.value '9'}}
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.skills.rangedCbt.value" class="resource-label">{{localize 'ALIENRPG.SkillrangedCbt'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.skills.rangedCbt.value" value="{{system.modifiers.skills.rangedCbt.value}}" data-dtype="Number" />
-          </div>
-        {{/ifne}}
-        <div class="modifiers flexrow flex-group-center">
-          <label for="system.modifiers.skills.mobility.value" class="resource-label">{{localize 'ALIENRPG.Skillmobility'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label>
-          <input type="text" class="maxboxsize" name="system.modifiers.skills.mobility.value" value="{{system.modifiers.skills.mobility.value}}" data-dtype="Number" />
-        </div>
-        {{#ifne system.header.type.value '9'}}
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.skills.piloting.value" class="resource-label">{{localize 'ALIENRPG.Skillpiloting'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.skills.piloting.value" value="{{system.modifiers.skills.piloting.value}}" data-dtype="Number" />
-          </div>
-        {{/ifne}}
-        <div class="modifiers flexrow flex-group-center">
-          <label for="system.modifiers.skills.command.value" class="resource-label">{{localize 'ALIENRPG.Skillcommand'}} ({{localize 'ALIENRPG.AbilityAbbemp'}})</label>
-          <input type="text" class="maxboxsize" name="system.modifiers.skills.command.value" value="{{system.modifiers.skills.command.value}}" data-dtype="Number" />
-        </div>
-        <div class="modifiers flexrow flex-group-center">
-          <label for="system.modifiers.skills.manipulation.value" class="resource-label">{{localize 'ALIENRPG.Skillmanipulation'}} ({{localize 'ALIENRPG.AbilityAbbemp'}})</label>
-          <input type="text" class="maxboxsize" name="system.modifiers.skills.manipulation.value" value="{{system.modifiers.skills.manipulation.value}}" data-dtype="Number" />
-        </div>
-        <div class="modifiers flexrow flex-group-center">
-          <label for="system.modifiers.skills.medicalAid.value" class="resource-label">{{localize 'ALIENRPG.SkillmedicalAid'}} ({{localize 'ALIENRPG.AbilityAbbemp'}})</label>
-          <input type="text" class="maxboxsize" name="system.modifiers.skills.medicalAid.value" value="{{system.modifiers.skills.medicalAid.value}}" data-dtype="Number" />
-        </div>
-        {{#ifne system.header.type.value '9'}}
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.skills.observation.value" class="resource-label">{{localize 'ALIENRPG.Skillobservation'}} ({{localize 'ALIENRPG.AbilityAbbwit'}})</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.skills.observation.value" value="{{system.modifiers.skills.observation.value}}" data-dtype="Number" />
-          </div>
-        {{/ifne}}
-        <div class="modifiers flexrow flex-group-center">
-          <label for="system.modifiers.skills.survival.value" class="resource-label">{{localize 'ALIENRPG.Skillsurvival'}} ({{localize 'ALIENRPG.AbilityAbbwit'}})</label>
-          <input type="text" class="maxboxsize" name="system.modifiers.skills.survival.value" value="{{system.modifiers.skills.survival.value}}" data-dtype="Number" />
-        </div>
-        {{#ifne system.header.type.value '9'}}
-          <div class="modifiers flexrow flex-group-center">
-            <label for="system.modifiers.skills.comtech.value" class="resource-label">{{localize 'ALIENRPG.Skillcomtech'}} ({{localize 'ALIENRPG.AbilityAbbwit'}})</label>
-            <input type="text" class="maxboxsize" name="system.modifiers.skills.comtech.value" value="{{system.modifiers.skills.comtech.value}}" data-dtype="Number" />
-          </div>
-        {{/ifne}}
-      </div>
-    </div>
-
-    {{!-- Notes Tab --}}
-    <div class="tab item" data-group="primary" data-tab="notes">{{editor system.notes.notes target="system.notes.notes" button=true owner=owner editable=true}}</div>
-  </section>
+		{{!-- Notes Tab --}}
+		<div class="tab item" data-group="primary" data-tab="notes">
+			{{editor system.notes.notes target="system.notes.notes" button=true owner=owner editable=true}}
+		</div>
+	</section>
 </form>

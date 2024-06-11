@@ -406,24 +406,8 @@
 				<div class="Item2">
 					<div class="grid-two">
 						<label class="resource-label" style="font-weight: bold">{{localize 'ALIENRPG.Career'}}</label>
-						<select class="select-css" name="system.general.career.value" data-dtype="{{system.general.career.value}}">
-							{{#select system.general.career.value}}
-							<!-- <option value=""></option> -->
-							<option value="1">{{localize 'ALIENRPG.ColonialMarine'}}</option>
-							<option value="2">{{localize 'ALIENRPG.ColonialMarshal'}}</option>
-							<option value="3">{{localize 'ALIENRPG.CompanyAgent'}}</option>
-							<option value="4">{{localize 'ALIENRPG.Kid'}}</option>
-							<option value="5">{{localize 'ALIENRPG.Medic'}}</option>
-							<option value="6">{{localize 'ALIENRPG.Mercenary'}}</option>
-							<option value="7">{{localize 'ALIENRPG.Officer'}}</option>
-							<option value="8">{{localize 'ALIENRPG.Pilot'}}</option>
-							<option value="9">{{localize 'ALIENRPG.Roughneck'}}</option>
-							<option value="10">{{localize 'ALIENRPG.Scientist'}}</option>
-							<option value="13">{{localize 'ALIENRPG.Wildcatter'}}</option>
-							<option value="14">{{localize 'ALIENRPG.Entertainer'}}</option>
-							<option value="11">{{localize 'ALIENRPG.Synthetic'}}</option>
-							<option value="12">{{localize 'ALIENRPG.Homebrew'}}</option>
-							{{/select}}
+						<select class="select-css" id="system.general.career.value" name="system.general.career.value">
+							{{selectOptions career_list selected=system.general.career.value labelAttr="label" localize=true}}
 						</select>
 						<div class="box3 resource-label">
 							<label class="speciality-label" style="font-weight: bold">{{localize 'ALIENRPG.SPECIALTY'}}</label>

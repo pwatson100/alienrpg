@@ -22,7 +22,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 
 	/** @override */
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['alienrpg', 'sheet', 'actor', 'spacecraft-sheet'],
 			// template: 'systems/alienrpg/templates/actor/actor-sheet.html',
 			width: 1120,
@@ -35,11 +35,11 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 		const path = 'systems/alienrpg/templates/actor/';
 		// return `${path}actor-sheet.html`;
 		// unique item sheet by type, like `weapon-sheet.html`.
-		if (game.settings.get('alienrpg', 'aliencrt')) {
-			return `systems/alienrpg/templates/actor/crt/${this.actor.type}-sheet.html`;
-		} else {
-			return `${path}${this.actor.type}-sheet.html`;
-		}
+		// if (game.settings.get('alienrpg', 'aliencrt')) {
+		// 	return `systems/alienrpg/templates/actor/crt/${this.actor.type}-sheet.html`;
+		// } else {
+		return `${path}${this.actor.type}-sheet.html`;
+		// }
 	}
 
 	/* -------------------------------------------- */
@@ -71,6 +71,11 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 			i.labels = i.labels;
 			return i;
 		});
+
+		data.sensor_list = CONFIG.ALIENRPG.sensor_list;
+		data.pilot_list = CONFIG.ALIENRPG.pilot_list;
+		data.gunner_list = CONFIG.ALIENRPG.gunner_list;
+		data.engineer_list = CONFIG.ALIENRPG.engineer_list;
 
 		data.system.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
 		data.system.labels = this.actor.labels || {};
