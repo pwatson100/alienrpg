@@ -42,12 +42,7 @@ const euclidianDistances = function (segments, options = {}) {
 };
 
 Hooks.on('canvasInit', function () {
-	if (game.release.generation < 12) {
-		// gameCanvas.grid.diagonalRule = game.settings.get('alienrpg', 'diagonalMovement');
-		SquareGrid.prototype.measureDistances = euclidianDistances;
-	}
-
-	foundry.grid.SquareGrid.measureDistances = euclidianDistances;
+	foundry.grid.SquareGrid.prototype.measureDistances = euclidianDistances;
 });
 
 /*
