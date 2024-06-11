@@ -1,37 +1,25 @@
 <form class="{{cssClass}}" autocomplete="off">
-  <header class="vehicle-header">
-    <div class="header-fields">
-      <h1 class="charname">
-        <select class="select-css" name="name" value="{{name}}" data-dcareer="{{name}}">
-          {{#select name}}
-            <!-- <option value=""></option> -->
-            <option value="Heavy Machinery">{{localize "ALIENRPG.SkillheavyMach"}}</option>
-            <option value="Close Combat">{{localize "ALIENRPG.SkillcloseCbt"}}</option>
-            <option value="Stamina">{{localize "ALIENRPG.Skillstamina"}}</option>
-            <option value="Ranged Combat">{{localize "ALIENRPG.SkillrangedCbt"}}</option>
-            <option value="Mobility">{{localize "ALIENRPG.Skillmobility"}}</option>
-            <option value="Piloting">{{localize "ALIENRPG.Skillpiloting"}}</option>
-            <option value="Command">{{localize "ALIENRPG.Skillcommand"}}</option>
-            <option value="Manipulation">{{localize "ALIENRPG.Skillmanipulation"}}</option>
-            <option value="Medical Aid">{{localize "ALIENRPG.SkillmedicalAid"}}</option>
-            <option value="Observation">{{localize "ALIENRPG.Skillobservation"}}</option>
-            <option value="Survival">{{localize "ALIENRPG.Skillsurvival"}}</option>
-            <option value="Comtech">{{localize "ALIENRPG.Skillcomtech"}}</option>
-          {{/select}}
-        </select>
-      </h1>
-    </div>
-  </header>
+	<header class="vehicle-header">
+		<div class="header-fields">
+			<h1 class="charname">
+				<select class="select-css" name="name" value="{{name}}" data-dcareer="{{name}}">
+					{{selectOptions skills_list selected=name nameAttr="key" labelAttr="label" localize=true}}
+				</select>
+			</h1>
+		</div>
+	</header>
 
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="stunts">{{localize "ALIENRPG.Stunts"}}</a>
-    <!-- <a class="item" data-tab="notes">{{localize "ALIENRPG.Notes"}}</a> -->
-  </nav>
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		<a class="item" data-tab="stunts">{{localize "ALIENRPG.Stunts"}}</a>
+		<!-- <a class="item" data-tab="notes">{{localize "ALIENRPG.Notes"}}</a> -->
+	</nav>
 
-  {{!-- Sheet Body --}}
-  <section class="sheet-body" style="height: 375px">
-    {{!-- Attributes Tab --}}
-    <div class="tab item" data-group="primary" data-tab="stunts" style="border: solid 1px; padding: 5px">{{editor system.description target="system.description" button=true owner=owner editable=true}}</div>
-  </section>
+	{{!-- Sheet Body --}}
+	<section class="sheet-body" style="height: 375px">
+		{{!-- Attributes Tab --}}
+		<div class="tab item" data-group="primary" data-tab="stunts" style="border: solid 1px; padding: 5px">
+			{{editor system.description target="system.description" button=true owner=owner editable=true}}
+		</div>
+	</section>
 </form>

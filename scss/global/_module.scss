@@ -1,12 +1,13 @@
 /* .journal-sheet form { */
 .sheet.journal-entry .journal-entry-content {
-	color: var(--aliengreen);
+	// color: var(--aliengreen);
 	background: #000;
 	border: 1px solid var(--aliengreen);
 	border-radius: 1px;
 	background: var(--journalback) top left !important;
 	background-size: cover;
-	color: powderblue;
+	// color: #b0e0e6;
+	color: var(--alientextjournal) !important;
 }
 
 .sheet.journal-entry .sidebar .directory-header .header-search input {

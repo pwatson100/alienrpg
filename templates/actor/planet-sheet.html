@@ -11,7 +11,7 @@
 		<div class="tab general" data-group="primary" data-tab="general">
 			<div style="background-image: url(systems/alienrpg/images/planet-sheet.webp); background-repeat: no-repeat; height: 848px">
 				<div class="grid-colony-planet1">
-					<h6 class="resource-label gcp4">SOLAR SYSTEM</h6>
+					<h6 class="resource-label gcp4" style="font-family: OCR-A">SOLAR SYSTEM</h6>
 				</div>
 				<div class="grid-colony-planet2">
 					<h2 class="gcp14">
@@ -19,8 +19,8 @@
 					</h2>
 				</div>
 				<div class="grid-colony-planet3a">
-					<h6 class="resource-label gcp3a1">PARENT STAR</h6>
-					<h6 class="resource-label gcp3a7">RADIATION</h6>
+					<h6 class="resource-label gcp3a1" style="font-family: OCR-A">PARENT STAR</h6>
+					<h6 class="resource-label gcp3a7" style="font-family: OCR-A">RADIATION</h6>
 				</div>
 				<div class="grid-colony-planet3">
 					<input
@@ -41,11 +41,11 @@
 					/>
 				</div>
 				<div class="grid-colony-planet4a">
-					<h6 class="resource-label gcp4a2" style="font-size: smaller">SURVEYED PLANETS POSITION</h6>
-					<h6 class="resource-label gcp4a3">GAS GIANTS</h6>
-					<h6 class="resource-label gcp4a4">ROCKY<br />PLANETS</h6>
-					<h6 class="resource-label gcp4a5">ICE PLANETS</h6>
-					<h6 class="resource-label gcp4a6">ASTEROID<br />BELTS</h6>
+					<h6 class="resource-label gcp4a2" style="font-family: OCR-A; font-size: smaller">SURVEYED PLANETS POSITION</h6>
+					<h6 class="resource-label gcp4a3" style="font-family: OCR-A">GAS GIANTS</h6>
+					<h6 class="resource-label gcp4a4" style="font-family: OCR-A">ROCKY<br />PLANETS</h6>
+					<h6 class="resource-label gcp4a5" style="font-family: OCR-A">ICE PLANETS</h6>
+					<h6 class="resource-label gcp4a6" style="font-family: OCR-A">ASTEROID<br />BELTS</h6>
 				</div>
 				<div class="grid-colony-planet4">
 					<input
@@ -90,11 +90,11 @@
 					/>
 				</div>
 				<div class="grid-colony-planet6a">
-					<h6 class="resource-label gcp6a1">PLANET SIZE</h6>
-					<h6 class="resource-label gcp6a2">ATMOSPHERE</h6>
-					<h6 class="resource-label gcp6a4">HYDROSPHERE</h6>
-					<h6 class="resource-label gcp6a6">DAY LENGTH</h6>
-					<h6 class="resource-label gcp6a7">AXIAL TILT</h6>
+					<h6 class="resource-label gcp6a1" style="font-family: OCR-A">PLANET SIZE</h6>
+					<h6 class="resource-label gcp6a2" style="font-family: OCR-A">ATMOSPHERE</h6>
+					<h6 class="resource-label gcp6a4" style="font-family: OCR-A">HYDROSPHERE</h6>
+					<h6 class="resource-label gcp6a6" style="font-family: OCR-A">DAY LENGTH</h6>
+					<h6 class="resource-label gcp6a7" style="font-family: OCR-A">AXIAL TILT</h6>
 				</div>
 				<div class="grid-colony-planet6">
 					<input
@@ -139,11 +139,11 @@
 					/>
 				</div>
 				<div class="grid-colony-planet7a">
-					<h6 class="resource-label gcp7a1">GRAVITY</h6>
-					<h6 class="resource-label gcp7a2">CLIMATE</h6>
-					<h6 class="resource-label gcp7a4">GLOBAL FEATURE</h6>
-					<h6 class="resource-label gcp7a6">ORBITAL PERIOD</h6>
-					<h6 class="resource-label gcp7a7">PLANETARY PERSONALITY</h6>
+					<h6 class="resource-label gcp7a1" style="font-family: OCR-A">GRAVITY</h6>
+					<h6 class="resource-label gcp7a2" style="font-family: OCR-A">CLIMATE</h6>
+					<h6 class="resource-label gcp7a4" style="font-family: OCR-A">GLOBAL FEATURE</h6>
+					<h6 class="resource-label gcp7a6" style="font-family: OCR-A">ORBITAL PERIOD</h6>
+					<h6 class="resource-label gcp7a7" style="font-family: OCR-A">PLANETARY PERSONALITY</h6>
 				</div>
 				<div class="grid-colony-planet7">
 					<input
@@ -163,7 +163,13 @@
 						data-dtype="String"
 					/>
 
-					<textarea class="gcp74 colony-planet1" style="text-align: center" name="system.attributes.globalfeature" rows="3" data-dtype="String">
+					<textarea
+						class="gcp74 colony-planet1"
+						style="text-align: center; font-family: OCR-A"
+						name="system.attributes.globalfeature"
+						rows="3"
+						data-dtype="String"
+					>
 {{system.attributes.globalfeature}}</textarea
 					>
 					<input
@@ -184,13 +190,13 @@
 					/>
 				</div>
 				<div class="grid-colony-planet8a">
-					<h6 class="resource-label gcp8a4">NORTH POLE</h6>
+					<h6 class="resource-label gcp8a4" style="font-family: OCR-A">NORTH POLE</h6>
 				</div>
 				<div class="grid-colony-planet8">
 					<textarea class="gcp84 colony-planet2" name="system.attributes.northpole" rows="4" data-dtype="String">{{system.attributes.northpole}}</textarea>
 				</div>
 				<div class="grid-colony-planet9">
-					<h6 class="resource-label gcp94">RESOURCE POTENTIAL</h6>
+					<h6 class="resource-label gcp94" style="font-family: OCR-A">RESOURCE POTENTIAL</h6>
 					<input
 						class="gcp96"
 						style="margin: 31px 0px 0px 5px"
@@ -201,59 +207,67 @@
 					/>
 				</div>
 				<div class="grid-colony-planet10a">
-					<h6 class="resource-label gcp10a1">
+					<h6 class="resource-label gcp10a1" style="font-family: OCR-A">
 						NORTHERN <br />
 						HEMISPHERE WEST
 					</h6>
-					<h6 class="resource-label gcp10a4">EQUATOR</h6>
-					<h6 class="resource-label gcp10a7">
+					<h6 class="resource-label gcp10a4" style="font-family: OCR-A">EQUATOR</h6>
+					<h6 class="resource-label gcp10a7" style="font-family: OCR-A">
 						NORTHERN <br />
 						HEMISPHERE EAST
 					</h6>
 				</div>
 				<div class="grid-colony-planet10">
-					<textarea class="gcp101 colony-planet2" name="system.attributes.nhwest" rows="4" data-dtype="String">{{system.attributes.nhwest}}</textarea>
-					<textarea class="gcp104 colony-planet2" style="margin-top: 73px" name="system.attributes.equator" rows="4" data-dtype="String">
+					<textarea class="gcp101 colony-planet2" style="font-family: OCR-A" name="system.attributes.nhwest" rows="4" data-dtype="String">
+{{system.attributes.nhwest}}</textarea
+					>
+					<textarea class="gcp104 colony-planet2" style="margin-top: 73px; font-family: OCR-A" name="system.attributes.equator" rows="4" data-dtype="String">
 {{system.attributes.equator}}</textarea
 					>
-					<textarea class="gcp107 colony-planet2" name="system.attributes.nheast" rows="4" data-dtype="String">{{system.attributes.nheast}}</textarea>
+					<textarea class="gcp107 colony-planet2" style="font-family: OCR-A" name="system.attributes.nheast" rows="4" data-dtype="String">
+{{system.attributes.nheast}}</textarea
+					>
 				</div>
 
 				<div class="grid-colony-planet11">
-					<h6 class="resource-label gcp111">RESOURCE POTENTIAL</h6>
+					<h6 class="resource-label gcp111" style="font-family: OCR-A">RESOURCE POTENTIAL</h6>
 					<input class="gcp112" style="margin: 27px 0px 0px -6px" name="system.attributes.rpnhwest" type="checkbox" {{checked system.attributes.rpnhwest}} />
-					<h6 class="resource-label gcp113">RESOURCE POTENTIAL</h6>
+					<h6 class="resource-label gcp113" style="font-family: OCR-A">RESOURCE POTENTIAL</h6>
 					<input class="gcp114" style="margin: 105px 0px 0px -5px" name="system.attributes.rpequator" type="checkbox" {{checked system.attributes.rpequator}} />
-					<h6 class="resource-label gcp115">RESOURCE POTENTIAL</h6>
+					<h6 class="resource-label gcp115" style="font-family: OCR-A">RESOURCE POTENTIAL</h6>
 					<input class="gcp116" style="margin: 27px 0px 0px -6px" name="system.attributes.rpnheast" type="checkbox" {{checked system.attributes.rpnheast}} />
 				</div>
 
 				<div class="grid-colony-planet12a">
-					<h6 class="resource-label gcp12a1">
+					<h6 class="resource-label gcp12a1" style="font-family: OCR-A">
 						SOUTHERN <br />
 						HEMISPHERE WEST
 					</h6>
-					<h6 class="resource-label gcp12a4">SOUTH POLE</h6>
-					<h6 class="resource-label gcp12a7">
+					<h6 class="resource-label gcp12a4" style="font-family: OCR-A">SOUTH POLE</h6>
+					<h6 class="resource-label gcp12a7" style="font-family: OCR-A">
 						SOUTHERN <br />
 						HEMISPHERE EAST
 					</h6>
 				</div>
 				<div class="grid-colony-planet12">
-					<textarea class="gcp121 colony-planet2" name="system.attributes.shwest" rows="4" data-dtype="String">{{system.attributes.shwest}}</textarea>
+					<textarea class="gcp121 colony-planet2" style="font-family: OCR-A" name="system.attributes.shwest" rows="4" data-dtype="String">
+{{system.attributes.shwest}}</textarea
+					>
 
-					<textarea class="gcp124 colony-planet2" style="margin-top: 67px" name="system.attributes.southpole" rows="4" data-dtype="String">
+					<textarea class="gcp124 colony-planet2" style="margin-top: 67px; font-family: OCR-A" name="system.attributes.southpole" rows="4" data-dtype="String">
 {{system.attributes.southpole}}</textarea
 					>
-					<textarea class="gcp127 colony-planet2" name="system.attributes.sheast" rows="4" data-dtype="String">{{system.attributes.sheast}}</textarea>
+					<textarea class="gcp127 colony-planet2" style="font-family: OCR-A" name="system.attributes.sheast" rows="4" data-dtype="String">
+{{system.attributes.sheast}}</textarea
+					>
 				</div>
 
 				<div class="grid-colony-planet13a">
-					<h6 class="resource-label gcp13a1">RESOURCE POTENTIAL</h6>
+					<h6 class="resource-label gcp13a1" style="font-family: OCR-A">RESOURCE POTENTIAL</h6>
 
 					<input class="gcp13a2" style="margin: 27px 0px 0px -6px" name="system.attributes.rpshwest" type="checkbox" {{checked system.attributes.rpshwest}} />
 
-					<h6 class="resource-label gcp13a3">RESOURCE POTENTIAL</h6>
+					<h6 class="resource-label gcp13a3" style="font-family: OCR-A">RESOURCE POTENTIAL</h6>
 					<input
 						class="gcp13a4"
 						style="margin: 105px 0px 0px -5px"
@@ -263,7 +277,7 @@
 						system.attributes.rpsouthpole}}
 					/>
 
-					<h6 class="resource-label gcp13a5">RESOURCE POTENTIAL</h6>
+					<h6 class="resource-label gcp13a5" style="font-family: OCR-A">RESOURCE POTENTIAL</h6>
 					<input class="gcp13a6" style="margin: 27px 0px 0px -6px" name="system.attributes.rpsheast" type="checkbox" {{checked system.attributes.rpsheast}} />
 				</div>
 			</div>
