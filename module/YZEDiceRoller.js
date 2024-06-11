@@ -37,16 +37,16 @@ export class yze {
 		// *******************************************************
 		// Is Dice So Nice enabled ?
 		// *******************************************************
-		let niceDice = '';
+		// let niceDice = '';
 		let myActor = '';
 		let dataset = '';
 
-		try {
-			niceDice = true;
-			game.settings.get('dice-so-nice', 'settings').enabled;
-		} catch {
-			niceDice = false;
-		}
+		// try {
+		// 	niceDice = true;
+		// 	game.settings.get('dice-so-nice', 'settings').enabled;
+		// } catch {
+		// 	niceDice = false;
+		// }
 		let spud = false;
 
 		// *******************************************************
@@ -124,7 +124,7 @@ export class yze {
 		if (r1Dice >= 1) {
 			roll1 = `${r1Dice}` + 'db';
 			if (r2Dice <= 0) {
-				mr = await Roll.create(`${roll1}`).evaluate();
+				mr = await new Roll(`${roll1}`).evaluate();
 				buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
 				// console.log('yze -> yzeRoll -> mr', mr);
 			}
@@ -157,7 +157,7 @@ export class yze {
 				com = `${roll1}` + '+' + `${roll2}`;
 				// mr = '';
 			}
-			mr = await Roll.create(`${com}`).evaluate();
+			mr = await new Roll(`${com}`).evaluate();
 
 			// mr = new Roll(`${com}`).evaluate({ async: false });
 			// await mr.evaluate({ async: true });
@@ -342,37 +342,24 @@ export class yze {
 		// For FVTT v0.7.x and DsN V3 set the appropriate chat config
 		// *******************************************************
 
-		if (!blind) {
-			ChatMessage.create({
-				user: game.user.id,
-				speaker: {
-					actor: actorid,
-					// alias: tactorid,
-				},
-				content: chatMessage,
-				other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
-				sound: CONFIG.sounds.dice,
-				// type: CONST.CHAT_MESSAGE_STYLES.ROLL,
-				roll: mr,
-				rollMode: game.settings.get('core', 'rollMode'),
-				flags: { tactorid },
-			});
-		} else {
-			ChatMessage.create({
-				user: game.user.id,
-				speaker: {
-					actor: actorid,
-				},
-				content: chatMessage,
-				whisper: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
-				blind: true,
-				// type: CONST.CHAT_MESSAGE_STYLES.ROLL,
-				roll: mr,
-				rollMode: game.settings.get('core', 'rollMode'),
-				flags: { tactorid },
-			});
+		let chatData = {
+			user: game.user.id,
+			speaker: ChatMessage.getSpeaker({
+				actor: actorid,
+			}),
+			roll: mr,
+			rollMode: game.settings.get('core', 'rollMode'),
+			content: chatMessage,
+			sound: CONFIG.sounds.dice,
+			flags: { tactorid },
+		};
+		if (['gmroll', 'blindroll'].includes(chatData.rollMode)) {
+			chatData.whisper = ChatMessage.getWhisperRecipients('GM');
+		} else if (chatData.rollMode === 'selfroll') {
+			chatData.whisper = [game.user];
 		}
-		// }
+		ChatMessage.create(chatData);
+		return;
 
 		// *******************************************************
 		// Function to build chat and dice for DsN V3

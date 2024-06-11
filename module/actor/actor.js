@@ -431,7 +431,7 @@ export class alienrpgActor extends Actor {
 				} else aStress = actor.getRollData().header.stress.value + rollModifier;
 
 				let modRoll = '1d6' + '+' + parseInt(aStress);
-				const roll = await Roll.create(modRoll).evaluate();
+				const roll = await new Roll(modRoll).evaluate();
 				const customResults = await table.roll({ roll });
 				console.warn(
 					`Rolling stress, ${modRoll}, Panic Value ${actor.system.general.panic.value}, Last ${actor.system.general.panic.lastRoll}, Roll ${customResults.roll.total}`
@@ -1199,13 +1199,13 @@ export class alienrpgActor extends Actor {
 		}
 		const table = game.tables.contents.find((b) => b.name === targetTable);
 
-		const roll = await Roll.create('1d6').evaluate();
+		const roll = await new Roll('1d6').evaluate();
 
 		if (!manCrit) {
 			customResults = await table.roll({ roll });
 		} else {
 			const formula = manCrit;
-			const roll = await Roll.create(formula).evaluate();
+			const roll = await new Roll(formula).evaluate();
 			customResults = await table.roll({ roll });
 		}
 
@@ -1419,7 +1419,7 @@ export class alienrpgActor extends Actor {
 			test1 = await atable.draw({ displayChat: false });
 		} else {
 			const formula = manCrit;
-			const roll = await Roll.create(formula).evaluate();
+			const roll = await new Roll(formula).evaluate();
 			test1 = await atable.draw({ roll: roll, displayChat: false });
 		}
 		const messG = test1.results[0].text;
@@ -1434,8 +1434,8 @@ export class alienrpgActor extends Actor {
 						if (testArray[9].length > 0) {
 							rollheal = testArray[9].match(/^\[\[([0-9]d[0-9]+)]/)[1];
 							newHealTime = testArray[9].match(/^\[\[([0-9]d[0-9]+)\]\] ?(.*)/)[2];
-							testArray[9] = (await Roll.create(`${rollheal}`).evaluate()).result + ' ' + newHealTime;
-							// testArray[9] = (await Roll.create(`${rollheal}`).evaluate().result) + ' ' + newHealTime;
+							testArray[9] = (await new Roll(`${rollheal}`).evaluate()).result + ' ' + newHealTime;
+							// testArray[9] = (await new Roll(`${rollheal}`).evaluate().result) + ' ' + newHealTime;
 						} else {
 							testArray[9] = 'None';
 						}
