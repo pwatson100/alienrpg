@@ -85,7 +85,6 @@ export class alienrpgActorSheet extends ActorSheet {
 				await this._prepareItems(data);
 				let enrichedFields = ['system.notes', 'system.adhocitems'];
 				await this._enrichTextFields(data, enrichedFields);
-				data.career_list = CONFIG.ALIENRPG.career_list;
 
 				data.system.RADmax = data.system.general.radiation.max;
 				data.system.RADcurrent = data.system.general.radiation.value;
@@ -118,7 +117,6 @@ export class alienrpgActorSheet extends ActorSheet {
 				await this._prepareItems(data);
 				let enrichedFields3 = ['actor.system.notes', 'actor.system.adhocitems'];
 				await this._enrichTextFields(data, enrichedFields3);
-				data.career_list = CONFIG.ALIENRPG.career_list;
 				data.system.RADmax = data.system.general.radiation.max;
 				data.system.RADcurrent = data.system.general.radiation.value;
 				data.system.RADfill = data.system?.RADmax - data.system.general.radiation?.calculatedMax || 0;

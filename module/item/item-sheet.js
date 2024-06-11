@@ -7,7 +7,7 @@ import { logger } from '../logger.js';
 export class alienrpgItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
+		return mergeObject(super.defaultOptions, {
 			classes: ['alienrpg', 'sheet', 'item', 'item-sheet'],
 			width: 675,
 			// height: 489 + 'max-content',
@@ -49,7 +49,6 @@ export class alienrpgItemSheet extends ItemSheet {
 			case 'critical-injury':
 				let enrichedFields1 = ['system.attributes.effects'];
 				await this._enrichTextFields(item, enrichedFields1);
-				item.crit_timelimit_list = CONFIG.ALIENRPG.crit_timelimit_list;
 				break;
 			case 'spacecraft-crit':
 				await this._prepareShipCritData(item);
@@ -63,8 +62,6 @@ export class alienrpgItemSheet extends ItemSheet {
 			case 'skill-stunts':
 				let enrichedFields5 = ['system.description'];
 				await this._enrichTextFields(item, enrichedFields5);
-				item.skills_list = CONFIG.ALIENRPG.skills_list;
-
 				break;
 			case 'talent':
 				await this._prepareTalentData(item);
@@ -77,13 +74,6 @@ export class alienrpgItemSheet extends ItemSheet {
 				// item, weapon, armor
 				let enrichedFieldsDef = ['system.notes.notes', 'system.general.comment.value', 'system.attributes.comment.value'];
 				await this._enrichTextFields(item, enrichedFieldsDef);
-				item.weapon_type_list = CONFIG.ALIENRPG.weapon_type_list;
-				item.weapon_range_list = CONFIG.ALIENRPG.weapon_range_list;
-				item.ship_weapon_type_list = CONFIG.ALIENRPG.ship_weapon_type_list;
-				item.ship_weapon_range_list = CONFIG.ALIENRPG.ship_weapon_range_list;
-				item.ship_hardpoint_list = CONFIG.ALIENRPG.ship_hardpoint_list;
-				item.ship_attributes_list = CONFIG.ALIENRPG.ship_attributes_list;
-				item.item_types_list = CONFIG.ALIENRPG.item_types_list;
 
 				break;
 		}
@@ -92,7 +82,7 @@ export class alienrpgItemSheet extends ItemSheet {
 	}
 
 	async _prepareSystemData(data) {
-		this.item.update({ img: 'systems/alienrpg/images/icons/solar-system.webp' });
+		this.item.update({ img: 'systems/alienrpg/images/icons/solar-system.svg' });
 		let enrichedFields = ['system.misc.comment.value'];
 		await this._enrichTextFields(data, enrichedFields);
 	}
@@ -114,38 +104,35 @@ export class alienrpgItemSheet extends ItemSheet {
 
 	async _prepareTalentData(data) {
 		if (data.system.general.career.value === '1' || data.system.general.career.value === '') {
-			this.item.update({ img: 'systems/alienrpg/images/icons/sprint.webp' });
+			this.item.update({ img: 'systems/alienrpg/images/icons/sprint.svg' });
 		} else {
-			this.item.update({ img: 'systems/alienrpg/images/icons/fire-dash.webp' });
+			this.item.update({ img: 'systems/alienrpg/images/icons/fire-dash.svg' });
 		}
 
 		let enrichedFields6 = ['system.notes.notes', 'system.general.comment.value'];
 		await this._enrichTextFields(data, enrichedFields6);
-		data.career_list = CONFIG.ALIENRPG.career_list;
 	}
 
 	async _prepareShipCritData(data) {
 		if (data.system.header.type.value === '1') {
-			this.item.update({ img: 'systems/alienrpg/images/icons/auto-repair.webp' });
+			this.item.update({ img: 'systems/alienrpg/images/icons/auto-repair.svg' });
 		} else if (data.system.header.type.value === '0') {
-			this.item.update({ img: 'systems/alienrpg/images/icons/spanner.webp' });
+			this.item.update({ img: 'systems/alienrpg/images/icons/spanner.svg' });
 		}
 
 		let enrichedFields6 = ['system.header.effects'];
 		await this._enrichTextFields(data, enrichedFields6);
-		data.crit_list = CONFIG.ALIENRPG.crit_list;
 	}
-
 	async _prepareColonyInitiativeData(item) {
 		switch (item.system.header.type) {
 			case '1':
-				item.update({ img: 'systems/alienrpg/images/icons/full-folder.webp' });
+				item.update({ img: 'systems/alienrpg/images/icons/full-folder.svg' });
 				break;
 			case '2':
-				item.update({ img: 'systems/alienrpg/images/icons/habitat-dome.webp' });
+				item.update({ img: 'systems/alienrpg/images/icons/habitat-dome.svg' });
 				break;
 			case '3':
-				item.update({ img: 'systems/alienrpg/images/icons/diagram.webp' });
+				item.update({ img: 'systems/alienrpg/images/icons/diagram.svg' });
 				break;
 
 			default:
@@ -153,7 +140,6 @@ export class alienrpgItemSheet extends ItemSheet {
 		}
 		let enrichedFields6 = ['system.notes', 'system.header.comment'];
 		await this._enrichTextFields(item, enrichedFields6);
-		item.colony_policy_list = CONFIG.ALIENRPG.colony_policy_list;
 	}
 
 	/* -------------------------------------------- */

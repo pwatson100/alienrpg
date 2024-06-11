@@ -555,13 +555,3 @@ Fixed issue with Critical Injury #31 that was applying -2 modifiers rather than 
 Fixed issue on Vehicles and Starships where Android crew could not fire weapons or make piloting/comtech rolls.
 Fixed issue will supply rolls not working when the mouse keys are switched.
 Panic on Ship rolls now use the correct table "Space Combat Panic Roll".
-
-Version 3.1.8
-If an actor token is hidden when added to the combat tracker it will no longer produce a chat message (for player or GM) when the initiative is rolled.  
-
-Bug Fixes:
-Corrected issues with the Colony and Planet sheets not rendering when the CRT UI is activated.
-Fixed issue where the Journal font colour configuration which was not working. 
-Fixed issue with token images for Territories, Colony Sheet and Colony Planet actors.
-Corrected issue on the CRT Synthetic sheet where the edit button was not showing on the Description tab. 
-Corrected layout issue on the Synthetic sheet where Overwatch and Radiation were overlapping.  
