@@ -565,7 +565,3 @@ Fixed issue where the Journal font colour configuration which was not working.
 Fixed issue with token images for Territories, Colony Sheet and Colony Planet actors.
 Corrected issue on the CRT Synthetic sheet where the edit button was not showing on the Description tab. 
 Corrected layout issue on the Synthetic sheet where Overwatch and Radiation were overlapping.  
-
-Version 3.2.0
-FVTT V11 & V12 compatibility.
-
