@@ -31,7 +31,7 @@ jobs:
         # 5. Tell the FVTT CLI that we are working on a "system" package.
       - run: fvtt package workon fvtt package workon "alienrpg" --type "System"
         # 6-11. Package each folder of source json files into the appropriate LevelDB pack.
-      - run: fvtt package pack "alien-rpg-system" --in "packs/source/alien-rpg-system" --out "packs"
+      - run: fvtt package pack "alien-rpg-system" --in "/packs/source/alien-rpg-system" --out "packs"
       #Substitute the Manifest and Download URLs in the module.json
       - name: Substitute Manifest and Download Links For Versioned Ones
         id: sub_release_manifest_version
