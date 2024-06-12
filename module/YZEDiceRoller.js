@@ -341,13 +341,12 @@ export class yze {
 		// *******************************************************
 		// For FVTT v0.7.x and DsN V3 set the appropriate chat config
 		// *******************************************************
-
 		let chatData = {
 			user: game.user.id,
 			speaker: ChatMessage.getSpeaker({
 				actor: actorid,
 			}),
-			roll: mr,
+			rolls: [mr],
 			rollMode: game.settings.get('core', 'rollMode'),
 			content: chatMessage,
 			sound: CONFIG.sounds.dice,
