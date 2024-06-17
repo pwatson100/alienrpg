@@ -166,6 +166,18 @@
 					"value": 0,
 					"max": 1
 				},
+				"hypoxia": {
+					"value": 0,
+					"max": 1
+				},
+				"heatstroke": {
+					"value": 0,
+					"max": 1
+				},
+				"gravitydyspraxia": {
+					"value": 0,
+					"max": 1
+				},
 				"critInj": {
 					"value": ""
 				},
@@ -366,6 +378,18 @@
 					"max": 1
 				},
 				"freezing": {
+					"value": 0,
+					"max": 1
+				},
+				"hypoxia": {
+					"value": 0,
+					"max": 1
+				},
+				"heatstroke": {
+					"value": 0,
+					"max": 1
+				},
+				"gravitydyspraxia": {
 					"value": 0,
 					"max": 1
 				},

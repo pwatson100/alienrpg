@@ -174,6 +174,24 @@ export class alienrpgActor extends Actor {
 		} else {
 			foundry.utils.setProperty(actorData, 'system.general.panic.value', 0);
 		}
+		let conDition7 = await this.hasCondition('hypoxia');
+		if (conDition7 != undefined || conDition7) {
+			foundry.utils.setProperty(actorData, 'system.general.hypoxia.value', true);
+		} else {
+			foundry.utils.setProperty(actorData, 'system.general.hypoxia.value', false);
+		}
+		let conDition8 = await this.hasCondition('heatstroke');
+		if (conDition8 != undefined || conDition8) {
+			foundry.utils.setProperty(actorData, 'system.general.heatstroke.value', true);
+		} else {
+			foundry.utils.setProperty(actorData, 'system.general.heatstroke.value', false);
+		}
+		let conDition9 = await this.hasCondition('gravitydyspraxia');
+		if (conDition9 != undefined || conDition9) {
+			foundry.utils.setProperty(actorData, 'system.general.gravitydyspraxia.value', true);
+		} else {
+			foundry.utils.setProperty(actorData, 'system.general.gravitydyspraxia.value', false);
+		}
 	}
 
 	async pushRoll(actor, reRoll, hostile, blind, message) {

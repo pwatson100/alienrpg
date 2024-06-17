@@ -568,4 +568,5 @@ Corrected layout issue on the Synthetic sheet where Overwatch and Radiation were
 
 Version 3.2.0
 FVTT V12 only compatibility.
-
+XP and SP now remain visible all the time to allow for both to be recorded.
+Added the Hypoxia, Heatstroke and Gravity Dyspraxia conditions. 

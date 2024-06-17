@@ -108,6 +108,24 @@ ALIENRPG.conditionEffects = [
 		icon: 'systems/alienrpg/images/radiation.webp',
 	},
 	{
+		id: 'hypoxia',
+		name: 'ALIENRPG.hypoxia',
+		label: 'ALIENRPG.hypoxia',
+		icon: 'systems/alienrpg/images/hypoxia.webp',
+	},
+	{
+		id: 'heatstroke',
+		name: 'ALIENRPG.heatstroke',
+		label: 'ALIENRPG.heatstroke',
+		icon: 'systems/alienrpg/images/heatstroke.webp',
+	},
+	{
+		id: 'gravitydyspraxia',
+		name: 'ALIENRPG.gravitydyspraxia',
+		label: 'ALIENRPG.gravitydyspraxia',
+		icon: 'systems/alienrpg/images/gravitydyspraxia.webp',
+	},
+	{
 		id: 'criticalinj',
 		name: 'ALIENRPG.CriticalInjuries',
 		label: 'ALIENRPG.CriticalInjuries',

@@ -189,34 +189,6 @@
 			<div class="grid-genPage">
 				<!-- Col1 -->
 				<div class="Item1">
-					{{#if system.general.xp.value}}
-					<div style="margin-bottom: 10px; width: 150px; margin-left: auto; margin-right: auto">
-						<h2 class="resource-label">{{localize 'ALIENRPG.campaign'}}</h2>
-						<h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
-						<div class="newdots click-xp-stat-level">
-							{{#times system.XPcurrent}}
-							<i class="far fa-dot-circle"></i>
-							{{/times}} {{#times system.XPlost}}
-							<i class="far fa-circle"></i>
-							{{/times}}
-						</div>
-					</div>
-					{{else if system.general.sp.value}}
-					<div style="margin-bottom: 10px; width: 150px; margin-left: auto; margin-right: auto">
-						<h2 class="resource-label">{{localize 'ALIENRPG.cinematic'}}</h2>
-						<div>
-							<br />
-							<h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
-							<div class="newdots click-sp-stat-level">
-								{{#times system.SPcurrent}}
-								<i class="far fa-dot-circle"></i>
-								{{/times}} {{#times system.SPlost}}
-								<i class="far fa-circle"></i>
-								{{/times}}
-							</div>
-						</div>
-					</div>
-					{{else}}
 					<div style="margin-bottom: 10px; width: 150px; margin-left: auto; margin-right: auto">
 						<h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
 						<div class="newdots click-xp-stat-level">
@@ -227,17 +199,14 @@
 							{{/times}}
 						</div>
 					</div>
-					<div class="sp_faded">
-						<h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
-						<div class="newdots click-sp-stat-level">
-							{{#times system.SPcurrent}}
-							<i class="far fa-dot-circle"></i>
-							{{/times}} {{#times system.SPlost}}
-							<i class="far fa-circle"></i>
-							{{/times}}
-						</div>
+					<h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
+					<div class="newdots click-sp-stat-level">
+						{{#times system.SPcurrent}}
+						<i class="far fa-dot-circle"></i>
+						{{/times}} {{#times system.SPlost}}
+						<i class="far fa-circle"></i>
+						{{/times}}
 					</div>
-					{{/if}}
 					<br />
 					<div style="margin-top: 6px">
 						<label class="resource-label">{{localize 'ALIENRPG.Cash'}}</label>
@@ -295,6 +264,42 @@
 								{{/ife}}
 							</a>
 							{{ localize 'ALIENRPG.Freezing'}}
+						</h3>
+					</div>
+					<div class="hypoxia">
+						<h3 class="condition resource-label" data-key="hypoxia" title="{{ localize 'ALIENRPG.ConButtons'}}">
+							<a class="overwatch-toggle">
+								{{#ife system.general.hypoxia.value true}}
+								<i class="far fa-dot-circle"></i>
+								{{else}}
+								<i class="far fa-circle"></i>
+								{{/ife}}
+							</a>
+							{{ localize 'ALIENRPG.hypoxia'}}
+						</h3>
+					</div>
+					<div class="heatstroke">
+						<h3 class="condition resource-label" data-key="heatstroke" title="{{ localize 'ALIENRPG.ConButtons'}}">
+							<a class="overwatch-toggle">
+								{{#ife system.general.heatstroke.value true}}
+								<i class="far fa-dot-circle"></i>
+								{{else}}
+								<i class="far fa-circle"></i>
+								{{/ife}}
+							</a>
+							{{ localize 'ALIENRPG.heatstroke'}}
+						</h3>
+					</div>
+					<div class="gravitydyspraxia">
+						<h3 class="condition resource-label" data-key="gravitydyspraxia" title="{{ localize 'ALIENRPG.ConButtons'}}">
+							<a class="overwatch-toggle">
+								{{#ife system.general.gravitydyspraxia.value true}}
+								<i class="far fa-dot-circle"></i>
+								{{else}}
+								<i class="far fa-circle"></i>
+								{{/ife}}
+							</a>
+							{{ localize 'ALIENRPG.gravitydyspraxia'}}
 						</h3>
 					</div>
 					<div class="panic" style="height: 22px">
@@ -389,6 +394,9 @@
 								data-dtype="Number"
 								disabled
 							/>
+							<button type="button" data-spbutt="Power" disabled>
+								<i class="fa fa-chevron-up" title="You need to go to the Invetory Tab to make this Supply Roll"></i>
+							</button>
 						</div>
 					</div>
 				</div>
