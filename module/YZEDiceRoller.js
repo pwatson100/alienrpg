@@ -159,9 +159,9 @@ export class yze {
 			}
 			mr = await new Roll(`${com}`).evaluate();
 
-			mr = new Roll(`${com}`).evaluate({ async: false });
+			// mr = new Roll(`${com}`).evaluate({ async: false });
 			// await mr.evaluate({ async: true });
-			// // console.log('yze -> yzeRoll -> mr', mr);
+			// console.log('yze -> yzeRoll -> mr', mr);
 			buildChat(mr, r1Dice, 'Stress');
 
 			// *******************************************************
@@ -205,7 +205,7 @@ export class yze {
 					}
 				}
 				// }
-			} else if (game.alienrpg.rollArr.r2One >= 1) {
+			} else if (game.alienrpg.rollArr.r2One >= 1 && label != game.i18n.localize('ALIENRPG.RadiationReduced')) {
 				chatMessage +=
 					'<div class="alienchatblue warnblink"; style="font-weight: bold; font-size: larger">' + game.i18n.localize('ALIENRPG.supplyDecreases') + '</div>';
 			}

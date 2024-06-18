@@ -45,8 +45,8 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 	/* -------------------------------------------- */
 	async _enrichTextFields(data, fieldNameArr) {
 		for (let t = 0; t < fieldNameArr.length; t++) {
-			if (hasProperty(data, fieldNameArr[t])) {
-				setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(getProperty(data, fieldNameArr[t]), { async: true }));
+			if (foundry.utils.hasProperty(data, fieldNameArr[t])) {
+				foundry.utils.setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true }));
 			}
 		}
 	}
@@ -628,7 +628,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 		}
 	}
 
-	_dropCrew(actorId) {
+	async _dropCrew(actorId) {
 		const crew = game.actors.get(actorId);
 		const actorData = this.actor;
 		if (!crew) return;
@@ -638,10 +638,10 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 			if (actorData.system.crew.passengerQty >= actorData.system.attributes.crew.value) {
 				return ui.notifications.warn(game.i18n.localize('ALIENRPG.fullCrew'));
 			}
-			return this.actor.addVehicleOccupant(actorId);
+			return await actorData.addVehicleOccupant(actorId);
 		}
 	}
-	_onCrewEdit(event) {
+	async _onCrewEdit(event) {
 		event.preventDefault();
 		const elem = event.currentTarget;
 		const crewId = elem.closest('.occupant').dataset.crewId;

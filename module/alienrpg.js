@@ -42,7 +42,12 @@ const euclidianDistances = function (segments, options = {}) {
 };
 
 Hooks.on('canvasInit', function () {
-	SquareGrid.prototype.measureDistances = euclidianDistances;
+	if (game.release.generation < 12) {
+		// gameCanvas.grid.diagonalRule = game.settings.get('alienrpg', 'diagonalMovement');
+		SquareGrid.prototype.measureDistances = euclidianDistances;
+	}
+
+	foundry.grid.SquareGrid.measureDistances = euclidianDistances;
 });
 
 /*
@@ -458,7 +463,7 @@ Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
 	if (actor.type === 'vehicles' || actor.type === 'spacecraft') {
 		// When dropping an actor on a vehicle sheet.
 		let crew = await fromUuid(data.uuid);
-		if (data.type === 'Actor') sheet._dropCrew(crew.id);
+		if (data.type === 'Actor') await sheet._dropCrew(crew.id);
 	}
 });
 
