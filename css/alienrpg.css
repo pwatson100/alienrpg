@@ -830,7 +830,7 @@ button:focus {
 .character-consumables {
   display: block;
   width: 153px;
-  height: 330px;
+  height: 353px;
   margin-left: auto;
   margin-right: auto;
   background-size: 100%;
@@ -1127,7 +1127,7 @@ button:focus {
 .clone-actor {
   display: inline-block;
   width: 200px;
-  height: 119px;
+  height: 143px;
   background: url(../images/mother-instructions/clone-actor.webp);
   margin-left: 25%;
   margin-right: auto;
@@ -6190,14 +6190,16 @@ combobox:focus {
   border: 1px dashed var(--alienitemselect);
   color: var(--alienitemselect);
   width: 98%;
-  padding-top: 16px;
-  padding-bottom: 19px;
+  padding-bottom: 3px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  margin: 2px;
+  margin-top: -12px;
+  margin-bottom: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 .alienrpg .crt #bottom {
   position: absolute;

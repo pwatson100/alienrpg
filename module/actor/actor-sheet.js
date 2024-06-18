@@ -26,7 +26,8 @@ export class alienrpgActorSheet extends ActorSheet {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
 			width: 800,
-			height: 900 - 'min-content',
+			// height: 900 - 'min-content',
+			height: 950 - 'min-content',
 			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
 		});
 	}

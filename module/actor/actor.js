@@ -172,7 +172,25 @@ export class alienrpgActor extends Actor {
 		if (conDition6 != undefined || conDition6) {
 			setProperty(actorData, 'system.general.panic.value', 1);
 		} else {
-			setProperty(actorData, 'system.general.panic.value', 0);
+			foundry.utils.setProperty(actorData, 'system.general.panic.value', 0);
+		}
+		let conDition7 = await this.hasCondition('hypoxia');
+		if (conDition7 != undefined || conDition7) {
+			foundry.utils.setProperty(actorData, 'system.general.hypoxia.value', true);
+		} else {
+			foundry.utils.setProperty(actorData, 'system.general.hypoxia.value', false);
+		}
+		let conDition8 = await this.hasCondition('heatstroke');
+		if (conDition8 != undefined || conDition8) {
+			foundry.utils.setProperty(actorData, 'system.general.heatstroke.value', true);
+		} else {
+			foundry.utils.setProperty(actorData, 'system.general.heatstroke.value', false);
+		}
+		let conDition9 = await this.hasCondition('gravitydyspraxia');
+		if (conDition9 != undefined || conDition9) {
+			foundry.utils.setProperty(actorData, 'system.general.gravitydyspraxia.value', true);
+		} else {
+			foundry.utils.setProperty(actorData, 'system.general.gravitydyspraxia.value', false);
 		}
 	}
 
@@ -431,8 +449,7 @@ export class alienrpgActor extends Actor {
 				} else aStress = actor.getRollData().header.stress.value + rollModifier;
 
 				let modRoll = '1d6' + '+' + parseInt(aStress);
-				const roll = new Roll(modRoll);
-				roll.evaluate({ async: false });
+				const roll = await new Roll(modRoll).evaluate();
 				const customResults = await table.roll({ roll });
 				console.warn(
 					`Rolling stress, ${modRoll}, Panic Value ${actor.system.general.panic.value}, Last ${actor.system.general.panic.lastRoll}, Roll ${customResults.roll.total}`
@@ -1190,15 +1207,15 @@ export class alienrpgActor extends Actor {
 			return;
 		}
 		const table = game.tables.contents.find((b) => b.name === targetTable);
-		const roll = new Roll('1d6');
+
+		const roll = await new Roll('1d6').evaluate();
 
 		if (!manCrit) {
 			roll.evaluate({ async: false });
 			customResults = await table.roll({ roll });
 		} else {
 			const formula = manCrit;
-			const roll = new Roll(formula);
-			roll.evaluate({ async: false });
+			const roll = await new Roll(formula).evaluate();
 			customResults = await table.roll({ roll });
 		}
 
@@ -1414,8 +1431,7 @@ export class alienrpgActor extends Actor {
 			test1 = await atable.draw({ displayChat: false });
 		} else {
 			const formula = manCrit;
-			const roll = new Roll(formula);
-			roll.evaluate({ async: false });
+			const roll = await new Roll(formula).evaluate();
 			test1 = await atable.draw({ roll: roll, displayChat: false });
 		}
 		const messG = test1.results[0].text;
@@ -1430,7 +1446,8 @@ export class alienrpgActor extends Actor {
 						if (testArray[9].length > 0) {
 							rollheal = testArray[9].match(/^\[\[([0-9]d[0-9]+)]/)[1];
 							newHealTime = testArray[9].match(/^\[\[([0-9]d[0-9]+)\]\] ?(.*)/)[2];
-							testArray[9] = new Roll(`${rollheal}`).evaluate({ async: false }).result + ' ' + newHealTime;
+							testArray[9] = (await new Roll(`${rollheal}`).evaluate()).result + ' ' + newHealTime;
+							// testArray[9] = (await new Roll(`${rollheal}`).evaluate().result) + ' ' + newHealTime;
 						} else {
 							testArray[9] = 'None';
 						}
