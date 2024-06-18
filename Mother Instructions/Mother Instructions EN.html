@@ -9,42 +9,14 @@
 			Developed for Foundry FTT by Paul Watson
 			<br /><br />
 			If you like my system please consider buying me a coffee: <a href="https://ko-fi.com/paulwatson">https://ko-fi.com/paulwatson</a> <br />
-			<br /><br />
+			<br />
 		</p>
-		<h1 class="heading">Change history for latest version Version 3.1.7</h1>
-
+		<h1 class="heading">Change history for latest version Version 3.2.0</h1>
+		<strong>FVTT V12 only compatibility.</strong>
 		<ul>
-			<li>Added Wildcatter and Entertainer archetypes from BBW.</li>
-			<li>Added System sheet for BBW</li>
-			<li>
-				Added Colony sheet for BBW along with a new item for adding Colony Initiatives. Drag and drop onto the sheet. Modifiers are automatically added to the
-				development total. The Colony sheet has pop-up boxes to show the modifier totals for the key stats and Development total.
-			</li>
-
-			<li>
-				On rolling a Facehugger the system will automatically make a panic roll for the player. This can be turned off by the GM, in the Alien PRG configuration
-				by unchecking "Automatically Roll Panic"
-			</li>
-
-			<li>
-				Depending on the result Panic rolls will now:
-				<ol>
-					<li>Increment/Decrement the panicking actors stress.</li>
-					<li>Create an item to impose the modification (-2 Agility or -2 All Skills for Space Combat Panic Roll).</li>
-					<li>Add text to the chat for rolls >=10 saying that the action has failed.</li>
-				</ol>
-				When panic is removed the -2 Agility/-2 All Skills modification items are automatically deleted.
-			</li>
-			<li>Critical Injuries are now created with any PC's Skill modifiers applied to the item.</li>
-			<li>Added a Swap Initiative option to the Combat tracker to allow the GM to swap player initiative.</li>
-    </ul>
-			<p>Bug Fixes:</p>
-			<ul>
-				<li>Fixed issue with Critical Injury #31 that was applying -2 modifiers rather than -1 modifiers.</li>
-				<li>Fixed issue on Vehicles and Starships where Android crew could not fire weapons or make piloting/comtech rolls.</li>
-				<li>Fixed issue will supply rolls not working when the mouse keys are switched.</li>
-				<li>Panic on Ship rolls now use the correct table "Space Combat Panic Roll".</li>
-			</ul>
+			<li>XP and SP now remain visible all the time to allow for both to be recorded.</li>
+			<li>Added the Hypoxia, Heatstroke and Gravity Dyspraxia conditions.</li>
+		</ul>
 
 		<h1 class="heading">The core system provides support for:</h1>
 		<ul>
@@ -680,6 +652,25 @@
 			&nbsp;<span class="territories-systems">&nbsp;</span>&nbsp;
 		</p>
 	</div>
+	<div style="position: relative; margin-top: 30px">
+		<h1 class="heading">Colony Planet Sheet</h1>
+		<img src="systems/alienrpg/images/mother-instructions/colony-planet-sheet.webp" style="width: 100%; margin-bottom: 0%" alt="" />
+		<p>A simple sheet to record the details of Colony planets as described in the Building Better Worlds campaign module.</p>
+	</div>
+	<div style="position: relative; margin-top: 30px">
+		<h1 class="heading">Colony Sheet</h1>
+		<img src="systems/alienrpg/images/mother-instructions/colony-sheet.webp" style="width: 100%; margin-bottom: 0%" alt="" />
+		<p>
+			This sheet allows you to track the progress of the colony as per the Building Better Worlds campaign module.
+			<br /><br />
+			The current attribute status contains the base numbers for the colony attributes. These are modified by Colony Policies, Installations and Initiatives to
+			give the Development Level Total.
+		</p>
+		<p>
+			Policies, Installations and Initiatives are items (see below) that, once created, are dragged onto the sheet. Any modifiers are automatically
+			added/subtracted from the relevant attribute. By hovering over the attribute the base number and modifiers can bee seen in the tooltip.
+		</p>
+	</div>
 
 	<div style="position: relative; margin-top: 30px">
 		<h1 class="heading">Items/Item Types</h1>
@@ -697,6 +688,7 @@
 			<li>Spaceship Modules/Upgrades - Create Modules and Upgrades</li>
 			<li>Spaceship Weapons - Create Offensive and Defensive Spaceship Weapons</li>
 			<li>Spaceship Crit - Create Minor/Major Component damage</li>
+			<li>Colony Initiative - Create Colony Policies, Installations and Initiatives</li>
 		</ul>
 		<p><br /><br /></p>
 		<h2 class="heading">Item</h2>
@@ -801,6 +793,14 @@
 		</p>
 		<h2 class="heading">Spaceship Crit</h2>
 		<p>Template used to create Spaceship critical hits. Any effects must be manually applied to the ship stats/rolls.</p>
+		<br /><br />
+
+		<h2 class="heading">Colony Initiative</h2>
+		<img src="systems/alienrpg/images/mother-instructions/colony-initiative-sheet.webp" style="width: 100%; margin-bottom: 0%" alt="" />
+		<p>
+			With this item you can create new Policies, Installations and Initiatives for the Colony Sheet by selecting the type. Modifiers can be added in the
+			section at the bottom.
+		</p>
 	</div>
 	<div style="position: relative; margin-top: 30px">
 		<h1 class="heading">Tokens</h1>
@@ -1072,10 +1072,6 @@
 				effects to dice rolls.
 			</li>
 			<li style="padding-bottom: 2%">
-				<strong style="color: deepskyblue">PnP - Pointer and Pings:</strong> <br />Useful for pointing things out to the players and pulling their map focus to
-				where you want it.
-			</li>
-			<li style="padding-bottom: 2%">
 				<strong style="color: deepskyblue">Quick Insert - Search Widget:</strong> <br />Allows you to quickly search for assets and drag them directly on to the
 				scene, sheets or rich text fields.
 			</li>
@@ -1092,6 +1088,58 @@
 	</div>
 	<div style="position: relative; margin-top: 30px">
 		<h1 class="heading">Change History</h1>
+
+		<h2 class="heading">Version 3.1.8</h2>
+		<ul>
+			<li>
+				If an actor token is hidden when added to the combat tracker it will no longer produce a chat message (for player or GM) when the initiative is rolled.
+			</li>
+		</ul>
+
+		Bug Fixes:
+		<ul>
+			<li>Corrected issues with the Colony and Planet sheets not rendering when the CRT UI is activated.</li>
+			<li>Fixed issue where the Journal font colour configuration which was not working.</li>
+			<li>Fixed issue with token images for Territories, Colony Sheet and Colony Planet actors.</li>
+			<li>Corrected issue on the CRT Synthetic sheet where the edit button was not showing on the Description tab.</li>
+			<li>Corrected layout issue on the Synthetic sheet where Overwatch and Radiation were overlapping.</li>
+		</ul>
+
+		<h2 class="heading">Version 3.1.7</h2>
+
+		<ul>
+			<li>Added Wildcatter and Entertainer archetypes from BBW.</li>
+			<li>Added System sheet for BBW</li>
+			<li>
+				Added Colony sheet for BBW along with a new item for adding Colony Initiatives. Drag and drop onto the sheet. Modifiers are automatically added to the
+				development total. The Colony sheet has pop-up boxes to show the modifier totals for the key stats and Development total.
+			</li>
+
+			<li>
+				On rolling a Facehugger the system will automatically make a panic roll for the player. This can be turned off by the GM, in the Alien PRG configuration
+				by unchecking "Automatically Roll Panic"
+			</li>
+
+			<li>
+				Depending on the result Panic rolls will now:
+				<ol>
+					<li>Increment/Decrement the panicking actors stress.</li>
+					<li>Create an item to impose the modification (-2 Agility or -2 All Skills for Space Combat Panic Roll).</li>
+					<li>Add text to the chat for rolls >=10 saying that the action has failed.</li>
+				</ol>
+				When panic is removed the -2 Agility/-2 All Skills modification items are automatically deleted.
+			</li>
+			<li>Critical Injuries are now created with any PC's Skill modifiers applied to the item.</li>
+			<li>Added a Swap Initiative option to the Combat tracker to allow the GM to swap player initiative.</li>
+		</ul>
+		<p>Bug Fixes:</p>
+		<ul>
+			<li>Fixed issue with Critical Injury #31 that was applying -2 modifiers rather than -1 modifiers.</li>
+			<li>Fixed issue on Vehicles and Starships where Android crew could not fire weapons or make piloting/comtech rolls.</li>
+			<li>Fixed issue will supply rolls not working when the mouse keys are switched.</li>
+			<li>Panic on Ship rolls now use the correct table "Space Combat Panic Roll".</li>
+		</ul>
+
 		<h2 class="heading2">Version 3.1.6</h2>
 		<ul>
 			<li>More work to correct stuck ActiveEffects (Radiation) in V11.</li>
