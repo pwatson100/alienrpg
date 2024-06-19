@@ -557,7 +557,7 @@ export class alienrpgActor extends Actor {
 					whispertarget.push(game.user._id);
 				}
 
-				let blind = false;
+				blind = false;
 				if (rollMode == 'blindroll') {
 					blind = true;
 					if (!game.user.isGM) {
@@ -662,18 +662,22 @@ export class alienrpgActor extends Actor {
 							break;
 					}
 				}
-
-				ChatMessage.create({
-					speaker: {
-						actor: actorId,
-					},
-
+				let chatData = {
+					user: game.user.id,
+					speaker: ChatMessage.getSpeaker({
+						actor: actorid,
+					}),
 					content: chatMessage,
 					whisper: whispertarget,
-					roll: customResults.roll,
+					rolls: [customResults.roll],
 					sound: CONFIG.sounds.dice,
-					blind,
-				});
+				};
+				if (['gmroll', 'blindroll'].includes(chatData.rollMode)) {
+					chatData.whisper = ChatMessage.getWhisperRecipients('GM');
+				} else if (chatData.rollMode === 'selfroll') {
+					chatData.whisper = [game.user];
+				}
+				ChatMessage.create(chatData);
 			}
 		}
 	}
@@ -1195,15 +1199,20 @@ export class alienrpgActor extends Actor {
 			let chatMessage = '';
 			chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AcidAttack') + '</h2>';
 			chatMessage += `<h4><i>` + game.i18n.localize('ALIENRPG.AcidBlood') + `</i></h4>`;
-			ChatMessage.create({
-				user: game.user._id,
-				speaker: {
+			let chatData = {
+				user: game.user.id,
+				speaker: ChatMessage.getSpeaker({
 					actor: actor.id,
-				},
+				}),
+				rollMode: game.settings.get('core', 'rollMode'),
 				content: chatMessage,
-				whisper: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
-				blind: true,
-			});
+			};
+			if (['gmroll', 'blindroll'].includes(chatData.rollMode)) {
+				chatData.whisper = ChatMessage.getWhisperRecipients('GM');
+			} else if (chatData.rollMode === 'selfroll') {
+				chatData.whisper = [game.user];
+			}
+			ChatMessage.create(chatData);
 		}
 	}
 
@@ -1232,16 +1241,23 @@ export class alienrpgActor extends Actor {
 		chatMessage += '<h2>' + game.i18n.localize('ALIENRPG.AttackRoll') + '</h2>';
 		chatMessage += `<h4><i>${table.name}</i></h4>`;
 		chatMessage += `${customResults.results[0].text}`;
-		ChatMessage.create({
-			user: game.user._id,
-			speaker: {
+		let chatData = {
+			user: game.user.id,
+			speaker: ChatMessage.getSpeaker({
 				actor: actor.id,
-			},
-			roll: customResults.roll,
+			}),
+			rolls: [customResults.roll],
+			rollMode: game.settings.get('core', 'rollMode'),
 			content: chatMessage,
-			// whisper: game.users.contents.filter((u) => u.isGM).map((u) => u._id),
-			// type: CONST.CHAT_MESSAGE_STYLES.ROLL,
-		});
+			sound: CONFIG.sounds.dice,
+		};
+		if (['gmroll', 'blindroll'].includes(chatData.rollMode)) {
+			chatData.whisper = ChatMessage.getWhisperRecipients('GM');
+		} else if (chatData.rollMode === 'selfroll') {
+			chatData.whisper = [game.user];
+		}
+		ChatMessage.create(chatData);
+		return;
 	}
 
 	async creatureManAttackRoll(actor, dataset) {
