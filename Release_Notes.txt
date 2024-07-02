@@ -570,3 +570,7 @@ Version 3.2.0
 FVTT V12 only compatibility.
 XP and SP now remain visible all the time to allow for both to be recorded.
 Added the Hypoxia, Heatstroke and Gravity Dyspraxia conditions. 
+
+Version 3.2.1
+Corrected bug with Panic autoroll not working. 
+ 

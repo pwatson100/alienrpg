@@ -665,7 +665,7 @@ export class alienrpgActor extends Actor {
 				let chatData = {
 					user: game.user.id,
 					speaker: ChatMessage.getSpeaker({
-						actor: actorid,
+						actor: actor.id,
 					}),
 					content: chatMessage,
 					whisper: whispertarget,
