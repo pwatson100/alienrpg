@@ -1156,15 +1156,6 @@ export class alienrpgActor extends Actor {
 				label = game.i18n.localize('ALIENRPG.Armor');
 				r2Data = 0;
 			}
-			if (!actor.token) {
-				ui.notifications.notify(game.i18n.localize('ALIENRPG.NoToken'));
-				return;
-			} else {
-				if (actor.prototypeToken.disposition === -1) {
-					// hostile = true;
-					blind = true;
-				}
-			}
 
 			// callpop upbox here to get any mods then update r1Data or rData as appropriate.
 			let confirmed = false;
