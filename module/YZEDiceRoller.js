@@ -125,8 +125,11 @@ export class yze {
 			roll1 = `${r1Dice}` + 'db';
 			if (r2Dice <= 0) {
 				mr = await new Roll(`${roll1}`).evaluate();
+				console.log('Player: ', game.user.name, '\n Base: ', mr.terms[0].results);
+				if (mr.terms[2]) {
+					console.log('\n Stress:', mr.terms[2].results);
+				}
 				buildChat(mr, r1Dice, game.i18n.localize('ALIENRPG.Base'));
-				// console.log('yze -> yzeRoll -> mr', mr);
 			}
 		} else {
 			if (r1Dice < 0) {
@@ -150,7 +153,7 @@ export class yze {
 					r2Dice = 6;
 					com = `${r2Dice}` + 'ds';
 				} else {
-					// // console.log('yze -> yzeRoll -> hostile', hostile);
+					// console.log('yze -> yzeRoll -> hostile', hostile);
 					com = `${roll2}`;
 				}
 			} else {
@@ -161,7 +164,10 @@ export class yze {
 
 			// mr = new Roll(`${com}`).evaluate({ async: false });
 			// await mr.evaluate({ async: true });
-			// console.log('yze -> yzeRoll -> mr', mr);
+			console.log('Player: ', game.user.name, '\n Base: ', mr.terms[0].results);
+			if (mr.terms[2]) {
+				console.log('\n Stress:', mr.terms[2].results);
+			}
 			buildChat(mr, r1Dice, 'Stress');
 
 			// *******************************************************

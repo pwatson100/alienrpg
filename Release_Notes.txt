@@ -573,4 +573,7 @@ Added the Hypoxia, Heatstroke and Gravity Dyspraxia conditions.
 
 Version 3.2.1
 Corrected bug with Panic autoroll not working. 
+
+Version 3.2.2
+The chat text for Manual Critical Injury rolls for Characters, Synthetics and Creatures now show that it was a "Manual" (selected) injuriy rather than "Rolled" (automated).   
  

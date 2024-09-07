@@ -20,6 +20,7 @@ import { logger } from './logger.js';
 import { ModuleImport, ImportFormWrapper } from './apps/init.js';
 import { moduleKey, adventurePackName, adventurePack, moduleTitle } from './apps/init.js';
 import { enrichTextEditors } from './enricher.js';
+import { addSlowAndFastActions } from './combat-slow-fast.js';
 
 const includeRgx = new RegExp('/systems/alienrpg/module/');
 CONFIG.compatibility.includePatterns.push(includeRgx);
@@ -233,7 +234,6 @@ Hooks.once('init', async function () {
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
 	// debugger;
-
 	sendDevMessage();
 	showReleaseNotes();
 	alienRPGCRTWarning();
@@ -282,6 +282,7 @@ Hooks.once('ready', async () => {
 	AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
 
 	setupMacroFolders();
+	addSlowAndFastActions();
 });
 
 //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to

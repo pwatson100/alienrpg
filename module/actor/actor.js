@@ -1219,6 +1219,7 @@ export class alienrpgActor extends Actor {
 	async creatureAttackRoll(actor, dataset, manCrit) {
 		let chatMessage = '';
 		let customResults = '';
+		let roll = '';
 		const targetTable = dataset.atttype;
 		if (targetTable === 'None') {
 			logger.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
@@ -1226,13 +1227,13 @@ export class alienrpgActor extends Actor {
 		}
 		const table = game.tables.contents.find((b) => b.name === targetTable);
 
-		const roll = await new Roll('1d6').evaluate();
+		roll = await new Roll('1d6').evaluate();
 
 		if (!manCrit) {
 			customResults = await table.roll({ roll });
 		} else {
 			const formula = manCrit;
-			const roll = await new Roll(formula).evaluate();
+			roll = await new Roll(formula).evaluate();
 			customResults = await table.roll({ roll });
 		}
 
@@ -1599,6 +1600,7 @@ export class alienrpgActor extends Actor {
 						timelimit: hTimeLimit,
 						healingtime: hHealTime,
 						effects: speanex,
+						manCrit: manCrit,
 					};
 				}
 
@@ -1634,6 +1636,7 @@ export class alienrpgActor extends Actor {
 						img: resultImage,
 						name: `#${test1.roll.total} ${testArray[0]}`,
 						effects: testArray[1],
+						manCrit: manCrit,
 					};
 				}
 				break;
