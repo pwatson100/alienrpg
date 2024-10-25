@@ -276,7 +276,7 @@ Hooks.once('ready', async () => {
 	}
 	if (game.settings.get('alienrpg', 'switchchatbackground')) {
 		// r.style.setProperty('--chatbackground', `#000000`);
-		r.style.setProperty('--chatbackground', `url('/systems/alienrpg/images/chat-middle.png')`);
+		r.style.setProperty('--chatbackground', `url('systems/alienrpg/images/chat-middle.png')`);
 	}
 
 	AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));

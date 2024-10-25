@@ -57,7 +57,7 @@
   --white: hsl(0, 0%, 100%);
   --alientextjournal: hsl(187, 52%, 80%);
   --journalback: url(../images/mother-instructions/indbackground2.png);
-  --chatbackground: url(/systems/alienrpg/images/IndBackground3.png);
+  --chatbackground: url(../images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
   --alienchatwhite: hsl(0, 0%, 100%);
   --alienchatred: hsl(0, 100%, 50%);
@@ -5703,7 +5703,6 @@ combobox:focus {
   font-family: var(--alienfont);
   text-transform: uppercase;
   padding-left: 5px;
-  justify-self: center;
   -webkit-box-flex: 1;
       -ms-flex: auto;
           flex: auto;

@@ -592,7 +592,7 @@ export class alienrpgActor extends Actor {
 							if (!actor.items.getName(allSkillsModName)) {
 								const rollData = {
 									type: 'item',
-									img: '/systems/alienrpg/images/panic.webp',
+									img: 'systems/alienrpg/images/panic.webp',
 									name: allSkillsModName,
 									'system.header.type.value': 5,
 									'system.attributes.comment.value': game.i18n.localize('ALIENRPG.ShipPanic8'),
@@ -640,7 +640,7 @@ export class alienrpgActor extends Actor {
 							if (!actor.items.getName(agilityModName)) {
 								const rollData = {
 									type: 'item',
-									img: '/systems/alienrpg/images/panic.webp',
+									img: 'systems/alienrpg/images/panic.webp',
 									name: agilityModName,
 									'system.header.type.value': 5,
 									'system.attributes.comment.value': game.i18n.localize('ALIENRPG.Panic8'),
