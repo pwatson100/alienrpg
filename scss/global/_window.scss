@@ -705,3 +705,19 @@ button:focus {
 	background-color: hsl(120deg 64% 43% / 30%); /* Black background with opacity */
 	z-index: 2;
 }
+
+.starving,
+.dehydrated,
+.exhausted,
+.freezing,
+.hypoxia,
+.heatstroke,
+.gravitydyspraxia {
+	display: flex;
+}
+.overwatch {
+	display: inline-flex;
+	margin-top: 6px;
+	margin-bottom: 8px;
+	margin-left: 7px;
+}
