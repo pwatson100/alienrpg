@@ -577,6 +577,8 @@ Corrected bug with Panic autoroll not working.
 Version 3.2.2
 Added Polish translation with thanks to Lukasz Lenart.
 The chat text for Manual Critical Injury rolls for Characters, Synthetics and Creatures now show that it was a "Manual" (selected) injuriy rather than "Rolled" (automated).   
+Added fast and slow condition effects (on Assign Status Effects menu)
+Included a "Critical Injuries template for people who want to create their own.
  Fixed issue with AcidSplash not working on linked creatures.
  Fixed path issue for people using the routePrefix in options.json
  Corrected formatting issue on the synth sheet when using other display fonts.

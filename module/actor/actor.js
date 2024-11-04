@@ -1397,7 +1397,7 @@ export class alienrpgActor extends Actor {
 		let stamina = 0;
 		switch (type) {
 			case 'character':
-				atable = game.tables.getName('Critical injuries');
+				atable = game.tables.getName('Critical injuries') || game.tables.getName('critical injuries') || game.tables.getName('Critical Injuries');
 				if (atable === null || atable === undefined) {
 					ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
 					return;
@@ -1405,7 +1405,7 @@ export class alienrpgActor extends Actor {
 
 				break;
 			case 'synthetic':
-				atable = game.tables.getName('Critical Injuries on Synthetics');
+				atable = game.tables.getName('Critical Injuries on Synthetics') || game.tables.getName('critical injuries on synthetics');
 				if (atable === null || atable === undefined) {
 					ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
 					return;
