@@ -7,7 +7,7 @@
 	"flags": {
 		"hotReload": {
 			"extensions": ["css", "js", "html", "json"],
-			"paths": ["./css/alienrpg.css", "templates", "lang"]
+			"paths": ["css/alienrpg.css", "templates", "lang"]
 		}
 	},
 	"relationships": {
