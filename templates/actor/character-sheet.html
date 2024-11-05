@@ -219,11 +219,11 @@
 					<div class="starving" style="display: flex">
 						<h3 class="condition resource-label" data-key="starving" title="{{ localize 'ALIENRPG.ConButtons'}}">
 							<a class="overwatch-toggle">
-								{{#ife system.general.starving.value true}}
+								{{#if (eq system.general.starving.value true)}}
 								<i class="far fa-dot-circle"></i>
 								{{else}}
 								<i class="far fa-circle"></i>
-								{{/ife}}
+								{{/if}}
 							</a>
 							{{localize 'ALIENRPG.Starving'}}
 						</h3>
@@ -231,11 +231,11 @@
 					<div class="dehydrated" style="display: flex">
 						<h3 class="condition resource-label" data-key="dehydrated" title="{{ localize 'ALIENRPG.ConButtons'}}">
 							<a class="overwatch-toggle">
-								{{#ife system.general.dehydrated.value true}}
+								{{#if (eq system.general.dehydrated.value true)}}
 								<i class="far fa-dot-circle"></i>
 								{{else}}
 								<i class="far fa-circle"></i>
-								{{/ife}}
+								{{/if}}
 							</a>
 							{{ localize 'ALIENRPG.Dehydrated'}}
 						</h3>
@@ -244,11 +244,11 @@
 					<div class="exhausted" style="display: flex">
 						<h3 class="condition resource-label" data-key="exhausted" title="{{ localize 'ALIENRPG.ConButtons'}}">
 							<a class="overwatch-toggle">
-								{{#ife system.general.exhausted.value true}}
+								{{#if (eq system.general.exhausted.value true)}}
 								<i class="far fa-dot-circle"></i>
 								{{else}}
 								<i class="far fa-circle"></i>
-								{{/ife}}
+								{{/if}}
 							</a>
 							{{ localize 'ALIENRPG.Exhausted'}}
 						</h3>
@@ -257,11 +257,11 @@
 					<div class="freezing" style="display: flex">
 						<h3 class="condition resource-label" data-key="freezing" title="{{ localize 'ALIENRPG.ConButtons'}}">
 							<a class="overwatch-toggle">
-								{{#ife system.general.freezing.value true}}
+								{{#if (eq system.general.freezing.value true)}}
 								<i class="far fa-dot-circle"></i>
 								{{else}}
 								<i class="far fa-circle"></i>
-								{{/ife}}
+								{{/if}}
 							</a>
 							{{ localize 'ALIENRPG.Freezing'}}
 						</h3>
@@ -269,11 +269,11 @@
 					<div class="hypoxia" style="display: flex">
 						<h3 class="condition resource-label" data-key="hypoxia" title="{{ localize 'ALIENRPG.ConButtons'}}">
 							<a class="overwatch-toggle">
-								{{#ife system.general.hypoxia.value true}}
+								{{#if (eq system.general.hypoxia.value true)}}
 								<i class="far fa-dot-circle"></i>
 								{{else}}
 								<i class="far fa-circle"></i>
-								{{/ife}}
+								{{/if}}
 							</a>
 							{{ localize 'ALIENRPG.hypoxia'}}
 						</h3>
@@ -281,11 +281,11 @@
 					<div class="heatstroke" style="display: flex">
 						<h3 class="condition resource-label" data-key="heatstroke" title="{{ localize 'ALIENRPG.ConButtons'}}">
 							<a class="overwatch-toggle">
-								{{#ife system.general.heatstroke.value true}}
+								{{#if (eq system.general.heatstroke.value true)}}
 								<i class="far fa-dot-circle"></i>
 								{{else}}
 								<i class="far fa-circle"></i>
-								{{/ife}}
+								{{/if}}
 							</a>
 							{{ localize 'ALIENRPG.heatstroke'}}
 						</h3>
@@ -293,17 +293,17 @@
 					<div class="gravitydyspraxia" style="display: flex">
 						<h3 class="condition resource-label" data-key="gravitydyspraxia" title="{{ localize 'ALIENRPG.ConButtons'}}">
 							<a class="overwatch-toggle">
-								{{#ife system.general.gravitydyspraxia.value true}}
+								{{#if (eq system.general.gravitydyspraxia.value true)}}
 								<i class="far fa-dot-circle"></i>
 								{{else}}
 								<i class="far fa-circle"></i>
-								{{/ife}}
+								{{/if}}
 							</a>
 							{{ localize 'ALIENRPG.gravitydyspraxia'}}
 						</h3>
 					</div>
 					<div class="panic" style="height: 22px; display: flex">
-						{{#ife system.general.panic.value 1}}
+						{{#if (eq system.general.panic.value 1)}}
 						<h3 class="condition resource-label" data-key="panicked" style="color: red" title="{{ localize 'ALIENRPG.ConButtons'}}">
 							<a class="overwatch-toggle"> <i class="far fa-dot-circle"></i> </a>{{ localize 'ALIENRPG.Panicked'}}
 							<input type="text" class="maxboxsize" name="system.general.panic.lastRoll" value="{{system.general.panic.lastRoll}}" data-dtype="Number" />
@@ -315,7 +315,7 @@
 							</a>
 							{{ localize 'ALIENRPG.Panicked'}}
 						</h3>
-						{{/ife}}
+						{{/if}}
 					</div>
 					<div class="overwatch">
 						<h3 class="condition" data-key="overwatch">

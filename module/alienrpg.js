@@ -160,27 +160,48 @@ Hooks.once('init', async function () {
 		}
 	});
 
-	// Ifis not equal
-	Handlebars.registerHelper('ifne', function (v1, v2, options) {
-		if (v1 !== v2) return options.fn(this);
-		else return options.inverse(this);
-	});
+	//  Now Using the Foundry versions
+	// {{#if (eq v1 v2)}}
+	// <!-- Returns v1 === 2 -->
+	// (eq v1 v2)
+	// <!-- Returns v1 !== 2 -->
+	// (ne v1 v2)
+	// <!-- Returns v1 < 2 -->
+	// (lt v1 v2)
+	// <!-- Returns v1 > 2 -->
+	// (gt v1 v2)
+	// <!-- Returns v1 <= 2 -->
+	// (lte v1 v2)
+	// <!-- Returns v1 >= 2 -->
+	// (gte v1 v2)
+	// <!-- Returns !pred -->
+	// (not pred)
+	// <!-- Returns true if every argument is truthy  -->
+	// (and arg1 arg2 arg3 ...)
+	// <!-- Returns true if any argument is truthy -->
+	// (or arg1 arg2 arg3 ...)
 
-	// if equal
-	Handlebars.registerHelper('ife', function (v1, v2, options) {
-		if (v1 === v2) return options.fn(this);
-		else return options.inverse(this);
-	});
-	// if Greater than
-	Handlebars.registerHelper('ifgt', function (v1, v2, options) {
-		if (v1 > v2) return options.fn(this);
-		else return options.inverse(this);
-	});
-	// if Less than
-	Handlebars.registerHelper('iflt', function (v1, v2, options) {
-		if (v1 < v2) return options.fn(this);
-		else return options.inverse(this);
-	});
+	// // Ifis not equal
+	// Handlebars.registerHelper('ifne', function (v1, v2, options) {
+	// 	if (v1 !== v2) return options.fn(this);
+	// 	else return options.inverse(this);
+	// });
+
+	// // if equal
+	// Handlebars.registerHelper('ife', function (v1, v2, options) {
+	// 	if (v1 === v2) return options.fn(this);
+	// 	else return options.inverse(this);
+	// });
+	// // if Greater than
+	// Handlebars.registerHelper('ifgt', function (v1, v2, options) {
+	// 	if (v1 > v2) return options.fn(this);
+	// 	else return options.inverse(this);
+	// });
+	// // if Less than
+	// Handlebars.registerHelper('iflt', function (v1, v2, options) {
+	// 	if (v1 < v2) return options.fn(this);
+	// 	else return options.inverse(this);
+	// });
 
 	Handlebars.registerHelper('gRng', function (value, options) {
 		let g = '';

@@ -44,20 +44,20 @@
 
 				<label class="resource-label wCol7">{{localize "ALIENRPG.Range"}}</label>
 				<select class="select-css wCol8" style="margin-top: 5px" name="system.attributes.range.value" data-dtype="{{system.attributes.range.value}}">
-					{{#ife system.header.type.value '2'}} {{selectOptions weapon_range_list selected=system.attributes.range.value labelAttr="label" localize=true}}
-					{{/ife}} {{#ife system.header.type.value '1'}} {{selectOptions weapon_range_list selected=system.attributes.range.value labelAttr="label"
-					localize=true}} {{/ife}}
+					{{#if (eq system.header.type.value '2')}} {{selectOptions weapon_range_list selected=system.attributes.range.value labelAttr="label" localize=true}}
+					{{/if}} {{#if (eq system.header.type.value '1')}} {{selectOptions weapon_range_list selected=system.attributes.range.value labelAttr="label"
+					localize=true}} {{/if}}
 				</select>
 				<!-- </div> -->
-				{{#ife system.header.type.value '1'}}
+				{{#if (eq system.header.type.value '1')}}
 				<label class="resource-label wCol9">{{localize "ALIENRPG.Rds"}}</label>
 				<input type="text" class="maxboxsize wCol10" name="system.attributes.rounds.value" value="{{system.attributes.rounds.value}}" data-dtype="Number" />
 				<label class="resource-label wCol11">{{localize "ALIENRPG.Power"}}</label>
 				<input type="text" class="maxboxsize wCol12" name="system.attributes.power.value" value="{{system.attributes.power.value}}" data-dtype="Number" />
-				{{/ife}} {{#ife system.header.type.value '2'}}
+				{{/if}} {{#if (eq system.header.type.value '2')}}
 				<label class="resource-label wCol11">{{localize "ALIENRPG.Power"}}</label>
 				<input type="text" class="maxboxsize wCol12" name="system.attributes.power.value" value="{{system.attributes.power.value}}" data-dtype="Number" />
-				{{/ife}}
+				{{/if}}
 				<label class="resource-label wCol13">{{localize "ALIENRPG.QuantityLabel"}}</label>
 				<input
 					type="text"

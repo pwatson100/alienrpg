@@ -31,44 +31,44 @@
 	<section class="sheet-body" style="height: 250px">
 		{{!-- Attributes Tab --}}
 		<div class="tab attributes" data-group="primary" data-tab="attributes">
-			{{#ife system.header.type.value '1'}}
+			{{#if (eq system.header.type.value '1')}}
 			<div class="grid-Char-Att">
 				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
 				<input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
 			</div>
-			{{/ife}} {{#ife system.header.type.value '2'}}
+			{{/if}} {{#if (eq system.header.type.value '2')}}
 			<div class="grid-Char-Att">
 				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
 				<input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
 			</div>
-			{{/ife}} {{#ife system.header.type.value '3'}}
+			{{/if}} {{#if (eq system.header.type.value '3')}}
 			<div class="grid-Char-Att">
 				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.Power'}}</h3>
 				<input type="text" name="system.attributes.power.value" class="maxboxsize gCol2" value="{{system.attributes.power.value}}" data-dtype="Number" />
 			</div>
-			{{/ife}} {{#ife system.header.type.value '4'}}
+			{{/if}} {{#if (eq system.header.type.value '4')}}
 			<div class="grid-Char-Att">
 				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.Power'}}</h3>
 				<input type="text" name="system.attributes.power.value" class="maxboxsize gCol2" value="{{system.attributes.power.value}}" data-dtype="Number" />
 			</div>
-			{{/ife}} {{#ife system.header.type.value '6'}}
+			{{/if}} {{#if (eq system.header.type.value '6')}}
 			<div class="grid-Char-Att">
 				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
 				<input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
 			</div>
-			{{/ife}} {{#ife system.header.type.value '7'}}
+			{{/if}} {{#if (eq system.header.type.value '7')}}
 			<div class="grid-Char-Att">
 				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.Food'}}</h3>
 				<input type="text" name="system.attributes.food.value" class="maxboxsize gCol2" value="{{system.attributes.food.value}}" data-dtype="Number" />
 				<h3 class="resource-label gCol3">{{localize 'ALIENRPG.Water'}}</h3>
 				<input type="text" name="system.attributes.water.value" class="maxboxsize gCol4" value="{{system.attributes.water.value}}" data-dtype="Number" />
 			</div>
-			{{/ife}} {{#ife system.header.type.value '8'}}
+			{{/if}} {{#if (eq system.header.type.value '8')}}
 			<div class="grid-Char-Att">
 				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.Power'}}</h3>
 				<input type="text" class="maxboxsize gCol2" name="system.attributes.power.value" value="{{system.attributes.power.value}}" data-dtype="Number" />
 			</div>
-			{{/ife}} {{#ife system.header.type.value '9'}}
+			{{/if}} {{#if (eq system.header.type.value '9')}}
 			<div class="grid-2col">
 				<div class="modifiers flexrow flex-group-center">
 					<label
@@ -135,7 +135,7 @@
 					/>
 				</div>
 			</div>
-			{{/ife}} {{#ife system.header.type.value '10'}}
+			{{/if}} {{#if (eq system.header.type.value '10')}}
 			<div class="grid-item-xtras">
 				<h3 class="resource-label xCol1">{{localize 'ALIENRPG.Power'}}</h3>
 				<input type="text" name="system.attributes.power.value" class="maxboxsize xCol2" value="{{system.attributes.power.value}}" data-dtype="Number" />
@@ -152,12 +152,12 @@
 					data-dtype="Number"
 				/>
 			</div>
-			{{/ife}} {{#ife system.header.type.value '11'}}
+			{{/if}} {{#if (eq system.header.type.value '11')}}
 			<div class="grid-Char-Att">
 				<h3 class="resource-label gCol1">{{localize 'ALIENRPG.QuantityLabel'}}</h3>
 				<input type="text" name="system.attributes.quantity.value" class="maxboxsize gCol2" value="{{system.attributes.quantity.value}}" data-dtype="Number" />
 			</div>
-			{{/ife}}
+			{{/if}}
 
 			<h2 class="resource-label">{{localize 'ALIENRPG.Comment'}}</h2>
 			{{!-- <textarea name="system.attributes.comment.value" rows="12" data-dtype="String">{{system.attributes.comment.value}}</textarea> --}}
@@ -167,7 +167,7 @@
 		</div>
 
 		<div class="tab modifiers" data-group="primary" data-tab="modifiers">
-			{{#ifne system.header.type.value '9'}}
+			{{#if (ne system.header.type.value '9')}}
 			<h2 class="resource-label">{{localize 'ALIENRPG.Attributes'}}</h2>
 			<div class="grid-2col">
 				<div class="modifiers flexrow flex-group-center">
@@ -231,7 +231,7 @@
 					/>
 				</div>
 			</div>
-			{{/ifne}}
+			{{/if}}
 
 			<h2 class="resource-label">{{localize 'ALIENRPG.Skills'}}</h2>
 			<div class="grid-2col">
@@ -271,7 +271,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{#ifne system.header.type.value '9'}}
+				{{#if (ne system.header.type.value '9')}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.rangedCbt.value" class="resource-label"
 						>{{localize 'ALIENRPG.SkillrangedCbt'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label
@@ -284,7 +284,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{/ifne}}
+				{{/if}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.mobility.value" class="resource-label"
 						>{{localize 'ALIENRPG.Skillmobility'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label
@@ -297,7 +297,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{#ifne system.header.type.value '9'}}
+				{{#if (ne system.header.type.value '9')}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.piloting.value" class="resource-label"
 						>{{localize 'ALIENRPG.Skillpiloting'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label
@@ -310,7 +310,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{/ifne}}
+				{{/if}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.command.value" class="resource-label"
 						>{{localize 'ALIENRPG.Skillcommand'}} ({{localize 'ALIENRPG.AbilityAbbemp'}})</label
@@ -347,7 +347,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{#ifne system.header.type.value '9'}}
+				{{#if (ne system.header.type.value '9')}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.observation.value" class="resource-label"
 						>{{localize 'ALIENRPG.Skillobservation'}} ({{localize 'ALIENRPG.AbilityAbbwit'}})</label
@@ -360,7 +360,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{/ifne}}
+				{{/if}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.survival.value" class="resource-label"
 						>{{localize 'ALIENRPG.Skillsurvival'}} ({{localize 'ALIENRPG.AbilityAbbwit'}})</label
@@ -373,7 +373,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{#ifne system.header.type.value '9'}}
+				{{#if (ne system.header.type.value '9')}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.comtech.value" class="resource-label"
 						>{{localize 'ALIENRPG.Skillcomtech'}} ({{localize 'ALIENRPG.AbilityAbbwit'}})</label
@@ -386,7 +386,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{/ifne}}
+				{{/if}}
 			</div>
 		</div>
 

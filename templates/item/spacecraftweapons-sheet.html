@@ -11,11 +11,11 @@
 							{{selectOptions ship_weapon_type_list selected=system.header.type.value labelAttr="label" localize=true}}
 						</select>
 
-						{{#ife system.header.type.value '1'}}
+						{{#if (eq system.header.type.value '1')}}
 						<input type="hidden" name="system.header.type.label" value="{{localize 'ALIENRPG.Offensive' }}" />
-						{{/ife}} {{#ife system.header.type.value '2'}}
+						{{/if}} {{#if (eq system.header.type.value '2')}}
 						<input type="hidden" name="system.header.type.label" value="{{localize 'ALIENRPG.Defensive' }}" />
-						{{/ife}}
+						{{/if}}
 					</div>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 				<input type="text" class="cashboxsize currency wCol2" name="system.attributes.cost.value" value="{{system.attributes.cost.value}}" /><br /><br />
 
 				<!-- </div> -->
-				{{#ife system.header.type.value '1'}}
+				{{#if (eq system.header.type.value '1')}}
 				<label class="wCol7 resource-label">{{localize "ALIENRPG.Range"}}</label>
 				<select class="select-css wCol8" name="system.attributes.range.value" data-dtype="{{system.attributes.range.value}}">
 					{{selectOptions ship_weapon_range_list selected=system.attributes.range.value labelAttr="label" localize=true}}
@@ -60,7 +60,7 @@
 					value="{{system.attributes.quantity.value}}"
 					data-dtype="Number"
 				/>
-				{{/ife}} {{#ife system.header.type.value '2'}}
+				{{/if}} {{#if (eq system.header.type.value '2')}}
 
 				<label class="resource-label wCol4">{{localize "ALIENRPG.hardpoint"}}</label>
 				<select class="select-css wCol6" name="system.attributes.hardpoint.value" data-dtype="{{system.attributes.hardpoint.value}}">
@@ -78,7 +78,7 @@
 				/>
 				<label class="resource-label wCol10">{{localize "ALIENRPG.Bonus"}}</label>
 				<input type="text" class="maxboxsize wCol11" name="system.attributes.bonus.value" value="{{system.attributes.bonus.value}}" data-dtype="Number" />
-				{{/ife}}
+				{{/if}}
 			</div>
 			<h2 class="resource-label">{{localize "ALIENRPG.Comment"}}</h2>
 			<div class="tab item" style="border: solid 1px; padding: 5px">
