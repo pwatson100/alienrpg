@@ -1,5 +1,4 @@
 node_modules
-.vscode
 foundry.js
 .eslintrc.js
 package-lock.json

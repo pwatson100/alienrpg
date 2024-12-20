@@ -307,29 +307,29 @@ ALIENRPG.colony_policy_list = {
 	3: { id: 3, label: 'ALIENRPG.Projects' },
 };
 
-ALIENRPG.Status_Effects = {
+ALIENRPG.STATUS_EFFECTS = {
 	FAST_ACTION: 'fastAction',
 	SLOW_ACTION: 'slowAction',
 };
 
-// ALIENRPG.CombatStatus = {
-// 	slowAndFastActions: [
-// 		{
-// 			id: ALIENRPG.Status_Effects.FAST_ACTION,
-// 			label: 'ALIENRPG.FastAction',
-// 			icon: `systems/alienrpg/images/icons/fast-action.webp`,
-// 			statuses: ['fastAction'],
-// 		},
-// 		{
-// 			id: ALIENRPG.Status_Effects.SLOW_ACTION,
-// 			label: 'ALIENRPG.SlowAction',
-// 			icon: `systems/alienrpg/images/icons/slow-action.webp`,
-// 			statuses: ['slowAction'],
-// 		},
-// 	],
-// };
+ALIENRPG.StatusEffects = {
+	slowAndFastActions: [
+		{
+			id: ALIENRPG.STATUS_EFFECTS.FAST_ACTION,
+			label: 'ALIENRPG.FastAction',
+			icon: `systems/alienrpg/images/icons/fast-action.webp`,
+			statuses: ['fastAction'],
+		},
+		{
+			id: ALIENRPG.STATUS_EFFECTS.SLOW_ACTION,
+			label: 'ALIENRPG.SlowAction',
+			icon: `systems/alienrpg/images/icons/slow-action.webp`,
+			statuses: ['slowAction'],
+		},
+	],
+};
 
-// ALIENRPG.CombatTracker = {
+// ALIENRPG.AlienRPGCombat = {
 // 	// config: undefined,
 // 	DefaultCombatantControls: {
 // 		slowAndFastActions: [
