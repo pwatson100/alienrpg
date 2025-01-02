@@ -1397,7 +1397,7 @@ export class alienrpgActor extends Actor {
 		let stamina = 0;
 		switch (type) {
 			case 'character':
-				atable = game.tables.getName('Critical injuries') || game.tables.getName('critical injuries') || game.tables.getName('Critical Injuries');
+				atable = game.tables.getName(game.i18n.localize('ALIENRPG.CriticalInjuries')) || game.tables.getName('Critical Injuries');
 				if (atable === null || atable === undefined) {
 					ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
 					return;
@@ -1456,30 +1456,30 @@ export class alienrpgActor extends Actor {
 					factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
 					testArray = factorFour.split(/[:] |<br \/>/gi);
 					let speanex = testArray[7];
-					if (testArray[9] != 'Permanent') {
+					if (testArray[9] != game.i18n.localize('ALIENRPG.Permanent')) {
 						if (testArray[9].length > 0) {
 							rollheal = testArray[9].match(/^\[\[([0-9]d[0-9]+)]/)[1];
 							newHealTime = testArray[9].match(/^\[\[([0-9]d[0-9]+)\]\] ?(.*)/)[2];
 							testArray[9] = (await new Roll(`${rollheal}`).evaluate()).result + ' ' + newHealTime;
 							// testArray[9] = (await new Roll(`${rollheal}`).evaluate().result) + ' ' + newHealTime;
 						} else {
-							testArray[9] = 'None';
+							testArray[9] = game.i18n.localize('ALIENRPG.None');
 						}
 					}
 					switch (testArray[3]) {
-						case `Yes `:
+						case game.i18n.localize('ALIENRPG.Yes') + ' ':
 							cFatal = true;
 							break;
-						case `Yes, –1 `:
+						case game.i18n.localize('ALIENRPG.Yes') + ', –1 ':
 							{
 								cFatal = true;
-								speanex += '<br> -1 to <strong>MEDICAL</strong> roll';
+								speanex += '<br> -1 to <strong>' + game.i18n.localize('ALIENRPG.SkillmedicalAid') + '</strong> roll';
 							}
 							break;
-						case `Yes, –2 `:
+						case game.i18n.localize('ALIENRPG.Yes') + ', –2 ':
 							{
 								cFatal = true;
-								speanex += '<br> -2 to <strong>MEDICAL</strong> roll';
+								speanex += '<br> -2 to <strong>' + game.i18n.localize('ALIENRPG.SkillmedicalAid') + '</strong> roll';
 							}
 							break;
 						default:
@@ -1579,9 +1579,9 @@ export class alienrpgActor extends Actor {
 					// Prepare the data for the chat message
 					//
 
-					hFatal = testArray[3] != ' ' ? testArray[3] : 'None';
-					hHealTime = testArray[9] != ' ' ? testArray[9] : 'None';
-					hTimeLimit = testArray[5] != ' ' ? testArray[5] : 'None';
+					hFatal = testArray[3] != ' ' ? testArray[3] : game.i18n.localize('ALIENRPG.None');
+					hHealTime = testArray[9] != ' ' ? testArray[9] : game.i18n.localize('ALIENRPG.None');
+					hTimeLimit = testArray[5] != ' ' ? testArray[5] : game.i18n.localize('ALIENRPG.None');
 
 					htmlData = {
 						actorname: actor.name,
