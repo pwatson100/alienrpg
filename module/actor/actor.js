@@ -997,6 +997,33 @@ export class alienrpgActor extends Actor {
 			return await this.deleteEmbeddedDocuments('ActiveEffect', [existing._id]);
 		}
 	}
+	async removeFastSlow(effect) {
+		if (typeof effect === 'string') effect = foundry.utils.duplicate(game.alienrpg.config.StatusEffects.slowAndFastActions.find((e) => e.id == effect));
+		if (!effect) return 'No Effect Found';
+		if (!effect.id) return 'Conditions require an id field';
+		let existing = await this.hasCondition(effect.id);
+		if (existing) {
+			return await this.deleteEmbeddedDocuments('ActiveEffect', [existing._id]);
+		}
+	}
+
+	async addFastSlow(effect) {
+		if (typeof effect === 'string') effect = foundry.utils.duplicate(game.alienrpg.config.StatusEffects.slowAndFastActions.find((e) => e.id == effect));
+		if (!effect) return 'No Effect Found';
+		if (!effect.id) return 'Conditions require an id field';
+
+		let existing = await this.hasCondition(effect.id);
+
+		if (!existing) {
+			// if (game.version < '11') {
+			effect.label = game.i18n.localize(effect.label).replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+			effect.name = game.i18n.localize(effect.name).replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+			// effect['flags.core.statusId'] = effect.id;
+			effect['statuses'] = effect.id;
+			delete effect.id;
+			return await this.createEmbeddedDocuments('ActiveEffect', [effect]);
+		}
+	}
 
 	async hasCondition(conditionKey) {
 		let existing = '';
