@@ -11,63 +11,43 @@
 			If you like my system please consider buying me a coffee: <a href="https://ko-fi.com/paulwatson">https://ko-fi.com/paulwatson</a> <br />
 			<br />
 		</p>
-		<h1 class="heading">Change history for latest version Version 3.2.0</h1>
-		<strong>FVTT V12 only compatibility.</strong>
+		<h1 class="heading">Change history for latest version Version 3.2.2</h1>
+		Enhancements:
 		<ul>
-			<li>XP and SP now remain visible all the time to allow for both to be recorded.</li>
-			<li>Added the Hypoxia, Heatstroke and Gravity Dyspraxia conditions.</li>
+			<li>Updated French translation with thanks to Argann Bonneau.</li>
+			<li>Added Polish translation with thanks to Lukasz Lenart.</li>
+			<li>
+				The chat text for Manual Critical Injury rolls for Characters, Synthetics and Creatures now show that it was a "Manual" (selected) injuriy rather than
+				"Rolled" (automated).
+			</li>
+			<li>Added fast and slow condition effects (on Assign Status Effects menu)</li>
+			<li>Included a "Critical Injuries template for people who want to create their own.</li>
+		</ul>
+		Bug Fixes:
+		<ul>
+			<li>Fixed issue with AcidSplash not working on linked creatures.</li>
+			<li>Fixed path issue for people using the routePrefix in options.json</li>
+			<li>Corrected formatting issue on the synth sheet when using other display fonts.</li>
+			<li>Corrected condition alignment on sheets.</li>
 		</ul>
 
-		<h1 class="heading">The core system provides support for:</h1>
-		<ul>
-			<li>Character and Synthetic sheets.</li>
-			<ul>
-				<li>Including the ability to drag and drop Items, Talents, Agendas and Story Cards.</li>
-				<li>Integrated consumables roll mechanics.</li>
-				<li>Stress rolls from the character sheet.</li>
-			</ul>
-			<li>Spaceship sheets.</li>
-			<ul>
-				<li>Including the ability to drag and drop Crew, Spaceship Weapons, Modifications, Upgrades.</li>
-				<li>Integrated Component Damage roll mechanics.</li>
-				<li>Starship Crew Stress rolls from the character sheet.</li>
-				<li>Space Combat Phases selection</li>
-			</ul>
-			<li>Creature sheets.</li>
-			<ul>
-				<li>Dropdown to allow the GM to select from a list of rolltables for attacks.</li>
-				<li>Critical Injury table dropdown and roll button to allow GM to select from a list of rolltables which they can create themselves.</li>
-			</ul>
-			<li>Territories and Vehicle sheets.</li>
-			<li>Items:</li>
-			<ul>
-				<li>Item - General equipment</li>
-				<li>Weapon - Personal and Vehicle weapons</li>
-				<li>Armor - Personal armor</li>
-				<li>Talent - Talents for use within the system</li>
-				<li>Planet-System - Details of planetary systems</li>
-				<li>Agenda - PC Agenda and Story cards</li>
-				<li>Critical Injury - Create Critical injuries</li>
-			</ul>
-			<li>Customisable Fonts and text colours.</li>
-			<li>2 sets of custom Alien RPG 3D dice are integrated if using the "Dice So Nice" module.</li>
-		</ul>
 		<p>
 			Should you wish to populate the system with game content for your own use please purchase the rules from Free League Publishing:
 			https://frialigan.se/en/games/alien/ or better still purchase the Starter Set or Core Rules modules.
 			<br /><br />
-			My intention is to enable people to play Alien RPG remotely and not to create a fully enabled/automated system. MU/TH/ER will still need to do some work.
+			My intention is to enable people to play Alien RPG remotely and not to create a fully enabled/automated system. MU/TH/UR will still need to do some work.
 			<br /><br />
 		</p>
 		<h3 class="heading2">Official Modules</h3>
 		<p>
 			Save the effort of inputting all the data from the books by purchasing the official modules from Free League: <br />
-			<a href="https://freeleaguepublishing.com/en/store/?collection_id=133130387504">Free League Store</a> <br />
+			<a href="https://freeleaguepublishing.com/shop/alien-rpg-2/">Free League Store</a> <br />
 			Alien RPG Starter Set <br />
 			Alien RPG Core Rule Book <br />
 			Destroyer of Worlds Scenario <br />
 			Colonial Marines Operations Manual <br />
 			Heart of Darkness <br />
+			Building Better Worlds <br />
 		</p>
 
 		<h3 class="heading2">Top Tips</h3>
@@ -201,7 +181,7 @@
 		&nbsp;<span class="armor-mod">&nbsp;</span>&nbsp;
 
 		<p><br /><br /></p>
-		<h3 class="heading2">Critical Injuries (4)</h3>
+		<h2 class="heading2">Critical Injuries (4)</h2>
 		<p>
 			Players can roll their own Critical Hits by clicking on the "Roll Crit" button. This looks for a table named "Critical injuries" for Characters. If the
 			table does not exist an error message is displayed.
@@ -225,10 +205,13 @@
 			<br /><br />
 			The Critical Injuries table for Characters must use the following Roll Table Formula : 10*1d6+1d6 and be constructed as a d66 table with ranges from 11 to
 			16, 21 to 26 and so on. Each of the entries but be constructed in the following format. If you do not use this format the injury items will not be created
-			correctly and the system will error.
+			correctly and the system will error. <br /><br />
+
+			A template can be found in the systems/alienrpg/macros folder called "fvtt-RollTable-critical-injuries-template.json".<br />
+			It is recommended that you copy and edit this file then import into your game.
 		</p>
 		<pre>
-&lt;b&gt;INJURY: &lt;/b&gt;NAME OF INJURY &lt;br&gt;&lt;b&gt;FATAL: &lt;/b&gt;YES or NO&lt;br&gt;&lt;b&gt;TIME LIMIT: &lt;/b&gt;See Below &lt;br&gt;&lt;b&gt;EFFECTS: &lt;/b&gt;DESCRIPTION&lt;br&gt;&lt;b&gt;HEALING TIME: &lt;/b&gt;XX days
+&lt;b&gt;INJURY: &lt;/b&gt;NAME OF INJURY &lt;br /&gt;&lt;b&gt;FATAL: &lt;/b&gt;YES or NO&lt;br /&gt;&lt;b&gt;TIME LIMIT: &lt;/b&gt;See Below &lt;br /&gt;&lt;b&gt;EFFECTS: &lt;/b&gt;DESCRIPTION&lt;br /&gt;&lt;b&gt;HEALING TIME: &lt;/b /&gt;XX days
   </pre
 		>
 		<p>TIME LIMIT values:</p>
@@ -450,7 +433,7 @@
 			If you want to create your own tables for creatures, add a table to "Alien Mother Tables" as normal ensuring it starts with "Critical Injuries ". <br />
 			Make the Roll Table Formula 1d6. Add each of the rows as normal with the data in the following format: <br /><br />
 		</p>
-		<pre>&lt;b&gt;<em>Injury Name</em>&lt;/b&gt;<em>Injury Description</em></pre>
+		<pre>&lt;b&gt;<em>Injury Name</em>&lt;/b /&gt;<em>Injury Description</em></pre>
 		<p>
 			<br />
 			<strong>It is important to use this format as the code looks for the Injury Name within the bold html tags to create the item and message. </strong>
@@ -1088,6 +1071,13 @@
 	</div>
 	<div style="position: relative; margin-top: 30px">
 		<h1 class="heading">Change History</h1>
+
+		<h2 class="heading">Version 3.2.0</h2>
+		<strong>FVTT V12 only compatibility.</strong>
+		<ul>
+			<li>XP and SP now remain visible all the time to allow for both to be recorded.</li>
+			<li>Added the Hypoxia, Heatstroke and Gravity Dyspraxia conditions.</li>
+		</ul>
 
 		<h2 class="heading">Version 3.1.8</h2>
 		<ul>

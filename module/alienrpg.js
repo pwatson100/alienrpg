@@ -20,6 +20,7 @@ import { logger } from './logger.js';
 import { ModuleImport, ImportFormWrapper } from './apps/init.js';
 import { moduleKey, adventurePackName, adventurePack, moduleTitle } from './apps/init.js';
 import { enrichTextEditors } from './enricher.js';
+import { addSlowAndFastActions } from './combat-slow-fast.js';
 
 const includeRgx = new RegExp('/systems/alienrpg/module/');
 CONFIG.compatibility.includePatterns.push(includeRgx);
@@ -159,27 +160,48 @@ Hooks.once('init', async function () {
 		}
 	});
 
-	// Ifis not equal
-	Handlebars.registerHelper('ifne', function (v1, v2, options) {
-		if (v1 !== v2) return options.fn(this);
-		else return options.inverse(this);
-	});
+	//  Now Using the Foundry versions
+	// {{#if (eq v1 v2)}}
+	// <!-- Returns v1 === 2 -->
+	// (eq v1 v2)
+	// <!-- Returns v1 !== 2 -->
+	// (ne v1 v2)
+	// <!-- Returns v1 < 2 -->
+	// (lt v1 v2)
+	// <!-- Returns v1 > 2 -->
+	// (gt v1 v2)
+	// <!-- Returns v1 <= 2 -->
+	// (lte v1 v2)
+	// <!-- Returns v1 >= 2 -->
+	// (gte v1 v2)
+	// <!-- Returns !pred -->
+	// (not pred)
+	// <!-- Returns true if every argument is truthy  -->
+	// (and arg1 arg2 arg3 ...)
+	// <!-- Returns true if any argument is truthy -->
+	// (or arg1 arg2 arg3 ...)
 
-	// if equal
-	Handlebars.registerHelper('ife', function (v1, v2, options) {
-		if (v1 === v2) return options.fn(this);
-		else return options.inverse(this);
-	});
-	// if Greater than
-	Handlebars.registerHelper('ifgt', function (v1, v2, options) {
-		if (v1 > v2) return options.fn(this);
-		else return options.inverse(this);
-	});
-	// if Less than
-	Handlebars.registerHelper('iflt', function (v1, v2, options) {
-		if (v1 < v2) return options.fn(this);
-		else return options.inverse(this);
-	});
+	// // Ifis not equal
+	// Handlebars.registerHelper('ifne', function (v1, v2, options) {
+	// 	if (v1 !== v2) return options.fn(this);
+	// 	else return options.inverse(this);
+	// });
+
+	// // if equal
+	// Handlebars.registerHelper('ife', function (v1, v2, options) {
+	// 	if (v1 === v2) return options.fn(this);
+	// 	else return options.inverse(this);
+	// });
+	// // if Greater than
+	// Handlebars.registerHelper('ifgt', function (v1, v2, options) {
+	// 	if (v1 > v2) return options.fn(this);
+	// 	else return options.inverse(this);
+	// });
+	// // if Less than
+	// Handlebars.registerHelper('iflt', function (v1, v2, options) {
+	// 	if (v1 < v2) return options.fn(this);
+	// 	else return options.inverse(this);
+	// });
 
 	Handlebars.registerHelper('gRng', function (value, options) {
 		let g = '';
@@ -233,7 +255,6 @@ Hooks.once('init', async function () {
 // Build the panic table if it does not exist.
 Hooks.once('ready', async () => {
 	// debugger;
-
 	sendDevMessage();
 	showReleaseNotes();
 	alienRPGCRTWarning();
@@ -276,12 +297,13 @@ Hooks.once('ready', async () => {
 	}
 	if (game.settings.get('alienrpg', 'switchchatbackground')) {
 		// r.style.setProperty('--chatbackground', `#000000`);
-		r.style.setProperty('--chatbackground', `url('/systems/alienrpg/images/chat-middle.png')`);
+		r.style.setProperty('--chatbackground', `url('systems/alienrpg/images/chat-middle.png')`);
 	}
 
 	AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
 
 	setupMacroFolders();
+	addSlowAndFastActions();
 });
 
 //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
@@ -294,7 +316,10 @@ Hooks.on('hotbarDrop', (bar, data, slot) => {
 });
 
 Hooks.on('renderPause', (_app, html, options) => {
-	html.find('img[src="icons/svg/clockwork.svg"]').attr('src', 'systems/alienrpg/images/paused-alien.png');
+	// Hooks.on('pauseGame', (_app, html, options) => {
+	document.getElementById('pause').innerHTML = `<img src=\"systems/alienrpg/images/paused-alien.png\" class=\"fa-spin\"><figcaption>GAME PAUSED</figcaption>`;
+	// old jQuery
+	// html.find('img[src="icons/svg/clockwork.svg"]').attr('src', 'systems/alienrpg/images/paused-alien.png');
 });
 
 // prevent players from deleting messages with rolls

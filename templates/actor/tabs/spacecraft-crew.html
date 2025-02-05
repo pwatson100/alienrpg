@@ -16,12 +16,12 @@
 				{{!-- Position --}}
 				<div class="gSC7">
 					<select class="crew-position select-css" style="width: 175px">
-						{{#ife ...actor.type 'spacecraft'}} {{selectOptions @root.config.spacecraft.crewPositionFlagsLocalized selected=position localize=true}} {{else}}
-						{{selectOptions @root.config.vehicle.crewPositionFlagsLocalized selected=position localize=true}} {{/ife}}
+						{{#if (eq ...actor.type 'spacecraft')}} {{selectOptions @root.config.spacecraft.crewPositionFlagsLocalized selected=position localize=true}}
+						{{else}} {{selectOptions @root.config.vehicle.crewPositionFlagsLocalized selected=position localize=true}} {{/if}}
 					</select>
 				</div>
 
-				{{#ife position 'PILOT'}}
+				{{#if (eq position 'PILOT')}}
 				<h3
 					for="actor.system.skills.piloting.value"
 					class="resource-label rollable Attr1 gSC8"
@@ -31,7 +31,7 @@
 				>
 					{{localize 'ALIENRPG.Skillpiloting'}}
 				</h3>
-				{{/ife}} {{#ife position 'SENSOROP'}}
+				{{/if}} {{#if (eq position 'SENSOROP')}}
 				<h3
 					for="actor.system.skills.comtech.value"
 					class="resource-label rollable Attr1 gSC8"
@@ -42,7 +42,7 @@
 				>
 					{{localize 'ALIENRPG.Skillcomtech'}}
 				</h3>
-				{{/ife}} {{#ife position 'ENGINEER'}}
+				{{/if}} {{#if (eq position 'ENGINEER')}}
 				<h3
 					for="actor.system.skills.heavyMach.value"
 					class="resource-label rollable Attr1 gSC8"
@@ -53,7 +53,7 @@
 				>
 					{{localize 'ALIENRPG.SkillheavyMachAbb'}}
 				</h3>
-				{{/ife}}
+				{{/if}}
 
 				<label
 					type="button"

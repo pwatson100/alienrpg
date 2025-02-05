@@ -1089,6 +1089,28 @@
 	justify-self: center;
 	// padding-right: 8px;
 }
+.grid-2b {
+	display: grid;
+	grid-template-areas: 'box11b box21b ';
+	// padding: 3px;
+	grid-template-columns: 1fr 33px;
+	align-items: center;
+	margin: 1px;
+	padding: 0;
+	// padding-left: 2px;
+}
+
+.box11b {
+	grid-area: box11b;
+	justify-self: center;
+	// padding-left: 8px;
+	// background-color: $c-black;
+}
+.box21b {
+	grid-area: box21b;
+	justify-self: right;
+	padding-right: 8px;
+}
 .grid-crit {
 	display: grid;
 	grid-template-areas: 'crit1 crit2 ';
@@ -1136,8 +1158,8 @@
 		'vCre5 vCre6 '
 		'vCre7 vCre8';
 
-	grid-template-columns: 1fr 1fr;
-	align-items: center;
+	grid-template-columns: 234px 300px;
+	-webkit-box-align: start;
 }
 
 .vCre1 {

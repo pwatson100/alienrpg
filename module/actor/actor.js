@@ -592,7 +592,7 @@ export class alienrpgActor extends Actor {
 							if (!actor.items.getName(allSkillsModName)) {
 								const rollData = {
 									type: 'item',
-									img: '/systems/alienrpg/images/panic.webp',
+									img: 'systems/alienrpg/images/panic.webp',
 									name: allSkillsModName,
 									'system.header.type.value': 5,
 									'system.attributes.comment.value': game.i18n.localize('ALIENRPG.ShipPanic8'),
@@ -640,7 +640,7 @@ export class alienrpgActor extends Actor {
 							if (!actor.items.getName(agilityModName)) {
 								const rollData = {
 									type: 'item',
-									img: '/systems/alienrpg/images/panic.webp',
+									img: 'systems/alienrpg/images/panic.webp',
 									name: agilityModName,
 									'system.header.type.value': 5,
 									'system.attributes.comment.value': game.i18n.localize('ALIENRPG.Panic8'),
@@ -997,6 +997,33 @@ export class alienrpgActor extends Actor {
 			return await this.deleteEmbeddedDocuments('ActiveEffect', [existing._id]);
 		}
 	}
+	async removeFastSlow(effect) {
+		if (typeof effect === 'string') effect = foundry.utils.duplicate(game.alienrpg.config.StatusEffects.slowAndFastActions.find((e) => e.id == effect));
+		if (!effect) return 'No Effect Found';
+		if (!effect.id) return 'Conditions require an id field';
+		let existing = await this.hasCondition(effect.id);
+		if (existing) {
+			return await this.deleteEmbeddedDocuments('ActiveEffect', [existing._id]);
+		}
+	}
+
+	async addFastSlow(effect) {
+		if (typeof effect === 'string') effect = foundry.utils.duplicate(game.alienrpg.config.StatusEffects.slowAndFastActions.find((e) => e.id == effect));
+		if (!effect) return 'No Effect Found';
+		if (!effect.id) return 'Conditions require an id field';
+
+		let existing = await this.hasCondition(effect.id);
+
+		if (!existing) {
+			// if (game.version < '11') {
+			effect.label = game.i18n.localize(effect.label).replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+			effect.name = game.i18n.localize(effect.name).replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+			// effect['flags.core.statusId'] = effect.id;
+			effect['statuses'] = effect.id;
+			delete effect.id;
+			return await this.createEmbeddedDocuments('ActiveEffect', [effect]);
+		}
+	}
 
 	async hasCondition(conditionKey) {
 		let existing = '';
@@ -1156,15 +1183,6 @@ export class alienrpgActor extends Actor {
 				label = game.i18n.localize('ALIENRPG.Armor');
 				r2Data = 0;
 			}
-			if (!actor.token) {
-				ui.notifications.notify(game.i18n.localize('ALIENRPG.NoToken'));
-				return;
-			} else {
-				if (actor.prototypeToken.disposition === -1) {
-					// hostile = true;
-					blind = true;
-				}
-			}
 
 			// callpop upbox here to get any mods then update r1Data or rData as appropriate.
 			let confirmed = false;
@@ -1219,6 +1237,7 @@ export class alienrpgActor extends Actor {
 	async creatureAttackRoll(actor, dataset, manCrit) {
 		let chatMessage = '';
 		let customResults = '';
+		let roll = '';
 		const targetTable = dataset.atttype;
 		if (targetTable === 'None') {
 			logger.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
@@ -1226,13 +1245,13 @@ export class alienrpgActor extends Actor {
 		}
 		const table = game.tables.contents.find((b) => b.name === targetTable);
 
-		const roll = await new Roll('1d6').evaluate();
+		roll = await new Roll('1d6').evaluate();
 
 		if (!manCrit) {
 			customResults = await table.roll({ roll });
 		} else {
 			const formula = manCrit;
-			const roll = await new Roll(formula).evaluate();
+			roll = await new Roll(formula).evaluate();
 			customResults = await table.roll({ roll });
 		}
 
@@ -1405,7 +1424,7 @@ export class alienrpgActor extends Actor {
 		let stamina = 0;
 		switch (type) {
 			case 'character':
-				atable = game.tables.getName('Critical injuries');
+				atable = game.tables.getName(game.i18n.localize('ALIENRPG.CriticalInjuries')) || game.tables.getName('Critical Injuries');
 				if (atable === null || atable === undefined) {
 					ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
 					return;
@@ -1413,7 +1432,7 @@ export class alienrpgActor extends Actor {
 
 				break;
 			case 'synthetic':
-				atable = game.tables.getName('Critical Injuries on Synthetics');
+				atable = game.tables.getName('Critical Injuries on Synthetics') || game.tables.getName('critical injuries on synthetics');
 				if (atable === null || atable === undefined) {
 					ui.notifications.warn(game.i18n.localize('ALIENRPG.NoSynCrit'));
 					return;
@@ -1461,33 +1480,33 @@ export class alienrpgActor extends Actor {
 			case 'character':
 				{
 					resultImage = test1.results[0].img;
-					factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
+					factorFour = messG.replace(/(<b>)|(<p>|)(<strong>)|(<\/b>)|(<\/p>)|(<\/strong>)/gi, '');
 					testArray = factorFour.split(/[:] |<br \/>/gi);
 					let speanex = testArray[7];
-					if (testArray[9] != 'Permanent') {
+					if (testArray[9] != game.i18n.localize('ALIENRPG.Permanent')) {
 						if (testArray[9].length > 0) {
 							rollheal = testArray[9].match(/^\[\[([0-9]d[0-9]+)]/)[1];
 							newHealTime = testArray[9].match(/^\[\[([0-9]d[0-9]+)\]\] ?(.*)/)[2];
 							testArray[9] = (await new Roll(`${rollheal}`).evaluate()).result + ' ' + newHealTime;
 							// testArray[9] = (await new Roll(`${rollheal}`).evaluate().result) + ' ' + newHealTime;
 						} else {
-							testArray[9] = 'None';
+							testArray[9] = game.i18n.localize('ALIENRPG.None');
 						}
 					}
 					switch (testArray[3]) {
-						case `Yes `:
+						case game.i18n.localize('ALIENRPG.Yes') + ' ':
 							cFatal = true;
 							break;
-						case `Yes, –1 `:
+						case game.i18n.localize('ALIENRPG.Yes') + ', –1 ':
 							{
 								cFatal = true;
-								speanex += '<br> -1 to <strong>MEDICAL</strong> roll';
+								speanex += '<br> -1 to <strong>' + game.i18n.localize('ALIENRPG.SkillmedicalAid') + '</strong> roll';
 							}
 							break;
-						case `Yes, –2 `:
+						case game.i18n.localize('ALIENRPG.Yes') + ', –2 ':
 							{
 								cFatal = true;
-								speanex += '<br> -2 to <strong>MEDICAL</strong> roll';
+								speanex += '<br> -2 to <strong>' + game.i18n.localize('ALIENRPG.SkillmedicalAid') + '</strong> roll';
 							}
 							break;
 						default:
@@ -1587,9 +1606,9 @@ export class alienrpgActor extends Actor {
 					// Prepare the data for the chat message
 					//
 
-					hFatal = testArray[3] != ' ' ? testArray[3] : 'None';
-					hHealTime = testArray[9] != ' ' ? testArray[9] : 'None';
-					hTimeLimit = testArray[5] != ' ' ? testArray[5] : 'None';
+					hFatal = testArray[3] != ' ' ? testArray[3] : game.i18n.localize('ALIENRPG.None');
+					hHealTime = testArray[9] != ' ' ? testArray[9] : game.i18n.localize('ALIENRPG.None');
+					hTimeLimit = testArray[5] != ' ' ? testArray[5] : game.i18n.localize('ALIENRPG.None');
 
 					htmlData = {
 						actorname: actor.name,
@@ -1599,6 +1618,7 @@ export class alienrpgActor extends Actor {
 						timelimit: hTimeLimit,
 						healingtime: hHealTime,
 						effects: speanex,
+						manCrit: manCrit,
 					};
 				}
 
@@ -1634,6 +1654,7 @@ export class alienrpgActor extends Actor {
 						img: resultImage,
 						name: `#${test1.roll.total} ${testArray[0]}`,
 						effects: testArray[1],
+						manCrit: manCrit,
 					};
 				}
 				break;

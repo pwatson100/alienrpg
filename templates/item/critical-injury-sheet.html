@@ -147,7 +147,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{#ifne system.header.type.value '9'}}
+				{{#if (ne system.header.type.value '9')}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.rangedCbt.value" class="resource-label"
 						>{{localize 'ALIENRPG.SkillrangedCbt'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label
@@ -160,7 +160,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{/ifne}}
+				{{/if}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.mobility.value" class="resource-label"
 						>{{localize 'ALIENRPG.Skillmobility'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label
@@ -173,7 +173,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{#ifne system.header.type.value '9'}}
+				{{#if (ne system.header.type.value '9')}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.piloting.value" class="resource-label"
 						>{{localize 'ALIENRPG.Skillpiloting'}} ({{localize 'ALIENRPG.AbilityAbbagl'}})</label
@@ -186,7 +186,7 @@
 						data-dtype="Number"
 					/>
 				</div>
-				{{/ifne}}
+				{{/if}}
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.skills.command.value" class="resource-label"
 						>{{localize 'ALIENRPG.Skillcommand'}} ({{localize 'ALIENRPG.AbilityAbbemp'}})</label

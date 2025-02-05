@@ -1,4 +1,4 @@
-export class AlienRPGBaseDie extends Die {
+export class AlienRPGBaseDie extends foundry.dice.terms.Die {
 	constructor(termData) {
 		termData.faces = 6;
 		super(termData);
@@ -28,7 +28,7 @@ export class AlienRPGBaseDie extends Die {
 		}[result.result];
 	}
 }
-export class AlienRPGStressDie extends Die {
+export class AlienRPGStressDie extends foundry.dice.terms.Die {
 	constructor(termData) {
 		termData.faces = 6;
 		super(termData);

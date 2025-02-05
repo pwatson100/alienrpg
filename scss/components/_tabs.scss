@@ -1,27 +1,19 @@
 .tabs {
-  height: 30px;
-  // border-top: 1px solid #aaa;
-  // border-bottom: 1px solid #aaa;
-  color: inherit;
-  background-color: $c-black;
-  border: 1px solid var(--aliengreen);
+	height: 30px;
+	// border-top: 1px solid #aaa;
+	// border-bottom: 1px solid #aaa;
+	color: inherit;
+	background-color: $c-black;
+	border: 1px solid var(--aliengreen);
 
-  .sheet nav.sheet-tabs {
-    height: 32px;
-    flex: 0 0 32px;
-    margin: 4px 0;
-    line-height: 32px;
-    border-top: 1px solid var(--aliengreen) !important;
-    border-bottom: 1px solid var(--aliengreen) !important;
-  }
-  .item {
-    // line-height: 30px;
-    font-weight: bold;
-    color: inherit;
-  }
+	.item {
+		// line-height: 30px;
+		font-weight: bold;
+		color: inherit;
+	}
 
-  .item.active {
-    text-decoration: underline;
-    text-shadow: none;
-  }
+	.item.active {
+		text-decoration: underline;
+		text-shadow: none;
+	}
 }

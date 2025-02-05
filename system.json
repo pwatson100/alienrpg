@@ -7,7 +7,7 @@
 	"flags": {
 		"hotReload": {
 			"extensions": ["css", "js", "html", "json"],
-			"paths": ["./css/alienrpg.css", "templates", "lang"]
+			"paths": ["css/alienrpg.css", "templates", "lang"]
 		}
 	},
 	"relationships": {
@@ -18,7 +18,7 @@
 	"compatibility": {
 		"minimum": "12",
 		"verified": "12",
-		"maximum": "12"
+		"maximum": "13"
 	},
 
 	"scripts": [],
@@ -62,8 +62,13 @@
 		},
 		{
 			"lang": "it",
-			"name": "italiano",
+			"name": "Italiano",
 			"path": "lang/it.json"
+		},
+		{
+			"lang": "pl",
+			"name": "Polski",
+			"path": "lang/pl.json"
 		}
 	],
 	"packs": [

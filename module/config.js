@@ -306,3 +306,51 @@ ALIENRPG.colony_policy_list = {
 	2: { id: 2, label: 'ALIENRPG.Installations' },
 	3: { id: 3, label: 'ALIENRPG.Projects' },
 };
+
+ALIENRPG.STATUS_EFFECTS = {
+	FAST_ACTION: 'fastAction',
+	SLOW_ACTION: 'slowAction',
+};
+
+ALIENRPG.StatusEffects = {
+	slowAndFastActions: [
+		{
+			id: ALIENRPG.STATUS_EFFECTS.FAST_ACTION,
+			name: 'ALIENRPG.FastAction',
+			label: 'ALIENRPG.FastAction',
+			icon: `systems/alienrpg/images/icons/fast-action.webp`,
+			statuses: ['fastAction'],
+		},
+		{
+			id: ALIENRPG.STATUS_EFFECTS.SLOW_ACTION,
+			name: 'ALIENRPG.SlowAction',
+			label: 'ALIENRPG.SlowAction',
+			icon: `systems/alienrpg/images/icons/slow-action.webp`,
+			statuses: ['slowAction'],
+		},
+	],
+};
+
+// ALIENRPG.AlienRPGCombat = {
+// 	// config: undefined,
+// 	DefaultCombatantControls: {
+// 		slowAndFastActions: [
+// 			{
+// 				eventName: 'fast-action-button-clicked',
+// 				icon: 'fa-forward',
+// 				id: 'fast-action-button',
+// 				property: 'fastAction',
+// 				label: 'ALIENRPG.FastAction',
+// 				visibility: 'owner',
+// 			},
+// 			{
+// 				eventName: 'slow-action-button-clicked',
+// 				icon: 'fa-play',
+// 				id: 'slow-action-button',
+// 				property: 'slowAction',
+// 				label: 'ALIENRPG.SlowAction',
+// 				visibility: 'owner',
+// 			},
+// 		],
+// 	},
+// };

@@ -57,7 +57,7 @@
   --white: hsl(0, 0%, 100%);
   --alientextjournal: hsl(187, 52%, 80%);
   --journalback: url(../images/mother-instructions/indbackground2.png);
-  --chatbackground: url(/systems/alienrpg/images/IndBackground3.png);
+  --chatbackground: url(../images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
   --alienchatwhite: hsl(0, 0%, 100%);
   --alienchatred: hsl(0, 100%, 50%);
@@ -119,11 +119,11 @@
 }
 
 .journal-sheet form {
-  background: var(--journalback) top left !important;
+  background: var(--journalback) top left;
   background-size: cover;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  color: var(--alientextjournal) !important;
+  color: var(--alientextjournal);
 }
 .journal-sheet select {
   font-family: var(--alienfont);
@@ -143,7 +143,7 @@
   border: var(--aliengreen) 3px;
 }
 .journal-sheet button {
-  font-family: var(--alienfont);
+  /* font-family: var(--alienfont); */
   color: inherit;
   background: hsl(0, 0%, 0%);
   border: var(--aliengreen) solid 1px;
@@ -717,6 +717,27 @@ button:focus {
   height: 200%;
   background-color: hsla(120, 64%, 43%, 0.3); /* Black background with opacity */
   z-index: 2;
+}
+
+.starving,
+.dehydrated,
+.exhausted,
+.freezing,
+.hypoxia,
+.heatstroke,
+.gravitydyspraxia {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.overwatch {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  margin-left: 7px;
 }
 
 .spanner-icon {
@@ -2487,6 +2508,28 @@ button:focus {
   justify-self: center;
 }
 
+.grid-2b {
+  display: grid;
+  grid-template-areas: "box11b box21b ";
+  grid-template-columns: 1fr 33px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1px;
+  padding: 0;
+}
+
+.box11b {
+  grid-area: box11b;
+  justify-self: center;
+}
+
+.box21b {
+  grid-area: box21b;
+  justify-self: right;
+  padding-right: 8px;
+}
+
 .grid-crit {
   display: grid;
   grid-template-areas: "crit1 crit2 ";
@@ -2530,10 +2573,8 @@ button:focus {
   display: grid;
   border: 2px solid var(--aliengreen);
   grid-template-areas: "vCre1 vCre2 " "vCre3 vCre4 " "vCre5 vCre6 " "vCre7 vCre8";
-  grid-template-columns: 1fr 1fr;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  grid-template-columns: 234px 300px;
+  -webkit-box-align: start;
 }
 
 .vCre1 {
@@ -4808,9 +4849,9 @@ combobox:focus {
   background: #000;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  background: var(--journalback) top left !important;
+  background: var(--journalback) top left;
   background-size: cover;
-  color: var(--alientextjournal) !important;
+  color: var(--alientextjournal);
 }
 
 .sheet.journal-entry .sidebar .directory-header .header-search input {
@@ -5495,17 +5536,7 @@ combobox:focus {
   color: inherit;
   border: 1px solid var(--aliengreen);
 }
-.alienrpg .sheet nav.sheet-tabs {
-  border-top: 1px solid var(--aliengreen) !important;
-  border-bottom: 1px solid var(--aliengreen) !important;
-}
-.alienrpg .sheet-tabs {
-  -webkit-box-flex: 0;
-      -ms-flex: 0;
-          flex: 0;
-  border-top: 1px solid var(--aliengreen) !important;
-  border-bottom: 1px solid var(--aliengreen) !important;
-}
+.alienrpg .sheet-body,
 .alienrpg .tab,
 .alienrpg .editor {
   height: 100%;
@@ -5686,18 +5717,18 @@ combobox:focus {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  color: var(--color-text-dark-primary) !important;
+  color: var(--color-text-dark-primary);
   border-radius: 0px;
-  border: 1px solid var(--aliendarkergreen) !important;
+  border: 1px solid var(--aliendarkergreen);
 }
 .alienrpg .colony-planet2 {
   max-width: 250px;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  color: var(--color-text-dark-primary) !important;
+  color: var(--color-text-dark-primary);
   border-radius: 0px;
-  border: 1px solid var(--aliendarkergreen) !important;
+  border: 1px solid var(--aliendarkergreen);
 }
 .alienrpg .resource-label {
   font-family: var(--alienfont);
@@ -5727,16 +5758,6 @@ combobox:focus {
   color: inherit;
   background-color: hsl(0, 0%, 0%);
   border: 1px solid var(--aliengreen);
-}
-.alienrpg .tabs .sheet nav.sheet-tabs {
-  height: 32px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 32px;
-          flex: 0 0 32px;
-  margin: 4px 0;
-  line-height: 32px;
-  border-top: 1px solid var(--aliengreen) !important;
-  border-bottom: 1px solid var(--aliengreen) !important;
 }
 .alienrpg .tabs .item {
   font-weight: bold;

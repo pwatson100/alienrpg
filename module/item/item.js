@@ -255,8 +255,8 @@ export class alienrpgItem extends Item {
                     <select id="FirerSelect" name="FirerSelect">${options}</select>
                     </div>
                     <div class="form-group">
-                      <label>${game.i18n.localize('ALIENRPG.Range')} ${game.i18n.localize('ALIENRPG.MODIFIER')}</label>
-                      <select id="rangeMod" name="rangeMod">
+										<label>${game.i18n.localize('ALIENRPG.Range')} ${game.i18n.localize('ALIENRPG.MODIFIER')}</label>
+										                      <select id="rangeMod" name="rangeMod">
                       <option value="0">${game.i18n.localize('ALIENRPG.Short')}</option>
                       <option value="-1">${game.i18n.localize('ALIENRPG.Medium')}</option>
                       <option value="-2">${game.i18n.localize('ALIENRPG.Long')}</option>
