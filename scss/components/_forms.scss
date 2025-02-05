@@ -62,19 +62,8 @@ h1.charname {
 		border: 1px solid var(--aliengreen);
 	}
 }
-.sheet nav.sheet-tabs {
-	border-top: 1px solid var(--aliengreen) !important;
-	border-bottom: 1px solid var(--aliengreen) !important;
-}
-.sheet-tabs {
-	flex: 0;
-	// border: 1px solid var(--aliengreen);
-	border-top: 1px solid var(--aliengreen) !important;
-	border-bottom: 1px solid var(--aliengreen) !important;
-	//  color: $c-green;
-}
 
-// .sheet-body,
+.sheet-body,
 .tab,
 .editor {
 	height: 100%; //  Do not change this or notes will stop working
@@ -249,15 +238,15 @@ form .sheet-content .click-stat-level {
 	max-width: 190px;
 	margin: -5px 0px 0px -3px;
 	height: max-content;
-	color: var(--color-text-dark-primary) !important;
+	color: var(--color-text-dark-primary);
 	border-radius: 0px;
-	border: 1px solid var(--aliendarkergreen) !important;
+	border: 1px solid var(--aliendarkergreen);
 }
 .colony-planet2 {
 	max-width: 250px;
 	// margin: -10px 0px 0px -14px;
 	height: max-content;
-	color: var(--color-text-dark-primary) !important;
+	color: var(--color-text-dark-primary);
 	border-radius: 0px;
-	border: 1px solid var(--aliendarkergreen) !important;
+	border: 1px solid var(--aliendarkergreen);
 }

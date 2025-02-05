@@ -4,10 +4,10 @@
 	background: #000;
 	border: 1px solid var(--aliengreen);
 	border-radius: 1px;
-	background: var(--journalback) top left !important;
+	background: var(--journalback) top left;
 	background-size: cover;
 	// color: #b0e0e6;
-	color: var(--alientextjournal) !important;
+	color: var(--alientextjournal);
 }
 
 .sheet.journal-entry .sidebar .directory-header .header-search input {

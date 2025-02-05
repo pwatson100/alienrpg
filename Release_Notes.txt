@@ -576,6 +576,7 @@ Corrected bug with Panic autoroll not working.
 
 Version 3.2.2
 Added Polish translation with thanks to Lukasz Lenart.
+Updated French traslation with thanks to Argaan.
 The chat text for Manual Critical Injury rolls for Characters, Synthetics and Creatures now show that it was a "Manual" (selected) injuriy rather than "Rolled" (automated).   
 Added fast and slow condition effects (on Assign Status Effects menu)
 PC Critical Injuries not usues the localised name of Critical injuries to allow for foreign translations if present.

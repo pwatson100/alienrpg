@@ -119,11 +119,11 @@
 }
 
 .journal-sheet form {
-  background: var(--journalback) top left !important;
+  background: var(--journalback) top left;
   background-size: cover;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  color: var(--alientextjournal) !important;
+  color: var(--alientextjournal);
 }
 .journal-sheet select {
   font-family: var(--alienfont);
@@ -143,7 +143,7 @@
   border: var(--aliengreen) 3px;
 }
 .journal-sheet button {
-  font-family: var(--alienfont);
+  /* font-family: var(--alienfont); */
   color: inherit;
   background: hsl(0, 0%, 0%);
   border: var(--aliengreen) solid 1px;
@@ -4849,9 +4849,9 @@ combobox:focus {
   background: #000;
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  background: var(--journalback) top left !important;
+  background: var(--journalback) top left;
   background-size: cover;
-  color: var(--alientextjournal) !important;
+  color: var(--alientextjournal);
 }
 
 .sheet.journal-entry .sidebar .directory-header .header-search input {
@@ -5536,17 +5536,7 @@ combobox:focus {
   color: inherit;
   border: 1px solid var(--aliengreen);
 }
-.alienrpg .sheet nav.sheet-tabs {
-  border-top: 1px solid var(--aliengreen) !important;
-  border-bottom: 1px solid var(--aliengreen) !important;
-}
-.alienrpg .sheet-tabs {
-  -webkit-box-flex: 0;
-      -ms-flex: 0;
-          flex: 0;
-  border-top: 1px solid var(--aliengreen) !important;
-  border-bottom: 1px solid var(--aliengreen) !important;
-}
+.alienrpg .sheet-body,
 .alienrpg .tab,
 .alienrpg .editor {
   height: 100%;
@@ -5727,18 +5717,18 @@ combobox:focus {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  color: var(--color-text-dark-primary) !important;
+  color: var(--color-text-dark-primary);
   border-radius: 0px;
-  border: 1px solid var(--aliendarkergreen) !important;
+  border: 1px solid var(--aliendarkergreen);
 }
 .alienrpg .colony-planet2 {
   max-width: 250px;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  color: var(--color-text-dark-primary) !important;
+  color: var(--color-text-dark-primary);
   border-radius: 0px;
-  border: 1px solid var(--aliendarkergreen) !important;
+  border: 1px solid var(--aliendarkergreen);
 }
 .alienrpg .resource-label {
   font-family: var(--alienfont);
@@ -5768,16 +5758,6 @@ combobox:focus {
   color: inherit;
   background-color: hsl(0, 0%, 0%);
   border: 1px solid var(--aliengreen);
-}
-.alienrpg .tabs .sheet nav.sheet-tabs {
-  height: 32px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 32px;
-          flex: 0 0 32px;
-  margin: 4px 0;
-  line-height: 32px;
-  border-top: 1px solid var(--aliengreen) !important;
-  border-bottom: 1px solid var(--aliengreen) !important;
 }
 .alienrpg .tabs .item {
   font-weight: bold;

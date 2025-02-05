@@ -1480,7 +1480,7 @@ export class alienrpgActor extends Actor {
 			case 'character':
 				{
 					resultImage = test1.results[0].img;
-					factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
+					factorFour = messG.replace(/(<b>)|(<p>|)(<strong>)|(<\/b>)|(<\/p>)|(<\/strong>)/gi, '');
 					testArray = factorFour.split(/[:] |<br \/>/gi);
 					let speanex = testArray[7];
 					if (testArray[9] != game.i18n.localize('ALIENRPG.Permanent')) {

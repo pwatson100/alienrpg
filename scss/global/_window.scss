@@ -67,12 +67,12 @@
 		// font-family: var(--alienfont);
 		// color: var(--aliengreen);
 		// background: url(../images/mother-instructions/indbackground2.png) no-repeat top left;
-		background: var(--journalback) top left !important;
+		background: var(--journalback) top left;
 		background-size: cover;
 		border: 1px solid var(--aliengreen);
 		border-radius: 1px;
 		// color: hsl(187, 52%, 80%);
-		color: var(--alientextjournal) !important;
+		color: var(--alientextjournal);
 	}
 	select {
 		font-family: var(--alienfont);
@@ -95,11 +95,11 @@
 		border: var(--aliengreen) 3px;
 	}
 	button {
-		font-family: var(--alienfont);
+		/* font-family: var(--alienfont); */
 		//  color: $c-green;
 		color: inherit;
 
-		background: $c-black;
+		background: hsl(0, 0%, 0%);
 		border: var(--aliengreen) solid 1px;
 		width: 100%;
 		margin: 0 1px;
@@ -697,7 +697,7 @@ button:focus {
 }
 
 .prosemirror menu .pm-dropdown {
-	color: $c-black;
+	color: hsl(0, 0%, 0%);
 }
 
 #overlay {
