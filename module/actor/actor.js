@@ -1781,8 +1781,8 @@ export class alienrpgActor extends Actor {
 									break;
 								case 'spacecraft':
 									if (dataset.crbut === 'minor') {
-										if (!manCrit.match(/^[1-44]?[1-44]$/gm)) {
-											ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManShipMajorCrit'));
+										if (!manCrit.match(/^[1-66]?[1-66]$/gm)) {
+											ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManShipMinorCrit'));
 											return;
 										}
 									} else {
