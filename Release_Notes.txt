@@ -586,3 +586,7 @@ Included a "Critical Injuries template for people who want to create their own.
  Fixed path issue for people using the routePrefix in options.json
  Corrected formatting issue on the synth sheet when using other display fonts.
  Corrected condition alignment on sheets. 
+
+ Version 3.2.3
+ Fixed issue with manual roll of Ships Minor Crits, which did not allow a D66 number to be entered.  
+ 
