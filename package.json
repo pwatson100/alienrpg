@@ -3,8 +3,8 @@
 	"version": "1.0.0",
 	"description": "CSS compiler for the Alien RPG system",
 	"scripts": {
-		"pushLDBtoJSON": "node ./tools/pushLDBtoJSON.mjs",
-		"pullJSONtoLDB": "node ./tools/pullJSONtoLDB.mjs"
+		"LDB-to-JSON": "node ./tools/pushLDBtoJSON.mjs",
+		"JSON-to-LDB": "node ./tools/pullJSONtoLDB.mjs"
 	},
 	"browserslist": [
 		"last 3 versions"

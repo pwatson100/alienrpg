@@ -67,6 +67,7 @@ h1.charname {
 .tab,
 .editor {
 	height: 100%; //  Do not change this or notes will stop working
+	/* height: -webkit-fit-content; */ //  Do not change this or notes will stop working
 	background-color: $c-black;
 	//  color: $c-green;
 	// overflow: hidden;
@@ -240,7 +241,7 @@ form .sheet-content .click-stat-level {
 	height: max-content;
 	color: var(--color-text-dark-primary);
 	border-radius: 0px;
-	border: 1px solid var(--aliendarkergreen);
+	border: 1px solid var(--aliengreen);
 }
 .colony-planet2 {
 	max-width: 250px;
@@ -248,5 +249,5 @@ form .sheet-content .click-stat-level {
 	height: max-content;
 	color: var(--color-text-dark-primary);
 	border-radius: 0px;
-	border: 1px solid var(--aliendarkergreen);
+	border: 1px solid var(--aliengreen);
 }

@@ -17,9 +17,9 @@
 
 .crt .window-content {
 	padding: 5px;
-	border: 2px solid var(--aliendarkergreen);
+	border: 2px solid var(--aliengreen);
 	color: var(--aliengreen);
-	text-shadow: 0 0 2px var(--aliendarkergreen);
+	text-shadow: 0 0 2px var(--aliengreen);
 }
 
 .crt .window-content::before {
@@ -54,7 +54,7 @@
 
 .crt textarea {
 	border-radius: 0px;
-	border: 1px solid var(--aliendarkergreen);
+	border: 1px solid var(--aliengreen);
 	color: ghostwhite;
 	font-family: var(--alienchatfont);
 	font-size: 14px;
@@ -93,7 +93,7 @@
 .crt input[type='date'],
 .crt input[type='time'] {
 	border-radius: 0px;
-	border: 1px solid var(--aliendarkergreen);
+	border: 1px solid var(--aliengreen);
 }
 
 .crt input[type='text']:hover,
@@ -114,7 +114,7 @@
 
 .crt .select-css {
 	border-radius: 3px;
-	border: 1px solid var(--aliendarkergreen);
+	border: 1px solid var(--aliengreen);
 }
 
 .crt .select-css:hover {
@@ -141,13 +141,13 @@
 
 .crt .minus-btn {
 	width: 14px;
-	color: var(--aliendarkergreen);
+	color: var(--aliengreen);
 	font-size: 30px;
 }
 
 .crt .plus-btn {
 	width: 14px;
-	color: var(--aliendarkergreen);
+	color: var(--aliengreen);
 	font-size: 30px;
 	margin-left: -7px;
 }
@@ -213,7 +213,7 @@
 }
 
 .crt_gCol11 {
-	color: var(--aliendarkergreen);
+	color: var(--aliengreen);
 }
 
 .crt-crt-grid-Char-Att .maxboxsize {
@@ -246,7 +246,7 @@
 
 .crt .crt-grid-Char-Att .crt-gCol6:focus,
 .crt .grid-Consumables .maxboxsize:focus {
-	color: var(--aliendarkergreen);
+	color: var(--aliengreen);
 	background-color: var(--alienoddtab);
 	box-shadow: 0 0 0 #000;
 	cursor: not-allowed;
@@ -255,7 +255,7 @@
 .crt .crt-grid-Char-Att .crt_gCol6:hover,
 .crt .grid-Consumables .maxboxsize:hover {
 	cursor: default;
-	border: 1px solid var(--aliendarkergreen);
+	border: 1px solid var(--aliengreen);
 }
 
 .crt .click-stat-level .far {
@@ -273,7 +273,7 @@
 }
 
 .crt .text {
-	background-color: var(--aliendarkergreen);
+	background-color: var(--aliengreen);
 }
 
 .crt .tabs {
@@ -288,8 +288,8 @@
 	text-decoration: none;
 	font-size: 110%;
 	color: white;
-	background-color: var(--aliendarkergreen);
-	box-shadow: 0 0 10px var(--aliendarkergreen);
+	background-color: var(--aliengreen);
+	box-shadow: 0 0 10px var(--aliengreen);
 	text-shadow: 0 0 10px var(--aliengreen);
 	cursor: default;
 }
@@ -328,7 +328,7 @@
 
 .crt .resource-content button {
 	width: 16px;
-	color: var(--aliendarkergreen);
+	color: var(--aliengreen);
 }
 
 /** General Tab **/
@@ -376,12 +376,12 @@
 
 .crt .crt_Item1 .sp_faded {
 	padding-top: 5px;
-	color: var(--aliendarkergreen);
+	color: var(--aliengreen);
 }
 
 .crt .crt_Item1 .xp_faded {
 	padding-top: 6px;
-	color: var(--aliendarkergreen);
+	color: var(--aliengreen);
 }
 
 .crt .crt_Item1 h2 {
@@ -521,7 +521,7 @@
 }
 
 .crt .alienrpgv .synth_fake_check {
-	color: var(--aliendarkergreen);
+	color: var(--aliengreen);
 	width: 100%;
 	margin-top: 12px;
 	padding: 6px 0px 6px 0px;
@@ -627,7 +627,7 @@
 	color: #000;
 	font-weight: bolder;
 	text-transform: uppercase;
-	background-color: var(--aliendarkergreen);
+	background-color: var(--aliengreen);
 }
 
 .crt .crt_Item4 {
@@ -645,7 +645,7 @@
 
 .crt .crt_Item6 {
 	height: 216px;
-	border: 1px solid var(--aliendarkergreen);
+	border: 1px solid var(--aliengreen);
 	margin-bottom: 0px;
 }
 
@@ -674,7 +674,7 @@
 .crt_Col3 {
 	grid-area: crt_Col3;
 	padding-top: 10px;
-	color: var(--aliendarkergreen);
+	color: var(--aliengreen);
 	font-family: var(--alienfont);
 }
 
@@ -764,7 +764,7 @@
 }
 
 .crt .item-header {
-	/* background-color: var(--aliendarkergreen); */
+	/* background-color: var(--aliengreen); */
 	/* color: black; */
 }
 
@@ -825,7 +825,7 @@
 
 .crt .resource-label-header.rollCrit:hover {
 	font-size: 15px;
-	background-color: var(--aliendarkergreen);
+	background-color: var(--aliengreen);
 	animation: textShadow 1s infinite;
 }
 
@@ -896,7 +896,7 @@
 
 .crt .creature-attack-roll:hover {
 	border-radius: 3px;
-	background-color: var(--aliendarkergreen);
+	background-color: var(--aliengreen);
 	text-shadow: 0 0 #00000000;
 	color: #00000000;
 	background: url(../images/alien_crt_roll-attack_hover.gif) no-repeat top left;

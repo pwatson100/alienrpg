@@ -589,4 +589,8 @@ Included a "Critical Injuries template for people who want to create their own.
 
  Version 3.2.3
  Fixed issue with manual roll of Ships Minor Crits, which did not allow a D66 number to be entered.  
- 
+ Fixed issue with Creature and Ship crits not being parsed correctly.
+ Fixed issue with the "Alien - Roll on selected Mother table V10" and "Alien - Roll on selected Creature table V10" macros.
+ Tidied up the cess con a couple of the actor and item sheets. 
+ Fixed issues with the CRT UI sheets when changing colours.
+  

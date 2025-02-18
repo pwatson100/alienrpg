@@ -144,8 +144,8 @@
 ::-webkit-scrollbar-thumb {
 	outline: none;
 	border-radius: 2px;
-	background: var(--aliendarkergreen);
-	border: 1px solid var(--aliendarkergreen);
+	background: var(--aliengreen);
+	border: 1px solid var(--aliengreen);
 }
 
 .window-header {
@@ -159,7 +159,7 @@
 .alienrpg input[type='date'],
 .alienrpg input[type='time'] {
 	border-radius: 0px;
-	border: 1px solid var(--aliendarkergreen);
+	border: 1px solid var(--aliengreen);
 }
 
 input[type='text']:hover,
@@ -229,8 +229,8 @@ combobox:focus {
 #controls .scene-control:hover,
 #controls .control-tool:hover {
 	border: 1px solid var(--aliengreen);
-	border-bottom: 1px solid var(--aliendarkergreen);
-	box-shadow: 0 0 10px var(--aliendarkergreen);
+	border-bottom: 1px solid var(--aliengreen);
+	box-shadow: 0 0 10px var(--aliengreen);
 }
 
 #navigation #scene-list .scene.view,
@@ -238,7 +238,7 @@ combobox:focus {
 	border: 1px solid var(--aliengreen);
 	background: rgba(52, 52, 52, 0.95);
 	border-bottom: 1px solid var(--aliengreen);
-	box-shadow: 0 0 10px var(--aliendarkergreen);
+	box-shadow: 0 0 10px var(--aliengreen);
 }
 
 // #pause img {
@@ -291,7 +291,7 @@ combobox:focus {
 	height: 40px;
 	margin-top: 5px;
 	margin-left: 1px;
-	box-shadow: 0 0 5px var(--aliendarkergreen);
+	box-shadow: 0 0 5px var(--aliengreen);
 	border-radius: 3px;
 	background: url(../images/alien_crt_push-button.png) no-repeat top left;
 	color: #00000000;
@@ -299,7 +299,7 @@ combobox:focus {
 
 .alien-Push-button:hover {
 	border-radius: 3px;
-	box-shadow: 0 0 5px var(--aliendarkergreen);
+	box-shadow: 0 0 5px var(--aliengreen);
 	background-color: inherit;
 	background: url(../images/alien_crt_push-button_hover.gif) no-repeat top left;
 	color: #00000000;
@@ -388,7 +388,7 @@ combobox:focus {
 
 .alien-Push-button:hover {
 	border-radius: 3px;
-	box-shadow: 0 0 5px var(--aliendarkergreen);
+	box-shadow: 0 0 5px var(--aliengreen);
 	background-color: inherit;
 	background: url(../images/alien_crt_push-button_hover.gif) no-repeat top left;
 	color: #00000000;
