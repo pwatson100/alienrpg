@@ -1424,7 +1424,10 @@ export class alienrpgActor extends Actor {
 		let stamina = 0;
 		switch (type) {
 			case 'character':
-				atable = game.tables.getName(game.i18n.localize('ALIENRPG.CriticalInjuries')) || game.tables.getName('Critical Injuries');
+				atable =
+					game.tables.getName(game.i18n.localize('ALIENRPG.CriticalInjuries')) ||
+					game.tables.getName('Critical Injuries') ||
+					game.tables.getName('Critical injuries');
 				if (atable === null || atable === undefined) {
 					ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
 					return;
@@ -1630,7 +1633,9 @@ export class alienrpgActor extends Actor {
 					if (type === 'creature') {
 						resultImage = 'icons/svg/biohazard.svg';
 					}
-					factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
+					factorFour = messG.replace(/(<b>)|(<p>|)(<strong>)|(<\/b>)|(<\/p>)|(<\/strong>)/gi, '');
+
+					// factorFour = messG.replace(/(<b>)|(<\/b>)/gi, '');
 					testArray = factorFour.split(/[:] |<br \/>/gi);
 
 					//
@@ -1662,7 +1667,8 @@ export class alienrpgActor extends Actor {
 				{
 					resultImage = test1.results[0].img || 'icons/svg/biohazard.svg';
 
-					factorFour = messG.replace(/(<strong>)|(<\/strong>)/gi, '');
+					// factorFour = messG.replace(/(<strong>)|(<\/strong>)/gi, '');
+					factorFour = messG.replace(/(<b>)|(<p>|)(<strong>)|(<\/b>)|(<\/p>)|(<\/strong>)/gi, '');
 					testArray = factorFour.split(/[:] |<br \/>/gi);
 
 					//
@@ -1781,8 +1787,8 @@ export class alienrpgActor extends Actor {
 									break;
 								case 'spacecraft':
 									if (dataset.crbut === 'minor') {
-										if (!manCrit.match(/^[1-44]?[1-44]$/gm)) {
-											ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManShipMajorCrit'));
+										if (!manCrit.match(/^[1-66]?[1-66]$/gm)) {
+											ui.notifications.warn(game.i18n.localize('ALIENRPG.RollManShipMinorCrit'));
 											return;
 										}
 									} else {

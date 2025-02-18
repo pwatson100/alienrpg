@@ -4559,8 +4559,8 @@ button:focus {
 ::-webkit-scrollbar-thumb {
   outline: none;
   border-radius: 2px;
-  background: var(--aliendarkergreen);
-  border: 1px solid var(--aliendarkergreen);
+  background: var(--aliengreen);
+  border: 1px solid var(--aliengreen);
 }
 
 .window-header {
@@ -4574,7 +4574,7 @@ button:focus {
 .alienrpg input[type=date],
 .alienrpg input[type=time] {
   border-radius: 0px;
-  border: 1px solid var(--aliendarkergreen);
+  border: 1px solid var(--aliengreen);
 }
 
 input[type=text]:hover,
@@ -4649,9 +4649,9 @@ combobox:focus {
 #controls .scene-control:hover,
 #controls .control-tool:hover {
   border: 1px solid var(--aliengreen);
-  border-bottom: 1px solid var(--aliendarkergreen);
-  -webkit-box-shadow: 0 0 10px var(--aliendarkergreen);
-          box-shadow: 0 0 10px var(--aliendarkergreen);
+  border-bottom: 1px solid var(--aliengreen);
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
 }
 
 #navigation #scene-list .scene.view,
@@ -4659,8 +4659,8 @@ combobox:focus {
   border: 1px solid var(--aliengreen);
   background: rgba(52, 52, 52, 0.95);
   border-bottom: 1px solid var(--aliengreen);
-  -webkit-box-shadow: 0 0 10px var(--aliendarkergreen);
-          box-shadow: 0 0 10px var(--aliendarkergreen);
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
 }
 
 #pause {
@@ -4702,8 +4702,8 @@ combobox:focus {
   height: 40px;
   margin-top: 5px;
   margin-left: 1px;
-  -webkit-box-shadow: 0 0 5px var(--aliendarkergreen);
-          box-shadow: 0 0 5px var(--aliendarkergreen);
+  -webkit-box-shadow: 0 0 5px var(--aliengreen);
+          box-shadow: 0 0 5px var(--aliengreen);
   border-radius: 3px;
   background: url(../images/alien_crt_push-button.png) no-repeat top left;
   color: rgba(0, 0, 0, 0);
@@ -4711,8 +4711,8 @@ combobox:focus {
 
 .alien-Push-button:hover {
   border-radius: 3px;
-  -webkit-box-shadow: 0 0 5px var(--aliendarkergreen);
-          box-shadow: 0 0 5px var(--aliendarkergreen);
+  -webkit-box-shadow: 0 0 5px var(--aliengreen);
+          box-shadow: 0 0 5px var(--aliengreen);
   background-color: inherit;
   background: url(../images/alien_crt_push-button_hover.gif) no-repeat top left;
   color: rgba(0, 0, 0, 0);
@@ -4783,8 +4783,8 @@ combobox:focus {
 
 .alien-Push-button:hover {
   border-radius: 3px;
-  -webkit-box-shadow: 0 0 5px var(--aliendarkergreen);
-          box-shadow: 0 0 5px var(--aliendarkergreen);
+  -webkit-box-shadow: 0 0 5px var(--aliengreen);
+          box-shadow: 0 0 5px var(--aliengreen);
   background-color: inherit;
   background: url(../images/alien_crt_push-button_hover.gif) no-repeat top left;
   color: rgba(0, 0, 0, 0);
@@ -5540,6 +5540,7 @@ combobox:focus {
 .alienrpg .tab,
 .alienrpg .editor {
   height: 100%;
+  /* height: -webkit-fit-content; */
   background-color: hsl(0, 0%, 0%);
 }
 .alienrpg .tox .tox-editor-container {
@@ -5719,7 +5720,7 @@ combobox:focus {
   height: max-content;
   color: var(--color-text-dark-primary);
   border-radius: 0px;
-  border: 1px solid var(--aliendarkergreen);
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg .colony-planet2 {
   max-width: 250px;
@@ -5728,7 +5729,7 @@ combobox:focus {
   height: max-content;
   color: var(--color-text-dark-primary);
   border-radius: 0px;
-  border: 1px solid var(--aliendarkergreen);
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg .resource-label {
   font-family: var(--alienfont);
@@ -5757,7 +5758,7 @@ combobox:focus {
   height: 30px;
   color: inherit;
   background-color: hsl(0, 0%, 0%);
-  border: 1px solid var(--aliengreen);
+  border: 1px solid;
 }
 .alienrpg .tabs .item {
   font-weight: bold;
@@ -5766,6 +5767,10 @@ combobox:focus {
 .alienrpg .tabs .item.active {
   text-decoration: underline;
   text-shadow: none;
+}
+.alienrpg .sheet-tabs.tabs {
+  border-top: 1px solid var(--aliengreen);
+  border-bottom: 1px solid var(--aliengreen);
 }
 .alienrpg .items-list {
   list-style: none;
@@ -5830,9 +5835,9 @@ combobox:focus {
 }
 .alienrpg .crt .window-content {
   padding: 5px;
-  border: 2px solid var(--aliendarkergreen);
+  border: 2px solid var(--aliengreen);
   color: var(--aliengreen);
-  text-shadow: 0 0 2px var(--aliendarkergreen);
+  text-shadow: 0 0 2px var(--aliengreen);
 }
 .alienrpg .crt .window-content::before {
   content: " ";
@@ -5863,7 +5868,7 @@ combobox:focus {
 }
 .alienrpg .crt textarea {
   border-radius: 0px;
-  border: 1px solid var(--aliendarkergreen);
+  border: 1px solid var(--aliengreen);
   color: ghostwhite;
   font-family: var(--alienchatfont);
   font-size: 14px;
@@ -5898,7 +5903,7 @@ combobox:focus {
 .alienrpg .crt input[type=date],
 .alienrpg .crt input[type=time] {
   border-radius: 0px;
-  border: 1px solid var(--aliendarkergreen);
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg .crt input[type=text]:hover,
 .alienrpg .crt input[type=number]:hover,
@@ -5916,7 +5921,7 @@ combobox:focus {
 }
 .alienrpg .crt .select-css {
   border-radius: 3px;
-  border: 1px solid var(--aliendarkergreen);
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg .crt .select-css:hover {
   border: 1px solid var(--aliengreen);
@@ -5938,12 +5943,12 @@ combobox:focus {
 }
 .alienrpg .crt .minus-btn {
   width: 14px;
-  color: var(--aliendarkergreen);
+  color: var(--aliengreen);
   font-size: 30px;
 }
 .alienrpg .crt .plus-btn {
   width: 14px;
-  color: var(--aliendarkergreen);
+  color: var(--aliengreen);
   font-size: 30px;
   margin-left: -7px;
 }
@@ -6007,7 +6012,7 @@ combobox:focus {
       align-self: center;
 }
 .alienrpg .crt_gCol11 {
-  color: var(--aliendarkergreen);
+  color: var(--aliengreen);
 }
 .alienrpg .crt-crt-grid-Char-Att .maxboxsize {
   min-width: 40px;
@@ -6035,7 +6040,7 @@ combobox:focus {
 }
 .alienrpg .crt .crt-grid-Char-Att .crt-gCol6:focus,
 .alienrpg .crt .grid-Consumables .maxboxsize:focus {
-  color: var(--aliendarkergreen);
+  color: var(--aliengreen);
   background-color: var(--alienoddtab);
   -webkit-box-shadow: 0 0 0 #000;
           box-shadow: 0 0 0 #000;
@@ -6044,7 +6049,7 @@ combobox:focus {
 .alienrpg .crt .crt-grid-Char-Att .crt_gCol6:hover,
 .alienrpg .crt .grid-Consumables .maxboxsize:hover {
   cursor: default;
-  border: 1px solid var(--aliendarkergreen);
+  border: 1px solid var(--aliengreen);
 }
 .alienrpg .crt .click-stat-level .far {
   letter-spacing: 1px;
@@ -6058,7 +6063,7 @@ combobox:focus {
   text-align: center;
 }
 .alienrpg .crt .text {
-  background-color: var(--aliendarkergreen);
+  background-color: var(--aliengreen);
 }
 .alienrpg .crt .tabs {
   color: #000;
@@ -6071,9 +6076,9 @@ combobox:focus {
   text-decoration: none;
   font-size: 110%;
   color: white;
-  background-color: var(--aliendarkergreen);
-  -webkit-box-shadow: 0 0 10px var(--aliendarkergreen);
-          box-shadow: 0 0 10px var(--aliendarkergreen);
+  background-color: var(--aliengreen);
+  -webkit-box-shadow: 0 0 10px var(--aliengreen);
+          box-shadow: 0 0 10px var(--aliengreen);
   text-shadow: 0 0 10px var(--aliengreen);
   cursor: default;
 }
@@ -6104,7 +6109,7 @@ combobox:focus {
 }
 .alienrpg .crt .resource-content button {
   width: 16px;
-  color: var(--aliendarkergreen);
+  color: var(--aliengreen);
 }
 .alienrpg .crt .grid-crtPage {
   display: grid;
@@ -6139,11 +6144,11 @@ combobox:focus {
 }
 .alienrpg .crt .crt_Item1 .sp_faded {
   padding-top: 5px;
-  color: var(--aliendarkergreen);
+  color: var(--aliengreen);
 }
 .alienrpg .crt .crt_Item1 .xp_faded {
   padding-top: 6px;
-  color: var(--aliendarkergreen);
+  color: var(--aliengreen);
 }
 .alienrpg .crt .crt_Item1 h2 {
   padding-top: 8px;
@@ -6253,7 +6258,7 @@ combobox:focus {
   text-align: center;
 }
 .alienrpg .crt .alienrpgv .synth_fake_check {
-  color: var(--aliendarkergreen);
+  color: var(--aliengreen);
   width: 100%;
   margin-top: 12px;
   padding: 6px 0px 6px 0px;
@@ -6343,7 +6348,7 @@ combobox:focus {
   color: #000;
   font-weight: bolder;
   text-transform: uppercase;
-  background-color: var(--aliendarkergreen);
+  background-color: var(--aliengreen);
 }
 .alienrpg .crt .crt_Item4 {
   height: 50px;
@@ -6357,7 +6362,7 @@ combobox:focus {
 }
 .alienrpg .crt .crt_Item6 {
   height: 216px;
-  border: 1px solid var(--aliendarkergreen);
+  border: 1px solid var(--aliengreen);
   margin-bottom: 0px;
 }
 .alienrpg .crt .crt_Item7 textarea {
@@ -6380,7 +6385,7 @@ combobox:focus {
 .alienrpg .crt_Col3 {
   grid-area: crt_Col3;
   padding-top: 10px;
-  color: var(--aliendarkergreen);
+  color: var(--aliengreen);
   font-family: var(--alienfont);
 }
 .alienrpg .crt.grid-attr {
@@ -6450,7 +6455,7 @@ combobox:focus {
   background-color: var(--aliengreen);
 }
 .alienrpg .crt .item-header {
-  /* background-color: var(--aliendarkergreen); */
+  /* background-color: var(--aliengreen); */
   /* color: black; */
 }
 .alienrpg .crt .textbox {
@@ -6500,7 +6505,7 @@ combobox:focus {
 }
 .alienrpg .crt .resource-label-header.rollCrit:hover {
   font-size: 15px;
-  background-color: var(--aliendarkergreen);
+  background-color: var(--aliengreen);
   -webkit-animation: textShadow 1s infinite;
           animation: textShadow 1s infinite;
 }
@@ -6560,7 +6565,7 @@ combobox:focus {
 }
 .alienrpg .crt .creature-attack-roll:hover {
   border-radius: 3px;
-  background-color: var(--aliendarkergreen);
+  background-color: var(--aliengreen);
   text-shadow: 0 0 rgba(0, 0, 0, 0);
   color: rgba(0, 0, 0, 0);
   background: url(../images/alien_crt_roll-attack_hover.gif) no-repeat top left;
