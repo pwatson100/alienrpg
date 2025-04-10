@@ -1,6 +1,6 @@
 import { ALIENRPG } from './config.js';
 
-export default class AlienRPGCTContext extends CombatTracker {
+export default class AlienRPGCTContext extends foundry.applications.sidebar.tabs.CombatTracker {
 	/**
   // /** @override */
 	// async getData(options) {

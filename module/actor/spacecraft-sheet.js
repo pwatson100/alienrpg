@@ -5,9 +5,9 @@ import { alienrpgrTableGet } from './rollTableData.js';
 import { logger } from '../logger.js';
 /**
  * Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
+ * @extends {foundry.appv1.sheets.ActorSheet}
  */
-export class alienrpgSpacecraftSheet extends ActorSheet {
+export class alienrpgSpacecraftSheet extends foundry.appv1.sheets.ActorSheet {
 	constructor(...args) {
 		super(...args);
 
@@ -272,7 +272,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 		];
 
 		// Add Inventory Item
-		new ContextMenu(html, '.item-edit', itemContextMenu);
+		new foundry.applications.ux.ContextMenu(html, '.item-edit', itemContextMenu);
 
 		const itemContextMenu1 = [
 			{
@@ -310,7 +310,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 		];
 
 		// Add Inventory Item
-		new ContextMenu(html, '.item-edit1', itemContextMenu1);
+		new foundry.applications.ux.ContextMenu(html, '.item-edit1', itemContextMenu1);
 
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		// Update Inventory Item

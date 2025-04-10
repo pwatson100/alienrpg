@@ -2,9 +2,9 @@ import { ALIENRPG } from '../config.js';
 import { logger } from '../logger.js';
 /**
  * Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
+ * @extends {foundry.appv1.sheets.ActorSheet}
  */
-export class alienrpgColonySheet extends ActorSheet {
+export class alienrpgColonySheet extends foundry.appv1.sheets.ActorSheet {
 	constructor(...args) {
 		super(...args);
 
@@ -111,7 +111,7 @@ export class alienrpgColonySheet extends ActorSheet {
 		];
 
 		// Add Inventory Item
-		new ContextMenu(html, '.item-edit', itemContextMenu);
+		new foundry.applications.ux.ContextMenu(html, '.item-edit', itemContextMenu);
 
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		// Update Inventory Item

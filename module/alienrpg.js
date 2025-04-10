@@ -104,13 +104,13 @@ Hooks.once('init', async function () {
 	CONFIG.Item.documentClass = alienrpgItem;
 	CONFIG.Combat.documentClass = AlienRPGCombat;
 	CONFIG.CombatTracker = AlienRPGCTContext;
-	CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
+	foundry.applications.sidebar.tabs.CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
 	CONFIG.ImportFormWrapper = ImportFormWrapper;
 
 	game.alienrpg.config = ALIENRPG;
 	// Register sheet application classes
-	Items.unregisterSheet('core', ItemSheet);
-	Items.registerSheet('alienrpg', alienrpgItemSheet, {
+	foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
+	foundry.documents.collections.Items.registerSheet('alienrpg', alienrpgItemSheet, {
 		types: [
 			'item',
 			'weapon',
