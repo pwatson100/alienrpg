@@ -47,12 +47,13 @@ Hooks.on('init', () => {
 
 Hooks.on('ready', () => {
 	if (!game.settings.get(moduleKey, 'imported') && game.user.isGM && !game.folders.getName('Alien Tables')) {
-		ModuleImport();
+		FirstTimeSetup();
+		// ModuleImport();
 		return;
-	} else if (!game.settings.get(moduleKey, 'imported') && game.user.isGM && game.folders.getName('Alien Tables')) {
-		migrateFolders();
-		game.settings.set(moduleKey, 'imported', true);
-		return;
+		// } else if (!game.settings.get(moduleKey, 'imported') && game.user.isGM && game.folders.getName('Alien Tables')) {
+		// 	migrateFolders();
+		// 	game.settings.set(moduleKey, 'imported', true);
+		// 	return;
 	} else if (game.settings.get(moduleKey, 'imported') && game.user.isGM && game.settings.get(moduleKey, 'migrationVersion') < game.system.version) {
 		updateModule();
 	}
@@ -65,6 +66,16 @@ Hooks.on('ready', () => {
 		game.settings.get(moduleKey, 'migrationVersion')
 	);
 });
+
+export async function FirstTimeSetup() {
+	const pack = game.packs.get(adventurePack);
+	await pack.getDocuments();
+	await pack.getName(adventurePackName).sheet._updateObject({}, new FormData());
+	await game.settings.set(moduleKey, 'imported', true);
+	await game.settings.set(moduleKey, 'migrationVersion', game.system.version);
+	ui.notifications.notify('Import Complete');
+	game.journal.getName(welcomeJournalEntry).show();
+}
 
 export async function ModuleImport() {
 	//

@@ -316,12 +316,13 @@ Hooks.on('hotbarDrop', (bar, data, slot) => {
 });
 
 Hooks.on('renderPause', (_app, html, options) => {
-	// Hooks.on('pauseGame', (_app, html, options) => {
 	document.getElementById('pause').innerHTML = `<img src=\"systems/alienrpg/images/paused-alien.png\" class=\"fa-spin\"><figcaption>GAME PAUSED</figcaption>`;
-	// old jQuery
-	// html.find('img[src="icons/svg/clockwork.svg"]').attr('src', 'systems/alienrpg/images/paused-alien.png');
 });
 
+// V13 version
+Hooks.on('renderGamePause', (_app, html, options) => {
+	document.getElementById('pause').innerHTML = `<img src=\"systems/alienrpg/images/paused-alien.png\" class=\"fa-spin\"><figcaption>GAME PAUSED</figcaption>`;
+});
 // prevent players from deleting messages with rolls
 Hooks.on('preDeleteChatMessage', (message) => {
 	if (!game.user.isGM && message.rolls?.length) {
