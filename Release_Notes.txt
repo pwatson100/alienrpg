@@ -593,4 +593,10 @@ Included a "Critical Injuries template for people who want to create their own.
  Fixed issue with the "Alien - Roll on selected Mother table V10" and "Alien - Roll on selected Creature table V10" macros.
  Tidied up the cess con a couple of the actor and item sheets. 
  Fixed issues with the CRT UI sheets when changing colours.
+
+ Version 3.2.4
+ Corrected error in Roll Table macros
+
+ Version 3.2.5
+ Adventure now automatically installs.  
   
