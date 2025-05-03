@@ -1,5 +1,7 @@
 import { ALIENRPG } from '../config.js';
 import { logger } from '../logger.js';
+import * as arpgUtils from '../utils.mjs';
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -116,21 +118,18 @@ export class alienrpgColonySheet extends ActorSheet {
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		// Update Inventory Item
 		html.find('.openItem').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
+			const item = this.actor.items.get(ev.currentTarget.getAttribute('data-item-id'));
 			item.sheet.render(true);
 		});
 
 		// Update Inventory Item
 		html.find('.item-edit').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
+			const item = this.actor.items.get(ev.currentTarget.getAttribute('data-item-id'));
 			item.sheet.render(true);
 		});
 
 		html.find('.item-edit1').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
+			const item = this.actor.items.get(ev.currentTarget.getAttribute('data-item-id'));
 			item.sheet.render(true);
 		});
 
@@ -215,7 +214,7 @@ export class alienrpgColonySheet extends ActorSheet {
 
 	async _initiativeMods(actor) {
 		const aData = actor.system;
-		var attrMod = {
+		let attrMod = {
 			economy: 0,
 			potential: 0,
 			productivity: 0,

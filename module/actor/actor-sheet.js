@@ -1,5 +1,6 @@
 import { yze } from '../YZEDiceRoller.js';
-import { toNumber } from '../utils.js';
+import * as arpgUtils from '../utils.mjs';
+
 import { ALIENRPG } from '../config.js';
 import { alienrpgrTableGet } from './rollTableData.js';
 import { logger } from '../logger.js';
@@ -225,21 +226,18 @@ export class alienrpgActorSheet extends ActorSheet {
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		// Update Inventory Item
 		html.find('.openItem').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
+			const item = this.actor.items.get(ev.currentTarget.getAttribute('data-item-id'));
 			item.sheet.render(true);
 		});
 
 		// Update Inventory Item
 		html.find('.item-edit').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
+			const item = this.actor.items.get(ev.currentTarget.getAttribute('data-item-id'));
 			item.sheet.render(true);
 		});
 
 		html.find('.item-edit1').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
+			const item = this.actor.items.get(ev.currentTarget.getAttribute('data-item-id'));
 			item.sheet.render(true);
 		});
 
@@ -322,9 +320,9 @@ export class alienrpgActorSheet extends ActorSheet {
 
 		html.find('.pwr-btn').click(this._supplyRoll.bind(this));
 
-		html.find('.stunt-btn').click(this._stuntBtn.bind(this));
+		// html.find('.stunt-btn').click(this._stuntBtn.bind(this));
 
-		html.find('.talent-btn').click(this._talentBtn.bind(this));
+		// html.find('.talent-btn').click(this._talentBtn.bind(this));
 
 		html.find('.inline-edit').change(this._inlineedit.bind(this));
 
@@ -352,11 +350,24 @@ export class alienrpgActorSheet extends ActorSheet {
 		html.find('.crew-edit').click(this._onCrewEdit.bind(this));
 		html.find('.crew-remove').click(this._onCrewRemove.bind(this));
 		html.find('.crew-position').change(this._onChangePosition.bind(this));
+
+		const stuntSection = document.querySelectorAll('#stunt-button'); // whatever selector works for you
+		for (const s of stuntSection) {
+			s.addEventListener('click', (event) => {
+				this._slideStuntSection(event);
+			});
+		}
+		const talentSection = document.querySelectorAll('#talent-button'); // whatever selector works for you
+		for (const s of talentSection) {
+			s.addEventListener('click', (event) => {
+				this._slideTalentSection(event);
+			});
+		}
 	}
 
 	async _characterData(actor) {
 		const aData = actor.system;
-		var attrMod = {
+		let attrMod = {
 			str: 0,
 			agl: 0,
 			emp: 0,
@@ -365,7 +376,7 @@ export class alienrpgActorSheet extends ActorSheet {
 			stress: 0,
 		};
 
-		var sklMod = {
+		let sklMod = {
 			heavyMach: 0,
 			closeCbt: 0,
 			stamina: 0,
@@ -939,7 +950,7 @@ export class alienrpgActorSheet extends ActorSheet {
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
-		const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+		const itemId = event.currentTarget.parentElement.getAttribute('data-item-id');
 		const item = this.actor.items.get(itemId);
 		if (item.type === 'armor') {
 			dataset.roll = this.actor.system.general.armor.value;
@@ -954,7 +965,7 @@ export class alienrpgActorSheet extends ActorSheet {
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
-		const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+		const itemId = event.currentTarget.parentElement.getAttribute('data-item-id');
 		const item = this.actor.items.get(itemId);
 		if (item.type === 'armor') {
 			dataset.roll = this.actor.system.general.armor.value;
@@ -998,10 +1009,19 @@ export class alienrpgActorSheet extends ActorSheet {
 		this.actor.stressChange(this.actor, dataset);
 	}
 
-	_stuntBtn(event) {
+	async _slideStuntSection(event) {
 		event.preventDefault();
-		let li = $(event.currentTarget).parents('.grid-container');
-		let li2 = li.children('#panel');
+		let section = document.querySelector('.slidesection.collapsible');
+		let isCollapsed = '';
+		switch (section.getAttribute('data-collapsed')) {
+			case null:
+			case 'true':
+				isCollapsed = true;
+				break;
+			case 'false':
+				isCollapsed = false;
+				break;
+		}
 		let item = '';
 		let str = '';
 		let chatData = '';
@@ -1011,7 +1031,7 @@ export class alienrpgActorSheet extends ActorSheet {
 		let langItem = dataset.pmbut;
 		let langStr = langItem;
 
-		var newLangStr = langStr.replace(/\s+/g, '');
+		let newLangStr = langStr.replace(/\s+/g, '');
 		let langTemp = 'ALIENRPG.' + [newLangStr];
 		temp3 = game.i18n.localize(langTemp);
 
@@ -1033,22 +1053,29 @@ export class alienrpgActorSheet extends ActorSheet {
 			}
 		}
 
-		let div = $(`<div class="panel Col3">${chatData}</div>`);
-		// Toggle summary
-		if (li2.hasClass('expanded')) {
-			let summary = li2.children('.panel');
-			summary.slideUp(200, () => summary.remove());
+		if (isCollapsed) {
+			section.innerHTML = `<div>${chatData}</div>`;
+			arpgUtils.expandSection(section);
+			section.setAttribute('data-collapsed', 'false');
 		} else {
-			li2.append(div.hide());
-			div.slideDown(200);
+			section.innerHTML = '';
+			arpgUtils.collapseSection(section);
 		}
-		li2.toggleClass('expanded');
 	}
 
-	_talentBtn(event) {
+	async _slideTalentSection(event) {
 		event.preventDefault();
-		let li = $(event.currentTarget).parents('.grid-container');
-		let li2 = li.children('#panel');
+		let section = document.querySelector('.slidesection.collapsible');
+		let isCollapsed = '';
+		switch (section.getAttribute('data-collapsed')) {
+			case null:
+			case 'true':
+				isCollapsed = true;
+				break;
+			case 'false':
+				isCollapsed = false;
+				break;
+		}
 		let item = '';
 		let str = '';
 		let temp1 = '';
@@ -1063,9 +1090,7 @@ export class alienrpgActorSheet extends ActorSheet {
 		if (temp2 != null && temp2.length > 0) {
 			chatData = item.system.general.comment.value;
 		} else {
-			// item = dataset.pmbut;
-			// str = item;
-			var newStr = str.replace(/\s+/g, '');
+			let newStr = str.replace(/\s+/g, '');
 			temp1 = 'ALIENRPG.' + [newStr];
 			temp3 = game.i18n.localize(temp1);
 			if (temp3.startsWith('<p>')) {
@@ -1075,17 +1100,14 @@ export class alienrpgActorSheet extends ActorSheet {
 			}
 		}
 
-		let div = $(`<div class="panel Col3">${chatData}</div>`);
-
-		// Toggle summary
-		if (li2.hasClass('expanded')) {
-			let summary = li2.children('.panel');
-			summary.slideUp(200, () => summary.remove());
+		if (isCollapsed) {
+			section.innerHTML = `<div>${chatData}</div>`;
+			arpgUtils.expandSection(section);
+			section.setAttribute('data-collapsed', 'false');
 		} else {
-			li2.append(div.hide());
-			div.slideDown(200);
+			section.innerHTML = '';
+			arpgUtils.collapseSection(section);
 		}
-		li2.toggleClass('expanded');
 	}
 
 	async _onClickXPStatLevel(event) {

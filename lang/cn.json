@@ -1,14 +1,4 @@
 {
-  "ACTOR": {
-    "TypeCharacter": "Player Character",
-    "TypeColony": "Colony Sheet",
-    "TypeCreature": "Creature",
-    "TypePlanet": "Colony Planet",
-    "TypeSpacecraft": "Space Ship",
-    "TypeSynthetic": "Synthetic",
-    "TypeTerritory": "Territory",
-    "TypeVehicles": "Vehicle"
-  },
   "ALIENRPG": {
     "AbbreviationKg": "kg",
     "AbilityAbbagl": "agl",
@@ -460,19 +450,31 @@
     "YourPanicLevel": "你的恐慌等级已经提升一级，目前为",
     "youTake": "你拿 "
   },
-  "ITEM": {
-    "TypeAgenda": "Agenda",
-    "TypeArmor": "Armor",
-    "TypeColony-initiative": "Colony Initiative",
-    "TypeCritical-injury": "Critical Injury",
-    "TypeItem": "Item",
-    "TypePlanet-system": "Planet/System",
-    "TypeSkill-stunts": "Skill Stunts",
-    "TypeSpacecraft-crit": "Spaceship Crit",
-    "TypeSpacecraftmods": "Spaceship Modules/Upgrades",
-    "TypeSpacecraftweapons": "Spaceship Weapons",
-    "TypeSpecialty": "Speciality",
-    "TypeTalent": "Talent",
-    "TypeWeapon": "Weapon"
+  "TYPES": {
+    "Actor": {
+      "character": "Player Character",
+      "colony": "Colony Sheet",
+      "creature": "Creature",
+      "planet": "Colony Planet",
+      "spacecraft": "Space Ship",
+      "synthetic": "Synthetic",
+      "territory": "Territory",
+      "vehicles": "Vehicle"
+    },
+    "Item": {
+      "agenda": "Agenda",
+      "armor": "Armor",
+      "colony-initiative": "Colony Initiative",
+      "critical-injury": "Critical Injury",
+      "item": "Item",
+      "planet-system": "Planet/System",
+      "skill-stunts": "Skill Stunts",
+      "spacecraft-crit": "Spaceship Crit",
+      "spacecraftmods": "Spaceship Modules/Upgrades",
+      "spacecraftweapons": "Spaceship Weapons",
+      "specialty": "Speciality",
+      "talent": "Talent",
+      "weapon": "Weapon"
+    }
   }
 }

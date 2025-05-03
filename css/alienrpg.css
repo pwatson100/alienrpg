@@ -5731,6 +5731,12 @@ combobox:focus {
   border-radius: 0px;
   border: 1px solid var(--aliengreen);
 }
+.alienrpg .slidecontainer .slidesection {
+  overflow: hidden;
+  -webkit-transition: height 0.3s ease-out;
+  transition: height 0.3s ease-out;
+  height: auto;
+}
 .alienrpg .resource-label {
   font-family: var(--alienfont);
   text-transform: uppercase;

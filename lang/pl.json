@@ -1,14 +1,4 @@
 {
-  "ACTOR": {
-    "TypeCharacter": "Postać Gracza",
-    "TypeColony": "Karta Kolonii",
-    "TypeCreature": "Stwór",
-    "TypePlanet": "Planeta kolonii",
-    "TypeSpacecraft": "Statek",
-    "TypeSynthetic": "Syntetyk",
-    "TypeTerritory": "Terytorium",
-    "TypeVehicles": "Pojazd"
-  },
   "ALIENRPG": {
     "AbbreviationKg": "kg",
     "AbilityAbbagl": "zr",
@@ -457,19 +447,31 @@
     "YourPanicLevel": "Twój poziom paniki wzrósł o jeden poziom do ",
     "youTake": "Bierzesz "
   },
-  "ITEM": {
-    "TypeAgenda": "Cel",
-    "TypeArmor": "Pancerz",
-    "TypeColony-initiative": "Inicjatywa Kolonii",
-    "TypeCritical-injury": "Krytyczna Rana",
-    "TypeItem": "Przedmiot",
-    "TypePlanet-system": "Planeta/System",
-    "TypeSkill-stunts": "Umiejętność Sprawność",
-    "TypeSpacecraft-crit": "Krytyczne Uszkodzenie Statku Kosmicznego",
-    "TypeSpacecraftmods": "Moduły/Ulepszenia Statku Kosmicznego",
-    "TypeSpacecraftweapons": "Broń Statku Kosmicznego",
-    "TypeSpecialty": "Specjalność",
-    "TypeTalent": "Talent",
-    "TypeWeapon": "Broń"
+  "TYPES": {
+    "Actor": {
+      "character": "Postać Gracza",
+      "colony": "Karta Kolonii",
+      "creature": "Stwór",
+      "planet": "Planeta kolonii",
+      "spacecraft": "Statek",
+      "synthetic": "Syntetyk",
+      "territory": "Terytorium",
+      "vehicles": "Pojazd"
+    },
+    "Item": {
+      "agenda": "Cel",
+      "armor": "Pancerz",
+      "colony-initiative": "Inicjatywa Kolonii",
+      "critical-injury": "Krytyczna Rana",
+      "item": "Przedmiot",
+      "planet-system": "Planeta/System",
+      "skill-stunts": "Umiejętność Sprawność",
+      "spacecraft-crit": "Krytyczne Uszkodzenie Statku Kosmicznego",
+      "spacecraftmods": "Moduły/Ulepszenia Statku Kosmicznego",
+      "spacecraftweapons": "Broń Statku Kosmicznego",
+      "specialty": "Specjalność",
+      "talent": "Talent",
+      "weapon": "Broń"
+    }
   }
 }

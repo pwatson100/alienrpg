@@ -1,14 +1,4 @@
 {
-  "ACTOR": {
-    "TypeCharacter": "Akteur",
-    "TypeColony": "Colony Sheet",
-    "TypeCreature": "Kreatur",
-    "TypePlanet": "Colony Planet",
-    "TypeSpacecraft": "Raumschiff",
-    "TypeSynthetic": "Android",
-    "TypeTerritory": "Region",
-    "TypeVehicles": "Fahrzeug"
-  },
   "ALIENRPG": {
     "AbbreviationKg": "kg",
     "AbilityAbbagl": "GE",
@@ -459,19 +449,31 @@
     "YourPanicLevel": "Deine Panikstufe steigt auf ",
     "youTake": "Du bekommst "
   },
-  "ITEM": {
-    "TypeAgenda": "Motivation/Story",
-    "TypeArmor": "Rüstung",
-    "TypeColony-initiative": "Colony Initiative",
-    "TypeCritical-injury": "Kritische Verletzung",
-    "TypeItem": "Gegenstand",
-    "TypePlanet-system": "Planet/System",
-    "TypeSkill-stunts": "Fertigkeiten-Stunt",
-    "TypeSpacecraft-crit": "Raumschiff-Schaden",
-    "TypeSpacecraftmods": "Raumschiff-Modul/Verbesserung",
-    "TypeSpacecraftweapons": "Raumschiff-Waffe",
-    "TypeSpecialty": "Spezialisierung",
-    "TypeTalent": "Talent",
-    "TypeWeapon": "Waffe"
+  "TYPES": {
+    "Actor": {
+      "character": "Akteur",
+      "colony": "Colony Sheet",
+      "creature": "Kreatur",
+      "planet": "Colony Planet",
+      "spacecraft": "Raumschiff",
+      "synthetic": "Android",
+      "territory": "Region",
+      "vehicles": "Fahrzeug"
+    },
+    "Item": {
+      "agenda": "Motivation/Story",
+      "armor": "Rüstung",
+      "colony-initiative": "Colony Initiative",
+      "critical-injury": "Kritische Verletzung",
+      "item": "Gegenstand",
+      "planet-system": "Planet/System",
+      "skill-stunts": "Fertigkeiten-Stunt",
+      "spacecraft-crit": "Raumschiff-Schaden",
+      "spacecraftmods": "Raumschiff-Modul/Verbesserung",
+      "spacecraftweapons": "Raumschiff-Waffe",
+      "specialty": "Spezialisierung",
+      "talent": "Talent",
+      "weapon": "Waffe"
+    }
   }
 }

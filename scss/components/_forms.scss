@@ -251,3 +251,11 @@ form .sheet-content .click-stat-level {
 	border-radius: 0px;
 	border: 1px solid var(--aliengreen);
 }
+
+.slidecontainer {
+	.slidesection {
+		overflow: hidden;
+		transition: height 0.3s ease-out;
+		height: auto;
+	}
+}

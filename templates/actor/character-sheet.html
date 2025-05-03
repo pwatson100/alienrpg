@@ -108,7 +108,7 @@
 	<section class="sheet-body">
 		{{!--Skills Tab --}}
 		<div class="tab skills" data-group="primary" data-tab="skills">
-			<div class="grid-container">
+			<div class="grid-container slidecontainer">
 				<!-- Col1 -->
 				<span class="Col1">
 					{{#each system.skills as |skill key|}}
@@ -123,7 +123,9 @@
 						</h3>
 						<input type="text" class="maxboxsize Attr2" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
 						<div class="resource-content">
-							<button type="button" class="stunt-btn Attr3" data-pmbut="{{skill.description}}"><i class="fas fa-tools fa-xs" title="Stunts"></i></button>
+							<button type="button" class="stunt-btn Attr3" id="stunt-button" data-pmbut="{{skill.description}}">
+								<i class="fas fa-tools fa-xs" title="Stunts"></i>
+							</button>
 						</div>
 					</span>
 					{{/each}}
@@ -140,7 +142,7 @@
 						<div style="height: 155px; overflow-x: auto">
 							{{#each talents as |item iid|}}
 							<li class="item grid-talents" data-item-id="{{item._id}}">
-								<h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}}</h4>
+								<h4 class="item-name tal3 talent-btn" id="talent-button" data-pmbut="{{item._id}}">{{item.name}}</h4>
 								<div class="tal4 item-controls">
 									<a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 								</div>
@@ -160,7 +162,7 @@
 						<div style="height: 70px; overflow-x: auto">
 							{{#each agendas as |item iid|}}
 							<li class="item grid-talents" data-item-id="{{item._id}}">
-								<h4 class="item-name tal3 talent-btn" data-pmbut="{{item._id}}">{{item.name}}</h4>
+								<h4 class="item-name tal3 talent-btn" id="talent-button" data-pmbut="{{item._id}}">{{item.name}}</h4>
 								<div class="tal4 item-controls">
 									<a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 								</div>
@@ -171,7 +173,7 @@
 				</div>
 
 				{{!-- Stunts/Talents pop up DO NOT TOUCH THE DIV BELOW --}}
-				<div class="Col3" style="font-family: initial; font-size: larger" id="panel"></div>
+				<div class="Col3 slidesection collapsible" style="font-family: initial; font-size: larger" id="panel"></div>
 			</div>
 		</div>
 

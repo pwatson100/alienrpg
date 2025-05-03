@@ -1,5 +1,4 @@
 import { yze } from '../YZEDiceRoller.js';
-import { toNumber } from '../utils.js';
 import { ALIENRPG } from '../config.js';
 import { alienrpgrTableGet } from './rollTableData.js';
 import { logger } from '../logger.js';
@@ -315,21 +314,18 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		// Update Inventory Item
 		html.find('.openItem').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
+			const item = this.actor.items.get(ev.currentTarget.getAttribute('data-item-id'));
 			item.sheet.render(true);
 		});
 
 		// Update Inventory Item
 		html.find('.item-edit').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
+			const item = this.actor.items.get(ev.currentTarget.getAttribute('data-item-id'));
 			item.sheet.render(true);
 		});
 
 		html.find('.item-edit1').click((ev) => {
-			const li = $(ev.currentTarget).parents('.item');
-			const item = this.actor.items.get(li.data('itemId'));
+			const item = this.actor.items.get(ev.currentTarget.getAttribute('data-item-id'));
 			item.sheet.render(true);
 		});
 
@@ -503,7 +499,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
-		const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+		const itemId = event.currentTarget.parentElement.getAttribute('data-item-id');
 		const item = this.actor.items.get(itemId);
 		if (item.type === 'armor') {
 			dataset.roll = this.actor.system.general.armor.value;
@@ -518,7 +514,7 @@ export class alienrpgSpacecraftSheet extends ActorSheet {
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
-		const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+		const itemId = event.currentTarget.parentElement.getAttribute('data-item-id');
 		const item = this.actor.items.get(itemId);
 		if (item.type === 'armor') {
 			dataset.roll = this.actor.system.general.armor.value;

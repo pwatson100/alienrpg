@@ -1,14 +1,4 @@
 {
-  "ACTOR": {
-    "TypeCharacter": "Personnage Joueur",
-    "TypeColony": "Colonie",
-    "TypeCreature": "Créature",
-    "TypePlanet": "Planète",
-    "TypeSpacecraft": "Vaisseau",
-    "TypeSynthetic": "Synthétique",
-    "TypeTerritory": "Territoire",
-    "TypeVehicles": "Véhicule"
-  },
   "ALIENRPG": {
     "AbbreviationKg": "kg",
     "AbilityAbbagl": "AGI",
@@ -460,19 +450,31 @@
     "YourPanicLevel": "Votre niveau de panique a augmenté de 1, atteignant ",
     "youTake": "Vous prenez "
   },
-  "ITEM": {
-    "TypeAgenda": "Objectif personnel",
-    "TypeArmor": "Armure",
-    "TypeColony-initiative": "Initiative de colonisation",
-    "TypeCritical-injury": "Blessure critique",
-    "TypeItem": "Objet",
-    "TypePlanet-system": "Planète/Système",
-    "TypeSkill-stunts": "Actions d'éclat",
-    "TypeSpacecraft-crit": "Avarie majeure",
-    "TypeSpacecraftmods": "Modules/Améliorations de vaisseau",
-    "TypeSpacecraftweapons": "Armement de vaisseau",
-    "TypeSpecialty": "Spécialité",
-    "TypeTalent": "Talent",
-    "TypeWeapon": "Arme"
+  "TYPES": {
+    "Actor": {
+      "character": "Personnage Joueur",
+      "colony": "Colonie",
+      "creature": "Créature",
+      "planet": "Planète",
+      "spacecraft": "Vaisseau",
+      "synthetic": "Synthétique",
+      "territory": "Territoire",
+      "vehicles": "Véhicule"
+    },
+    "Item": {
+      "agenda": "Objectif personnel",
+      "armor": "Armure",
+      "colony-initiative": "Initiative de colonisation",
+      "critical-injury": "Blessure critique",
+      "item": "Objet",
+      "planet-system": "Planète/Système",
+      "skill-stunts": "Actions d'éclat",
+      "spacecraft-crit": "Avarie majeure",
+      "spacecraftmods": "Modules/Améliorations de vaisseau",
+      "spacecraftweapons": "Armement de vaisseau",
+      "specialty": "Spécialité",
+      "talent": "Talent",
+      "weapon": "Arme"
+    }
   }
 }

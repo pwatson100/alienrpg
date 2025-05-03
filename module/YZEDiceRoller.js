@@ -399,7 +399,7 @@ export class yze {
 				chatMessage += `${R6.length}`;
 				chatMessage += '<div>';
 				// added by Steph (for loop, and moved div close)
-				for (var _d = 0; _d < numDie; _d++) {
+				for (let _d = 0; _d < numDie; _d++) {
 					if (numOf6s > 0) {
 						chatMessage += "<span class='alien-diceface-b6'></span>";
 						numOf6s--;
@@ -428,7 +428,7 @@ export class yze {
 					chatMessage += `${RB6.length}`;
 					chatMessage += '<div>';
 					// added by Steph (for loop, and moved div close)
-					for (var _d = 0; _d < mr.terms[0].number; _d++) {
+					for (let _d = 0; _d < mr.terms[0].number; _d++) {
 						if (numOfB6s > 0) {
 							chatMessage += "<span class='alien-diceface-b6'></span>";
 							numOfB6s--;
@@ -473,14 +473,14 @@ export class yze {
 				chatMessage += `${RY6.length}`;
 				chatMessage += '<div>';
 				// added by Steph (for loops, and moved div close)
-				for (var _d = 0; _d < numOfY6s; _d++) {
+				for (let _d = 0; _d < numOfY6s; _d++) {
 					chatMessage += "<span class='alien-diceface-y6'></span>";
 				}
-				for (var _d = 0; _d < numOfY1s; _d++) {
+				for (let _d = 0; _d < numOfY1s; _d++) {
 					chatMessage += "<span class='alien-diceface-y1'></span>";
 				}
 				let _theRest = mrterms - (numOfY6s + numOfY1s);
-				for (var _d = 0; _d < _theRest; _d++) {
+				for (let _d = 0; _d < _theRest; _d++) {
 					chatMessage += "<span class='alien-diceface-y0'></span>";
 				}
 				chatMessage += '</div>';

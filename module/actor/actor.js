@@ -1,5 +1,6 @@
 import { yze } from '../YZEDiceRoller.js';
-import { addSign } from '../utils.js';
+import * as arpgUtils from '../utils.mjs';
+
 import { ALIENRPG } from '../config.js';
 import { logger } from '../logger.js';
 
@@ -466,7 +467,7 @@ export class alienrpgActor extends Actor {
 					'<h2 class="alienchatred ctooltip">' +
 					game.i18n.localize('ALIENRPG.PanicCondition') +
 					' ' +
-					addSign(aStress).toString() +
+					arpgUtils.addSign(aStress).toString() +
 					'<span class="ctooltiptext">' +
 					game.i18n.localize('ALIENRPG.Stress') +
 					' + (' +
@@ -569,7 +570,7 @@ export class alienrpgActor extends Actor {
 						}
 
 						SelfMessage(
-							'<h2 class="alienchatred">' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(aStress).toString() + ' ???</h2>',
+							'<h2 class="alienchatred">' + game.i18n.localize('ALIENRPG.PanicCondition') + arpgUtils.addSign(aStress).toString() + ' ???</h2>',
 							CONFIG.sounds.dice
 						);
 					}
