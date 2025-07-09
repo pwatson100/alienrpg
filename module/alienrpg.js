@@ -492,6 +492,12 @@ Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
 	}
 });
 
+// Register the settings for the Year Zero Engine: Combat module.
+Hooks.once('yzeCombatReady', yzec => yzec.register({
+	actorSpeedAttribute: 'system.attributes.speed.value',
+	duplicateCombatantOnCombatStart: true,
+}));
+
 function setupMacroFolders() {
 	if (!game.user.isGM) {
 		// Only make changes to system
