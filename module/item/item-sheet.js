@@ -31,7 +31,11 @@ export class alienrpgItemSheet extends foundry.appv1.sheets.ItemSheet {
 	async _enrichTextFields(data, fieldNameArr) {
 		for (let t = 0; t < fieldNameArr.length; t++) {
 			if (foundry.utils.hasProperty(data, fieldNameArr[t])) {
-				foundry.utils.setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true }));
+				foundry.utils.setProperty(
+					data,
+					fieldNameArr[t],
+					await foundry.applications.ux.TextEditor.implementation.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true })
+				);
 			}
 		}
 	}

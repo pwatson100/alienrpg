@@ -7,6 +7,7 @@ import { logger } from '../logger.js';
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {foundry.appv1.sheets.ActorSheet}
  */
+
 export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 	constructor(...args) {
 		super(...args);
@@ -46,7 +47,11 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 	async _enrichTextFields(data, fieldNameArr) {
 		for (let t = 0; t < fieldNameArr.length; t++) {
 			if (foundry.utils.hasProperty(data, fieldNameArr[t])) {
-				foundry.utils.setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true }));
+				foundry.utils.setProperty(
+					data,
+					fieldNameArr[t],
+					await foundry.applications.ux.TextEditor.implementation.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true })
+				);
 			}
 		}
 	}
@@ -158,69 +163,6 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 		super.activateListeners(html);
 		// Everything below here is only needed if the sheet is editable
 		if (!this.options.editable) return;
-
-		const itemContextMenu = [
-			{
-				name: game.i18n.localize('ALIENRPG.addToFLocker'),
-				icon: '<i class="fas fa-archive"></i>',
-				callback: (element) => {
-					let item = this.actor.items.get(element.data('item-id'));
-					item.update({ 'system.header.active': 'fLocker' });
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
-				icon: '<i class="fas fa-archive"></i>',
-				callback: (element) => {
-					let item = this.actor.items.get(element.data('item-id'));
-					item.update({ 'system.header.active': false });
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
-				icon: '<i class="fas fa-edit"></i>',
-				callback: (element) => {
-					const item = this.actor.items.get(element.data('item-id'));
-					item.sheet.render(true);
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.DeleteItem'),
-				icon: '<i class="fas fa-trash"></i>',
-				callback: (element) => {
-					let itemDel = this.actor.items.get(element.data('item-id'));
-					itemDel.delete();
-				},
-			},
-		];
-
-		// Add Inventory Item
-		new foundry.applications.ux.ContextMenu(html, '.item-edit', itemContextMenu);
-
-		const itemContextMenu1 = [
-			{
-				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
-				icon: '<i class="fas fa-edit"></i>',
-				callback: (element) => {
-					const item = this.actor.items.get(element.data('item-id'));
-					item.sheet.render(true);
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.DeleteItem'),
-				icon: '<i class="fas fa-trash"></i>',
-				callback: (element) => {
-					let itemDel = this.actor.items.get(element.data('item-id'));
-					if (itemDel.type === 'critical-injury' && this.actor.system.general.critInj.value <= 1) {
-						this.actor.removeCondition('criticalinj');
-					}
-					itemDel.delete();
-				},
-			},
-		];
-
-		// Add Inventory Item
-		new foundry.applications.ux.ContextMenu(html, '.item-edit1', itemContextMenu1);
 
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		// Update Inventory Item
@@ -352,6 +294,82 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 		html.find('.crew-edit').click(this._onCrewEdit.bind(this));
 		html.find('.crew-remove').click(this._onCrewRemove.bind(this));
 		html.find('.crew-position').change(this._onChangePosition.bind(this));
+
+		class CMPowerMenu extends foundry.applications.ux.ContextMenu {
+			constructor(html, selector, menuItems, { eventName = 'contextmenu', onOpen, onClose, jQuery, parent } = {}) {
+				super(html, selector, menuItems, {
+					eventName: eventName,
+					onOpen: onOpen,
+					onClose: onClose,
+					jQuery: false,
+				});
+				this.myParent = parent;
+				this.originalMenuItems = [...menuItems];
+			}
+		}
+
+		const itemContextMenu = [
+			{
+				name: game.i18n.localize('ALIENRPG.addToFLocker'),
+				icon: '<i class="fas fa-archive"></i>',
+				callback: (element) => {
+					let item = this.actor.items.get(element.data('item-id'));
+					item.update({ 'system.header.active': 'fLocker' });
+				},
+			},
+			{
+				name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
+				icon: '<i class="fas fa-archive"></i>',
+				callback: (element) => {
+					let item = this.actor.items.get(element.data('item-id'));
+					item.update({ 'system.header.active': false });
+				},
+			},
+			{
+				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+				icon: '<i class="fas fa-edit"></i>',
+				callback: (element) => {
+					const item = this.actor.items.get(element.data('item-id'));
+					item.sheet.render(true);
+				},
+			},
+			{
+				name: game.i18n.localize('ALIENRPG.DeleteItem'),
+				icon: '<i class="fas fa-trash"></i>',
+				callback: (element) => {
+					let itemDel = this.actor.items.get(element.data('item-id'));
+					itemDel.delete();
+				},
+			},
+		];
+		new CMPowerMenu(html[0], '.item-edit', itemContextMenu, {
+			parent: this,
+		});
+
+		const itemContextMenu1 = [
+			{
+				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+				icon: '<i class="fas fa-edit"></i>',
+				callback: (element) => {
+					const item = this.actor.items.get(element.data('item-id'));
+					item.sheet.render(true);
+				},
+			},
+			{
+				name: game.i18n.localize('ALIENRPG.DeleteItem'),
+				icon: '<i class="fas fa-trash"></i>',
+				callback: (element) => {
+					let itemDel = this.actor.items.get(element.data('item-id'));
+					if (itemDel.type === 'critical-injury' && this.actor.system.general.critInj.value <= 1) {
+						this.actor.removeCondition('criticalinj');
+					}
+					itemDel.delete();
+				},
+			},
+		];
+		new CMPowerMenu(html[0], '.item-edit1', itemContextMenu1, {
+			parent: this,
+		});
 	}
 
 	async _characterData(actor) {

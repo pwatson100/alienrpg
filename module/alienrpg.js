@@ -304,6 +304,11 @@ Hooks.once('ready', async () => {
 
 	setupMacroFolders();
 	addSlowAndFastActions();
+
+	// Set turnmarker to the Alien symbol
+	if (!CONFIG.Combat.settings.turnMarker.src) {
+		CONFIG.Combat.settings.turnMarker.src = 'systems/alienrpg/images/paused-alien.png';
+	}
 });
 
 //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
@@ -315,7 +320,7 @@ Hooks.on('hotbarDrop', (bar, data, slot) => {
 	}
 });
 
-Hooks.on('renderPause', (_app, html, options) => {
+Hooks.on('renderGamePause', (_app, html, options) => {
 	// Hooks.on('pauseGame', (_app, html, options) => {
 	document.getElementById('pause').innerHTML = `<img src=\"systems/alienrpg/images/paused-alien.png\" class=\"fa-spin\"><figcaption>GAME PAUSED</figcaption>`;
 	// old jQuery
