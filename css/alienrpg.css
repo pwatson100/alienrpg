@@ -66,6 +66,12 @@
   --alienchatlightblue: hsl(120, 97%, 41%);
   --alienchatlightgreen: hsl(120, 97%, 41%);
   --alienchatgoldenrod: hsl(43, 74%, 49%);
+  --table-row-color-even: hsl(43, 74%, 49%);
+  --color-underline-header: hsl(12, 62%, 29%);
+}
+
+.themed.theme-light {
+  --content-link-text-color: var(--color-light-2);
 }
 
 /* Global styles */
@@ -75,7 +81,6 @@
 
 .alienrpg #context-menu {
   width: auto;
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
   min-width: 156px;
@@ -94,6 +99,7 @@
 
 .alienrpg #context-menu li.context-item {
   line-height: 16px;
+  padding: 0px;
 }
 
 .alienrpg .window-content {
@@ -106,12 +112,8 @@
   color: var(--aliengreen);
   font-size: var(--fontsize);
   background: hsl(0, 0%, 0%);
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   padding: 2px;
   overflow-y: scroll;
   overflow-x: auto;
@@ -140,10 +142,9 @@
   font-family: var(--alienfont);
   color: inherit;
   background: hsl(0, 0%, 0%);
-  border: var(--aliengreen) 3px;
+  border: 1px solid var(--aliengreen);
 }
 .journal-sheet button {
-  /* font-family: var(--alienfont); */
   color: inherit;
   background: hsl(0, 0%, 0%);
   border: var(--aliengreen) solid 1px;
@@ -152,19 +153,6 @@
   border-radius: 3px;
   font-size: 14px;
   line-height: 28px;
-}
-.journal-sheet critbutton {
-  font-family: var(--alienfont);
-  color: inherit;
-  background: hsl(0, 0%, 0%);
-  border: var(--aliengreen) solid 1px;
-  margin: 0 1px;
-  border-radius: 3px;
-  font-size: 14px;
-  line-height: 28px;
-}
-.journal-sheet .tox .tox-editor-container {
-  background-color: hsl(0, 0%, 100%);
 }
 
 a.entity-link {
@@ -235,12 +223,8 @@ a.content-link {
 }
 
 .chat-message .critchat {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   border-bottom: 1px solid var(--color-border-light-primary);
   padding: 3px 0;
   color: var(--aliengreen);
@@ -265,18 +249,15 @@ a.content-link {
 }
 
 .dice-tooltip .dice-rolls .roll {
-  -webkit-filter: none;
-          filter: none;
+  filter: none;
 }
 
 .dice-tooltip .dice-rolls .roll.max {
-  -webkit-filter: none;
-          filter: none;
+  filter: none;
 }
 
 .dice-tooltip .dice-rolls .roll.min {
-  -webkit-filter: none;
-          filter: none;
+  filter: none;
 }
 
 .inline-roll .dice-tooltip {
@@ -308,29 +289,33 @@ a.inline-roll {
   color: inherit;
 }
 
-.alienrpg h2 {
+.alienrpg h2,
+.chat-message h2 {
   border: 0;
   padding: 0;
   margin: 1px;
   margin-left: 5px;
+  margin-block-end: 1px;
+  color: var(--aliengreen);
 }
 
-.alienrpg h3 {
+.alienrpg h3,
+.chat-message h3 {
   border: 0;
   padding: 0;
   margin: 1px;
 }
 
-.alienrpg h4 {
+.alienrpg h4,
+.chat-message h4 {
   border: 0;
   padding: 0;
   margin: 1px;
+  font-size: var(--fontsize);
 }
 
 .resource-content button {
-  -webkit-box-flex: 0;
-      -ms-flex: 0;
-          flex: 0;
+  flex: 0;
   border: 0;
   width: 30px;
   font-size: 1.5rem;
@@ -346,16 +331,13 @@ a.inline-roll {
   border: 0px solid var(--aliengreen);
   font-weight: 1;
   font-size: 120%;
-  -webkit-box-shadow: 0 0 0px var(--aliengreen);
-          box-shadow: 0 0 0px var(--aliengreen);
-  -webkit-animation: textShadow 1s infinite;
-          animation: textShadow 1s infinite;
+  box-shadow: 0 0 0px var(--aliengreen);
+  animation: textShadow 1s infinite;
 }
 
 .far.fa-heart:hover {
   color: red;
-  -webkit-animation: textShadow 1s infinite;
-          animation: textShadow 1s infinite;
+  animation: textShadow 1s infinite;
 }
 
 .rollableVeh:hover, .rollableVeh:focus {
@@ -431,7 +413,6 @@ a.inline-roll {
   height: 40px;
   font-weight: bold;
   font-size: 2em;
-  /* font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem); */
   text-shadow: 2px 2px hsl(128, 83%, 25%);
   border: 2px solid var(--aliengreen);
   border-radius: 25px;
@@ -456,8 +437,7 @@ a.inline-roll {
 
 button:hover,
 button:focus {
-  -webkit-box-shadow: unset;
-          box-shadow: unset;
+  box-shadow: unset;
 }
 
 .alien-Push-button {
@@ -726,14 +706,10 @@ button:focus {
 .hypoxia,
 .heatstroke,
 .gravitydyspraxia {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .overwatch {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   margin-top: 6px;
   margin-bottom: 8px;
@@ -1424,9 +1400,7 @@ button:focus {
   display: grid;
   grid-column: span 2/span 2;
   padding: 0;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .grid-2col {
@@ -1434,9 +1408,7 @@ button:focus {
   grid-column: span 2;
   grid-template-columns: 1fr 1fr;
   padding: 0;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .grid-3col {
@@ -1544,11 +1516,8 @@ button:focus {
   grid-area: Item11;
   border: 1px solid var(--aliengreen);
   padding: 4px;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-content: center;
+  justify-content: center;
   min-height: 53px;
 }
 
@@ -1558,8 +1527,6 @@ button:focus {
   grid-template-columns: 1fr 1fr;
   border-color: var(--aliengreen);
   padding: 0;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -1572,8 +1539,7 @@ button:focus {
 .spacec1 {
   grid-area: spacec1;
   border-right: 1px solid var(--aliengreen);
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
 }
 
 .spacec2 {
@@ -1599,42 +1565,36 @@ button:focus {
 
 .s1h1 {
   grid-area: s1h1;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
   font-weight: bolder;
 }
 
 .s1h2 {
   grid-area: s1h2;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
 }
 
 .s1h3 {
   grid-area: s1h3;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
   font-weight: bolder;
 }
 
 .s1h4 {
   grid-area: s1h4;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
   font-weight: bolder;
 }
 
 .s1h5 {
   grid-area: s1h5;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
   font-weight: bolder;
 }
 
 .s1h6 {
   grid-area: s1h6;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
 }
 
 .s1h7 {
@@ -1764,40 +1724,34 @@ button:focus {
 
 .s1h28 {
   grid-area: s1h28;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
 }
 
 .s1h29 {
   grid-area: s1h29;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
 }
 
 .s1h30 {
   grid-area: s1h30;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
   font-weight: bolder;
 }
 
 .s1h31 {
   grid-area: s1h31;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
   font-weight: bolder;
 }
 
 .s1h32 {
   grid-area: s1h32;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
 }
 
 .s1h33 {
   grid-area: s1h33;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
 }
 
 .grid-container {
@@ -1830,9 +1784,7 @@ button:focus {
   margin: 0;
   padding: 0;
   padding-left: 5px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   border: 1px solid var(--aliengreen);
   grid-template-areas: "Attr1 Attr2 Attr3";
   grid-template-columns: 300px 35px 30px;
@@ -1869,9 +1821,7 @@ button:focus {
 
 .Air1 {
   grid-area: Air1;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
+  justify-content: left;
   align-self: center;
 }
 
@@ -1964,9 +1914,7 @@ button:focus {
   border: 2px solid var(--aliengreen);
   grid-template-areas: "wItem1 wItem2 wItem3 wItem4" "wItem5 wItem6 wItem7 wItem7";
   grid-template-columns: auto;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding-bottom: 2px;
 }
 
@@ -2003,9 +1951,7 @@ button:focus {
   border: 2px solid var(--aliengreen);
   grid-template-areas: "gcItem1 gcItem2 gcItem2" "gcItem3 gcItem4 gcItem4" "gcItem5 gcItem6 gcItem6";
   grid-template-columns: 30% 35% 35%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .gcItem1 {
@@ -2037,9 +1983,7 @@ button:focus {
   grid-template-areas: "wCol1 wCol2 wCol3 wCol4 wCol5 wCol6" "wCol7 wCol8 wCol9 wCol10 wCol11 wCol12" "wCol13 wCol14 . . . .";
   padding-bottom: 2px;
   grid-template-columns: 1fr 1.2fr 0.81fr 0.5fr 0.5fr 1fr;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .wCol1 {
@@ -2117,9 +2061,7 @@ button:focus {
   grid-template-areas: "lCol1 lCol2 lCol17 lCol15 lCol13 lCol11 lCol10 lCol3 lCol4" "lCol5 lCol6 lCol18 lCol16 lCol14 lCol12 lCol9 lCol7 lCol8";
   padding-bottom: 2px;
   grid-template-columns: 2em 18em 5em 5em 5em 5em 5em 4em 2em;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .lCol1 {
@@ -2217,9 +2159,7 @@ button:focus {
   grid-template-areas: "mCol1 mCol2 mCol17 mCol15 mCol13 mCol4" "mCol5 mCol6 mCol18 mCol16 mCol14 mCol8";
   padding-bottom: 6px;
   grid-template-columns: 30px 270px 75px 90px 269px 30px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .mCol1 {
@@ -2317,9 +2257,7 @@ button:focus {
   grid-template-areas: "talTitle talTitle" "tal1 tal2" "tal3 tal4";
   padding: 3px;
   grid-template-columns: 75% 25%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .tal1 {
@@ -2355,9 +2293,7 @@ button:focus {
   display: grid;
   grid-template-areas: "spe1 spe2 spe3";
   grid-template-columns: 5% 70% 25%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .spe1 {
@@ -2381,9 +2317,7 @@ button:focus {
   display: grid;
   grid-template-areas: "crit1 crit2 crit3 crit4";
   grid-template-columns: 5% 31% 60% 3%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .crit1 {
@@ -2404,9 +2338,7 @@ button:focus {
   justify-self: left;
   font-weight: bold;
   padding-right: 8px;
-  -webkit-box-align: left;
-      -ms-flex-align: left;
-          align-items: left;
+  align-items: left;
 }
 
 .crit4 {
@@ -2418,9 +2350,7 @@ button:focus {
   display: grid;
   grid-template-areas: "ScritI1 ScritI2 ScritI4";
   grid-template-columns: 5% 80% 3%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .ScritI1 {
@@ -2446,9 +2376,7 @@ button:focus {
   grid-template-areas: "box1 box2" "box3 box4";
   padding: 3px;
   grid-template-columns: 25% 75%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .box1 {
@@ -2479,9 +2407,7 @@ button:focus {
   display: grid;
   grid-template-areas: "box11 box21 box23 box22";
   grid-template-columns: 1fr 33px 15px 33px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin: 1px;
   padding: 0;
 }
@@ -2512,9 +2438,7 @@ button:focus {
   display: grid;
   grid-template-areas: "box11b box21b ";
   grid-template-columns: 1fr 33px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin: 1px;
   padding: 0;
 }
@@ -2551,9 +2475,7 @@ button:focus {
   display: grid;
   grid-template-areas: "rTable1 rTable2";
   grid-template-columns: 1fr 0.5fr;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin: 0;
   padding: 0;
 }
@@ -2614,9 +2536,7 @@ button:focus {
   border: 2px solid var(--aliengreen);
   grid-template-areas: "hplan1 hplan2 " "hplan3 hplan4" "hplan5 hplan6 " "hplan7 hplan8";
   grid-template-columns: auto;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding-bottom: 2px;
 }
 
@@ -2733,14 +2653,12 @@ button:focus {
 .grid-Char-Att {
   display: grid;
   padding-bottom: 4px;
-  padding-top: 12px;
+  padding-top: 5px;
   padding-left: 30px;
   grid-row-gap: 3px;
   grid-column-gap: 10px;
   border-color: var(--aliengreen);
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   grid-template-areas: "gCol1 gCol2 gCol3 gCol4 gCol5 gCol11" "gCol6 gCol7 gCol8 gCol9 gCol10 gCol12";
   grid-template-columns: 110px 50px 110px 50px 65px 130px;
 }
@@ -2818,9 +2736,7 @@ button:focus {
   grid-row-gap: 3px;
   grid-column-gap: 10px;
   grid-template-columns: 110px 50px 110px 50px 110px 50px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .xCol1 {
@@ -2866,28 +2782,20 @@ button:focus {
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   padding: 0;
   border: 1px solid var(--aliengreen);
 }
 
 .flex-group-left {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  justify-content: flex-start;
   text-align: left;
 }
 
 .flex-group-right {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
   text-align: right;
 }
 
@@ -3498,7 +3406,7 @@ button:focus {
 
 .grid-colony-planet9 {
   display: grid;
-  margin-top: -25px;
+  margin-top: 12px;
   margin-bottom: 0px;
   grid-template-areas: "gcp91 gcp94 gcp96 gcp97";
   grid-template-columns: 444px 161px 34px 15px;
@@ -3518,6 +3426,7 @@ button:focus {
 
 .gcp96 {
   grid-area: gcp96;
+  margin: -3px 0px 0px 0px;
 }
 
 .gcp97 {
@@ -3527,7 +3436,7 @@ button:focus {
 .grid-colony-planet10a {
   display: grid;
   margin-left: 175px;
-  margin-top: -84px;
+  margin-top: -51px;
   margin-bottom: 0px;
   grid-template-areas: "gcp10a1 gcp10a2  gcp10a4  gcp10a6 gcp10a7";
   grid-template-columns: 210px 53px 210px 48px 210px;
@@ -3540,6 +3449,7 @@ button:focus {
   font-size: 15px;
   text-align: center;
   margin-bottom: 0px;
+  height: 15px;
 }
 
 .gcp10a2 {
@@ -3552,8 +3462,9 @@ button:focus {
   font-weight: bolder;
   font-size: 15px;
   text-align: center;
-  margin-top: 114px;
+  margin-top: 80px;
   margin-bottom: 0px;
+  height: 15px;
 }
 
 .gcp10a6 {
@@ -3567,12 +3478,13 @@ button:focus {
   font-size: 15px;
   text-align: center;
   margin-bottom: 0px;
+  height: 15px;
 }
 
 .grid-colony-planet10 {
   display: grid;
   margin-left: 181px;
-  margin-top: -59px;
+  margin-top: -62px;
   margin-bottom: 0px;
   grid-template-areas: "gcp101 gcp102  gcp104  gcp106 gcp107";
   grid-template-columns: 210px 53px 210px 48px 210px;
@@ -3588,6 +3500,7 @@ button:focus {
 
 .gcp104 {
   grid-area: gcp104;
+  margin-top: 65px;
 }
 
 .gcp106 {
@@ -3601,7 +3514,7 @@ button:focus {
 .grid-colony-planet11 {
   display: grid;
   margin-left: 187px;
-  margin-top: -98px;
+  margin-top: -60px;
   margin-bottom: 0px;
   grid-template-areas: "gcp111 gcp112 gcp113 gcp114 gcp115 gcp116";
   grid-template-columns: 171px 87px 171px 87px 171px 25px;
@@ -3613,10 +3526,12 @@ button:focus {
   font-weight: bolder;
   font-size: 13px;
   margin-bottom: 0px;
+  height: 15px;
 }
 
 .gcp112 {
   grid-area: gcp112;
+  margin: -3px 0px 0px -2px;
 }
 
 .gcp113 {
@@ -3624,12 +3539,14 @@ button:focus {
   color: black;
   font-weight: bolder;
   font-size: 13px;
-  margin-top: 107px;
+  margin-top: 74px;
   margin-bottom: 0px;
+  height: 15px;
 }
 
 .gcp114 {
   grid-area: gcp114;
+  margin: 70px 0px 0px 0px;
 }
 
 .gcp115 {
@@ -3638,16 +3555,18 @@ button:focus {
   font-weight: bolder;
   font-size: 13px;
   margin-bottom: 0px;
+  height: 15px;
 }
 
 .gcp116 {
   grid-area: gcp116;
+  margin: -3px 0px 0px -2px;
 }
 
 .grid-colony-planet12a {
   display: grid;
   margin-left: 176px;
-  margin-top: -86px;
+  margin-top: 34px;
   margin-bottom: 0px;
   grid-template-areas: "gcp12a1 gcp12a2  gcp12a4  gcp12a6 gcp12a7";
   grid-template-columns: 210px 53px 210px 48px 210px;
@@ -3660,6 +3579,8 @@ button:focus {
   font-size: 15px;
   text-align: center;
   margin-bottom: 0px;
+  margin-top: -83px;
+  height: 15px;
 }
 
 .gcp12a2 {
@@ -3672,8 +3593,9 @@ button:focus {
   font-weight: bolder;
   font-size: 15px;
   text-align: center;
-  margin-top: 118px;
+  margin-top: 3px;
   margin-bottom: 0px;
+  height: 15px;
 }
 
 .gcp12a6 {
@@ -3687,6 +3609,8 @@ button:focus {
   font-size: 15px;
   text-align: center;
   margin-bottom: 0px;
+  margin-top: -83px;
+  height: 15px;
 }
 
 .grid-colony-planet12 {
@@ -3708,6 +3632,7 @@ button:focus {
 
 .gcp124 {
   grid-area: gcp124;
+  margin: 69px 0px 0px 0px;
 }
 
 .gcp126 {
@@ -3721,7 +3646,7 @@ button:focus {
 .grid-colony-planet13a {
   display: grid;
   margin-left: 187px;
-  margin-top: -89px;
+  margin-top: -62px;
   margin-bottom: 0px;
   grid-template-areas: "gcp13a1 gcp13a2 gcp13a3 gcp13a4 gcp13a5 gcp13a6";
   grid-template-columns: 171px 87px 171px 87px 171px 25px;
@@ -3733,10 +3658,12 @@ button:focus {
   font-weight: bolder;
   font-size: 13px;
   margin-bottom: 0px;
+  height: 15px;
 }
 
 .gcp13a2 {
   grid-area: gcp13a2;
+  margin: -3px 0px 0px 0px;
 }
 
 .gcp13a3 {
@@ -3744,12 +3671,14 @@ button:focus {
   color: black;
   font-weight: bolder;
   font-size: 13px;
-  margin-top: 107px;
+  margin-top: 79px;
   margin-bottom: 20px;
+  height: 15px;
 }
 
 .gcp13a4 {
   grid-area: gcp13a4;
+  margin: 74px 0px 0px 0px;
 }
 
 .gcp13a5 {
@@ -3758,10 +3687,12 @@ button:focus {
   font-weight: bolder;
   font-size: 13px;
   margin-bottom: 0px;
+  height: 15px;
 }
 
 .gcp13a6 {
   grid-area: gcp13a6;
+  margin: -3px 0px 0px 0px;
 }
 
 .grid-colony-planet13 {
@@ -3835,9 +3766,7 @@ button:focus {
   grid-template-areas: "gch1 gch2 gch3" "gch4 gch5 gch6" "gch7 gch8 gch9" "gch10 gch11 gch12";
   padding-top: 70px;
   grid-template-columns: 174px 174px 174px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .gch1 {
@@ -3992,101 +3921,63 @@ button:focus {
 }
 
 .flex-center {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 0;
 }
 
 .flex-between {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 
 .alienrpg .flexcol {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .alienrpg .flexcol .flex1 {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 
 .alienrpg .flexcol .flex2 {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+  flex: 2;
 }
 
 .alienrpg .flexcol .flex3 {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
+  flex: 3;
 }
 
 .alienrpg .alienrpg .flexcol .flex4 {
-  -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
+  flex: 4;
 }
 
 .alienrpg .flexrow {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .alienrpg .flexrow > * {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 
 .alienrpg .flexrow .flex1 {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 
 .alienrpg .flexrow .flex2 {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+  flex: 2;
 }
 
 .alienrpg .flexrow .flex3 {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
+  flex: 3;
 }
 
 .alienrpg .flexrow .flex4 {
-  -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
+  flex: 4;
 }
 
 .alienrpg.actor .encumbrance {
@@ -4163,23 +4054,7 @@ button:focus {
 
 /* @group Blink */
 .blink {
-  -webkit-animation: blink 2s linear infinite;
   animation: blink 2s linear infinite;
-}
-
-@-webkit-keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-  }
-  50.01% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 @keyframes blink {
   0% {
@@ -4201,8 +4076,7 @@ button:focus {
   background-color: #c7d9c4;
   background-position: left top;
   padding: 6px;
-  -webkit-box-shadow: -10px 9px 9px #666666;
-          box-shadow: -10px 9px 9px #666666;
+  box-shadow: -10px 9px 9px #666666;
   border: 3px black;
   border-style: double;
 }
@@ -4214,14 +4088,13 @@ button:focus {
   font-family: var(--alienfont);
   font-weight: 700;
   color: inherit;
+  line-height: 15px;
   width: 100%;
   max-width: 90%; /* useful when width is set to anything other than 100% */
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   border: 1px solid var(--aliengreen);
-  -webkit-box-shadow: 0 1px 0 1px hsla(0, 0%, 0%, 0.04);
-          box-shadow: 0 1px 0 1px hsla(0, 0%, 0%, 0.04);
+  box-shadow: 0 1px 0 1px hsla(0, 0%, 0%, 0.04);
   border-radius: 0.5em;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -4252,8 +4125,7 @@ button:focus {
 .select-css:focus {
   color: inherit;
   /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
-  -webkit-box-shadow: 0 0 1px 1px var(--aliengreen);
-          box-shadow: 0 0 1px 1px var(--aliengreen);
+  box-shadow: 0 0 1px 1px var(--aliengreen);
   box-shadow: 0 0 0 1px -moz-mac-focusring var(--aliengreen);
   color: inherit;
   outline: none;
@@ -4295,71 +4167,6 @@ button:focus {
 
 	May 2021
 */
-@-webkit-keyframes flicker {
-  0% {
-    opacity: 0.27861;
-  }
-  5% {
-    opacity: 0.34769;
-  }
-  10% {
-    opacity: 0.23604;
-  }
-  15% {
-    opacity: 0.90626;
-  }
-  20% {
-    opacity: 0.18128;
-  }
-  25% {
-    opacity: 0.83891;
-  }
-  30% {
-    opacity: 0.65583;
-  }
-  35% {
-    opacity: 0.67807;
-  }
-  40% {
-    opacity: 0.26559;
-  }
-  45% {
-    opacity: 0.84693;
-  }
-  50% {
-    opacity: 0.96019;
-  }
-  55% {
-    opacity: 0.08594;
-  }
-  60% {
-    opacity: 0.20313;
-  }
-  65% {
-    opacity: 0.71988;
-  }
-  70% {
-    opacity: 0.53455;
-  }
-  75% {
-    opacity: 0.37288;
-  }
-  80% {
-    opacity: 0.71428;
-  }
-  85% {
-    opacity: 0.70419;
-  }
-  90% {
-    opacity: 0.7003;
-  }
-  95% {
-    opacity: 0.36108;
-  }
-  100% {
-    opacity: 0.24387;
-  }
-}
 @keyframes flicker {
   0% {
     opacity: 0.27861;
@@ -4423,71 +4230,6 @@ button:focus {
   }
   100% {
     opacity: 0.24387;
-  }
-}
-@-webkit-keyframes textShadow {
-  0% {
-    text-shadow: 0.4389924193px 0 1px rgba(255, 255, 0, 0.5), -0.4389924193px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  5% {
-    text-shadow: 2.7928974011px 0 1px rgba(255, 255, 0, 0.5), -2.7928974011px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  10% {
-    text-shadow: 0.0295627584px 0 1px rgba(255, 255, 0, 0.5), -0.0295627584px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  15% {
-    text-shadow: 0.4021853855px 0 1px rgba(255, 255, 0, 0.5), -0.4021853855px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  20% {
-    text-shadow: 3.47940379px 0 1px rgba(255, 255, 0, 0.5), -3.47940379px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  25% {
-    text-shadow: 1.6125630401px 0 1px rgba(255, 255, 0, 0.5), -1.6125630401px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  30% {
-    text-shadow: 0.7015590085px 0 1px rgba(255, 255, 0, 0.5), -0.7015590085px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  35% {
-    text-shadow: 3.8969140477px 0 1px rgba(255, 255, 0, 0.5), -3.8969140477px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  40% {
-    text-shadow: 3.8709056148px 0 1px rgba(255, 255, 0, 0.5), -3.8709056148px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  45% {
-    text-shadow: 2.2310569634px 0 1px rgba(255, 255, 0, 0.5), -2.2310569634px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  50% {
-    text-shadow: 0.0808429042px 0 1px rgba(255, 255, 0, 0.5), -0.0808429042px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  55% {
-    text-shadow: 2.3758461067px 0 1px rgba(255, 255, 0, 0.5), -2.3758461067px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  60% {
-    text-shadow: 2.2021930511px 0 1px rgba(255, 255, 0, 0.5), -2.2021930511px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  65% {
-    text-shadow: 2.8638780615px 0 1px rgba(255, 255, 0, 0.5), -2.8638780615px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  70% {
-    text-shadow: 0.4887402516px 0 1px rgba(255, 255, 0, 0.5), -0.4887402516px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  75% {
-    text-shadow: 1.8948491306px 0 1px rgba(255, 255, 0, 0.5), -1.8948491306px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  80% {
-    text-shadow: 0.0833037308px 0 1px rgba(255, 255, 0, 0.5), -0.0833037308px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  85% {
-    text-shadow: 0.0976982726px 0 1px rgba(255, 255, 0, 0.5), -0.0976982726px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  90% {
-    text-shadow: 3.4433397615px 0 1px rgba(255, 255, 0, 0.5), -3.4433397615px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  95% {
-    text-shadow: 2.1841838853px 0 1px rgba(255, 255, 0, 0.5), -2.1841838853px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
-  }
-  100% {
-    text-shadow: 2.6208764474px 0 1px rgba(255, 255, 0, 0.5), -2.6208764474px 0 1px rgba(80, 255, 255, 0.3), 0 0 3px;
   }
 }
 @keyframes textShadow {
@@ -4591,40 +4333,34 @@ a:hover {
 
 #sidebar-tabs {
   border-bottom: 1px solid var(--aliengreen);
-  -webkit-box-shadow: 0 0 10px var(--aliengreen);
-          box-shadow: 0 0 10px var(--aliengreen);
+  box-shadow: 0 0 10px var(--aliengreen);
 }
 
 #sidebar-tabs .item.active {
   border: 1px solid var(--aliengreen);
-  -webkit-box-shadow: 0 0 6px inset var(--aliengreen);
-          box-shadow: 0 0 6px inset var(--aliengreen);
+  box-shadow: 0 0 6px inset var(--aliengreen);
 }
 
 select:focus {
-  -webkit-box-shadow: 0 0 5px var(--aliengreen);
-          box-shadow: 0 0 5px var(--aliengreen);
+  box-shadow: 0 0 5px var(--aliengreen);
 }
 
 textarea:focus {
   outline: 0px;
-  -webkit-box-shadow: 0 0 10px var(--aliengreen);
-          box-shadow: 0 0 10px var(--aliengreen);
+  box-shadow: 0 0 10px var(--aliengreen);
   color: #000;
   font-weight: 400;
 }
 
 combobox:focus {
   outline: 0px;
-  -webkit-box-shadow: 0 0 10px var(--aliengreen);
-          box-shadow: 0 0 10px var(--aliengreen);
+  box-shadow: 0 0 10px var(--aliengreen);
   background-color: var(--aliengreen);
   color: #000;
 }
 
 #hotbar .macro:hover {
-  -webkit-box-shadow: 0 0 10px inset var(--aliengreen);
-          box-shadow: 0 0 10px inset var(--aliengreen);
+  box-shadow: 0 0 10px inset var(--aliengreen);
 }
 
 #hotbar .macro.active:hover {
@@ -4650,8 +4386,7 @@ combobox:focus {
 #controls .control-tool:hover {
   border: 1px solid var(--aliengreen);
   border-bottom: 1px solid var(--aliengreen);
-  -webkit-box-shadow: 0 0 10px var(--aliengreen);
-          box-shadow: 0 0 10px var(--aliengreen);
+  box-shadow: 0 0 10px var(--aliengreen);
 }
 
 #navigation #scene-list .scene.view,
@@ -4659,8 +4394,7 @@ combobox:focus {
   border: 1px solid var(--aliengreen);
   background: rgba(52, 52, 52, 0.95);
   border-bottom: 1px solid var(--aliengreen);
-  -webkit-box-shadow: 0 0 10px var(--aliengreen);
-          box-shadow: 0 0 10px var(--aliengreen);
+  box-shadow: 0 0 10px var(--aliengreen);
 }
 
 #pause {
@@ -4690,8 +4424,7 @@ combobox:focus {
 }
 
 .sidebar-tab .fas.fa-trash:hover {
-  -webkit-animation: textShadow 0.5s infinite;
-          animation: textShadow 0.5s infinite;
+  animation: textShadow 0.5s infinite;
 }
 
 .chat-message .message-header .message-sender {
@@ -4702,8 +4435,7 @@ combobox:focus {
   height: 40px;
   margin-top: 5px;
   margin-left: 1px;
-  -webkit-box-shadow: 0 0 5px var(--aliengreen);
-          box-shadow: 0 0 5px var(--aliengreen);
+  box-shadow: 0 0 5px var(--aliengreen);
   border-radius: 3px;
   background: url(../images/alien_crt_push-button.png) no-repeat top left;
   color: rgba(0, 0, 0, 0);
@@ -4711,8 +4443,7 @@ combobox:focus {
 
 .alien-Push-button:hover {
   border-radius: 3px;
-  -webkit-box-shadow: 0 0 5px var(--aliengreen);
-          box-shadow: 0 0 5px var(--aliengreen);
+  box-shadow: 0 0 5px var(--aliengreen);
   background-color: inherit;
   background: url(../images/alien_crt_push-button_hover.gif) no-repeat top left;
   color: rgba(0, 0, 0, 0);
@@ -4725,8 +4456,7 @@ combobox:focus {
   font-weight: bold;
   padding: 13px 15px 50px 11px;
   border-width: 0px;
-  -webkit-box-shadow: 0 1px 5px #000;
-          box-shadow: 0 1px 5px #000;
+  box-shadow: 0 1px 5px #000;
   background-size: 100%;
   background-position: top, bottom, 0px 18px;
   background-repeat: no-repeat, no-repeat, repeat;
@@ -4737,8 +4467,7 @@ combobox:focus {
   color: var(--alienchatlightblue);
   padding: 13px 15px 50px 11px;
   border-width: 0px;
-  -webkit-box-shadow: 0 1px 5px #000;
-          box-shadow: 0 1px 5px #000;
+  box-shadow: 0 1px 5px #000;
   background-size: 100%;
   background-position: top, bottom, 0px 18px;
   background-repeat: no-repeat, no-repeat, repeat;
@@ -4768,8 +4497,7 @@ combobox:focus {
   color: lightsteelblue;
   background-color: royalblue;
   text-shadow: 0 0 5px lightsteelblue;
-  -webkit-animation: blink 0.5 5;
-          animation: blink 0.5 5;
+  animation: blink 0.5 5;
 }
 
 .chat-message.whisper .inline-roll:hover {
@@ -4783,8 +4511,7 @@ combobox:focus {
 
 .alien-Push-button:hover {
   border-radius: 3px;
-  -webkit-box-shadow: 0 0 5px var(--aliengreen);
-          box-shadow: 0 0 5px var(--aliengreen);
+  box-shadow: 0 0 5px var(--aliengreen);
   background-color: inherit;
   background: url(../images/alien_crt_push-button_hover.gif) no-repeat top left;
   color: rgba(0, 0, 0, 0);
@@ -4796,14 +4523,12 @@ combobox:focus {
   margin-bottom: 5px;
   color: white;
   text-shadow: 0 0 5px red;
-  -webkit-animation: blink 0.5s 5;
-          animation: blink 0.5s 5;
+  animation: blink 0.5s 5;
 }
 
 .warnblink {
   text-shadow: 0 0 5px red;
-  -webkit-animation: blink 0.5s 5;
-          animation: blink 0.5s 5;
+  animation: blink 0.5s 5;
 }
 
 .message-sender {
@@ -4970,10 +4695,10 @@ combobox:focus {
 .alienrpg .etable {
   width: 40%;
   /* border-style: double; */
-  border-color: #e92d2d;
   margin-left: auto;
   margin-right: auto;
-  border: 1;
+  border-top: 1px solid hsl(0, 81%, 55%);
+  border-bottom: 1px solid hsl(0, 81%, 55%);
   padding: 0;
   padding-top: 0;
   padding-bottom: 0;
@@ -5012,13 +4737,14 @@ combobox:focus {
 
 .alienrpg .stable {
   width: 90%;
-  /* border-style: double; */
+  border-style: double;
   border-color: #e92d2d;
   margin-left: auto;
   margin-right: auto;
-  border: 1;
   padding-top: 0;
   padding-bottom: 0;
+  border-left: none;
+  border-right: none;
 }
 
 .alienrpg .strhead {
@@ -5081,13 +4807,22 @@ combobox:focus {
 .alienrpg .oddstable {
   width: 96%;
   height: 16px;
-  /* border-style: double; */
+  border-style: double;
   border-color: #e92d2d;
   margin-left: auto;
   margin-right: auto;
-  border: 1;
   padding-top: 0;
   padding-bottom: 0;
+  border-left: none;
+  border-right: none;
+}
+
+.alienrpg .oddstable tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.alienrpg .oddstable tr:nth-child(odd) {
+  background-color: #3a3d3f;
 }
 
 .alienrpg .oddhead {
@@ -5112,13 +4847,22 @@ combobox:focus {
 
 .alienrpg .bigtable {
   width: 99%;
-  /* border-style: double; */
+  border-style: double;
   border-color: #e92d2d;
   margin-left: auto;
   margin-right: auto;
-  border: 1;
   padding-top: 0;
   padding-bottom: 0;
+  border-left: none;
+  border-right: none;
+}
+
+.alienrpg .bigtable tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.alienrpg .bigtable tr:nth-child(odd) {
+  background-color: #3a3d3f;
 }
 
 .alienrpg .die {
@@ -5238,6 +4982,12 @@ combobox:focus {
   display: none;
 }
 
+.journal-entry-page h1,
+.journal-entry-page h2 {
+  color: var(--aliengreen);
+  border-bottom: 1px solid var(--color-underline-header);
+}
+
 .alienrpg .journal.content {
   background: lightgray;
 }
@@ -5351,7 +5101,6 @@ combobox:focus {
 
 .alienrpg .colonytable {
   width: 60%;
-  border-color: #e92d2d;
   margin-left: auto;
   margin-right: auto;
   border: 1;
@@ -5359,6 +5108,16 @@ combobox:focus {
   padding-bottom: 0;
   font-family: "OCR-A";
   text-align: center;
+  border-top: 1px solid #e92d2d;
+  border-bottom: 1px solid #e92d2d;
+}
+
+.alienrpg .colonytable tr:nth-child(even) {
+  background-color: #3a3d3f;
+}
+
+.alienrpg .colonytable tr:nth-child(odd) {
+  background-color: transparent;
 }
 
 .alienrpg .colonyname {
@@ -5419,6 +5178,11 @@ combobox:focus {
   padding-right: 2px;
 }
 
+table th,
+table td {
+  padding: 0px;
+}
+
 .alienrpg {
   /* Styles limited to alienrpg sheets */
   /*
@@ -5466,61 +5230,41 @@ combobox:focus {
   background: hsl(0, 0%, 0%);
 }
 .alienrpg .actor-header {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 180px;
-          flex: 0 0 180px;
+  flex: 0 0 180px;
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   margin-bottom: 1px;
   background-color: hsl(0, 0%, 0%);
 }
 .alienrpg .vehicle-header {
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-bottom: 1px;
   background-color: hsl(0, 0%, 0%);
 }
 .alienrpg .profile-img {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 100px;
-          flex: 0 0 100px;
+  flex: 0 0 100px;
   height: 150px;
   width: auto;
 }
 .alienrpg .profile-img-item {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 100px;
-          flex: 0 0 100px;
+  flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
   width: auto;
   justify-self: center;
 }
 .alienrpg .profile-img-vehicle {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 100px;
-          flex: 0 0 100px;
+  flex: 0 0 100px;
   height: 160px;
   margin-right: 10px;
   width: 300px;
 }
 .alienrpg .header-fields {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 .alienrpg h1.charname {
   height: 50px;
@@ -5537,10 +5281,11 @@ combobox:focus {
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .sheet-body,
-.alienrpg .tab,
-.alienrpg .editor {
+.alienrpg .tab {
+  background-color: hsl(0, 0%, 0%);
+}
+.alienrpg .sheet-body .editor {
   height: 100%;
-  /* height: -webkit-fit-content; */
   background-color: hsl(0, 0%, 0%);
 }
 .alienrpg .tox .tox-editor-container {
@@ -5635,73 +5380,48 @@ combobox:focus {
   padding: 8px;
   background: hsl(0, 0%, 0%);
   border-radius: 2px;
-  -webkit-box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.502);
-          box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.502);
+  box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.502);
   font-family: "Roboto", system, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.25px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 .alienrpg .click-stat-level .fas {
   display: none;
   padding: 2px 4px;
   border-radius: 2px;
-  -webkit-box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.5);
-          box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.5);
+  box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.5);
   font-family: "Roboto", system, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.25px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 .alienrpg .dots {
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   margin-right: 8px;
   font-weight: 700;
   font-size: 15px;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .alienrpg .newdots {
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .alienrpg .planetboxsize {
   max-width: 40px;
@@ -5715,7 +5435,6 @@ combobox:focus {
 .alienrpg .colony-planet1 {
   max-width: 190px;
   margin: -5px 0px 0px -3px;
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
   color: var(--color-text-dark-primary);
@@ -5724,30 +5443,25 @@ combobox:focus {
 }
 .alienrpg .colony-planet2 {
   max-width: 250px;
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
   color: var(--color-text-dark-primary);
   border-radius: 0px;
-  border: 1px solid var(--aliengreen);
+  /* border: 1px solid var(--aliengreen); */
 }
 .alienrpg .resource-label {
   font-family: var(--alienfont);
   text-transform: uppercase;
   padding-left: 5px;
   justify-self: center;
-  -webkit-box-flex: 1;
-      -ms-flex: auto;
-          flex: auto;
+  flex: auto;
 }
 .alienrpg .speciality-label {
   font-family: var(--alienfont);
   text-transform: uppercase;
   padding-left: 5px;
   justify-self: left;
-  -webkit-box-flex: 1;
-      -ms-flex: auto;
-          flex: auto;
+  flex: auto;
 }
 .alienrpg .attr-label {
   font-weight: bold;
@@ -5802,9 +5516,7 @@ combobox:focus {
   font-family: var(--alienfont);
 }
 .alienrpg .biog .biog-image {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 24px;
-          flex: 0 0 24px;
+  flex: 0 0 24px;
   margin-right: 5px;
 }
 .alienrpg .biog .editor-content {
@@ -5815,15 +5527,13 @@ combobox:focus {
   display: block;
 }
 .alienrpg .biog-full {
-  height: 600px;
+  height: 400px;
   padding: 3px 0;
   width: 1fr;
   font-family: var(--alienfont);
 }
 .alienrpg .biog-full .biog-image {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 24px;
-          flex: 0 0 24px;
+  flex: 0 0 24px;
   margin-right: 5px;
 }
 .alienrpg .biog-full .editor-content {
@@ -5847,7 +5557,6 @@ combobox:focus {
   left: 0;
   bottom: 0;
   right: 0;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, rgba(18, 16, 16, 0)), color-stop(50%, rgba(0, 0, 0, 0.25))), -webkit-gradient(linear, left top, right top, from(rgba(255, 0, 0, 0.06)), color-stop(rgba(0, 255, 0, 0.02)), to(rgba(0, 0, 255, 0.06)));
   background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
   z-index: 2;
   background-size: 100% 2px, 3px 100%;
@@ -5913,8 +5622,7 @@ combobox:focus {
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .crt h1.charname input:focus {
-  -webkit-box-shadow: 0 0 10px var(--aliengreen);
-          box-shadow: 0 0 10px var(--aliengreen);
+  box-shadow: 0 0 10px var(--aliengreen);
 }
 .alienrpg .crt h1.charname {
   margin: 0px 0px 5px 0px;
@@ -5959,21 +5667,17 @@ combobox:focus {
   border: 0px solid var(--aliengreen);
   font-weight: 1;
   font-size: 150%;
-  -webkit-box-shadow: 0 0 0px var(--aliengreen);
-          box-shadow: 0 0 0px var(--aliengreen);
-  -webkit-animation: textShadow 1s infinite;
-          animation: textShadow 1s infinite;
+  box-shadow: 0 0 0px var(--aliengreen);
+  animation: textShadow 1s infinite;
 }
 .alienrpg .crt .fa-solid.fa-wrench:hover,
 .alienrpg .crt .fa-solid.fa-toolbox:hover {
   color: red;
-  -webkit-animation: textShadow 1s infinite;
-          animation: textShadow 1s infinite;
+  animation: textShadow 1s infinite;
 }
 .alienrpg .crt .far.fa-heart:hover {
   color: red;
-  -webkit-animation: textShadow 1s infinite;
-          animation: textShadow 1s infinite;
+  animation: textShadow 1s infinite;
 }
 .alienrpg .crt .resource-content .maxboxsize {
   vertical-align: 7px;
@@ -5991,8 +5695,6 @@ combobox:focus {
   grid-template-columns: 25% 8% 25% 8% 25% 8%;
   display: grid;
   grid-row-gap: 3px;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 .alienrpg .crt_gCol1,
@@ -6008,8 +5710,7 @@ combobox:focus {
 .alienrpg .crt_gCol11,
 .alienrpg .crt_gCol12 {
   justify-self: center;
-  -ms-flex-item-align: center;
-      align-self: center;
+  align-self: center;
 }
 .alienrpg .crt_gCol11 {
   color: var(--aliengreen);
@@ -6029,8 +5730,7 @@ combobox:focus {
   margin-left: -60px;
   color: black;
   background-color: var(--aliengreen);
-  -webkit-box-shadow: 0 0 10px var(--aliengreen);
-          box-shadow: 0 0 10px var(--aliengreen);
+  box-shadow: 0 0 10px var(--aliengreen);
 }
 .alienrpg .crt .tooltip .tooltiptext::after {
   margin-top: 10px;
@@ -6042,8 +5742,7 @@ combobox:focus {
 .alienrpg .crt .grid-Consumables .maxboxsize:focus {
   color: var(--aliengreen);
   background-color: var(--alienoddtab);
-  -webkit-box-shadow: 0 0 0 #000;
-          box-shadow: 0 0 0 #000;
+  box-shadow: 0 0 0 #000;
   cursor: not-allowed;
 }
 .alienrpg .crt .crt-grid-Char-Att .crt_gCol6:hover,
@@ -6077,8 +5776,7 @@ combobox:focus {
   font-size: 110%;
   color: white;
   background-color: var(--aliengreen);
-  -webkit-box-shadow: 0 0 10px var(--aliengreen);
-          box-shadow: 0 0 10px var(--aliengreen);
+  box-shadow: 0 0 10px var(--aliengreen);
   text-shadow: 0 0 10px var(--aliengreen);
   cursor: default;
 }
@@ -6092,8 +5790,7 @@ combobox:focus {
 .alienrpg .crt .tabs .item:hover {
   color: #000;
   background-color: var(--alienitemselect);
-  -webkit-box-shadow: 0 0 10px var(--alienitemselect);
-          box-shadow: 0 0 10px var(--alienitemselect);
+  box-shadow: 0 0 10px var(--alienitemselect);
   margin: -3px 0 -3px 0;
   padding-top: 6px;
 }
@@ -6155,8 +5852,6 @@ combobox:focus {
 }
 .alienrpg .crt .crt_Item1 .experience {
   width: 160px;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   margin-bottom: 10px;
 }
@@ -6197,10 +5892,8 @@ combobox:focus {
   border-top: 2px solid red;
   border-bottom: 2px solid red;
   font-weight: bold;
-  -webkit-box-shadow: 0 0 10px red;
-          box-shadow: 0 0 10px red;
-  -webkit-animation: textShadow 1s infinite;
-          animation: textShadow 1s infinite;
+  box-shadow: 0 0 10px red;
+  animation: textShadow 1s infinite;
 }
 .alienrpg .crt .panicked-textarea {
   margin-left: 60px;
@@ -6217,11 +5910,8 @@ combobox:focus {
   color: var(--alienitemselect);
   width: 98%;
   padding-bottom: 3px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  align-items: center;
+  flex-wrap: nowrap;
   margin-top: -12px;
   margin-bottom: 4px;
   margin-left: 2px;
@@ -6236,8 +5926,7 @@ combobox:focus {
   background-color: var(--alienitemselect);
   color: #000;
   border-radius: 3px;
-  -webkit-box-shadow: 0 0 10px yellow;
-          box-shadow: 0 0 10px yellow;
+  box-shadow: 0 0 10px yellow;
 }
 .alienrpg .crt .crt_grid_SynthStress {
   display: grid;
@@ -6284,8 +5973,6 @@ combobox:focus {
   padding: 0px;
   padding-top: 1px;
   grid-template-columns: 17% 36% 17% 30%;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-bottom: 2px;
 }
@@ -6393,8 +6080,7 @@ combobox:focus {
 }
 .alienrpg .crt .talent-btn:hover,
 .alienrpg .crt .talent-btn:focus {
-  -webkit-box-shadow: 0 0 7px var(--aliengreen);
-          box-shadow: 0 0 7px var(--aliengreen);
+  box-shadow: 0 0 7px var(--aliengreen);
   text-shadow: 0 0 15px var(--aliengreen);
   background-color: var(--aliengreen);
   cursor: help;
@@ -6413,10 +6099,8 @@ combobox:focus {
   border: 0px solid var(--aliengreen);
   font-weight: 1;
   font-size: 130%;
-  -webkit-box-shadow: 0 0 0px var(--aliengreen);
-          box-shadow: 0 0 0px var(--aliengreen);
-  -webkit-animation: textShadow 1s infinite;
-          animation: textShadow 1s infinite;
+  box-shadow: 0 0 0px var(--aliengreen);
+  animation: textShadow 1s infinite;
 }
 .alienrpg .crt .rollItem,
 .alienrpg .crt .creature-acid-roll {
@@ -6426,8 +6110,7 @@ combobox:focus {
 .alienrpg .crt .rollItem:hover,
 .alienrpg .crt .rollItem:focus {
   text-shadow: 0 0 15px var(--aliengreen);
-  -webkit-box-shadow: 0 0 7px var(--aliengreen);
-          box-shadow: 0 0 7px var(--aliengreen);
+  box-shadow: 0 0 7px var(--aliengreen);
   background-color: var(--aliengreen);
   color: #000;
   font-size: 100%;
@@ -6437,8 +6120,7 @@ combobox:focus {
 .alienrpg .crt .rollVehicleWeapon:hover,
 .alienrpg .crt .rollVehicleWeapon:focus {
   text-shadow: 0 0 15px var(--aliengreen);
-  -webkit-box-shadow: 0 0 7px var(--aliengreen);
-          box-shadow: 0 0 7px var(--aliengreen);
+  box-shadow: 0 0 7px var(--aliengreen);
   background-color: var(--aliengreen);
   color: #000;
   font-size: 100%;
@@ -6478,8 +6160,7 @@ combobox:focus {
   background-color: red;
   color: white;
   text-shadow: 0 0 5px red;
-  -webkit-animation: blink 0.5s 5;
-          animation: blink 0.5s 5;
+  animation: blink 0.5s 5;
 }
 .alienrpg .crt_lCol6 {
   justify-self: center;
@@ -6506,8 +6187,7 @@ combobox:focus {
 .alienrpg .crt .resource-label-header.rollCrit:hover {
   font-size: 15px;
   background-color: var(--aliengreen);
-  -webkit-animation: textShadow 1s infinite;
-          animation: textShadow 1s infinite;
+  animation: textShadow 1s infinite;
 }
 .alienrpg .crt_box4 {
   padding: 7px 0px 0px 7px;
@@ -6529,8 +6209,7 @@ combobox:focus {
 .alienrpg .crt .fas:hover {
   color: var(--aliengreen);
   text-shadow: 0 0 2px var(--aliengreen);
-  -webkit-animation: textShadow 0.5s 0.3;
-          animation: textShadow 0.5s 0.3;
+  animation: textShadow 0.5s 0.3;
 }
 .alienrpg .crt .items-list .item-header {
   border-bottom-style: solid;
@@ -6552,8 +6231,7 @@ combobox:focus {
   font-weight: 1;
   font-size: 110%;
   border: 0px solid var(--aliengreen);
-  -webkit-animation: textShadow 1s infinite;
-          animation: textShadow 1s infinite;
+  animation: textShadow 1s infinite;
 }
 .alienrpg .crt .creature-attack-roll {
   width: 260px;

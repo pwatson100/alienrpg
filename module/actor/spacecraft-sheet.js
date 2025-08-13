@@ -240,81 +240,6 @@ export class alienrpgSpacecraftSheet extends foundry.appv1.sheets.ActorSheet {
 		super.activateListeners(html);
 		// Everything below here is only needed if the sheet is editable
 		if (!this.options.editable) return;
-		const itemContextMenu = [
-			{
-				name: game.i18n.localize('ALIENRPG.addToFLocker'),
-				icon: '<i class="fas fa-archive"></i>',
-				callback: (element) => {
-					let item = this.actor.items.get(element.data('item-id'));
-					item.update({ 'system.header.active': 'fLocker' });
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
-				icon: '<i class="fas fa-archive"></i>',
-				callback: (element) => {
-					let item = this.actor.items.get(element.data('item-id'));
-					item.update({ 'system.header.active': false });
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
-				icon: '<i class="fas fa-edit"></i>',
-				callback: (element) => {
-					const item = this.actor.items.get(element.data('item-id'));
-					item.sheet.render(true);
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.DeleteItem'),
-				icon: '<i class="fas fa-trash"></i>',
-				callback: (element) => {
-					let itemDel = this.actor.items.get(element.data('item-id'));
-					itemDel.delete();
-				},
-			},
-		];
-
-		// Add Inventory Item
-		new foundry.applications.ux.ContextMenu(html, '.item-edit', itemContextMenu);
-
-		const itemContextMenu1 = [
-			{
-				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
-				icon: '<i class="fas fa-edit"></i>',
-				callback: (element) => {
-					const item = this.actor.items.get(element.data('item-id'));
-					item.sheet.render(true);
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.DeleteItem'),
-				icon: '<i class="fas fa-trash"></i>',
-				callback: (element) => {
-					let itemDel = this.actor.items.get(element.data('item-id'));
-					if (itemDel.type === 'spacecraft-crit') {
-						switch (itemDel.system.header.type.value) {
-							case '0':
-								if (this.actor.system.general.critMin <= 1) {
-									this.actor.removeCondition('shipminor');
-								}
-								break;
-							case '1':
-								if (this.actor.system.general.critMaj <= 1) {
-									this.actor.removeCondition('shipmajor');
-								}
-								break;
-							default:
-								break;
-						}
-					}
-					itemDel.delete();
-				},
-			},
-		];
-
-		// Add Inventory Item
-		new foundry.applications.ux.ContextMenu(html, '.item-edit1', itemContextMenu1);
 
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		// Update Inventory Item
@@ -417,7 +342,102 @@ export class alienrpgSpacecraftSheet extends foundry.appv1.sheets.ActorSheet {
 		html.find('.crew-edit').click(this._onCrewEdit.bind(this));
 		html.find('.crew-remove').click(this._onCrewRemove.bind(this));
 		html.find('.crew-position').change(this._onChangePosition.bind(this));
+
+		// Add Inventory Item
+		class CMPowerMenu extends foundry.applications.ux.ContextMenu {
+			constructor(html, selector, menuItems, { eventName = 'contextmenu', onOpen, onClose, jQuery, parent } = {}) {
+				super(html, selector, menuItems, {
+					eventName: eventName,
+					onOpen: onOpen,
+					onClose: onClose,
+					jQuery: false,
+				});
+				this.myParent = parent;
+				this.originalMenuItems = [...menuItems];
+			}
+		}
+
+		// const itemContextMenu = [
+		// 	{
+		// 		name: game.i18n.localize('ALIENRPG.addToFLocker'),
+		// 		icon: '<i class="fas fa-archive"></i>',
+		// 		callback: (element) => {
+		// 			let item = this.actor.items.get(element.dataset.itemId);
+		// 			item.update({ 'system.header.active': 'fLocker' });
+		// 		},
+		// 	},
+		// 	{
+		// 		name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
+		// 		icon: '<i class="fas fa-archive"></i>',
+		// 		callback: (element) => {
+		// 			let item = this.actor.items.get(element.dataset.itemId);
+		// 			item.update({ 'system.header.active': false });
+		// 		},
+		// 	},
+		// 	{
+		// 		name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+		// 		icon: '<i class="fas fa-edit"></i>',
+		// 		callback: (element) => {
+		// 			const item = this.actor.items.get(element.dataset.itemId);
+		// 			item.sheet.render(true);
+		// 		},
+		// 	},
+		// 	{
+		// 		name: game.i18n.localize('ALIENRPG.DeleteItem'),
+		// 		icon: '<i class="fas fa-trash"></i>',
+		// 		callback: (element) => {
+		// 			let itemDel = this.actor.items.get(element.dataset.itemId);
+		// 			itemDel.delete();
+		// 		},
+		// 	},
+		// ];
+
+		const itemContextMenu = [
+			{
+				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+				icon: '<i class="fas fa-edit"></i>',
+				callback: (element) => {
+					const item = this.actor.items.get(element.dataset.itemId);
+					item.sheet.render(true);
+				},
+			},
+			{
+				name: game.i18n.localize('ALIENRPG.DeleteItem'),
+				icon: '<i class="fas fa-trash"></i>',
+				callback: (element) => {
+					let itemDel = this.actor.items.get(element.dataset.itemId);
+					if (itemDel.type === 'spacecraft-crit') {
+						switch (itemDel.system.header.type.value) {
+							case '0':
+								if (this.actor.system.general.critMin <= 1) {
+									this.actor.removeCondition('shipminor');
+								}
+								break;
+							case '1':
+								if (this.actor.system.general.critMaj <= 1) {
+									this.actor.removeCondition('shipmajor');
+								}
+								break;
+							default:
+								break;
+						}
+					}
+					itemDel.delete();
+				},
+			},
+		];
+
+		// Add Inventory Item
+		// new foundry.applications.ux.ContextMenu(html, '.item-edit1', itemContextMenu1);
+		new CMPowerMenu(html[0], '.item-edit1', itemContextMenu, {
+			parent: this,
+		});
+
+		// new CMPowerMenu(html[0], '.item-edit1', itemContextMenu1, {
+		// 	parent: this,
+		// });
 	}
+
 	/** @override */
 	async _onDropItemCreate(itemData) {
 		const type = itemData.type;
@@ -623,12 +643,8 @@ export class alienrpgSpacecraftSheet extends foundry.appv1.sheets.ActorSheet {
 		}
 		function onBlur(e) {
 			let value = localStringToNumber(e.target.value);
-			if (game.settings.get('alienrpg', 'dollar'))
-				e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '$0.00';
-			else
-				e.target.value = value
-					? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value)
-					: '0.00';
+			if (game.settings.get('alienrpg', 'dollar')) e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '$0.00';
+			else e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
 		}
 	}
 
@@ -689,7 +705,7 @@ export class alienrpgSpacecraftSheet extends foundry.appv1.sheets.ActorSheet {
 		};
 
 		// Now push the correct chat message
-		const html = await renderTemplate(`systems/alienrpg/templates/chat/ship-combat.html`, htmlData);
+		const html = await foundry.applications.handlebars.renderTemplate(`systems/alienrpg/templates/chat/ship-combat.html`, htmlData);
 
 		let chatData = {
 			user: game.user.id,

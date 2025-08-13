@@ -61,7 +61,7 @@ export class alienrpgItem extends Item {
 			// let confirmed = false;
 			// Check that is a character or a synth pretending to be a character.
 			if (this.actor.type === 'character' || actorData.header.synthstress) {
-				renderTemplate(template).then((dlg) => {
+				foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 					new Dialog({
 						title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
 						content: dlg,
@@ -87,34 +87,12 @@ export class alienrpgItem extends Item {
 								if (itemData.header.type.value === '1') {
 									let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
 									r2Data = r2Data + stressMod;
-									yze.yzeRoll(
-										hostile,
-										blind,
-										reRoll,
-										label,
-										r1Data,
-										game.i18n.localize('ALIENRPG.Black'),
-										r2Data,
-										game.i18n.localize('ALIENRPG.Yellow'),
-										actorid,
-										itemid
-									);
+									yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
 									game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 								} else if (itemData.header.type.value === '2') {
 									let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
 									r2Data = r2Data + stressMod;
-									yze.yzeRoll(
-										hostile,
-										blind,
-										reRoll,
-										label,
-										r1Data,
-										game.i18n.localize('ALIENRPG.Black'),
-										r2Data,
-										game.i18n.localize('ALIENRPG.Yellow'),
-										actorid,
-										itemid
-									);
+									yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
 									game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 								} else {
 									console.warn('No type on item');
@@ -126,7 +104,7 @@ export class alienrpgItem extends Item {
 			} else {
 				// Its not got stress so don't display the stress mod box
 				template = 'systems/alienrpg/templates/dialog/roll-base-dialog.html';
-				renderTemplate(template).then((dlg) => {
+				foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 					new Dialog({
 						title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
 						content: dlg,
@@ -153,34 +131,12 @@ export class alienrpgItem extends Item {
 									if (itemData.header.type.value === '1') {
 										let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier;
 										r2Data = r2Data + stressMod;
-										yze.yzeRoll(
-											hostile,
-											blind,
-											reRoll,
-											label,
-											r1Data,
-											game.i18n.localize('ALIENRPG.Black'),
-											r2Data,
-											game.i18n.localize('ALIENRPG.Yellow'),
-											actorid,
-											itemid
-										);
+										yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
 										game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 									} else if (itemData.header.type.value === '2') {
 										let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value + modifier;
 										r2Data = r2Data + stressMod;
-										yze.yzeRoll(
-											hostile,
-											blind,
-											reRoll,
-											label,
-											r1Data,
-											game.i18n.localize('ALIENRPG.Black'),
-											r2Data,
-											game.i18n.localize('ALIENRPG.Yellow'),
-											actorid,
-											itemid
-										);
+										yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
 										game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 									} else {
 										console.warn('No type on item');
@@ -200,33 +156,11 @@ export class alienrpgItem extends Item {
 				// it's not a vehicle so add the correct attribute bonus
 				if (itemData.header.type.value === '1') {
 					let r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value;
-					yze.yzeRoll(
-						hostile,
-						blind,
-						reRoll,
-						label,
-						r1Data,
-						game.i18n.localize('ALIENRPG.Black'),
-						r2Data,
-						game.i18n.localize('ALIENRPG.Yellow'),
-						actorid,
-						itemid
-					);
+					yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
 					game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 				} else if (itemData.header.type.value === '2') {
 					let r1Data = actorData.skills.closeCbt.mod + itemData.attributes.bonus.value;
-					yze.yzeRoll(
-						hostile,
-						blind,
-						reRoll,
-						label,
-						r1Data,
-						game.i18n.localize('ALIENRPG.Black'),
-						r2Data,
-						game.i18n.localize('ALIENRPG.Yellow'),
-						actorid,
-						itemid
-					);
+					yze.yzeRoll(hostile, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorid, itemid);
 					game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 				} else {
 					console.warn('No type on item');
@@ -554,24 +488,14 @@ export class alienrpgItem extends Item {
 			let r1Data = parseInt(compData.roll || 0) + parseInt(modifier);
 			reRoll = true;
 			r2Data = 0;
-			yze.yzeRoll(
-				effectiveActorType,
-				blind,
-				reRoll,
-				label,
-				r1Data,
-				game.i18n.localize('ALIENRPG.Black'),
-				r2Data,
-				game.i18n.localize('ALIENRPG.Yellow'),
-				actorId
-			);
+			yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
 		}
 	}
 
 	async rollComputerMod(item, dataset) {
 		function myRenderTemplate(template) {
 			let confirmed = false;
-			renderTemplate(template).then((dlg) => {
+			foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 				new Dialog({
 					title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
 					content: dlg,

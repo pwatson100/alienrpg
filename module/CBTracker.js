@@ -57,48 +57,50 @@ export default class AlienRPGCTContext extends foundry.applications.sidebar.tabs
 		async function _swapInitiative(combatant, donerInit, combatants, template) {
 			let confirmed = false;
 			let myTitle = game.i18n.localize('ALIENRPG.SwapInitiative') + ' ' + game.i18n.localize('ALIENRPG.ROLLFOR') + ' ' + `${combatant.name}`;
-			const content = await renderTemplate(template, {
-				combatants: combatants
-					.filter((c) => c.initiative && c.id !== combatant.id && (c.actor.type === 'character' || c.actor.type === 'synthetic') && !c.actor.system.header.npc)
-					.sort((a, b) => {
-						return a.initiative - b.initiative;
-					}),
-			}).then((dlg) => {
-				new Dialog({
-					title: myTitle,
-					content: dlg,
-					buttons: {
-						one: {
-							icon: '<i class="fas fa-check"></i>',
-							label: 'OK',
-							callback: () => (confirmed = true),
+			const content = await foundry.applications.handlebars
+				.renderTemplate(template, {
+					combatants: combatants
+						.filter((c) => c.initiative && c.id !== combatant.id && (c.actor.type === 'character' || c.actor.type === 'synthetic') && !c.actor.system.header.npc)
+						.sort((a, b) => {
+							return a.initiative - b.initiative;
+						}),
+				})
+				.then((dlg) => {
+					new Dialog({
+						title: myTitle,
+						content: dlg,
+						buttons: {
+							one: {
+								icon: '<i class="fas fa-check"></i>',
+								label: 'OK',
+								callback: () => (confirmed = true),
+							},
+							four: {
+								icon: '<i class="fas fa-times"></i>',
+								label: game.i18n.localize('ALIENRPG.DialCancel'),
+								callback: () => (confirmed = false),
+							},
 						},
-						four: {
-							icon: '<i class="fas fa-times"></i>',
-							label: game.i18n.localize('ALIENRPG.DialCancel'),
-							callback: () => (confirmed = false),
+						close: (html) => {
+							if (confirmed) {
+								let targetId = html.find('#initiative-swap')[0]?.value;
+								const targetActor = combatants.get(targetId);
+								const targetInit = targetActor.initiative;
+								const updates = [
+									{
+										_id: combatant.id,
+										initiative: targetInit,
+									},
+									{
+										_id: targetId,
+										initiative: donerInit,
+									},
+								];
+								return game.combat.updateEmbeddedDocuments('Combatant', updates);
+							}
 						},
-					},
-					close: (html) => {
-						if (confirmed) {
-							let targetId = html.find('#initiative-swap')[0]?.value;
-							const targetActor = combatants.get(targetId);
-							const targetInit = targetActor.initiative;
-							const updates = [
-								{
-									_id: combatant.id,
-									initiative: targetInit,
-								},
-								{
-									_id: targetId,
-									initiative: donerInit,
-								},
-							];
-							return game.combat.updateEmbeddedDocuments('Combatant', updates);
-						}
-					},
-				}).render(true);
-			});
+					}).render(true);
+				});
 		}
 	}
 }

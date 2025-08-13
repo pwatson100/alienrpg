@@ -1302,7 +1302,7 @@
 	display: grid;
 	// border: 2px solid var(--aliengreen);
 	padding-bottom: 4px;
-	padding-top: 12px;
+	padding-top: 5px;
 	padding-left: 30px;
 	grid-row-gap: 3px;
 	grid-column-gap: 10px;
@@ -1977,7 +1977,7 @@
 
 .grid-colony-planet9 {
 	display: grid;
-	margin-top: -25px;
+	margin-top: 12px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp91 gcp94 gcp96 gcp97';
 	grid-template-columns: 444px 161px 34px 15px;
@@ -1995,6 +1995,7 @@
 }
 .gcp96 {
 	grid-area: gcp96;
+	margin: -3px 0px 0px 0px;
 }
 .gcp97 {
 	grid-area: gcp97;
@@ -2003,7 +2004,7 @@
 .grid-colony-planet10a {
 	display: grid;
 	margin-left: 175px;
-	margin-top: -84px;
+	margin-top: -51px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp10a1 gcp10a2  gcp10a4  gcp10a6 gcp10a7';
 	// grid-template-columns: 21% 19% 20% 19% 19%;
@@ -2016,6 +2017,7 @@
 	font-size: 15px;
 	text-align: center;
 	margin-bottom: 0px;
+	height: 15px;
 }
 .gcp10a2 {
 	grid-area: gcp10a2;
@@ -2026,8 +2028,9 @@
 	font-weight: bolder;
 	font-size: 15px;
 	text-align: center;
-	margin-top: 114px;
+	margin-top: 80px;
 	margin-bottom: 0px;
+	height: 15px;
 }
 .gcp10a6 {
 	grid-area: gcp10a6;
@@ -2039,12 +2042,13 @@
 	font-size: 15px;
 	text-align: center;
 	margin-bottom: 0px;
+	height: 15px;
 }
 
 .grid-colony-planet10 {
 	display: grid;
 	margin-left: 181px;
-	margin-top: -59px;
+	margin-top: -62px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp101 gcp102  gcp104  gcp106 gcp107';
 	// grid-template-columns: 21% 19% 20% 19% 19%;
@@ -2058,6 +2062,7 @@
 }
 .gcp104 {
 	grid-area: gcp104;
+	margin-top: 65px;
 }
 .gcp106 {
 	grid-area: gcp106;
@@ -2069,7 +2074,7 @@
 .grid-colony-planet11 {
 	display: grid;
 	margin-left: 187px;
-	margin-top: -98px;
+	margin-top: -60px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp111 gcp112 gcp113 gcp114 gcp115 gcp116';
 	grid-template-columns: 171px 87px 171px 87px 171px 25px;
@@ -2081,20 +2086,24 @@
 	font-weight: bolder;
 	font-size: 13px;
 	margin-bottom: 0px;
+	height: 15px;
 }
 .gcp112 {
 	grid-area: gcp112;
+	margin: -3px 0px 0px -2px;
 }
 .gcp113 {
 	grid-area: gcp113;
 	color: black;
 	font-weight: bolder;
 	font-size: 13px;
-	margin-top: 107px;
+	margin-top: 74px;
 	margin-bottom: 0px;
+	height: 15px;
 }
 .gcp114 {
 	grid-area: gcp114;
+	margin: 70px 0px 0px 0px;
 }
 .gcp115 {
 	grid-area: gcp115;
@@ -2102,15 +2111,17 @@
 	font-weight: bolder;
 	font-size: 13px;
 	margin-bottom: 0px;
+	height: 15px;
 }
 .gcp116 {
 	grid-area: gcp116;
+	margin: -3px 0px 0px -2px;
 }
 
 .grid-colony-planet12a {
 	display: grid;
 	margin-left: 176px;
-	margin-top: -86px;
+	margin-top: 34px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp12a1 gcp12a2  gcp12a4  gcp12a6 gcp12a7';
 	// grid-template-columns: 21% 19% 20% 19% 19%;
@@ -2124,6 +2135,8 @@
 	font-size: 15px;
 	text-align: center;
 	margin-bottom: 0px;
+	margin-top: -83px;
+	height: 15px;
 }
 .gcp12a2 {
 	grid-area: gcp12a2;
@@ -2134,8 +2147,9 @@
 	font-weight: bolder;
 	font-size: 15px;
 	text-align: center;
-	margin-top: 118px;
+	margin-top: 3px;
 	margin-bottom: 0px;
+	height: 15px;
 }
 .gcp12a6 {
 	grid-area: gcp12a6;
@@ -2147,6 +2161,8 @@
 	font-size: 15px;
 	text-align: center;
 	margin-bottom: 0px;
+	margin-top: -83px;
+	height: 15px;
 }
 
 .grid-colony-planet12 {
@@ -2167,6 +2183,7 @@
 }
 .gcp124 {
 	grid-area: gcp124;
+	margin: 69px 0px 0px 0px;
 }
 .gcp126 {
 	grid-area: gcp126;
@@ -2178,7 +2195,7 @@
 .grid-colony-planet13a {
 	display: grid;
 	margin-left: 187px;
-	margin-top: -89px;
+	margin-top: -62px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp13a1 gcp13a2 gcp13a3 gcp13a4 gcp13a5 gcp13a6';
 	grid-template-columns: 171px 87px 171px 87px 171px 25px;
@@ -2190,20 +2207,24 @@
 	font-weight: bolder;
 	font-size: 13px;
 	margin-bottom: 0px;
+	height: 15px;
 }
 .gcp13a2 {
 	grid-area: gcp13a2;
+	margin: -3px 0px 0px 0px;
 }
 .gcp13a3 {
 	grid-area: gcp13a3;
 	color: black;
 	font-weight: bolder;
 	font-size: 13px;
-	margin-top: 107px;
+	margin-top: 79px;
 	margin-bottom: 20px;
+	height: 15px;
 }
 .gcp13a4 {
 	grid-area: gcp13a4;
+	margin: 74px 0px 0px 0px;
 }
 .gcp13a5 {
 	grid-area: gcp13a5;
@@ -2211,9 +2232,11 @@
 	font-weight: bolder;
 	font-size: 13px;
 	margin-bottom: 0px;
+	height: 15px;
 }
 .gcp13a6 {
 	grid-area: gcp13a6;
+	margin: -3px 0px 0px 0px;
 }
 
 .grid-colony-planet13 {

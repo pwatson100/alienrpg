@@ -27,7 +27,7 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
 			width: 800,
-			// height: 950 - 'min-content',
+			// height: 760,
 			height: 906 - 'min-content',
 			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
 		});
@@ -313,7 +313,7 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 				name: game.i18n.localize('ALIENRPG.addToFLocker'),
 				icon: '<i class="fas fa-archive"></i>',
 				callback: (element) => {
-					let item = this.actor.items.get(element.data('item-id'));
+					let item = this.actor.items.get(element.dataset.itemId);
 					item.update({ 'system.header.active': 'fLocker' });
 				},
 			},
@@ -321,7 +321,7 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 				name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
 				icon: '<i class="fas fa-archive"></i>',
 				callback: (element) => {
-					let item = this.actor.items.get(element.data('item-id'));
+					let item = this.actor.items.get(element.dataset.itemId);
 					item.update({ 'system.header.active': false });
 				},
 			},
@@ -329,7 +329,7 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
 				icon: '<i class="fas fa-edit"></i>',
 				callback: (element) => {
-					const item = this.actor.items.get(element.data('item-id'));
+					const item = this.actor.items.get(element.dataset.itemId);
 					item.sheet.render(true);
 				},
 			},
@@ -337,7 +337,7 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 				name: game.i18n.localize('ALIENRPG.DeleteItem'),
 				icon: '<i class="fas fa-trash"></i>',
 				callback: (element) => {
-					let itemDel = this.actor.items.get(element.data('item-id'));
+					let itemDel = this.actor.items.get(element.dataset.itemId);
 					itemDel.delete();
 				},
 			},
@@ -351,7 +351,7 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
 				icon: '<i class="fas fa-edit"></i>',
 				callback: (element) => {
-					const item = this.actor.items.get(element.data('item-id'));
+					const item = this.actor.items.get(element.dataset.itemId);
 					item.sheet.render(true);
 				},
 			},
@@ -359,7 +359,7 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 				name: game.i18n.localize('ALIENRPG.DeleteItem'),
 				icon: '<i class="fas fa-trash"></i>',
 				callback: (element) => {
-					let itemDel = this.actor.items.get(element.data('item-id'));
+					let itemDel = this.actor.items.get(element.dataset.itemId);
 					if (itemDel.type === 'critical-injury' && this.actor.system.general.critInj.value <= 1) {
 						this.actor.removeCondition('criticalinj');
 					}
@@ -555,8 +555,7 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 			'system.consumables.air.value': (aData.consumables.air.value = parseInt(totalAir || 0)),
 			'system.consumables.power.value': (aData.consumables.power.value = parseInt(totalPower || 0)),
 			'system.general.armor.value': (aData.general.armor.value = parseInt(totalAc || 0)),
-			'system.general.radiation.calculatedMax': (aData.general.radiation.calculatedMax =
-				parseInt(aData.general.radiation.max - (aData.general.radiation.permanent ?? 0)) || 0),
+			'system.general.radiation.calculatedMax': (aData.general.radiation.calculatedMax = parseInt(aData.general.radiation.max - (aData.general.radiation.permanent ?? 0)) || 0),
 			'system.general.xp.calculatedMax': (aData.general.xp.calculatedMax = aData.general.xp.max),
 			'system.header.health.max': aData.attributes.str.value + aData.header.health.mod,
 			'system.header.health.mod': (aData.header.health.mod = parseInt(attrMod.health || 0)),
@@ -1153,14 +1152,9 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 		event.preventDefault();
 		let actorID = this.actor.id;
 		let chatMessage = `<div class="chatBG" + ${actorID} ">`;
-		let addRad =
-			`<span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">` +
-			game.i18n.localize('ALIENRPG.PermanentRadiationAdded') +
-			`</span></div>`;
+		let addRad = `<span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">` + game.i18n.localize('ALIENRPG.PermanentRadiationAdded') + `</span></div>`;
 		let takeRad =
-			`<span class="warnblink alienchatlightgreen"; style="font-weight: bold; font-size: larger">` +
-			game.i18n.localize('ALIENRPG.PermanentRadiationRemoved') +
-			`</span></div>`;
+			`<span class="warnblink alienchatlightgreen"; style="font-weight: bold; font-size: larger">` + game.i18n.localize('ALIENRPG.PermanentRadiationRemoved') + `</span></div>`;
 
 		let rad = this.actor.system.general.radiation;
 		switch (event.ctrlKey) {
@@ -1264,12 +1258,8 @@ export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 		}
 		function onBlur(e) {
 			let value = localStringToNumber(e.target.value);
-			if (game.settings.get('alienrpg', 'dollar'))
-				e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '$0.00';
-			else
-				e.target.value = value
-					? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value)
-					: '0.00';
+			if (game.settings.get('alienrpg', 'dollar')) e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '$0.00';
+			else e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
 		}
 	}
 	async _onOverwatchToggle(event) {

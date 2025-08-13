@@ -92,6 +92,19 @@ export class alienrpgColonySheet extends foundry.appv1.sheets.ActorSheet {
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
+		class CMPowerMenu extends foundry.applications.ux.ContextMenu {
+			constructor(html, selector, menuItems, { eventName = 'contextmenu', onOpen, onClose, jQuery, parent } = {}) {
+				super(html, selector, menuItems, {
+					eventName: eventName,
+					onOpen: onOpen,
+					onClose: onClose,
+					jQuery: false,
+				});
+				this.myParent = parent;
+				this.originalMenuItems = [...menuItems];
+			}
+		}
+
 		// Everything below here is only needed if the sheet is editable
 		if (!this.options.editable) return;
 
@@ -100,7 +113,7 @@ export class alienrpgColonySheet extends foundry.appv1.sheets.ActorSheet {
 				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
 				icon: '<i class="fas fa-edit"></i>',
 				callback: (element) => {
-					const item = this.actor.items.get(element.data('item-id'));
+					const item = this.actor.items.get(element.dataset.itemId);
 					item.sheet.render(true);
 				},
 			},
@@ -108,15 +121,17 @@ export class alienrpgColonySheet extends foundry.appv1.sheets.ActorSheet {
 				name: game.i18n.localize('ALIENRPG.DeleteItem'),
 				icon: '<i class="fas fa-trash"></i>',
 				callback: (element) => {
-					let itemDel = this.actor.items.get(element.data('item-id'));
+					let itemDel = this.actor.items.get(element.dataset.itemId);
 					itemDel.delete();
 				},
 			},
 		];
 
 		// Add Inventory Item
-		new foundry.applications.ux.ContextMenu(html, '.item-edit', itemContextMenu);
-
+		// new foundry.applications.ux.ContextMenu(html, '.item-edit', itemContextMenu);
+		new CMPowerMenu(html[0], '.item-edit', itemContextMenu, {
+			parent: this,
+		});
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		// Update Inventory Item
 		html.find('.openItem').click((ev) => {

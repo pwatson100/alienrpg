@@ -46,6 +46,7 @@
 .alienrpg .arpgtablesmall tr:nth-child(even) {
 	background-color: transparent;
 }
+
 .alienrpg .tdstyle {
 	width: 40%;
 	height: 18px;
@@ -117,10 +118,11 @@
 .alienrpg .etable {
 	width: 40%;
 	/* border-style: double; */
-	border-color: #e92d2d;
+	// border-color: hsl(0, 81%, 55%);
 	margin-left: auto;
 	margin-right: auto;
-	border: 1;
+	border-top: 1px solid hsl(0, 81%, 55%);
+	border-bottom: 1px solid hsl(0, 81%, 55%);
 	padding: 0;
 	padding-top: 0;
 	padding-bottom: 0;
@@ -153,13 +155,15 @@
 
 .alienrpg .stable {
 	width: 90%;
-	/* border-style: double; */
+	border-style: double;
 	border-color: #e92d2d;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1;
+	// border: 1;
 	padding-top: 0;
 	padding-bottom: 0;
+	border-left: none;
+	border-right: none;
 }
 
 .alienrpg .strhead {
@@ -213,15 +217,23 @@
 .alienrpg .oddstable {
 	width: 96%;
 	height: 16px;
-	/* border-style: double; */
+	border-style: double;
 	border-color: #e92d2d;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1;
+	// border: 1;
 	padding-top: 0;
 	padding-bottom: 0;
+	border-left: none;
+	border-right: none;
+}
+.alienrpg .oddstable tr:nth-child(even) {
+	background-color: transparent;
 }
 
+.alienrpg .oddstable tr:nth-child(odd) {
+	background-color: #3a3d3f;
+}
 .alienrpg .oddhead {
 	font-weight: bold;
 }
@@ -240,15 +252,23 @@
 
 .alienrpg .bigtable {
 	width: 99%;
-	/* border-style: double; */
+	border-style: double;
 	border-color: #e92d2d;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1;
+	// border: 1;
 	padding-top: 0;
 	padding-bottom: 0;
+	border-left: none;
+	border-right: none;
+}
+.alienrpg .bigtable tr:nth-child(even) {
+	background-color: transparent;
 }
 
+.alienrpg .bigtable tr:nth-child(odd) {
+	background-color: #3a3d3f;
+}
 .alienrpg .die {
 	width: 6%;
 	text-align: center;
@@ -359,6 +379,13 @@
 .alienrpg .items.content.toggle-display {
 	display: none;
 }
+
+.journal-entry-page h1,
+.journal-entry-page h2 {
+	color: var(--aliengreen);
+	border-bottom: 1px solid var(--color-underline-header);
+}
+
 .alienrpg .journal.content {
 	background: lightgray;
 }
@@ -460,7 +487,7 @@
 }
 .alienrpg .colonytable {
 	width: 60%;
-	border-color: #e92d2d;
+	// border-color: #e92d2d;
 	margin-left: auto;
 	margin-right: auto;
 	border: 1;
@@ -468,8 +495,17 @@
 	padding-bottom: 0;
 	font-family: 'OCR-A';
 	text-align: center;
+	border-top: 1px solid #e92d2d;
+	border-bottom: 1px solid #e92d2d;
 }
 
+.alienrpg .colonytable tr:nth-child(even) {
+	background-color: #3a3d3f;
+}
+
+.alienrpg .colonytable tr:nth-child(odd) {
+	background-color: transparent;
+}
 .alienrpg .colonyname {
 	font-size: x-large;
 	font-weight: bold;
@@ -522,4 +558,9 @@
 	vertical-align: top;
 	padding-left: 2px;
 	padding-right: 2px;
+}
+
+table th,
+table td {
+	padding: 0px;
 }
