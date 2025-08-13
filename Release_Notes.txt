@@ -591,12 +591,15 @@ Included a "Critical Injuries template for people who want to create their own.
  Fixed issue with manual roll of Ships Minor Crits, which did not allow a D66 number to be entered.  
  Fixed issue with Creature and Ship crits not being parsed correctly.
  Fixed issue with the "Alien - Roll on selected Mother table V10" and "Alien - Roll on selected Creature table V10" macros.
- Tidied up the cess con a couple of the actor and item sheets. 
+ Tidied up the css on a couple of the actor and item sheets. 
  Fixed issues with the CRT UI sheets when changing colours.
 
  Version 3.2.4
  Corrected error in Roll Table macros
 
  Version 3.2.5
- Adventure now automatically installs.  
+ Adventure now automatically installs. 
+
+ Version 3.3.0
+ Foundry Version 13 release. 
   

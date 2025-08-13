@@ -230,6 +230,10 @@ a.content-link {
   color: var(--aliengreen);
 }
 
+.chat-message .table-draw .table-description {
+  color: var(--aliengreen);
+}
+
 .dice-tooltip .roll > img {
   width: 24px;
 }
@@ -5640,7 +5644,7 @@ table td {
 }
 .alienrpg .crt .grid-synth {
   grid-column: 3;
-  grid-template-columns: 25% 25% 50%;
+  grid-template-columns: 25% 30% 50%;
   border: 3px double var(--aliengreen);
   border-bottom: 1px solid var(--aliengreen);
   padding: 4px;
