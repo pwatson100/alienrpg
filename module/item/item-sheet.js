@@ -2,9 +2,9 @@ import { logger } from '../logger.js';
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
- * @extends {ItemSheet}
+ * @extends {foundry.appv1.sheets.ItemSheet}
  */
-export class alienrpgItemSheet extends ItemSheet {
+export class alienrpgItemSheet extends foundry.appv1.sheets.ItemSheet {
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
@@ -31,7 +31,11 @@ export class alienrpgItemSheet extends ItemSheet {
 	async _enrichTextFields(data, fieldNameArr) {
 		for (let t = 0; t < fieldNameArr.length; t++) {
 			if (foundry.utils.hasProperty(data, fieldNameArr[t])) {
-				foundry.utils.setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true }));
+				foundry.utils.setProperty(
+					data,
+					fieldNameArr[t],
+					await foundry.applications.ux.TextEditor.implementation.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true })
+				);
 			}
 		}
 	}

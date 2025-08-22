@@ -300,7 +300,7 @@ export class alienrpgActor extends Actor {
 				function myRenderTemplate(template) {
 					let confirmed = false;
 					reRoll = false;
-					renderTemplate(template).then((dlg) => {
+					foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 						new Dialog({
 							title: game.i18n.localize('ALIENRPG.Attributes') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
 							content: dlg,
@@ -322,17 +322,7 @@ export class alienrpgActor extends Actor {
 										r2Data = 0;
 										reRoll = true;
 									}
-									yze.yzeRoll(
-										effectiveActorType,
-										blind,
-										reRoll,
-										label,
-										r1Data,
-										game.i18n.localize('ALIENRPG.Black'),
-										r2Data,
-										game.i18n.localize('ALIENRPG.Yellow'),
-										actorId
-									);
+									yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
 									game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 								}
 							},
@@ -349,7 +339,7 @@ export class alienrpgActor extends Actor {
 				function myRenderTemplate(template) {
 					let confirmed = false;
 					// reRoll = false;
-					renderTemplate(template).then((dlg) => {
+					foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 						new Dialog({
 							title: game.i18n.localize('ALIENRPG.Attributes') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
 							content: dlg,
@@ -386,17 +376,7 @@ export class alienrpgActor extends Actor {
 									// console.log('🚀 ~ file: actor.js ~ line 575 ~ alienrpgActor ~ renderTemplate ~ stressMod', stressMod);
 									r1Data = r1Data + baseModifier + modifier + targetLock + targetMod;
 									r2Data = r2Data + stressMod;
-									yze.yzeRoll(
-										effectiveActorType,
-										blind,
-										reRoll,
-										label,
-										r1Data,
-										game.i18n.localize('ALIENRPG.Black'),
-										r2Data,
-										game.i18n.localize('ALIENRPG.Yellow'),
-										actorId
-									);
+									yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
 									game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 								}
 							},
@@ -405,17 +385,7 @@ export class alienrpgActor extends Actor {
 				}
 				myRenderTemplate('systems/alienrpg/templates/dialog/spacecomtech.html');
 			} else {
-				yze.yzeRoll(
-					effectiveActorType,
-					blind,
-					reRoll,
-					label,
-					r1Data,
-					game.i18n.localize('ALIENRPG.Black'),
-					r2Data,
-					game.i18n.localize('ALIENRPG.Yellow'),
-					actorId
-				);
+				yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
 				game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
 			}
 		} else {
@@ -451,9 +421,7 @@ export class alienrpgActor extends Actor {
 				let modRoll = '1d6' + '+' + parseInt(aStress);
 				const roll = await new Roll(modRoll).evaluate();
 				const customResults = await table.roll({ roll });
-				console.warn(
-					`Rolling stress, ${modRoll}, Panic Value ${actor.system.general.panic.value}, Last ${actor.system.general.panic.lastRoll}, Roll ${customResults.roll.total}`
-				);
+				console.warn(`Rolling stress, ${modRoll}, Panic Value ${actor.system.general.panic.value}, Last ${actor.system.general.panic.lastRoll}, Roll ${customResults.roll.total}`);
 
 				oldPanic = actor.system.general.panic.lastRoll;
 
@@ -568,10 +536,7 @@ export class alienrpgActor extends Actor {
 							ChatMessage.create({ speaker: { actor: actorId }, content, whisper: selftarget, type: CONST.CHAT_MESSAGE_STYLES.OTHER, sound, blind: false });
 						}
 
-						SelfMessage(
-							'<h2 class="alienchatred">' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(aStress).toString() + ' ???</h2>',
-							CONFIG.sounds.dice
-						);
+						SelfMessage('<h2 class="alienchatred">' + game.i18n.localize('ALIENRPG.PanicCondition') + addSign(aStress).toString() + ' ???</h2>', CONFIG.sounds.dice);
 					}
 				}
 				if (dataset.shippanicbut) {
@@ -692,17 +657,7 @@ export class alienrpgActor extends Actor {
 		let blind = false;
 		let r2Data = 1;
 		let radMax = actor.getRollData().general.radiation.max;
-		await yze.yzeRoll(
-			effectiveActorType,
-			blind,
-			reRoll,
-			label,
-			r1Data,
-			game.i18n.localize('ALIENRPG.Black'),
-			r2Data,
-			game.i18n.localize('ALIENRPG.Yellow'),
-			actorId
-		);
+		await yze.yzeRoll(effectiveActorType, blind, reRoll, label, r1Data, game.i18n.localize('ALIENRPG.Black'), r2Data, game.i18n.localize('ALIENRPG.Yellow'), actorId);
 
 		if (game.alienrpg.rollArr.r2One === 1) {
 			await actor.update({
@@ -723,7 +678,7 @@ export class alienrpgActor extends Actor {
 			let armorDou = false;
 			switch (dataset.spbutt) {
 				case 'armorVfire':
-					renderTemplate(template).then((dlg) => {
+					foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 						new Dialog({
 							title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
 							content: dlg,
@@ -765,7 +720,7 @@ export class alienrpgActor extends Actor {
 
 					break;
 				case 'armor':
-					renderTemplate(template).then((dlg) => {
+					foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 						new Dialog({
 							title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
 							content: dlg,
@@ -818,7 +773,7 @@ export class alienrpgActor extends Actor {
 					break;
 
 				default:
-					renderTemplate(template).then((dlg) => {
+					foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 						new Dialog({
 							title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + dataset.label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
 							content: dlg,
@@ -865,10 +820,7 @@ export class alienrpgActor extends Actor {
 		if (dataset.roll) {
 			// call pop up box here to get any mods then use standard RollAbility()
 			// Check that is a character (and not armor) or a synth pretending to be a character.
-			if (
-				((actor.type === 'character' || actor.type === 'vehicles' || actor.type === 'spacecraft') && dataset.spbutt != 'armor') ||
-				actor.system.header.synthstress
-			) {
+			if (((actor.type === 'character' || actor.type === 'vehicles' || actor.type === 'spacecraft') && dataset.spbutt != 'armor') || actor.system.header.synthstress) {
 				myRenderTemplate('systems/alienrpg/templates/dialog/roll-all-dialog.html');
 			} else if (actor.type === 'synthetic') {
 				myRenderTemplate('systems/alienrpg/templates/dialog/roll-base-dialog.html');
@@ -928,8 +880,7 @@ export class alienrpgActor extends Actor {
 	async checkAndEndPanic(actor) {
 		let itemDel = '';
 		const agilityModName = game.i18n.localize('ALIENRPG.PanicCondition') + ' - ' + game.i18n.localize('ALIENRPG.AbilityAgl') + ' -2';
-		const allSkillsModName =
-			game.i18n.localize('ALIENRPG.PanicCondition') + ' - ' + game.i18n.localize('ALIENRPG.TREMBLE') + ' -2 ' + game.i18n.localize('ALIENRPG.Skills');
+		const allSkillsModName = game.i18n.localize('ALIENRPG.PanicCondition') + ' - ' + game.i18n.localize('ALIENRPG.TREMBLE') + ' -2 ' + game.i18n.localize('ALIENRPG.Skills');
 
 		if (actor.type != 'character') return;
 
@@ -1136,7 +1087,7 @@ export class alienrpgActor extends Actor {
 		const template = 'systems/alienrpg/templates/dialog/roll-supplymod-dialog.html';
 		let confirmed = false;
 		let supplyModifier = 0;
-		renderTemplate(template).then((dlg) => {
+		foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 			new Dialog({
 				title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
 				content: dlg,
@@ -1186,7 +1137,7 @@ export class alienrpgActor extends Actor {
 
 			// callpop upbox here to get any mods then update r1Data or rData as appropriate.
 			let confirmed = false;
-			renderTemplate(template).then((dlg) => {
+			foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 				new Dialog({
 					title: game.i18n.localize('ALIENRPG.DialTitle1') + ' ' + label + ' ' + game.i18n.localize('ALIENRPG.DialTitle2'),
 					content: dlg,
@@ -1282,7 +1233,7 @@ export class alienrpgActor extends Actor {
 	async creatureManAttackRoll(actor, dataset) {
 		function myRenderTemplate(template) {
 			let confirmed = false;
-			renderTemplate(template).then((dlg) => {
+			foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 				new Dialog({
 					title: game.i18n.localize('ALIENRPG.rollManCreatureAttack'),
 					content: dlg,
@@ -1424,10 +1375,7 @@ export class alienrpgActor extends Actor {
 		let stamina = 0;
 		switch (type) {
 			case 'character':
-				atable =
-					game.tables.getName(game.i18n.localize('ALIENRPG.CriticalInjuries')) ||
-					game.tables.getName('Critical Injuries') ||
-					game.tables.getName('Critical injuries');
+				atable = game.tables.getName(game.i18n.localize('ALIENRPG.CriticalInjuries')) || game.tables.getName('Critical Injuries') || game.tables.getName('Critical injuries');
 				if (atable === null || atable === undefined) {
 					ui.notifications.warn(game.i18n.localize('ALIENRPG.NoCharCrit'));
 					return;
@@ -1708,7 +1656,7 @@ export class alienrpgActor extends Actor {
 		// Now push the correct chat message
 
 		// console.log(htmlData);
-		const html = await renderTemplate(`systems/alienrpg/templates/chat/crit-roll-${actor.type}.html`, htmlData);
+		const html = await foundry.applications.handlebars.renderTemplate(`systems/alienrpg/templates/chat/crit-roll-${actor.type}.html`, htmlData);
 
 		let chatData = {
 			user: game.user.id,
@@ -1747,7 +1695,7 @@ export class alienrpgActor extends Actor {
 	async rollCritMan(actor, type, dataset) {
 		function myRenderTemplate(template) {
 			let confirmed = false;
-			renderTemplate(template).then((dlg) => {
+			foundry.applications.handlebars.renderTemplate(template).then((dlg) => {
 				new Dialog({
 					title: game.i18n.localize('ALIENRPG.RollManCrit'),
 					content: dlg,

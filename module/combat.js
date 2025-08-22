@@ -204,7 +204,7 @@ export default class AlienRPGCombat extends Combat {
 		}
 		// Add extra clones to the Combat encounter for the actor's heightened speed
 		creationData = clones.map((v) => {
-			return { tokenId: v.id, hidden: v.hidden };
+			return { tokenId: v.id, sceneId: canvas.scene.id, actorId: v.actorId, hidden: v.hidden };
 		});
 		return creationData;
 	}

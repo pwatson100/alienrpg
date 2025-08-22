@@ -4,24 +4,24 @@ import alienrpgPlanetSheet from './actor/planet-sheet.js';
 import alienrpgColonySheet from './actor/colony-sheet.js';
 
 function registerActors() {
-	Actors.unregisterSheet('core', ActorSheet); // Register Character Sheet
+	foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet); // Register Character Sheet
 
-	Actors.registerSheet('alienrpg', alienrpgActorSheet, {
+	foundry.documents.collections.Actors.registerSheet('alienrpg', alienrpgActorSheet, {
 		types: ['character', 'creature', 'synthetic', 'territory', 'vehicles'],
 		makeDefault: true,
 	});
 
-	Actors.registerSheet('alienrpg', alienrpgSpacecraftSheet, {
+	foundry.documents.collections.Actors.registerSheet('alienrpg', alienrpgSpacecraftSheet, {
 		types: ['spacecraft'],
 		makeDefault: true,
 	}); // Register Spacecraft Sheet
 
-	Actors.registerSheet('alienrpg', alienrpgPlanetSheet, {
+	foundry.documents.collections.Actors.registerSheet('alienrpg', alienrpgPlanetSheet, {
 		types: ['planet'],
 		makeDefault: true,
 	}); // Register Planet Sheet
 
-	Actors.registerSheet('alienrpg', alienrpgColonySheet, {
+	foundry.documents.collections.Actors.registerSheet('alienrpg', alienrpgColonySheet, {
 		types: ['colony'],
 		makeDefault: true,
 	}); // Register Colony Sheet

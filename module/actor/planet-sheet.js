@@ -2,9 +2,9 @@ import { ALIENRPG } from '../config.js';
 import { logger } from '../logger.js';
 /**
  * Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
+ * @extends {foundry.appv1.sheets.ActorSheet}
  */
-export class alienrpgPlanetSheet extends ActorSheet {
+export class alienrpgPlanetSheet extends foundry.appv1.sheets.ActorSheet {
 	constructor(...args) {
 		super(...args);
 
@@ -43,7 +43,11 @@ export class alienrpgPlanetSheet extends ActorSheet {
 	async _enrichTextFields(data, fieldNameArr) {
 		for (let t = 0; t < fieldNameArr.length; t++) {
 			if (foundry.utils.hasProperty(data, fieldNameArr[t])) {
-				foundry.utils.setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true }));
+				foundry.utils.setProperty(
+					data,
+					fieldNameArr[t],
+					await foundry.applications.ux.TextEditor.implementation.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true })
+				);
 			}
 		}
 	}

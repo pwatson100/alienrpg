@@ -5,9 +5,10 @@ import { alienrpgrTableGet } from './rollTableData.js';
 import { logger } from '../logger.js';
 /**
  * Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
+ * @extends {foundry.appv1.sheets.ActorSheet}
  */
-export class alienrpgActorSheet extends ActorSheet {
+
+export class alienrpgActorSheet extends foundry.appv1.sheets.ActorSheet {
 	constructor(...args) {
 		super(...args);
 
@@ -26,7 +27,7 @@ export class alienrpgActorSheet extends ActorSheet {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ['alienrpg', 'sheet', 'actor', 'actor-sheet'],
 			width: 800,
-			// height: 950 - 'min-content',
+			// height: 760,
 			height: 906 - 'min-content',
 			tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'general' }],
 		});
@@ -46,7 +47,11 @@ export class alienrpgActorSheet extends ActorSheet {
 	async _enrichTextFields(data, fieldNameArr) {
 		for (let t = 0; t < fieldNameArr.length; t++) {
 			if (foundry.utils.hasProperty(data, fieldNameArr[t])) {
-				foundry.utils.setProperty(data, fieldNameArr[t], await TextEditor.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true }));
+				foundry.utils.setProperty(
+					data,
+					fieldNameArr[t],
+					await foundry.applications.ux.TextEditor.implementation.enrichHTML(foundry.utils.getProperty(data, fieldNameArr[t]), { async: true })
+				);
 			}
 		}
 	}
@@ -158,69 +163,6 @@ export class alienrpgActorSheet extends ActorSheet {
 		super.activateListeners(html);
 		// Everything below here is only needed if the sheet is editable
 		if (!this.options.editable) return;
-
-		const itemContextMenu = [
-			{
-				name: game.i18n.localize('ALIENRPG.addToFLocker'),
-				icon: '<i class="fas fa-archive"></i>',
-				callback: (element) => {
-					let item = this.actor.items.get(element.data('item-id'));
-					item.update({ 'system.header.active': 'fLocker' });
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
-				icon: '<i class="fas fa-archive"></i>',
-				callback: (element) => {
-					let item = this.actor.items.get(element.data('item-id'));
-					item.update({ 'system.header.active': false });
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
-				icon: '<i class="fas fa-edit"></i>',
-				callback: (element) => {
-					const item = this.actor.items.get(element.data('item-id'));
-					item.sheet.render(true);
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.DeleteItem'),
-				icon: '<i class="fas fa-trash"></i>',
-				callback: (element) => {
-					let itemDel = this.actor.items.get(element.data('item-id'));
-					itemDel.delete();
-				},
-			},
-		];
-
-		// Add Inventory Item
-		new ContextMenu(html, '.item-edit', itemContextMenu);
-
-		const itemContextMenu1 = [
-			{
-				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
-				icon: '<i class="fas fa-edit"></i>',
-				callback: (element) => {
-					const item = this.actor.items.get(element.data('item-id'));
-					item.sheet.render(true);
-				},
-			},
-			{
-				name: game.i18n.localize('ALIENRPG.DeleteItem'),
-				icon: '<i class="fas fa-trash"></i>',
-				callback: (element) => {
-					let itemDel = this.actor.items.get(element.data('item-id'));
-					if (itemDel.type === 'critical-injury' && this.actor.system.general.critInj.value <= 1) {
-						this.actor.removeCondition('criticalinj');
-					}
-					itemDel.delete();
-				},
-			},
-		];
-
-		// Add Inventory Item
-		new ContextMenu(html, '.item-edit1', itemContextMenu1);
 
 		html.find('.item-create').click(this._onItemCreate.bind(this));
 		// Update Inventory Item
@@ -352,6 +294,82 @@ export class alienrpgActorSheet extends ActorSheet {
 		html.find('.crew-edit').click(this._onCrewEdit.bind(this));
 		html.find('.crew-remove').click(this._onCrewRemove.bind(this));
 		html.find('.crew-position').change(this._onChangePosition.bind(this));
+
+		class CMPowerMenu extends foundry.applications.ux.ContextMenu {
+			constructor(html, selector, menuItems, { eventName = 'contextmenu', onOpen, onClose, jQuery, parent } = {}) {
+				super(html, selector, menuItems, {
+					eventName: eventName,
+					onOpen: onOpen,
+					onClose: onClose,
+					jQuery: false,
+				});
+				this.myParent = parent;
+				this.originalMenuItems = [...menuItems];
+			}
+		}
+
+		const itemContextMenu = [
+			{
+				name: game.i18n.localize('ALIENRPG.addToFLocker'),
+				icon: '<i class="fas fa-archive"></i>',
+				callback: (element) => {
+					let item = this.actor.items.get(element.dataset.itemId);
+					item.update({ 'system.header.active': 'fLocker' });
+				},
+			},
+			{
+				name: game.i18n.localize('ALIENRPG.moveFromFlocker'),
+				icon: '<i class="fas fa-archive"></i>',
+				callback: (element) => {
+					let item = this.actor.items.get(element.dataset.itemId);
+					item.update({ 'system.header.active': false });
+				},
+			},
+			{
+				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+				icon: '<i class="fas fa-edit"></i>',
+				callback: (element) => {
+					const item = this.actor.items.get(element.dataset.itemId);
+					item.sheet.render(true);
+				},
+			},
+			{
+				name: game.i18n.localize('ALIENRPG.DeleteItem'),
+				icon: '<i class="fas fa-trash"></i>',
+				callback: (element) => {
+					let itemDel = this.actor.items.get(element.dataset.itemId);
+					itemDel.delete();
+				},
+			},
+		];
+		new CMPowerMenu(html[0], '.item-edit', itemContextMenu, {
+			parent: this,
+		});
+
+		const itemContextMenu1 = [
+			{
+				name: game.i18n.localize('ALIENRPG.EditItemTitle'),
+				icon: '<i class="fas fa-edit"></i>',
+				callback: (element) => {
+					const item = this.actor.items.get(element.dataset.itemId);
+					item.sheet.render(true);
+				},
+			},
+			{
+				name: game.i18n.localize('ALIENRPG.DeleteItem'),
+				icon: '<i class="fas fa-trash"></i>',
+				callback: (element) => {
+					let itemDel = this.actor.items.get(element.dataset.itemId);
+					if (itemDel.type === 'critical-injury' && this.actor.system.general.critInj.value <= 1) {
+						this.actor.removeCondition('criticalinj');
+					}
+					itemDel.delete();
+				},
+			},
+		];
+		new CMPowerMenu(html[0], '.item-edit1', itemContextMenu1, {
+			parent: this,
+		});
 	}
 
 	async _characterData(actor) {
@@ -537,8 +555,7 @@ export class alienrpgActorSheet extends ActorSheet {
 			'system.consumables.air.value': (aData.consumables.air.value = parseInt(totalAir || 0)),
 			'system.consumables.power.value': (aData.consumables.power.value = parseInt(totalPower || 0)),
 			'system.general.armor.value': (aData.general.armor.value = parseInt(totalAc || 0)),
-			'system.general.radiation.calculatedMax': (aData.general.radiation.calculatedMax =
-				parseInt(aData.general.radiation.max - (aData.general.radiation.permanent ?? 0)) || 0),
+			'system.general.radiation.calculatedMax': (aData.general.radiation.calculatedMax = parseInt(aData.general.radiation.max - (aData.general.radiation.permanent ?? 0)) || 0),
 			'system.general.xp.calculatedMax': (aData.general.xp.calculatedMax = aData.general.xp.max),
 			'system.header.health.max': aData.attributes.str.value + aData.header.health.mod,
 			'system.header.health.mod': (aData.header.health.mod = parseInt(attrMod.health || 0)),
@@ -1135,14 +1152,9 @@ export class alienrpgActorSheet extends ActorSheet {
 		event.preventDefault();
 		let actorID = this.actor.id;
 		let chatMessage = `<div class="chatBG" + ${actorID} ">`;
-		let addRad =
-			`<span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">` +
-			game.i18n.localize('ALIENRPG.PermanentRadiationAdded') +
-			`</span></div>`;
+		let addRad = `<span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">` + game.i18n.localize('ALIENRPG.PermanentRadiationAdded') + `</span></div>`;
 		let takeRad =
-			`<span class="warnblink alienchatlightgreen"; style="font-weight: bold; font-size: larger">` +
-			game.i18n.localize('ALIENRPG.PermanentRadiationRemoved') +
-			`</span></div>`;
+			`<span class="warnblink alienchatlightgreen"; style="font-weight: bold; font-size: larger">` + game.i18n.localize('ALIENRPG.PermanentRadiationRemoved') + `</span></div>`;
 
 		let rad = this.actor.system.general.radiation;
 		switch (event.ctrlKey) {
@@ -1246,12 +1258,8 @@ export class alienrpgActorSheet extends ActorSheet {
 		}
 		function onBlur(e) {
 			let value = localStringToNumber(e.target.value);
-			if (game.settings.get('alienrpg', 'dollar'))
-				e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '$0.00';
-			else
-				e.target.value = value
-					? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value)
-					: '0.00';
+			if (game.settings.get('alienrpg', 'dollar')) e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'currency', currency: 'USD' }).format(value) : '$0.00';
+			else e.target.value = value ? Intl.NumberFormat('en-EN', { style: 'decimal', useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) : '0.00';
 		}
 	}
 	async _onOverwatchToggle(event) {

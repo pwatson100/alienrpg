@@ -20,34 +20,13 @@
 }
 .alienrpg #context-menu li.context-item {
 	line-height: 16px;
+	padding: 0px;
 }
 
 .alienrpg .window-content {
-	// font-family: var(--alienfont);
-	// color: var(--aliengreen);
-	// font-size: var(--fontsize);
 	background: hsl(0deg, 0%, 0%);
 	border: var(--aliengreen) 1px solid;
-	// flex-direction: column;
-	// flex-wrap: nowrap;
-	// padding: 2px;
-	// overflow-y: scroll;
-	// overflow-x: auto;
-	// border: var(--aliengreen) 3px;
 }
-
-// .alienrpg .window-content {
-//   // font-family: var(--alienfont);
-//   // color: var(--aliengreen);
-//   // font-size: var(--fontsize);
-//   background: $c-black;
-//   // flex-direction: column;
-//   // flex-wrap: nowrap;
-//   // padding: 2px;
-//   // overflow-y: scroll;
-//   // overflow-x: auto;
-//   // border: var(--aliengreen) 3px;
-// }
 
 .alienrpg form {
 	font-family: var(--alienfont);
@@ -64,19 +43,14 @@
 
 .journal-sheet {
 	form {
-		// font-family: var(--alienfont);
-		// color: var(--aliengreen);
-		// background: url(../images/mother-instructions/indbackground2.png) no-repeat top left;
 		background: var(--journalback) top left;
 		background-size: cover;
 		border: 1px solid var(--aliengreen);
 		border-radius: 1px;
-		// color: hsl(187, 52%, 80%);
 		color: var(--alientextjournal);
 	}
 	select {
 		font-family: var(--alienfont);
-		//  color: $c-green;
 		color: inherit;
 		background: $c-black;
 		border: var(--aliengreen) 3px;
@@ -88,17 +62,12 @@
 	}
 	input {
 		font-family: var(--alienfont);
-		//  color: $c-green;
 		color: inherit;
-
 		background: $c-black;
-		border: var(--aliengreen) 3px;
+		border: 1px solid var(--aliengreen);
 	}
 	button {
-		/* font-family: var(--alienfont); */
-		//  color: $c-green;
 		color: inherit;
-
 		background: hsl(0, 0%, 0%);
 		border: var(--aliengreen) solid 1px;
 		width: 100%;
@@ -107,24 +76,24 @@
 		font-size: 14px;
 		line-height: 28px;
 	}
-
-	critbutton {
-		font-family: var(--alienfont);
-		//  color: $c-green;
-		color: inherit;
-
-		background: $c-black;
-		border: var(--aliengreen) solid 1px;
-		// width: 100%;
-		margin: 0 1px;
-		border-radius: 3px;
-		font-size: 14px;
-		line-height: 28px;
-	}
-	.tox .tox-editor-container {
-		background-color: $c-white;
-	}
 }
+// 	critbutton {
+// 		font-family: var(--alienfont);
+// 		//  color: $c-green;
+// 		color: inherit;
+
+// 		background: $c-black;
+// 		border: var(--aliengreen) solid 1px;
+// 		// width: 100%;
+// 		margin: 0 1px;
+// 		border-radius: 3px;
+// 		font-size: 14px;
+// 		line-height: 28px;
+// 	}
+// 	.tox .tox-editor-container {
+// 		background-color: $c-white;
+// 	}
+// }
 
 a.entity-link {
 	color: $c-white;
@@ -154,23 +123,18 @@ a.content-link {
 	background-repeat: no-repeat;
 	background-position: center;
 	color: inherit;
-	//  color: $c-green;
 
 	.message-header .message-sender {
 		color: var(--aliengreen);
-		// color: inherit;
 	}
 	.message-metadata {
 		color: var(--aliengreen);
-		// color: inherit;
 	}
 	.flavor-text {
 		color: var(--aliengreen);
-		// color: inherit;
 	}
 	.table-draw .table-results .table-result {
 		color: var(--aliengreen);
-		// color: inherit;
 	}
 }
 .chat-message .table-draw .table-results .table-result .chatBG {
@@ -184,7 +148,6 @@ a.content-link {
 }
 .chat-message.whisper {
 	background: hsl(0, 0%, 9%);
-	//  color: $c-green;
 	color: var(--aliengreen);
 }
 
@@ -204,6 +167,13 @@ a.content-link {
 	color: var(--aliengreen);
 }
 
+.chat-message .table-draw .table-description {
+	// border-top: 1px solid #b5b3a4;
+	color: var(--aliengreen);
+	//  font-size: var(--font-size-12);
+	// padding: 5px 0;}
+}
+
 .dice-tooltip .roll > img {
 	width: 24px;
 }
@@ -220,7 +190,6 @@ a.content-link {
 
 	.part-header {
 		color: inherit;
-		//  color: $c-green;
 		background: $c-black;
 	}
 }
@@ -236,12 +205,10 @@ a.content-link {
 
 .inline-roll .dice-tooltip {
 	color: inherit;
-	//  color: $c-green;
 	background: $c-black;
 	border: 2px solid var(--aliengreen);
 	border-radius: 2px;
 }
-// a.entity-link,
 a.inline-roll {
 	background: $c-black;
 	padding: 1px 4px;
@@ -253,39 +220,37 @@ a.inline-roll {
 
 .dice-roll .dice-formula,
 .dice-roll .dice-total {
-	// color: inherit;
 	color: var(--aliengreen);
 }
 .dice-tooltip .part-header .part-formula {
-	//  color: $c-green;
 	color: inherit;
 }
 .part-total {
-	//  color: $c-green;
 	color: inherit;
 }
 
-.alienrpg h2 {
+.alienrpg h2,
+.chat-message h2 {
 	border: 0;
 	padding: 0;
 	margin: 1px;
 	margin-left: 5px;
-	// font-size: var(--fontsize) ;
+	margin-block-end: 1px;
+	color: var(--aliengreen);
 }
-.alienrpg h3 {
+.alienrpg h3,
+.chat-message h3 {
 	border: 0;
 	padding: 0;
 	margin: 1px;
-	// font-size: var(--fontsize) ;
-
-	// margin-left: 2px;
 }
 
-.alienrpg h4 {
+.alienrpg h4,
+.chat-message h4 {
 	border: 0;
 	padding: 0;
 	margin: 1px;
-	// font-size: var(--fontsize) ;
+	font-size: var(--fontsize);
 }
 
 .resource-content {
@@ -316,17 +281,6 @@ a.inline-roll {
 	animation: textShadow 1s infinite;
 }
 
-// .rollable,
-// .rollcomputer {
-//   &:hover,
-//   &:focus {
-//     // color: black;
-//     text-shadow: 0 0 20px hsl(0, 100%, 50%);
-//     font-size: 95%;
-//     cursor: pointer;
-//   }
-// }
-
 .rollableVeh {
 	&:hover,
 	&:focus {
@@ -339,7 +293,6 @@ a.inline-roll {
 .creature-acid-roll {
 	&:hover,
 	&:focus {
-		// color: black;
 		text-shadow: 0 0 20px hsl(0, 100%, 50%);
 		font-size: 95%;
 		cursor: pointer;
@@ -348,7 +301,6 @@ a.inline-roll {
 .rollItem {
 	&:hover,
 	&:focus {
-		// color: black;
 		text-shadow: 0 0 20px hsl(0, 100%, 50%);
 		font-size: 110%;
 		font-weight: bolder;
@@ -358,7 +310,6 @@ a.inline-roll {
 .rollVehicleWeapon {
 	&:hover,
 	&:focus {
-		// color: black;
 		text-shadow: 0 0 20px hsl(0, 100%, 50%);
 		font-size: 110%;
 		font-weight: bolder;
@@ -368,7 +319,6 @@ a.inline-roll {
 .openItem {
 	&:hover,
 	&:focus {
-		// color: black;
 		text-shadow: 0 0 20px hsl(0, 100%, 50%);
 		font-size: 110%;
 		font-weight: bolder;
@@ -380,7 +330,6 @@ a.inline-roll {
 	&:focus {
 		color: hsl(103, 100%, 28%);
 		text-shadow: 0 0 20px hsl(0, 100%, 50%);
-		// font-size: 110%;
 		font-weight: bolder;
 		cursor: pointer;
 	}
@@ -419,10 +368,8 @@ a.inline-roll {
 	display: inline-block;
 	width: 280px;
 	height: 40px;
-	// font-size: 25pt;
 	font-weight: bold;
 	font-size: 2em;
-	/* font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem); */
 	text-shadow: 2px 2px hsl(128, 83%, 25%);
 	border: 2px solid var(--aliengreen);
 	border-radius: 25px;
@@ -452,7 +399,6 @@ button:focus {
 	width: 260px;
 	height: 45px;
 	background-color: $c-black;
-	// color: hsl(84, 100%, 59%);
 	font-weight: bold;
 	font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
 	font-family: var(--alienfont);
@@ -477,7 +423,6 @@ button:focus {
 	color: var(--aliengreen);
 	font-weight: bold;
 	font-size: 1.2rem;
-	// font-size: clamp(1rem, 1vw, 2rem);
 
 	font-family: var(--alienfont);
 	line-height: inherit;
@@ -538,7 +483,6 @@ button:focus {
 	visibility: hidden;
 	width: 250px;
 	background-color: $c-black;
-	//  color: $c-green;
 	text-align: center;
 	border-radius: 6px;
 	padding: 5px 0;
@@ -572,7 +516,6 @@ button:focus {
 .tooltip2 .tooltiptext2 {
 	visibility: hidden;
 	background-color: $c-black;
-	//  color: $c-green;
 	text-align: center;
 	border-radius: 6px;
 	position: absolute;
@@ -652,10 +595,6 @@ button:focus {
 	border-style: solid;
 	border-color: transparent transparent transparent var(--aliengreen);
 }
-
-// .dice-tooltip .dice-rolls .roll.d6 {
-//   background-image: url(../icons/svg/d6-grey.svg);
-// }
 
 .alienchatwhite {
 	color: var(--alienchatwhite);

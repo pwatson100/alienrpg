@@ -64,13 +64,13 @@ h1.charname {
 }
 
 .sheet-body,
-.tab,
-.editor {
-	height: 100%; //  Do not change this or notes will stop working
-	/* height: -webkit-fit-content; */ //  Do not change this or notes will stop working
+.tab {
 	background-color: $c-black;
-	//  color: $c-green;
-	// overflow: hidden;
+}
+
+.sheet-body .editor {
+	height: 100%; //  Do not change this or notes will stop working
+	background-color: $c-black;
 }
 
 .tox {
@@ -249,5 +249,5 @@ form .sheet-content .click-stat-level {
 	height: max-content;
 	color: var(--color-text-dark-primary);
 	border-radius: 0px;
-	border: 1px solid var(--aliengreen);
+	/* border: 1px solid var(--aliengreen); */
 }

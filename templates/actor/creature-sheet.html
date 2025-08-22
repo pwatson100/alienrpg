@@ -22,57 +22,28 @@
 					>
 						{{localize 'ALIENRPG.InventoryArmorHeader'}}
 					</h2>
-					<input
-						type="text"
-						class="maxboxsize box21b"
-						name="system.attributes.armorrating.value"
-						value="{{system.attributes.armorrating.value}}"
-						data-dtype="Number"
-					/>
+					<input type="text" class="maxboxsize box21b" name="system.attributes.armorrating.value" value="{{system.attributes.armorrating.value}}" data-dtype="Number" />
 				</div>
 				<div class="vCre3 grid-2">
-					<h2 class="resource-label box11">{{localize 'ALIENRPG.Speed'}}</h2>
+					<h2 class="resource-label box11 rollable" data-roll="{{system.attributes.speed.value}}" data-label="Speed">{{localize 'ALIENRPG.Speed'}}</h2>
 					<input type="text" class="maxboxsize box21" name="system.attributes.speed.value" value="{{system.attributes.speed.value}}" data-dtype="Number" />
 				</div>
 				<div class="vCre4 grid-2b">
-					<h2
-						class="resource-label box11b rollable"
-						data-roll="{{system.attributes.armorvfire.value}}"
-						data-label="{{localize 'ALIENRPG.ArmorVsFire'}}"
-						data-spbutt="armorVfire"
-					>
+					<h2 class="resource-label box11b rollable" data-roll="{{system.attributes.armorvfire.value}}" data-label="{{localize 'ALIENRPG.ArmorVsFire'}}" data-spbutt="armorVfire">
 						{{localize 'ALIENRPG.ArmorVsFire'}}
 					</h2>
-					<input
-						type="text"
-						class="maxboxsize box21b"
-						name="system.attributes.armorvfire.value"
-						value="{{system.attributes.armorvfire.value}}"
-						data-dtype="Number"
-					/>
+					<input type="text" class="maxboxsize box21b" name="system.attributes.armorvfire.value" value="{{system.attributes.armorvfire.value}}" data-dtype="Number" />
 				</div>
 				<div class="vCre5 grid-2">
-					<h2 class="resource-label box11 rollable" data-roll="{{system.general.mobility.value}}" data-label="Mobility">
-						{{localize 'ALIENRPG.Skillmobility'}}
-					</h2>
+					<h2 class="resource-label box11 rollable" data-roll="{{system.general.mobility.value}}" data-label="Mobility">{{localize 'ALIENRPG.Skillmobility'}}</h2>
 					<input type="text" class="maxboxsize box21" name="system.general.mobility.value" value="{{system.general.mobility.value}}" data-dtype="String" />
 				</div>
 				<div class="vCre6 grid-2b">
-					<h2 class="resource-label box11b rollable" data-roll="{{system.general.observation.value}}" data-label="Observation">
-						{{localize 'ALIENRPG.Skillobservation'}}
-					</h2>
-					<input
-						type="text"
-						class="maxboxsize box21b"
-						name="system.general.observation.value"
-						value="{{system.general.observation.value}}"
-						data-dtype="String"
-					/>
+					<h2 class="resource-label box11b rollable" data-roll="{{system.general.observation.value}}" data-label="Observation">{{localize 'ALIENRPG.Skillobservation'}}</h2>
+					<input type="text" class="maxboxsize box21b" name="system.general.observation.value" value="{{system.general.observation.value}}" data-dtype="String" />
 				</div>
 				<div class="vCre8 grid-2b">
-					<h2 class="resource-label box11b creature-acid-roll" data-roll="{{system.general.acidSplash.value}}" data-label="Acid Splash">
-						{{localize 'ALIENRPG.SkillAcidSplash'}}
-					</h2>
+					<h2 class="resource-label box11b creature-acid-roll" data-roll="{{system.general.acidSplash.value}}" data-label="Acid Splash">{{localize 'ALIENRPG.SkillAcidSplash'}}</h2>
 					<input type="text" class="maxboxsize box21b" name="system.general.acidSplash.value" value="{{system.general.acidSplash.value}}" data-dtype="String" />
 				</div>
 			</div>
@@ -108,14 +79,10 @@
 				</select>
 				<button type="button" class="alien-crit-button rTable2 rollCrit" data-atttype="{{system.cTables}}">{{localize 'ALIENRPG.RollCrit'}}</button>
 			</div>
-			<div class="Item11 items-list" style="overflow: auto; margin-top: 5px; height: auto">
-				{{> "systems/alienrpg/templates/actor/tabs/critical-inj.html" }}
-			</div>
+			<div class="Item11 items-list" style="overflow: auto; margin-top: 5px; height: auto">{{> "systems/alienrpg/templates/actor/tabs/critical-inj.html" }}</div>
 		</div>
 
 		{{!-- Notes Tab --}}
-		<div class="tab" style="height: 400px" data-group="primary" data-tab="notes">
-			{{editor actor.system.notes target="system.notes" button=true owner=owner editable=true}}
-		</div>
+		<div class="tab" style="height: 400px" data-group="primary" data-tab="notes">{{editor actor.system.notes target="system.notes" button=true owner=owner editable=true}}</div>
 	</section>
 </form>

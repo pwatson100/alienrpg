@@ -104,13 +104,13 @@ Hooks.once('init', async function () {
 	CONFIG.Item.documentClass = alienrpgItem;
 	CONFIG.Combat.documentClass = AlienRPGCombat;
 	CONFIG.CombatTracker = AlienRPGCTContext;
-	CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
+	foundry.applications.sidebar.tabs.CombatTracker.prototype._getEntryContextOptions = AlienRPGCTContext.getEntryContextOptions;
 	CONFIG.ImportFormWrapper = ImportFormWrapper;
 
 	game.alienrpg.config = ALIENRPG;
 	// Register sheet application classes
-	Items.unregisterSheet('core', ItemSheet);
-	Items.registerSheet('alienrpg', alienrpgItemSheet, {
+	foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
+	foundry.documents.collections.Items.registerSheet('alienrpg', alienrpgItemSheet, {
 		types: [
 			'item',
 			'weapon',
@@ -304,6 +304,11 @@ Hooks.once('ready', async () => {
 
 	setupMacroFolders();
 	addSlowAndFastActions();
+
+	// Set turnmarker to the Alien symbol
+	if (!CONFIG.Combat.settings.turnMarker.src) {
+		CONFIG.Combat.settings.turnMarker.src = 'systems/alienrpg/images/paused-alien.png';
+	}
 });
 
 //   // Wait to register the Hotbar drop hook on ready sothat modulescould register earlier if theywant to
@@ -315,14 +320,13 @@ Hooks.on('hotbarDrop', (bar, data, slot) => {
 	}
 });
 
-Hooks.on('renderPause', (_app, html, options) => {
+Hooks.on('renderGamePause', (_app, html, options) => {
+	// Hooks.on('pauseGame', (_app, html, options) => {
 	document.getElementById('pause').innerHTML = `<img src=\"systems/alienrpg/images/paused-alien.png\" class=\"fa-spin\"><figcaption>GAME PAUSED</figcaption>`;
+	// old jQuery
+	// html.find('img[src="icons/svg/clockwork.svg"]').attr('src', 'systems/alienrpg/images/paused-alien.png');
 });
 
-// V13 version
-Hooks.on('renderGamePause', (_app, html, options) => {
-	document.getElementById('pause').innerHTML = `<img src=\"systems/alienrpg/images/paused-alien.png\" class=\"fa-spin\"><figcaption>GAME PAUSED</figcaption>`;
-});
 // prevent players from deleting messages with rolls
 Hooks.on('preDeleteChatMessage', (message) => {
 	if (!game.user.isGM && message.rolls?.length) {
@@ -492,6 +496,12 @@ Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
 		if (data.type === 'Actor') await sheet._dropCrew(crew.id);
 	}
 });
+
+// Register the settings for the Year Zero Engine: Combat module.
+Hooks.once('yzeCombatReady', yzec => yzec.register({
+	actorSpeedAttribute: 'system.attributes.speed.value',
+	duplicateCombatantOnCombatStart: true,
+}));
 
 function setupMacroFolders() {
 	if (!game.user.isGM) {
