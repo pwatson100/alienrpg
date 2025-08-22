@@ -4352,7 +4352,7 @@ select:focus {
 textarea:focus {
   outline: 0px;
   box-shadow: 0 0 10px var(--aliengreen);
-  /* color: #000; */
+  color: #000;
   font-weight: 400;
 }
 
@@ -4481,6 +4481,10 @@ combobox:focus {
 .chat-message.whisper span,
 .chat-message.whisper div {
   color: var(--alienchatlightblue);
+}
+
+.chat-message h1 {
+  color: var(--aliengreen);
 }
 
 .chat-message.whisper h2 {
