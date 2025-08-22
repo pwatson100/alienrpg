@@ -602,4 +602,8 @@ Included a "Critical Injuries template for people who want to create their own.
 
  Version 3.3.0
  Foundry Version 13 release. 
+
+ Version 3.3.0
+ Fixed issue with chat text (black text on black background) when in dark mode.
+ Updated MO/TH/ER Journal.
   
