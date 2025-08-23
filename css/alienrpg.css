@@ -4352,7 +4352,7 @@ select:focus {
 textarea:focus {
   outline: 0px;
   box-shadow: 0 0 10px var(--aliengreen);
-  color: #000;
+  /* color: #000; */
   font-weight: 400;
 }
 
