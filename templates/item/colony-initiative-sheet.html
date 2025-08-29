@@ -44,13 +44,7 @@
 				</div>
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.productivity.value" class="resource-label">{{localize 'ALIENRPG.productivity'}}</label>
-					<input
-						type="text"
-						class="maxboxsize"
-						name="system.modifiers.productivity.value"
-						value="{{system.modifiers.productivity.value}}"
-						data-dtype="Number"
-					/>
+					<input type="text" class="maxboxsize" name="system.modifiers.productivity.value" value="{{system.modifiers.productivity.value}}" data-dtype="Number" />
 				</div>
 				<div class="modifiers flexrow flex-group-center">
 					<label for="system.modifiers.maintenance.value" class="resource-label">{{localize 'ALIENRPG.maintenance'}}</label>
@@ -68,6 +62,6 @@
 		</div>
 
 		{{!-- Notes Tab --}}
-		<div class="tab item" data-group="primary" data-tab="notes">{{editor system.notes target="system.notes" button=true owner=owner editable=true}}</div>
+		<div class="tab item" style="height: 263px" data-group="primary" data-tab="notes">{{editor system.notes target="system.notes" button=true owner=owner editable=true}}</div>
 	</section>
 </form>
