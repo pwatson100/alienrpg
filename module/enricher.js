@@ -80,7 +80,7 @@ export function enrichTextEditors() {
               {
                   Ok: {
                       label: game.i18n.localize("ALIENRPG.Roll"), callback: async (html) => {
-                          let modifier = parseInt(html.find("input[name='modifier'")[0].value);
+                          let modifier = Number(html.querySelector("input[name='modifier'").value);
                           if (isNaN(modifier)) { modifier = 0; }
                           await myF(uuid, modifier);
                       }
