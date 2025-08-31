@@ -1,9 +1,11 @@
+@use "../utils/colors";
+
 .tabs {
 	height: 30px;
 	// border-top: 1px solid var(--aliengreen);
 	// border-bottom: 1px solid var(--aliengreen);
 	color: inherit;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	border: 1px solid;
 
 	.item {

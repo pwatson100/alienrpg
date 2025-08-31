@@ -24,7 +24,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.10.0'
-          cache: 'npm'
         # 3. Install the FoundryVTT CLI.
       - run: npm install -g @foundryvtt/foundryvtt-cli
         # 4. Configure the datapath as the github workspace variable.

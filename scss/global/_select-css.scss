@@ -1,3 +1,5 @@
+@use "../utils/colors";
+
 /* class applies to select element itself, not a wrapper element */
 .select-css {
 	display: block;
@@ -48,7 +50,7 @@
 	box-shadow: 0 0 0 1px -moz-mac-focusring var(--aliengreen);
 	color: inherit;
 	outline: none;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 }
 
 /* Set options to normal weight */
