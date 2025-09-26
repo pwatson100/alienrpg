@@ -297,7 +297,7 @@ Hooks.once('ready', async () => {
 	}
 	if (game.settings.get('alienrpg', 'switchchatbackground')) {
 		// r.style.setProperty('--chatbackground', `#000000`);
-		r.style.setProperty('--chatbackground', `url('systems/alienrpg/images/chat-middle.png')`);
+		r.style.setProperty('--chatbackground', `url('../images/chat-middle.png')`);
 	}
 
 	AlienConfig.toggleConfigButton(JSON.parse(game.settings.get('alienrpg', 'addMenuButton')));
@@ -306,8 +306,9 @@ Hooks.once('ready', async () => {
 	addSlowAndFastActions();
 
 	// Set turnmarker to the Alien symbol
-	if (!CONFIG.Combat.settings.turnMarker.src) {
-		CONFIG.Combat.settings.turnMarker.src = 'systems/alienrpg/images/paused-alien.png';
+	if (game.settings.get('core', 'combatTrackerConfig').turnMarker.src.length === 0) {
+		game.settings.set('core', 'combatTrackerConfig', { turnMarker: { src: 'systems/alienrpg/images/paused-alien.png' } });
+		// CONFIG.Combat.settings.turnMarker.src = 'systems/alienrpg/images/paused-alien.png';
 	}
 });
 
@@ -498,10 +499,12 @@ Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
 });
 
 // Register the settings for the Year Zero Engine: Combat module.
-Hooks.once('yzeCombatReady', yzec => yzec.register({
-	actorSpeedAttribute: 'system.attributes.speed.value',
-	duplicateCombatantOnCombatStart: true,
-}));
+Hooks.once('yzeCombatReady', (yzec) =>
+	yzec.register({
+		actorSpeedAttribute: 'system.attributes.speed.value',
+		duplicateCombatantOnCombatStart: true,
+	})
+);
 
 function setupMacroFolders() {
 	if (!game.user.isGM) {
@@ -534,9 +537,7 @@ async function createAlienrpgMacro(item, slot) {
 		(m) =>
 			m.name === item.name &&
 			m.command === command &&
-			(m.author === game.user.id ||
-				m.ownership.default >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER ||
-				m.ownership[game.user.id] >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER)
+			(m.author === game.user.id || m.ownership.default >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || m.ownership[game.user.id] >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER)
 	);
 	if (!macro) {
 		macro = await Macro.create({
