@@ -617,3 +617,6 @@ Included a "Critical Injuries template for people who want to create their own.
  Fixed issue with description and notes areas being too small to display the edit button.
  Removed JQuery code from enrircher.js
 
+ Version 3.3.5
+ Fixed missing bacground image in chat thanks to @SourTarte
+ Combat tracker marker defaults to the Alien logo. 
