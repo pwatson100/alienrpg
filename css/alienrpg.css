@@ -88,7 +88,7 @@
   position: absolute;
   left: -998%;
   top: -50%;
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
   color: var(--aliengreen);
@@ -111,7 +111,7 @@
   font-family: var(--alienfont);
   color: var(--aliengreen);
   font-size: var(--fontsize);
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
   flex-direction: column;
   flex-wrap: nowrap;
   padding: 2px;
@@ -130,7 +130,7 @@
 .journal-sheet select {
   font-family: var(--alienfont);
   color: inherit;
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
   border: var(--aliengreen) 3px;
   border: 1px solid hsl(53, 4%, 46%);
   border-radius: 3px;
@@ -141,7 +141,7 @@
 .journal-sheet input {
   font-family: var(--alienfont);
   color: inherit;
-  background: hsl(0, 0%, 0%);
+  background: var(--black) k;
   border: 1px solid var(--aliengreen);
 }
 .journal-sheet button {
@@ -156,23 +156,23 @@
 }
 
 a.entity-link {
-  color: hsl(0, 0%, 100%);
-  background: hsl(0, 0%, 0%);
+  color: var(--white);
+  background: var(--black);
 }
 
 .alienrpg a.entity-link {
-  color: hsl(0, 0%, 100%);
-  background: hsl(0, 0%, 0%);
+  color: var(--white);
+  background: var(--black);
 }
 
 a.content-link {
-  color: hsl(0, 0%, 100%);
-  background: hsl(0, 0%, 0%);
+  color: var(--white);
+  background: var(--black);
 }
 
 .alienrpg a.content-link {
-  color: hsl(0, 0%, 100%);
-  background: hsl(0, 0%, 0%);
+  color: var(--white);
+  background: var(--black);
 }
 
 #chat .message {
@@ -241,15 +241,15 @@ a.content-link {
 .dice-tooltip {
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
 }
 .dice-tooltip .dice-rolls {
   color: inherit;
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
 }
 .dice-tooltip .part-header {
   color: inherit;
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
 }
 
 .dice-tooltip .dice-rolls .roll {
@@ -266,13 +266,13 @@ a.content-link {
 
 .inline-roll .dice-tooltip {
   color: inherit;
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
   border: 2px solid var(--aliengreen);
   border-radius: 2px;
 }
 
 a.inline-roll {
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
   padding: 1px 4px;
   border: 1px solid var(--aliengreen);
   border-radius: 2px;
@@ -448,7 +448,7 @@ button:focus {
   display: inline-block;
   width: 260px;
   height: 45px;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
   font-weight: bold;
   font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
   font-family: var(--alienfont);
@@ -537,7 +537,7 @@ button:focus {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 250px;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
@@ -573,7 +573,7 @@ button:focus {
 
 .tooltip2 .tooltiptext2 {
   visibility: hidden;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
   text-align: center;
   border-radius: 6px;
   position: absolute;
@@ -605,7 +605,7 @@ button:focus {
 
 .alienrpg .inputtext {
   color: inherit;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
 }
 
 .box-top {
@@ -615,7 +615,7 @@ button:focus {
 .ctooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted hsl(0, 0%, 0%);
+  border-bottom: 1px dotted var(--black);
 }
 
 /* Tooltip text */
@@ -623,7 +623,7 @@ button:focus {
   font-size: small;
   visibility: hidden;
   width: 150px;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
   color: var(--aliengreen);
   text-align: center;
   border-radius: 3px;
@@ -690,11 +690,11 @@ button:focus {
 }
 
 .prosemirror.editing-source textarea {
-  color: hsl(0, 0%, 100%);
+  color: var(--white);
 }
 
 .prosemirror menu .pm-dropdown {
-  color: hsl(0, 0%, 0%);
+  /* color: hsl(0, 0%, 0%); */
 }
 
 #overlay {
@@ -5233,6 +5233,28 @@ table td {
   /* Creature Sheet */
   /* Items */
 }
+.alienrpg :root {
+  --aliengreen: hsl(84, 100%, 59%);
+  --aliendarkergreen: hsl(141, 60%, 40%);
+  --alienitemselect: hsl(70, 80%, 74%);
+  --alienoddtab: hsl(72, 29%, 7%);
+  --blue: hsl(224, 75%, 62%);
+  --black: hsl(0, 0%, 0%);
+  --white: hsl(0, 0%, 100%);
+  --alientextjournal: hsl(187, 52%, 80%);
+  --journalback: url(../images/mother-instructions/indbackground2.png);
+  --chatbackground: url(../images/IndBackground3.png);
+  --alienchatfont: "Blinker", sans-serif;
+  --alienchatwhite: hsl(0, 0%, 100%);
+  --alienchatred: hsl(0, 100%, 50%);
+  --alienchatredshadow: hsl(0, 0%, 90%);
+  --alienchatblue: hsl(240deg 42% 72%);
+  --alienchatlightblue: hsl(120, 97%, 41%);
+  --alienchatlightgreen: hsl(120, 97%, 41%);
+  --alienchatgoldenrod: hsl(43, 74%, 49%);
+  --table-row-color-even: hsl(43, 74%, 49%);
+  --color-underline-header: hsl(12, 62%, 29%);
+}
 .alienrpg .item-form {
   font-family: var(--alienfont);
   background: hsl(0, 0%, 0%);
@@ -5475,6 +5497,28 @@ table td {
   font-weight: bold;
   text-transform: uppercase;
   padding-right: 5px;
+}
+.alienrpg :root {
+  --aliengreen: hsl(84, 100%, 59%);
+  --aliendarkergreen: hsl(141, 60%, 40%);
+  --alienitemselect: hsl(70, 80%, 74%);
+  --alienoddtab: hsl(72, 29%, 7%);
+  --blue: hsl(224, 75%, 62%);
+  --black: hsl(0, 0%, 0%);
+  --white: hsl(0, 0%, 100%);
+  --alientextjournal: hsl(187, 52%, 80%);
+  --journalback: url(../images/mother-instructions/indbackground2.png);
+  --chatbackground: url(../images/IndBackground3.png);
+  --alienchatfont: "Blinker", sans-serif;
+  --alienchatwhite: hsl(0, 0%, 100%);
+  --alienchatred: hsl(0, 100%, 50%);
+  --alienchatredshadow: hsl(0, 0%, 90%);
+  --alienchatblue: hsl(240deg 42% 72%);
+  --alienchatlightblue: hsl(120, 97%, 41%);
+  --alienchatlightgreen: hsl(120, 97%, 41%);
+  --alienchatgoldenrod: hsl(43, 74%, 49%);
+  --table-row-color-even: hsl(43, 74%, 49%);
+  --color-underline-header: hsl(12, 62%, 29%);
 }
 .alienrpg .tabs {
   height: 30px;

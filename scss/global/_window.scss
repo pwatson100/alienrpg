@@ -1,4 +1,4 @@
-@use "../utils/colors";
+@use '../utils/colors';
 
 .alienrpg ul ol {
 	margin-left: 3px;
@@ -13,7 +13,7 @@
 	position: absolute;
 	left: -998%;
 	top: -50%;
-	background: colors.$c-black;
+	background: var(--black);
 	border: 1px solid var(--aliengreen);
 	border-radius: 5px;
 	color: var(--aliengreen);
@@ -35,7 +35,7 @@
 	font-family: var(--alienfont);
 	color: var(--aliengreen);
 	font-size: var(--fontsize);
-	background: colors.$c-black;
+	background: var(--black);
 	flex-direction: column;
 	flex-wrap: nowrap;
 	padding: 2px;
@@ -55,7 +55,7 @@
 	select {
 		font-family: var(--alienfont);
 		color: inherit;
-		background: colors.$c-black;
+		background: var(--black);
 		border: var(--aliengreen) 3px;
 		border: 1px solid hsl(53, 4%, 46%);
 		border-radius: 3px;
@@ -66,7 +66,7 @@
 	input {
 		font-family: var(--alienfont);
 		color: inherit;
-		background: colors.$c-black;
+		background: var(--black) k;
 		border: 1px solid var(--aliengreen);
 	}
 	button {
@@ -85,7 +85,7 @@
 // 		//  color: $c-green;
 // 		color: inherit;
 
-// 		background: $c-black;
+// 		background:  var(--black);
 // 		border: var(--aliengreen) solid 1px;
 // 		// width: 100%;
 // 		margin: 0 1px;
@@ -94,27 +94,27 @@
 // 		line-height: 28px;
 // 	}
 // 	.tox .tox-editor-container {
-// 		background-color: $c-white;
+// 		background-color:  var(--white);
 // 	}
 // }
 
 a.entity-link {
-	color: colors.$c-white;
-	background: colors.$c-black;
+	color: var(--white);
+	background: var(--black);
 }
 
 .alienrpg a.entity-link {
-	color: colors.$c-white;
-	background: colors.$c-black;
+	color: var(--white);
+	background: var(--black);
 }
 a.content-link {
-	color: colors.$c-white;
-	background: colors.$c-black;
+	color: var(--white);
+	background: var(--black);
 }
 
 .alienrpg a.content-link {
-	color: colors.$c-white;
-	background: colors.$c-black;
+	color: var(--white);
+	background: var(--black);
 }
 #chat .message {
 	border: 1px solid hsl(0deg, 8%, 34%);
@@ -184,16 +184,16 @@ a.content-link {
 .dice-tooltip {
 	border: 1px solid var(--aliengreen);
 	border-radius: 1px;
-	background: colors.$c-black;
+	background: var(--black);
 
 	.dice-rolls {
 		color: inherit;
-		background: colors.$c-black;
+		background: var(--black);
 	}
 
 	.part-header {
 		color: inherit;
-		background: colors.$c-black;
+		background: var(--black);
 	}
 }
 .dice-tooltip .dice-rolls .roll {
@@ -208,12 +208,12 @@ a.content-link {
 
 .inline-roll .dice-tooltip {
 	color: inherit;
-	background: colors.$c-black;
+	background: var(--black);
 	border: 2px solid var(--aliengreen);
 	border-radius: 2px;
 }
 a.inline-roll {
-	background: colors.$c-black;
+	background: var(--black);
 	padding: 1px 4px;
 	border: 1px solid var(--aliengreen);
 	border-radius: 2px;
@@ -401,7 +401,7 @@ button:focus {
 	display: inline-block;
 	width: 260px;
 	height: 45px;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	font-weight: bold;
 	font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
 	font-family: var(--alienfont);
@@ -485,7 +485,7 @@ button:focus {
 .tooltip .tooltiptext {
 	visibility: hidden;
 	width: 250px;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	text-align: center;
 	border-radius: 6px;
 	padding: 5px 0;
@@ -518,7 +518,7 @@ button:focus {
 
 .tooltip2 .tooltiptext2 {
 	visibility: hidden;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	text-align: center;
 	border-radius: 6px;
 	position: absolute;
@@ -548,7 +548,7 @@ button:focus {
 
 .alienrpg .inputtext {
 	color: inherit;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 }
 
 .box-top {
@@ -558,7 +558,7 @@ button:focus {
 .ctooltip {
 	position: relative;
 	display: inline-block;
-	border-bottom: 1px dotted colors.$c-black;
+	border-bottom: 1px dotted var(--black);
 }
 
 /* Tooltip text */
@@ -569,7 +569,7 @@ button:focus {
 	font-size: small;
 	visibility: hidden;
 	width: 150px;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	color: var(--aliengreen);
 	text-align: center;
 	border-radius: 3px;
@@ -635,11 +635,11 @@ button:focus {
 }
 
 .prosemirror.editing-source textarea {
-	color: colors.$c-white;
+	color: var(--white);
 }
 
 .prosemirror menu .pm-dropdown {
-	color: hsl(0, 0%, 0%);
+	/* color: hsl(0, 0%, 0%); */
 }
 
 #overlay {

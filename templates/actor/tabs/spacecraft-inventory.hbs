@@ -10,7 +10,10 @@
 		<div class="item-detail lCol11">{{localize "ALIENRPG.hardpoint"}}</div>
 		<div class="item-detail lCol10">{{localize "ALIENRPG.Range"}}</div>
 	</li>
-	{{#each inventory as |inv|}} {{#each inv.items as |item iid|}} {{#if (eq item.type 'spacecraftweapons')}} {{#if (eq item.system.header.type.value '1')}}
+	{{#each inventory as |inv|}} 
+	{{#each inv.items as |item iid|}} 
+	{{#if (eq item.type 'spacecraftweapons')}} 
+	{{#if (eq item.system.header.type.value '1')}}
 	<li class="item grid-items" data-item-id="{{item._id}}">
 		<div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
 		<span class="item-detail lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
@@ -31,7 +34,10 @@
 			<a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 		</div>
 	</li>
-	{{/if}} {{/if}} {{/each}} {{/each}}
+	{{/if}}
+	 {{/if}}
+	 {{/each}}
+	 {{/each}}
 	<br />
 	<li class="grid-items item-header">
 		<div class="item-name lCol1">{{localize "ALIENRPG.Defensive"}}</div>
@@ -40,7 +46,10 @@
 		<div class="item-detail lCol15">{{localize "ALIENRPG.Bonus"}}</div>
 		<div class="item-detail lCol11">{{localize "ALIENRPG.hardpoint"}}</div>
 	</li>
-	{{#each inventory as |inv|}} {{#each inv.items as |item iid|}} {{#if (eq item.type 'spacecraftweapons')}} {{#if (eq item.system.header.type.value '2')}}
+	{{#each inventory as |inv|}} 
+	{{#each inv.items as |item iid|}} 
+	{{#if (eq item.type 'spacecraftweapons')}} 
+	{{#if (eq item.system.header.type.value '2')}}
 	<li class="item grid-items" data-item-id="{{item._id}}">
 		<div class="item-image lCol5"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
 		<span class="item-detail lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
@@ -59,7 +68,10 @@
 			<a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 		</div>
 	</li>
-	{{/if}} {{/if}} {{/each}} {{/each}}
+	{{/if}}
+	 {{/if}}
+	 {{/each}} 
+	{{/each}}
 </ol>
 <br /><br />
 
@@ -90,17 +102,24 @@
 			<a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 		</div>
 	</li>
-	{{/if}} {{/each}} {{/each}} {{#each inventory as |inv|}} {{#each inv.items as |item iid|}} {{#if (eq item.type 'item')}} {{#if (eq system.header.type.value
-	'9')}}
+	{{/if}} 
+	{{/each}} 
+	{{/each}}
+	 {{#each inventory as |inv|}}
+	  {{#each inv.items as |item iid|}}
+		 {{#if (eq item.type 'item')}} 
+		 {{#if (eq system.header.type.value '9')}}
 	<li class="item grid-items" data-item-id="{{item._id}}">
 		<div class="item-image lCol5" data-item="{{name}}"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
 		<span class="item-detail lCol6" data-item="{{item.name}}" data-mod="{{system.skills.rangedCbt.mod}}">{{item.name~}}</span>
-		{{/if}}
 		<div class="item-controls lCol8">
 			<a class="item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
 		</div>
-		{{/if}} {{/each}} {{/each}}
 	</li>
+		{{/if}}
+		{{/if}}
+		 {{/each}} 
+		 {{/each}}
 </ol>
 
 <br /><br />

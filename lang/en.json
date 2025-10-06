@@ -9,6 +9,48 @@
 		"TypeTerritory": "Territory",
 		"TypeVehicles": "Vehicle"
 	},
+	"ITEM": {
+		"TypeAgenda": "Agenda",
+		"TypeArmor": "Armor",
+		"TypeColony-initiative": "Colony Initiative",
+		"TypeCritical-injury": "Critical Injury",
+		"TypeItem": "Item",
+		"TypePlanet-system": "Planet/System",
+		"TypeSkill-stunts": "Skill Stunts",
+		"TypeSpacecraft-crit": "Spaceship Crit",
+		"TypeSpacecraftmods": "Spaceship Modules/Upgrades",
+		"TypeSpacecraftweapons": "Spaceship Weapons",
+		"TypeSpecialty": "Speciality",
+		"TypeTalent": "Talent",
+		"TypeWeapon": "Weapon"
+	},
+	"TYPES": {
+		"Actor": {
+			"character": "Player Character",
+			"colony": "Colony Sheet",
+			"creature": "Creature",
+			"planet": "Colony Planet",
+			"spacecraft": "Space Ship",
+			"synthetic": "Synthetic",
+			"territory": "Territory",
+			"vehicles": "Vehicle"
+		},
+		"Item": {
+			"agenda": "Agenda",
+			"armor": "Armor",
+			"colony-initiative": "Colony Initiative",
+			"critical-injury": "Critical Injury",
+			"item": "Item",
+			"planet-system": "Planet/System",
+			"skill-stunts": "Skill Stunts",
+			"spacecraft-crit": "Spaceship Crit",
+			"spacecraftmods": "Spaceship Modules/Upgrades",
+			"spacecraftweapons": "Spaceship Weapons",
+			"specialty": "Speciality",
+			"talent": "Talent",
+			"weapon": "Weapon"
+		}
+	},
 	"ALIENRPG": {
 		"AbbreviationKg": "kg",
 		"AbilityAbbagl": "agl",
@@ -459,20 +501,5 @@
 		"youHave": "You have ",
 		"YourPanicLevel": "Your Panic level has increased by one step to ",
 		"youTake": "You Take "
-	},
-	"ITEM": {
-		"TypeAgenda": "Agenda",
-		"TypeArmor": "Armor",
-		"TypeColony-initiative": "Colony Initiative",
-		"TypeCritical-injury": "Critical Injury",
-		"TypeItem": "Item",
-		"TypePlanet-system": "Planet/System",
-		"TypeSkill-stunts": "Skill Stunts",
-		"TypeSpacecraft-crit": "Spaceship Crit",
-		"TypeSpacecraftmods": "Spaceship Modules/Upgrades",
-		"TypeSpacecraftweapons": "Spaceship Weapons",
-		"TypeSpecialty": "Speciality",
-		"TypeTalent": "Talent",
-		"TypeWeapon": "Weapon"
 	}
 }

@@ -621,3 +621,6 @@ Included a "Critical Injuries template for people who want to create their own.
  Fixed missing background image in chat thanks to @SourTarte
  Combat tracker marker defaults to the Alien logo. 
 
+ Version 3.3.6
+ Fixed phantom pencil icons being added to the spaceship Inventory when an item was added.
+ Fixed Item sheet Items not displaying the comments bot at the correct size.  Thank you to netoelix for the fix. 
