@@ -1,6 +1,8 @@
+@use "../utils/colors";
+
 .item-form {
 	font-family: var(--alienfont);
-	background: $c-black;
+	background: colors.$c-black;
 }
 
 .actor-header {
@@ -11,7 +13,7 @@
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	margin-bottom: 1px;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	//  color: $c-green;
 }
 
@@ -19,7 +21,7 @@
 	overflow: hidden;
 	display: flex;
 	margin-bottom: 1px;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	//  color: $c-green;
 }
 
@@ -65,17 +67,17 @@ h1.charname {
 
 .sheet-body,
 .tab {
-	background-color: $c-black;
+	background-color: colors.$c-black;
 }
 
 .sheet-body .editor {
 	height: 100%; //  Do not change this or notes will stop working
-	background-color: $c-black;
+	background-color: colors.$c-black;
 }
 
 .tox {
 	.tox-editor-container {
-		background: $c-white;
+		background: colors.$c-white;
 	}
 
 	.tox-edit-area {
@@ -85,7 +87,7 @@ h1.charname {
 .maxboxsize {
 	max-width: 40px;
 	color: inherit;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	height: 20px;
 	padding: 0;
 	margin: 1px;
@@ -95,7 +97,7 @@ h1.charname {
 .healboxsize {
 	max-width: 80px;
 	color: inherit;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	height: 20px;
 	padding: 0;
 	margin: 1px;
@@ -106,7 +108,7 @@ h1.charname {
 	max-width: 150px;
 	color: inherit;
 	justify-items: center;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	text-align: center;
 	border: 1px solid var(--aliengreen);
 }
@@ -114,7 +116,7 @@ h1.charname {
 .textbox {
 	color: inherit;
 	// justify-items: center;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	padding: 5px;
 	margin: 5px 5px 5px 5px;
 	border: 1px solid var(--aliengreen);
@@ -124,7 +126,7 @@ h1.charname {
 .textbox1 {
 	color: inherit;
 	justify-items: center;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	width: 230px;
 	padding: 0;
 	margin-top: 1px;
@@ -134,7 +136,7 @@ h1.charname {
 .textbox2 {
 	color: inherit;
 	justify-items: center;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	width: 400px;
 	padding: 0;
 	margin-top: 1px;
@@ -144,7 +146,7 @@ h1.charname {
 .textbox3 {
 	color: inherit;
 	// justify-items: center;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	padding: 5px;
 	margin: 5px 5px 5px 5px;
 	width: 180px;
@@ -153,7 +155,7 @@ h1.charname {
 .textbox4 {
 	color: inherit;
 	justify-items: center;
-	background-color: $c-black;
+	background-color: colors.$c-black;
 	width: 450px;
 	padding: 0;
 	margin-top: 1px;
@@ -175,7 +177,7 @@ textarea {
 form .sheet-content .click-stat-level {
 	height: 18px;
 	padding: 8px;
-	background: $c-black;
+	background: colors.$c-black;
 	border-radius: 2px;
 	box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.502);
 	font-family: 'Roboto', system, -apple-system, sans-serif;
@@ -227,7 +229,7 @@ form .sheet-content .click-stat-level {
 
 .planetboxsize {
 	max-width: 40px;
-	color: $c-black;
+	color: colors.$c-black;
 	height: 20px;
 	padding: 0;
 	margin: 1px;
