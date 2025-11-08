@@ -1,0 +1,54 @@
+<form autocomplete='off'>
+	<div class='tab active'>
+		<!-- <div id="alienprgSettings"></div> -->
+		<h2>{{localize 'ALIENRPG.SheetColorSettings'}}</h2>
+
+		<div class='form-group'>
+			<label>{{localize 'ALIENRPG.FontStyle'}}</label>
+			<select name='fontStyle' id='fontStyle'>
+				<option value='OCR-A'>OCR-A</option>
+				<option value='Kosugi'>Kosugi</option>
+				<option value='Wallpoet'>{{localize 'ALIENRPG.Wallpoet'}}</option>
+				<option value='Roboto-Regular'>{{localize 'ALIENRPG.Roboto-Regular'}}</option>
+				<option value='Modesto Condensed'>Modesto Condensed</option>
+				<option value='Blinker'>Blinker</option>
+				<option value='Signika'>Signika</option>
+			</select>
+		</div>
+
+		<div class='form-group'>
+			<label>{{localize 'ALIENRPG.Colpick'}}</label>
+			<div class='form-fields'>
+				<input type='text' name='fontColour' value='{{fontColour}}' data-dtype='String' />
+				<input type='color' name='fontColourSelector' value='{{fontColour}}' data-edit='fontColour' />
+			</div>
+		</div>
+	</div>
+	<br /><br />
+	<h2>{{localize 'ALIENRPG.JournalColorSettings'}}</h2>
+	<div class='form-group'>
+		<label>{{localize 'ALIENRPG.Fontpick'}}</label>
+		<div class='form-fields'>
+			<input type='text' name='journalFontColour' value='{{journalFontColour}}' data-dtype='String' />
+			<input type='color' name='fontColourSelector' value='{{journalFontColour}}' data-edit='journalFontColour' />
+		</div>
+	</div>
+
+	<div>
+		<p><i style='font-size: smaller'>{{localize 'ALIENRPG.ResetNote'}}</i></p>
+	</div>
+
+	<div class='form-group buttons-addcrt' style='margin-bottom: 10px;margin-top: 10px;'>
+		<button type='button' name='addcrt'><i class='fas fa-save'></i> CRT UI Sheets</button>
+	</div>
+	<div>
+	</div>
+	<div class='form-group buttons-save'>
+		{{! <button type="button" name="reset"><i class="fas fa-refresh"></i> Reset</button>  }}
+		<button type='submit' name='submit'><i class='fas fa-save'></i>
+			<i style='font-size: smaller'>{{localize 'ALIENRPG.InThePipe'}}</i>
+			<br /><b>{{localize 'ALIENRPG.SubmitButton'}}</b></button>
+		<button type='button' name='reset'><i class='fas fa-refresh'></i><i style='font-size: smaller'>{{localize 'ALIENRPG.GameOver'}}</i>
+			<br /><b>{{localize 'ALIENRPG.ResetButton'}}</b></button>
+	</div>
+</form>

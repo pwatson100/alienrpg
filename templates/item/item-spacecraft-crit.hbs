@@ -1,0 +1,13 @@
+<section class='tab spacecraft-crit scrollable {{tab.cssClass}}' data-group='primary' data-tab='spacecraft-crit'>
+	<div style='border: solid 1px; padding: 5px;width: 629px;'>
+		<h2 class='resource-label'>{{localize 'ALIENRPG.Effect'}}</h2>
+		{{! Editors must receive enriched text data from getData to properly handle rolls, UUID links, etc. }}
+		{{#if editable}}
+			<prose-mirror style='height: 275px;' name='system.header.effects' data-document-uuid='{{item.uuid}}' value='{{system.header.effects}}' collaborate='true' toggled='true'>
+				{{{enrichedEffect}}}
+			</prose-mirror>
+		{{else}}
+			{{{enrichedEffect}}}
+		{{/if}}
+	</div>
+</section>

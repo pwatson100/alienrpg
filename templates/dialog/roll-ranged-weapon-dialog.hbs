@@ -1,0 +1,47 @@
+<section>
+	<p>{{localize 'ALIENRPG.DialText'}}</p>
+	<div class='form-group' style='padding: 1em 1em'>
+		<label class="resource-label">{{capitalise (localize 'ALIENRPG.targetRange')}}</label>
+		<select id='rangeChoice' name='rangeChoice'>
+			{{{selectOptions config.weapon_range_list selected=rangeChoice labelAttr='label' localize=true}}}
+		</select>
+	</div>
+	<div class='form-group' style='padding: 1em 1em'>
+		<label class="resource-label">{{capitalise (localize 'ALIENRPG.targetCover')}}</label>
+		<select id='targetCover' name='targetCover'>
+			{{selectOptions config.target_cover selected=targetCover localize=true}}
+		</select>
+	</div>
+	<div class='form-group' style='padding: 1em 1em'>
+		<label class="resource-label">{{capitalise (localize 'ALIENRPG.targetSize')}}</label>
+		<select id='sizeChoice' name='sizeChoice'>
+			{{{selectOptions config.size_modifiers selected=sizeChoice labelAttr='label' localize=true}}}
+		</select>
+	</div>
+	<div class="form-group" style="padding: 1em 1em 0em 1em">
+		<label class="resource-label">{{capitalise (localize "ALIENRPG.carefullAim")}}</label>
+		<input type="checkbox" id="carefullaim" name="carefullaim" />
+	</div>
+	<div class="form-group" style="padding: 1em 1em 0em 1em">
+		<label class="resource-label">{{capitalise (localize "ALIENRPG.aimForWeakSpot")}}</label>
+		<input type="checkbox" id="aimforweakspot" name="aimforweakspot" />
+	</div>
+	{{#if dataset.fullauto}}
+	<div class="form-group" style="padding: 1em 1em 0em 1em">
+		<label class="resource-label">{{capitalise (localize "ALIENRPG.firingFullAuto")}}</label>
+		<input type="checkbox" id="firingFullAuto" name="firingFullAuto" />
+	</div>
+	{{/if}}
+	<div class="form-group" style="padding: 1em 1em 0em 1em">
+		<label class="resource-label">{{capitalise (localize "ALIENRPG.conserveAmmo")}}</label>
+		<input type="checkbox" id="conserveammo" name="conserveammo" />
+	</div>
+	<div class='form-group' style="padding: 1em 1em 0em 1em">
+		<label style='flex-grow: 2;'>{{localize 'ALIENRPG.BaseMod'}}</label>
+		<input type='text' id='modifier' name='modifier' value='0' autofocus='autofocus' />
+	</div>
+	<div class='form-group' style="padding: 1em 1em 0em 1em">
+		<label style='flex-grow: 2;'>{{localize 'ALIENRPG.StressMod'}}</label>
+		<input type='text' id='stressMod' name='stressMod' value='0' autofocus='autofocus' />
+	</div>
+</section>

@@ -60,15 +60,23 @@
 	grid-template-areas:
 		'Item1 Item2 Item2'
 		'Item1 Item4 Item4'
-		'Item8 Item4 Item4'
-		'Item8 Item5 Item5'
-		'Item8 Item3 Item3'
-		'Item9 Item6 Item6'
-		'Item10 Item7 Item7'
-		'Item11 Item11 Item11';
+		'Item3 Item4 Item4'
+		'Item5 Item4 Item4'
+		'Item6 Item4 Item4';
+	// 'Item11 Item11 Item11';
 	// 'Item11 Item10 Item10'
 	// 'Item11 Item10 Item10';
 	grid-template-columns: 1fr 1fr 1fr;
+}
+.grid-genPage-enh {
+	display: grid;
+	grid-template-areas: 
+	"Item1 Item1 Item2 Item2"
+	"Item3 Item7 Item4 Item4"
+	"Item6 Item6 Item4 Item4"
+	"Item6 Item6 Item4 Item4"
+	"Item8 Item8 Item8 Item8";
+	grid-template-columns: 206px 194px 200px 200px;
 }
 
 .Item1 {
@@ -84,9 +92,7 @@
 .Item3 {
 	grid-area: Item3;
 	border: 1px solid var(--aliengreen);
-	padding-top: 5px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding: 5px;
 }
 .Item4 {
 	grid-area: Item4;
@@ -99,25 +105,18 @@
 	grid-area: Item5;
 	border: 1px solid var(--aliengreen);
 	padding-top: 5px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-bottom: 5px;
 }
 .Item6 {
 	grid-area: Item6;
 	border: 1px solid var(--aliengreen);
-	// justify-items: center;
 	padding-top: 5px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-bottom: 5px;
 }
 .Item7 {
 	grid-area: Item7;
 	border: 1px solid var(--aliengreen);
-	padding-top: 5px;
-	padding-left: 5px;
-	padding-right: 5px;
-	// height: 80px;
-	height: auto;
+	padding: 5px;
 }
 .Item8 {
 	grid-area: Item8;
@@ -461,11 +460,11 @@
 	// gap: 5px;
 	margin: 0;
 	padding: 0;
-	padding-left: 5px;
+	// padding-left: 5px;
 	align-items: center;
 	border: 1px solid var(--aliengreen);
 	grid-template-areas: 'Attr1 Attr2 Attr3';
-	grid-template-columns: 300px 35px 30px;
+	grid-template-columns: 286px 45px 34px;
 }
 
 .Attr1 {
@@ -481,8 +480,6 @@
 
 .Attr3 {
 	grid-area: Attr3;
-	width: 30px;
-	height: 20px;
 	// justify-items: left;
 }
 .Attr4 {
@@ -493,62 +490,67 @@
 
 .grid-Consumables {
 	display: grid;
-	// border: 2px solid white;
 	grid-template-areas:
-		'Heading Heading '
-		'Air1 Air2'
-		'Food1 Food2'
-		'Water1 Water2'
-		'Power1 Power2';
+		'Heading Heading Heading'
+		'Air1 Air2 Air3'
+		'Food1 Food2 Food3'
+		'Water1 Water2 Water3'
+		'Power1 Power2 Power3';
 
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 119px 49px 34px;
 }
 
 .Heading {
 	grid-area: Heading;
-	// border: 1px solid white;
 	justify-self: left;
 }
 .Air1 {
 	grid-area: Air1;
-	// border: 1px solid white;
 	justify-content: left;
 	align-self: center;
 }
 .Air2 {
 	grid-area: Air2;
-	// border: 1px solid white;
+	align-self: center;
+}
+.Air3 {
+	grid-area: Air3;
 }
 .Food1 {
 	grid-area: Food1;
-	// border: 1px solid white;
 	justify-self: left;
 	align-self: center;
 }
 .Food2 {
 	grid-area: Food2;
-	// border: 1px solid white;
+	align-self: center;
+}
+.Food3 {
+	grid-area: Food3;
 }
 .Power1 {
 	grid-area: Power1;
-	// border: 1px solid white;
 	justify-self: left;
 	align-self: center;
-	// margin-top: 5px;
 }
 .Power2 {
 	grid-area: Power2;
-	// border: 1px solid white;
+	align-self: center;
+}
+.Power3 {
+	grid-area: Power3;
 }
 .Water1 {
 	grid-area: Water1;
-	// border: 1px solid white;
 	justify-self: left;
 	align-self: center;
 }
 .Water2 {
 	grid-area: Water2;
-	// border: 1px solid white;
+	align-self: center;
+}
+.Water3 {
+	grid-area: Water3;
 }
 
 .grid-vehicle-header {
@@ -666,11 +668,10 @@
 	grid-template-areas:
 		'wCol1 wCol2 wCol3 wCol4 wCol5 wCol6'
 		'wCol7 wCol8 wCol9 wCol10 wCol11 wCol12'
-		'wCol13 wCol14 . . . .';
+		'wCol13 wCol14 wCol15 wCol16 wCol17 wCol18';
 	padding-bottom: 2px;
-	//                      l1     l2  l3     l4    l5    l6
-	grid-template-columns: 1fr 1.2fr 0.81fr 0.5fr 0.5fr 1fr;
-	// grid-template-columns: 2em 25em 5em 5em 4em 2em;
+	//                      l1     l2    l3    l4    l5    l6
+	grid-template-columns: 100px 115px 100px 115px 140px 41px;
 	align-items: center;
 }
 
@@ -729,6 +730,22 @@
 .wCol14 {
 	grid-area: wCol14;
 	justify-self: left;
+}
+.wCol15 {
+	grid-area: wCol15;
+	justify-self: left;
+}
+.wCol16 {
+	grid-area: wCol16;
+	justify-self: left;
+}
+.wCol17 {
+	grid-area: wCol17;
+	justify-self: left;
+}
+.wCol18 {
+	grid-area: wCol18;
+	justify-self: center;
 }
 
 .grid-items {
@@ -968,36 +985,71 @@
 	justify-self: right;
 }
 
-.critical-inj {
-	display: grid;
-	grid-template-areas: 'crit1 crit2 crit3 crit4';
-	// grid-template-rows: 3fr;
-	// padding: 3px;
-	grid-template-columns: 5% 31% 60% 3%;
-	align-items: center;
-}
-
-.crit1 {
-	grid-area: crit1;
+.crit1a {
+	grid-area: crit1a;
 	justify-self: left;
 	padding-right: 4px;
 }
-.crit2 {
-	grid-area: crit2;
+.crit2a {
+	grid-area: crit2a;
 	justify-self: left;
 	font-weight: bold;
 	padding-right: 8px;
 }
-.crit3 {
-	grid-area: crit3;
+.crit3a {
+	grid-area: crit3a;
 	justify-self: left;
 	font-weight: bold;
 	padding-right: 8px;
 	align-items: left;
 }
-.crit4 {
-	grid-area: crit4;
+.crit4a {
+	grid-area: crit4a;
 	justify-self: right;
+}
+.critical-inj-wide {
+	display: grid;
+	grid-template-areas: 'crit1w crit2w crit3w crit4w';
+	grid-template-columns: 24px 155px 505px 20px;
+	align-items: center;
+}
+
+.crit1w {
+	grid-area: crit1w;
+	justify-self: left;
+	padding-right: 4px;
+}
+.crit2w {
+	grid-area: crit2w;
+	justify-self: left;
+	font-weight: bold;
+	padding-right: 8px;
+}
+.crit3w {
+	grid-area: crit3w;
+	justify-self: left;
+	font-weight: bold;
+	padding-right: 8px;
+	align-items: left;
+}
+.crit4w {
+	grid-area: crit4w;
+	justify-self: right;
+}
+
+.grid-crit {
+	display: grid;
+	grid-template-areas: 'crit1 crit2 ';
+	padding: 0;
+	margin: 0;
+	grid-template-columns: 1fr 1fr;
+}
+.crit1 {
+	grid-area: crit1;
+}
+.crit2 {
+	grid-area: crit2;
+	margin-bottom: 2px;
 }
 
 .space-critical-inj {
@@ -1071,8 +1123,7 @@
 .box11 {
 	grid-area: box11;
 	justify-self: center;
-	// padding-left: 8px;
-	// background-color: $c-black;
+	font-size: 1.6em;
 }
 .box21 {
 	grid-area: box21;
@@ -1103,28 +1154,12 @@
 .box11b {
 	grid-area: box11b;
 	justify-self: center;
-	// padding-left: 8px;
-	// background-color: $c-black;
+	font-size: 1.6em;
 }
 .box21b {
 	grid-area: box21b;
 	justify-self: right;
 	padding-right: 8px;
-}
-.grid-crit {
-	display: grid;
-	grid-template-areas: 'crit1 crit2 ';
-	padding: 0;
-	margin: 0;
-	grid-template-columns: 1fr 1fr;
-}
-.crit1 {
-	grid-area: crit1;
-}
-.crit2 {
-	grid-area: crit2;
-	// margin-left: 90px;
-	margin-bottom: 2px;
 }
 
 .grid-rTables {
@@ -1145,6 +1180,110 @@
 	grid-area: rTable2;
 	justify-self: center;
 	padding-right: 8px;
+}
+.grid-actor {
+	display: grid;
+	border: 2px solid var(--aliengreen);
+	grid-template-areas: 'gaItem1 gaItem2 gaItem3 gaItem4 gaItem5 gaItem6 gaItem7 gaItem8';
+	grid-template-columns: 100px 30px 115px 60px 140px 30px 58px 27px;
+}
+.grid-synth {
+	display: grid;
+	border: 2px solid var(--aliengreen);
+	grid-template-areas: 'gaItem1 gaItem2 gaItem3 gaItem4 gaItem5 gaItem6 gaItem7';
+	grid-template-columns: 100px 30px 115px 60px 140px 120px 24px;
+}
+
+.gaItem1 {
+	grid-area: gaItem1;
+	align-self: center;
+	justify-items: center;
+}
+.gaItem2 {
+	grid-area: gaItem2;
+	align-self: center;
+	justify-items: center;
+}
+.gaItem3 {
+	grid-area: gaItem3;
+	align-self: center;
+	justify-items: center;
+}
+.gaItem4 {
+	grid-area: gaItem4;
+	align-self: center;
+	justify-items: center;
+}
+.gaItem5 {
+	grid-area: gaItem5;
+	align-self: center;
+	justify-items: center;
+}
+.gaItem6 {
+	grid-area: gaItem6;
+	align-self: center;
+	justify-items: center;
+}
+.gaItem7 {
+	grid-area: gaItem7;
+	align-self: center;
+	justify-items: center;
+}
+.gaItem8 {
+	grid-area: gaItem8;
+	align-self: center;
+	justify-items: center;
+}
+.crtui-grid-actor {
+	display: grid;
+	border: 2px solid var(--aliengreen);
+	grid-template-areas: 'crtuigaItem1 crtuigaItem2 crtuigaItem3 crtuigaItem4 crtuigaItem5 crtuigaItem6 crtuigaItem7 crtuigaItem8';
+	grid-template-columns: 105px 26px 97px 30px 168px 24px 45px 27px;
+}
+
+.crtuigaItem1 {
+	grid-area: crtuigaItem1;
+	align-self: center;
+	justify-items: center;
+	margin-top: 3px;
+}
+.crtuigaItem2 {
+	grid-area: crtuigaItem2;
+	align-self: center;
+	justify-items: center;
+}
+.crtuigaItem3 {
+	grid-area: crtuigaItem3;
+	align-self: center;
+	justify-items: center;
+	margin-top: 3px;
+}
+.crtuigaItem4 {
+	grid-area: crtuigaItem4;
+	align-self: center;
+	justify-items: center;
+}
+.crtuigaItem5 {
+	grid-area: crtuigaItem5;
+	align-self: center;
+	justify-items: center;
+	margin-top: 3px;
+}
+.crtuigaItem6 {
+	grid-area: crtuigaItem6;
+	align-self: center;
+	justify-items: center;
+}
+.crtuigaItem7 {
+	grid-area: crtuigaItem7;
+	align-self: center;
+	justify-items: center;
+	margin-top: 3px;
+}
+.crtuigaItem8 {
+	grid-area: crtuigaItem8;
+	align-self: center;
+	justify-items: center;
 }
 
 .grid-creature {
@@ -1186,7 +1325,8 @@
 .vCre8 {
 	grid-area: vCre8;
 }
-.grid-colony--header {
+
+.grid-planet-header {
 	display: grid;
 	border: 2px solid var(--aliengreen);
 	grid-template-areas:
@@ -1227,14 +1367,17 @@
 
 .grid-planet {
 	display: grid;
-	margin: 0;
 	padding: 0;
 	grid-template-areas:
 		'plan1 plan1 plan1 plan1'
-		'plan2 plan2 plan3 plan3 '
-		// 'plan3 plan3 plan3 plan3 '
-		'plan4 plan4 plan4 plan4 ';
-	grid-template-columns: 220px 1fr;
+		'plan2 plan2 plan3 plan3'
+		'plan4 plan9 plan9 plan9'
+		'plan5 plan5 plan5 plan5'
+		'plan6 plan6 plan6 plan6'
+		'plan7 plan7 plan7 plan7'
+		'plan8 plan8 plan8 plan8';
+	// 628px
+	grid-template-columns: 157px 239px 162px 68px;
 }
 .plan1 {
 	grid-area: plan1;
@@ -1251,6 +1394,26 @@
 }
 .plan4 {
 	grid-area: plan4;
+	justify-self: left;
+}
+.plan5 {
+	grid-area: plan5;
+	justify-self: left;
+}
+.plan6 {
+	grid-area: plan6;
+	justify-self: left;
+}
+.plan7 {
+	grid-area: plan7;
+	justify-self: left;
+}
+.plan8 {
+	grid-area: plan8;
+	justify-self: left;
+}
+.plan9 {
+	grid-area: plan9;
 	justify-self: left;
 }
 
@@ -1475,12 +1638,21 @@
 	grid-area: gC8;
 }
 
+.grid-spacecraft-crew {
+	display: grid;
+	grid-template-areas:
+		'gSC1 gSC2 gSC3 gSC4 gSC5'
+		' gSC6 gSC7 gSC8 gSC9 gSC10';
+	// grid-template-columns: 43% 25% 20% 6%;
+	grid-template-columns: 250px 180px 150px 58px 50px;
+}
 .grid-ship-crew {
 	display: grid;
 	grid-template-areas:
 		'gSC1 gSC2 gSC3 gSC4 gSC5'
 		' gSC6 gSC7 gSC8 gSC9 gSC10';
-	grid-template-columns: 43% 25% 20% 6%;
+	// grid-template-columns: 43% 25% 20% 6%;
+	grid-template-columns: 300px 190px 166px 78px 50px;
 }
 .gSC1 {
 	justify-self: center;
@@ -1508,6 +1680,7 @@
 }
 .gSC7 {
 	justify-self: center;
+	margin-left: 20px;
 	grid-area: gSC7;
 }
 .gSC8 {
@@ -1521,27 +1694,6 @@
 .gSC10 {
 	justify-self: right;
 	grid-area: gSC10;
-}
-
-.grid-actor {
-	display: grid;
-	padding-top: 10px;
-	border: 2px solid var(--aliengreen);
-	grid-template-areas: 'gaItem1 gaItem2 gaItem3 gaItem4';
-	grid-template-columns: 20% 34% 20% 30%;
-}
-
-.gaItem1 {
-	grid-area: gaItem1;
-}
-.gaItem2 {
-	grid-area: gaItem2;
-}
-.gaItem3 {
-	grid-area: gaItem3;
-}
-.gaItem4 {
-	grid-area: gaItem4;
 }
 
 .grid-colony-planet1 {
@@ -2435,4 +2587,24 @@
 }
 .gclv6 {
 	grid-area: gclv6;
+}
+
+.grid-combat-phases {
+	display: grid;
+	grid-template-areas: 
+	"combatphases1 combatphases2 combatphases3";
+	grid-template-columns: 400px 300px 200px ;
+	}
+
+.combatphases1 {
+	grid-area: combatphases1;
+	border: 1px solid var(--aliengreen);
+}
+.combatphases2 {
+	grid-area: combatphases2;
+	border: 1px solid var(--aliengreen);
+}
+.combatphases3 {
+	grid-area: combatphases3;
+	border: 1px solid var(--aliengreen);
 }

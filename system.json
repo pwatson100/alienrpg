@@ -1,19 +1,19 @@
 {
 	"id": "alienrpg",
-	"title": "Alien RPG",
-	"description": "The Alien RPG system for Foundry VTT!",
+	"title": "Alien Evolved Prime",
+	"description": "The Alien Enhanced system for FoundryVTT!",
 	"authors": [{ "name": "Paul Watson" }],
 	"url": "https://github.com/pwatson100/alienrpg",
 	"flags": {
 		"hotReload": {
-			"extensions": ["css", "js", "html", "json"],
-			"paths": ["css/alienrpg.css", "templates", "lang"]
+			"extensions": ["css", "html", "hbs", "json"],
+			"paths": ["css", "lang", "templates"]
 		}
 	},
 	"relationships": {
 		"systems": [{ "id": "alienrpg" }]
 	},
-	"version": "3.3.4",
+	"version": "4.0.0",
 
 	"compatibility": {
 		"minimum": "13",
@@ -22,8 +22,74 @@
 	},
 
 	"scripts": [],
-	"esmodules": ["module/alienrpg.js"],
+	"esmodules": ["module/alienrpg.mjs"],
 	"styles": ["css/alienrpg.css"],
+	"documentTypes": {
+		"ActiveEffect": {
+			"abilityModifier": {}
+		},
+		"Actor": {
+			"creature": {
+				"htmlFields": ["notes"]
+			},
+			"character": {
+				"htmlFields": ["notes"]
+			},
+			"synthetic": {
+				"htmlFields": ["notes"]
+			},
+			"vehicles": {
+				"htmlFields": ["notes"]
+			},
+			"territory": {
+				"htmlFields": ["notes"]
+			},
+			"spacecraft": {
+				"htmlFields": ["notes"]
+			}
+		},
+		"Item": {
+			"item": {
+				"htmlFields": ["notes", "comment"]
+			},
+			"weapon": {
+				"htmlFields": ["notes", "comment"]
+			},
+			"skill-stunts": {
+				"htmlFields": ["description"]
+			},
+			"talent": {
+				"htmlFields": ["comment", "notes"]
+			},
+			"critical-injury": {
+				"htmlFields": ["effects"]
+			},
+			"agenda": {
+				"htmlFields": ["comment"]
+			},
+			"armor": {
+				"htmlFields": ["comment"]
+			},
+			"specialty": {
+				"htmlFields": ["comment"]
+			},
+			"spacecraftweapons": {
+				"htmlFields": ["comment"]
+			},
+			"spacecraftmods": {
+				"htmlFields": ["comment"]
+			},
+			"spacecraft-crit": {
+				"htmlFields": ["effects"]
+			},
+			"planet-system": {
+				"htmlFields": ["comment"]
+			},
+			"colony-initiative": {
+				"htmlFields": ["comment", "notes"]
+			}
+		}
+	},
 	"languages": [
 		{
 			"lang": "en",

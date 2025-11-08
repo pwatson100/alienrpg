@@ -1,0 +1,20 @@
+<section class='tab specialty scrollable {{tab.cssClass}}' data-group='primary' data-tab='specialty'>
+	<h2 class='resource-label'>{{localize 'ALIENRPG.Description'}}</h2>
+	<div style='border: solid 1px; padding: 5px;width: 629px;'>
+		{{! Editors must receive enriched text data from getData to properly handle rolls, UUID links, etc. }}
+		{{#if editable}}
+			<prose-mirror
+				style='height: 283px;'
+				name='system.attributes.comment.value'
+				data-document-uuid='{{item.uuid}}'
+				value='{{system.attributes.comment.value}}'
+				collaborate='true'
+				toggled='true'
+			>
+				{{{enrichedComment}}}
+			</prose-mirror>
+		{{else}}
+			{{{enrichedComment}}}
+		{{/if}}
+	</div>
+</section>

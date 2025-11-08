@@ -1,10 +1,15 @@
 @use '../utils/colors';
 
-.alienrpg ul ol {
+ul ol {
 	margin-left: 3px;
 }
 
-.alienrpg #context-menu {
+.crit-box {
+	border: 2px double var(--aliengreen);
+	height: 100px;
+}
+
+#context-menu {
 	// width: 100%;
 	width: auto;
 	height: max-content;
@@ -13,7 +18,7 @@
 	position: absolute;
 	left: -998%;
 	top: -50%;
-	background: var(--black);
+	background: colors.$c-black;
 	border: 1px solid var(--aliengreen);
 	border-radius: 5px;
 	color: var(--aliengreen);
@@ -21,21 +26,22 @@
 	font-size: smaller;
 	z-index: 1;
 }
-.alienrpg #context-menu li.context-item {
+#context-menu li.context-item {
 	line-height: 16px;
 	padding: 0px;
 }
 
-.alienrpg .window-content {
-	background: hsl(0deg, 0%, 0%);
-	border: var(--aliengreen) 1px solid;
-}
+// .ALIENRPG.window-content {
+// 	/* background: hsl(0, 0%, 0%); */
+// 	border: var(--aliengreen) 1px solid;
+// }
 
-.alienrpg form {
+// form,
+.ALIENRPG.application {
 	font-family: var(--alienfont);
 	color: var(--aliengreen);
 	font-size: var(--fontsize);
-	background: var(--black);
+	background: colors.$c-black;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	padding: 2px;
@@ -54,8 +60,8 @@
 	}
 	select {
 		font-family: var(--alienfont);
-		color: inherit;
-		background: var(--black);
+		color: var(--aliengreen);
+		background: colors.$c-black;
 		border: var(--aliengreen) 3px;
 		border: 1px solid hsl(53, 4%, 46%);
 		border-radius: 3px;
@@ -65,12 +71,12 @@
 	}
 	input {
 		font-family: var(--alienfont);
-		color: inherit;
-		background: var(--black) k;
+		color: var(--aliengreen);
+		background: colors.$c-black;
 		border: 1px solid var(--aliengreen);
 	}
 	button {
-		color: inherit;
+		color: var(--aliengreen);
 		background: hsl(0, 0%, 0%);
 		border: var(--aliengreen) solid 1px;
 		width: 100%;
@@ -80,41 +86,24 @@
 		line-height: 28px;
 	}
 }
-// 	critbutton {
-// 		font-family: var(--alienfont);
-// 		//  color: $c-green;
-// 		color: inherit;
-
-// 		background:  var(--black);
-// 		border: var(--aliengreen) solid 1px;
-// 		// width: 100%;
-// 		margin: 0 1px;
-// 		border-radius: 3px;
-// 		font-size: 14px;
-// 		line-height: 28px;
-// 	}
-// 	.tox .tox-editor-container {
-// 		background-color:  var(--white);
-// 	}
-// }
 
 a.entity-link {
-	color: var(--white);
-	background: var(--black);
+	color: colors.$c-white;
+	background: colors.$c-black;
 }
 
-.alienrpg a.entity-link {
-	color: var(--white);
-	background: var(--black);
+a.entity-link {
+	color: colors.$c-white;
+	background: colors.$c-black;
 }
 a.content-link {
-	color: var(--white);
-	background: var(--black);
+	color: colors.$c-white;
+	background: colors.$c-black;
 }
 
-.alienrpg a.content-link {
-	color: var(--white);
-	background: var(--black);
+a.content-link {
+	color: colors.$c-white;
+	background: colors.$c-black;
 }
 #chat .message {
 	border: 1px solid hsl(0deg, 8%, 34%);
@@ -125,7 +114,7 @@ a.content-link {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	color: inherit;
+	color: var(--aliengreen);
 
 	.message-header .message-sender {
 		color: var(--aliengreen);
@@ -184,16 +173,16 @@ a.content-link {
 .dice-tooltip {
 	border: 1px solid var(--aliengreen);
 	border-radius: 1px;
-	background: var(--black);
+	background: colors.$c-black;
 
 	.dice-rolls {
-		color: inherit;
-		background: var(--black);
+		color: var(--aliengreen);
+		background: colors.$c-black;
 	}
 
 	.part-header {
-		color: inherit;
-		background: var(--black);
+		color: var(--aliengreen);
+		background: colors.$c-black;
 	}
 }
 .dice-tooltip .dice-rolls .roll {
@@ -207,13 +196,15 @@ a.content-link {
 }
 
 .inline-roll .dice-tooltip {
-	color: inherit;
-	background: var(--black);
+	color: var(--aliengreen);
+	background: colors.$c-black;
 	border: 2px solid var(--aliengreen);
 	border-radius: 2px;
 }
 a.inline-roll {
-	background: var(--black);
+	background: colors.$c-black;
+	color: var(--aliengreen);
+
 	padding: 1px 4px;
 	border: 1px solid var(--aliengreen);
 	border-radius: 2px;
@@ -226,46 +217,44 @@ a.inline-roll {
 	color: var(--aliengreen);
 }
 .dice-tooltip .part-header .part-formula {
-	color: inherit;
+	color: var(--aliengreen);
 }
 .part-total {
-	color: inherit;
+	color: var(--aliengreen);
 }
 
-.alienrpg h2,
+.ALIENRPG h2,
 .chat-message h2 {
+	font-family: var(--alienfont);
+	font-size: 1.5em;
+	font-weight: normal;
+	color: var(--aliengreen);
 	border: 0;
 	padding: 0;
 	margin: 1px;
 	margin-left: 5px;
 	margin-block-end: 1px;
-	color: var(--aliengreen);
 }
-.alienrpg h3,
+.ALIENRPG h3,
 .chat-message h3 {
+	font-family: var(--alienfont);
+	font-size: 1.25em;
+	font-weight: normal;
+	color: var(--aliengreen);
 	border: 0;
 	padding: 0;
 	margin: 1px;
 }
 
-.alienrpg h4,
+.ALIENRPG h4,
 .chat-message h4 {
+	font-family: var(--alienfont);
+	font-weight: normal;
+	font-size: var(--fontsize);
+	color: var(--aliengreen);
 	border: 0;
 	padding: 0;
 	margin: 1px;
-	font-size: var(--fontsize);
-}
-
-.resource-content {
-	button {
-		flex: 0;
-		border: 0;
-		width: 30px;
-		font-size: 1.5rem;
-		padding: 0;
-		color: inherit;
-		margin: 0;
-	}
 }
 
 .rollable:hover,
@@ -346,9 +335,13 @@ a.inline-roll {
 }
 
 .supply-btn {
-	font-size: 5px;
+	flex: 0;
+	border: 0;
+	width: 30px;
+	font-size: 1em;
 	padding: 0;
-	font-family: var(--alienfont);
+	color: var(--aliengreen);
+	margin: 0;
 }
 
 .pwr-btn {
@@ -362,9 +355,11 @@ a.inline-roll {
 }
 
 .stunt-btn {
-	width: 5px;
+	// width: 5px;
 	padding: 0;
 	font-family: var(--alienfont);
+	margin: 0px;
+	font-size: 1em;
 }
 
 .creature-attack-roll {
@@ -372,7 +367,7 @@ a.inline-roll {
 	width: 280px;
 	height: 40px;
 	font-weight: bold;
-	font-size: 2em;
+	font-size: 1.6em;
 	text-shadow: 2px 2px hsl(128, 83%, 25%);
 	border: 2px solid var(--aliengreen);
 	border-radius: 25px;
@@ -401,9 +396,9 @@ button:focus {
 	display: inline-block;
 	width: 260px;
 	height: 45px;
-	background-color: var(--black);
+	background-color: colors.$c-black;
 	font-weight: bold;
-	font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
+	font-size: clamp(2em, -4.5em + 5vw, 3em);
 	font-family: var(--alienfont);
 	padding-bottom: 5px;
 	border: 2px solid var(--aliengreen);
@@ -425,7 +420,7 @@ button:focus {
 	border-radius: 25px;
 	color: var(--aliengreen);
 	font-weight: bold;
-	font-size: 1.2rem;
+	font-size: 1em;
 
 	font-family: var(--alienfont);
 	line-height: inherit;
@@ -485,7 +480,7 @@ button:focus {
 .tooltip .tooltiptext {
 	visibility: hidden;
 	width: 250px;
-	background-color: var(--black);
+	background-color: colors.$c-black;
 	text-align: center;
 	border-radius: 6px;
 	padding: 5px 0;
@@ -518,7 +513,7 @@ button:focus {
 
 .tooltip2 .tooltiptext2 {
 	visibility: hidden;
-	background-color: var(--black);
+	background-color: colors.$c-black;
 	text-align: center;
 	border-radius: 6px;
 	position: absolute;
@@ -546,9 +541,9 @@ button:focus {
 	visibility: visible;
 }
 
-.alienrpg .inputtext {
+.inputtext {
 	color: inherit;
-	background-color: var(--black);
+	background-color: colors.$c-black;
 }
 
 .box-top {
@@ -558,26 +553,25 @@ button:focus {
 .ctooltip {
 	position: relative;
 	display: inline-block;
-	border-bottom: 1px dotted var(--black);
+	border-bottom: 1px dotted colors.$c-black;
 }
 
 /* Tooltip text */
 .ctooltip .ctooltiptext {
 	// /* Position the tooltip text - see examples below! */
-	// position: absolute;
-	// z-index: 1;
-	font-size: small;
+	position: absolute;
+	z-index: 1;
+
 	visibility: hidden;
 	width: 150px;
-	background-color: var(--black);
+	background-color: colors.$c-black;
 	color: var(--aliengreen);
 	text-align: center;
 	border-radius: 3px;
 	padding: 2px 0;
-	position: absolute;
-	z-index: 1;
-	// top: -5px;
-	// right: 105%;
+	right: 29px;
+	width: auto;
+	font-size: initial;
 	margin-left: -150px;
 	border-style: solid;
 	border-color: var(--aliengreen);
@@ -635,11 +629,11 @@ button:focus {
 }
 
 .prosemirror.editing-source textarea {
-	color: var(--white);
+	color: colors.$c-white;
 }
 
 .prosemirror menu .pm-dropdown {
-	/* color: hsl(0, 0%, 0%); */
+	color: hsl(0, 0%, 0%);
 }
 
 #overlay {
@@ -660,6 +654,6 @@ button:focus {
 .overwatch {
 	display: inline-flex;
 	margin-top: 6px;
-	margin-bottom: 8px;
+	margin-bottom: 4px;
 	margin-left: 7px;
 }

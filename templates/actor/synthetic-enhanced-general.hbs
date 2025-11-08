@@ -1,0 +1,221 @@
+<section class='tab syntheticENgeneral scrollable {{tab.cssClass}}' style="height:611px" data-group='primary' data-tab='syntheticENgeneral'>
+	<div class='grid-genPage-enh'>
+		<!-- Col1 -->
+		<div class='Item1' style='height: 147px;'>
+			<div style='margin-bottom: 10px; width: 200px; margin-left: auto; margin-right: auto; margin-top: 5px;'>
+				<h4 class='resource-label'>{{localize 'ALIENRPG.XP'}}</h4>
+				<div class='newdots click-xp-stat-level' data-action='ClickXPStatLevel'>
+					{{#times system.XPcurrent}}
+					<i class='far fa-dot-circle'></i>
+					{{/times}}
+					{{#times system.XPlost}}
+					<i class='far fa-circle'></i>
+					{{/times}}
+
+				</div>
+			</div>
+			<h4 class='resource-label'>{{localize 'ALIENRPG.StoryPoints'}}</h4>
+			<div class='newdots click-sp-stat-level' data-action='ClickSPStatLevel'>
+				{{#times system.SPcurrent}}
+				<i class='far fa-dot-circle'></i>
+				{{/times}}
+				{{#times system.SPlost}}
+				<i class='far fa-circle'></i>
+				{{/times}}
+
+			</div>
+
+			<div style='margin-top: 10px'>
+				<label class='resource-label'>{{localize 'ALIENRPG.Cash'}}</label>
+				<input type='text' class='cashboxsize currency' name='system.general.cash.value' value='{{system.general.cash.value}}' />
+			</div>
+		</div>
+
+		<div class='Item3' style='height: 300px;'>
+			<div>
+				<h3 class='resource-label' style='font-weight: bold'>{{localize 'ALIENRPG.StressResponses'}}</h3>
+				<br>
+				{{#if system.header.synthstress}}
+
+				{{#each statuses as |status id|}}
+				{{#if (eq status.resp 'stress')}}
+				<div style='display: flex'>
+					<h3 class='condition resource-label' style='font-size: 1.1em;' data-status-id='{{id}}' data-tooltip-html='{{status.tooltip}}' data-action='toggleStatus' title='{{localize "ALIENRPG.ConButtons"}}'>
+						<a>
+							{{#if (eq status.name 'ALIENRPG.keepingguard')}}
+							{{#if status.active}}
+							<i class='far fa-check-square'></i>
+							{{else}}
+							<i class='far fa-square'></i>
+							{{/if}}
+							{{else}}
+							{{#if status.active}}
+							<i class='far fa-dot-circle'></i>
+							{{else}}
+							<i class='far fa-circle'></i>
+							{{/if}}
+							{{/if}}
+						</a>
+						{{localize status.name}}
+					</h3>
+				</div>
+				{{/if}}
+				{{/each}}
+				{{else}}
+				<div style="margin-bottom: 6px">{{localize 'ALIENRPG.SynthDontStress'}}</div>
+				<br>
+				{{#each statuses as |status id|}}
+				{{#if (eq status.resp 'stress')}}
+				{{#if (eq status.name 'ALIENRPG.keepingguard')}}
+				<div style='display: flex'>
+					<h3 class='condition resource-label' style='font-size: 1.1em;' data-status-id='{{id}}' data-tooltip-html='{{status.tooltip}}' data-action='toggleStatus' title='{{localize "ALIENRPG.ConButtons"}}'>
+						<a>
+							{{#if status.active}}
+							<i class='far fa-check-square'></i>
+							{{else}}
+							<i class='far fa-square'></i>
+							{{/if}}
+						</a>
+						{{localize status.name}}
+					</h3>
+				</div>
+				{{/if}}
+				{{/if}}
+				{{/each}}
+				{{/if}}
+				<br>
+				<h3 style='text-align: center; font-weight: bold' class='resource-label'>{{localize 'ALIENRPG.Radiation'}}</h3>
+				</h3>
+				<div class='newdots click-stat-level-con' data-action='RadPointClick' data-label='{{localize "ALIENRPG.Radiation"}}' data-roll='{{system.general.radiation.value}}'>
+					{{#times system.RADcurrent}}
+					<i class='far fa-dot-circle'></i>
+					{{/times}}
+					{{#times system.RADlost}}
+					<i class='far fa-circle'></i>
+					{{/times}}
+					{{#times system.RADfill}}
+					<i class='far fa-dot-circle' style='color: red'></i>
+					{{/times}}
+				</div>
+			</div>
+		</div>
+		<div class='Item7' style='height: 300px;'>
+			<h3 class=' resource-label' style='font-weight: bold'>{{localize 'ALIENRPG.PanicResponses'}}</h3>
+			<br>
+			{{#if system.header.synthstress}}
+			{{#each statuses as |status id|}}
+			{{#if (eq status.resp 'panic')}}
+			<div style='display: flex'>
+				{{#if (eq status.name 'ALIENRPG.Panicked')}}
+				{{#if status.active}}
+				<h3 class='condition resource-label' data-status-id='{{id}}' data-tooltip-html='{{status.tooltip}}' data-action='toggleStatus' title='{{localize "ALIENRPG.ConButtons"}}' style='color: red; font-size: 1.1em;'>
+					<a>
+						<i class='far fa-dot-circle'></i>
+					</a>{{localize status.name}}
+				</h3>
+				<input type='text' style='color: red; font-size: 1.1em;' class='maxboxsize' name='system.general.panic.lastRoll' value='{{@root.system.general.panic.lastRoll}}' data-dtype='Number' />
+				{{else}}
+				<h3 class='condition resource-label' data-status-id='{{id}}' data-tooltip-html='{{status.tooltip}}' data-action='toggleStatus' title='{{localize "ALIENRPG.ConButtons"}}'>
+					<a>
+						<i class='far fa-circle'></i>
+					</a>
+					{{localize status.name}}
+				</h3>
+				{{/if}}
+				{{else}}
+				<h3 class='condition resource-label' style='font-size: 1.1em;' data-status-id='{{id}}' data-tooltip-html='{{status.tooltip}}' data-action='toggleStatus' title='{{localize "ALIENRPG.ConButtons"}}'>
+					<a>
+						{{#if status.active}}
+						<i class='far fa-dot-circle'></i>
+						{{else}}
+						<i class='far fa-circle'></i>
+						{{/if}}
+					</a>
+					{{localize status.name}}
+				</h3>
+				{{/if}}
+			</div>
+			{{/if}}
+			{{/each}}
+			{{else}}
+			<div style="margin-bottom: 6px">{{localize 'ALIENRPG.SynthDontPanic'}}</div>
+
+			{{/if}}
+		</div>
+
+		<div class='Item6' style='height: 35px;'>
+			<h3 class='grid-2col-border'>
+				<label class='resource-label rollable' data-action='RollAbility' data-roll='{{system.general.armor.value}}' data-spbutt='armor' data-label='{{localize "ALIENRPG.Armor"}}'>{{localize 'ALIENRPG.Armor'}}
+				</label>
+				<input type='text' class='maxboxsize' name='system.general.armor.value' value='{{system.general.armor.value}}' data-dtype='Number' disabled />
+			</h3>
+		</div>
+
+		<!-- Col 2 -->
+		<div class='Item2' style='height: 85px;'>
+			<div class='grid-two' style='margin-top: 10px; '>
+				{{#if system.header.synthstress}}
+				<h3 class='resource-label rollable' data-action='RollResolve' data-roll='{{system.header.resolve.value}}' data-mod='{{system.header.resolve.mod}}' data-label='{{localize "ALIENRPG.Resolve"}}' title='{{localize "ALIENRPG.RollStress"}}'>{{localize 'ALIENRPG.Resolve'}}
+				</h3>
+				<input type='text' class='maxboxsize' name='header.resolve.value' value='{{system.header.resolve.value}}' data-dtype='Number' disabled />
+				{{/if}}
+				<div class='box3 resource-label'>
+					<label class='speciality-label' style='font-weight: bold'>{{localize 'ALIENRPG.Career'}}</label>
+					<div class='item-controls'></div>
+				</div>
+				<div class='box4'>
+					{{#each specialities as |item iid|}}
+					<li class='item grid-special' data-item-id='{{item._id}}'>
+						<h4 class='item-name spe2' data-pmbut='{{item._id}}'>{{item.name}}</h4>
+						<a class='spe3 item-control item-edit1' data-action='viewDoc' data-document-class='Item' data-item-id='{{item._id}}' title='{{localize "ALIENRPG.EditItem"}}'><i class='fas fa-edit'></i></a>
+					</li>
+					{{/each}}
+				</div>
+			</div>
+			<br />
+		</div>
+
+		<div class='Item4' style="margin-top: -62px;">
+			<div>
+				<label class='resource-label' style='font-weight: bold'>{{localize 'ALIENRPG.Appearance'}}</label>
+				<textarea name='system.general.appearance.value' rows='4' data-dtype='String'>{{system.general.appearance.value}}</textarea>
+			</div>
+			<div>
+				<label class='resource-label' style='font-weight: bold'>{{localize 'ALIENRPG.SignatureItem'}}</label>
+				<input type='text' class='textbox' name='system.general.sigItem.value' value='{{system.general.sigItem.value}}' rows='1' data-dtype='String' />
+			</div>
+
+			<div>
+				<label class='resource-label' style='font-weight: bold'>{{localize 'ALIENRPG.PersonalAgenda'}}</label>
+				<textarea name='system.general.agenda.value' rows='2' data-dtype='String'>{{system.general.agenda.value}}</textarea>
+				<label class='resource-label' style='font-weight: bold'>{{localize 'ALIENRPG.Relationships'}}</label>
+				<br />
+				<label class='resource-label' style='font-size: smaller'>{{localize 'ALIENRPG.relOne'}}</label>
+				<input type='text' class='textbox' name='system.general.relOne.value' value='{{system.general.relOne.value}}' rows='1' data-dtype='String' />
+			</div>
+
+			<div>
+				<label class='resource-label' style='font-size: smaller'>{{localize 'ALIENRPG.relTwo'}}</label>
+				<input type='text' class='textbox' name='system.general.relTwo.value' value='{{system.general.relTwo.value}}' rows='1' data-dtype='String' />
+			</div>
+		</div>
+		<div class='Item8'>
+			<div class='grid-crit'>
+				<label class='speciality-label crit1' style='font-weight: bold'>{{localize 'ALIENRPG.CriticalInjuries'}}</label>
+				<button type='button' class='alien-crit-button rollCrit crit2' data-action='RollCrit'>{{localize 'ALIENRPG.RollCrit'}}</button>
+			</div>
+			<div class='crit-box' style='min-height: 90px; height:auto'>
+				<ol class='items-list'>
+					{{#each critInj as |item iid|}}
+					<li class='item critical-inj-wide' data-item-id='{{item.id}}'>
+						<a class='item-image crit1w'><img src='{{item.img}}' width='24' height='24' /></a>
+						<a class='item-name crit2w'>{{item.name}}</a>
+						<a class='item-name crit3w' style='font-size:smaller '>{{{striptags item.system.attributes.effects}}}</a>
+						<a class='crit4w item-control item-edit1' data-action='viewDoc' data-document-class='Item' data-item-id='{{item.id}}' title='{{localize "ALIENRPG.EditItem"}}'><i class='fas fa-edit'></i></a>
+					</li>
+					{{/each}}
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>

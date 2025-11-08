@@ -153,13 +153,13 @@
 	border-radius: 7px 7px 0px 0px;
 }
 
-.alienrpg input[type='text'],
-.alienrpg input[type='number'],
-.alienrpg input[type='password'],
-.alienrpg input[type='date'],
-.alienrpg input[type='time'] {
+.ALIENRPG input[type='text'],
+.ALIENRPG input[type='number'],
+.ALIENRPG input[type='password'],
+.ALIENRPG input[type='date'],
+.ALIENRPG input[type='time'] {
 	border-radius: 0px;
-	border: 1px solid var(--aliengreen);
+	/* border: 1px solid var(--aliengreen); */
 }
 
 input[type='text']:hover,
@@ -265,10 +265,11 @@ combobox:focus {
 		// font-family: var(--alienfont); !
 		font-size: 32px;
 		text-shadow: 0px 3px 5px rgba(0, 0, 0, 1);
+		font-weight: normal;
 	}
 }
 
-.alienrpg #context-menu li.context-item {
+.ALIENRPG #context-menu li.context-item {
 	line-height: 1.55;
 }
 

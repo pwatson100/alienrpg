@@ -1,0 +1,70 @@
+{{! Sheet Header }}
+<header class='vehicle-header' style='height: 169px;'>
+	<img class='profile-img' src='{{actor.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{actor.name}}' height='100' width='100' />
+	<div class='header-fields'>
+		<span class='charname'><input name='name' type='text' value='{{actor.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class='grid-actor'>
+			<h2 for='system.health.value' class='resource-label gaItem1'>{{localize 'ALIENRPG.Health'}}</h2>
+			<div class='resource-content gaItem2'>
+				<button type='button' class='minus-btn' data-action='plusMinusButton' data-pmbut='minusHealth'><i class='fas fa-minus-square' title='Minus'></i></button>
+			</div>
+			<div class='resource-content gaItem3'>
+				<input type='text' class='maxboxsize minHealth' name='system.header.health.value' value='{{system.header.health.value}}' data-dtype='Number' />
+				/
+				<input type='text' class='maxboxsize' name='system.header.health.calculatedMax' value='{{system.header.health.calculatedMax}}' data-dtype='Number' disabled />
+			</div>
+			<div class='resource-content gaItem4'>
+
+				<div><button type='button' class='plus-btn' data-action='plusMinusButton' data-pmbut='plusHealth'><i class='fas fa-plus-square' title='Plus'></i></button></div>
+			</div>
+
+			<div class='resource-label gaItem5'>
+				<h3 class="gaItem3">{{ localize 'ALIENRPG.Synthetic'}}</h3>
+				{{#if system.header.synthstress}}
+					<h3 for="0" class="resource-label rollable gaItem6" data-action='RollStress' data-panicroll="0" data-mod="0"><i class="far fa-heart"></i> {{localize 'ALIENRPG.Stress'}}</h3>
+				{{else}}
+					<h3 for="0" class="resource-label gaItem6" data-panicroll="0" data-mod="0">{{localize 'ALIENRPG.NoStress'}}</h3>
+				{{/if}}
+			</div>
+			<div class='resource-content gaItem6'>
+			</div>
+			<div class='resource-content gaItem7'>
+			</div>
+			<div class='resource-content gaItem8'>
+			</div>
+			{{! Attributes }}
+			<div class='abilities grid-Char-Att'>
+				<h3 class='resource-label rollable gCol1' data-action='RollAbility' data-attr='attribute' data-roll='{{system.attributes.str.value}}' data-mod='{{system.attributes.str.mod}}' data-label='{{localize "ALIENRPG.AbilityStr"}}'>
+					{{localize 'ALIENRPG.AbilityStr'}}
+				</h3>
+				<input type='text' class='maxboxsize gCol2' name='system.attributes.str.value' value='{{system.attributes.str.value}}' data-dtype='Number' />
+
+				<h3 class='resource-label rollable gCol3' data-action='RollAbility' data-attr='attribute' data-roll='{{system.attributes.wit.value}}' data-mod='{{system.attributes.wit.mod}}' data-label='{{localize "ALIENRPG.AbilityWit"}}'>
+					{{localize 'ALIENRPG.AbilityWit'}}
+				</h3>
+				<input type='text' class='maxboxsize gCol4' name='system.attributes.wit.value' value='{{system.attributes.wit.value}}' data-dtype='Number' />
+
+				<h3 class='resource-label rollable gCol6' data-action='RollAbility' data-attr='attribute' data-roll='{{system.attributes.agl.value}}' data-mod='{{system.attributes.agl.mod}}' data-label='{{localize "ALIENRPG.AbilityAgl"}}'>
+					{{localize 'ALIENRPG.AbilityAgl'}}
+				</h3>
+				<input type='text' class='maxboxsize gCol7' name='system.attributes.agl.value' value='{{system.attributes.agl.value}}' data-dtype='Number' />
+
+				<h3 class='resource-label rollable gCol8' data-action='RollAbility' data-attr='attribute' data-roll='{{system.attributes.emp.value}}' data-mod='{{system.attributes.emp.mod}}' data-label='{{localize "ALIENRPG.AbilityEmp"}}'>
+					{{localize 'ALIENRPG.AbilityEmp'}}
+				</h3>
+				<input type='text' class='maxboxsize gCol9' name='system.attributes.emp.value' value='{{system.attributes.emp.value}}' data-dtype='Number' />
+
+				{{#if isGM}}
+					<div class='tooltip'>
+						<h3 class='resource-label gCol5 tooltip'>NPC?</h3>
+						<span class='tooltiptext' style="font-family: 'Times New Roman', Times, serif">{{localize 'ALIENRPG.NPCpopUp'}}</span>
+					</div>
+					<input class='gCol10 NPC' name='system.header.npc' type='checkbox' {{checked system.header.npc}} />
+				{{/if}}
+				<h4 class="gCol11" style="text-align: center">{{localize 'ALIENRPG.SynthStress'}}</h4>
+				<input class="gCol12" name="system.header.synthstress" type="checkbox" {{checked system.header.synthstress}} />
+			</div>
+		</div>
+
+	</div>
+</header>

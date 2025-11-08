@@ -1,0 +1,216 @@
+{
+	"name": "Stress Response Table",
+	"img": "icons/svg/d20-grey.svg",
+	"description": "",
+	"results": [
+		{
+			"type": "text",
+			"weight": 1,
+			"range": [0, 0],
+			"_id": "Pt1rhFWmxVl4iBSL",
+			"name": "Keeping Cool.",
+			"img": "icons/svg/d20-black.svg",
+			"description": "<p>No effect.</p>",
+			"drawn": false,
+			"flags": {},
+			"_stats": {
+				"compendiumSource": null,
+				"duplicateSource": null,
+				"exportSource": null,
+				"coreVersion": "13.350",
+				"systemId": "ALIENRPG",
+				"systemVersion": "3.0.0",
+				"createdTime": 1761039869591,
+				"modifiedTime": 1761041494761,
+				"lastModifiedBy": "EgSvDNuJGjta4Ois"
+			},
+			"documentUuid": null
+		},
+		{
+			"type": "text",
+			"weight": 1,
+			"range": [1, 1],
+			"_id": "CueM1g355QRcdKx4",
+			"name": "Jumpy.",
+			"img": "icons/svg/d20-black.svg",
+			"description": "<p>When you push a skill roll, you gain +2 stress level instead of +1.</p>",
+			"drawn": false,
+			"flags": {},
+			"_stats": {
+				"compendiumSource": null,
+				"duplicateSource": null,
+				"exportSource": null,
+				"coreVersion": "13.350",
+				"systemId": "ALIENRPG",
+				"systemVersion": "3.0.0",
+				"createdTime": 1761039953873,
+				"modifiedTime": 1761041505545,
+				"lastModifiedBy": "EgSvDNuJGjta4Ois"
+			},
+			"documentUuid": null
+		},
+		{
+			"type": "text",
+			"weight": 1,
+			"range": [2, 2],
+			"_id": "YjWehDmzWfaTUvu5",
+			"name": "Tunnel Vision.",
+			"img": "icons/svg/d20-black.svg",
+			"description": "<p>All skill rolls based on Wits get –2 dice.</p>",
+			"drawn": false,
+			"flags": {},
+			"_stats": {
+				"compendiumSource": null,
+				"duplicateSource": null,
+				"exportSource": null,
+				"coreVersion": "13.350",
+				"systemId": "ALIENRPG",
+				"systemVersion": "3.0.0",
+				"createdTime": 1761039954773,
+				"modifiedTime": 1761041526494,
+				"lastModifiedBy": "EgSvDNuJGjta4Ois"
+			},
+			"documentUuid": null
+		},
+		{
+			"type": "text",
+			"weight": 1,
+			"range": [3, 3],
+			"_id": "16Uu6Nw57e80kZNZ",
+			"name": "Aggravated.",
+			"img": "icons/svg/d20-black.svg",
+			"description": "<p>All skill rolls based on Empathy get –2 dice.</p>",
+			"drawn": false,
+			"flags": {},
+			"_stats": {
+				"compendiumSource": null,
+				"duplicateSource": null,
+				"exportSource": null,
+				"coreVersion": "13.350",
+				"systemId": "ALIENRPG",
+				"systemVersion": "3.0.0",
+				"createdTime": 1761039955508,
+				"modifiedTime": 1761041537245,
+				"lastModifiedBy": "EgSvDNuJGjta4Ois"
+			},
+			"documentUuid": null
+		},
+		{
+			"type": "text",
+			"weight": 1,
+			"range": [4, 4],
+			"_id": "W01K7MHEhlfMnkq2",
+			"name": "Shakes.",
+			"img": "icons/svg/d20-black.svg",
+			"description": "<p>All skill rolls based on Agility get –2 dice.</p>",
+			"drawn": false,
+			"flags": {},
+			"_stats": {
+				"compendiumSource": null,
+				"duplicateSource": null,
+				"exportSource": null,
+				"coreVersion": "13.350",
+				"systemId": "ALIENRPG",
+				"systemVersion": "3.0.0",
+				"createdTime": 1761039956093,
+				"modifiedTime": 1761041547029,
+				"lastModifiedBy": "EgSvDNuJGjta4Ois"
+			},
+			"documentUuid": null
+		},
+		{
+			"type": "text",
+			"weight": 1,
+			"range": [5, 5],
+			"_id": "JwdRWIISN8V3FikU",
+			"name": "Frantic.",
+			"img": "icons/svg/d20-black.svg",
+			"description": "<p>All skill rolls based on Strength get –2 dice.</p>",
+			"drawn": false,
+			"flags": {},
+			"_stats": {
+				"compendiumSource": null,
+				"duplicateSource": null,
+				"exportSource": null,
+				"coreVersion": "13.350",
+				"systemId": "ALIENRPG",
+				"systemVersion": "3.0.0",
+				"createdTime": 1761039956641,
+				"modifiedTime": 1761041591028,
+				"lastModifiedBy": "EgSvDNuJGjta4Ois"
+			},
+			"documentUuid": null
+		},
+		{
+			"type": "text",
+			"weight": 1,
+			"range": [6, 6],
+			"_id": "rs5CoqKIg9VWGpZK",
+			"name": "Deflated.",
+			"img": "icons/svg/d20-black.svg",
+			"description": "<p>You cannot push any skill rolls. If you are Jumpy (#1 above), remove that response, and ignore any further Jumpy results while Deflated.</p>",
+			"drawn": false,
+			"flags": {},
+			"_stats": {
+				"compendiumSource": null,
+				"duplicateSource": null,
+				"exportSource": null,
+				"coreVersion": "13.350",
+				"systemId": "ALIENRPG",
+				"systemVersion": "3.0.0",
+				"createdTime": 1761039958942,
+				"modifiedTime": 1761041571862,
+				"lastModifiedBy": "EgSvDNuJGjta4Ois"
+			},
+			"documentUuid": null
+		},
+		{
+			"type": "text",
+			"weight": 1,
+			"range": [7, 10],
+			"_id": "PHU80zr4Y052SM2U",
+			"name": "Mess Up.",
+			"img": "icons/svg/d20-black.svg",
+			"description": "<p>Your action fails regardless of rolled and you gain +1 stress level.</p>",
+			"drawn": false,
+			"flags": {},
+			"_stats": {
+				"compendiumSource": null,
+				"duplicateSource": null,
+				"exportSource": null,
+				"coreVersion": "13.350",
+				"systemId": "ALIENRPG",
+				"systemVersion": "3.0.0",
+				"createdTime": 1761040075712,
+				"modifiedTime": 1761041588612,
+				"lastModifiedBy": "EgSvDNuJGjta4Ois"
+			},
+			"documentUuid": null
+		}
+	],
+	"replacement": true,
+	"displayRoll": true,
+	"folder": "A0N3Ct1TQq9BuGk6",
+	"flags": {},
+	"_stats": {
+		"compendiumSource": null,
+		"duplicateSource": null,
+		"exportSource": {
+			"worldId": "enhanced",
+			"uuid": "RollTable.phe9h1ufDbsXtaLT",
+			"coreVersion": "13.350",
+			"systemId": "ALIENRPG",
+			"systemVersion": "3.0.0"
+		},
+		"coreVersion": "13.350",
+		"systemId": "ALIENRPG",
+		"systemVersion": "3.0.0",
+		"createdTime": 1761039851515,
+		"modifiedTime": 1761746758669,
+		"lastModifiedBy": "EgSvDNuJGjta4Ois"
+	},
+	"formula": "1d6",
+	"ownership": {
+		"default": 0
+	}
+}

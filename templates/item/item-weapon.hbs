@@ -1,0 +1,79 @@
+<section class='tab weapon scrollable {{tab.cssClass}}' data-group='primary' data-tab='weapon'>
+	{{! Attributes Tab }}
+	<div class='grid-weapon-body'>
+		<label class='resource-label wCol1'>{{localize 'ALIENRPG.QuantityLabel'}}</label>
+		<input type='text' class='maxboxsize wCol2' style='margin-top: 5px' name='system.attributes.quantity.value' value='{{system.attributes.quantity.value}}' data-dtype='Number' />
+
+		<label class='resource-label wCol3'>{{localize 'ALIENRPG.Damage'}}</label>
+		<input type='text' class='maxboxsize wCol4' name='system.attributes.damage.value' value='{{system.attributes.damage.value}}' data-dtype='Number' />
+
+		<label class='resource-label wCol5'>{{localize 'ALIENRPG.Bonus'}}</label>
+		<input type='text' class='maxboxsize wCol6' name='system.attributes.bonus.value' value='{{system.attributes.bonus.value}}' data-dtype='Number' />
+
+		{{#if (eq system.header.type.value '1')}}
+		{{#if isEvolved}}
+		<label class='resource-label wCo113'>{{localize 'ALIENRPG.minrng'}}</label>
+		<select class='select-css wCol14' style='margin-top: 5px' name='system.attributes.minrange.value' data-dtype='{{system.attributes.minrange.value}}'>
+			{{selectOptions config.weapon_range_list selected=system.attributes.minrange.value labelAttr='label' localize=true}}
+		</select>
+		<label class='resource-label wCo15'>{{localize 'ALIENRPG.maxrng'}}</label>
+		<select class='select-css wCol16' style='margin-top: 5px' name='system.attributes.range.value' data-dtype='{{system.attributes.range.value}}'>
+			{{selectOptions config.weapon_range_list selected=system.attributes.range.value labelAttr='label' localize=true}}
+		</select>
+		{{else}}
+		<label class='resource-label wCo13'>{{localize 'ALIENRPG.maxrng'}}</label>
+		<select class='select-css wCol14' style='margin-top: 5px' name='system.attributes.range.value' data-dtype='{{system.attributes.range.value}}'>
+			{{selectOptions config.weapon_range_list selected=system.attributes.range.value labelAttr='label' localize=true}}
+		</select>
+		{{/if}}
+		{{/if}}
+
+		{{#if (eq system.header.type.value '2')}}
+		<label class='resource-label wCol7'>{{localize 'ALIENRPG.Cost'}}</label>
+		<input type='text' class='cashboxsize currency wCol8' style="height:20px" name='system.attributes.cost.value' value='{{system.attributes.cost.value}}' />
+		<label class='resource-label wCo19'>{{localize 'ALIENRPG.Range'}}</label>
+		<select class='select-css wCol10' style='margin-top: 5px' name='system.attributes.range.value' data-dtype='{{system.attributes.range.value}}'>
+			{{selectOptions config.weapon_range_list selected=system.attributes.range.value labelAttr='label' localize=true}}
+		</select>
+		{{/if}}
+
+		{{#if (eq system.header.type.value '1')}}
+		<label class='resource-label wCol7'>{{localize 'ALIENRPG.Cost'}}</label>
+		<input type='text' class='cashboxsize currency wCol8' style="height:20px" name='system.attributes.cost.value' value='{{system.attributes.cost.value}}' />
+		{{/if}}
+		{{#if (eq system.header.type.value '1')}}
+		<label class='resource-label wCol9'>{{localize 'ALIENRPG.Rds'}}</label>
+		<input type='text' class='maxboxsize wCol10' name='system.attributes.rounds.value' value='{{system.attributes.rounds.value}}' data-dtype='Number' />
+		{{#if isEvolved}}
+		<label class='resource-label wCol11'>{{localize 'ALIENRPG.ArmorPiercing'}}</label>
+		<input class='wCol12' name='system.header.armorpiercing' type='checkbox' {{checked system.header.armorpiercing}} />
+		<label class='resource-label wCol17'>{{localize 'ALIENRPG.FullAuto'}}</label>
+		<input class='wCol18' name='system.header.fullauto' type='checkbox' {{checked system.header.fullauto}} />
+		{{else}}
+		<label class='resource-label wCol11'>{{localize 'ALIENRPG.Power'}}</label>
+		<input type='text' class='maxboxsize wCol12' name='system.attributes.power.value' value='{{system.attributes.power.value}}' data-dtype='Number' />
+		{{/if}}
+
+		{{/if}}
+		{{#if (eq system.header.type.value '2')}}
+		{{#if isEvolved}}
+		<label class='resource-label wCol11'>{{localize 'ALIENRPG.ArmorPiercing'}}</label>
+		<input class='wCol12' name='system.header.armorpiercing' type='checkbox' {{checked system.header.armorpiercing}} />
+		{{else}}
+		<label class='resource-label wCol11'>{{localize 'ALIENRPG.Power'}}</label>
+		<input type='text' class='maxboxsize wCol12' name='system.attributes.power.value' value='{{system.attributes.power.value}}' data-dtype='Number' />
+		{{/if}}
+		{{/if}}
+	</div>
+	<h2 class='resource-label'>{{localize 'ALIENRPG.Comment'}}</h2>
+	<div style='border: solid 1px; height:154px'>
+		{{#if editable}}
+		<prose-mirror style='height: 90px;' name='system.attributes.comment.value' data-document-uuid='{{item.uuid}}' value='{{system.attributes.comment.value}}' collaborate='true' toggled='true'>
+			{{{enrichedComment}}}
+		</prose-mirror>
+		{{else}}
+		{{{enrichedComment}}}
+		{{/if}}
+	</div>
+
+</section>

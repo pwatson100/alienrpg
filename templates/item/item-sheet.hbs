@@ -1,0 +1,127 @@
+{{! Sheet Body }}
+<section class='tab general scrollable {{tab.cssClass}}' data-group='primary' data-tab='general'>
+	{{! Attributes Tab }}
+	<div>
+		{{#if (eq system.header.type.value '1')}}
+			<div class='grid-Char-Att'>
+				<h3 class='resource-label gCol1'>{{localize 'ALIENRPG.QuantityLabel'}}</h3>
+				<input type='text' name='system.attributes.quantity.value' class='maxboxsize gCol2' value='{{system.attributes.quantity.value}}' data-dtype='Number' />
+			</div>
+		{{/if}}
+		{{#if (eq system.header.type.value '2')}}
+			<div class='grid-Char-Att'>
+				<h3 class='resource-label gCol1'>{{localize 'ALIENRPG.QuantityLabel'}}</h3>
+				<input type='text' name='system.attributes.quantity.value' class='maxboxsize gCol2' value='{{system.attributes.quantity.value}}' data-dtype='Number' />
+			</div>
+		{{/if}}
+		{{#if (eq system.header.type.value '3')}}
+			<div class='grid-Char-Att'>
+				<h3 class='resource-label gCol1'>{{localize 'ALIENRPG.Power'}}</h3>
+				<input type='text' name='system.attributes.power.value' class='maxboxsize gCol2' value='{{system.attributes.power.value}}' data-dtype='Number' />
+			</div>
+		{{/if}}
+		{{#if (eq system.header.type.value '4')}}
+			<div class='grid-Char-Att'>
+				<h3 class='resource-label gCol1'>{{localize 'ALIENRPG.Power'}}</h3>
+				<input type='text' name='system.attributes.power.value' class='maxboxsize gCol2' value='{{system.attributes.power.value}}' data-dtype='Number' />
+			</div>
+		{{/if}}
+		{{#if (eq system.header.type.value '6')}}
+			<div class='grid-Char-Att'>
+				<h3 class='resource-label gCol1'>{{localize 'ALIENRPG.QuantityLabel'}}</h3>
+				<input type='text' name='system.attributes.quantity.value' class='maxboxsize gCol2' value='{{system.attributes.quantity.value}}' data-dtype='Number' />
+			</div>
+		{{/if}}
+		{{#if (eq system.header.type.value '7')}}
+			<div class='grid-Char-Att'>
+				<h3 class='resource-label gCol1'>{{localize 'ALIENRPG.Food'}}</h3>
+				<input type='text' name='system.attributes.food.value' class='maxboxsize gCol2' value='{{system.attributes.food.value}}' data-dtype='Number' />
+				<h3 class='resource-label gCol3'>{{localize 'ALIENRPG.Water'}}</h3>
+				<input type='text' name='system.attributes.water.value' class='maxboxsize gCol4' value='{{system.attributes.water.value}}' data-dtype='Number' />
+			</div>
+		{{/if}}
+		{{#if (eq system.header.type.value '8')}}
+			<div class='grid-Char-Att'>
+				<h3 class='resource-label gCol1'>{{localize 'ALIENRPG.Power'}}</h3>
+				<input type='text' class='maxboxsize gCol2' name='system.attributes.power.value' value='{{system.attributes.power.value}}' data-dtype='Number' />
+			</div>
+		{{/if}}
+		{{#if (eq system.header.type.value '9')}}
+			<div class='grid-2col'>
+				<div class='modifiers flexrow flex-group-center'>
+					<label
+						for='system.modifiers.skills.comtech.value'
+						class='resource-label rollcomputer'
+						data-roll='{{system.modifiers.skills.comtech.value}}'
+						data-label='{{localize "ALIENRPG.Skillcomtech"}}'
+					>{{localize 'ALIENRPG.Skillcomtech'}} ({{system.modifiers.skills.comtech.ability}})</label>
+					<input type='text' class='maxboxsize' name='system.modifiers.skills.comtech.value' value='{{system.modifiers.skills.comtech.value}}' data-dtype='Number' />
+				</div>
+				<div class='modifiers flexrow flex-group-center'>
+					<label
+						for='system.modifiers.skills.piloting.value'
+						class='resource-label rollcomputer'
+						data-roll='{{system.modifiers.skills.piloting.value}}'
+						data-label='{{localize "ALIENRPG.Skillpiloting"}}'
+					>{{localize 'ALIENRPG.Skillpiloting'}} ({{system.modifiers.skills.piloting.ability}})</label>
+					<input type='text' class='maxboxsize' name='system.modifiers.skills.piloting.value' value='{{system.modifiers.skills.piloting.value}}' data-dtype='Number' />
+				</div>
+				<div class='modifiers flexrow flex-group-center'>
+					<label
+						for='system.modifiers.skills.observation.value'
+						class='resource-label rollcomputer'
+						data-roll='{{system.modifiers.skills.observation.value}}'
+						data-label='{{localize "ALIENRPG.Skillobservation"}}'
+					>{{localize 'ALIENRPG.Skillobservation'}} ({{system.modifiers.skills.observation.ability}})</label>
+					<input type='text' class='maxboxsize' name='system.modifiers.skills.observation.value' value='{{system.modifiers.skills.observation.value}}' data-dtype='Number' />
+				</div>
+				<div class='modifiers flexrow flex-group-center'>
+					<label
+						for='system.modifiers.skills.rangedCbt.value'
+						class='resource-label rollcomputer'
+						data-roll='{{system.modifiers.skills.rangedCbt.value}}'
+						data-label='{{localize "ALIENRPG.SkillrangedCbt"}}'
+					>{{localize 'ALIENRPG.SkillrangedCbt'}} ({{system.modifiers.skills.rangedCbt.ability}})</label>
+					<input type='text' class='maxboxsize' name='system.modifiers.skills.rangedCbt.value' value='{{system.modifiers.skills.rangedCbt.value}}' data-dtype='Number' />
+				</div>
+			</div>
+		{{/if}}
+		{{#if (eq system.header.type.value '10')}}
+			<div class='grid-item-xtras'>
+				<h3 class='resource-label xCol1'>{{localize 'ALIENRPG.Power'}}</h3>
+				<input type='text' name='system.attributes.power.value' class='maxboxsize xCol2' value='{{system.attributes.power.value}}' data-dtype='Number' />
+				<h3 class='resource-label xCol3'>{{localize 'ALIENRPG.Food'}}</h3>
+				<input type='text' name='system.attributes.food.value' class='maxboxsize xCol4' value='{{system.attributes.food.value}}' data-dtype='Number' />
+				<h3 class='resource-label xCol5'>{{localize 'ALIENRPG.Water'}}</h3>
+				<input type='text' name='system.attributes.water.value' class='maxboxsize xCol6' value='{{system.attributes.water.value}}' data-dtype='Number' />
+				<h3 class='resource-label xCol7'>{{localize 'ALIENRPG.AirSupply'}}</h3>
+				<input type='text' class='maxboxsize xCol8' name='system.attributes.airsupply.value' value='{{system.attributes.airsupply.value}}' data-dtype='Number' />
+			</div>
+		{{/if}}
+		{{#if (eq system.header.type.value '11')}}
+			<div class='grid-Char-Att'>
+				<h3 class='resource-label gCol1'>{{localize 'ALIENRPG.QuantityLabel'}}</h3>
+				<input type='text' name='system.attributes.quantity.value' class='maxboxsize gCol2' value='{{system.attributes.quantity.value}}' data-dtype='Number' />
+			</div>
+		{{/if}}
+
+		<h2 class='resource-label' style='margin-top:5px'>{{localize 'ALIENRPG.Comment'}}</h2>
+		<div style='border: solid 1px; padding: 5px'>
+			{{#if editable}}
+				<prose-mirror
+					style='height: 219px;'
+					name='system.attributes.comment.value'
+					data-document-uuid='{{item.uuid}}'
+					value='{{system.attributes.comment.value}}'
+					collaborate='true'
+					toggled='true'
+				>
+					{{{enrichedComment}}}
+				</prose-mirror>
+			{{else}}
+				{{{enrichedComment}}}
+			{{/if}}
+		</div>
+	</div>
+
+</section>

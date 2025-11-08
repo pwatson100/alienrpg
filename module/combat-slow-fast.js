@@ -1,5 +1,5 @@
-import { ALIENRPG } from './config.js';
+import { ALIENRPG } from "./helpers/config.js"
 
 export function addSlowAndFastActions() {
-	CONFIG.statusEffects.push(...ALIENRPG.StatusEffects.slowAndFastActions);
+	CONFIG.statusEffects.push(...ALIENRPG.StatusEffects.slowAndFastActions)
 }

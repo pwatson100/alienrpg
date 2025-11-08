@@ -1,0 +1,110 @@
+<header class='actor-header crt'>
+	<img class='profile-img' style="'max-width: 157px" src='{{actor.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{actor.name}}' />
+	<div class='header-fields'>
+		<h1 class='charname'><input name='name' type='text' value='{{actor.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></h1>
+		<div class='crtui-grid-actor'>
+			{{! Health and Stress }}
+			<h2 for='system.health.value' class='resource-label rollable rollCrit crtuigaItem1' style='margin-bottom: 8px' title='{{localize "ALIENRPG.RollCrit"}}'>
+				{{localize 'ALIENRPG.Health'}}
+			</h2>
+			<div class='resource-content crtuigaItem2'>
+				<button type='button' class='minus-btn' data-action='plusMinusButton' data-pmbut='minusHealth'><i class='fas fa-minus-square fa-xs' title='Minus'></i></button>
+			</div>
+			<div class='resource-content crtuigaItem3'>
+				<input type='text' class='maxboxsize' name='system.header.health.value' value='{{system.header.health.value}}' data-dtype='Number' />
+				<span style='vertical-align: 7px; font-weight:bolder'>/</span>
+				<input type='text' class='maxboxsize' name='system.header.health.calculatedMax' value='{{system.header.health.calculatedMax}}' data-dtype='Number' disabled />
+			</div>
+			<div class='resource-content crtuigaItem4'>
+
+				<button type='button' class='plus-btn' data-action='plusMinusButton' data-pmbut='plusHealth'><i class='fas fa-plus-square fa-xs' title='Plus'></i></button>
+			</div>
+			<h2
+				for='system.header.stress.value'
+				class='resource-label rollable rollable-stress crtuigaItem5'
+				data-action='RollStress'
+				style='padding-left: 0px; margin-left: 0px'
+				title='{{localize "ALIENRPG.RollPanic"}}'
+				data-panicroll='{{system.header.stress.value}}'
+				data-mod='{{system.header.stress.mod}}'
+				data-label='{{localize "ALIENRPG.Stress"}}'
+			>
+				{{localize 'ALIENRPG.Stress'}}
+				<i class='far fa-heart fa-sm'></i>
+			</h2>
+			<div class='resource-content crtuigaItem6'>
+				<button type='button' class='minus-btn' data-action='plusMinusButton' data-pmbut='minusStress'><i class='fas fa-minus-square fa-xs' title='Minus'></i></button>
+			</div>
+			<div class='resource-content crtuigaItem7'>
+				<input type='text' class='maxboxsize' name='system.header.stress.value' value='{{system.header.stress.value}}' data-dtype='Number' />
+			</div>
+			<div class='resource-content crtuigaItem8'>
+				<button type='button' class='plus-btn' data-action='plusMinusButton' data-pmbut='plusStress'><i class='fas fa-plus-square fa-xs' title='Plus'></i></button>
+			</div>
+		</div>
+		{{! Attributes }}
+		<div class='abilities crt-grid-Char-Att'>
+			<h3
+				class='resource-label rollable crt_gCol1'
+				data-action='RollAbility'
+				data-attr='attribute'
+				data-roll='{{system.attributes.str.value}}'
+				data-mod='{{system.attributes.str.mod}}'
+				data-label='{{localize "ALIENRPG.AbilityStr"}}'
+			>
+				{{localize 'ALIENRPG.AbilityStr'}}
+			</h3>
+			<input type='text' class='maxboxsize crt_gCol2' name='system.attributes.str.value' value='{{system.attributes.str.value}}' data-dtype='Number' />
+
+			<h3
+				class='resource-label rollable crt_gCol3'
+				data-action='RollAbility'
+				data-attr='attribute'
+				data-roll='{{system.attributes.wit.value}}'
+				data-mod='{{system.attributes.wit.mod}}'
+				data-label='{{localize "ALIENRPG.AbilityWit"}}'
+			>
+				{{localize 'ALIENRPG.AbilityWit'}}
+			</h3>
+			<input type='text' class='maxboxsize crt_gCol4' name='system.attributes.wit.value' value='{{system.attributes.wit.value}}' data-dtype='Number' />
+
+			<h3 class='resource-label rollable crt_gCol5' data-action='RollAbility' data-roll='{{system.general.armor.value}}' data-spbutt='armor'>
+				{{localize 'ALIENRPG.Armor'}}
+			</h3>
+			<input type='text' class='maxboxsize crt_gCol6' name='system.general.armor.value' value='{{system.general.armor.value}}' data-dtype='Number' disabled />
+
+			<h3
+				class='resource-label rollable crt_gCol7'
+				data-action='RollAbility'
+				data-attr='attribute'
+				data-roll='{{system.attributes.agl.value}}'
+				data-mod='{{system.attributes.agl.mod}}'
+				data-label='{{localize "ALIENRPG.AbilityAgl"}}'
+			>
+				{{localize 'ALIENRPG.AbilityAgl'}}
+			</h3>
+			<input type='text' class='maxboxsize crt_gCol8' name='system.attributes.agl.value' value='{{system.attributes.agl.value}}' data-dtype='Number' />
+
+			<h3
+				class='resource-label rollable crt_gCol9'
+				data-action='RollAbility'
+				data-attr='attribute'
+				data-roll='{{system.attributes.emp.value}}'
+				data-mod='{{system.attributes.emp.mod}}'
+				data-mod='{{system.attributes.emp.mod}}'
+				data-label='{{localize "ALIENRPG.AbilityEmp"}}'
+			>
+				{{localize 'ALIENRPG.AbilityEmp'}}
+			</h3>
+			<input type='text' class='maxboxsize crt_gCol10' name='system.attributes.emp.value' value='{{system.attributes.emp.value}}' data-dtype='Number' />
+
+			{{#if isGM}}
+				<h3 class='resource-label crt_gCol11'>{{localize 'ALIENRPG.NPC'}}</h3>
+				<div class='crt_gCol12 tooltip'>
+					<input class='crt_gCol12 tooltip NPC' name='system.header.npc' type='checkbox' {{checked system.header.npc}} />
+					<span class='tooltiptext'>{{localize 'ALIENRPG.NPCpopUp'}}</span>
+				</div>
+			{{/if}}
+		</div>
+	</div>
+</header>

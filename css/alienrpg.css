@@ -70,16 +70,17 @@
   --color-underline-header: hsl(12, 62%, 29%);
 }
 
-.themed.theme-light {
-  --content-link-text-color: var(--color-light-2);
-}
-
 /* Global styles */
-.alienrpg ul ol {
+ul ol {
   margin-left: 3px;
 }
 
-.alienrpg #context-menu {
+.crit-box {
+  border: 2px double var(--aliengreen);
+  height: 100px;
+}
+
+#context-menu {
   width: auto;
   height: -moz-max-content;
   height: max-content;
@@ -88,7 +89,7 @@
   position: absolute;
   left: -998%;
   top: -50%;
-  background: var(--black);
+  background: hsl(0, 0%, 0%);
   border: 1px solid var(--aliengreen);
   border-radius: 5px;
   color: var(--aliengreen);
@@ -97,21 +98,16 @@
   z-index: 1;
 }
 
-.alienrpg #context-menu li.context-item {
+#context-menu li.context-item {
   line-height: 16px;
   padding: 0px;
 }
 
-.alienrpg .window-content {
-  background: hsl(0, 0%, 0%);
-  border: var(--aliengreen) 1px solid;
-}
-
-.alienrpg form {
+.ALIENRPG.application {
   font-family: var(--alienfont);
   color: var(--aliengreen);
   font-size: var(--fontsize);
-  background: var(--black);
+  background: hsl(0, 0%, 0%);
   flex-direction: column;
   flex-wrap: nowrap;
   padding: 2px;
@@ -129,8 +125,8 @@
 }
 .journal-sheet select {
   font-family: var(--alienfont);
-  color: inherit;
-  background: var(--black);
+  color: var(--aliengreen);
+  background: hsl(0, 0%, 0%);
   border: var(--aliengreen) 3px;
   border: 1px solid hsl(53, 4%, 46%);
   border-radius: 3px;
@@ -140,12 +136,12 @@
 }
 .journal-sheet input {
   font-family: var(--alienfont);
-  color: inherit;
-  background: var(--black) k;
+  color: var(--aliengreen);
+  background: hsl(0, 0%, 0%);
   border: 1px solid var(--aliengreen);
 }
 .journal-sheet button {
-  color: inherit;
+  color: var(--aliengreen);
   background: hsl(0, 0%, 0%);
   border: var(--aliengreen) solid 1px;
   width: 100%;
@@ -156,23 +152,23 @@
 }
 
 a.entity-link {
-  color: var(--white);
-  background: var(--black);
+  color: hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 0%);
 }
 
-.alienrpg a.entity-link {
-  color: var(--white);
-  background: var(--black);
+a.entity-link {
+  color: hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 0%);
 }
 
 a.content-link {
-  color: var(--white);
-  background: var(--black);
+  color: hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 0%);
 }
 
-.alienrpg a.content-link {
-  color: var(--white);
-  background: var(--black);
+a.content-link {
+  color: hsl(0, 0%, 100%);
+  background: hsl(0, 0%, 0%);
 }
 
 #chat .message {
@@ -185,7 +181,7 @@ a.content-link {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: inherit;
+  color: var(--aliengreen);
 }
 .chat-message .message-header .message-sender {
   color: var(--aliengreen);
@@ -241,15 +237,15 @@ a.content-link {
 .dice-tooltip {
   border: 1px solid var(--aliengreen);
   border-radius: 1px;
-  background: var(--black);
+  background: hsl(0, 0%, 0%);
 }
 .dice-tooltip .dice-rolls {
-  color: inherit;
-  background: var(--black);
+  color: var(--aliengreen);
+  background: hsl(0, 0%, 0%);
 }
 .dice-tooltip .part-header {
-  color: inherit;
-  background: var(--black);
+  color: var(--aliengreen);
+  background: hsl(0, 0%, 0%);
 }
 
 .dice-tooltip .dice-rolls .roll {
@@ -265,14 +261,15 @@ a.content-link {
 }
 
 .inline-roll .dice-tooltip {
-  color: inherit;
-  background: var(--black);
+  color: var(--aliengreen);
+  background: hsl(0, 0%, 0%);
   border: 2px solid var(--aliengreen);
   border-radius: 2px;
 }
 
 a.inline-roll {
-  background: var(--black);
+  background: hsl(0, 0%, 0%);
+  color: var(--aliengreen);
   padding: 1px 4px;
   border: 1px solid var(--aliengreen);
   border-radius: 2px;
@@ -286,46 +283,46 @@ a.inline-roll {
 }
 
 .dice-tooltip .part-header .part-formula {
-  color: inherit;
+  color: var(--aliengreen);
 }
 
 .part-total {
-  color: inherit;
+  color: var(--aliengreen);
 }
 
-.alienrpg h2,
+.ALIENRPG h2,
 .chat-message h2 {
+  font-family: var(--alienfont);
+  font-size: 1.5em;
+  font-weight: normal;
+  color: var(--aliengreen);
   border: 0;
   padding: 0;
   margin: 1px;
   margin-left: 5px;
   margin-block-end: 1px;
-  color: var(--aliengreen);
 }
 
-.alienrpg h3,
+.ALIENRPG h3,
 .chat-message h3 {
+  font-family: var(--alienfont);
+  font-size: 1.25em;
+  font-weight: normal;
+  color: var(--aliengreen);
   border: 0;
   padding: 0;
   margin: 1px;
 }
 
-.alienrpg h4,
+.ALIENRPG h4,
 .chat-message h4 {
+  font-family: var(--alienfont);
+  font-weight: normal;
+  font-size: var(--fontsize);
+  color: var(--aliengreen);
   border: 0;
   padding: 0;
   margin: 1px;
-  font-size: var(--fontsize);
-}
-
-.resource-content button {
-  flex: 0;
-  border: 0;
-  width: 30px;
-  font-size: 1.5rem;
-  padding: 0;
-  color: inherit;
-  margin: 0;
 }
 
 .rollable:hover,
@@ -393,9 +390,13 @@ a.inline-roll {
 }
 
 .supply-btn {
-  font-size: 5px;
+  flex: 0;
+  border: 0;
+  width: 30px;
+  font-size: 1em;
   padding: 0;
-  font-family: var(--alienfont);
+  color: var(--aliengreen);
+  margin: 0;
 }
 
 .pwr-btn:hover, .pwr-btn:focus {
@@ -406,9 +407,10 @@ a.inline-roll {
 }
 
 .stunt-btn {
-  width: 5px;
   padding: 0;
   font-family: var(--alienfont);
+  margin: 0px;
+  font-size: 1em;
 }
 
 .creature-attack-roll {
@@ -416,7 +418,7 @@ a.inline-roll {
   width: 280px;
   height: 40px;
   font-weight: bold;
-  font-size: 2em;
+  font-size: 1.6em;
   text-shadow: 2px 2px hsl(128, 83%, 25%);
   border: 2px solid var(--aliengreen);
   border-radius: 25px;
@@ -448,9 +450,9 @@ button:focus {
   display: inline-block;
   width: 260px;
   height: 45px;
-  background-color: var(--black);
+  background-color: hsl(0, 0%, 0%);
   font-weight: bold;
-  font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
+  font-size: clamp(2em, -4.5em + 5vw, 3em);
   font-family: var(--alienfont);
   padding-bottom: 5px;
   border: 2px solid var(--aliengreen);
@@ -473,7 +475,7 @@ button:focus {
   border-radius: 25px;
   color: var(--aliengreen);
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1em;
   font-family: var(--alienfont);
   line-height: inherit;
 }
@@ -537,7 +539,7 @@ button:focus {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 250px;
-  background-color: var(--black);
+  background-color: hsl(0, 0%, 0%);
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
@@ -573,7 +575,7 @@ button:focus {
 
 .tooltip2 .tooltiptext2 {
   visibility: hidden;
-  background-color: var(--black);
+  background-color: hsl(0, 0%, 0%);
   text-align: center;
   border-radius: 6px;
   position: absolute;
@@ -603,9 +605,9 @@ button:focus {
   visibility: visible;
 }
 
-.alienrpg .inputtext {
+.inputtext {
   color: inherit;
-  background-color: var(--black);
+  background-color: hsl(0, 0%, 0%);
 }
 
 .box-top {
@@ -615,21 +617,23 @@ button:focus {
 .ctooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted var(--black);
+  border-bottom: 1px dotted hsl(0, 0%, 0%);
 }
 
 /* Tooltip text */
 .ctooltip .ctooltiptext {
-  font-size: small;
+  position: absolute;
+  z-index: 1;
   visibility: hidden;
   width: 150px;
-  background-color: var(--black);
+  background-color: hsl(0, 0%, 0%);
   color: var(--aliengreen);
   text-align: center;
   border-radius: 3px;
   padding: 2px 0;
-  position: absolute;
-  z-index: 1;
+  right: 29px;
+  width: auto;
+  font-size: initial;
   margin-left: -150px;
   border-style: solid;
   border-color: var(--aliengreen);
@@ -690,11 +694,11 @@ button:focus {
 }
 
 .prosemirror.editing-source textarea {
-  color: var(--white);
+  color: hsl(0, 0%, 100%);
 }
 
 .prosemirror menu .pm-dropdown {
-  /* color: hsl(0, 0%, 0%); */
+  color: hsl(0, 0%, 0%);
 }
 
 #overlay {
@@ -716,7 +720,7 @@ button:focus {
 .overwatch {
   display: inline-flex;
   margin-top: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   margin-left: 7px;
 }
 
@@ -1439,8 +1443,14 @@ button:focus {
 
 .grid-genPage {
   display: grid;
-  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item8 Item4 Item4" "Item8 Item5 Item5" "Item8 Item3 Item3" "Item9 Item6 Item6" "Item10 Item7 Item7" "Item11 Item11 Item11";
+  grid-template-areas: "Item1 Item2 Item2" "Item1 Item4 Item4" "Item3 Item4 Item4" "Item5 Item4 Item4" "Item6 Item4 Item4";
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-genPage-enh {
+  display: grid;
+  grid-template-areas: "Item1 Item1 Item2 Item2" "Item3 Item7 Item4 Item4" "Item6 Item6 Item4 Item4" "Item6 Item6 Item4 Item4" "Item8 Item8 Item8 Item8";
+  grid-template-columns: 206px 194px 200px 200px;
 }
 
 .Item1 {
@@ -1458,9 +1468,7 @@ button:focus {
 .Item3 {
   grid-area: Item3;
   border: 1px solid var(--aliengreen);
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 5px;
 }
 
 .Item4 {
@@ -1475,25 +1483,20 @@ button:focus {
   grid-area: Item5;
   border: 1px solid var(--aliengreen);
   padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-bottom: 5px;
 }
 
 .Item6 {
   grid-area: Item6;
   border: 1px solid var(--aliengreen);
   padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-bottom: 5px;
 }
 
 .Item7 {
   grid-area: Item7;
   border: 1px solid var(--aliengreen);
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  height: auto;
+  padding: 5px;
 }
 
 .Item8 {
@@ -1787,11 +1790,10 @@ button:focus {
   display: grid;
   margin: 0;
   padding: 0;
-  padding-left: 5px;
   align-items: center;
   border: 1px solid var(--aliengreen);
   grid-template-areas: "Attr1 Attr2 Attr3";
-  grid-template-columns: 300px 35px 30px;
+  grid-template-columns: 286px 45px 34px;
 }
 
 .Attr1 {
@@ -1804,8 +1806,6 @@ button:focus {
 
 .Attr3 {
   grid-area: Attr3;
-  width: 30px;
-  height: 20px;
 }
 
 .Attr4 {
@@ -1814,8 +1814,8 @@ button:focus {
 
 .grid-Consumables {
   display: grid;
-  grid-template-areas: "Heading Heading " "Air1 Air2" "Food1 Food2" "Water1 Water2" "Power1 Power2";
-  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "Heading Heading Heading" "Air1 Air2 Air3" "Food1 Food2 Food3" "Water1 Water2 Water3" "Power1 Power2 Power3";
+  grid-template-columns: 119px 49px 34px;
 }
 
 .Heading {
@@ -1831,6 +1831,11 @@ button:focus {
 
 .Air2 {
   grid-area: Air2;
+  align-self: center;
+}
+
+.Air3 {
+  grid-area: Air3;
 }
 
 .Food1 {
@@ -1841,6 +1846,11 @@ button:focus {
 
 .Food2 {
   grid-area: Food2;
+  align-self: center;
+}
+
+.Food3 {
+  grid-area: Food3;
 }
 
 .Power1 {
@@ -1851,6 +1861,11 @@ button:focus {
 
 .Power2 {
   grid-area: Power2;
+  align-self: center;
+}
+
+.Power3 {
+  grid-area: Power3;
 }
 
 .Water1 {
@@ -1861,6 +1876,11 @@ button:focus {
 
 .Water2 {
   grid-area: Water2;
+  align-self: center;
+}
+
+.Water3 {
+  grid-area: Water3;
 }
 
 .grid-vehicle-header {
@@ -1984,9 +2004,9 @@ button:focus {
 
 .grid-weapon-body {
   display: grid;
-  grid-template-areas: "wCol1 wCol2 wCol3 wCol4 wCol5 wCol6" "wCol7 wCol8 wCol9 wCol10 wCol11 wCol12" "wCol13 wCol14 . . . .";
+  grid-template-areas: "wCol1 wCol2 wCol3 wCol4 wCol5 wCol6" "wCol7 wCol8 wCol9 wCol10 wCol11 wCol12" "wCol13 wCol14 wCol15 wCol16 wCol17 wCol18";
   padding-bottom: 2px;
-  grid-template-columns: 1fr 1.2fr 0.81fr 0.5fr 0.5fr 1fr;
+  grid-template-columns: 100px 115px 100px 115px 140px 41px;
   align-items: center;
 }
 
@@ -2058,6 +2078,26 @@ button:focus {
 .wCol14 {
   grid-area: wCol14;
   justify-self: left;
+}
+
+.wCol15 {
+  grid-area: wCol15;
+  justify-self: left;
+}
+
+.wCol16 {
+  grid-area: wCol16;
+  justify-self: left;
+}
+
+.wCol17 {
+  grid-area: wCol17;
+  justify-self: left;
+}
+
+.wCol18 {
+  grid-area: wCol18;
+  justify-self: center;
 }
 
 .grid-items {
@@ -2317,37 +2357,80 @@ button:focus {
   justify-self: right;
 }
 
-.critical-inj {
-  display: grid;
-  grid-template-areas: "crit1 crit2 crit3 crit4";
-  grid-template-columns: 5% 31% 60% 3%;
-  align-items: center;
-}
-
-.crit1 {
-  grid-area: crit1;
+.crit1a {
+  grid-area: crit1a;
   justify-self: left;
   padding-right: 4px;
 }
 
-.crit2 {
-  grid-area: crit2;
+.crit2a {
+  grid-area: crit2a;
   justify-self: left;
   font-weight: bold;
   padding-right: 8px;
 }
 
-.crit3 {
-  grid-area: crit3;
+.crit3a {
+  grid-area: crit3a;
   justify-self: left;
   font-weight: bold;
   padding-right: 8px;
   align-items: left;
 }
 
-.crit4 {
-  grid-area: crit4;
+.crit4a {
+  grid-area: crit4a;
   justify-self: right;
+}
+
+.critical-inj-wide {
+  display: grid;
+  grid-template-areas: "crit1w crit2w crit3w crit4w";
+  grid-template-columns: 24px 155px 505px 20px;
+  align-items: center;
+}
+
+.crit1w {
+  grid-area: crit1w;
+  justify-self: left;
+  padding-right: 4px;
+}
+
+.crit2w {
+  grid-area: crit2w;
+  justify-self: left;
+  font-weight: bold;
+  padding-right: 8px;
+}
+
+.crit3w {
+  grid-area: crit3w;
+  justify-self: left;
+  font-weight: bold;
+  padding-right: 8px;
+  align-items: left;
+}
+
+.crit4w {
+  grid-area: crit4w;
+  justify-self: right;
+}
+
+.grid-crit {
+  display: grid;
+  grid-template-areas: "crit1 crit2 ";
+  padding: 0;
+  margin: 0;
+  grid-template-columns: 1fr 1fr;
+}
+
+.crit1 {
+  grid-area: crit1;
+}
+
+.crit2 {
+  grid-area: crit2;
+  margin-bottom: 2px;
 }
 
 .space-critical-inj {
@@ -2419,6 +2502,7 @@ button:focus {
 .box11 {
   grid-area: box11;
   justify-self: center;
+  font-size: 1.6em;
 }
 
 .box21 {
@@ -2450,29 +2534,13 @@ button:focus {
 .box11b {
   grid-area: box11b;
   justify-self: center;
+  font-size: 1.6em;
 }
 
 .box21b {
   grid-area: box21b;
   justify-self: right;
   padding-right: 8px;
-}
-
-.grid-crit {
-  display: grid;
-  grid-template-areas: "crit1 crit2 ";
-  padding: 0;
-  margin: 0;
-  grid-template-columns: 1fr 1fr;
-}
-
-.crit1 {
-  grid-area: crit1;
-}
-
-.crit2 {
-  grid-area: crit2;
-  margin-bottom: 2px;
 }
 
 .grid-rTables {
@@ -2493,6 +2561,127 @@ button:focus {
   grid-area: rTable2;
   justify-self: center;
   padding-right: 8px;
+}
+
+.grid-actor {
+  display: grid;
+  border: 2px solid var(--aliengreen);
+  grid-template-areas: "gaItem1 gaItem2 gaItem3 gaItem4 gaItem5 gaItem6 gaItem7 gaItem8";
+  grid-template-columns: 100px 30px 115px 60px 140px 30px 58px 27px;
+}
+
+.grid-synth {
+  display: grid;
+  border: 2px solid var(--aliengreen);
+  grid-template-areas: "gaItem1 gaItem2 gaItem3 gaItem4 gaItem5 gaItem6 gaItem7";
+  grid-template-columns: 100px 30px 115px 60px 140px 120px 24px;
+}
+
+.gaItem1 {
+  grid-area: gaItem1;
+  align-self: center;
+  justify-items: center;
+}
+
+.gaItem2 {
+  grid-area: gaItem2;
+  align-self: center;
+  justify-items: center;
+}
+
+.gaItem3 {
+  grid-area: gaItem3;
+  align-self: center;
+  justify-items: center;
+}
+
+.gaItem4 {
+  grid-area: gaItem4;
+  align-self: center;
+  justify-items: center;
+}
+
+.gaItem5 {
+  grid-area: gaItem5;
+  align-self: center;
+  justify-items: center;
+}
+
+.gaItem6 {
+  grid-area: gaItem6;
+  align-self: center;
+  justify-items: center;
+}
+
+.gaItem7 {
+  grid-area: gaItem7;
+  align-self: center;
+  justify-items: center;
+}
+
+.gaItem8 {
+  grid-area: gaItem8;
+  align-self: center;
+  justify-items: center;
+}
+
+.crtui-grid-actor {
+  display: grid;
+  border: 2px solid var(--aliengreen);
+  grid-template-areas: "crtuigaItem1 crtuigaItem2 crtuigaItem3 crtuigaItem4 crtuigaItem5 crtuigaItem6 crtuigaItem7 crtuigaItem8";
+  grid-template-columns: 105px 26px 97px 30px 168px 24px 45px 27px;
+}
+
+.crtuigaItem1 {
+  grid-area: crtuigaItem1;
+  align-self: center;
+  justify-items: center;
+  margin-top: 3px;
+}
+
+.crtuigaItem2 {
+  grid-area: crtuigaItem2;
+  align-self: center;
+  justify-items: center;
+}
+
+.crtuigaItem3 {
+  grid-area: crtuigaItem3;
+  align-self: center;
+  justify-items: center;
+  margin-top: 3px;
+}
+
+.crtuigaItem4 {
+  grid-area: crtuigaItem4;
+  align-self: center;
+  justify-items: center;
+}
+
+.crtuigaItem5 {
+  grid-area: crtuigaItem5;
+  align-self: center;
+  justify-items: center;
+  margin-top: 3px;
+}
+
+.crtuigaItem6 {
+  grid-area: crtuigaItem6;
+  align-self: center;
+  justify-items: center;
+}
+
+.crtuigaItem7 {
+  grid-area: crtuigaItem7;
+  align-self: center;
+  justify-items: center;
+  margin-top: 3px;
+}
+
+.crtuigaItem8 {
+  grid-area: crtuigaItem8;
+  align-self: center;
+  justify-items: center;
 }
 
 .grid-creature {
@@ -2535,7 +2724,7 @@ button:focus {
   grid-area: vCre8;
 }
 
-.grid-colony--header {
+.grid-planet-header {
   display: grid;
   border: 2px solid var(--aliengreen);
   grid-template-areas: "hplan1 hplan2 " "hplan3 hplan4" "hplan5 hplan6 " "hplan7 hplan8";
@@ -2578,10 +2767,9 @@ button:focus {
 
 .grid-planet {
   display: grid;
-  margin: 0;
   padding: 0;
-  grid-template-areas: "plan1 plan1 plan1 plan1" "plan2 plan2 plan3 plan3 " "plan4 plan4 plan4 plan4 ";
-  grid-template-columns: 220px 1fr;
+  grid-template-areas: "plan1 plan1 plan1 plan1" "plan2 plan2 plan3 plan3" "plan4 plan9 plan9 plan9" "plan5 plan5 plan5 plan5" "plan6 plan6 plan6 plan6" "plan7 plan7 plan7 plan7" "plan8 plan8 plan8 plan8";
+  grid-template-columns: 157px 239px 162px 68px;
 }
 
 .plan1 {
@@ -2602,6 +2790,31 @@ button:focus {
 
 .plan4 {
   grid-area: plan4;
+  justify-self: left;
+}
+
+.plan5 {
+  grid-area: plan5;
+  justify-self: left;
+}
+
+.plan6 {
+  grid-area: plan6;
+  justify-self: left;
+}
+
+.plan7 {
+  grid-area: plan7;
+  justify-self: left;
+}
+
+.plan8 {
+  grid-area: plan8;
+  justify-self: left;
+}
+
+.plan9 {
+  grid-area: plan9;
   justify-self: left;
 }
 
@@ -2849,10 +3062,16 @@ button:focus {
   grid-area: gC8;
 }
 
+.grid-spacecraft-crew {
+  display: grid;
+  grid-template-areas: "gSC1 gSC2 gSC3 gSC4 gSC5" " gSC6 gSC7 gSC8 gSC9 gSC10";
+  grid-template-columns: 250px 180px 150px 58px 50px;
+}
+
 .grid-ship-crew {
   display: grid;
   grid-template-areas: "gSC1 gSC2 gSC3 gSC4 gSC5" " gSC6 gSC7 gSC8 gSC9 gSC10";
-  grid-template-columns: 43% 25% 20% 6%;
+  grid-template-columns: 300px 190px 166px 78px 50px;
 }
 
 .gSC1 {
@@ -2887,6 +3106,7 @@ button:focus {
 
 .gSC7 {
   justify-self: center;
+  margin-left: 20px;
   grid-area: gSC7;
 }
 
@@ -2903,30 +3123,6 @@ button:focus {
 .gSC10 {
   justify-self: right;
   grid-area: gSC10;
-}
-
-.grid-actor {
-  display: grid;
-  padding-top: 10px;
-  border: 2px solid var(--aliengreen);
-  grid-template-areas: "gaItem1 gaItem2 gaItem3 gaItem4";
-  grid-template-columns: 20% 34% 20% 30%;
-}
-
-.gaItem1 {
-  grid-area: gaItem1;
-}
-
-.gaItem2 {
-  grid-area: gaItem2;
-}
-
-.gaItem3 {
-  grid-area: gaItem3;
-}
-
-.gaItem4 {
-  grid-area: gaItem4;
 }
 
 .grid-colony-planet1 {
@@ -3924,6 +4120,27 @@ button:focus {
   grid-area: gclv6;
 }
 
+.grid-combat-phases {
+  display: grid;
+  grid-template-areas: "combatphases1 combatphases2 combatphases3";
+  grid-template-columns: 400px 300px 200px;
+}
+
+.combatphases1 {
+  grid-area: combatphases1;
+  border: 1px solid var(--aliengreen);
+}
+
+.combatphases2 {
+  grid-area: combatphases2;
+  border: 1px solid var(--aliengreen);
+}
+
+.combatphases3 {
+  grid-area: combatphases3;
+  border: 1px solid var(--aliengreen);
+}
+
 .flex-center {
   align-items: center;
   justify-content: center;
@@ -3935,56 +4152,56 @@ button:focus {
   justify-content: space-between;
 }
 
-.alienrpg .flexcol {
+.ALIENRPG .flexcol {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 }
 
-.alienrpg .flexcol .flex1 {
+.ALIENRPG .flexcol .flex1 {
   flex: 1;
 }
 
-.alienrpg .flexcol .flex2 {
+.ALIENRPG .flexcol .flex2 {
   flex: 2;
 }
 
-.alienrpg .flexcol .flex3 {
+.ALIENRPG .flexcol .flex3 {
   flex: 3;
 }
 
-.alienrpg .alienrpg .flexcol .flex4 {
+.ALIENRPG .ALIENRPG .flexcol .flex4 {
   flex: 4;
 }
 
-.alienrpg .flexrow {
+.ALIENRPG .flexrow {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
 
-.alienrpg .flexrow > * {
+.ALIENRPG .flexrow > * {
   flex: 1;
 }
 
-.alienrpg .flexrow .flex1 {
+.ALIENRPG .flexrow .flex1 {
   flex: 1;
 }
 
-.alienrpg .flexrow .flex2 {
+.ALIENRPG .flexrow .flex2 {
   flex: 2;
 }
 
-.alienrpg .flexrow .flex3 {
+.ALIENRPG .flexrow .flex3 {
   flex: 3;
 }
 
-.alienrpg .flexrow .flex4 {
+.ALIENRPG .flexrow .flex4 {
   flex: 4;
 }
 
-.alienrpg.actor .encumbrance {
+.ALIENRPG.actor .encumbrance {
   background: hsla(0, 0%, 0%, 0.1);
   height: 12px;
   margin-top: 5px;
@@ -3994,7 +4211,7 @@ button:focus {
   width: calc(100% - 20px);
 }
 
-.alienrpg.actor .encumbrance .encumbrance-bar {
+.ALIENRPG.actor .encumbrance .encumbrance-bar {
   position: absolute;
   top: 1px;
   left: 1px;
@@ -4004,7 +4221,7 @@ button:focus {
   border-radius: 3px;
 }
 
-.alienrpg.actor .encumbrance .encumbrance-label {
+.ALIENRPG.actor .encumbrance .encumbrance-label {
   position: absolute;
   top: -3px;
   height: 16px;
@@ -4015,12 +4232,12 @@ button:focus {
   padding: 0 3px;
 }
 
-.alienrpg.actor .encumbrance .encumbrance-breakpoint {
+.ALIENRPG.actor .encumbrance .encumbrance-breakpoint {
   position: absolute;
   left: 50%;
 }
 
-.alienrpg.actor .encumbrance .arrow-up {
+.ALIENRPG.actor .encumbrance .arrow-up {
   bottom: 0;
   width: 0;
   height: 0;
@@ -4029,7 +4246,7 @@ button:focus {
   border-bottom: 4px solid hsl(0, 0%, 40%);
 }
 
-.alienrpg.actor .encumbrance .arrow-down {
+.ALIENRPG.actor .encumbrance .arrow-down {
   top: 0;
   width: 0;
   height: 0;
@@ -4038,15 +4255,15 @@ button:focus {
   border-top: 4px solid hsl(0, 0%, 40%);
 }
 
-.alienrpg.actor .encumbrance.encumbered .arrow-up {
+.ALIENRPG.actor .encumbrance.encumbered .arrow-up {
   border-bottom: 4px solid hsl(0, 0%, 100%);
 }
 
-.alienrpg.actor .encumbrance.encumbered .arrow-down {
+.ALIENRPG.actor .encumbrance.encumbered .arrow-down {
   border-top: 4px solid hsl(0, 0%, 100%);
 }
 
-.alienrpg.actor .encumbrance.encumbered .encumbrance-bar {
+.ALIENRPG.actor .encumbrance.encumbered .encumbrance-bar {
   position: absolute;
   top: 1px;
   left: 1px;
@@ -4075,7 +4292,7 @@ button:focus {
   }
 }
 /* @end */
-.alienrpg #rcorners {
+.ALIENRPG #rcorners {
   border-radius: 15px;
   background-color: #c7d9c4;
   background-position: left top;
@@ -4091,14 +4308,14 @@ button:focus {
   font-size: 15px;
   font-family: var(--alienfont);
   font-weight: 700;
-  color: inherit;
+  color: var(--aliengreen);
   line-height: 15px;
   width: 100%;
   max-width: 90%; /* useful when width is set to anything other than 100% */
   box-sizing: border-box;
   margin: 0;
   border: 1px solid var(--aliengreen);
-  box-shadow: 0 1px 0 1px hsla(0, 0%, 0%, 0.04);
+  box-shadow: 0 1px 0 1px var(--black);
   border-radius: 0.5em;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -4131,15 +4348,15 @@ button:focus {
   /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
   box-shadow: 0 0 1px 1px var(--aliengreen);
   box-shadow: 0 0 0 1px -moz-mac-focusring var(--aliengreen);
-  color: inherit;
+  color: var(--aliengreen);
   outline: none;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
 }
 
 /* Set options to normal weight */
 .select-css option {
   font-weight: normal;
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
 }
 
 /* Support for rtl text, explicit support for Arabic and Hebrew */
@@ -4314,13 +4531,13 @@ button:focus {
   border-radius: 7px 7px 0px 0px;
 }
 
-.alienrpg input[type=text],
-.alienrpg input[type=number],
-.alienrpg input[type=password],
-.alienrpg input[type=date],
-.alienrpg input[type=time] {
+.ALIENRPG input[type=text],
+.ALIENRPG input[type=number],
+.ALIENRPG input[type=password],
+.ALIENRPG input[type=date],
+.ALIENRPG input[type=time] {
   border-radius: 0px;
-  border: 1px solid var(--aliengreen);
+  /* border: 1px solid var(--aliengreen); */
 }
 
 input[type=text]:hover,
@@ -4415,9 +4632,10 @@ combobox:focus {
 #pause h3 {
   font-size: 32px;
   text-shadow: 0px 3px 5px rgb(0, 0, 0);
+  font-weight: normal;
 }
 
-.alienrpg #context-menu li.context-item {
+.ALIENRPG #context-menu li.context-item {
   line-height: 1.55;
 }
 
@@ -4591,7 +4809,7 @@ combobox:focus {
   color: hsl(0, 0%, 0%);
 }
 
-.alienrpg .arpgtable {
+.alienprg .arpgtable {
   height: 36px;
   width: 80%;
   /* border-style: double;
@@ -4601,17 +4819,17 @@ combobox:focus {
   border: 0;
 }
 
-.alienrpg .arpgtable tr:nth-child(even) {
+.alienprg .arpgtable tr:nth-child(even) {
   background-color: transparent;
 }
 
-.alienrpg .caption {
+.alienprg .caption {
   text-align: center;
   color: greenyellow;
   font-size: xx-large;
 }
 
-.alienrpg .arpgtablesmall {
+.alienprg .arpgtablesmall {
   height: 36px;
   width: 34%;
   /* border-style: double;
@@ -4621,51 +4839,51 @@ combobox:focus {
   border: 0;
 }
 
-.alienrpg .arpgtablesmall tr:nth-child(even) {
+.alienprg .arpgtablesmall tr:nth-child(even) {
   background-color: transparent;
 }
 
-.alienrpg .tdstyle {
+.alienprg .tdstyle {
   width: 40%;
   height: 18px;
   text-align: left;
 }
 
-.alienrpg .tdstyleR {
+.alienprg .tdstyleR {
   width: 40%;
   height: 18px;
   text-align: Right;
 }
 
-.alienrpg .tdstyleC {
+.alienprg .tdstyleC {
   width: 100%;
   height: 18px;
   text-align: center;
 }
 
-.alienrpg .tdstyle3D {
+.alienprg .tdstyle3D {
   width: 30%;
   height: 18px;
   text-align: center;
 }
 
-.alienrpg .tdstyle2D {
+.alienprg .tdstyle2D {
   width: 50%;
   height: 18px;
   text-align: center;
 }
 
-.alienrpg .arpglink {
+.alienprg .arpglink {
   background-color: white;
   color: black;
 }
 
-.alienrpg .mess {
+.alienprg .mess {
   color: yellowgreen;
   font-family: "Courier New", Courier, monospace;
 }
 
-.alienrpg .ntable {
+.alienprg .ntable {
   width: 99%;
   /* border-style: double;
          border-color: greenyellow; */
@@ -4676,31 +4894,31 @@ combobox:focus {
   padding-bottom: 0;
 }
 
-.alienrpg .ntable tr:nth-child(even) {
+.alienprg .ntable tr:nth-child(even) {
   background-color: transparent;
 }
 
-.alienrpg .trhead {
+.alienprg .trhead {
   text-align: center;
   width: 45%;
   font-weight: bold;
 }
 
-.alienrpg .tcol1 {
+.alienprg .tcol1 {
   width: 2.5%;
 }
 
-.alienrpg .tcol2 {
+.alienprg .tcol2 {
   width: 45%;
   text-align: justify;
   vertical-align: top;
 }
 
-.alienrpg .tcol3 {
+.alienprg .tcol3 {
   width: 5%;
 }
 
-.alienrpg .etable {
+.alienprg .etable {
   width: 40%;
   /* border-style: double; */
   margin-left: auto;
@@ -4712,38 +4930,38 @@ combobox:focus {
   padding-bottom: 0;
 }
 
-.alienrpg .etable td:first-child {
+.alienprg .etable td:first-child {
   padding-left: 5px;
 }
 
-.alienrpg .etr {
+.alienprg .etr {
   /* border-style: solid;
          border-color: greenyellow; */
   border: 1;
 }
 
-.alienrpg .ehead {
+.alienprg .ehead {
   text-align: center;
   font-weight: bold;
 }
 
-.alienrpg .ecol1 {
+.alienprg .ecol1 {
   width: 50%;
   text-align: center;
 }
 
-.alienrpg .ecol2 {
+.alienprg .ecol2 {
   width: 50%;
   text-align: center;
 }
 
-.alienrpg .ecol3 {
+.alienprg .ecol3 {
   width: 3%;
   /* border-left: greenyellow;
          border-style: solid; */
 }
 
-.alienrpg .stable {
+.alienprg .stable {
   width: 90%;
   border-style: double;
   border-color: #e92d2d;
@@ -4755,55 +4973,55 @@ combobox:focus {
   border-right: none;
 }
 
-.alienrpg .strhead {
+.alienprg .strhead {
   text-align: center;
   font-weight: bold;
 }
 
-.alienrpg .scol1 {
+.alienprg .scol1 {
   width: 16%;
 }
 
-.alienrpg .scol2 {
+.alienprg .scol2 {
   width: 3%;
 }
 
-.alienrpg .scol3 {
+.alienprg .scol3 {
   width: 80%;
 }
 
-.alienrpg .scol4 {
+.alienprg .scol4 {
   width: 25%;
 }
 
-.alienrpg .scol5 {
+.alienprg .scol5 {
   width: 60%;
   text-align: left;
 }
 
-.alienrpg .scol6 {
+.alienprg .scol6 {
   width: 90%;
 }
 
-.alienrpg .scol7 {
+.alienprg .scol7 {
   width: 20%;
   text-align: left;
 }
 
-.alienrpg .scol8 {
+.alienprg .scol8 {
   width: 65%;
   text-align: left;
 }
 
-.alienrpg .scol9 {
+.alienprg .scol9 {
   width: 12%;
 }
 
-.alienrpg .scol10 {
+.alienprg .scol10 {
   width: 50%;
 }
 
-.alienrpg .skltable {
+.alienprg .skltable {
   width: 35%;
   /* border-style: double; */
   /* border-color: #e92d2d; */
@@ -4812,7 +5030,7 @@ combobox:focus {
   border: 1;
 }
 
-.alienrpg .oddstable {
+.alienprg .oddstable {
   width: 96%;
   height: 16px;
   border-style: double;
@@ -4825,23 +5043,23 @@ combobox:focus {
   border-right: none;
 }
 
-.alienrpg .oddstable tr:nth-child(even) {
+.alienprg .oddstable tr:nth-child(even) {
   background-color: transparent;
 }
 
-.alienrpg .oddstable tr:nth-child(odd) {
+.alienprg .oddstable tr:nth-child(odd) {
   background-color: #3a3d3f;
 }
 
-.alienrpg .oddhead {
+.alienprg .oddhead {
   font-weight: bold;
 }
 
-.alienrpg .oddcol1 {
+.alienprg .oddcol1 {
   width: 25%;
 }
 
-.alienrpg .oddcol2 {
+.alienprg .oddcol2 {
   width: 39%;
 }
 
@@ -4849,11 +5067,11 @@ combobox:focus {
   width: 36%;
 }
 
-.alienrpg .oddcol4 {
+.alienprg .oddcol4 {
   width: 40%;
 }
 
-.alienrpg .bigtable {
+.alienprg .bigtable {
   width: 99%;
   border-style: double;
   border-color: #e92d2d;
@@ -4865,56 +5083,56 @@ combobox:focus {
   border-right: none;
 }
 
-.alienrpg .bigtable tr:nth-child(even) {
+.alienprg .bigtable tr:nth-child(even) {
   background-color: transparent;
 }
 
-.alienrpg .bigtable tr:nth-child(odd) {
+.alienprg .bigtable tr:nth-child(odd) {
   background-color: #3a3d3f;
 }
 
-.alienrpg .die {
+.alienprg .die {
   width: 6%;
   text-align: center;
 }
 
-.alienrpg .inj {
+.alienprg .inj {
   width: 16%;
 }
 
-.alienrpg .fatal {
+.alienprg .fatal {
   width: 6%;
 }
 
-.alienrpg .tim {
+.alienprg .tim {
   width: 7%;
   text-align: center;
 }
 
-.alienrpg .eff {
+.alienprg .eff {
   width: 56%;
 }
 
-.alienrpg .heal {
+.alienprg .heal {
   width: 15%;
   text-align: center;
 }
 
-.alienrpg .crit {
+.alienprg .crit {
   width: 19%;
   text-align: center;
 }
 
-.alienrpg .eff2 {
+.alienprg .eff2 {
   width: 55%;
 }
 
 /* V10 work */
-.alienrpg .aframe {
+.alienprg .aframe {
   position: relative;
 }
 
-.alienrpg .leftcol {
+.alienprg .leftcol {
   position: absolute;
   width: 45%;
   left: 1.2%;
@@ -4922,7 +5140,7 @@ combobox:focus {
   /* background: #855f5f; */
 }
 
-.alienrpg .rightcol {
+.alienprg .rightcol {
   position: absolute;
   width: 45%;
   left: 50%;
@@ -4930,34 +5148,34 @@ combobox:focus {
   /* background: rgb(174, 174, 110); */
 }
 
-.alienrpg .heading {
+.alienprg .heading {
   color: var(--aliengreen);
   font-size: 28px;
   border-bottom: 2px solid var(--color-underline-header);
 }
 
-.alienrpg .heading2 {
+.alienprg .heading2 {
   text-align: center;
   color: var(--aliengreen);
   /* font-size: x-large; */
 }
 
-.alienrpg .heading3 {
+.alienprg .heading3 {
   color: var(--aliengreen);
 }
 
-.alienrpg .imagecontainer {
+.alienprg .imagecontainer {
   position: relative;
   text-align: center;
   color: white;
 }
 
 /* Import settings */
-.alienrpg .container {
+.alienprg .container {
   width: 100%;
 }
 
-.alienrpg .listHeading {
+.alienprg .listHeading {
   text-align: center;
   vertical-align: middle;
   padding: 10px 0px;
@@ -4965,28 +5183,28 @@ combobox:focus {
   margin-bottom: 10px;
 }
 
-.alienrpg .twogridcol {
+.alienprg .twogridcol {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 50%));
 }
 
-.alienrpg .twogridcol input[type=checkbox] {
+.alienprg .twogridcol input[type=checkbox] {
   vertical-align: middle;
 }
 
-.alienrpg .actors.content {
+.alienprg .actors.content {
   background: lightgray;
 }
 
-.alienrpg .actors.content.toggle-display {
+.alienprg .actors.content.toggle-display {
   display: none;
 }
 
-.alienrpg .items.content {
+.alienprg .items.content {
   background: lightgray;
 }
 
-.alienrpg .items.content.toggle-display {
+.alienprg .items.content.toggle-display {
   display: none;
 }
 
@@ -4996,44 +5214,44 @@ combobox:focus {
   border-bottom: 1px solid var(--color-underline-header);
 }
 
-.alienrpg .journal.content {
+.alienprg .journal.content {
   background: lightgray;
 }
 
-.alienrpg .journal.content.toggle-display {
+.alienprg .journal.content.toggle-display {
   display: none;
 }
 
-.alienrpg .scenes.content {
+.alienprg .scenes.content {
   background: lightgray;
 }
 
-.alienrpg .scenes.content.toggle-display {
+.alienprg .scenes.content.toggle-display {
   display: none;
 }
 
-.alienrpg .tables.content {
+.alienprg .tables.content {
   background: lightgray;
 }
 
-.alienrpg .tables.content.toggle-display {
+.alienprg .tables.content.toggle-display {
   display: none;
 }
 
-.alienrpg .macros.content {
+.alienprg .macros.content {
   background: lightgray;
 }
 
-.alienrpg .macros.content.toggle-display {
+.alienprg .macros.content.toggle-display {
   display: none;
 }
 
-.alienrpg .title {
+.alienprg .title {
   cursor: pointer;
 }
 
 /* Footer */
-.alienrpg .footer {
+.alienprg .footer {
   position: sticky;
   bottom: 0;
   left: 0;
@@ -5042,7 +5260,7 @@ combobox:focus {
   background-color: #d0daee;
 }
 
-.alienrpg .cinsymbol {
+.alienprg .cinsymbol {
   display: inline-block;
   background-image: url("../images/icons/cin-symbol.png");
   width: 36px;
@@ -5052,7 +5270,7 @@ combobox:focus {
   border: 0;
 }
 
-.alienrpg .camsymbol {
+.alienprg .camsymbol {
   display: inline-block;
   background-image: url("../images/icons/cam-symbol.png");
   width: 36px;
@@ -5062,7 +5280,7 @@ combobox:focus {
   border: 0;
 }
 
-.alienrpg .stresssymbol {
+.alienprg .stresssymbol {
   display: inline-block;
   background-image: url("../images/icons/alien-dice-y1.png");
   width: 36px;
@@ -5072,7 +5290,7 @@ combobox:focus {
   border: 0;
 }
 
-.alienrpg .basesymbol {
+.alienprg .basesymbol {
   display: inline-block;
   background-image: url("../images/icons/alien-dice-6.png");
   width: 36px;
@@ -5082,7 +5300,7 @@ combobox:focus {
   border: 0;
 }
 
-.alienrpg .datebox {
+.alienprg .datebox {
   width: 36px;
   height: 35px;
   background-color: rgb(26, 71, 53);
@@ -5093,7 +5311,7 @@ combobox:focus {
   vertical-align: middle;
 }
 
-.alienrpg .datebox2 {
+.alienprg .datebox2 {
   float: inline-start;
   width: auto;
   margin-right: 10px;
@@ -5107,7 +5325,7 @@ combobox:focus {
   vertical-align: middle;
 }
 
-.alienrpg .colonytable {
+.alienprg .colonytable {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
@@ -5120,66 +5338,66 @@ combobox:focus {
   border-bottom: 1px solid #e92d2d;
 }
 
-.alienrpg .colonytable tr:nth-child(even) {
+.alienprg .colonytable tr:nth-child(even) {
   background-color: #3a3d3f;
 }
 
-.alienrpg .colonytable tr:nth-child(odd) {
+.alienprg .colonytable tr:nth-child(odd) {
   background-color: transparent;
 }
 
-.alienrpg .colonyname {
+.alienprg .colonyname {
   font-size: x-large;
   font-weight: bold;
 }
 
-.alienrpg .colonyparent {
+.alienprg .colonyparent {
   font-size: smaller;
   font-weight: bold;
   border-right: solid red 1px;
 }
 
-.alienrpg .colonyparentdata {
+.alienprg .colonyparentdata {
   border-right: solid red 1px;
   font-weight: bold;
 }
 
-.alienrpg .colonyposition {
+.alienprg .colonyposition {
   font-size: smaller;
   font-weight: bold;
 }
 
-.alienrpg .colonypositiondata {
+.alienprg .colonypositiondata {
   font-size: x-large;
 }
 
-.alienrpg .trborder {
+.alienprg .trborder {
   border-bottom: solid transparent 5px;
 }
 
-.alienrpg .colonyheader {
+.alienprg .colonyheader {
   font-size: smaller;
   width: 20%;
   font-weight: bold;
   border-right: solid red 1px;
 }
 
-.alienrpg .colonyheaderright {
+.alienprg .colonyheaderright {
   font-size: smaller;
   width: 20%;
   font-weight: bold;
 }
 
-.alienrpg .colonydata1 {
+.alienprg .colonydata1 {
   width: 20%;
   border-right: solid red 1px;
 }
 
-.alienrpg .colonydata2 {
+.alienprg .colonydata2 {
   width: 20%;
 }
 
-.alienrpg .bbw-table1 {
+.alienprg .bbw-table1 {
   width: 169px;
   vertical-align: top;
   padding-left: 2px;
@@ -5257,7 +5475,7 @@ table td {
 }
 .alienrpg .item-form {
   font-family: var(--alienfont);
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
 }
 .alienrpg .actor-header {
   flex: 0 0 180px;
@@ -5267,13 +5485,13 @@ table td {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-bottom: 1px;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
 }
-.alienrpg .vehicle-header {
+.alienrpg header.vehicle-header {
   overflow: hidden;
   display: flex;
   margin-bottom: 1px;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
 }
 .alienrpg .profile-img {
   flex: 0 0 100px;
@@ -5284,7 +5502,7 @@ table td {
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
-  width: auto;
+  width: 100%;
   justify-self: center;
 }
 .alienrpg .profile-img-vehicle {
@@ -5296,38 +5514,37 @@ table td {
 .alienrpg .header-fields {
   flex: 1;
 }
-.alienrpg h1.charname {
+.alienrpg span.charname {
+  display: block;
   height: 50px;
-  padding: 0px;
-  margin: 0 5px 5px 5px;
   border-bottom: 0;
   border: 1px solid var(--aliengreen);
+  align-content: center;
 }
-.alienrpg h1.charname input {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  color: inherit;
-  border: 1px solid var(--aliengreen);
+.alienrpg span.charname input {
+  font-family: var(--alienfont);
+  font-size: 2.1em;
+  color: var(--aliengreen);
+  height: 50px;
 }
 .alienrpg .sheet-body,
 .alienrpg .tab {
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
 }
 .alienrpg .sheet-body .editor {
   height: 100%;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
 }
 .alienrpg .tox .tox-editor-container {
-  background: hsl(0, 0%, 100%);
+  background: var(--white);
 }
 .alienrpg .tox .tox-edit-area {
   padding: 0 8px;
 }
 .alienrpg .maxboxsize {
   max-width: 40px;
-  color: inherit;
-  background-color: hsl(0, 0%, 0%);
+  color: var(--aliengreen);
+  background-color: var(--black);
   height: 20px;
   padding: 0;
   margin: 1px;
@@ -5336,8 +5553,8 @@ table td {
 }
 .alienrpg .healboxsize {
   max-width: 80px;
-  color: inherit;
-  background-color: hsl(0, 0%, 0%);
+  color: var(--aliengreen);
+  background-color: var(--black);
   height: 20px;
   padding: 0;
   margin: 1px;
@@ -5346,23 +5563,23 @@ table td {
 }
 .alienrpg .cashboxsize {
   max-width: 150px;
-  color: inherit;
+  color: var(--aliengreen);
   justify-items: center;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
   text-align: center;
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox {
-  color: inherit;
-  background-color: hsl(0, 0%, 0%);
+  color: var(--aliengreen);
+  background-color: var(--black);
   padding: 5px;
   margin: 5px 5px 5px 5px;
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox1 {
-  color: inherit;
+  color: var(--aliengreen);
   justify-items: center;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
   width: 230px;
   padding: 0;
   margin-top: 1px;
@@ -5370,9 +5587,9 @@ table td {
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox2 {
-  color: inherit;
+  color: var(--aliengreen);
   justify-items: center;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
   width: 400px;
   padding: 0;
   margin-top: 1px;
@@ -5380,18 +5597,18 @@ table td {
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox3 {
-  color: inherit;
-  background-color: hsl(0, 0%, 0%);
+  color: var(--aliengreen);
+  background-color: var(--black);
   padding: 5px;
   margin: 5px 5px 5px 5px;
   width: 180px;
   border: 1px solid var(--aliengreen);
 }
 .alienrpg .textbox4 {
-  color: inherit;
+  color: var(--aliengreen);
   justify-items: center;
-  background-color: hsl(0, 0%, 0%);
-  width: 450px;
+  background-color: var(--black);
+  width: 385px;
   padding: 0;
   margin-top: 1px;
   margin-bottom: 1px;
@@ -5399,18 +5616,19 @@ table td {
 }
 .alienrpg textarea {
   resize: none;
-  padding: 2;
-  color: inherit;
+  padding: 2px;
+  color: var(--aliengreen);
   border: 1px solid var(--aliengreen);
   font-family: var(--alienfont);
+  width: -webkit-fill-available;
   font-size: var(--fontsize);
 }
 .alienrpg form .sheet-content .click-stat-level {
   height: 18px;
   padding: 8px;
-  background: hsl(0, 0%, 0%);
+  background: var(--black);
   border-radius: 2px;
-  box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.502);
+  box-shadow: inset 0 0 0 1px var(--black);
   font-family: "Roboto", system, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -5455,7 +5673,7 @@ table td {
 }
 .alienrpg .planetboxsize {
   max-width: 40px;
-  color: hsl(0, 0%, 0%);
+  color: var(--aliengreen);
   height: 20px;
   padding: 0;
   margin: 1px;
@@ -5479,12 +5697,55 @@ table td {
   border-radius: 0px;
   /* border: 1px solid var(--aliengreen); */
 }
+.alienrpg h1.charname {
+  height: 50px;
+  padding: 0px;
+  margin: 0 5px 5px 5px;
+  border-bottom: 0;
+  border: 1px solid var(--aliengreen);
+  color: var(--aliengreen);
+  font-family: var(--alienfont);
+  font-size: 2.1em;
+}
+.alienrpg h1.charname input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: inherit;
+  border: 1px solid var(--aliengreen);
+}
+.alienrpg .status-control {
+  border: 1px solid var(--aliengreen);
+  margin-left: 5px;
+  color: var(--aliengreen);
+  font-size: 1.2em;
+  font-family: var(--alienfont);
+}
+.alienrpg .status-control.active {
+  outline-width: 2px;
+  border-width: 0;
+  background-color: red;
+  font-weight: bold;
+  color: var(--alienitemselect);
+}
 .alienrpg .resource-label {
   font-family: var(--alienfont);
   text-transform: uppercase;
+  padding-right: 5px;
   padding-left: 5px;
   justify-self: center;
   flex: auto;
+}
+.alienrpg .resource-label.nocenter {
+  justify-self: unset;
+}
+.alienrpg .resource-content button {
+  flex: 0;
+  border: 0;
+  width: 30px;
+  padding: 0;
+  color: var(--aliengreen);
+  margin: 0;
 }
 .alienrpg .speciality-label {
   font-family: var(--alienfont);
@@ -5521,22 +5782,19 @@ table td {
   --color-underline-header: hsl(12, 62%, 29%);
 }
 .alienrpg .tabs {
-  height: 30px;
-  color: inherit;
-  background-color: hsl(0, 0%, 0%);
+  height: 26px;
+  font-size: 1em;
+  color: var(--aliengreen);
+  background-color: var(--color-cool-4);
   border: 1px solid;
 }
-.alienrpg .tabs .item {
+.alienrpg .tabs a {
   font-weight: bold;
-  color: inherit;
+  color: var(--aliengreen);
 }
-.alienrpg .tabs .item.active {
+.alienrpg .tabs a.active {
   text-decoration: underline;
   text-shadow: none;
-}
-.alienrpg .sheet-tabs.tabs {
-  border-top: 1px solid var(--aliengreen);
-  border-bottom: 1px solid var(--aliengreen);
 }
 .alienrpg .items-list {
   list-style: none;
@@ -5645,6 +5903,7 @@ table td {
 .alienrpg .crt h3 {
   padding-left: 0px;
   margin: 0px;
+  font-weight: normal;
 }
 .alienrpg .crt .profile-img {
   margin: 0;
@@ -5718,7 +5977,7 @@ table td {
   background-color: #000;
   border: 0px solid var(--aliengreen);
   font-weight: 1;
-  font-size: 150%;
+  font-size: 110%;
   box-shadow: 0 0 0px var(--aliengreen);
   animation: textShadow 1s infinite;
 }
@@ -5816,7 +6075,7 @@ table td {
 .alienrpg .crt .text {
   background-color: var(--aliengreen);
 }
-.alienrpg .crt .tabs {
+.alienrpg .crt .sheet-tabs .tabs {
   color: #000;
   background-color: #fff;
   font-weight: bold;
@@ -5998,7 +6257,7 @@ table td {
   text-transform: uppercase;
   text-align: center;
 }
-.alienrpg .crt .alienrpgv .synth_fake_check {
+.alienrpg .crt .ALIENRPGv .synth_fake_check {
   color: var(--aliengreen);
   width: 100%;
   margin-top: 12px;

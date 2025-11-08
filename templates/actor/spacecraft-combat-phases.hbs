@@ -1,0 +1,32 @@
+<section class='tab spacecraftcombat scrollable {{tab.cssClass}}' data-group='primary' data-tab='spacecraftcombat'>
+
+	<h2 class="resource-label" style="font-size:30px">{{localize "ALIENRPG.SpaceCombatPhases"}}</h2>
+	<div class="form-group grid-combat-phases" style="margin-top:20px">
+		<h2 class="combatphases1" style="max-width: 400px">{{localize "ALIENRPG.sensorPhase"}}</h2>
+		<select class="select-css combatphases2" style="max-width: 250px;" id="sensorPhase" name="sensorPhase">
+			{{selectOptions config.sensor_list selected=sensorPhase nameAttr="key" labelAttr="label" localize=true}}
+		</select>
+		<button type="button" class="sensorsubmit combatbutton combatphases3" data-action="ShipPhaseSubmit" data-pmbut="sensorsubmit"><b>{{localize 'ALIENRPG.SubmitButton'}}</b></button>
+	</div>
+	<div class="form-group grid-combat-phases" style="margin-top:20px">
+		<h2 class="combatphases1" style="max-width: 400px">{{localize "ALIENRPG.pilotPhase"}}</h2>
+		<select class="select-css combatphases2" style="max-width: 250px;" id="pilotPhase" name="pilotPhase">
+			{{selectOptions pilot_list selected=pilotPhase nameAttr="key" labelAttr="label" localize=true}}
+		</select>
+		<button type="button" class="pilotsubmit combatbutton combatphases3" data-action="ShipPhaseSubmit" data-pmbut="pilotsubmit"><b>{{localize 'ALIENRPG.SubmitButton'}}</b></button>
+	</div>
+	<div class="form-group grid-combat-phases" style="margin-top:20px">
+		<h2 class="combatphases1" style="max-width: 400px">{{localize "ALIENRPG.gunnerPhase"}}</h2>
+		<select class="select-css combatphases2" style="max-width: 250px;" id="gunnerPhase" name="gunnerPhase">
+			{{selectOptions gunner_list selected=gunnerPhase nameAttr="key" labelAttr="label" localize=true}}
+		</select>
+		<button type="button" class="gunnersubmit combatbutton combatphases3" data-action="ShipPhaseSubmit" data-pmbut="gunnersubmit"><b>{{localize 'ALIENRPG.SubmitButton'}}</b></button>
+	</div>
+	<div class="form-group grid-combat-phases" style="margin-top:20px">
+		<h2 class="combatphases1" style="max-width: 400px">{{localize "ALIENRPG.engineerPhase"}}</h2>
+		<select class="select-css combatphases2" style="max-width: 250px;" id="engineerPhase" name="engineerPhase">
+			{{selectOptions engineer_list selected=engineerPhase nameAttr="key" labelAttr="label" localize=true}}
+		</select>
+		<button type="button" class="engineersubmit combatbutton combatphases3" data-action="ShipPhaseSubmit" data-pmbut="engineersubmit"><b>{{localize 'ALIENRPG.SubmitButton'}}</b></button>
+	</div>
+</section>

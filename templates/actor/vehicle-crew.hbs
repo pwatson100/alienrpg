@@ -1,0 +1,43 @@
+<section class='tab crew scrollable {{tab.cssClass}}' style="height:611px" data-group='primary' data-tab='crew'>
+	<div class="grid-ship-crew">
+		<label class="resource-label gSC1">{{localize 'ALIENRPG.Name'}}</label>
+		<label class="resource-label gSC2">{{localize 'ALIENRPG.Position'}}</label>
+		<label class="resource-label gSC3">{{localize 'ALIENRPG.Roll'}}</label>
+		<label class="resource-label gSC4">{{localize 'ALIENRPG.Panic'}}</label>
+	</div>
+	<br />
+	<div>
+		{{#each actor.system.crew.occupants}}
+		<div class="occupant {{#if (eq position 'PASSENGER')}} passenger{{/if}}" data-crew-id="{{ id }}">
+			<div class="grid-ship-crew" style="margin-bottom: 10px;">
+				{{!-- Name --}}
+				<div class="gSC6">{{ actor.name }}</div>
+
+				{{!-- Position --}}
+				<div class="gSC7">
+					<select class="crew-position select-css changeposition" data-actorid="{{ actor.id }}" style="width: 175px">
+						{{selectOptions @root.config.vehicle.crewPositionFlagsLocalized selected=position localize=true}}
+					</select>
+				</div>
+				{{#if (eq position 'PILOT')}}
+				<h3 for="actor.system.skills.piloting.value" class="resource-label rollable Attr1 gSC8" data-action='RollAbility' data-actorid="{{ actor.id }}" data-roll="{{actor.system.skills.piloting.mod}}" data-label="{{@root.actor.name}} - {{localize 'ALIENRPG.Skillpiloting'}}">
+					{{localize 'ALIENRPG.Skillpiloting'}}
+				</h3>
+				{{/if}}
+
+				<label type="button" class="crewPanic gSC9" data-action="CrewPanic" data-shippanicbut="true" data-crewpanic="{{ actor.id }}" data-panicroll="true" title="{{localize 'ALIENRPG.RollPanic'}}"><i class="far fa-heart"></i></label>
+
+				{{!-- Buttons --}}
+				<div class="gSC10">
+					{{#unless actor.isCrewDeleted}}
+					<label class="button crew-edit" data-action="CrewEdit" data-actorid="{{ actor.id }}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></label>
+					{{/unless}}
+					<label class="button crew-remove" data-action="CrewRemove" data-actorid="{{ actor.id }}" title="{{localize 'ALIENRPG.DeleteItem'}}"><i class="fas fa-trash"></i></label>
+				</div>
+			</div>
+		</div>
+		{{else}}
+		<div class="crew-empty">{{localize 'ALIENRPG.EmptyCrew'}}</div>
+		{{/each}}
+	</div>
+</section>

@@ -2,17 +2,28 @@
  * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
  * @return {Promise}      A Promise which resolves once the migration is completed
  */
+/** biome-ignore-all lint/complexity/useArrowFunction: <explanation> */
+/** biome-ignore-all lint/style/useConst: <explanation> */
 export const migrateWorld = async function () {
 	ui.notifications.info(
 		`Applying AlienRPG System Migration for version ${game.system.version}. Please be patient and do not close your game or shut down your server.`,
-		{ permanent: true }
-	);
+		{ permanent: true },
+	)
 	// debugger;
 	// Migrate World Compendium Packs
 	for (let p of game.packs) {
-		if (!['alienrpg', 'alienrpg-corerules', 'alienrpg-destroyerofworlds', 'alienrpg-starterset', 'alienrpg-cmom'].includes(p.metadata.package)) continue;
+		if (
+			![
+				"alienrpg",
+				"alienrpg-corerules",
+				"alienrpg-destroyerofworlds",
+				"alienrpg-starterset",
+				"alienrpg-cmom",
+			].includes(p.metadata.package)
+		)
+			continue
 
-		await migrateCompendium(p);
+		await migrateCompendium(p)
 
 		// V9 check if entity exists otherwise use type
 		// try {
@@ -27,16 +38,16 @@ export const migrateWorld = async function () {
 	// Migrate World Actors
 	for (let a of game.actors.contents) {
 		try {
-			console.warn('Tyring to migrate actors');
+			console.warn("Tyring to migrate actors")
 			// console.warn('Pre actor', a.data);
-			const updateData = await migrateActorData(a.data);
+			const updateData = await migrateActorData(a.data)
 			// console.warn('updateData', updateData, a.data);
 			if (!isObjectEmpty(updateData)) {
-				console.log(`Migrating Actor entity ${a.name}`);
-				await a.update(updateData, { enforceTypes: false });
+				console.log(`Migrating Actor entity ${a.name}`)
+				await a.update(updateData, { enforceTypes: false })
 			}
 		} catch (err) {
-			console.error(err);
+			console.error(err)
 		}
 	}
 
@@ -71,15 +82,15 @@ export const migrateWorld = async function () {
 	// }
 
 	// Set the migration as complete
-	game.settings.set('alienrpg', 'systemMigrationVersion', game.system.version);
-	ui.notifications.info(`AlienRPG System Migration to version ${game.system.version} completed!`, { permanent: true });
-};
+	game.settings.set("alienrpg", "systemMigrationVersion", game.system.version)
+	ui.notifications.info(`AlienRPG System Migration to version ${game.system.version} completed!`, { permanent: true })
+}
 
 /* -------------------------------------------- */
 const migrateActorData = function (actor) {
-	let updateData = {};
-	let update = {};
-	if (actor.type === 'character' || actor.type === 'synthetic') {
+	let updateData = {}
+	let update = {}
+	if (actor.type === "character" || actor.type === "synthetic") {
 		// update = setValueIfNotExists(update, actor, 'data.general.sp.value', 0);
 		// update = setValueIfNotExists(update, actor, 'data.general.xp.max', 20);
 		// update = setValueIfNotExists(update, actor, 'data.general.cash.value', 0);
@@ -88,7 +99,7 @@ const migrateActorData = function (actor) {
 
 		if (actor.data?.general?.xp?.max === 10) {
 			// console.log('data.general.xp.max', actor.data.general.xp.max);
-			updateData[`data.general.xp.max`] = 20;
+			updateData["data.general.xp.max"] = 20
 		}
 		// if (actor.data?.attributes?.food != undefined) {
 		//   console.log('there is some food');
@@ -107,35 +118,35 @@ const migrateActorData = function (actor) {
 		//   updateData[`data.attributes.-=rounds`] = null;
 		// }
 	}
-	if (actor.type === 'vehicles') {
+	if (actor.type === "vehicles") {
 		// update = setValueIfNotExists(update, actor, 'data.attributes.hull.max', actor.data.attributes.hull.value);
 
 		if (actor.data?.attributes?.hull?.max === 0) {
 			// console.log('data.general.xp.max', actor.data.general.xp.max);
-			updateData[`data.attributes.hull.max`] = actor.data.attributes.hull.value;
+			updateData["data.attributes.hull.max"] = actor.data.attributes.hull.value
 		}
 	}
 
 	// Migrate Owned Items
-	if (!actor.items) return updateData;
+	if (!actor.items) return updateData
 	const items = actor.items.reduce((arr, i) => {
 		// Migrate the Owned Item
-		const itemData = i instanceof CONFIG.Item.documentClass ? i.toObject() : i;
-		let itemUpdate = migrateItemData(itemData);
+		const itemData = i instanceof CONFIG.Item.documentClass ? i.toObject() : i
+		let itemUpdate = migrateItemData(itemData)
 		// debugger;
 		// Update the Owned Item
 		if (!isObjectEmpty(itemUpdate)) {
-			itemUpdate._id = itemData._id;
-			arr.push(expandObject(itemUpdate));
+			itemUpdate._id = itemData._id
+			arr.push(expandObject(itemUpdate))
 		}
 
-		return arr;
-	}, []);
+		return arr
+	}, [])
 
-	if (items.length > 0) updateData.items = items;
+	if (items.length > 0) updateData.items = items
 	// return update;
-	return updateData;
-};
+	return updateData
+}
 
 /**
  * Migrate a single Item entity to incorporate latest data model changes
@@ -143,7 +154,7 @@ const migrateActorData = function (actor) {
  */
 const migrateItemData = function (item) {
 	// console.log('migrateItemData -> item', item);
-	const updateData = {};
+	const updateData = {}
 	// if (item.type === 'armor') {
 	//   updateData[`data.modifiers.attributes.agl.value`] = item.data.modifiers.agl.value;
 	//   updateData[`data.modifiers.skills.survival.value`] = item.data.modifiers.survival.value;
@@ -154,8 +165,8 @@ const migrateItemData = function (item) {
 	//_migrateRemoveDeprecated(item, updateData);
 
 	// Return the migrated update data
-	return updateData;
-};
+	return updateData
+}
 
 /**
  * Apply migration rules to all Entities within a single Compendium pack
@@ -163,10 +174,10 @@ const migrateItemData = function (item) {
  * @return {Promise}
  */
 export const migrateCompendium = async function (pack) {
-	let entity = '';
+	let entity = ""
 	//   if (isNewerVersion(game.version,"0.8.9"))
 	// {
-	entity = pack.metadata.type;
+	entity = pack.metadata.type
 
 	// } else {
 	//       entity = pack.metadata.entity;
@@ -181,24 +192,24 @@ export const migrateCompendium = async function (pack) {
 	//   entity = pack.metadata.type;
 	// }
 
-	if (!['Actor', 'Item'].includes(entity)) return;
+	if (!["Actor", "Item"].includes(entity)) return
 
 	// Unlock the pack for editing
-	const wasLocked = pack.locked;
-	await pack.configure({ locked: false });
+	const wasLocked = pack.locked
+	await pack.configure({ locked: false })
 
 	// Begin by requesting server-side data model migration and get the migrated content
-	await pack.migrate();
-	const documents = await pack.getDocuments();
+	await pack.migrate()
+	const documents = await pack.getDocuments()
 
 	// Iterate over compendium entries - applying fine-tuned migration functions
 	for (let doc of documents) {
-		let updateData = {};
+		let updateData = {}
 		try {
 			switch (entity) {
-				case 'Actor':
-					updateData = migrateActorData(doc.data);
-					break;
+				case "Actor":
+					updateData = migrateActorData(doc.data)
+					break
 				// case 'Item':
 				//   updateData = migrateItemData(doc.toObject());
 				//   break;
@@ -208,20 +219,20 @@ export const migrateCompendium = async function (pack) {
 			}
 
 			// Save the entry, if data was changed
-			if (foundry.utils.isObjectEmpty(updateData)) continue;
-			await doc.update(updateData);
-			console.log(`Migrated ${entity} entity ${doc.name} in Compendium ${pack.collection}`);
+			if (foundry.utils.isObjectEmpty(updateData)) continue
+			await doc.update(updateData)
+			console.log(`Migrated ${entity} entity ${doc.name} in Compendium ${pack.collection}`)
 		} catch (err) {
 			// Handle migration failures
-			err.message = `Failed AlienRPG system migration for entity ${doc.name} in pack ${pack.collection}: ${err.message}`;
-			console.error(err);
+			err.message = `Failed AlienRPG system migration for entity ${doc.name} in pack ${pack.collection}: ${err.message}`
+			console.error(err)
 		}
 	}
 
 	// Apply the original locked status for the pack
-	await pack.configure({ locked: wasLocked });
-	console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
-};
+	await pack.configure({ locked: wasLocked })
+	console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`)
+}
 
 /**
  * Migrate a single Scene entity to incorporate changes to the data model of it's actor data overrides
@@ -259,8 +270,8 @@ export const migrateCompendium = async function (pack) {
 // };
 
 const setValueIfNotExists = (update, object, property, newValue) => {
-	if (typeof foundry.utils.getProperty(object, property) === 'undefined') {
-		update[property] = newValue;
+	if (typeof foundry.utils.getProperty(object, property) === "undefined") {
+		update[property] = newValue
 	}
-	return update;
-};
+	return update
+}
