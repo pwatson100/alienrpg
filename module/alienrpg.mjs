@@ -15,6 +15,8 @@ import { alienrpgActor } from "./documents/actor.mjs"
 import { alienrpgItem } from "./documents/item.mjs"
 import { AlienRPGBaseDie, AlienRPGStressDie } from "./helpers/alienRPGBaseDice.mjs"
 import { AlienConfig } from "./helpers/alienRPGConfig.mjs"
+import AlienRPGCTContext from "./helpers/CBTracker.mjs"
+import AlienRPGCombat from "./helpers/combat.mjs"
 import { COMMON } from "./helpers/common.mjs"
 // Import helper/utility classes and constants.
 import { ALIENRPG } from "./helpers/config.mjs"
@@ -79,8 +81,6 @@ const SUB_MODULES = {
 // Add key classes to the global scope so they can be more easily used
 // by downstream developers
 
-// globalThis.ALIENRPG = {
-
 Hooks.once("init", () => {
 	console.warn("Initializing Alien RPG")
 	game.alienrpg = {
@@ -103,6 +103,8 @@ Hooks.once("init", () => {
 	}
 	// Add custom constants for configuration.
 	CONFIG.ALIENRPG = ALIENRPG
+	CONFIG.Combat.documentClass = AlienRPGCombat
+	CONFIG.ui.combat = AlienRPGCTContext
 
 	Object.values(SUB_MODULES).forEach((cl) => {
 		logger.info(COMMON.localize("ALIENRPG.Init.SubModule", { name: cl.NAME }))
@@ -272,6 +274,7 @@ Hooks.once("init", () => {
 	for (const [id, value] of Object.entries(ALIENRPG.conditions)) {
 		CONFIG.statusEffects.push({ id, _id: id.padEnd(16, "0"), ...value, tableNumber: value.tableNumber })
 	}
+
 	// for (const [id, value] of Object.entries(DS_CONST.staminaEffects)) {
 	// 	CONFIG.statusEffects.push({ id, _id: id.padEnd(16, '0'), ...value });
 	// }
@@ -354,19 +357,6 @@ Hooks.on("renderGamePause", (_app, html, options) => {
 		`<img src="systems/alienrpg/images/paused-alien.png" class="fa-spin"><figcaption>GAME PAUSED</figcaption>`
 })
 
-// Hooks.on("dropActorSheetData", async (actor, sheet, data) => {
-// 	// When dropping something on a vehicle sheet.
-// 	if (actor.type === "vehicles" || actor.type === "spacecraft") {
-// 		// When dropping an actor on a vehicle sheet.
-// 		const crew = await fromUuid(data.uuid)
-// 		if (data.type === "Actor") await sheet._dropCrew(crew.id)
-// 	}
-// })
-
-// // **********************************
-// // If the Actor dragged on to the canvas has the NPC box checked unlink the token and change the disposition to Hostile.
-// // **********************************
-
 Hooks.on("preCreateToken", async (document, tokenData, options, userID) => {
 	const createChanges = {}
 	const aTarget = game.actors.find((i) => i.name === tokenData.name)
@@ -378,6 +368,7 @@ Hooks.on("preCreateToken", async (document, tokenData, options, userID) => {
 		document.updateSource(createChanges)
 	}
 })
+
 // ***************************
 // DsN V3 Hooks
 // ***************************
