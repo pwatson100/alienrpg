@@ -17,8 +17,8 @@ import { AlienRPGBaseDie, AlienRPGStressDie } from "./helpers/alienRPGBaseDice.m
 import { AlienConfig } from "./helpers/alienRPGConfig.mjs"
 import AlienRPGCTContext from "./helpers/CBTracker.mjs"
 import AlienRPGCombat from "./helpers/combat.mjs"
+// import { addSlowAndFastActions } from "./helpers/combat-slow-fast.mjs"
 import { COMMON } from "./helpers/common.mjs"
-// Import helper/utility classes and constants.
 import { ALIENRPG } from "./helpers/config.mjs"
 import { enrichTextEditors } from "./helpers/enricher.mjs"
 import { initializeHandlebars } from "./helpers/handlebars.mjs"
@@ -26,7 +26,6 @@ import { logger } from "./helpers/logger.mjs"
 import registerSettings from "./helpers/settings.mjs"
 import { yze } from "./helpers/YZEDiceRoller.mjs"
 import { AlienRPGActiveEffectConfig } from "./sheets/active-effect-config.mjs"
-// import { addSlowAndFastActions } from './combat-slow-fast.js';
 
 // Import sheet classes.
 import { alienrpgCharacterSheet } from "./sheets/character-sheet.mjs"
@@ -278,6 +277,7 @@ Hooks.once("init", () => {
 	// for (const [id, value] of Object.entries(DS_CONST.staminaEffects)) {
 	// 	CONFIG.statusEffects.push({ id, _id: id.padEnd(16, '0'), ...value });
 	// }
+	CONFIG.statusEffects.push(...ALIENRPG.StatusEffects.slowAndFastActions)
 
 	/* -------------------------------------------- */
 	/*  Handlebars Helpers                          */
@@ -340,8 +340,6 @@ Hooks.once("ready", async () => {
 	}
 
 	AlienConfig.toggleConfigButton(JSON.parse(game.settings.get("alienrpg", "addMenuButton")))
-
-	// addSlowAndFastActions()
 
 	// Set turnmarker to the Alien symbol
 	if (game.settings.get("core", "combatTrackerConfig").turnMarker.src.length === 0) {
