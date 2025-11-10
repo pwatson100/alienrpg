@@ -13,7 +13,7 @@ const { api, sheets } = foundry.applications
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheetV2}
  */
-export class alienrpgSpacecraftSheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
+export default class alienrpgSpacecraftSheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
 	/** @override */
 	static DEFAULT_OPTIONS = {
 		classes: ["alienrpg", "actor", "ALIENRPG"],
@@ -343,7 +343,7 @@ export class alienrpgSpacecraftSheet extends api.HandlebarsApplicationMixin(shee
 					break
 
 				case "weapon":
-					if (item.header.active != "fLocker") {
+					if (item.header.active !== "fLocker") {
 					}
 					inventory[i.type].items.push(i)
 
@@ -351,7 +351,7 @@ export class alienrpgSpacecraftSheet extends api.HandlebarsApplicationMixin(shee
 
 				default:
 					// Its just an item
-					if (item.header.active != "fLocker") {
+					if (item.header.active !== "fLocker") {
 					}
 					inventory[i.type].items.push(i)
 					break

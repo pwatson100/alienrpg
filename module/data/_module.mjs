@@ -1,13 +1,14 @@
 // Export Actors
 
 export { default as alienrpgCharacter } from "./actor-character.mjs"
+export { default as alienrpgColony } from "./actor-colony.mjs"
 export { default as alienrpgCreature } from "./actor-creature.mjs"
+export { default as alienrpgPlanet } from "./actor-planet.mjs"
 export { default as alienrpgSpacecraft } from "./actor-spacecraft.mjs"
 export { default as alienrpgSynthetic } from "./actor-synthetic.mjs"
 export { default as alienrpgTerritory } from "./actor-territiory.mjs"
 export { default as alienrpgVehicle } from "./actor-vehicle.mjs"
 export { default as alienrpgActorBase } from "./base-actor.mjs"
-// Export Items
 export { default as alienrpgItemBase } from "./base-item.mjs"
 export * as ActiveEffect from "./effect/_module.mjs"
 export { default as alienrpgAgenda } from "./item-agenda.mjs"

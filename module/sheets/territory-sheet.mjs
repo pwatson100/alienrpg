@@ -8,7 +8,7 @@ const { api, sheets } = foundry.applications
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheetV2}
  */
-export class alienrpgTerritorySheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
+export default class alienrpgTerritorySheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
 	/** @override */
 	static DEFAULT_OPTIONS = {
 		classes: ["alienrpg", "actor", "ALIENRPG"],
@@ -643,10 +643,6 @@ export class alienrpgTerritorySheet extends api.HandlebarsApplicationMixin(sheet
 		const type = itemData.type
 		const alwaysAllowedItems = CONFIG.ALIENRPG.physicalItems
 		const allowedItems = {
-			character: ["item", "weapon", "armor", "talent", "agenda", "specialty", "critical-injury"],
-			synthetic: ["item", "weapon", "armor", "talent", "agenda", "specialty", "critical-injury"],
-			creature: ["critical-injury"],
-			vehicles: ["item", "weapon", "armor"],
 			territory: ["planet-system"],
 		}
 		let allowed = true

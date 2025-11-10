@@ -46,6 +46,12 @@
 			},
 			"spacecraft": {
 				"htmlFields": ["notes"]
+			},
+			"colony": {
+				"htmlFields": ["notes"]
+			},
+			"planet": {
+				"htmlFields": ["notes"]
 			}
 		},
 		"Item": {

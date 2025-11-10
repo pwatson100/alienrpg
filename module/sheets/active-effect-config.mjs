@@ -1,7 +1,7 @@
 /**
  * The Application responsible for configuring a single ActiveEffect document within a parent Actor or Item.
  */
-export class AlienRPGActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
+export default class AlienRPGActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
 	/** @inheritdoc */
 	static DEFAULT_OPTIONS = {
 		classes: ["ALIENRPG"],

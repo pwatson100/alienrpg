@@ -18,6 +18,20 @@ export class alienrpgActor extends Actor {
 		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
 		// prepareDerivedData().
 		super.prepareData()
+		switch (this.type) {
+			case "territory":
+				this.img = "systems/alienrpg/images/icons/nested-eclipses.webp"
+				break
+			case "colony":
+				this.img = "systems/alienrpg/images/icons/digital-trace.webp"
+				break
+			case "planet":
+				this.img = "systems/alienrpg/images/icons/double-ringed-orb.webp"
+				break
+
+			default:
+				break
+		}
 	}
 
 	/** @override */
@@ -51,6 +65,7 @@ export class alienrpgActor extends Actor {
 	// *************************************************
 	// Setupthe prototype token
 	// *************************************************
+
 	async _preCreate(context, options, user) {
 		await super._preCreate(context, options, user)
 		const tokenProto = {
@@ -274,7 +289,7 @@ export class alienrpgActor extends Actor {
 				content = await foundry.applications.handlebars.renderTemplate(
 					"systems/alienrpg/templates/dialog/roll-attr-dialog.hbs",
 					actor,
-					dataset.dataset,
+					dataset,
 				)
 				response = await foundry.applications.api.DialogV2.wait({
 					window: { title: title },

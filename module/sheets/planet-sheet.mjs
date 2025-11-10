@@ -1,7 +1,8 @@
 /** biome-ignore-all lint/complexity/noThisInStatic: <explanation> */
+/** biome-ignore-all lint/suspicious/noAssignInExpressions: <explanation> */
+/** biome-ignore-all lint/correctness/useParseIntRadix: <explanation> */
+/** biome-ignore-all lint/style/useNumberNamespace: <explanation> */
 import { logger } from "../helpers/logger.mjs"
-import { alienrpgrTableGet } from "../helpers/rollTableData.mjs"
-import { yze } from "../helpers/YZEDiceRoller.mjs"
 
 const { api, sheets } = foundry.applications
 
@@ -9,13 +10,13 @@ const { api, sheets } = foundry.applications
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheetV2}
  */
-export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
+export default class alienrpgPlanetSheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
 	/** @override */
 	static DEFAULT_OPTIONS = {
 		classes: ["alienrpg", "actor", "ALIENRPG"],
 		position: {
-			width: 782,
-			height: 880,
+			width: 1153,
+			height: 900,
 		},
 		window: {
 			resizable: true,
@@ -25,14 +26,6 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 			viewDoc: this._viewDoc,
 			createDoc: this._createDoc,
 			deleteDoc: this._deleteDoc,
-			toggleEffect: this._toggleEffect,
-			creatureAttackRoll: {
-				handler: this._onRollCreatureAttack,
-				buttons: [0, 2],
-			},
-			RollAbility: { handler: this._onRollAbility, buttons: [0, 2] },
-			creatureAcidRoll: this._onCreatureAcidRoll,
-			RollCrit: { handler: this._onRollCrit, buttons: [0, 2] },
 		},
 		// Custom property that's merged into `this.options`
 		// dragDrop: [{ dragSelector: '.draggable', dropSelector: null }],
@@ -43,28 +36,27 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 		},
 	}
 
+	/**
+	 * A set of the currently expanded document uuids.
+	 * @type {Set<string>}
+	 */
+	_expandedDocumentDescriptions = new Set()
+
+	/* -------------------------------------------------- */
+
 	/** @override */
 	static PARTS = {
-		header: {
-			template: "systems/alienrpg/templates/actor/creature-header.hbs",
-		},
 		tabs: {
 			// Foundry-provided generic template
 			template: "templates/generic/tab-navigation.hbs",
 		},
+		planetgeneral: {
+			template: "systems/alienrpg/templates/actor/planet-general.hbs",
+			scrollable: [""],
+		},
+
 		notes: {
 			template: "systems/alienrpg/templates/actor/notes.hbs",
-			scrollable: [""],
-		},
-		creature: {
-			template: "systems/alienrpg/templates/actor/creature-general.hbs",
-			scrollable: [""],
-		},
-		crtuicreatureheader: {
-			template: "systems/alienrpg/templates/actor/crt/crtui-creature-header.hbs",
-		},
-		crtuicreaturegeneral: {
-			template: "systems/alienrpg/templates/actor/crt/crtui-creature-general.hbs",
 			scrollable: [""],
 		},
 	}
@@ -77,15 +69,7 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 		// Don't show the other tabs if only limited view
 		if (this.document.limited) return
 		// Control which parts show based on document subtype
-		switch (this.document.type) {
-			case "creature":
-				if (game.settings.get("alienrpg", "aliencrt")) {
-					options.parts.push("crtuicreatureheader", "tabs", "crtuicreaturegeneral", "notes")
-				} else {
-					options.parts.push("header", "tabs", "creature", "notes")
-				}
-				break
-		}
+		options.parts.push("tabs", "planetgeneral", "notes")
 	}
 
 	/* -------------------------------------------- */
@@ -109,18 +93,23 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 			// Necessary for formInput and formFields helpers
 			fields: this.document.schema.fields,
 			systemFields: this.document.system.schema.fields,
-			isEnc: this.actor.type === "character" || this.actor.type === "synthetic",
+			isEnhanced: game.settings.get("alienrpg", "evolved"),
+			// isEnc: this.actor.type === "character" || this.actor.type === "synthetic",
 			// isNPC: this.actor.system.header.npc || false,
-			isSynthetic: this.actor.type === "synthetic",
-			isVehicles: this.actor.type === "vehicles",
-			isCreature: this.actor.type === "creature",
-			isCharacter: this.actor.type === "character",
+			// isSynthetic: this.actor.type === "synthetic",
+			// isVehicles: this.actor.type === "vehicles",
+			// isCreature: this.actor.type === "creature",
+			// isCharacter: this.actor.type === "character",
 			isGM: game.user.isGM,
 		}
-
-		context.rTables = alienrpgrTableGet.rTableget()
-		context.cTables = alienrpgrTableGet.cTableget()
-		this._prepareCreatureItems(context) // Return data to the sheet
+		//  * Track the set of item filters which are applied
+		// 		 * @type {Set}
+		//
+		this._filters = {
+			policies: new Set(),
+			installations: new Set(),
+			projects: new Set(),
+		}
 
 		return context
 	}
@@ -128,10 +117,10 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 	/** @override */
 	async _preparePartContext(partId, context) {
 		switch (partId) {
-			case "creature":
-			case "crtuicreaturegeneral":
+			case "planetgeneral":
 				context.tab = context.tabs[partId]
 				break
+
 			case "notes":
 				context.tab = context.tabs[partId]
 				// Enrich biography info for display
@@ -160,16 +149,10 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 		// If you have sub-tabs this is necessary to change
 		const tabGroup = "primary"
 		// Default tab for first time it's rendered this session
-		const sheetType = game.settings.get("alienrpg", "aliencrt")
+		// const sheetType = game.settings.get("alienrpg", "aliencrt")
+		// const enhanced = game.settings.get("alienrpg", "evolved")
 
-		switch (sheetType) {
-			case false:
-				if (!this.tabGroups[tabGroup]) this.tabGroups[tabGroup] = "creature"
-				break
-			case true:
-				if (!this.tabGroups[tabGroup]) this.tabGroups[tabGroup] = "crtuicreaturegeneral"
-				break
-		}
+		if (!this.tabGroups[tabGroup]) this.tabGroups[tabGroup] = "planetgeneral"
 
 		return parts.reduce((tabs, partId) => {
 			const tab = {
@@ -183,21 +166,15 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 				label: "ALIENRPG.Actor.Tabs.",
 			}
 			switch (partId) {
-				case "header":
-				case "crtuicreatureheader":
 				case "tabs":
 					return tabs
 				case "notes":
 					tab.id = "notes"
-					tab.label += "Notes"
+					tab.label += "Description"
 					break
-				case "creature":
-					tab.id = "creature"
-					tab.label += "Creature"
-					break
-				case "crtuicreaturegeneral":
-					tab.id = "crtuicreaturegeneral"
-					tab.label += "Creature"
+				case "planetgeneral":
+					tab.id = "planetgeneral"
+					tab.label += "General"
 					break
 			}
 			if (this.tabGroups[tabGroup] === tab.id) tab.cssClass = "active"
@@ -206,27 +183,6 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 		}, {})
 	}
 
-	/**
-	 * Organize and classify Items for Actor sheets.
-	 *
-	 * @param {object} context The context object to mutate
-	 */
-	_prepareItems(context) {
-		// Initialize containers.
-		// You can just use `this.document.itemTypes` instead
-		// if you don't need to subdivide a given type like
-		// this sheet does with spells
-	}
-
-	async _prepareCreatureItems(context) {
-		const critInj = []
-
-		// Iterate through items, allocating to containers
-		for (const i of context.actor.items) {
-			critInj.push(i)
-		}
-		context.critInj = critInj
-	}
 	/**
 	 * Actions performed after a first render of the Application.
 	 * @param {ApplicationRenderContext} context      Prepared context data
@@ -315,6 +271,7 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 			},
 		]
 	}
+
 	/**
 	 * Actions performed after any render of the Application.
 	 * Post-render steps are not awaited by the render process.
@@ -329,19 +286,51 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 		// You may want to add other special handling here
 		// Foundry comes with a large number of utility classes, e.g. SearchFilter
 		// That you may want to implement yourself.
-		logger.debug("Creature Sheet derived context:", context)
+
+		// const currency = this.element.querySelectorAll(".currency")
+		// for (const s of currency) {
+		// 	s.addEventListener("change", (event) => {
+		// 		this._currencyField(event)
+		// 	})
+		// }
+
+		logger.debug("Colony Sheet derived data:", context)
 	}
 
-	/**************
-	 *
-	 *   ACTIONS
-	 *
-	 **************/
+	// async _currencyField(event) {
+	// 	event.preventDefault()
+	// 	// const element = event.currentTarget
+	// 	// format initial value
+	// 	onBlur({ target: event.currentTarget })
+
+	// 	function localStringToNumber(s) {
+	// 		return Number(String(s).replace(/[^0-9.-]+/g, ""))
+	// 	}
+	// 	function onBlur(e) {
+	// 		const value = localStringToNumber(e.target.value)
+	// 		if (game.settings.get("alienrpg", "dollar"))
+	// 			e.target.value = value
+	// 				? Intl.NumberFormat("en-EN", {
+	// 						style: "currency",
+	// 						currency: "USD",
+	// 					}).format(value)
+	// 				: "$0.00"
+	// 		else
+	// 			e.target.value = value
+	// 				? Intl.NumberFormat("en-EN", {
+	// 						style: "decimal",
+	// 						useGrouping: false,
+	// 						minimumFractionDigits: 2,
+	// 						maximumFractionDigits: 2,
+	// 					}).format(value)
+	// 				: "0.00"
+	// 	}
+	// }
 
 	/**
 	 * Handle changing a Document's image.
 	 *
-	 * @this this
+	 * @this AlienRPGActorSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise}
@@ -367,7 +356,7 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 	/**
 	 * Renders an embedded document's sheet
 	 *
-	 * @this this
+	 * @this AlienRPGActorSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @protected
@@ -380,7 +369,7 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 	/**
 	 * Handles item deletion
 	 *
-	 * @this this
+	 * @this AlienRPGActorSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @protected
@@ -393,7 +382,6 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 	/**
 	 * Handle creating a new Owned Item or ActiveEffect for the actor using initial data defined in the HTML dataset
 	 *
-	 * @this this
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @private
@@ -423,200 +411,6 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 		await docCls.create(docData, { parent: this.actor })
 	}
 
-	/**
-	 * Determines effect parent to pass to helper
-	 *
-	 * @this AlienEnhancedActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @private
-	 */
-	static async _toggleEffect(event, target) {
-		const effect = this._getEmbeddedDocument(target)
-		await effect.update({ disabled: !effect.disabled })
-	}
-
-	static async _onRollCrit(event, target) {
-		event.preventDefault() // Don't open context menu
-		event.stopPropagation() // Don't trigger other events
-		if (event.detail > 1) return // Ignore repeated clicks
-
-		const dataset = target.dataset
-		if (event.button === 2) {
-			await this.actor.rollCritMan(this.actor, this.actor.type, dataset)
-		} else {
-			await this.actor.rollCrit(this.actor, this.actor.type, dataset)
-		}
-	}
-
-	static async _onRollCreatureAttack(event, target) {
-		event.preventDefault() // Don't open context menu
-		event.stopPropagation() // Don't trigger other events
-		if (event.detail > 1) return // Ignore repeated clicks
-
-		const dataset = target.dataset
-		if (event.button === 2) {
-			this._creatureManAttackRoll(this.actor, dataset)
-		} else {
-			this._creatureAutoAttackRoll(this.actor, dataset)
-		}
-	}
-
-	async _creatureAutoAttackRoll(actor, dataset, manCrit) {
-		let chatMessage = ""
-		let customResults = ""
-		let roll = ""
-		const targetTable = dataset.atttype
-		if (targetTable === "None") {
-			logger.warn(game.i18n.localize("ALIENRPG.NoCharCrit"))
-			return
-		}
-		const table = game.tables.contents.find((b) => b.name === targetTable)
-
-		roll = await new Roll("1d6").evaluate()
-
-		if (!manCrit) {
-			customResults = await table.roll({ roll })
-		} else {
-			const formula = manCrit
-			roll = await new Roll(formula).evaluate()
-			customResults = await table.roll({ roll })
-		}
-		chatMessage += "<h2>" + game.i18n.localize("ALIENRPG.AttackRoll") + "</h2>"
-		chatMessage += `<h4><i>${table.name}</i></h4>`
-		chatMessage += `${customResults.results[0].description}`
-		const chatData = {
-			user: game.user.id,
-			speaker: ChatMessage.getSpeaker({
-				actor: actor.id,
-			}),
-			rolls: [customResults.roll],
-			rollMode: game.settings.get("core", "rollMode"),
-			content: chatMessage,
-			sound: CONFIG.sounds.dice,
-		}
-		if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
-			chatData.whisper = ChatMessage.getWhisperRecipients("GM")
-		} else if (chatData.rollMode === "selfroll") {
-			chatData.whisper = [game.user]
-		}
-		ChatMessage.create(chatData)
-		return
-	}
-
-	async _creatureManAttackRoll(actor, dataset) {
-		let content = ""
-		let response = ""
-		content = await foundry.applications.handlebars.renderTemplate(
-			"systems/alienrpg/templates/dialog/roll-manual-creature-attack-dialog.hbs",
-			actor,
-			dataset,
-		)
-		response = await foundry.applications.api.DialogV2.wait({
-			window: { title: "ALIENRPG.rollManCreatureAttack" },
-			content,
-			rejectClose: false,
-			buttons: [
-				{
-					label: "ALIENRPG.DialRoll",
-					callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object,
-				},
-				{
-					label: "ALIENRPG.DialCancel",
-					action: "cancel",
-				},
-			],
-		})
-
-		if (!response || response === "cancel") return "cancelled"
-		if (!response.manCrit.match(/^[1-6]$/gm)) {
-			ui.notifications.warn(game.i18n.localize("ALIENRPG.rollManCreAttMax"))
-			return
-		}
-		await this._creatureAutoAttackRoll(actor, dataset, response.manCrit)
-	}
-
-	static async _onCreatureAcidRoll(actor, dataset) {
-		let label = dataset.dataset.label
-		let r1Data = Number(dataset.dataset.roll || 0)
-		let r2Data = 0
-		const reRoll = true
-		const hostile = "creature"
-		if (dataset.dataset.roll !== 0) {
-			if (dataset.dataset.spbutt === "armor" && r1Data < 1) {
-				return
-			}
-			if (dataset.dataset.spbutt === "armor") {
-				// label = 'Armor';
-				label = game.i18n.localize("ALIENRPG.Armor")
-				r2Data = 0
-			}
-
-			let content = ""
-			let response = ""
-			const title =
-				game.i18n.localize("ALIENRPG.DialTitle1") + " " + label + " " + game.i18n.localize("ALIENRPG.DialTitle2")
-			content = await foundry.applications.handlebars.renderTemplate(
-				"systems/alienrpg/templates/dialog/roll-base-xeno-dialog.hbs",
-				actor,
-				dataset.dataset,
-			)
-			response = await foundry.applications.api.DialogV2.wait({
-				window: { title: title },
-				content,
-				rejectClose: false,
-				buttons: [
-					{
-						label: "ALIENRPG.DialRoll",
-						callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object,
-					},
-					{
-						label: "ALIENRPG.DialCancel",
-						action: "cancel",
-					},
-				],
-			})
-
-			if (!response || response === "cancel") return "cancelled"
-
-			const modifier = Number(response.damage)
-			r1Data = r1Data + modifier
-			yze.yzeRoll(hostile, false, reRoll, label, r1Data, "Black", r2Data, "Stress", actor.id)
-		} else {
-			// Roll against the panic table and push the roll to the chat log.
-			let chatMessage = ""
-			chatMessage += "<h2>" + game.i18n.localize("ALIENRPG.AcidAttack") + "</h2>"
-			chatMessage += "<h4><i>" + game.i18n.localize("ALIENRPG.AcidBlood") + "</i></h4>"
-			const chatData = {
-				user: game.user.id,
-				speaker: ChatMessage.getSpeaker({
-					actor: actor.id,
-				}),
-				rollMode: game.settings.get("core", "rollMode"),
-				content: chatMessage,
-			}
-			if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
-				chatData.whisper = ChatMessage.getWhisperRecipients("GM")
-			} else if (chatData.rollMode === "selfroll") {
-				chatData.whisper = [game.user]
-			}
-			ChatMessage.create(chatData)
-		}
-	}
-
-	static async _onRollAbility(event, target) {
-		event.preventDefault() // Don't open context menu
-		event.stopPropagation() // Don't trigger other events
-		if (event.detail > 1) return // Ignore repeated clicks
-
-		const dataset = target.dataset
-		if (event.button === 2) {
-			await this.actor.rollAbilityMod(this.actor, dataset)
-		} else {
-			await this.actor.abilityRoll(this.actor, dataset)
-		}
-	}
-
 	/** Helper Functions */
 
 	/**
@@ -637,21 +431,6 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 		}
 		return console.warn("Could not find document class")
 	}
-	// /**
-	//  * Fetches the embedded document representing the containing HTML element
-	//  *
-	//  * @param {HTMLElement} target    The element subject to search
-	//  * @returns {Item | ActiveEffect} The embedded Item or ActiveEffect
-	//  */
-	// _getEmbeddedDocument(target) {
-	// 	const docRow = target.closest('li[data-document-class]');
-	// 	if (docRow.dataset.documentClass === 'Item') {
-	// 		return this.actor.items.get(docRow.dataset.itemId);
-	// 	} else if (docRow.dataset.documentClass === 'ActiveEffect') {
-	// 		const parent = docRow.dataset.parentId === this.actor.id ? this.actor : this.actor.items.get(docRow?.dataset.parentId);
-	// 		return parent.effects.get(docRow?.dataset.effectId);
-	// 	} else return console.warn('Could not find document class');
-	// }
 
 	/***************
 	 *
@@ -809,4 +588,31 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 			}
 		}
 	}
+
+	/**
+	 * Creates or deletes a configured status effect.
+	 *
+	 * @param {PointerEvent} event   The originating click event.
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action].
+	 * @private
+	 */
+	static async #toggleStatus(event, target) {
+		const status = target.dataset.statusId
+		await this.actor.toggleStatusEffect(status)
+	}
+
+	/* -------------------------------------------------- */
+	/**
+	 * Toggles an active effect from disabled to enabled.
+	 *
+	 * @param {PointerEvent} event   The originating click event.
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action].
+	 * @private
+	 */
+	static async #toggleEffect(event, target) {
+		const effect = this._getEmbeddedDocument(target)
+		await effect.update({ disabled: !effect.disabled })
+	}
+
+	/* -------------------------------------------------- */
 }

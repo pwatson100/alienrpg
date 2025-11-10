@@ -8,7 +8,7 @@ const DragDrop = foundry.applications.ux.DragDrop
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheetV2}
  */
-export class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
+export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
 	constructor(options = {}) {
 		super(options)
 	}

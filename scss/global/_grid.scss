@@ -1737,7 +1737,8 @@
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp11 gcp12  gcp14  gcp16 gcp17';
 	// grid-template-columns: 13% 21% 40% 11% 17%;
-	grid-template-columns: 130px 240px 400px 110px 120px;
+	grid-template-columns: 130px 240px 400px 110px 120px;	
+
 }
 
 .gcp11 {
@@ -1762,7 +1763,8 @@
 	margin-top: 2px;
 	grid-template-areas: 'gcp3a1 gcp3a2 gcp3a3 gcp3a4 gcp3a5 gcp3a6 gcp3a7';
 	// grid-template-columns: 21% 22% 11% 11% 11% 11% 11%;
-	grid-template-columns: 210px 220px 110px 110px 110px 165px 110px;
+	grid-template-columns: 210px 220px 110px 110px 110px 165px 110px;	
+
 }
 
 .gcp3a1 {
@@ -1887,7 +1889,7 @@
 .grid-colony-planet4 {
 	display: grid;
 	margin-left: 30px;
-	margin-top: -2px;
+	margin-top: -11px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp41 gcp42 gcp43 gcp44 gcp45 gcp46 gcp47';
 	// grid-template-columns: 21% 22% 11% 11% 11% 11% 11%;
@@ -1996,7 +1998,7 @@
 .grid-colony-planet7a {
 	display: grid;
 	margin-left: 25px;
-	margin-top: 14px;
+	margin-top: 9px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp7a1 gcp7a2  gcp7a4  gcp7a6 gcp7a7';
 	// grid-template-columns: 21% 19% 20% 19% 19%;
@@ -2047,10 +2049,9 @@
 .grid-colony-planet7 {
 	display: grid;
 	margin-left: 25px;
-	margin-top: -30px;
+	margin-top: -33px;
 	margin-bottom: 4px;
 	grid-template-areas: 'gcp71 gcp72  gcp74  gcp76 gcp77';
-	// grid-template-columns: 21% 19% 20% 19% 19%;
 	grid-template-columns: 225px 205px 210px 200px 190px;
 }
 
@@ -2106,7 +2107,7 @@
 .grid-colony-planet8 {
 	display: grid;
 	margin-bottom: 0px;
-	margin-top: 11px;
+	margin-top: 10px;
 	grid-template-areas: 'gcp81 gcp82  gcp84  gcp86 gcp87';
 	// grid-template-columns: 21% 19% 20% 19% 19%;
 	grid-template-columns: 225px 216px 210px 200px 190px;
@@ -2156,7 +2157,7 @@
 .grid-colony-planet10a {
 	display: grid;
 	margin-left: 175px;
-	margin-top: -51px;
+	margin-top: -60px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp10a1 gcp10a2  gcp10a4  gcp10a6 gcp10a7';
 	// grid-template-columns: 21% 19% 20% 19% 19%;
@@ -2200,7 +2201,7 @@
 .grid-colony-planet10 {
 	display: grid;
 	margin-left: 181px;
-	margin-top: -62px;
+	margin-top: -60px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp101 gcp102  gcp104  gcp106 gcp107';
 	// grid-template-columns: 21% 19% 20% 19% 19%;
@@ -2273,7 +2274,7 @@
 .grid-colony-planet12a {
 	display: grid;
 	margin-left: 176px;
-	margin-top: 34px;
+	margin-top: 21px;
 	margin-bottom: 0px;
 	grid-template-areas: 'gcp12a1 gcp12a2  gcp12a4  gcp12a6 gcp12a7';
 	// grid-template-columns: 21% 19% 20% 19% 19%;

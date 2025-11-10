@@ -3342,7 +3342,7 @@ button:focus {
 .grid-colony-planet4 {
   display: grid;
   margin-left: 30px;
-  margin-top: -2px;
+  margin-top: -11px;
   margin-bottom: 0px;
   grid-template-areas: "gcp41 gcp42 gcp43 gcp44 gcp45 gcp46 gcp47";
   grid-template-columns: 210px 245px 110px 110px 110px 110px 110px;
@@ -3462,7 +3462,7 @@ button:focus {
 .grid-colony-planet7a {
   display: grid;
   margin-left: 25px;
-  margin-top: 14px;
+  margin-top: 9px;
   margin-bottom: 0px;
   grid-template-areas: "gcp7a1 gcp7a2  gcp7a4  gcp7a6 gcp7a7";
   grid-template-columns: 225px 205px 210px 200px 200px;
@@ -3516,7 +3516,7 @@ button:focus {
 .grid-colony-planet7 {
   display: grid;
   margin-left: 25px;
-  margin-top: -30px;
+  margin-top: -33px;
   margin-bottom: 4px;
   grid-template-areas: "gcp71 gcp72  gcp74  gcp76 gcp77";
   grid-template-columns: 225px 205px 210px 200px 190px;
@@ -3579,7 +3579,7 @@ button:focus {
 .grid-colony-planet8 {
   display: grid;
   margin-bottom: 0px;
-  margin-top: 11px;
+  margin-top: 10px;
   grid-template-areas: "gcp81 gcp82  gcp84  gcp86 gcp87";
   grid-template-columns: 225px 216px 210px 200px 190px;
 }
@@ -3636,7 +3636,7 @@ button:focus {
 .grid-colony-planet10a {
   display: grid;
   margin-left: 175px;
-  margin-top: -51px;
+  margin-top: -60px;
   margin-bottom: 0px;
   grid-template-areas: "gcp10a1 gcp10a2  gcp10a4  gcp10a6 gcp10a7";
   grid-template-columns: 210px 53px 210px 48px 210px;
@@ -3684,7 +3684,7 @@ button:focus {
 .grid-colony-planet10 {
   display: grid;
   margin-left: 181px;
-  margin-top: -62px;
+  margin-top: -60px;
   margin-bottom: 0px;
   grid-template-areas: "gcp101 gcp102  gcp104  gcp106 gcp107";
   grid-template-columns: 210px 53px 210px 48px 210px;
@@ -3766,7 +3766,7 @@ button:focus {
 .grid-colony-planet12a {
   display: grid;
   margin-left: 176px;
-  margin-top: 34px;
+  margin-top: 21px;
   margin-bottom: 0px;
   grid-template-areas: "gcp12a1 gcp12a2  gcp12a4  gcp12a6 gcp12a7";
   grid-template-columns: 210px 53px 210px 48px 210px;
@@ -5623,6 +5623,12 @@ table td {
   width: -webkit-fill-available;
   font-size: var(--fontsize);
 }
+.alienrpg .textarea5 {
+  color: black;
+  background-color: transparent;
+  text-align: center;
+  font-family: OCR-A;
+}
 .alienrpg form .sheet-content .click-stat-level {
   height: 18px;
   padding: 8px;
@@ -5673,19 +5679,19 @@ table td {
 }
 .alienrpg .planetboxsize {
   max-width: 40px;
-  color: var(--aliengreen);
+  color: black;
   height: 20px;
   padding: 0;
   margin: 1px;
   text-align: center;
   border: 1px solid var(--aliengreen);
+  background-color: transparent;
 }
 .alienrpg .colony-planet1 {
   max-width: 190px;
   margin: -5px 0px 0px -3px;
   height: -moz-max-content;
   height: max-content;
-  color: var(--color-text-dark-primary);
   border-radius: 0px;
   border: 1px solid var(--aliengreen);
 }
@@ -5693,9 +5699,7 @@ table td {
   max-width: 250px;
   height: -moz-max-content;
   height: max-content;
-  color: var(--color-text-dark-primary);
   border-radius: 0px;
-  /* border: 1px solid var(--aliengreen); */
 }
 .alienrpg h1.charname {
   height: 50px;
@@ -5731,7 +5735,7 @@ table td {
 .alienrpg .resource-label {
   font-family: var(--alienfont);
   text-transform: uppercase;
-  padding-right: 5px;
+  /* padding-right: 5px; */
   padding-left: 5px;
   justify-self: center;
   flex: auto;

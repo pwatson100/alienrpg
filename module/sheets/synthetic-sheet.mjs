@@ -10,7 +10,7 @@ const { api, sheets } = foundry.applications
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheetV2}
  */
-export class alienrpgSyntheticSheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
+export default class alienrpgSyntheticSheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
 	/** @override */
 	static DEFAULT_OPTIONS = {
 		classes: ["alienrpg", "actor", "ALIENRPG"],

@@ -6,7 +6,9 @@
 			"creature": "Creature",
 			"vehicles": "Vehicles",
 			"territory": "Territory",
-			"spacecraft": "Spacecraft"
+			"spacecraft": "Spacecraft",
+			"colony": "Colony",
+			"planet": "Planet"
 		},
 		"Item": {
 			"item": "Item",
@@ -40,7 +42,9 @@
 			"Vehicle": "Vehicle Sheet",
 			"Territory": "Territory Sheet",
 			"Spacecraft": "Space Ship Sheet",
-			"Item": "Item Sheet"
+			"Colony": "Colony Sheet",
+			"Item": "Item Sheet",
+			"Planet": "Planet Sheet"
 		},
 		"Actor": {
 			"Tabs": {
@@ -53,7 +57,8 @@
 				"Crew": "Crew",
 				"Space Combat Phases": "Space Combat Phases",
 				"Image": "Image",
-				"Modules/Upgrades": "Modules/Upgrades"
+				"Modules/Upgrades": "Modules/Upgrades",
+				"Description": "Description"
 			}
 		},
 

@@ -170,6 +170,12 @@ textarea {
 	width: -webkit-fill-available;
 	font-size: var(--fontsize);
 }
+.textarea5 {
+	color:black;
+	background-color: transparent;
+	text-align: center; 
+	font-family: OCR-A;
+}
 
 form .sheet-content .click-stat-level {
 	height: 18px;
@@ -226,19 +232,19 @@ form .sheet-content .click-stat-level {
 
 .planetboxsize {
 	max-width: 40px;
-	color: var(--aliengreen);
+	color: black;
 	height: 20px;
 	padding: 0;
 	margin: 1px;
 	text-align: center;
 	border: 1px solid var(--aliengreen);
+	background-color: transparent;
 }
 
 .colony-planet1 {
 	max-width: 190px;
 	margin: -5px 0px 0px -3px;
 	height: max-content;
-	color: var(--color-text-dark-primary);
 	border-radius: 0px;
 	border: 1px solid var(--aliengreen);
 }
@@ -246,9 +252,7 @@ form .sheet-content .click-stat-level {
 	max-width: 250px;
 	// margin: -10px 0px 0px -14px;
 	height: max-content;
-	color: var(--color-text-dark-primary);
 	border-radius: 0px;
-	/* border: 1px solid var(--aliengreen); */
 }
 
 h1.charname {

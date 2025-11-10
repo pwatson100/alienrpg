@@ -11,8 +11,11 @@ import {
 // Import DataModel classes
 import * as models from "./data/_module.mjs"
 import * as ActiveEffect from "./data/effect/_module.mjs"
+
 import { alienrpgActor } from "./documents/actor.mjs"
+
 import { alienrpgItem } from "./documents/item.mjs"
+
 import { AlienRPGBaseDie, AlienRPGStressDie } from "./helpers/alienRPGBaseDice.mjs"
 import { AlienConfig } from "./helpers/alienRPGConfig.mjs"
 import AlienRPGCTContext from "./helpers/CBTracker.mjs"
@@ -25,16 +28,9 @@ import { initializeHandlebars } from "./helpers/handlebars.mjs"
 import { logger } from "./helpers/logger.mjs"
 import registerSettings from "./helpers/settings.mjs"
 import { yze } from "./helpers/YZEDiceRoller.mjs"
-import { AlienRPGActiveEffectConfig } from "./sheets/active-effect-config.mjs"
 
 // Import sheet classes.
-import { alienrpgCharacterSheet } from "./sheets/character-sheet.mjs"
-import { alienrpgCreatureSheet } from "./sheets/creature-sheet.mjs"
-import { alienrpgItemSheet } from "./sheets/item-sheet.mjs"
-import { alienrpgSpacecraftSheet } from "./sheets/spacecraft-sheet.mjs"
-import { alienrpgSyntheticSheet } from "./sheets/synthetic-sheet.mjs"
-import { alienrpgTerritorySheet } from "./sheets/territory-sheet.mjs"
-import { alienrpgVehicleSheet } from "./sheets/vehicle-sheet.mjs"
+import * as ActorSheets from "./sheets/_module.mjs"
 
 const collections = foundry.documents.collections
 const sheets = foundry.appv1.sheets
@@ -86,14 +82,7 @@ Hooks.once("init", () => {
 		alienrpgActor,
 		alienrpgItem,
 		ActiveEffect,
-		AlienRPGActiveEffectConfig,
-		alienrpgCharacterSheet,
-		alienrpgSyntheticSheet,
-		alienrpgCreatureSheet,
-		alienrpgVehicleSheet,
-		alienrpgTerritorySheet,
-		alienrpgSpacecraftSheet,
-		alienrpgItemSheet,
+		ActorSheets,
 		yze,
 		registerSettings,
 		rollItemMacro,
@@ -150,6 +139,8 @@ Hooks.once("init", () => {
 		vehicles: models.alienrpgVehicle,
 		territory: models.alienrpgTerritory,
 		spacecraft: models.alienrpgSpacecraft,
+		colony: models.alienrpgColony,
+		planet: models.alienrpgPlanet,
 	}
 	CONFIG.Item.documentClass = alienrpgItem
 	CONFIG.Item.dataModels = {
@@ -175,36 +166,54 @@ Hooks.once("init", () => {
 
 	// Register sheet application classes
 	collections.Actors.unregisterSheet("core", sheets.ActorSheet)
-	collections.Actors.registerSheet("alienrpg", alienrpgCharacterSheet, {
+	collections.Actors.registerSheet("alienrpg", ActorSheets.alienrpgColonySheet, {
+		types: ["colony"],
+
+		makeDefault: true,
+		label: "ALIENRPG.SheetLabels.Colony",
+	})
+	collections.Actors.registerSheet("alienrpg", ActorSheets.alienrpgCharacterSheet, {
+		types: ["character"],
 		makeDefault: true,
 		label: "ALIENRPG.SheetLabels.Character",
 	})
-	collections.Actors.registerSheet("alienrpg", alienrpgSyntheticSheet, {
+	collections.Actors.registerSheet("alienrpg", ActorSheets.alienrpgSyntheticSheet, {
+		types: ["synthetic"],
 		makeDefault: true,
 		label: "ALIENRPG.SheetLabels.Synthetic",
 	})
-	collections.Actors.registerSheet("alienrpg", alienrpgCreatureSheet, {
+	collections.Actors.registerSheet("alienrpg", ActorSheets.alienrpgCreatureSheet, {
+		types: ["creature"],
 		makeDefault: true,
 		label: "ALIENRPG.SheetLabels.Creature",
 	})
-	collections.Actors.registerSheet("alienrpg", alienrpgVehicleSheet, {
+	collections.Actors.registerSheet("alienrpg", ActorSheets.alienrpgVehicleSheet, {
+		types: ["vehicles"],
 		makeDefault: true,
 		label: "ALIENRPG.SheetLabels.Vehicle",
 	})
-	collections.Actors.registerSheet("alienrpg", alienrpgTerritorySheet, {
+	collections.Actors.registerSheet("alienrpg", ActorSheets.alienrpgTerritorySheet, {
+		types: ["territory"],
 		makeDefault: true,
 		label: "ALIENRPG.SheetLabels.Territory",
 	})
-	collections.Actors.registerSheet("alienrpg", alienrpgSpacecraftSheet, {
+	collections.Actors.registerSheet("alienrpg", ActorSheets.alienrpgSpacecraftSheet, {
+		types: ["spacecraft"],
 		makeDefault: true,
 		label: "ALIENRPG.SheetLabels.Spacecraft",
 	})
+	collections.Actors.registerSheet("alienrpg", ActorSheets.alienrpgPlanetSheet, {
+		types: ["planet"],
+		makeDefault: true,
+		label: "ALIENRPG.SheetLabels.Planet",
+	})
+
 	collections.Items.unregisterSheet("core", sheets.ItemSheet)
-	collections.Items.registerSheet("alienrpg", alienrpgItemSheet, {
+	collections.Items.registerSheet("alienrpg", ActorSheets.alienrpgItemSheet, {
 		makeDefault: true,
 		label: "ALIENRPG.SheetLabels.Item",
 	})
-	collections.Items.registerSheet("alienrpg", alienrpgItemSheet, {
+	collections.Items.registerSheet("alienrpg", ActorSheets.alienrpgItemSheet, {
 		types: [
 			"item",
 			"weapon",
@@ -224,7 +233,7 @@ Hooks.once("init", () => {
 		label: "ALIENRPG.SheetLabels.Item",
 	})
 	DocumentSheetConfig.unregisterSheet(ActiveEffect, "core", foundry.applications.sheets.ActiveEffectConfig)
-	DocumentSheetConfig.registerSheet(ActiveEffect, "alienrpg", AlienRPGActiveEffectConfig, {
+	DocumentSheetConfig.registerSheet(ActiveEffect, "alienrpg", ActorSheets.AlienRPGActiveEffectConfig, {
 		makeDefault: true,
 		label: "ALIENRPG.SHEET.Labels.ActiveEffect",
 	})
