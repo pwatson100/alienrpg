@@ -44,10 +44,14 @@ ul ol {
 	background: colors.$c-black;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	padding: 2px;
+	// padding: 2px;
 	overflow-y: scroll;
 	overflow-x: auto;
-	border: var(--aliengreen) 3px;
+	border: var(--aliengreen) solid 0.25px;
+}
+
+.sheet.journal-entry:not(.minimized, .minimizing, .maximizing){
+		border: var(--aliengreen) solid 0.25px;
 }
 
 .journal-sheet {

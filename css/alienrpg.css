@@ -110,10 +110,13 @@ ul ol {
   background: hsl(0, 0%, 0%);
   flex-direction: column;
   flex-wrap: nowrap;
-  padding: 2px;
   overflow-y: scroll;
   overflow-x: auto;
-  border: var(--aliengreen) 3px;
+  border: var(--aliengreen) solid 0.25px;
+}
+
+.sheet.journal-entry:not(.minimized, .minimizing, .maximizing) {
+  border: var(--aliengreen) solid 0.25px;
 }
 
 .journal-sheet form {
@@ -3310,10 +3313,10 @@ button:focus {
 
 .gcp4a4 {
   grid-area: gcp4a4;
-  margin: -21px 0px 0px -28px;
+  margin: -27px 0px 0px -28px;
   color: black;
   font-weight: bolder;
-  font-size: 13px;
+  font-size: 12px;
   margin-bottom: 0px;
 }
 
@@ -3328,10 +3331,10 @@ button:focus {
 
 .gcp4a6 {
   grid-area: gcp4a6;
-  margin: -37px 0px 0px -12px;
+  margin: -42px 0px 0px -21px;
   color: black;
   font-weight: bolder;
-  font-size: 13px;
+  font-size: 12px;
   margin-bottom: 0px;
 }
 
@@ -3342,7 +3345,7 @@ button:focus {
 .grid-colony-planet4 {
   display: grid;
   margin-left: 30px;
-  margin-top: -11px;
+  margin-top: -10px;
   margin-bottom: 0px;
   grid-template-areas: "gcp41 gcp42 gcp43 gcp44 gcp45 gcp46 gcp47";
   grid-template-columns: 210px 245px 110px 110px 110px 110px 110px;
@@ -3462,7 +3465,7 @@ button:focus {
 .grid-colony-planet7a {
   display: grid;
   margin-left: 25px;
-  margin-top: 9px;
+  margin-top: 11px;
   margin-bottom: 0px;
   grid-template-areas: "gcp7a1 gcp7a2  gcp7a4  gcp7a6 gcp7a7";
   grid-template-columns: 225px 205px 210px 200px 200px;
@@ -3766,7 +3769,7 @@ button:focus {
 .grid-colony-planet12a {
   display: grid;
   margin-left: 176px;
-  margin-top: 21px;
+  margin-top: 26px;
   margin-bottom: 0px;
   grid-template-areas: "gcp12a1 gcp12a2  gcp12a4  gcp12a6 gcp12a7";
   grid-template-columns: 210px 53px 210px 48px 210px;
@@ -4809,7 +4812,7 @@ combobox:focus {
   color: hsl(0, 0%, 0%);
 }
 
-.alienprg .arpgtable {
+.arpgtable {
   height: 36px;
   width: 80%;
   /* border-style: double;
@@ -4819,17 +4822,17 @@ combobox:focus {
   border: 0;
 }
 
-.alienprg .arpgtable tr:nth-child(even) {
+.arpgtable tr:nth-child(even) {
   background-color: transparent;
 }
 
-.alienprg .caption {
+.caption {
   text-align: center;
   color: greenyellow;
   font-size: xx-large;
 }
 
-.alienprg .arpgtablesmall {
+.arpgtablesmall {
   height: 36px;
   width: 34%;
   /* border-style: double;
@@ -4839,51 +4842,51 @@ combobox:focus {
   border: 0;
 }
 
-.alienprg .arpgtablesmall tr:nth-child(even) {
+.arpgtablesmall tr:nth-child(even) {
   background-color: transparent;
 }
 
-.alienprg .tdstyle {
+.tdstyle {
   width: 40%;
   height: 18px;
   text-align: left;
 }
 
-.alienprg .tdstyleR {
+.tdstyleR {
   width: 40%;
   height: 18px;
   text-align: Right;
 }
 
-.alienprg .tdstyleC {
+.tdstyleC {
   width: 100%;
   height: 18px;
   text-align: center;
 }
 
-.alienprg .tdstyle3D {
+.tdstyle3D {
   width: 30%;
   height: 18px;
   text-align: center;
 }
 
-.alienprg .tdstyle2D {
+.tdstyle2D {
   width: 50%;
   height: 18px;
   text-align: center;
 }
 
-.alienprg .arpglink {
+.arpglink {
   background-color: white;
   color: black;
 }
 
-.alienprg .mess {
+.mess {
   color: yellowgreen;
   font-family: "Courier New", Courier, monospace;
 }
 
-.alienprg .ntable {
+.ntable {
   width: 99%;
   /* border-style: double;
          border-color: greenyellow; */
@@ -4894,31 +4897,31 @@ combobox:focus {
   padding-bottom: 0;
 }
 
-.alienprg .ntable tr:nth-child(even) {
+.ntable tr:nth-child(even) {
   background-color: transparent;
 }
 
-.alienprg .trhead {
+.trhead {
   text-align: center;
   width: 45%;
   font-weight: bold;
 }
 
-.alienprg .tcol1 {
+.tcol1 {
   width: 2.5%;
 }
 
-.alienprg .tcol2 {
+.tcol2 {
   width: 45%;
   text-align: justify;
   vertical-align: top;
 }
 
-.alienprg .tcol3 {
+.tcol3 {
   width: 5%;
 }
 
-.alienprg .etable {
+.etable {
   width: 40%;
   /* border-style: double; */
   margin-left: auto;
@@ -4930,38 +4933,38 @@ combobox:focus {
   padding-bottom: 0;
 }
 
-.alienprg .etable td:first-child {
+.etable td:first-child {
   padding-left: 5px;
 }
 
-.alienprg .etr {
+.etr {
   /* border-style: solid;
          border-color: greenyellow; */
   border: 1;
 }
 
-.alienprg .ehead {
+.ehead {
   text-align: center;
   font-weight: bold;
 }
 
-.alienprg .ecol1 {
+.ecol1 {
   width: 50%;
   text-align: center;
 }
 
-.alienprg .ecol2 {
+.ecol2 {
   width: 50%;
   text-align: center;
 }
 
-.alienprg .ecol3 {
+.ecol3 {
   width: 3%;
   /* border-left: greenyellow;
          border-style: solid; */
 }
 
-.alienprg .stable {
+.stable {
   width: 90%;
   border-style: double;
   border-color: #e92d2d;
@@ -4973,55 +4976,55 @@ combobox:focus {
   border-right: none;
 }
 
-.alienprg .strhead {
+.strhead {
   text-align: center;
   font-weight: bold;
 }
 
-.alienprg .scol1 {
+.scol1 {
   width: 16%;
 }
 
-.alienprg .scol2 {
+.scol2 {
   width: 3%;
 }
 
-.alienprg .scol3 {
+.scol3 {
   width: 80%;
 }
 
-.alienprg .scol4 {
+.scol4 {
   width: 25%;
 }
 
-.alienprg .scol5 {
+.scol5 {
   width: 60%;
   text-align: left;
 }
 
-.alienprg .scol6 {
+.scol6 {
   width: 90%;
 }
 
-.alienprg .scol7 {
+.scol7 {
   width: 20%;
   text-align: left;
 }
 
-.alienprg .scol8 {
+.scol8 {
   width: 65%;
   text-align: left;
 }
 
-.alienprg .scol9 {
+.scol9 {
   width: 12%;
 }
 
-.alienprg .scol10 {
+.scol10 {
   width: 50%;
 }
 
-.alienprg .skltable {
+.skltable {
   width: 35%;
   /* border-style: double; */
   /* border-color: #e92d2d; */
@@ -5030,7 +5033,7 @@ combobox:focus {
   border: 1;
 }
 
-.alienprg .oddstable {
+.oddstable {
   width: 96%;
   height: 16px;
   border-style: double;
@@ -5043,23 +5046,23 @@ combobox:focus {
   border-right: none;
 }
 
-.alienprg .oddstable tr:nth-child(even) {
+.oddstable tr:nth-child(even) {
   background-color: transparent;
 }
 
-.alienprg .oddstable tr:nth-child(odd) {
+.oddstable tr:nth-child(odd) {
   background-color: #3a3d3f;
 }
 
-.alienprg .oddhead {
+.oddhead {
   font-weight: bold;
 }
 
-.alienprg .oddcol1 {
+.oddcol1 {
   width: 25%;
 }
 
-.alienprg .oddcol2 {
+.oddcol2 {
   width: 39%;
 }
 
@@ -5067,11 +5070,11 @@ combobox:focus {
   width: 36%;
 }
 
-.alienprg .oddcol4 {
+.oddcol4 {
   width: 40%;
 }
 
-.alienprg .bigtable {
+.bigtable {
   width: 99%;
   border-style: double;
   border-color: #e92d2d;
@@ -5083,56 +5086,56 @@ combobox:focus {
   border-right: none;
 }
 
-.alienprg .bigtable tr:nth-child(even) {
+.bigtable tr:nth-child(even) {
   background-color: transparent;
 }
 
-.alienprg .bigtable tr:nth-child(odd) {
+.bigtable tr:nth-child(odd) {
   background-color: #3a3d3f;
 }
 
-.alienprg .die {
+.die {
   width: 6%;
   text-align: center;
 }
 
-.alienprg .inj {
+.inj {
   width: 16%;
 }
 
-.alienprg .fatal {
+.fatal {
   width: 6%;
 }
 
-.alienprg .tim {
+.tim {
   width: 7%;
   text-align: center;
 }
 
-.alienprg .eff {
+.eff {
   width: 56%;
 }
 
-.alienprg .heal {
+.heal {
   width: 15%;
   text-align: center;
 }
 
-.alienprg .crit {
+.crit {
   width: 19%;
   text-align: center;
 }
 
-.alienprg .eff2 {
+.eff2 {
   width: 55%;
 }
 
 /* V10 work */
-.alienprg .aframe {
+.aframe {
   position: relative;
 }
 
-.alienprg .leftcol {
+.leftcol {
   position: absolute;
   width: 45%;
   left: 1.2%;
@@ -5140,7 +5143,7 @@ combobox:focus {
   /* background: #855f5f; */
 }
 
-.alienprg .rightcol {
+.rightcol {
   position: absolute;
   width: 45%;
   left: 50%;
@@ -5148,34 +5151,34 @@ combobox:focus {
   /* background: rgb(174, 174, 110); */
 }
 
-.alienprg .heading {
+.alienrpg .heading {
   color: var(--aliengreen);
   font-size: 28px;
   border-bottom: 2px solid var(--color-underline-header);
 }
 
-.alienprg .heading2 {
+.heading2 {
   text-align: center;
   color: var(--aliengreen);
   /* font-size: x-large; */
 }
 
-.alienprg .heading3 {
+.heading3 {
   color: var(--aliengreen);
 }
 
-.alienprg .imagecontainer {
+.imagecontainer {
   position: relative;
   text-align: center;
   color: white;
 }
 
 /* Import settings */
-.alienprg .container {
+.container {
   width: 100%;
 }
 
-.alienprg .listHeading {
+.listHeading {
   text-align: center;
   vertical-align: middle;
   padding: 10px 0px;
@@ -5183,28 +5186,28 @@ combobox:focus {
   margin-bottom: 10px;
 }
 
-.alienprg .twogridcol {
+.twogridcol {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 50%));
 }
 
-.alienprg .twogridcol input[type=checkbox] {
+.twogridcol input[type=checkbox] {
   vertical-align: middle;
 }
 
-.alienprg .actors.content {
+.actors.content {
   background: lightgray;
 }
 
-.alienprg .actors.content.toggle-display {
+.actors.content.toggle-display {
   display: none;
 }
 
-.alienprg .items.content {
+.items.content {
   background: lightgray;
 }
 
-.alienprg .items.content.toggle-display {
+.items.content.toggle-display {
   display: none;
 }
 
@@ -5214,44 +5217,44 @@ combobox:focus {
   border-bottom: 1px solid var(--color-underline-header);
 }
 
-.alienprg .journal.content {
+.journal.content {
   background: lightgray;
 }
 
-.alienprg .journal.content.toggle-display {
+.journal.content.toggle-display {
   display: none;
 }
 
-.alienprg .scenes.content {
+.scenes.content {
   background: lightgray;
 }
 
-.alienprg .scenes.content.toggle-display {
+.scenes.content.toggle-display {
   display: none;
 }
 
-.alienprg .tables.content {
+.tables.content {
   background: lightgray;
 }
 
-.alienprg .tables.content.toggle-display {
+.tables.content.toggle-display {
   display: none;
 }
 
-.alienprg .macros.content {
+.macros.content {
   background: lightgray;
 }
 
-.alienprg .macros.content.toggle-display {
+.macros.content.toggle-display {
   display: none;
 }
 
-.alienprg .title {
+.title {
   cursor: pointer;
 }
 
 /* Footer */
-.alienprg .footer {
+.footer {
   position: sticky;
   bottom: 0;
   left: 0;
@@ -5260,7 +5263,7 @@ combobox:focus {
   background-color: #d0daee;
 }
 
-.alienprg .cinsymbol {
+.cinsymbol {
   display: inline-block;
   background-image: url("../images/icons/cin-symbol.png");
   width: 36px;
@@ -5270,7 +5273,7 @@ combobox:focus {
   border: 0;
 }
 
-.alienprg .camsymbol {
+.camsymbol {
   display: inline-block;
   background-image: url("../images/icons/cam-symbol.png");
   width: 36px;
@@ -5280,7 +5283,7 @@ combobox:focus {
   border: 0;
 }
 
-.alienprg .stresssymbol {
+.stresssymbol {
   display: inline-block;
   background-image: url("../images/icons/alien-dice-y1.png");
   width: 36px;
@@ -5290,7 +5293,7 @@ combobox:focus {
   border: 0;
 }
 
-.alienprg .basesymbol {
+.basesymbol {
   display: inline-block;
   background-image: url("../images/icons/alien-dice-6.png");
   width: 36px;
@@ -5300,7 +5303,7 @@ combobox:focus {
   border: 0;
 }
 
-.alienprg .datebox {
+.datebox {
   width: 36px;
   height: 35px;
   background-color: rgb(26, 71, 53);
@@ -5311,7 +5314,7 @@ combobox:focus {
   vertical-align: middle;
 }
 
-.alienprg .datebox2 {
+.datebox2 {
   float: inline-start;
   width: auto;
   margin-right: 10px;
@@ -5325,7 +5328,7 @@ combobox:focus {
   vertical-align: middle;
 }
 
-.alienprg .colonytable {
+.colonytable {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
@@ -5338,66 +5341,66 @@ combobox:focus {
   border-bottom: 1px solid #e92d2d;
 }
 
-.alienprg .colonytable tr:nth-child(even) {
+.colonytable tr:nth-child(even) {
   background-color: #3a3d3f;
 }
 
-.alienprg .colonytable tr:nth-child(odd) {
+.colonytable tr:nth-child(odd) {
   background-color: transparent;
 }
 
-.alienprg .colonyname {
+.colonyname {
   font-size: x-large;
   font-weight: bold;
 }
 
-.alienprg .colonyparent {
+.colonyparent {
   font-size: smaller;
   font-weight: bold;
   border-right: solid red 1px;
 }
 
-.alienprg .colonyparentdata {
+.colonyparentdata {
   border-right: solid red 1px;
   font-weight: bold;
 }
 
-.alienprg .colonyposition {
+.colonyposition {
   font-size: smaller;
   font-weight: bold;
 }
 
-.alienprg .colonypositiondata {
+.colonypositiondata {
   font-size: x-large;
 }
 
-.alienprg .trborder {
+.trborder {
   border-bottom: solid transparent 5px;
 }
 
-.alienprg .colonyheader {
+.colonyheader {
   font-size: smaller;
   width: 20%;
   font-weight: bold;
   border-right: solid red 1px;
 }
 
-.alienprg .colonyheaderright {
+.colonyheaderright {
   font-size: smaller;
   width: 20%;
   font-weight: bold;
 }
 
-.alienprg .colonydata1 {
+.colonydata1 {
   width: 20%;
   border-right: solid red 1px;
 }
 
-.alienprg .colonydata2 {
+.colonydata2 {
   width: 20%;
 }
 
-.alienprg .bbw-table1 {
+.bbw-table1 {
   width: 169px;
   vertical-align: top;
   padding-left: 2px;

@@ -55,28 +55,17 @@ export default class alienrpgCreature extends alienrpgActorBase {
 				value: new fields.StringField({ required: true, blank: true }),
 				label: new fields.StringField({ required: true, blank: true }),
 			}),
+
 			mobility: new fields.SchemaField({
-				value: new fields.NumberField({
-					...requiredInteger,
-					initial: 0,
-					min: 0,
-				}),
+				value: new fields.StringField({ required: true, initial: "-" }),
 				label: new fields.StringField({ required: true, blank: true }),
 			}),
 			observation: new fields.SchemaField({
-				value: new fields.NumberField({
-					...requiredInteger,
-					initial: 0,
-					min: 0,
-				}),
+				value: new fields.StringField({ required: true, initial: "-" }),
 				label: new fields.StringField({ required: true, blank: true }),
 			}),
 			acidSplash: new fields.SchemaField({
-				value: new fields.NumberField({
-					...requiredInteger,
-					initial: 0,
-					min: 0,
-				}),
+				value: new fields.StringField({ required: true, initial: "-" }),
 				label: new fields.StringField({ required: true, blank: true }),
 			}),
 		})
