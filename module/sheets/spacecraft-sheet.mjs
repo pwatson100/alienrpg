@@ -123,7 +123,7 @@ export default class alienrpgSpacecraftSheet extends api.HandlebarsApplicationMi
 			// Necessary for formInput and formFields helpers
 			fields: this.document.schema.fields,
 			// systemFields: this.document.system.schema.fields,
-			isEnhanced: game.settings.get("alienrpg", "evolved"),
+			isEvolved: game.settings.get("alienrpg", "evolved"),
 			isEnc: this.actor.type === "character" || this.actor.type === "synthetic",
 			isSynthetic: this.actor.type === "synthetic",
 			isVehicle: this.actor.type === "vehicle",

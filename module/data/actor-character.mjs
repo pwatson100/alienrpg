@@ -494,7 +494,7 @@ export default class alienrpgCharacter extends alienrpgActorBase {
 		this.XPmax = this.general.xp.max || 0
 		this.XPcurrent = this.general.xp.value
 		this.XPlost = this.XPmax - this.XPcurrent
-		this.XPfill = this.XPmax < 20 ? 20 - this.XPmax : 0
+		this.XPfill = this.XPmax < 25 ? 25 - this.XPmax : 0
 		//
 		this.SPmax = this.general.sp.max || 0
 		this.SPcurrent = this.general.sp.value

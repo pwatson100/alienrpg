@@ -1456,7 +1456,7 @@ export class alienrpgActor extends Actor {
 		} else {
 			// right click
 			if (xp.value < xp.max) {
-				if (xp.value >= 20) {
+				if (xp.value >= 25) {
 					return
 				}
 				return await actor.update({

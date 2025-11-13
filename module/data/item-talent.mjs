@@ -8,6 +8,9 @@ export default class alienrpgTalent extends alienrpgItemBase {
 		const schema = alienrpgItemBase.defineSchema()
 
 		schema.general = new fields.SchemaField({
+			career: new fields.SchemaField({
+				value: new fields.HTMLField(),
+			}),
 			comment: new fields.SchemaField({
 				value: new fields.HTMLField(),
 			}),

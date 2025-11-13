@@ -109,6 +109,8 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 			// Necessary for formInput and formFields helpers
 			fields: this.document.schema.fields,
 			systemFields: this.document.system.schema.fields,
+			isEvolved: game.settings.get("alienrpg", "evolved"),
+
 			isEnc: this.actor.type === "character" || this.actor.type === "synthetic",
 			// isNPC: this.actor.system.header.npc || false,
 			isSynthetic: this.actor.type === "synthetic",

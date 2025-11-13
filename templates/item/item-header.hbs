@@ -1,203 +1,204 @@
 <header class='vehicle-header'>
 	{{#if (eq item.type 'item')}}
-		<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
-		<div class='header-fields'>
-			<span class='charname'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+	<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
+	<div class='header-fields'>
+		<span class='charname'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class='resources grid-weapon'>
+			<h3 class='resource-label wItem1'>{{localize 'ALIENRPG.Weight'}}</h3>
+			<input type='text' name='system.attributes.weight.value' class='maxboxsize wItem2' value='{{system.attributes.weight.value}}' data-dtype='Number' />
+			<h3 class='resource-label wItem3'>{{localize 'ALIENRPG.Cost'}}</h3>
+			<input type='text' class='wItem4 cashboxsize currency' name='system.attributes.cost.value' value='{{system.attributes.cost.value}}' />
+			<h3 class='wItem6 resource-label'>{{localize 'ALIENRPG.Type'}}</h3>
+			<div class='wItem7'>
+				<select class='select-css' name='system.header.type.value' data-dtype='{{system.header.type.value}}'>
+					{{selectOptions config.item_types_list selected=system.header.type.value labelAttr='label' localize=true}}
+				</select>
+			</div>
+		</div>
+	</div>
+	{{/if}}
+	{{#if (eq item.type 'weapon')}}
+	<div class='header-fields'>
+
+		<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class='grid-2col'>
+			<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
 			<div class='resources grid-weapon'>
 				<h3 class='resource-label wItem1'>{{localize 'ALIENRPG.Weight'}}</h3>
 				<input type='text' name='system.attributes.weight.value' class='maxboxsize wItem2' value='{{system.attributes.weight.value}}' data-dtype='Number' />
-				<h3 class='resource-label wItem3'>{{localize 'ALIENRPG.Cost'}}</h3>
-				<input type='text' class='wItem4 cashboxsize currency' name='system.attributes.cost.value' value='{{system.attributes.cost.value}}' />
+				<h3 class='resource-label wItem3'>{{localize 'ALIENRPG.Class'}}</h3>
+				<input type='text' class='wItem4 textbox3' name='system.attributes.class.value' value='{{system.attributes.class.value}}' data-dtype='text' />
 				<h3 class='wItem6 resource-label'>{{localize 'ALIENRPG.Type'}}</h3>
-				<div class='wItem7'>
+				<div class='selectBox wItem7'>
 					<select class='select-css' name='system.header.type.value' data-dtype='{{system.header.type.value}}'>
-						{{selectOptions config.item_types_list selected=system.header.type.value labelAttr='label' localize=true}}
+						{{selectOptions config.weapon_type_list selected=system.header.type.value labelAttr='label' localize=true}}
 					</select>
 				</div>
 			</div>
 		</div>
-	{{/if}}
-	{{#if (eq item.type 'weapon')}}
-		<div class='header-fields'>
-			<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
-			<div class='grid-2col'>
-				<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
-				<div class='resources grid-weapon'>
-					<h3 class='resource-label wItem1'>{{localize 'ALIENRPG.Weight'}}</h3>
-					<input type='text' name='system.attributes.weight.value' class='maxboxsize wItem2' value='{{system.attributes.weight.value}}' data-dtype='Number' />
-					<h3 class='resource-label wItem3'>{{localize 'ALIENRPG.Class'}}</h3>
-					<input type='text' class='wItem4 textbox3' name='system.attributes.class.value' value='{{system.attributes.class.value}}' data-dtype='text' />
-					<h3 class='wItem6 resource-label'>{{localize 'ALIENRPG.Type'}}</h3>
-					<div class='selectBox wItem7'>
-						<select class='select-css' name='system.header.type.value' data-dtype='{{system.header.type.value}}'>
-							{{selectOptions config.weapon_type_list selected=system.header.type.value labelAttr='label' localize=true}}
-						</select>
-					</div>
-				</div>
-			</div>
-		</div>
+	</div>
 	{{/if}}
 	{{#if (eq item.type 'skill-stunts')}}
-		<div class='header-fields'>
-			<span class='charname' style='width: 629px;'>
-				<select class='select-css' name='name' value='{{item.name}}' data-dcareer='{{item.name}}' style='max-width: -webkit-fill-available;'>
-					{{selectOptions config.skills_list selected=item.name nameAttr='key' labelAttr='label' localize=true}}
-				</select>
-			</span>
-		</div>
+	<div class='header-fields'>
+		<span class='charname' style='width: 629px;'>
+			<select class='select-css' name='name' value='{{item.name}}' data-dcareer='{{item.name}}' style='max-width: -webkit-fill-available;'>
+				{{selectOptions config.skills_list selected=item.name nameAttr='key' labelAttr='label' localize=true}}
+			</select>
+		</span>
+	</div>
 	{{/if}}
 
 	{{#if (eq item.type 'talent')}}
-		<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
-		<div class='header-fields'>
-			<span class='charname'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
-			<div class='grid-weapon'>
-				<h3 class='wItem2 resource-label'>{{localize 'ALIENRPG.Career'}}</h3>
-				<div class='wItem3'>
-					<select class='select-css' name='system.general.career.value' data-dcareer='{{system.general.career.value}}'>
-						{{selectOptions config.career_list selected=system.general.career.value labelAttr='label' localize=true}}
-					</select>
-				</div>
+	<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
+	<div class='header-fields'>
+		<span class='charname'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class='grid-weapon'>
+			<h3 class='wItem2 resource-label'>{{localize 'ALIENRPG.Career'}}</h3>
+			<div class='wItem3'>
+				<select class='select-css' name='system.general.career.value' data-dcareer='{{system.general.career.value}}'>
+					{{selectOptions config.career_list selected=system.general.career.value labelAttr='label' localize=true}}
+				</select>
 			</div>
 		</div>
+	</div>
 	{{/if}}
 
 	{{#if (eq item.type 'critical-injury')}}
 
-		<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
-		<div class='header-fields'>
-			<span class='charname'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
-			<div class='resources grid-weapon'>
-				<h3 class='resource-label wItem1'>{{localize 'ALIENRPG.TimeLimit'}}</h3>
-				<select class='select-css' name='system.attributes.timelimit.value' data-dtype='{{system.attributes.timelimit.value}}'>
-					{{selectOptions config.crit_timelimit_list selected=system.attributes.timelimit.value labelAttr='label' localize=true}}
-				</select>
-				<h3 class='resource-label wItem3'>{{localize 'ALIENRPG.HealTime'}}</h3>
-				<span>
-					<input type='text' class='healboxsize wItem4' name='system.attributes.healingtime.value' value='{{system.attributes.healingtime.value}} ' data-dtype='String' />
-				</span>
-				<h3 class='resource-label wItem5'>{{localize 'ALIENRPG.Fatal'}}</h3>
-				<input class='wItem6' name='system.attributes.fatal' type='checkbox' {{checked system.attributes.fatal}} />
-			</div>
+	<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
+	<div class='header-fields'>
+		<span class='charname'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class='resources grid-weapon'>
+			<h3 class='resource-label wItem1'>{{localize 'ALIENRPG.TimeLimit'}}</h3>
+			<select class='select-css' name='system.attributes.timelimit.value' data-dtype='{{system.attributes.timelimit.value}}'>
+				{{selectOptions config.crit_timelimit_list selected=system.attributes.timelimit.value labelAttr='label' localize=true}}
+			</select>
+			<h3 class='resource-label wItem3'>{{localize 'ALIENRPG.HealTime'}}</h3>
+			<span>
+				<input type='text' class='healboxsize wItem4' name='system.attributes.healingtime.value' value='{{system.attributes.healingtime.value}} ' data-dtype='String' />
+			</span>
+			<h3 class='resource-label wItem5'>{{localize 'ALIENRPG.Fatal'}}</h3>
+			<input class='wItem6' name='system.attributes.fatal' type='checkbox' {{checked system.attributes.fatal}} />
 		</div>
+	</div>
 	{{/if}}
 	{{#if (eq item.type 'agenda')}}
-		<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' style='height:auto;width:100%' />
-		<div class='header-fields'>
-			<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
-		</div>
+	<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' style='height:auto;width:100%' />
+	<div class='header-fields'>
+		<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+	</div>
 	{{/if}}
 
 	{{#if (eq item.type 'armor')}}
-		<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
-		<div class='header-fields'>
-			<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Suit"}}' /></span>
-			<div class='resources grid-weapon'>
-				<h3 class='resource-label wItem1'>{{localize 'ALIENRPG.Weight'}}</h3>
-				<input type='text' name='system.attributes.weight.value' class='maxboxsize wItem2' value='{{system.attributes.weight.value}}' data-dtype='Number' />
-				<h3 class='resource-label wItem3'>{{localize 'ALIENRPG.Cost'}}</h3>
-				<input type='text' class='cashboxsize currency wItem4' name='system.attributes.cost.value' value='{{system.attributes.cost.value}}' />
-				<h3 class='resource-label wItem5'>{{localize 'ALIENRPG.ArmorRating'}}</h3>
-				<input type='text' class='wItem6 maxboxsize' name='system.attributes.armorrating.value' value='{{system.attributes.armorrating.value}}' data-dtype='text' />
-				<div class='wItem7'>
-					<label class='resource-label' style='font-size: medium'>{{localize 'ALIENRPG.AirSupply'}}</label>
-					<input type='text' class='maxboxsize' name='system.attributes.airsupply.value' value='{{system.attributes.airsupply.value}}' data-dtype='Number' />
-				</div>
+	<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
+	<div class='header-fields'>
+		<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Suit"}}' /></span>
+		<div class='resources grid-weapon'>
+			<h3 class='resource-label wItem1'>{{localize 'ALIENRPG.Weight'}}</h3>
+			<input type='text' name='system.attributes.weight.value' class='maxboxsize wItem2' value='{{system.attributes.weight.value}}' data-dtype='Number' />
+			<h3 class='resource-label wItem3'>{{localize 'ALIENRPG.Cost'}}</h3>
+			<input type='text' class='cashboxsize currency wItem4' name='system.attributes.cost.value' value='{{system.attributes.cost.value}}' />
+			<h3 class='resource-label wItem5'>{{localize 'ALIENRPG.ArmorRating'}}</h3>
+			<input type='text' class='wItem6 maxboxsize' name='system.attributes.armorrating.value' value='{{system.attributes.armorrating.value}}' data-dtype='text' />
+			<div class='wItem7'>
+				<label class='resource-label' style='font-size: medium'>{{localize 'ALIENRPG.AirSupply'}}</label>
+				<input type='text' class='maxboxsize' name='system.attributes.airsupply.value' value='{{system.attributes.airsupply.value}}' data-dtype='Number' />
 			</div>
 		</div>
+	</div>
 	{{/if}}
 	{{#if (eq item.type 'specialty')}}
-		<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
-		<div class='header-fields'>
-			<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
-		</div>
+	<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
+	<div class='header-fields'>
+		<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+	</div>
 	{{/if}}
 	{{#if (eq item.type 'spacecraftweapons')}}
-		<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
-		<div class='header-fields'>
-			<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
-			<div class='grid-2col'>
-				<div class='resources grid-weapon' style='width: 519px;'>
-					<h3 class='wItem6 resource-label'>{{localize 'ALIENRPG.Type'}}</h3>
-					<div class='selectBox wItem7'>
-						<select class='select-css' name='system.header.type.value' data-dtype='{{system.header.type.value}}'>
-							{{selectOptions config.ship_weapon_type_list selected=system.header.type.value labelAttr='label' localize=true}}
-						</select>
-						{{#if (eq system.header.type.value '1')}}
-							<input type='hidden' name='system.header.type.label' value='{{localize "ALIENRPG.Offensive"}}' />
-						{{/if}}
-						{{#if (eq system.header.type.value '2')}}
-							<input type='hidden' name='system.header.type.label' value='{{localize "ALIENRPG.Defensive"}}' />
-						{{/if}}
-					</div>
+	<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
+	<div class='header-fields'>
+		<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class='grid-2col'>
+			<div class='resources grid-weapon' style='width: 519px;'>
+				<h3 class='wItem6 resource-label'>{{localize 'ALIENRPG.Type'}}</h3>
+				<div class='selectBox wItem7'>
+					<select class='select-css' name='system.header.type.value' data-dtype='{{system.header.type.value}}'>
+						{{selectOptions config.ship_weapon_type_list selected=system.header.type.value labelAttr='label' localize=true}}
+					</select>
+					{{#if (eq system.header.type.value '1')}}
+					<input type='hidden' name='system.header.type.label' value='{{localize "ALIENRPG.Offensive"}}' />
+					{{/if}}
+					{{#if (eq system.header.type.value '2')}}
+					<input type='hidden' name='system.header.type.label' value='{{localize "ALIENRPG.Defensive"}}' />
+					{{/if}}
 				</div>
 			</div>
 		</div>
+	</div>
 	{{/if}}
 	{{#if (eq item.type 'spacecraftmods')}}
-		<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
-		<div class='header-fields'>
-			<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
-			<div class='resources grid-weapon'>
-				<h3 class='resource-label wItem3'>{{localize 'ALIENRPG.Cost'}}</h3>
-				<input type='text' class='wItem4 cashboxsize currency' name='system.attributes.cost.value' value='{{system.attributes.cost.value}}' />
+	<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
+	<div class='header-fields'>
+		<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class='resources grid-weapon'>
+			<h3 class='resource-label wItem3'>{{localize 'ALIENRPG.Cost'}}</h3>
+			<input type='text' class='wItem4 cashboxsize currency' name='system.attributes.cost.value' value='{{system.attributes.cost.value}}' />
 
-				<h3 class='wItem1 resource-label'>{{localize 'ALIENRPG.Type'}}</h3>
-				<div class='wItem2'>
-					<select class='select-css' name='system.attributes.size.value' data-dtype='{{system.attributes.size.value}}'>
-						{{selectOptions config.ship_attributes_list selected=system.attributes.size.value nameAttr='key' labelAttr='label' localize=true}}
-					</select>
-				</div>
-				<h3 class='resource-label wItem6'>{{localize 'ALIENRPG.CapacityBarLabel'}}</h3>
-				<input type='text' class='wItem7 textbox' style='width: 300px' name='system.attributes.capacity.value' value='{{system.attributes.capacity.value}}' data-dtype='text' />
+			<h3 class='wItem1 resource-label'>{{localize 'ALIENRPG.Type'}}</h3>
+			<div class='wItem2'>
+				<select class='select-css' name='system.attributes.size.value' data-dtype='{{system.attributes.size.value}}'>
+					{{selectOptions config.ship_attributes_list selected=system.attributes.size.value nameAttr='key' labelAttr='label' localize=true}}
+				</select>
 			</div>
+			<h3 class='resource-label wItem6'>{{localize 'ALIENRPG.CapacityBarLabel'}}</h3>
+			<input type='text' class='wItem7 textbox' style='width: 300px' name='system.attributes.capacity.value' value='{{system.attributes.capacity.value}}' data-dtype='text' />
 		</div>
+	</div>
 	{{/if}}
 	{{#if (eq item.type 'spacecraft-crit')}}
-		<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
-		<div class='header-fields'>
-			<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
-			<div class='resources grid-ship-crit'>
-				<h3 class='resource-label gcItem1'>{{localize 'ALIENRPG.Type'}}</h3>
-				<select class='select-css gcItem2' name='system.header.type.value' data-dtype='{{system.header.type.value}}'>
-					{{selectOptions config.crit_list selected=system.header.type.value labelAttr='label' localize=true}}
-				</select>
-				<h3 class='resource-label gcItem3'>{{localize 'ALIENRPG.REPAIRROLL'}}</h3>
-				<input type='text' class='textbox1 gcItem4' style='width: 336px' name='system.header.repairroll' value='{{system.header.repairroll}}' data-dtype='String' />
-			</div>
+	<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
+	<div class='header-fields'>
+		<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class='resources grid-ship-crit'>
+			<h3 class='resource-label gcItem1'>{{localize 'ALIENRPG.Type'}}</h3>
+			<select class='select-css gcItem2' name='system.header.type.value' data-dtype='{{system.header.type.value}}'>
+				{{selectOptions config.crit_list selected=system.header.type.value labelAttr='label' localize=true}}
+			</select>
+			<h3 class='resource-label gcItem3'>{{localize 'ALIENRPG.REPAIRROLL'}}</h3>
+			<input type='text' class='textbox1 gcItem4' style='width: 336px' name='system.header.repairroll' value='{{system.header.repairroll}}' data-dtype='String' />
 		</div>
+	</div>
 	{{/if}}
 	{{#if (eq item.type 'planet-system')}}
-		<div class='header-fields'>
-			<span class='charname' style='height: 55px;width: 629px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
-			<div class='resources grid-planet-header'>
-				<h3 class='resource-label hplan1'>{{localize 'ALIENRPG.CommonName'}}</h3>
-				<textarea class='hplan2' name='system.header.commonName.value' data-dtype='String'>{{system.header.commonName.value}}</textarea>
-				<h3 class='resource-label hplan3'>{{localize 'ALIENRPG.System'}}</h3>
-				<input type='text' class='hplan4 textbox2' name='system.header.system.value' value='{{system.header.system.value}}' data-dtype='text' />
-				<h3 class='resource-label hplan5'>{{localize 'ALIENRPG.Sector'}}</h3>
-				<input type='text' class='hplan6 textbox2' name='system.header.sector.value' value='{{system.header.sector.value}}' data-dtype='text' />
-				<h3 class='resource-label hplan7'>{{localize 'ALIENRPG.Location'}}</h3>
-				<input type='text' class='hplan8 textbox2' name='system.header.location.value' value='{{system.header.location.value}}' data-dtype='text' />
-			</div>
+	<div class='header-fields'>
+		<span class='charname' style='height: 55px;width: 629px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class='resources grid-planet-header'>
+			<h3 class='resource-label hplan1'>{{localize 'ALIENRPG.CommonName'}}</h3>
+			<textarea class='hplan2' name='system.header.commonName.value' data-dtype='String'>{{system.header.commonName.value}}</textarea>
+			<h3 class='resource-label hplan3'>{{localize 'ALIENRPG.System'}}</h3>
+			<input type='text' class='hplan4 textbox2' name='system.header.system.value' value='{{system.header.system.value}}' data-dtype='text' />
+			<h3 class='resource-label hplan5'>{{localize 'ALIENRPG.Sector'}}</h3>
+			<input type='text' class='hplan6 textbox2' name='system.header.sector.value' value='{{system.header.sector.value}}' data-dtype='text' />
+			<h3 class='resource-label hplan7'>{{localize 'ALIENRPG.Location'}}</h3>
+			<input type='text' class='hplan8 textbox2' name='system.header.location.value' value='{{system.header.location.value}}' data-dtype='text' />
 		</div>
+	</div>
 	{{/if}}
 	{{#if (eq item.type 'colony-initiative')}}
-		<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
-		<div class='header-fields'>
-			<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
-			<div class='resources grid-weapon'>
-				<h3 class='wItem1 resource-label'>{{localize 'ALIENRPG.Type'}}</h3>
-				<div class='wItem2'>
-					<select class='select-css' name='system.header.type' data-dtype='{{system.header.type}}'>
-						{{selectOptions config.colony_policy_list selected=system.header.type labelAttr='label' localize=true}}
-					</select>
-				</div>
-				<h3 class='wItem3 resource-label'>{{localize 'ALIENRPG.completed'}}</h3>
-				<div class='wItem4'>
-					<input name='system.header.completed' type='checkbox' {{checked system.header.completed}} />
-				</div>
+	<img class='profile-img-item' src='{{item.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{item.name}}' />
+	<div class='header-fields'>
+		<span class='charname' style='height: 55px;'><input name='name' type='text' value='{{item.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class='resources grid-weapon'>
+			<h3 class='wItem1 resource-label'>{{localize 'ALIENRPG.Type'}}</h3>
+			<div class='wItem2'>
+				<select class='select-css' name='system.header.type' data-dtype='{{system.header.type}}'>
+					{{selectOptions config.colony_policy_list selected=system.header.type labelAttr='label' localize=true}}
+				</select>
+			</div>
+			<h3 class='wItem3 resource-label'>{{localize 'ALIENRPG.completed'}}</h3>
+			<div class='wItem4'>
+				<input name='system.header.completed' type='checkbox' {{checked system.header.completed}} />
 			</div>
 		</div>
+	</div>
 	{{/if}}
 </header>

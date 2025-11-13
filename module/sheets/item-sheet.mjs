@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/complexity/noThisInStatic: <explanation> */
 import { prepareActiveEffectCategories } from "../helpers/effects.mjs"
 import { logger } from "../helpers/logger.mjs"
 
@@ -35,8 +36,8 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 		// Custom property that's merged into `this.options`
 		dragDrop: [{ dragSelector: ".draggable", dropSelector: null }],
 	}
-
-	/* -------------------------------------------- */
+	/* -----
+	--------------------------------------- */
 
 	/** @override */
 	static PARTS = {
@@ -162,7 +163,7 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 			// Adding system and flags for easier access
 			system: this.item.system,
 			flags: this.item.flags,
-			isEnhanced: game.settings.get("alienrpg", "evolved"),
+			isEvolved: game.settings.get("alienrpg", "evolved"),
 
 			// Adding a pointer to CONFIG.ALIENRPG
 			config: CONFIG.ALIENRPG,
@@ -173,7 +174,76 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 			systemFields: this.document.system.schema.fields,
 		}
 
+		switch (context.item.type) {
+			case "planet-system":
+				this._prepareSystemData(context.item)
+				break
+			case "spacecraft-crit":
+				await this._prepareShipCritData(context.item)
+				break
+			case "agenda":
+				await this._prepareAgendaData(context.item)
+				break
+			case "specialty":
+				await this._prepareSpecialtyData(context.item)
+				break
+			case "talent":
+				await this._prepareTalentData(context.item)
+				break
+			case "colony-initiative":
+				await this._prepareColonyInitiativeData(context.item)
+				break
+			default:
+				break
+		}
+
 		return context
+	}
+
+	async _prepareSystemData(data) {
+		this.item.update({ img: "systems/alienrpg/images/icons/solar-system.webp" })
+	}
+	async _prepareAgendaData(data) {
+		if (this.item.img === "icons/svg/item-bag.svg" && this.item.img !== this.img) {
+			this.item.update({ img: "systems/alienrpg/images/icons/personal-agenda.png" })
+		}
+	}
+
+	async _prepareSpecialtyData(data) {
+		this.item.update({ img: "systems/alienrpg/images/icons/cover-notext.png" })
+	}
+
+	async _prepareTalentData(data) {
+		if (data.system.general.career.value === "1" || data.system.general.career.value === "") {
+			this.item.update({ img: "systems/alienrpg/images/icons/sprint.webp" })
+		} else {
+			this.item.update({ img: "systems/alienrpg/images/icons/fire-dash.webp" })
+		}
+	}
+
+	async _prepareShipCritData(data) {
+		if (data.system.header.type.value === "1") {
+			this.item.update({ img: "systems/alienrpg/images/icons/auto-repair.webp" })
+		} else if (data.system.header.type.value === "0") {
+			this.item.update({ img: "systems/alienrpg/images/icons/spanner.webp" })
+		}
+	}
+
+	async _prepareColonyInitiativeData(item) {
+		switch (item.system.header.type) {
+			case "1":
+				item.update({ img: "systems/alienrpg/images/icons/full-folder.webp" })
+				break
+			case "2":
+				item.update({ img: "systems/alienrpg/images/icons/habitat-dome.webp" })
+				break
+			case "3":
+				item.update({ img: "systems/alienrpg/images/icons/diagram.webp" })
+				break
+
+			default:
+				break
+		}
 	}
 
 	/** @override */
@@ -555,7 +625,7 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 	/**
 	 * Handle changing a Document's image.
 	 *
-	 * @this AlienEnhancedItemSheet
+	 * @this AlienEvolvedItemSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @returns {Promise}
@@ -563,18 +633,17 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 	 */
 	static async _onEditImage(event, target) {
 		const attr = target.dataset.edit
-		const current = foundry.utils.getProperty(AlienEnhancedItemSheet.document, attr)
-		const { img } =
-			AlienEnhancedItemSheet.document.constructor.getDefaultArtwork?.(AlienEnhancedItemSheet.document.toObject()) ?? {}
+		const current = foundry.utils.getProperty(this.document, attr)
+		const { img } = this.document.constructor.getDefaultArtwork?.(this.document.toObject()) ?? {}
 		const fp = new FilePicker({
 			current,
 			type: "image",
 			redirectToRoot: img ? [img] : [],
 			callback: (path) => {
-				AlienEnhancedItemSheet.document.update({ [attr]: path })
+				this.document.update({ [attr]: path })
 			},
-			top: AlienEnhancedItemSheet.position.top + 40,
-			left: AlienEnhancedItemSheet.position.left + 10,
+			top: this.position.top + 40,
+			left: this.position.left + 10,
 		})
 		return fp.browse()
 	}
@@ -582,33 +651,33 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 	/**
 	 * Renders an embedded document's sheet
 	 *
-	 * @this AlienEnhancedItemSheet
+	 * @this AlienEvolvedItemSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @protected
 	 */
 	static async _viewEffect(event, target) {
-		const effect = AlienEnhancedItemSheet._getEffect(target)
+		const effect = this._getEffect(target)
 		effect.sheet.render(true)
 	}
 
 	/**
 	 * Handles item deletion
 	 *
-	 * @this AlienEnhancedItemSheet
+	 * @this AlienEvolvedItemSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @protected
 	 */
 	static async _deleteEffect(event, target) {
-		const effect = AlienEnhancedItemSheet._getEffect(target)
+		const effect = this._getEffect(target)
 		await effect.delete()
 	}
 
 	/**
 	 * Handle creating a new Owned Item or ActiveEffect for the actor using initial data defined in the HTML dataset
 	 *
-	 * @this AlienEnhancedItemSheet
+	 * @this AlienEvolvedItemSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @private
@@ -622,7 +691,7 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 			name: aeCls.defaultName({
 				// defaultName handles an undefined type gracefully
 				type: target.dataset.type,
-				parent: AlienEnhancedItemSheet.item,
+				parent: this.item,
 			}),
 		}
 		// Loop through the dataset and add it to our effectData
@@ -636,19 +705,19 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 		}
 
 		// Finally, create the embedded document!
-		await aeCls.create(effectData, { parent: AlienEnhancedItemSheet.item })
+		await aeCls.create(effectData, { parent: AlienEvolvedItemSheet.item })
 	}
 
 	/**
 	 * Determines effect parent to pass to helper
 	 *
-	 * @this AlienEnhancedItemSheet
+	 * @this AlienEvolvedItemSheet
 	 * @param {PointerEvent} event   The originating click event
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
 	 * @private
 	 */
 	static async _toggleEffect(event, target) {
-		const effect = AlienEnhancedItemSheet._getEffect(target)
+		const effect = AlienEvolvedItemSheet._getEffect(target)
 		await effect.update({ disabled: !effect.disabled })
 	}
 

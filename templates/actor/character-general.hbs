@@ -6,10 +6,10 @@
 				<h4 class='resource-label'>{{localize 'ALIENRPG.XP'}}</h4>
 				<div class='newdots click-xp-stat-level' data-action='ClickXPStatLevel'>
 					{{#times system.XPcurrent}}
-						<i class='far fa-dot-circle'></i>
+					<i class='far fa-dot-circle'></i>
 					{{/times}}
 					{{#times system.XPlost}}
-						<i class='far fa-circle'></i>
+					<i class='far fa-circle'></i>
 					{{/times}}
 
 				</div>
@@ -17,10 +17,10 @@
 			<h4 class='resource-label'>{{localize 'ALIENRPG.StoryPoints'}}</h4>
 			<div class='newdots click-sp-stat-level' data-action='ClickSPStatLevel'>
 				{{#times system.SPcurrent}}
-					<i class='far fa-dot-circle'></i>
+				<i class='far fa-dot-circle'></i>
 				{{/times}}
 				{{#times system.SPlost}}
-					<i class='far fa-circle'></i>
+				<i class='far fa-circle'></i>
 				{{/times}}
 
 			</div>
@@ -37,9 +37,9 @@
 				<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='starving' title='{{localize "ALIENRPG.ConButtons"}}'>
 					<a class='overwatch-toggle'>
 						{{#if (eq system.general.starving true)}}
-							<i class='far fa-dot-circle'></i>
+						<i class='far fa-dot-circle'></i>
 						{{else}}
-							<i class='far fa-circle'></i>
+						<i class='far fa-circle'></i>
 						{{/if}}
 					</a>
 					{{localize 'ALIENRPG.Starving'}}
@@ -49,9 +49,9 @@
 				<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='dehydrated' title='{{localize "ALIENRPG.ConButtons"}}'>
 					<a class='overwatch-toggle'>
 						{{#if (eq system.general.dehydrated true)}}
-							<i class='far fa-dot-circle'></i>
+						<i class='far fa-dot-circle'></i>
 						{{else}}
-							<i class='far fa-circle'></i>
+						<i class='far fa-circle'></i>
 						{{/if}}
 					</a>
 					{{localize 'ALIENRPG.Dehydrated'}}
@@ -62,9 +62,9 @@
 				<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='exhausted' title='{{localize "ALIENRPG.ConButtons"}}'>
 					<a class='overwatch-toggle'>
 						{{#if (eq system.general.exhausted true)}}
-							<i class='far fa-dot-circle'></i>
+						<i class='far fa-dot-circle'></i>
 						{{else}}
-							<i class='far fa-circle'></i>
+						<i class='far fa-circle'></i>
 						{{/if}}
 					</a>
 					{{localize 'ALIENRPG.Exhausted'}}
@@ -75,9 +75,9 @@
 				<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='freezing' title='{{localize "ALIENRPG.ConButtons"}}'>
 					<a class='overwatch-toggle'>
 						{{#if (eq system.general.freezing true)}}
-							<i class='far fa-dot-circle'></i>
+						<i class='far fa-dot-circle'></i>
 						{{else}}
-							<i class='far fa-circle'></i>
+						<i class='far fa-circle'></i>
 						{{/if}}
 					</a>
 					{{localize 'ALIENRPG.Freezing'}}
@@ -87,9 +87,9 @@
 				<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='hypoxia' title='{{localize "ALIENRPG.ConButtons"}}'>
 					<a class='overwatch-toggle'>
 						{{#if (eq system.general.hypoxia true)}}
-							<i class='far fa-dot-circle'></i>
+						<i class='far fa-dot-circle'></i>
 						{{else}}
-							<i class='far fa-circle'></i>
+						<i class='far fa-circle'></i>
 						{{/if}}
 					</a>
 					{{localize 'ALIENRPG.hypoxia'}}
@@ -99,9 +99,9 @@
 				<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='heatstroke' title='{{localize "ALIENRPG.ConButtons"}}'>
 					<a class='overwatch-toggle'>
 						{{#if (eq system.general.heatstroke true)}}
-							<i class='far fa-dot-circle'></i>
+						<i class='far fa-dot-circle'></i>
 						{{else}}
-							<i class='far fa-circle'></i>
+						<i class='far fa-circle'></i>
 						{{/if}}
 					</a>
 					{{localize 'ALIENRPG.heatstroke'}}
@@ -111,9 +111,9 @@
 				<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='gravitydyspraxia' title='{{localize "ALIENRPG.ConButtons"}}'>
 					<a class='overwatch-toggle'>
 						{{#if (eq system.general.gravitydyspraxia true)}}
-							<i class='far fa-dot-circle'></i>
+						<i class='far fa-dot-circle'></i>
 						{{else}}
-							<i class='far fa-circle'></i>
+						<i class='far fa-circle'></i>
 						{{/if}}
 					</a>
 					{{localize 'ALIENRPG.gravitydyspraxia'}}
@@ -121,26 +121,26 @@
 			</div>
 			<div class='panic' style='height: 22px; display: flex'>
 				{{#if (eq system.general.panic.value 1)}}
-					<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='panicked' style='color: red' title='{{localize "ALIENRPG.ConButtons"}}'>
-						<a class='overwatch-toggle'> <i class='far fa-dot-circle'></i> </a>{{localize 'ALIENRPG.Panicked'}}
-						<input type='text' class='maxboxsize' name='system.general.panic.lastRoll' value='{{system.general.panic.lastRoll}}' data-dtype='Number' />
-					</h3>
+				<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='panicked' style='color: red' title='{{localize "ALIENRPG.ConButtons"}}'>
+					<a class='overwatch-toggle'> <i class='far fa-dot-circle'></i> </a>{{localize 'ALIENRPG.Panicked'}}
+					<input type='text' class='maxboxsize' name='system.general.panic.lastRoll' value='{{system.general.panic.lastRoll}}' data-dtype='Number' />
+				</h3>
 				{{else}}
-					<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='panicked' title='{{localize "ALIENRPG.ConButtons"}}'>
-						<a class='overwatch-toggle'>
-							<i class='far fa-circle'></i>
-						</a>
-						{{localize 'ALIENRPG.Panicked'}}
-					</h3>
+				<h3 class='condition resource-label' data-action='OverwatchToggle' data-key='panicked' title='{{localize "ALIENRPG.ConButtons"}}'>
+					<a class='overwatch-toggle'>
+						<i class='far fa-circle'></i>
+					</a>
+					{{localize 'ALIENRPG.Panicked'}}
+				</h3>
 				{{/if}}
 			</div>
 			<div class='overwatch'>
 				<h3 class='condition' data-action='OverwatchToggle' data-key='overwatch'>
 					<a class='overwatch-toggle'>
 						{{#if system.general.overwatch}}
-							<i class='far fa-check-square'></i>
+						<i class='far fa-check-square'></i>
 						{{else}}
-							<i class='far fa-square'></i>
+						<i class='far fa-square'></i>
 						{{/if}}
 					</a>
 					{{localize 'ALIENRPG.Overwatch'}}
@@ -150,13 +150,13 @@
 				<h3 style='text-align: center; font-weight: bold' class='resource-label'>{{localize 'ALIENRPG.Radiation'}}</h3>
 				<div class='newdots click-stat-level-con' data-action='RadPointClick' data-label='{{localize "ALIENRPG.Radiation"}}' data-roll='{{system.general.radiation.value}}'>
 					{{#times system.RADcurrent}}
-						<i class='far fa-dot-circle'></i>
+					<i class='far fa-dot-circle'></i>
 					{{/times}}
 					{{#times system.RADlost}}
-						<i class='far fa-circle'></i>
+					<i class='far fa-circle'></i>
 					{{/times}}
 					{{#times system.RADfill}}
-						<i class='far fa-dot-circle' style='color: red'></i>
+					<i class='far fa-dot-circle' style='color: red'></i>
 					{{/times}}
 				</div>
 			</div>
@@ -211,10 +211,10 @@
 				</div>
 				<div class='box4'>
 					{{#each specialities as |item iid|}}
-						<li class='item grid-special' data-item-id='{{item._id}}'>
-							<h4 class='item-name spe2' data-pmbut='{{item._id}}'>{{item.name}}</h4>
-							<a class='spe3 item-control item-edit1' data-action='viewDoc' data-document-class='Item' data-item-id='{{item._id}}' title='{{localize "ALIENRPG.EditItem"}}'><i class='fas fa-edit'></i></a>
-						</li>
+					<li class='item grid-special' data-item-id='{{item._id}}'>
+						<h4 class='item-name spe2' data-pmbut='{{item._id}}'>{{item.name}}</h4>
+						<a class='spe3 item-control item-edit1' data-action='viewDoc' data-document-class='Item' data-item-id='{{item._id}}' title='{{localize "ALIENRPG.EditItem"}}'><i class='fas fa-edit'></i></a>
+					</li>
 					{{/each}}
 				</div>
 			</div>
@@ -252,12 +252,12 @@
 			<div class='crit-box' style='height: 90px;'>
 				<ol class='items-list'>
 					{{#each critInj as |item iid|}}
-						<li class='item critical-inj' data-item-id='{{item.id}}'>
-							<a class='item-image crit1a'><img src='{{item.img}}' width='24' height='24' /></a>
-							<a class='item-name crit2a'>{{item.name}}</a>
-							<a class='item-name crit3a' style='font-size:smaller '>{{{striptags item.system.attributes.effects}}}</a>
-							<a class='crit4a item-control item-edit1' data-action='viewDoc' data-document-class='Item' data-item-id='{{item.id}}' title='{{localize "ALIENRPG.EditItem"}}'><i class='fas fa-edit'></i></a>
-						</li>
+					<li class='item critical-inj' data-item-id='{{item.id}}'>
+						<a class='item-image crit1a'><img src='{{item.img}}' width='24' height='24' /></a>
+						<a class='item-name crit2a'>{{item.name}}</a>
+						<a class='item-name crit3a' style='font-size:smaller '>{{{striptags item.system.attributes.effects}}}</a>
+						<a class='crit4a item-control item-edit1' data-action='viewDoc' data-document-class='Item' data-item-id='{{item.id}}' title='{{localize "ALIENRPG.EditItem"}}'><i class='fas fa-edit'></i></a>
+					</li>
 					{{/each}}
 				</ol>
 			</div>
