@@ -523,101 +523,6 @@ export class alienrpgItem extends Item {
 
 									game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six
 								}
-
-								// const template = `
-								//         <form>
-								//         <div class="form-group">
-								//         <label>${game.i18n.localize("ALIENRPG.SelectFirer")}</label>
-								//         <select id="FirerSelect" name="FirerSelect">${options}</select>
-								//         </div>
-								//         <div class="form-group">
-								//           <label>${game.i18n.localize("ALIENRPG.Range")} ${game.i18n.localize("ALIENRPG.MODIFIER")}</label>
-								//           <select id="rangeMod" name="rangeMod">
-								//             <option value="-2">${game.i18n.localize("ALIENRPG.Extreme")}</option>
-								//             <option value="-1">${game.i18n.localize("ALIENRPG.Long")}</option>
-								//             <option value="0">${game.i18n.localize("ALIENRPG.Medium")}</option>
-								//             <option value="+1">${game.i18n.localize("ALIENRPG.Short")}</option>
-								//             <option value="+2">${game.i18n.localize("ALIENRPG.Contact")}</option>
-								//           </select>
-								//         </div>
-								//         <div class="form-group">
-								//         <label>${game.i18n.localize("ALIENRPG.BaseMod")}</label>
-								//         <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus" />
-								//         </div>
-								//         <div class="form-group">
-								//         <label>${game.i18n.localize("ALIENRPG.StressMod")}</label>
-								//         <input type="text" id="stressMod" name="stressMod" value="0" autofocus="autofocus" />
-								//         </div>
-
-								//       </form>`
-								// new Dialog({
-								// 	title:
-								// 		game.i18n.localize("ALIENRPG.DialTitle1") +
-								// 		" " +
-								// 		label +
-								// 		" " +
-								// 		game.i18n.localize("ALIENRPG.DialTitle2"),
-								// 	content: template,
-								// 	buttons: {
-								// 		one: {
-								// 			icon: '<i class="fas fa-check"></i>',
-								// 			label: game.i18n.localize("ALIENRPG.DialRoll"),
-								// 			callback: () => (confirmed = true),
-								// 		},
-								// 		two: {
-								// 			icon: '<i class="fas fa-times"></i>',
-								// 			label: game.i18n.localize("ALIENRPG.DialCancel"),
-								// 			callback: () => (confirmed = false),
-								// 		},
-								// 	},
-								// 	default: "one",
-								// 	close: (html) => {
-								// 		if (confirmed) {
-								// 			const shooter = Number(html.find("[name=FirerSelect]")[0].value)
-								// 			actorid = fCrew[shooter].firerID
-								// 			const tactorid = hostile
-								// 			let rangeMod = Number(html.find("[name=rangeMod]")[0]?.value)
-								// 			const modifier = Number(html.find("[name=modifier]")[0].value)
-								// 			const stressMod = Number(html.find("[name=stressMod]")[0].value)
-								// 			const aStressVal = Number(game.actors.get(actorid).system.header?.stress?.value || 0)
-								// 			rangeMod = Number(rangeMod)
-								// 			if (Number.isNaN(rangeMod)) rangeMod = 0
-
-								// 			const r1Data = Number(
-								// 				itemData.attributes.bonus.value +
-								// 					modifier +
-								// 					rangeMod +
-								// 					game.actors.get(actorid).system.skills.rangedCbt.mod,
-								// 			)
-								// 			// let r2Data = parseInt(aStressVal + aStressMod + stressMod);
-								// 			const r2Data = Number(aStressVal + stressMod)
-								// 			label += ` (${this.actor.name}) `
-								// 			// label += ` (${fCrew[shooter].firerName}) `;
-								// 			if (game.actors.get(actorid).type === "synthetic") {
-								// 				reRoll = true
-								// 				hostile = "synthetic"
-								// 			} else {
-								// 				reRoll = false
-								// 				hostile = "character"
-								// 			}
-								// 			yze.yzeRoll(
-								// 				hostile,
-								// 				blind,
-								// 				reRoll,
-								// 				label,
-								// 				r1Data,
-								// 				game.i18n.localize("ALIENRPG.Black"),
-								// 				r2Data,
-								// 				game.i18n.localize("ALIENRPG.Yellow"),
-								// 				actorid,
-								// 				itemid,
-								// 				tactorid,
-								// 			)
-								// 			game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six
-								// 			item.update({ "system.attributes.rounds.value": item.system.attributes.rounds.value - 1 })
-								// 		}
-								// 	},
-								// }).render(true)
 							} else if (itemData.header.type.value === "2") {
 								const fCrew = []
 								let options = ""
@@ -764,6 +669,63 @@ export class alienrpgItem extends Item {
 			await item.update({
 				"system.attributes.rounds.value": item.system.attributes.rounds.value - game.alienrpg.rollArr.r2One,
 			})
+		}
+	}
+	async rollComputer(item, dataset) {
+		const label = dataset.label + " " + item.name
+		let r2Data = 0
+		let reRoll = true
+		const actorId = item.id
+		const blind = false
+		const effectiveActorType = "item" // make rolls look human
+
+		if (dataset.roll) {
+			const r1Data = Number(dataset.roll || 0) + Number(dataset?.modifier ?? 0)
+			reRoll = true
+			r2Data = 0
+			yze.yzeRoll(
+				effectiveActorType,
+				blind,
+				reRoll,
+				label,
+				r1Data,
+				game.i18n.localize("ALIENRPG.Black"),
+				r2Data,
+				game.i18n.localize("ALIENRPG.Yellow"),
+				actorId,
+			)
+		}
+	}
+
+	async rollComputerMod(item, dataset) {
+		let modifier = ""
+		const title = `${game.i18n.localize("ALIENRPG.DialTitle1")} ${dataset.label} ${game.i18n.localize("ALIENRPG.DialTitle2")}`
+
+		const content = await foundry.applications.handlebars.renderTemplate(
+			"systems/ALIENRPG/templates/dialog/roll-base-dialog.hbs",
+			{ item, dataset },
+		)
+
+		const response = await foundry.applications.api.DialogV2.wait({
+			window: { title: title },
+			content,
+			rejectClose: false,
+			buttons: [
+				{
+					label: "ALIENRPG.DialRoll",
+					callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object,
+				},
+				{
+					label: "ALIENRPG.DialCancel",
+					action: "cancel",
+				},
+			],
+		})
+		if (!response || response === "cancel") return "cancelled"
+		if (response) {
+			modifier = Number(response.modifier)
+			dataset.modifier = modifier
+			item.rollComputer(item, dataset, response)
 		}
 	}
 }

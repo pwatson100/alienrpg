@@ -1,49 +1,7 @@
 @use '../utils/typography';
 @use '../utils/variables';
 
-// .theme-dark .application.sheet.actor.ALIENRPG,
-// .theme-light .application.sheet.actor.ALIENRPG,
-// .theme-dark .application.sheet.item.ALIENRPG,
-// .theme-light .application.sheet.item.ALIENRPG {
-// 	background: transparent;
-// }
 
-.ALIENRPG body.theme-dark input[type='number']
-// .ALIENRPG body.theme-light input[type='number']
-{
-	background-color: var(--black);
-	color: var(--aliengreen);
-	// width: initial;
-}
-.ALIENRPG body.theme-dark input[type='text']
-// .ALIENRPG body.theme-light input[type='text']
-{
-	background-color: var(--black);
-	color: var(--aliengreen);
-}
-.ALIENRPG .rollable {
-	&:hover,
-	&:focus {
-		color: var(--black);
-		text-shadow: 0 0 10px red;
-		cursor: pointer;
-	}
-}
-
-.ALIENRPG .theme-dark input[type='checkbox']
-// .ALIENRPG .theme-light input[type='checkbox']
-{
-	--checkbox-font-weight: unset;
-	--checkbox-background-color: var(--color-dark-6);
-	--checkbox-checked-color: var(--color-warm-1);
-	--checkbox-checkmark-color: var(--color-dark-1);
-}
-
-.theme-dark input[type='checkbox']::before,
-.theme-light input[type='checkbox']::before {
-	color: white;
-}
-
-.ALIENRPG.dice-tooltip .roll > img {
-	width: 24px;
+input[type="checkbox"]::before {
+color: whitesmoke;
 }

@@ -27,6 +27,7 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 			createDoc: this._createEffect,
 			deleteDoc: this._deleteEffect,
 			toggleEffect: this._toggleEffect,
+			RollComputer: { handler: this._onRollComputer, buttons: [0, 2] },
 		},
 		form: {
 			submitOnChange: true,
@@ -621,6 +622,18 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 	 *   ACTIONS
 	 *
 	 **************/
+
+	static async _onRollComputer(event, target) {
+		event.preventDefault() // Don't open context menu
+		event.stopPropagation() // Don't trigger other events
+		if (event.detail > 1) return // Ignore repeated clicks
+		const dataset = target.dataset
+		if (event.button === 2) {
+			this.item.rollComputerMod(this.item, dataset)
+		} else {
+			this.item.rollComputer(this.item, dataset)
+		}
+	}
 
 	/**
 	 * Handle changing a Document's image.

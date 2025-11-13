@@ -27,7 +27,6 @@ export default class alienrpgWeapon extends alienrpgItemBase {
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
 				}),
 			}),
 			damage: new fields.SchemaField({

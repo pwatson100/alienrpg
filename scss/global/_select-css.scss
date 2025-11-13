@@ -19,6 +19,7 @@
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
+	    height: 25px;
 	//   background-color: #fff;
 	/* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 
 		for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference

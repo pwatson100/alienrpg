@@ -2007,9 +2007,9 @@ button:focus {
 
 .grid-weapon-body {
   display: grid;
-  grid-template-areas: "wCol1 wCol2 wCol3 wCol4 wCol5 wCol6" "wCol7 wCol8 wCol9 wCol10 wCol11 wCol12" "wCol13 wCol14 wCol15 wCol16 wCol17 wCol18";
+  grid-template-areas: "wCol1  wCol2 wCol2a wCol2a wCol3 wCol4 wCol4a wCol5 wCol5 wCol6" "wCol7  wCol8 wCol8 wCol9 wCol9 wCol10 wCol10 wCol11 wCol11 wCol12" "wCol13  wCol14 wCol14 wCol15 wCol15 wCol16 wCol16 wCol17 wCol17 wCol18";
   padding-bottom: 2px;
-  grid-template-columns: 100px 115px 100px 115px 140px 41px;
+  grid-template-columns: 100px 55px 55px 50px 53px 82px 40px 70px 70px 41px;
   align-items: center;
 }
 
@@ -2023,6 +2023,11 @@ button:focus {
   justify-self: left;
 }
 
+.wCol2a {
+  grid-area: wCol2a;
+  justify-self: left;
+}
+
 .wCol3 {
   grid-area: wCol3;
   justify-self: left;
@@ -2030,6 +2035,11 @@ button:focus {
 
 .wCol4 {
   grid-area: wCol4;
+  justify-self: center;
+}
+
+.wCol4a {
+  grid-area: wCol4a;
   justify-self: center;
 }
 
@@ -2053,6 +2063,11 @@ button:focus {
   justify-self: left;
 }
 
+.wCol8a {
+  grid-area: wCol8a;
+  justify-self: left;
+}
+
 .wCol9 {
   grid-area: wCol9;
   justify-self: left;
@@ -2060,7 +2075,7 @@ button:focus {
 
 .wCol10 {
   grid-area: wCol10;
-  justify-self: center;
+  justify-self: left;
 }
 
 .wCol11 {
@@ -4323,6 +4338,7 @@ button:focus {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
+  height: 25px;
   /* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 
   	for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
 
@@ -5410,6 +5426,10 @@ combobox:focus {
 table th,
 table td {
   padding: 0px;
+}
+
+input[type=checkbox]::before {
+  color: whitesmoke;
 }
 
 .alienrpg {
