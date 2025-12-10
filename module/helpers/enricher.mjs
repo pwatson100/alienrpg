@@ -4,6 +4,7 @@ export function enrichTextEditors() {
 	// optionally add a roll for the draw at the end
 	// e.g., @DRAW[Compendium.cy-borg-core.random-tables.vX47Buopuq9t0x9r]{Names}{1d4}
 	const DRAW_FROM_TABLE_PATTERN = /@DRAW\[([^\]]+)\]{([^}]*)}(?:{([^}]*)})?/gm
+	const TEXT_DRAW_FROM_TABLE_PATTERN = /@TEXTDRAW\[([^\]]+)\]{([^}]*)}(?:{([^}]*)})?/gm
 	const drawFromTableEnricher = (match, _options) => {
 		const uuid = match[1]
 		const tableName = match[2]
@@ -12,13 +13,31 @@ export function enrichTextEditors() {
 		elem.className = "draw-from-table"
 		elem.setAttribute(
 			"data-tooltip",
-			`Draw from ${tableName}. <br> ${game.i18n.localize("ALIENRPG.TOOLTIPROLLONTABLE")}`,
+			`Draw from ${tableName}. <br> ${game.i18n.localize("TALESOFTHEOLDWEST.dialog.Tooltip-Rollontable")}`,
 		)
 		elem.setAttribute("data-uuid", uuid)
 		if (roll) {
 			elem.setAttribute("data-roll", roll)
 		}
 		elem.innerHTML = `<i class="fas fa-dice-d20">&nbsp;</i>`
+		return elem
+	}
+
+	const textDrawFromTableEnricher = (match, _options) => {
+		const uuid = match[1]
+		const tableName = match[2]
+		const roll = match[3]
+		const elem = document.createElement("span")
+		elem.className = "draw-from-table"
+		elem.setAttribute(
+			"data-tooltip",
+			`Draw from ${tableName}. <br> ${game.i18n.localize("TALESOFTHEOLDWEST.dialog.Tooltip-Rollontable")}`,
+		)
+		elem.setAttribute("data-uuid", uuid)
+		if (roll) {
+			elem.setAttribute("data-roll", roll)
+		}
+		elem.innerHTML = `<a class='content-link' >${tableName}</a>`
 		return elem
 	}
 
@@ -50,6 +69,34 @@ export function enrichTextEditors() {
 			},
 		],
 	)
+	CONFIG.TextEditor.enrichers.push(
+		...[
+			{
+				pattern: /@RAW\[(.+?)\]/gm,
+				enricher: async (match, options) => {
+					const myData = await $.ajax({
+						url: match[1],
+						type: "GET",
+					})
+					const doc = document.createElement("span")
+					doc.innerHTML = myData
+					return doc
+				},
+			},
+			{
+				pattern: TEXT_DRAW_FROM_TABLE_PATTERN,
+				enricher: textDrawFromTableEnricher,
+			},
+			{
+				pattern: /@fas\[(.+?)\]/gm,
+				enricher: async (match, options) => {
+					const doc = document.createElement("span")
+					doc.innerHTML = `<i class="fas ${match[1]}"></i>`
+					return doc
+				},
+			},
+		],
+	)
 
 	async function drawFromRollableTable(event) {
 		event.preventDefault()
@@ -66,33 +113,34 @@ export function enrichTextEditors() {
 				await table.draw({ roll })
 			}
 		}
-		if (event.ctrlKey) {
-			const dialog_content = `<p>${game.i18n.format("ALIENRPG.ROLLONSELECTED", {
+		// This needs to be something other than CTRL as it conflicts with RMB on macs.
+		if (event.shiftKey) {
+			const dialog_content = `<p>${game.i18n.format("TALESOFTHEOLDWEST.dialog.Rollontable", {
 				tablename: table.name,
 			})}</p>
-          <form>
-              <div class="form-group">
-                  <label>${game.i18n.localize("ALIENRPG.RollMod")}</label>
-                  <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus" />
-              </div>
-          </form>`
+            <form>
+                <div class="form-group">
+                    <label>${game.i18n.localize("TALESOFTHEOLDWEST.dialog.Modifier")}</label>
+                    <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus" />
+                </div>
+            </form>`
 			const x = new Dialog({
-				title: game.i18n.format("ALIENRPG.ROLLONSELECTED", {
+				title: game.i18n.format("TALESOFTHEOLDWEST.dialog.Rollontable", {
 					tablename: table.name,
 				}),
 				content: dialog_content,
 				buttons: {
 					Ok: {
-						label: game.i18n.localize("ALIENRPG.Roll"),
+						label: game.i18n.localize("TALESOFTHEOLDWEST.dialog.ok"),
 						callback: async (html) => {
-							let modifier = Number(html.querySelector("input[name='modifier'").value)
-							if (Number.isNaN(modifier)) {
+							let modifier = Number.parseInt(html[0].querySelector("input[name='modifier'").value)
+							if (isNaN(modifier)) {
 								modifier = 0
 							}
 							await myF(uuid, modifier)
 						},
 					},
-					Cancel: { label: game.i18n.localize("ALIENRPG.DialCancel") },
+					Cancel: { label: game.i18n.localize("TALESOFTHEOLDWEST.dialog.cancel") },
 				},
 			})
 			x.options.width = 200

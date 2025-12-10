@@ -215,7 +215,7 @@ export default class alienrpgItemSheet extends api.HandlebarsApplicationMixin(sh
 	}
 
 	async _prepareTalentData(data) {
-		if (data.system.general.career.value === "1" || data.system.general.career.value === "") {
+		if (data.system.general.career.value === "0" || data.system.general.career.value === "") {
 			this.item.update({ img: "systems/alienrpg/images/icons/sprint.webp" })
 		} else {
 			this.item.update({ img: "systems/alienrpg/images/icons/fire-dash.webp" })

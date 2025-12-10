@@ -2,7 +2,7 @@
   "name": "Alien RPG System",
   "img": "systems/alienrpg/images/mother-instructions/alien-banner-foundry.webp",
   "caption": "",
-  "description": "<h1>Alien RPG System</h1><p>Official system for playing the ENNIE award winning Alien RPG by Free League on Foundry VTT. <br />Free League have now officially endorsed the system and we have been working to provide official content to enhance the system (see below). <br />Created by Paul Watson <br />See the Journal Entry \"MO/TH/ER Instructions\" for an overview on how to use the system and it's features.<br /><br />The core system provides support for:</p><ul><li>Character and Synthetic sheets, Creature sheets, Territories and Vehicle sheets.</li><li>Items</li><li>Customisable Fonts and text colours.</li><li>2 sets of custom Alien RPG 3D dice are integrated if using the \"Dice So Nice\" module.</li></ul><p>Should you wish to populate the system with game content for your own use please purchase the rules from Free League Publishing: <a href=\"https://frialigan.se/en/games/alien/\">Free League - Alien RPG</a> or better still purchase the Starter Set or Core Rules modules. <br /><br />My intention is to enable people to play Alien RPG remotely and not to create a fully enabled/automated system. MO/TH/ER will still need to do some work. <br /><br /><strong>Official Modules:</strong><br />Save the effort of inputting all the data from the books by purchasing the official modules from Free League: <br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-starter-set/\">Alien RPG Starter Set</a> <br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-core-rulebook/\">Alien RPG Core Rule Book</a> <br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-destroyer-of-worlds/\">Destroyer of Worlds Scenario</a><br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-colonial-marines/\">Colonial Marines</a><br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-heart-of-darkness/\">Heart of Darkness</a><br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-building-better-worlds/\">Building Better Worlds</a></p>",
+  "description": "<h1>Alien RPG System</h1><p>Official system for playing the ENNIE award winning Alien RPG by Free League on Foundry VTT. <br /><br />Created by Paul Watson <br />See the Journal Entry \"MO/TH/ER Instructions\" for an overview on how to use the system and it's features.<br /><br />The core system provides support for:</p><ul><li>Character and Synthetic sheets, Creature sheets, Territories and Vehicle sheets.</li><li>Items</li><li>Customisable Fonts and text colours.</li><li>2 sets of custom Alien RPG 3D dice are integrated if using the \"Dice So Nice\" module.</li></ul><p>Should you wish to populate the system with game content for your own use please purchase the rules from Free League Publishing: <a href=\"https://frialigan.se/en/games/alien/\">Free League - Alien RPG</a> or better still purchase the Starter Set or Core Rules modules. <br /><br /><strong>Official Modules:</strong><br />Save the effort of inputting all the data from the books by purchasing the official modules from Free League: <br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-starter-set/\">Alien RPG Starter Set</a> <br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-core-rulebook/\">Alien RPG Core Rule Book</a> <br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-destroyer-of-worlds/\">Destroyer of Worlds Scenario</a><br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-colonial-marines/\">Colonial Marines</a><br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-heart-of-darkness/\">Heart of Darkness</a><br /><a href=\"https://freeleaguepublishing.com/shop/alien-rpg-2/foundry-vtt-module-building-better-worlds/\">Building Better Worlds</a></p>",
   "sort": 0,
   "actors": [],
   "combats": [],
@@ -17,8 +17,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>Another test No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>Another test No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.il6ZmldrFZmSLYJl",
@@ -26,10 +118,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -47,8 +139,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.5d2yQQfmSEk3UY0g",
@@ -56,10 +240,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -77,8 +261,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.hcnEMdxI7CPsYuBs",
@@ -86,10 +362,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -107,8 +383,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.95uZdOqcGxEyjG5w",
@@ -116,10 +484,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -137,8 +505,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.YFYSVhvgTJEssvMq",
@@ -146,10 +606,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -167,8 +627,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.6fR8nqpLGU6Oz3FL",
@@ -176,10 +728,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -197,8 +749,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.gfeVOseQYoDjQS5k",
@@ -206,10 +850,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -227,8 +871,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.EPjUGX510Txo6nI0",
@@ -236,10 +972,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -257,8 +993,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.5BtxBxwHiEYKzs46",
@@ -266,10 +1094,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -287,8 +1115,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.mVN3iuu6uTs6PmoW",
@@ -296,10 +1216,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -317,8 +1237,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.QSKrvzYwpymzN8E7",
@@ -326,10 +1338,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
@@ -347,8 +1359,100 @@
         "core": {}
       },
       "system": {
-        "skill": "",
-        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)&nbsp;&nbsp;</em></p>"
+        "description": "<h2>No Stunts Entered</h2>\n<p>Edit the Skill-Stunts entry for this skill to show the available stunts.</p>\n<p><em>(See Alien Rule book Page #64 onward)  </em></p>",
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        }
       },
       "_stats": {
         "compendiumSource": "Compendium.alienrpg.skill-stunts.wAtD3PPFLygsTgJL",
@@ -356,13 +1460,1749 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282026,
-        "modifiedTime": 1759757282026,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "R8mjiz4iJkZGZMIw",
       "sort": 0,
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "name": "Colonial Marine",
+      "type": "specialty",
+      "_id": "bnjwi94icd3LKhHl",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "folder": "D4Yb7CG643VQx0uS",
+      "sort": 100000,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Item.bnjwi94icd3LKhHl",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Colonial Marshal",
+      "type": "specialty",
+      "_id": "l20QE9PqFnGl8zRa",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Company Agent",
+      "type": "specialty",
+      "_id": "Gh5sh05wRqvzHlww",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Kid",
+      "type": "specialty",
+      "_id": "CLRRmlmdFPZtiMGG",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Medic",
+      "type": "specialty",
+      "_id": "ikzHYSlvCjVp7An6",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Mercenary",
+      "type": "specialty",
+      "_id": "c6OfybQyQOFGdagB",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Officer",
+      "type": "specialty",
+      "_id": "2zi0PYL34Fx7nzYu",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Pilot",
+      "type": "specialty",
+      "_id": "RcKGCPJGwvT4RyzK",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Roughneck",
+      "type": "specialty",
+      "_id": "ul33QW30BgdHpC7x",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Scientist",
+      "type": "specialty",
+      "_id": "CiImIr3onyFPZYTs",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Wildcatter",
+      "type": "specialty",
+      "_id": "tuRsYrjPkaSyDGjH",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Entertainer",
+      "type": "specialty",
+      "_id": "1d7lOjgksMQwOshq",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Synthetic",
+      "type": "specialty",
+      "_id": "HGlfrGjVxLXWOq8x",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "D4Yb7CG643VQx0uS",
+      "name": "Homebrew",
+      "type": "specialty",
+      "_id": "rWzC83uWPoxHo1ht",
+      "img": "systems/alienrpg/images/icons/cover-notext.png",
+      "system": {
+        "notes": {
+          "notes": ""
+        },
+        "modifiers": {
+          "attributes": {
+            "str": {
+              "value": 0,
+              "label": ""
+            },
+            "wit": {
+              "value": 0,
+              "label": ""
+            },
+            "agl": {
+              "value": 0,
+              "label": ""
+            },
+            "emp": {
+              "value": 0,
+              "label": ""
+            },
+            "health": {
+              "value": 0,
+              "label": ""
+            },
+            "stress": {
+              "value": 0,
+              "label": ""
+            }
+          },
+          "skills": {
+            "heavyMach": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "closeCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "stamina": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "rangedCbt": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "mobility": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "piloting": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "command": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "manipulation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "medicalAid": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "observation": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "survival": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            },
+            "comtech": {
+              "value": 0,
+              "label": "",
+              "ability": ""
+            }
+          }
+        },
+        "general": {
+          "comment": {
+            "value": ""
+          }
+        }
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217883,
+        "modifiedTime": 1763024217883,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
       "ownership": {
         "default": 0
       }
@@ -410,9 +3250,8 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
-            "lastModifiedBy": "vFMiD8xQenRCAtin",
-            "modifiedTime": 1759757623658
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
           },
           "category": null,
           "ownership": {
@@ -426,10 +3265,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282045,
-        "modifiedTime": 1759757282045,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217935,
+        "modifiedTime": 1763024217935,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": null,
       "sort": 0,
@@ -466,7 +3305,7 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
+            "systemVersion": "4.0.0",
             "lastModifiedBy": null
           },
           "description": "<b>KEEPING IT TOGETHER:</b> You manage to keep your nerves in check. Barely.",
@@ -489,7 +3328,7 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
+            "systemVersion": "4.0.0",
             "lastModifiedBy": null
           },
           "description": "<b>NERVOUS TWITCH:</b>  Your STRESS LEVEL, and the STRESS LEVEL of all friendly PCs in SHORT range of you, increases by one.'",
@@ -512,7 +3351,7 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
+            "systemVersion": "4.0.0",
             "lastModifiedBy": null
           },
           "description": "<b>TREMBLE:</b>  You start to tremble uncontrollably. All skill rolls using AGILITY suffer a –2 modification until your panic stops.",
@@ -535,7 +3374,7 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
+            "systemVersion": "4.0.0",
             "lastModifiedBy": null
           },
           "description": "<b>DROP ITEM:</b>  Whether by stress, confusion or the realization that you’re all going to die anyway, you drop a weapon or other important item—the GM decides which one. Your STRESS LEVEL increases by one.",
@@ -558,7 +3397,7 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
+            "systemVersion": "4.0.0",
             "lastModifiedBy": null
           },
           "description": "<b>FREEZE:</b>  You’re frozen by fear or stress for one Round, losing your next slow action. Your STRESS LEVEL, and the STRESS LEVEL of all friendly PCs in SHORT range of you, increases by one",
@@ -581,7 +3420,7 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
+            "systemVersion": "4.0.0",
             "lastModifiedBy": null
           },
           "description": "<b>SEEK COVER:</b>  You must use your next action to move away from danger and find a safe spot if possible. You are allowed to make a retreat roll (see page 93) if you have an enemy at ENGAGED range. Your STRESS LEVEL is decreased by one, but the STRESS LEVEL of all friendly PCs in SHORT range increases by one. After one Round, you can act normally.",
@@ -604,7 +3443,7 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
+            "systemVersion": "4.0.0",
             "lastModifiedBy": null
           },
           "description": "<b>SCREAM:</b> You scream your lungs out for one Round, losing your next slow action. Your STRESS LEVEL is decreased by one, but every friendly character who hears your scream must make an immediate Panic Roll.",
@@ -627,7 +3466,7 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
+            "systemVersion": "4.0.0",
             "lastModifiedBy": null
           },
           "description": "<b>FLEE:</b>  You just can’t take it anymore. You must flee to a safe place and refuse to leave it. You won’t attack anyone and won’t attempt anything dangerous. You are not allowed to make a retreat roll (see page 93) if you have an enemy at ENGAGED range when you flee. Your STRESS LEVEL is decreased by one, but every friendly character who sees you run must make an immediate Panic Roll.",
@@ -650,7 +3489,7 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
+            "systemVersion": "4.0.0",
             "lastModifiedBy": null
           },
           "description": "<b>BERSERK:</b>  You must immediately attack the nearest person or creature, friendly or not. You won’t stop until you or the target is Broken. Every friendly character who witnesses your rampage must make an immediate Panic Roll",
@@ -673,7 +3512,7 @@
             "exportSource": null,
             "coreVersion": "13.350",
             "systemId": "alienrpg",
-            "systemVersion": "3.3.4",
+            "systemVersion": "4.0.0",
             "lastModifiedBy": null
           },
           "description": "<b>CATATONIC:</b>  You collapse to the floor and can’t talk or move, staring blankly into oblivion.",
@@ -689,14 +3528,574 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282092,
-        "modifiedTime": 1759757282092,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217980,
+        "modifiedTime": 1763024217980,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "A0N3Ct1TQq9BuGk6",
       "sort": 100000,
       "_id": "C9xIi3jZKGd0aZJ7",
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "A0N3Ct1TQq9BuGk6",
+      "name": "Stress Response Table",
+      "_id": "T3FJsMBYaL0CYcgj",
+      "img": "icons/svg/d20-grey.svg",
+      "description": "",
+      "results": [
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            0,
+            0
+          ],
+          "_id": "Pt1rhFWmxVl4iBSL",
+          "name": "Keeping Cool.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>No effect.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            1,
+            1
+          ],
+          "_id": "CueM1g355QRcdKx4",
+          "name": "Jumpy.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>When you push a skill roll, you gain +2 stress level instead of +1.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            2,
+            2
+          ],
+          "_id": "YjWehDmzWfaTUvu5",
+          "name": "Tunnel Vision.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>All skill rolls based on Wits get –2 dice.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            3,
+            3
+          ],
+          "_id": "16Uu6Nw57e80kZNZ",
+          "name": "Aggravated.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>All skill rolls based on Empathy get –2 dice.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            4,
+            4
+          ],
+          "_id": "W01K7MHEhlfMnkq2",
+          "name": "Shakes.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>All skill rolls based on Agility get –2 dice.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            5,
+            5
+          ],
+          "_id": "JwdRWIISN8V3FikU",
+          "name": "Frantic.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>All skill rolls based on Strength get –2 dice.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            6,
+            6
+          ],
+          "_id": "rs5CoqKIg9VWGpZK",
+          "name": "Deflated.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>You cannot push any skill rolls. If you are Jumpy (#1 above), remove that response, and ignore any further Jumpy results while Deflated.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            7,
+            10
+          ],
+          "_id": "PHU80zr4Y052SM2U",
+          "name": "Mess Up.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>Your action fails regardless of rolled and you gain +1 stress level.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        }
+      ],
+      "replacement": true,
+      "displayRoll": true,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "RollTable.T3FJsMBYaL0CYcgj",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024439562,
+        "modifiedTime": 1763024439562,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "formula": "1d6",
+      "ownership": {
+        "default": 0
+      }
+    },
+    {
+      "folder": "A0N3Ct1TQq9BuGk6",
+      "name": "Panic Response Table",
+      "_id": "qBtr1GpB9R8aUtOO",
+      "img": "icons/svg/d20-grey.svg",
+      "description": "",
+      "results": [
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            1,
+            1
+          ],
+          "_id": "WU8BqATDWAZZfUg6",
+          "name": "Spooked.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>Stress level +1 for you.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            2,
+            2
+          ],
+          "_id": "uGb8SP22mCWhvvRa",
+          "name": "Noisy.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>Any enemies nearby (GM’s discretion) are automatically alerted to your presence.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            3,
+            3
+          ],
+          "_id": "XdHS5tzPu0vOQBFn",
+          "name": "Twitchy.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>Make an immediate supply roll for air, ammo, or power (GM’s discretion).</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            4,
+            4
+          ],
+          "_id": "MtcOwZ1abUvHzaJD",
+          "name": "Lose Item.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>You lose a weapon or other important item. The GM decides which one. In combat, you can pick up the item with a quick action.</p><p>Out of combat, you need an <strong>OBSERVATION</strong> roll and a stretch of time to find the item.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            5,
+            5
+          ],
+          "_id": "L3SSv6yQrOIKuPC5",
+          "name": "Paranoid.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>You cannot give or receive help on skill rolls until panic ends.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            6,
+            6
+          ],
+          "_id": "o6fMlgJhUWkzVYAg",
+          "name": "Hesitant.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>You automatically get the #10 initiative card in combat until your panic stops. If several PCs are Hesitant, draw the highest value cards randomly.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            7,
+            7
+          ],
+          "_id": "cW4Z6LTDwqFCeL1G",
+          "name": "Freeze.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>You’re frozen by fear, losing your next turn and unable to perform any interrupt actions before then.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            8,
+            8
+          ],
+          "_id": "4ex5AaRBfHE8Bog7",
+          "name": "Seek Cover.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>You immediately seek (full) cover in the zone, if it is cluttered. This is an interrupt action breaking the turn order.</p><p>Once in cover, your stress level is reduced 1 step, but you lose your next turn and are unable to perform any interrupt actions before then.</p><p>If you are in an open zone, you Scream instead.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            9,
+            9
+          ],
+          "_id": "Zcef9i2JEVwCZWqb",
+          "name": "Scream.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>You scream your lungs out, losing your next turn and unable to perform any interrupt actions before then.</p><p>Your stress level is reduced 1 step, but every friendly PC in the zone must make an immediate panic roll.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            10,
+            10
+          ],
+          "_id": "VIIFu7jK61qZxlsa",
+          "name": "Flee.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>You immediately move away from the source of panic, into any adjacent zone, if such a move is possible.</p><p>This is an interrupt action breaking the turn order.</p><p>After the move, your stress level is reduced 1 step, but all friendly PCs in the starting zone get stress level +1.</p><p>On your next turn and subsequent turns, you must spend all your actions to continue to move away, until you find a (reasonably) safe place, where you must remain until your panic stops. You cannot perform interrupt actions before then.</p><p>If you cannot move out of your zone, you become Catatonic (result #12) instead.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            11,
+            11
+          ],
+          "_id": "lQ86orjWAQ0u8oJX",
+          "name": "Frenzy.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>You immediately attack the nearest person or creature, friendly or not. Every friendly PC in the zone must make an immediate panic roll.</p><p>You won’t stop until you or the target is broken, or until your panic stops. You cannot perform interrupt actions before then.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            12,
+            20
+          ],
+          "_id": "OogVZv8XYseJ3F45",
+          "name": "Catatonic.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>You’re doomed! You collapse to the floor and can’t move, rambling or staring blankly into oblivion, until your panic stops.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        },
+        {
+          "type": "text",
+          "weight": 1,
+          "range": [
+            0,
+            0
+          ],
+          "_id": "C6D3LU7W1t0oN9AZ",
+          "name": "Keeping Cool.",
+          "img": "icons/svg/d20-black.svg",
+          "description": "<p>No effect.</p>",
+          "drawn": false,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.350",
+            "systemId": "alienrpg",
+            "systemVersion": "4.0.0",
+            "lastModifiedBy": null
+          },
+          "documentUuid": null
+        }
+      ],
+      "replacement": true,
+      "displayRoll": true,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "RollTable.qBtr1GpB9R8aUtOO",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024439562,
+        "modifiedTime": 1763024439562,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      },
+      "formula": "1d12",
       "ownership": {
         "default": 0
       }
@@ -707,7 +4106,7 @@
       "_id": "2uRygGpJBInn9YZk",
       "name": "Alien - Player Ad-hoc YZE Dice Roller",
       "type": "script",
-      "author": "vFMiD8xQenRCAtin",
+      "author": "SYG18DkMr9ahL6QX",
       "img": "systems/alienrpg/ui/DsN/alien-dice-b6.png",
       "scope": "global",
       "command": "(async () => {\n  let hostile = false;\n  try {\n    let label = `${game.i18n.localize('ALIENRPG.ROLLFOR')}` + ' ' + actor.name;\n  } catch {\n    ui.notifications.error(`${game.i18n.localize('ALIENRPG.NoToken')}`);\n    return;\n  }\n  let label = 'for ' + actor.name;\n  let actorid = actor.id;\n  let reRoll = false;\n  let blind = false;\n\n  let template = `\n        <form>\n            <label>${game.i18n.localize('ALIENRPG.ENSOKEN')}</label>\n\n            <div class=\"form-group\">\n            <label>${game.i18n.localize('ALIENRPG.HOWMANYDICE')}</label>\n            <input type=\"text\" id=\"fr1Data\" value=1>\n            </div>\n            <div class=\"form-group\">\n            <label>${game.i18n.localize('ALIENRPG.HOWMANYSTRESS')}</label>\n            <input type=\"text\" id=\"fr2Data\" value=0>\n            </div>\n   \n        </form>`;\n\n  let buttons = {};\n  // if (game.tables.entities.length > 0) {\n  buttons = {\n    draw: {\n      icon: '<i class=\"fas fa-check\"></i>',\n      label: `${game.i18n.localize('ALIENRPG.Roll')}`,\n      callback: async (html) => {\n        // const tableId = html.find('#tableSelect')[0].value\n        // const table = game.tables.get(tableId);\n        const r1Data = parseInt(html.find('#fr1Data')[0].value || 0);\n        const r2Data = parseInt(html.find('#fr2Data')[0].value || 0);\n\n        await game.alienrpg.yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress', actorid);\n      },\n    },\n    cancel: {\n      icon: '<i class=\"fas fa-times\"></i>',\n      label: `${game.i18n.localize('ALIENRPG.DialCancel')}`,\n    },\n  };\n\n  new Dialog({\n    title: 'Player - Roll Alien Dice.',\n    content: template,\n    buttons: buttons,\n    default: 'draw',\n  }).render(true);\n})();",
@@ -723,10 +4122,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282108,
-        "modifiedTime": 1759757282108,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217991,
+        "modifiedTime": 1763024217991,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "bjqt3ME8csX2r1wM",
       "sort": 200000,
@@ -738,7 +4137,7 @@
       "_id": "7oJw70t0MODJWuGV",
       "name": "Alien -  GM Dice Roller",
       "type": "script",
-      "author": "vFMiD8xQenRCAtin",
+      "author": "SYG18DkMr9ahL6QX",
       "img": "systems/alienrpg/ui/DsN/alien-dice-y6.png",
       "scope": "global",
       "command": "(async () => {\n  let hostile = false;\n  let label = 'GM';\n  let reRoll = true;\n\n  let template = `\n        <form>\n            <div class=\"form-group\">\n                <label>${game.i18n.localize('ALIENRPG.HOWMANYDICE')}</label>\n                <input type=\"text\" id=\"fr1Data\" value=1>\n            </div>\n            <div class=\"form-group\">\n                <label>${game.i18n.localize('ALIENRPG.HOWMANYSTRESS')}</label>\n                <input type=\"text\" id=\"fr2Data\" value=0>\n            </div>\n    \n            <div class=\"form-group\">\n                <label>${game.i18n.localize('ALIENRPG.GMONLY')}</label>\n                <input type=\"checkbox\" id=\"fblind\" value=\"true\" checked>\n            </div>\n    \n        </form>`;\n\n  let buttons = {};\n  buttons = {\n    draw: {\n      icon: '<i class=\"fas fa-check\"></i>',\n      label: `${game.i18n.localize('ALIENRPG.Roll')}`,\n      callback: async (html) => {\n        const r1Data = parseInt(html.find('#fr1Data')[0].value || 0);\n        const r2Data = parseInt(html.find('#fr2Data')[0].value || 0);\n        const blind = html.find('#fblind')[0].checked;\n\n        await game.alienrpg.yze.yzeRoll(hostile, blind, reRoll, label, r1Data, 'Black', r2Data, 'Stress');\n      },\n    },\n    cancel: {\n      icon: '<i class=\"fas fa-times\"></i>',\n      label: `${game.i18n.localize('ALIENRPG.DialCancel')}`,\n    },\n  };\n\n  new Dialog({\n    title: 'Roll Alien Dice.',\n    content: template,\n    buttons: buttons,\n    default: 'draw',\n  }).render(true);\n})();",
@@ -754,10 +4153,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282108,
-        "modifiedTime": 1759757282108,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217991,
+        "modifiedTime": 1763024217991,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "folder": "bjqt3ME8csX2r1wM",
       "sort": 300000,
@@ -768,7 +4167,7 @@
     {
       "name": "Alien - Roll on selected Mother table V10",
       "type": "script",
-      "author": "vFMiD8xQenRCAtin",
+      "author": "SYG18DkMr9ahL6QX",
       "img": "icons/svg/biohazard.svg",
       "scope": "global",
       "command": "(async () => {\n  let options = '';\n  game.tables.contents.forEach((t) => {\n    if (t.folder && t.folder.name === 'Alien Mother Tables' && t.folder.name != null) {\n      options = options.concat(`<option value=\"${t.id}\">${t.name}</option>`);\n    }\n  });\n  let template = `\n                    <form>\n                        <div class=\"form-group\">\n                            <label>${game.i18n.localize('ALIENRPG.SELTABLE')}</label>\n                            <select id=\"tableSelect\">${options}</select>\n                        </div>\n                        <div class=\"form-group\">\n                            <label>${game.i18n.localize('ALIENRPG.HOWMANY')}</label>\n                            <input type=\"text\" id=\"inputNbr\" value=1>\n                        </div>\n                        <div class=\"form-group\">\n                            <label>${game.i18n.localize('ALIENRPG.MODIFIER')}</label>\n                            <input type=\"text\" id=\"inputMod\" value=\"0\">\n                        </div>\n                    </form>`;\n\n  let buttons = {};\n  if (game.tables.size > 0) {\n    buttons = {\n      draw: {\n        icon: '<i class=\"fas fa-check\"></i>',\n        label: `${game.i18n.localize('ALIENRPG.DRAW')}`,\n        callback: async (html) => {\n          const tableId = html.find('#tableSelect')[0].value;\n          const table = game.tables.get(tableId);\n          const drawNumber = parseInt(html.find('#inputNbr')[0].value || 0);\n          const formula = table.formula;\n          const modifier = parseInt(html.find('#inputMod')[0].value || '0');\n\n          for (let i = 0; i < drawNumber; i++) {\n            const roll = new Roll(formula + ' + ' + modifier);\n            roll.evaluate({ async: false });\n            await table.draw({ roll: roll });\n          }\n        },\n      },\n      cancel: {\n        icon: '<i class=\"fas fa-times\"></i>',\n        label: `${game.i18n.localize('ALIENRPG.DialCancel')}`,\n      },\n    };\n  } else {\n    template = `<div style=\"text-align: center\">${game.i18n.localize('ALIENRPG.NOTABLES')}</div><br>`;\n    buttons = {\n      draw: {\n        icon: '<i class=\"fas fa-check\"></i>',\n        label: 'OK',\n      },\n    };\n  }\n\n  new Dialog({\n    title: `${game.i18n.localize('ALIENRPG.ROLLONSELECTED')}`,\n    content: template,\n    buttons: buttons,\n    default: 'draw',\n  }).render(true);\n})();",
@@ -786,10 +4185,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282108,
-        "modifiedTime": 1759757282108,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217991,
+        "modifiedTime": 1763024217991,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "_id": "KRJ8u182zZUe6DYE",
       "ownership": {
@@ -799,7 +4198,7 @@
     {
       "name": "Alien - Roll on selected Creature table V10",
       "type": "script",
-      "author": "vFMiD8xQenRCAtin",
+      "author": "SYG18DkMr9ahL6QX",
       "img": "icons/svg/pawprint.svg",
       "scope": "global",
       "command": "(async () => {\n  let options = '';\n\n  game.tables.contents.forEach((t) => {\n    if (t.folder && t.folder.name === 'Alien Creature Tables' && t.folder.name != null) {\n      options = options.concat(`<option value=\"${t.id}\">${t.name}</option>`);\n    }\n  });\n  let template = `\n                  <form>\n                      <div class=\"form-group\">\n                      <label>${game.i18n.localize('ALIENRPG.SELTABLE')}</label>\n                      <select id=\"tableSelect\">${options}</select>\n                      </div>\n                      <div class=\"form-group\">\n                      <label>${game.i18n.localize('ALIENRPG.HOWMANY')}</label>\n                      <input type=\"text\" id=\"inputNbr\" value=1>\n                      </div>\n                        <div class=\"form-group\">\n                            <label>${game.i18n.localize('ALIENRPG.MODIFIER')}</label>\n                            <input type=\"text\" id=\"inputMod\" value=\"0\">\n                        </div>\n                  </form>`;\n\n  let buttons = {};\n  if (game.tables.size > 0) {\n    buttons = {\n      draw: {\n        icon: '<i class=\"fas fa-check\"></i>',\n        label: `${game.i18n.localize('ALIENRPG.DRAW')}`,\n        callback: async (html) => {\n          const tableId = html.find('#tableSelect')[0].value;\n          const table = game.tables.get(tableId);\n          const drawNumber = parseInt(html.find('#inputNbr')[0].value || 0);\n          const formula = table.formula;\n          const modifier = parseInt(html.find('#inputMod')[0].value || '0');\n\n          for (let i = 0; i < drawNumber; i++) {\n            const roll = new Roll(formula + ' + ' + modifier);\n            roll.evaluate({ async: false });\n            await table.draw({ roll: roll });\n          }\n        },\n      },\n      cancel: {\n        icon: '<i class=\"fas fa-times\"></i>',\n        label: `${game.i18n.localize('ALIENRPG.DialCancel')}`,\n      },\n    };\n  } else {\n    template = `<div style=\"text-align: center\">${game.i18n.localize('ALIENRPG.NOTABLES')}</div><br>`;\n    buttons = {\n      draw: {\n        icon: '<i class=\"fas fa-check\"></i>',\n        label: 'OK',\n      },\n    };\n  }\n\n  new Dialog({\n    title: `${game.i18n.localize('ALIENRPG.ROLLONCREATURETABLE')}`,\n    content: template,\n    buttons: buttons,\n    default: 'draw',\n  }).render(true);\n})();",
@@ -817,10 +4216,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282108,
-        "modifiedTime": 1759757282108,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217991,
+        "modifiedTime": 1763024217991,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "_id": "YMYzg0KtBcZz6oYo",
       "ownership": {
@@ -835,7 +4234,7 @@
       "name": "Alien Tables",
       "type": "RollTable",
       "sorting": "a",
-      "sort": 0,
+      "sort": 100000,
       "color": null,
       "flags": {
         "core": {}
@@ -849,10 +4248,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282119,
-        "modifiedTime": 1759757282119,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217999,
+        "modifiedTime": 1763046718745,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       }
     },
     {
@@ -871,8 +4270,9 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "lastModifiedBy": null
+        "systemVersion": "4.0.0",
+        "lastModifiedBy": "SYG18DkMr9ahL6QX",
+        "modifiedTime": 1763024439749
       }
     },
     {
@@ -891,8 +4291,9 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "lastModifiedBy": null
+        "systemVersion": "4.0.0",
+        "lastModifiedBy": "SYG18DkMr9ahL6QX",
+        "modifiedTime": 1763024439749
       }
     },
     {
@@ -911,8 +4312,9 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "lastModifiedBy": null
+        "systemVersion": "4.0.0",
+        "lastModifiedBy": "SYG18DkMr9ahL6QX",
+        "modifiedTime": 1763024439749
       }
     },
     {
@@ -932,10 +4334,10 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282119,
-        "modifiedTime": 1759757282119,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217999,
+        "modifiedTime": 1763024217999,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "_id": "bjqt3ME8csX2r1wM"
     },
@@ -945,7 +4347,7 @@
       "folder": null,
       "description": "",
       "sorting": "a",
-      "sort": 0,
+      "sort": 1300000,
       "color": null,
       "flags": {
         "core": {}
@@ -956,12 +4358,34 @@
         "exportSource": null,
         "coreVersion": "13.350",
         "systemId": "alienrpg",
-        "systemVersion": "3.3.4",
-        "createdTime": 1759757282119,
-        "modifiedTime": 1759757282119,
-        "lastModifiedBy": "vFMiD8xQenRCAtin"
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217999,
+        "modifiedTime": 1763043419455,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
       },
       "_id": "R8mjiz4iJkZGZMIw"
+    },
+    {
+      "type": "Item",
+      "folder": null,
+      "name": "Careers",
+      "color": null,
+      "sorting": "a",
+      "_id": "D4Yb7CG643VQx0uS",
+      "description": "",
+      "sort": 1200000,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Folder.D4Yb7CG643VQx0uS",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "alienrpg",
+        "systemVersion": "4.0.0",
+        "createdTime": 1763024217999,
+        "modifiedTime": 1763043419455,
+        "lastModifiedBy": "SYG18DkMr9ahL6QX"
+      }
     }
   ],
   "_id": "R8mjiz4iJkZGZMIw",
@@ -969,10 +4393,10 @@
   "_stats": {
     "systemId": "alienrpg",
     "systemVersion": "3.1.7",
-    "coreVersion": "13.350",
+    "coreVersion": "13.351",
     "createdTime": 1654597293937,
-    "modifiedTime": 1759757655914,
-    "lastModifiedBy": "vFMiD8xQenRCAtin",
+    "modifiedTime": 1765401214318,
+    "lastModifiedBy": "SYG18DkMr9ahL6QX",
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null

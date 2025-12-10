@@ -333,6 +333,7 @@ ALIENRPG.Icons = {
 }
 
 ALIENRPG.career_list = {
+	0: { id: 0, label: "ALIENRPG.GeneralTalent" },
 	1: { id: 1, label: "ALIENRPG.ColonialMarine" },
 	2: { id: 2, label: "ALIENRPG.ColonialMarshal" },
 	3: { id: 3, label: "ALIENRPG.CompanyAgent" },

@@ -57,6 +57,7 @@
   --white: hsl(0, 0%, 100%);
   --alientextjournal: hsl(187, 52%, 80%);
   --journalback: url(../images/mother-instructions/indbackground2.png);
+  --evolvedjournalback: #f7f5f0;
   --chatbackground: url(../images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
   --alienchatwhite: hsl(0, 0%, 100%);
@@ -75,32 +76,13 @@ ul ol {
   margin-left: 3px;
 }
 
+li {
+  font-weight: normal;
+}
+
 .crit-box {
   border: 2px double var(--aliengreen);
   height: 100px;
-}
-
-#context-menu {
-  width: auto;
-  height: -moz-max-content;
-  height: max-content;
-  min-width: 156px;
-  max-width: 360px;
-  position: absolute;
-  left: -998%;
-  top: -50%;
-  background: hsl(0, 0%, 0%);
-  border: 1px solid var(--aliengreen);
-  border-radius: 5px;
-  color: var(--aliengreen);
-  text-align: left;
-  font-size: smaller;
-  z-index: 1;
-}
-
-#context-menu li.context-item {
-  line-height: 16px;
-  padding: 0px;
 }
 
 .ALIENRPG.application {
@@ -169,9 +151,9 @@ a.content-link {
   background: hsl(0, 0%, 0%);
 }
 
-a.content-link {
-  color: hsl(0, 0%, 100%);
-  background: hsl(0, 0%, 0%);
+a.ev-content-link {
+  color: black;
+  background: hsl(175, 53.14%, 88.55%);
 }
 
 #chat .message {
@@ -4159,6 +4141,20 @@ button:focus {
   border: 1px solid var(--aliengreen);
 }
 
+.grid-evolved-2col {
+  display: grid;
+  grid-template-areas: "gevcol1 gevcol2";
+  grid-template-columns: 50% 50%;
+}
+
+.gevcol1 {
+  grid-area: gevcol1;
+}
+
+.gevcol2 {
+  grid-area: gevcol2;
+}
+
 .flex-center {
   align-items: center;
   justify-content: center;
@@ -4824,6 +4820,39 @@ combobox:focus {
   color: var(--alientextjournal);
 }
 
+.sheet.journal-entry .journal-entry-content .evolved {
+  background: white;
+  border: 1px solid black;
+  border-radius: 1px;
+  background: var(--evolvedjournalback) top left;
+  background-size: cover;
+  color: black;
+  border: none;
+}
+
+.textover img {
+  width: auto;
+  border: none;
+  margin: 0;
+}
+
+.textover {
+  position: relative;
+  margin: 0;
+  border: none;
+} /* REQUIRED */
+.textover figcaption {
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  text-align: left;
+  width: auto;
+  margin: 0;
+  padding: 0px;
+  font-weight: normal;
+  border: none;
+}
+
 .sheet.journal-entry .sidebar .directory-header .header-search input {
   color: hsl(0, 0%, 0%);
 }
@@ -4832,7 +4861,7 @@ combobox:focus {
   height: 36px;
   width: 80%;
   /* border-style: double;
-         border-color: greenyellow; */
+        border-color: greenyellow; */
   margin-left: auto;
   margin-right: auto;
   border: 0;
@@ -4852,7 +4881,7 @@ combobox:focus {
   height: 36px;
   width: 34%;
   /* border-style: double;
-         border-color: greenyellow; */
+        border-color: greenyellow; */
   margin-left: auto;
   margin-right: auto;
   border: 0;
@@ -4905,7 +4934,7 @@ combobox:focus {
 .ntable {
   width: 99%;
   /* border-style: double;
-         border-color: greenyellow; */
+        border-color: greenyellow; */
   margin-left: auto;
   margin-right: auto;
   border: 0;
@@ -4937,6 +4966,16 @@ combobox:focus {
   width: 5%;
 }
 
+.tcol4 {
+  width: 25%;
+}
+
+.tcol5 {
+  width: 50%;
+  text-align: justify;
+  vertical-align: top;
+}
+
 .etable {
   width: 40%;
   /* border-style: double; */
@@ -4953,9 +4992,25 @@ combobox:focus {
   padding-left: 5px;
 }
 
+.evetable {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.evetable tr:nth-child(even) {
+  background-color: #e6ebe8;
+}
+
+.evetable tr:nth-child(odd) {
+  background-color: transparent;
+}
+
 .etr {
   /* border-style: solid;
-         border-color: greenyellow; */
+        border-color: greenyellow; */
   border: 1;
 }
 
@@ -4977,7 +5032,7 @@ combobox:focus {
 .ecol3 {
   width: 3%;
   /* border-left: greenyellow;
-         border-style: solid; */
+        border-style: solid; */
 }
 
 .stable {
@@ -5070,6 +5125,26 @@ combobox:focus {
   background-color: #3a3d3f;
 }
 
+.evoddstable {
+  width: 96%;
+  height: 16px;
+  border-style: double;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-left: none;
+  border-right: none;
+}
+
+.evoddstable tr:nth-child(even) {
+  background-color: #e6ebe8;
+}
+
+.evoddstable tr:nth-child(odd) {
+  background-color: transparent;
+}
+
 .oddhead {
   font-weight: bold;
 }
@@ -5108,6 +5183,25 @@ combobox:focus {
 
 .bigtable tr:nth-child(odd) {
   background-color: #3a3d3f;
+}
+
+.evbigtable {
+  width: 99%;
+  border-style: double;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-left: none;
+  border-right: none;
+}
+
+.evbigtable tr:nth-child(even) {
+  background-color: #e6ebe8;
+}
+
+.evbigtable tr:nth-child(odd) {
+  background-color: transparent;
 }
 
 .die {
@@ -5173,6 +5267,13 @@ combobox:focus {
   border-bottom: 2px solid var(--color-underline-header);
 }
 
+.evheading {
+  color: hsl(175, 91%, 22%);
+  font-weight: bold;
+  font-size: 28px;
+  border-bottom: 2px solid hsl(175, 91%, 22%);
+}
+
 .heading2 {
   text-align: center;
   color: var(--aliengreen);
@@ -5180,6 +5281,30 @@ combobox:focus {
 }
 
 .heading3 {
+  color: var(--aliengreen);
+}
+
+.alienrpg .evchapterheading {
+  color: black;
+  font-weight: 900;
+  font-size: 28px;
+  border-bottom: 8px solid black;
+}
+
+.evsystemheading {
+  color: black;
+  font-weight: 900;
+  font-size: 28px;
+  border-bottom: 3px solid black;
+}
+
+.evheading2 {
+  text-align: center;
+  color: var(--aliengreen);
+  /* font-size: x-large; */
+}
+
+.evheading3 {
   color: var(--aliengreen);
 }
 
@@ -5311,7 +5436,7 @@ combobox:focus {
 
 .basesymbol {
   display: inline-block;
-  background-image: url("../images/icons/alien-dice-6.png");
+  background-image: url("../ui/DsN/alien-dice-b6.png");
   width: 36px;
   height: 35px;
   vertical-align: middle;
@@ -5428,6 +5553,302 @@ table td {
   padding: 0px;
 }
 
+.image-text-box {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 30px;
+}
+
+.evolvedpage {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-bottom: 20px;
+}
+
+.evolvedsubheading {
+  color: black;
+  font-weight: bold;
+}
+
+.evolvedlinestart {
+  color: hsl(175, 91%, 22%);
+  font-weight: bold;
+}
+
+ul .liststyle {
+  list-style-type: "> ";
+}
+
+ul .nostyle {
+  list-style-type: none;
+}
+
+.textBlockLeft {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 153 95 157 95 fill;
+  border-image-width: 114px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/border-image.svg");
+  border-style: solid;
+  justify-self: left;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  margin-left: 3px;
+}
+
+.textBlockRight {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 153 95 157 95 fill;
+  border-image-width: 114px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/border-image.svg");
+  border-style: solid;
+  justify-self: right;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  margin-right: 3px;
+}
+
+.textBlockCenter {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 153 95 157 95 fill;
+  border-image-width: 114px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/border-image.svg");
+  border-style: solid;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  justify-self: center;
+}
+
+.textBlockCenter2 {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 153 95 157 95 fill;
+  border-image-width: 181px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/border-image.svg");
+  border-style: solid;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  justify-self: center;
+}
+
+.shipsLogLeft {
+  width: 60%;
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 120 10 60 10 fill;
+  border-image-width: 120px 10px 61px 10px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/shipslog.svg");
+  border-style: solid;
+  justify-self: left;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  margin-left: 3px;
+}
+
+.shipsLogCenter {
+  width: 60%;
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 120 10 60 10 fill;
+  border-image-width: 120px 10px 61px 10px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/shipslog.svg");
+  border-style: solid;
+  justify-self: center;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  margin-left: 3px;
+}
+
+.shipsLogTime {
+  color: hsl(175, 91%, 22%);
+  font-weight: bold;
+  margin: -12px 0px 51px 58px;
+}
+
+:root {
+  --spacing-s: clamp(0.875rem, 0.8533rem + 0.1087vw, 0.9375rem);
+  --spacing-m: clamp(1.6875rem, 1.6223rem + 0.3261vw, 1.875rem);
+  --spacing-l: clamp(2.25rem, 2.163rem + 0.4348vw, 2.5rem);
+  --font-size-s: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
+  --font-size-l: clamp(1.35rem, 1.2761rem + 0.3696vw, 1.5625rem);
+}
+
+.exampleBlockCenter {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 106 95 200 53 fill;
+  border-image-width: 114px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/example-border-image.svg");
+  border-style: solid;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  justify-self: center;
+}
+
+.exampleBlockCenter2 {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 22 30 91 9 fill;
+  border-image-width: 114px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/example-border-image.svg");
+  border-style: solid;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  justify-self: center;
+}
+
+.evstable {
+  width: 90%;
+  border-style: double;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-left: none;
+  border-right: none;
+}
+
+.evstable tr:nth-child(even) {
+  background-color: #e6ebe8;
+}
+
+.evstable tr:nth-child(odd) {
+  background-color: transparent;
+}
+
+.evstrhead {
+  text-align: center;
+  font-weight: bold;
+}
+
+.evscol1 {
+  width: 16%;
+}
+
+.evscol2 {
+  width: 3%;
+}
+
+.evscol3 {
+  width: 80%;
+}
+
+.evscol4 {
+  width: 25%;
+}
+
+.evscol5 {
+  width: 60%;
+}
+
+.evscol6 {
+  width: 90%;
+}
+
+.evscol7 {
+  width: 20%;
+}
+
+.evscol8 {
+  width: 65%;
+}
+
+.evscol9 {
+  width: 12%;
+}
+
+.evscol10 {
+  width: 50%;
+}
+
+.evblockquoteCenter {
+  color: hsl(175, 91%, 22%);
+  padding: 10px;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  justify-self: center;
+  border-top: 10px solid hsl(175, 91%, 22%);
+  border-bottom: 2px solid hsl(175, 91%, 22%);
+  border-left: 2px solid hsl(175, 91%, 22%);
+  border-right: 2px solid hsl(175, 91%, 22%);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.evblockquoteLeft {
+  color: hsl(175, 91%, 22%);
+  padding: 10px;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  justify-self: left;
+  border-top: 10px solid hsl(175, 91%, 22%);
+  border-bottom: 2px solid hsl(175, 91%, 22%);
+  border-left: 2px solid hsl(175, 91%, 22%);
+  border-right: 2px solid hsl(175, 91%, 22%);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.evblockquoteRightr {
+  color: hsl(175, 91%, 22%);
+  padding: 10px;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  justify-self: right;
+  border-top: 10px solid hsl(175, 91%, 22%);
+  border-bottom: 2px solid hsl(175, 91%, 22%);
+  border-left: 2px solid hsl(175, 91%, 22%);
+  border-right: 2px solid hsl(175, 91%, 22%);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.evexamplebox {
+  justify-self: center;
+  position: relative;
+  color: hsl(175, 91%, 22%);
+  background-color: #f8f7f2;
+  border-bottom: 2px solid hsl(175, 91%, 22%);
+  border-left: 2px solid hsl(175, 91%, 22%);
+  border-right: 2px solid hsl(175, 91%, 22%);
+  border-bottom-right-radius: 20px;
+}
+
 input[type=checkbox]::before {
   color: whitesmoke;
 }
@@ -5484,6 +5905,7 @@ input[type=checkbox]::before {
   --white: hsl(0, 0%, 100%);
   --alientextjournal: hsl(187, 52%, 80%);
   --journalback: url(../images/mother-instructions/indbackground2.png);
+  --evolvedjournalback: #f7f5f0;
   --chatbackground: url(../images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
   --alienchatwhite: hsl(0, 0%, 100%);
@@ -5796,6 +6218,7 @@ input[type=checkbox]::before {
   --white: hsl(0, 0%, 100%);
   --alientextjournal: hsl(187, 52%, 80%);
   --journalback: url(../images/mother-instructions/indbackground2.png);
+  --evolvedjournalback: #f7f5f0;
   --chatbackground: url(../images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
   --alienchatwhite: hsl(0, 0%, 100%);
