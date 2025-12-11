@@ -1,0 +1,40 @@
+{{! Features Tab }}
+<section class='tab creature scrollable {{tab.cssClass}}' data-group='primary' data-tab='creature'>
+	{{! General Tab }}
+	<h3 class='resource-label nocenter'>{{localize 'ALIENRPG.AttackTable'}}</h3>
+	<div class='grid-rTables'>
+		<select class='select-css rTable1' name='system.rTables' data-atttype='{{system.rTables}}'>
+			{{selectOptions rTables selected=system.rTables valueAttr='key' labelAttr='label'}}
+		</select>
+
+		<button type='button' class='creature-attack-roll rTable2' data-action='creatureAttackRoll' data-atttype='{{system.rTables}}'>{{localize 'ALIENRPG.AttackRoll'}}</button>
+	</div>
+	<div>
+		<h3 class='resource-label'>{{localize 'ALIENRPG.SpecialAbilities'}}</h3>
+		<textarea name='system.general.special.value' rows='18' data-dtype='String'>{{system.general.special.value}}</textarea>
+	</div>
+	<div>
+		<h3 class='resource-label nocenter'>{{localize 'ALIENRPG.CriticalInjuries'}}</h3>
+		<div class='grid-rTables' style='margin-top: 5px;margin-bottom: 5px;'>
+			<select class='select-css rTable1' name='system.cTables' data-atttype='{{system.cTables}}'>
+				{{selectOptions cTables selected=system.cTables valueAttr='key' labelAttr='label'}}
+			</select>
+			<button type='button' class='alien-crit-button rTable2 rollCrit' data-action='RollCrit' data-atttype='{{system.cTables}}'>{{localize 'ALIENRPG.RollCrit'}}</button>
+		</div>
+	</div>
+	<div class='crit-box' style='min-height: 90px; height:auto'>
+		<ol class='items-list'>
+			{{#each critInj as |item iid|}}
+				<li class='item critical-inj-wide' data-item-id='{{item.id}}'>
+					<a class='item-image crit1w'><img src='{{item.img}}' width='24' height='24' /></a>
+					<a class='item-name crit2w'>{{item.name}}</a>
+					<a class='item-name crit3w' style='font-size:smaller '>{{{striptags item.system.attributes.effects}}}</a>
+					<a class='crit4w item-control item-edit1' data-action='viewDoc' data-document-class='Item' data-item-id='{{item.id}}' title='{{localize "ALIENRPG.EditItem"}}'><i
+							class='fas fa-edit'
+						></i></a>
+				</li>
+			{{/each}}
+		</ol>
+	</div>
+
+</section>

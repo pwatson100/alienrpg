@@ -1,0 +1,29 @@
+{{! Sheet Header }}
+<header class="vehicle-header" style='height: 240px;'>
+	<img class='profile-img-vehicle' src='{{actor.img}}' data-edit='img' data-action='onEditImage' data-tooltip='{{actor.name}}' height='100' width='100' />
+	<div class="header-fields">
+		<span class='charname'><input name='name' type='text' value='{{actor.name}}' placeholder='{{localize "ALIENRPG.Name"}}' /></span>
+		<div class="grid-vehicle">
+			<h2 class="vItem1">{{ localize 'ALIENRPG.Hull'}}</h2>
+			<div class="resource-label">
+				<input type="text" class="maxboxsize vItem2" name="system.attributes.hull.value" value="{{system.attributes.hull.value}}" data-dtype="Number" />
+				<label class="box23"> / </label>
+				<input type="text" class="maxboxsize" name="system.attributes.hull.max" value="{{system.attributes.hull.max}}" data-dtype="Number" />
+			</div>
+			<h2 class="vItem3 rollableVeh" data-action='RollAbility' data-roll="{{system.attributes.armorrating.value}}" data-label="{{localize 'ALIENRPG.ArmorRating'}}" data-spbutt="armor">
+				{{localize 'ALIENRPG.ArmorRating'}}
+			</h2>
+			<div class="resource-label">
+				<input type="text" class="maxboxsize vItem4" name="system.attributes.armorrating.value" value="{{system.attributes.armorrating.value}}" data-dtype="Number" />
+			</div>
+			<h2 class="vItem5">{{localize 'ALIENRPG.Speed'}}</h2>
+			<div class="resource-label">
+				<input type="text" class="maxboxsize vItem6" name="system.attributes.speed.value" value="{{system.attributes.speed.value}}" data-dtype="Number" />
+			</div>
+			<h2 class="vItem7">{{localize 'ALIENRPG.Manoeuvrability'}}</h2>
+			<div class="resource-label">
+				<input type="text" class="maxboxsize vItem8" name="system.attributes.manoeuvrability.value" value="{{system.attributes.manoeuvrability.value}}" data-dtype="Number" />
+			</div>
+		</div>
+	</div>
+</header>

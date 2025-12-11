@@ -1,0 +1,268 @@
+<section class='tab crtuisyntheticgeneral crt scrollable {{tab.cssClass}}' style="height:611px" data-group='primary' data-tab='crtuisyntheticgeneral'>
+	<div class="grid-crtPage" style="margin-left: 5px; width: 796px;">
+		<!-- Col1 -->
+		<div class="crt_Col1">
+			<div class="crt_Item1" style="height:106px">
+				<div class="dots experience">
+					<h4 class="resource-label">{{ localize 'ALIENRPG.XP'}}</h4>
+					<div class="newdots click-xp-stat-level" data-action='ClickXPStatLevel'>
+						{{#times system.XPcurrent}}
+							<i class="far fa-dot-circle"></i>
+						{{/times}} {{#times system.XPlost}}
+							<i class="far fa-circle"></i>
+						{{/times}}
+					</div>
+				</div>
+				<div class="dots experience">
+					<h4 class="resource-label">{{localize 'ALIENRPG.StoryPoints'}}</h4>
+					<div class="newdots click-sp-stat-level" data-action='ClickSPStatLevel'>
+						{{#times system.SPcurrent}}
+							<i class="far fa-dot-circle"></i>
+						{{/times}} {{#times system.SPlost}}
+							<i class="far fa-circle"></i>
+						{{/times}}
+					</div>
+				</div>
+			</div>
+			<div class="crt_Item2_synth" style="height:fit-content; margin-top: -2px;">
+				<h2 class="Heading">{{ localize 'ALIENRPG.Conditions'}}</h2>
+				{{#if system.header.synthstress}}
+					<div class="dots_conditions">
+						<div class="dots starving">
+							<h4 class="condition resource-label" data-action='OverwatchToggle' data-key="starving" title="{{ localize 'ALIENRPG.ConButtons'}}">
+								<a class="overwatch-toggle">
+									{{#if (eq system.general.starving true)}}
+										<i class="far fa-dot-circle"></i>
+									{{else}}
+										<i class="far fa-circle"></i>
+									{{/if}} </a>{{ localize 'ALIENRPG.Starving'}}
+							</h4>
+						</div>
+						<div class="dots dehydrated">
+							<h4 class="condition resource-label" data-action='OverwatchToggle' data-key="dehydrated" title="{{ localize 'ALIENRPG.ConButtons'}}">
+								<a class="overwatch-toggle">
+									{{#if (eq system.general.dehydrated true)}}
+										<i class="far fa-dot-circle"></i>
+									{{else}}
+										<i class="far fa-circle"></i>
+									{{/if}}
+								</a>
+								{{ localize 'ALIENRPG.Dehydrated'}}
+							</h4>
+						</div>
+						<div class="dots exhausted">
+							<h4 class="condition resource-label" data-action='OverwatchToggle' data-key="exhausted" title="{{ localize 'ALIENRPG.ConButtons'}}">
+								<a class="overwatch-toggle">
+									{{#if (eq system.general.exhausted true)}}
+										<i class="far fa-dot-circle"></i>
+									{{else}}
+										<i class="far fa-circle"></i>
+									{{/if}}
+								</a>
+								{{ localize 'ALIENRPG.Exhausted'}}
+							</h4>
+						</div>
+						<div class="dots freezing">
+							<h4 class="condition resource-label" data-action='OverwatchToggle' data-key="freezing" title="{{ localize 'ALIENRPG.ConButtons'}}">
+								<a class="overwatch-toggle">
+									{{#if (eq system.general.freezing true)}}
+										<i class="far fa-dot-circle"></i>
+									{{else}}
+										<i class="far fa-circle"></i>
+									{{/if}}
+								</a>
+								{{ localize 'ALIENRPG.Freezing'}}
+							</h4>
+						</div>
+						<div class="dots hypoxia">
+							<h4 class="condition resource-label" data-action='OverwatchToggle' data-key="hypoxia" title="{{ localize 'ALIENRPG.ConButtons'}}">
+								<a class="overwatch-toggle">
+									{{#if (eq system.general.hypoxia true)}}
+										<i class="far fa-dot-circle"></i>
+									{{else}}
+										<i class="far fa-circle"></i>
+									{{/if}}
+								</a>
+								{{ localize 'ALIENRPG.hypoxia'}}
+							</h4>
+						</div>
+						<div class="dots heatstroke">
+							<h4 class="condition resource-label" data-action='OverwatchToggle' data-key="heatstroke" title="{{ localize 'ALIENRPG.ConButtons'}}">
+								<a class="overwatch-toggle">
+									{{#if (eq system.general.heatstroke true)}}
+										<i class="far fa-dot-circle"></i>
+									{{else}}
+										<i class="far fa-circle"></i>
+									{{/if}}
+								</a>
+								{{ localize 'ALIENRPG.heatstroke'}}
+							</h4>
+						</div>
+						<div class="dots gravitydyspraxia">
+							<h4 class="condition resource-label" data-action='OverwatchToggle' data-key="gravitydyspraxia" title="{{ localize 'ALIENRPG.ConButtons'}}">
+								<a class="overwatch-toggle">
+									{{#if (eq system.general.gravitydyspraxia true)}}
+										<i class="far fa-dot-circle"></i>
+									{{else}}
+										<i class="far fa-circle"></i>
+									{{/if}}
+								</a>
+								{{ localize 'ALIENRPG.gravitydyspraxia'}}
+							</h4>
+						</div>
+					</div>
+				{{else}}
+					<div style="margin-bottom: 10px">{{localize 'ALIENRPG.SynthDontNeed'}}</div>
+				{{/if}}
+
+				<div style="margin-bottom: 10px">
+					<h3 class="condition overwatch_synth" data-action='OverwatchToggle' data-key="overwatch">
+						<a class="overwatch-toggle">
+							{{#if system.general.overwatch}}
+								<i class="far fa-check-square"></i>
+							{{else}}
+								<i class="far fa-square"></i>
+							{{/if}}
+						</a>
+						{{localize 'ALIENRPG.Overwatch'}}
+					</h3>
+				</div>
+				<div class="crt_grid_SynthStress synth_fake_check" style="margin-bottom: 10px">
+					<div class="imitate-human_left">
+						<input name="system.header.synthstress" type="checkbox" {{checked system.header.synthstress}} />
+					</div>
+					<div class="imitate-human_right">
+						<h3 style="text-align: center">{{localize 'ALIENRPG.SynthStress'}}</h3>
+					</div>
+				</div>
+				<br>
+				{{#if system.general.radiation.value}}
+					<div class="dots radiation rad_glow" style="height: auto">
+						<h4 class="resource-label" style="color: black;">{{ localize 'ALIENRPG.Radiation'}}</h4>
+						<div class="newdots click-stat-level-con" data-action='RadPointClick' data-label="{{ localize 'ALIENRPG.Radiation'}}" data-roll="{{system.general.radiation.value}}">
+							{{#times system.RADcurrent}}
+								<i class="far fa-dot-circle"></i>
+							{{/times}} {{#times system.RADlost}}
+								<i class="far fa-circle"></i>
+							{{/times}} {{#times system.RADfill}}
+								<i class="far fa-dot-circle" style="color: red"></i>
+							{{/times}}
+						</div>
+					</div>
+				{{else}} {{#if system.general.radiation.permanent}}
+						<div class="dots radiation rad_glow" style="height: auto">
+					{{else}}
+						<div class="dots radiation" style="height: auto">
+					{{/if}}
+					<h4 class="resource-label">{{ localize 'ALIENRPG.Radiation'}}</h4>
+					<div class="newdots click-stat-level-con" data-action='RadPointClick' data-label="{{ localize 'ALIENRPG.Radiation'}}" data-roll="{{system.general.radiation.value}}">
+						{{#times system.RADcurrent}}
+							<i class="far fa-dot-circle"></i>
+						{{/times}} {{#times system.RADlost}}
+							<i class="far fa-circle"></i>
+						{{/times}} {{#times system.RADfill}}
+							<i class="far fa-dot-circle" style="color: red"></i>
+						{{/times}}
+					</div>
+			</div>
+			{{/if}}
+		</div>
+		<div class="crt_Item3" style="height:fit-content; margin-top: -2px;">
+			<div class='grid-Consumables'>
+				<h2 class='Heading' style='margin-bottom: 0; border-bottom: 0'>{{localize 'ALIENRPG.Consumables'}}</h2>
+				<h3 class='Air1 resource-label'>{{localize 'ALIENRPG.Air'}}</h3>
+				<input type='text' class='Air2 maxboxsize' name='system.consumables.air.value' value='{{system.consumables.air.value}}' data-dtype='Number' disabled />
+				<button type='button' class='supply-btn Air3' data-action='SupplyBtn' data-action='SupplyBtn' data-spbutt='Air'>
+					<i class='fas fa-parachute-box' title='{{localize "ALIENRPG.Supply"}}'></i>
+				</button>
+				<h3 class='Food1 resource-label'>{{localize 'ALIENRPG.Food'}}</h3>
+				<input type='text' class='Food2 maxboxsize' name='system.consumables.food.value' value='{{system.consumables.food.value}}' data-dtype='Number' disabled />
+				<button type='button' class='supply-btn Food3' data-action='SupplyBtn' data-action='SupplyBtn' data-spbutt='Food'>
+					<i class='fas fa-parachute-box' title='{{localize "ALIENRPG.Supply"}}'></i>
+				</button>
+
+				<h3 class='Water1 resource-label'>{{localize 'ALIENRPG.Water'}}</h3>
+				<input type='text' class='Water2 maxboxsize' name='system.consumables.water.value' value='{{system.consumables.water.value}}' data-dtype='Number' disabled />
+				<button type='button' class='supply-btn Water3' data-action='SupplyBtn' data-action='SupplyBtn' data-spbutt='Water'>
+					<i class='fas fa-parachute-box' title='{{localize "ALIENRPG.Supply"}}'></i>
+				</button>
+
+				<h3 class='Power1 resource-label'>{{localize 'ALIENRPG.Power'}}</h3>
+				<input type='text' class='Power2 maxboxsize' name='system.consumables.power.value' value='{{system.consumables.power.value}}' data-dtype='Number' disabled />
+				<button type='button' class='supply-btn Power3' data-action='SupplyBtn' data-spbutt='Power' disabled>
+					<i class='fa fa-chevron-up' title='{{localize "ALIENRPG.InventoryTab"}}'></i>
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- Col 2 -->
+	<div class="crt_Col2">
+		<div class="crt_Item4" style="height: 60px;">
+			<div class="crt_gridCarrer">
+				<label class="resource-label crt_box1">{{localize 'ALIENRPG.Career'}}</label>
+				<select class="select-css crt_box2" id="system.general.career.value" name="system.general.career.value">
+					{{selectOptions career_list selected=system.general.career.value labelAttr="label" localize=true}}
+				</select>
+				<label class="resource-label crt_box3">{{localize 'ALIENRPG.Cash'}}</label>
+				<input type="text" class="cashboxsize currency crt_box4" name="system.general.cash.value" value="{{system.general.cash.value}}" />
+			</div>
+			<div class="crt_gridSpecialty">
+				<div class="crt_sbox1 resource-label">
+					<label class="speciality-label">SPECIALTY</label>
+					<div class="item-controls"></div>
+				</div>
+				{{#each specialities as |item iid|}}
+					<li class="crt_sbox2 item crt_grid-special" data-item-id="{{item._id}}">
+						<h4 class="item-name crt_spe1" data-pmbut="{{item._id}}">{{item.name}}</h4>
+						<a class="crt_spe2 item-control item-edit1" data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+					</li>
+				{{/each}}
+			</div>
+		</div>
+
+		<div class="crt_Item5">
+			<label class="resource-label-header">{{ localize 'ALIENRPG.PersonalAgenda'}}</label>
+			<textarea name="system.general.agenda.value" rows="6" data-dtype="String">{{system.general.agenda.value}}</textarea>
+		</div>
+
+		<div class="crt_Item7">
+			<label class="resource-label-header">{{ localize 'ALIENRPG.Appearance'}}</label>
+			<textarea name="system.general.appearance.value" rows="2" data-dtype="String">{{system.general.appearance.value}}</textarea>
+		</div>
+
+		<div class="crt_Item9">
+			<label class="resource-label-header">{{ localize 'ALIENRPG.Relationships'}}</label>
+			<div class="crt_Relat">
+				<div class="crt_Relat_Buddy">
+					<label class="resource-label" style="font-size: smaller">{{ localize 'ALIENRPG.relOne'}}</label>
+					<input type="text" class="textbox" name="system.general.relOne.value" value="{{system.general.relOne.value}}" rows="1" data-dtype="String" />
+				</div>
+				<div class="crt_Relat_Rival">
+					<label class="resource-label" style="font-size: smaller">{{ localize 'ALIENRPG.relTwo'}}</label>
+					<input type="text" class="textbox" name="system.general.relTwo.value" value="{{system.general.relTwo.value}}" rows="1" data-dtype="String" />
+				</div>
+			</div>
+		</div>
+
+		<div class="crt_Item6" style="overflow: hidden; height: 118px;">
+			<div class="grid-crit">
+				<label class="resource-label-header">{{ localize 'ALIENRPG.CriticalInjuries'}}</label>
+				<label class="resource-label-header rollCrit crit2" data-action='RollCrit' title="{{localize 'ALIENRPG.RollCrit'}}"><i class="fas fa-heartbeat"></i></label>
+			</div>
+			<div class='crit-box' style='min-height: 90px; height:auto'>
+				<ol class='items-list'>
+					{{#each critInj as |item iid|}}
+						<li class='item critical-inj-wide' data-item-id='{{item.id}}'>
+							<a class='item-image crit1w'><img src='{{item.img}}' width='24' height='24' /></a>
+							<a class='item-name crit2w'>{{item.name}}</a>
+							<a class='item-name crit3w' style='font-size:smaller '>{{{striptags item.system.attributes.effects}}}</a>
+							<a class='crit4w item-control item-edit1' data-action='viewDoc' data-document-class='Item' data-item-id='{{item.id}}' title='{{localize "ALIENRPG.EditItem"}}'><i class='fas fa-edit'></i></a>
+						</li>
+					{{/each}}
+				</ol>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+</section>

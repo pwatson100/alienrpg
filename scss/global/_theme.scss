@@ -1,0 +1,7 @@
+@use '../utils/typography';
+@use '../utils/variables';
+
+
+input[type="checkbox"]::before {
+color: whitesmoke;
+}

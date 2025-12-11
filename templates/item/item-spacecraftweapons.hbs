@@ -1,0 +1,69 @@
+<section class='tab spacecraftweapons scrollable {{tab.cssClass}}' data-group='primary' data-tab='spacecraftweapons'>
+	<div class='grid-weapon-body'>
+		<label class='resource-label wCol1'>{{localize 'ALIENRPG.Cost'}}</label>
+		<input type='text' class='cashboxsize currency wCol2' name='system.attributes.cost.value' value='{{system.attributes.cost.value}}' /><br /><br />
+
+		<!-- </div> -->
+		{{#if (eq system.header.type.value '1')}}
+			<label class='wCol7 resource-label'>{{localize 'ALIENRPG.Range'}}</label>
+			<select class='select-css wCol8' name='system.attributes.range.value' data-dtype='{{system.attributes.range.value}}'>
+				{{selectOptions config.ship_weapon_range_list selected=system.attributes.range.value labelAttr='label' localize=true}}
+			</select>
+			<label class='resource-label wCol3'>{{localize 'ALIENRPG.Damage'}}</label>
+			<input type='text' class='maxboxsize wCol4' name='system.attributes.damage.value' value='{{system.attributes.damage.value}}' data-dtype='Number' />
+			<label class='resource-label wCol10'>{{localize 'ALIENRPG.hardpoint'}}</label>
+			<select class='select-css wCol12' name='system.attributes.hardpoint.value' data-dtype='{{system.attributes.hardpoint.value}}'>
+				{{selectOptions config.ship_hardpoint_list selected=system.attributes.hardpoint.value nameAttr='key' labelAttr='label' localize=true}}
+			</select>
+			<label class='resource-label wCol5'>{{localize 'ALIENRPG.Bonus'}}</label>
+			<input type='text' class='maxboxsize wCol6' name='system.attributes.bonus.value' value='{{system.attributes.bonus.value}}' data-dtype='Number' />
+
+			<label class='resource-label wCol13'>{{localize 'ALIENRPG.QuantityLabel'}}</label>
+			<input
+				type='text'
+				class='maxboxsize wCol14'
+				style='margin-top: 5px'
+				name='system.attributes.quantity.value'
+				value='{{system.attributes.quantity.value}}'
+				data-dtype='Number'
+			/>
+		{{/if}}
+		{{#if (eq system.header.type.value '2')}}
+
+			<label class='resource-label wCol4'>{{localize 'ALIENRPG.hardpoint'}}</label>
+			<select class='select-css wCol6' name='system.attributes.hardpoint.value' data-dtype='{{system.attributes.hardpoint.value}}'>
+				{{selectOptions config.ship_hardpoint_list selected=system.attributes.hardpoint.value nameAttr='key' labelAttr='label' localize=true}}
+			</select>
+
+			<label class='resource-label wCol7'>{{localize 'ALIENRPG.QuantityLabel'}}</label>
+			<input
+				type='text'
+				class='maxboxsize wCol8'
+				style='margin-top: 5px'
+				name='system.attributes.quantity.value'
+				value='{{system.attributes.quantity.value}}'
+				data-dtype='Number'
+			/>
+			<label class='resource-label wCol10'>{{localize 'ALIENRPG.Bonus'}}</label>
+			<input type='text' class='maxboxsize wCol11' name='system.attributes.bonus.value' value='{{system.attributes.bonus.value}}' data-dtype='Number' />
+		{{/if}}
+	</div>
+	<h2 class='resource-label'>{{localize 'ALIENRPG.Comment'}}</h2>
+	<div style='border: solid 1px; padding: 5px;width: 629px;'>
+		{{! Editors must receive enriched text data from getData to properly handle rolls, UUID links, etc. }}
+		{{#if editable}}
+			<prose-mirror
+				style='height: 200px;'
+				name='system.attributes.comment.value'
+				data-document-uuid='{{item.uuid}}'
+				value='{{system.attributes.comment.value}}'
+				collaborate='true'
+				toggled='true'
+			>
+				{{{enrichedComment}}}
+			</prose-mirror>
+		{{else}}
+			{{{enrichedComment}}}
+		{{/if}}
+	</div>
+</section>

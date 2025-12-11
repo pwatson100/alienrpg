@@ -1,26 +1,36 @@
-@use "../utils/colors";
+@use '../utils/colors';
 
 .tabs {
-	height: 30px;
-	// border-top: 1px solid var(--aliengreen);
-	// border-bottom: 1px solid var(--aliengreen);
-	color: inherit;
-	background-color: colors.$c-black;
+	height: 26px;
+	font-size: 1em;
+	color: var(--aliengreen);
+	background-color: var(--color-cool-4);
 	border: 1px solid;
 
-	.item {
-		// line-height: 30px;
+	a {
 		font-weight: bold;
-		color: inherit;
+		color: var(--aliengreen);
 	}
 
-	.item.active {
+	a.active {
 		text-decoration: underline;
 		text-shadow: none;
 	}
 }
+// .colonytab {
+// 	height: 26px;
+// 	font-size: 1em;
+// 	color: var(--aliengreen);
+// 	background-color: var(--color-cool-4);
+// 	border: 1px solid;
+//   margin-top:-16px;
+// 	a {
+// 		font-weight: bold;
+// 		color: var(--aliengreen);
+// 	}
 
-.sheet-tabs.tabs {
-	border-top: 1px solid var(--aliengreen);
-	border-bottom: 1px solid var(--aliengreen);
-}
+// 	a.active {
+// 		text-decoration: underline;
+// 		text-shadow: none;
+// 	}
+// }

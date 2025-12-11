@@ -1,0 +1,24 @@
+{{!-- Sheet Body --}}
+<section class='tab territorysystems scrollable {{tab.cssClass}}' style="height:611px" data-group='primary' data-tab='territorysystems'>
+	<!-- INVENTORY -->
+	<li class="grid-systems">
+		<label class="item-name sys1">{{localize 'ALIENRPG.Sector'}}</label>
+		<label class="item-name sys2">{{localize 'ALIENRPG.System'}}</label>
+		<label class="item-name sys3">{{localize 'ALIENRPG.Name'}}</label>
+		<div class="item-controls sys4">
+			<a class="item-control item-create" style="font-size: smaller" title="Create item" data-type="planet-system"><i class="fas fa-plus"></i></a>
+		</div>
+	</li>
+
+	{{#each systems as |item iid|}}
+	<li class="item grid-systems" data-item-id="{{item._id}}">
+		<div class="item-name sys1">{{item.system.header.sector.value}}</div>
+		<div class="item-name sys2">{{item.system.header.system.value}}</div>
+		<div class="item-name sys3 openItem">{{item.name}}</div>
+
+		<div class="sys4">
+			<a class="item-control item-edit" data-action='viewDoc' data-document-class='Item' data-item-id="{{item._id}}" title="{{localize 'ALIENRPG.EditItem'}}"><i class="fas fa-edit"></i></a>
+		</div>
+	</li>
+	{{/each}}
+</section>

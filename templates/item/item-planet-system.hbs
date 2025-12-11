@@ -1,0 +1,40 @@
+<section class='tab planet-system scrollable {{tab.cssClass}}' data-group='primary' data-tab='planet-system'>
+	<div class='grid-planet'>
+		<div class='plan1'>
+			<label class='resource-label'>{{localize 'ALIENRPG.Affiliation'}}</label><br />
+			<textarea name='system.details.affiliation.value' style='width: 628px;' rows='1' data-dtype='String'>{{system.details.affiliation.value}}</textarea>
+		</div>
+		<div class='plan2'>
+			<label class='resource-label'>{{localize 'ALIENRPG.Classification'}}</label>
+			<br />
+			<textarea class='textbox4' name='system.details.classification.value' rows='1' data-dtype='String'>{{system.details.classification.value}}</textarea>
+		</div>
+		<div class='plan3'>
+			<label class='resource-label'>{{localize 'ALIENRPG.population'}}</label><br />
+			<input type='text' class='textbox3' name='system.details.population.value' value='{{system.details.population.value}}' data-dtype='text' />
+		</div>
+		{{! <div> }}
+		<label class='resource-label plan4'>{{localize 'ALIENRPG.meanTemperature'}}</label>
+		<input type='text' class='textbox2 plan9' name='system.details.meanTemperature.value' value='{{system.details.meanTemperature.value}}' data-dtype='text' />
+		{{! </div> }}
+		<div class='plan5'>
+			<label class='resource-label'>{{localize 'ALIENRPG.climate'}}</label><br />
+			<textarea style='width: 628px;' name='system.details.climate.value' rows='2' data-dtype='String'>{{system.details.climate.value}}</textarea>
+		</div>
+		<div class='plan6'>
+			<label class='resource-label'>{{localize 'ALIENRPG.terrain'}}</label><br />
+			<textarea style='width: 628px;' name='system.details.terrain.value' rows='2' data-dtype='String'>{{system.details.terrain.value}}</textarea>
+		</div>
+
+		<div class='plan7'>
+			<label class='resource-label'>{{localize 'ALIENRPG.colonies'}}</label><br />
+			<textarea style='width: 628px;' name='system.details.colonies.value' rows='2' data-dtype='String'>{{system.details.colonies.value}}</textarea>
+		</div>
+
+		<div class='plan8'>
+			<label class='resource-label'>{{localize 'ALIENRPG.keyResources'}}</label><br />
+			<textarea style='width: 628px;' name='system.details.keyResources.value' rows='2' data-dtype='String'>{{system.details.keyResources.value}}</textarea>
+		</div>
+	</div>
+
+</section>

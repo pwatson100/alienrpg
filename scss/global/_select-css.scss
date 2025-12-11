@@ -1,4 +1,4 @@
-@use "../utils/colors";
+@use '../utils/colors';
 
 /* class applies to select element itself, not a wrapper element */
 .select-css {
@@ -6,7 +6,7 @@
 	font-size: 15px;
 	font-family: var(--alienfont);
 	font-weight: 700;
-	color: inherit;
+	color: var(--aliengreen);
 	line-height: 15px;
 	// padding: 0.6em 1.4em 0.5em 0.8em;
 	width: 100%;
@@ -14,11 +14,12 @@
 	box-sizing: border-box;
 	margin: 0;
 	border: 1px solid var(--aliengreen);
-	box-shadow: 0 1px 0 1px hsla(0, 0%, 0%, 0.04);
+	box-shadow: 0 1px 0 1px var(--black);
 	border-radius: 0.5em;
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
+	    height: 25px;
 	//   background-color: #fff;
 	/* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 
 		for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
@@ -48,15 +49,15 @@
 	/* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
 	box-shadow: 0 0 1px 1px var(--aliengreen);
 	box-shadow: 0 0 0 1px -moz-mac-focusring var(--aliengreen);
-	color: inherit;
+	color: var(--aliengreen);
 	outline: none;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 }
 
 /* Set options to normal weight */
 .select-css option {
 	font-weight: normal;
-	background: hsl(0, 0%, 0%);
+	background: var(--black);
 }
 
 /* Support for rtl text, explicit support for Arabic and Hebrew */

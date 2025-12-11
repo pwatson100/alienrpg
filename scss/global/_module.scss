@@ -1,566 +1,984 @@
 /* .journal-sheet form { */
 .sheet.journal-entry .journal-entry-content {
-	// color: var(--aliengreen);
-	background: #000;
-	border: 1px solid var(--aliengreen);
-	border-radius: 1px;
-	background: var(--journalback) top left;
-	background-size: cover;
-	// color: #b0e0e6;
-	color: var(--alientextjournal);
+  // color: var(--aliengreen);
+  background: #000;
+  border: 1px solid var(--aliengreen);
+  border-radius: 1px;
+  background: var(--journalback) top left;
+  background-size: cover;
+  // color: #b0e0e6;
+  color: var(--alientextjournal);
+}
+.sheet.journal-entry .journal-entry-content .evolved {
+  // color: var(--aliengreen);
+  background: white;
+  border: 1px solid black;
+  border-radius: 1px;
+  background: var(--evolvedjournalback) top left;
+  background-size: cover;
+  // color: black;
+  color: var(--alientextjournal);
+  border: none;
+  // evolved special text
+  // color: hsl(140, 100%, 28%);
+}
+
+.textover img {
+  width: auto;
+  border: none;
+  margin: 0;
+}
+
+.textover {
+  position: relative;
+  margin: 0;
+  border: none;
+} /* REQUIRED */
+
+.textover figcaption {
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  text-align: left;
+  width: auto;
+  margin: 0;
+  padding: 0px;
+  font-weight: normal;
+  border: none;
+  font-style: normal;
 }
 
 .sheet.journal-entry .sidebar .directory-header .header-search input {
-	color: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 0%);
 }
 
-.alienrpg .arpgtable {
-	height: 36px;
-	width: 80%;
-	/* border-style: double;
+.arpgtable {
+  height: 36px;
+  width: 80%;
+  /* border-style: double;
         border-color: greenyellow; */
-	margin-left: auto;
-	margin-right: auto;
-	border: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
 }
-.alienrpg .arpgtable tr:nth-child(even) {
-	background-color: transparent;
-}
-
-.alienrpg .caption {
-	text-align: center;
-	color: greenyellow;
-	font-size: xx-large;
+.arpgtable tr:nth-child(even) {
+  background-color: transparent;
 }
 
-.alienrpg .arpgtablesmall {
-	height: 36px;
-	width: 34%;
-	/* border-style: double;
+.caption {
+  text-align: center;
+  color: greenyellow;
+  font-size: xx-large;
+}
+
+.arpgtablesmall {
+  height: 36px;
+  width: 34%;
+  /* border-style: double;
         border-color: greenyellow; */
-	margin-left: auto;
-	margin-right: auto;
-	border: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
 }
 
-.alienrpg .arpgtablesmall tr:nth-child(even) {
-	background-color: transparent;
+.arpgtablesmall tr:nth-child(even) {
+  background-color: transparent;
 }
 
-.alienrpg .tdstyle {
-	width: 40%;
-	height: 18px;
-	text-align: left;
+.tdstyle {
+  width: 40%;
+  height: 18px;
+  text-align: left;
 }
-.alienrpg .tdstyleR {
-	width: 40%;
-	height: 18px;
-	text-align: Right;
+.tdstyleR {
+  width: 40%;
+  height: 18px;
+  text-align: Right;
 }
-.alienrpg .tdstyleC {
-	width: 100%;
-	height: 18px;
-	text-align: center;
+.tdstyleC {
+  width: 100%;
+  height: 18px;
+  text-align: center;
 }
-.alienrpg .tdstyle3D {
-	width: 30%;
-	height: 18px;
-	text-align: center;
+.tdstyle3D {
+  width: 30%;
+  height: 18px;
+  text-align: center;
 }
-.alienrpg .tdstyle2D {
-	width: 50%;
-	height: 18px;
-	text-align: center;
-}
-
-.alienrpg .arpglink {
-	background-color: white;
-	color: black;
+.tdstyle2D {
+  width: 50%;
+  height: 18px;
+  text-align: center;
 }
 
-.alienrpg .mess {
-	color: yellowgreen;
-	font-family: 'Courier New', Courier, monospace;
+.arpglink {
+  background-color: white;
+  color: black;
 }
 
-.alienrpg .ntable {
-	width: 99%;
-	/* border-style: double;
+.mess {
+  color: yellowgreen;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.ntable {
+  width: 99%;
+  /* border-style: double;
         border-color: greenyellow; */
-	margin-left: auto;
-	margin-right: auto;
-	border: 0;
-	padding-top: 0;
-	padding-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
-.alienrpg .ntable tr:nth-child(even) {
-	background-color: transparent;
-}
-
-.alienrpg .trhead {
-	text-align: center;
-	width: 45%;
-	font-weight: bold;
+.ntable tr:nth-child(even) {
+  background-color: transparent;
 }
 
-.alienrpg .tcol1 {
-	width: 2.5%;
-}
-.alienrpg .tcol2 {
-	width: 45%;
-	text-align: justify;
-	vertical-align: top;
-}
-.alienrpg .tcol3 {
-	width: 5%;
+.trhead {
+  text-align: center;
+  width: 45%;
+  font-weight: bold;
 }
 
-.alienrpg .etable {
-	width: 40%;
-	/* border-style: double; */
-	// border-color: hsl(0, 81%, 55%);
-	margin-left: auto;
-	margin-right: auto;
-	border-top: 1px solid hsl(0, 81%, 55%);
-	border-bottom: 1px solid hsl(0, 81%, 55%);
-	padding: 0;
-	padding-top: 0;
-	padding-bottom: 0;
+.tcol1 {
+  width: 2.5%;
 }
-.alienrpg .etable td:first-child {
-	padding-left: 5px;
+.tcol2 {
+  width: 45%;
+  text-align: justify;
+  vertical-align: top;
 }
-.alienrpg .etr {
-	/* border-style: solid;
+.tcol3 {
+  width: 5%;
+}
+.tcol4 {
+  width: 25%;
+}
+
+.tcol5 {
+  width: 50%;
+  text-align: justify;
+  vertical-align: top;
+}
+.etable {
+  width: 40%;
+  /* border-style: double; */
+  // border-color: hsl(0, 81%, 55%);
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1px solid hsl(0, 81%, 55%);
+  border-bottom: 1px solid hsl(0, 81%, 55%);
+  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.etable td:first-child {
+  padding-left: 5px;
+}
+.evetable {
+  // width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.evetable tr:nth-child(even) {
+  background-color: #e6ebe8;
+}
+
+.evetable tr:nth-child(odd) {
+  background-color: transparent;
+}
+.etr {
+  /* border-style: solid;
         border-color: greenyellow; */
-	border: 1;
+  border: 1;
 }
-.alienrpg .ehead {
-	text-align: center;
-	font-weight: bold;
+.ehead {
+  text-align: center;
+  font-weight: bold;
 }
-.alienrpg .ecol1 {
-	width: 50%;
-	text-align: center;
+.ecol1 {
+  width: 50%;
+  text-align: center;
 }
-.alienrpg .ecol2 {
-	width: 50%;
-	text-align: center;
+.ecol2 {
+  width: 50%;
+  text-align: center;
 }
-.alienrpg .ecol3 {
-	width: 3%;
-	/* border-left: greenyellow;
+.ecol3 {
+  width: 3%;
+  /* border-left: greenyellow;
         border-style: solid; */
 }
 
-.alienrpg .stable {
-	width: 90%;
-	border-style: double;
-	border-color: #e92d2d;
-	margin-left: auto;
-	margin-right: auto;
-	// border: 1;
-	padding-top: 0;
-	padding-bottom: 0;
-	border-left: none;
-	border-right: none;
+.stable {
+  width: 90%;
+  border-style: double;
+  border-color: #e92d2d;
+  margin-left: auto;
+  margin-right: auto;
+  // border: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-left: none;
+  border-right: none;
 }
 
-.alienrpg .strhead {
-	text-align: center;
-	font-weight: bold;
+.strhead {
+  text-align: center;
+  font-weight: bold;
 }
 
-.alienrpg .scol1 {
-	width: 16%;
+.scol1 {
+  width: 16%;
 }
-.alienrpg .scol2 {
-	width: 3%;
+.scol2 {
+  width: 3%;
 }
-.alienrpg .scol3 {
-	width: 80%;
+.scol3 {
+  width: 80%;
 }
-.alienrpg .scol4 {
-	width: 25%;
+.scol4 {
+  width: 25%;
 }
-.alienrpg .scol5 {
-	width: 60%;
-	text-align: left;
+.scol5 {
+  width: 60%;
+  text-align: left;
 }
-.alienrpg .scol6 {
-	width: 90%;
-}
-
-.alienrpg .scol7 {
-	width: 20%;
-	text-align: left;
-}
-.alienrpg .scol8 {
-	width: 65%;
-	text-align: left;
-}
-.alienrpg .scol9 {
-	width: 12%;
-}
-.alienrpg .scol10 {
-	width: 50%;
-}
-.alienrpg .skltable {
-	width: 35%;
-	/* border-style: double; */
-	/* border-color: #e92d2d; */
-	margin-left: auto;
-	margin-right: auto;
-	border: 1;
+.scol6 {
+  width: 90%;
 }
 
-.alienrpg .oddstable {
-	width: 96%;
-	height: 16px;
-	border-style: double;
-	border-color: #e92d2d;
-	margin-left: auto;
-	margin-right: auto;
-	// border: 1;
-	padding-top: 0;
-	padding-bottom: 0;
-	border-left: none;
-	border-right: none;
+.scol7 {
+  width: 20%;
+  text-align: left;
 }
-.alienrpg .oddstable tr:nth-child(even) {
-	background-color: transparent;
+.scol8 {
+  width: 65%;
+  text-align: left;
+}
+.scol9 {
+  width: 12%;
+}
+.scol10 {
+  width: 50%;
+}
+.skltable {
+  width: 35%;
+  /* border-style: double; */
+  /* border-color: #e92d2d; */
+  margin-left: auto;
+  margin-right: auto;
+  border: 1;
 }
 
-.alienrpg .oddstable tr:nth-child(odd) {
-	background-color: #3a3d3f;
+.oddstable {
+  width: 96%;
+  height: 16px;
+  border-style: double;
+  border-color: #e92d2d;
+  margin-left: auto;
+  margin-right: auto;
+  // border: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-left: none;
+  border-right: none;
 }
-.alienrpg .oddhead {
-	font-weight: bold;
+.oddstable tr:nth-child(even) {
+  background-color: transparent;
 }
-.alienrpg .oddcol1 {
-	width: 25%;
+
+.oddstable tr:nth-child(odd) {
+  background-color: #3a3d3f;
 }
-.alienrpg .oddcol2 {
-	width: 39%;
+.evoddstable {
+  width: 96%;
+  height: 16px;
+  border-style: double;
+  margin-left: auto;
+  margin-right: auto;
+  // border: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-left: none;
+  border-right: none;
+}
+.evoddstable tr:nth-child(even) {
+  background-color: #e6ebe8;
+}
+
+.evoddstable tr:nth-child(odd) {
+  background-color: transparent;
+}
+.oddhead {
+  font-weight: bold;
+}
+.oddcol1 {
+  width: 25%;
+}
+.oddcol2 {
+  width: 39%;
 }
 .oddcol3 {
-	width: 36%;
+  width: 36%;
 }
-.alienrpg .oddcol4 {
-	width: 40%;
-}
-
-.alienrpg .bigtable {
-	width: 99%;
-	border-style: double;
-	border-color: #e92d2d;
-	margin-left: auto;
-	margin-right: auto;
-	// border: 1;
-	padding-top: 0;
-	padding-bottom: 0;
-	border-left: none;
-	border-right: none;
-}
-.alienrpg .bigtable tr:nth-child(even) {
-	background-color: transparent;
+.oddcol4 {
+  width: 40%;
 }
 
-.alienrpg .bigtable tr:nth-child(odd) {
-	background-color: #3a3d3f;
+.bigtable {
+  width: 99%;
+  border-style: double;
+  border-color: #e92d2d;
+  margin-left: auto;
+  margin-right: auto;
+  // border: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-left: none;
+  border-right: none;
 }
-.alienrpg .die {
-	width: 6%;
-	text-align: center;
-}
-
-.alienrpg .inj {
-	width: 16%;
-}
-
-.alienrpg .fatal {
-	width: 6%;
-}
-
-.alienrpg .tim {
-	width: 7%;
-	text-align: center;
+.bigtable tr:nth-child(even) {
+  background-color: transparent;
 }
 
-.alienrpg .eff {
-	width: 56%;
+.bigtable tr:nth-child(odd) {
+  background-color: #3a3d3f;
 }
 
-.alienrpg .heal {
-	width: 15%;
-	text-align: center;
+.evbigtable {
+  width: 99%;
+  border-style: double;
+  // border-color: #e92d2d;
+  margin-left: auto;
+  margin-right: auto;
+  // border: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-left: none;
+  border-right: none;
 }
-.alienrpg .crit {
-	width: 19%;
-	text-align: center;
+.evbigtable tr:nth-child(even) {
+  background-color: #e6ebe8;
 }
-.alienrpg .eff2 {
-	width: 55%;
+
+.evbigtable tr:nth-child(odd) {
+  background-color: #aeb3b0;
+  // background-color: transparent;
+}
+
+.die {
+  width: 6%;
+  text-align: center;
+}
+
+.inj {
+  width: 16%;
+}
+
+.fatal {
+  width: 6%;
+}
+
+.tim {
+  width: 7%;
+  text-align: center;
+}
+
+.eff {
+  width: 56%;
+}
+
+.heal {
+  width: 15%;
+  text-align: center;
+}
+.crit {
+  width: 19%;
+  text-align: center;
+}
+.eff2 {
+  width: 55%;
 }
 
 /* V10 work */
 
-.alienrpg .aframe {
-	position: relative;
+.aframe {
+  position: relative;
 }
 
-.alienrpg .leftcol {
-	position: absolute;
-	width: 45%;
-	left: 1.2%;
-	text-align: justify;
-	/* background: #855f5f; */
+.leftcol {
+  position: absolute;
+  width: 45%;
+  left: 1.2%;
+  text-align: justify;
+  /* background: #855f5f; */
 }
-.alienrpg .rightcol {
-	position: absolute;
-	width: 45%;
-	left: 50%;
-	text-align: justify;
-	/* background: rgb(174, 174, 110); */
+.rightcol {
+  position: absolute;
+  width: 45%;
+  left: 50%;
+  text-align: justify;
+  /* background: rgb(174, 174, 110); */
 }
 
 .alienrpg .heading {
-	// text-align: center;
-	color: var(--aliengreen);
-	// font-size: xx-large;
-	font-size: 28px;
-	border-bottom: 2px solid var(--color-underline-header);
+  // text-align: center;
+  color: var(--aliengreen);
+  // font-size: xx-large;
+  font-size: 28px;
+  border-bottom: 2px solid var(--color-underline-header);
 }
-.alienrpg .heading2 {
-	text-align: center;
-	color: var(--aliengreen);
-	/* font-size: x-large; */
+.evheading {
+  // text-align: center;
+  // color: hsl(175, 91%, 22%);
+  color: var(--alientextjournal);
+  font-weight: bold;
+  // font-size: xx-large;
+  font-size: 28px;
+  border-bottom: 2px solid hsl(175, 91%, 22%);
 }
-.alienrpg .heading3 {
-	color: var(--aliengreen);
+.heading2 {
+  text-align: center;
+  color: var(--aliengreen);
+  /* font-size: x-large; */
 }
-.alienrpg .imagecontainer {
-	position: relative;
-	text-align: center;
-	color: white;
+.heading3 {
+  color: var(--aliengreen);
+}
+.alienrpg .evchapterheading {
+  // color: black;
+  // color: white;
+  // color: var(--alientextjournal);
+  font-weight: 900;
+  font-size: 28px;
+  border-bottom: 8px solid black;
+}
+.evsystemheading {
+  color: var(--alientextjournal);
+
+  // color: black;
+  font-weight: 900;
+  font-size: 28px;
+  border-bottom: 3px solid black;
+}
+.evheading2 {
+  text-align: center;
+  color: var(--aliengreen);
+  /* font-size: x-large; */
+}
+.evheading3 {
+  color: var(--aliengreen);
+}
+
+.imagecontainer {
+  position: relative;
+  text-align: center;
+  color: white;
 }
 
 /* Import settings */
-.alienrpg .container {
-	width: 100%;
+.container {
+  width: 100%;
 }
 
-.alienrpg .listHeading {
-	text-align: center;
-	vertical-align: middle;
-	padding: 10px 0px;
-	border-bottom: 1px solid black;
-	margin-bottom: 10px;
+.listHeading {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px 0px;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
 }
 
-.alienrpg .twogridcol {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(160px, 50%));
+.twogridcol {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 50%));
 }
 
-.alienrpg .twogridcol input[type='checkbox'] {
-	vertical-align: middle;
+.twogridcol input[type="checkbox"] {
+  vertical-align: middle;
 }
 
-.alienrpg .actors.content {
-	background: lightgray;
+.actors.content {
+  background: lightgray;
 }
-.alienrpg .actors.content.toggle-display {
-	display: none;
+.actors.content.toggle-display {
+  display: none;
 }
-.alienrpg .items.content {
-	background: lightgray;
+.items.content {
+  background: lightgray;
 }
-.alienrpg .items.content.toggle-display {
-	display: none;
+.items.content.toggle-display {
+  display: none;
 }
 
 .journal-entry-page h1,
 .journal-entry-page h2 {
-	color: var(--aliengreen);
-	border-bottom: 1px solid var(--color-underline-header);
+  color: var(--aliengreen);
+  border-bottom: 1px solid var(--color-underline-header);
 }
 
-.alienrpg .journal.content {
-	background: lightgray;
+.journal.content {
+  background: lightgray;
 }
-.alienrpg .journal.content.toggle-display {
-	display: none;
+.journal.content.toggle-display {
+  display: none;
 }
-.alienrpg .scenes.content {
-	background: lightgray;
+.scenes.content {
+  background: lightgray;
 }
-.alienrpg .scenes.content.toggle-display {
-	display: none;
+.scenes.content.toggle-display {
+  display: none;
 }
-.alienrpg .tables.content {
-	background: lightgray;
+.tables.content {
+  background: lightgray;
 }
-.alienrpg .tables.content.toggle-display {
-	display: none;
+.tables.content.toggle-display {
+  display: none;
 }
-.alienrpg .macros.content {
-	background: lightgray;
+.macros.content {
+  background: lightgray;
 }
-.alienrpg .macros.content.toggle-display {
-	display: none;
+.macros.content.toggle-display {
+  display: none;
 }
-.alienrpg .title {
-	cursor: pointer;
+.title {
+  cursor: pointer;
 }
 /* Footer */
 
-.alienrpg .footer {
-	position: sticky;
-	bottom: 0;
-	left: 0;
-	width: inherit;
-	height: auto;
-	background-color: #d0daee;
+.footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: inherit;
+  height: auto;
+  background-color: #d0daee;
 }
 
-.alienrpg .cinsymbol {
-	display: inline-block;
-	background-image: url('../images/icons/cin-symbol.png');
-	width: 36px;
-	height: 35px;
-	vertical-align: middle;
-	background-size: 36px;
-	border: 0;
+.cinsymbol {
+  display: inline-block;
+  background-image: url("../images/icons/cin-symbol.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
 }
-.alienrpg .camsymbol {
-	display: inline-block;
-	background-image: url('../images/icons/cam-symbol.png');
-	width: 36px;
-	height: 35px;
-	vertical-align: middle;
-	background-size: 36px;
-	border: 0;
+.camsymbol {
+  display: inline-block;
+  background-image: url("../images/icons/cam-symbol.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
 }
-.alienrpg .stresssymbol {
-	display: inline-block;
-	background-image: url('../images/icons/alien-dice-y1.png');
-	width: 36px;
-	height: 35px;
-	vertical-align: middle;
-	background-size: 36px;
-	border: 0;
+.stresssymbol {
+  display: inline-block;
+  background-image: url("../images/icons/alien-dice-y1.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
 }
-.alienrpg .basesymbol {
-	display: inline-block;
-	background-image: url('../images/icons/alien-dice-6.png');
-	width: 36px;
-	height: 35px;
-	vertical-align: middle;
-	background-size: 36px;
-	border: 0;
-}
-
-.alienrpg .datebox {
-	width: 36px;
-	height: 35px;
-	background-color: rgb(26, 71, 53);
-	color: white;
-	border: solid rgb(72, 141, 99);
-	border-radius: 5px;
-	padding: 1%;
-	vertical-align: middle;
+.basesymbol {
+  display: inline-block;
+  // background-image: url('../images/icons/alien-dice-6.png');
+  background-image: url("../ui/DsN/alien-dice-b6.png");
+  width: 36px;
+  height: 35px;
+  vertical-align: middle;
+  background-size: 36px;
+  border: 0;
 }
 
-.alienrpg .datebox2 {
-	float: inline-start;
-	width: auto;
-	margin-right: 10px;
-	margin-top: 7px;
-	height: 35px;
-	background-color: rgb(26, 71, 53);
-	color: white;
-	border: solid rgb(72, 141, 99);
-	border-radius: 5px;
-	padding: 1%;
-	vertical-align: middle;
-}
-.alienrpg .colonytable {
-	width: 60%;
-	// border-color: #e92d2d;
-	margin-left: auto;
-	margin-right: auto;
-	border: 1;
-	padding-top: 0;
-	padding-bottom: 0;
-	font-family: 'OCR-A';
-	text-align: center;
-	border-top: 1px solid #e92d2d;
-	border-bottom: 1px solid #e92d2d;
+.datebox {
+  width: 36px;
+  height: 35px;
+  background-color: rgb(26, 71, 53);
+  color: white;
+  border: solid rgb(72, 141, 99);
+  border-radius: 5px;
+  padding: 1%;
+  vertical-align: middle;
 }
 
-.alienrpg .colonytable tr:nth-child(even) {
-	background-color: #3a3d3f;
+.datebox2 {
+  float: inline-start;
+  width: auto;
+  margin-right: 10px;
+  margin-top: 7px;
+  height: 35px;
+  background-color: rgb(26, 71, 53);
+  color: white;
+  border: solid rgb(72, 141, 99);
+  border-radius: 5px;
+  padding: 1%;
+  vertical-align: middle;
+}
+.colonytable {
+  width: 60%;
+  // border-color: #e92d2d;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-family: "OCR-A";
+  text-align: center;
+  border-top: 1px solid #e92d2d;
+  border-bottom: 1px solid #e92d2d;
 }
 
-.alienrpg .colonytable tr:nth-child(odd) {
-	background-color: transparent;
-}
-.alienrpg .colonyname {
-	font-size: x-large;
-	font-weight: bold;
-}
-.alienrpg .colonyparent {
-	font-size: smaller;
-	font-weight: bold;
-	border-right: solid red 1px;
-}
-.alienrpg .colonyparentdata {
-	border-right: solid red 1px;
-	font-weight: bold;
+.colonytable tr:nth-child(even) {
+  background-color: #3a3d3f;
 }
 
-.alienrpg .colonyposition {
-	font-size: smaller;
-	font-weight: bold;
+.colonytable tr:nth-child(odd) {
+  background-color: transparent;
 }
-.alienrpg .colonypositiondata {
-	font-size: x-large;
+.colonyname {
+  font-size: x-large;
+  font-weight: bold;
 }
-
-.alienrpg .trborder {
-	border-bottom: solid transparent 5px;
+.colonyparent {
+  font-size: smaller;
+  font-weight: bold;
+  border-right: solid red 1px;
 }
-
-.alienrpg .colonyheader {
-	font-size: smaller;
-	width: 20%;
-	font-weight: bold;
-	border-right: solid red 1px;
+.colonyparentdata {
+  border-right: solid red 1px;
+  font-weight: bold;
 }
 
-.alienrpg .colonyheaderright {
-	font-size: smaller;
-	width: 20%;
-	font-weight: bold;
+.colonyposition {
+  font-size: smaller;
+  font-weight: bold;
+}
+.colonypositiondata {
+  font-size: x-large;
 }
 
-.alienrpg .colonydata1 {
-	width: 20%;
-	border-right: solid red 1px;
-}
-.alienrpg .colonydata2 {
-	width: 20%;
+.trborder {
+  border-bottom: solid transparent 5px;
 }
 
-.alienrpg .bbw-table1 {
-	width: 169px;
-	vertical-align: top;
-	padding-left: 2px;
-	padding-right: 2px;
+.colonyheader {
+  font-size: smaller;
+  width: 20%;
+  font-weight: bold;
+  border-right: solid red 1px;
+}
+
+.colonyheaderright {
+  font-size: smaller;
+  width: 20%;
+  font-weight: bold;
+}
+
+.colonydata1 {
+  width: 20%;
+  border-right: solid red 1px;
+}
+.colonydata2 {
+  width: 20%;
+}
+
+.bbw-table1 {
+  width: 169px;
+  vertical-align: top;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 table th,
 table td {
-	padding: 0px;
+  padding: 0px;
+}
+
+.image-text-box {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 30px;
+}
+.evolvedpage {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-bottom: 20px;
+}
+
+.evolvedsubheading {
+  // color: black;
+  color: var(--alientextjournal);
+  font-weight: bold;
+}
+
+.evolvedlinestart {
+  color: hsl(175, 68%, 37%);
+  font-weight: bold;
+}
+
+ul .liststyle {
+  list-style-type: "> ";
+}
+ul .nostyle {
+  list-style-type: none;
+}
+
+.textBlockLeft {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  // color: #53432c;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 153 95 157 95 fill;
+  border-image-width: 114px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/border-image.svg");
+  border-style: solid;
+  justify-self: left;
+  break-inside: avoid;
+  margin-left: 3px;
+}
+.textBlockRight {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  // color: #53432c;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 153 95 157 95 fill;
+  border-image-width: 114px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/border-image.svg");
+  border-style: solid;
+  justify-self: right;
+  break-inside: avoid;
+  margin-right: 3px;
+}
+.textBlockCenter {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  // color: #53432c;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 153 95 157 95 fill;
+  border-image-width: 114px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/border-image.svg");
+  border-style: solid;
+  break-inside: avoid;
+  justify-self: center;
+  background-color: white;
+}
+.textBlockCenter2 {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  // color: #53432c;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 153 95 157 95 fill;
+  border-image-width: 181px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/border-image.svg");
+  border-style: solid;
+  break-inside: avoid;
+  justify-self: center;
+}
+.shipsLogLeft {
+  width: 60%;
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  // color: #53432c;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 120 10 60 10 fill;
+  border-image-width: 120px 10px 61px 10px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/shipslog.svg");
+  border-style: solid;
+  justify-self: left;
+  break-inside: avoid;
+  margin-left: 3px;
+}
+.shipsLogCenter {
+  width: 60%;
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  // color: #53432c;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 120 10 60 10 fill;
+  border-image-width: 120px 10px 61px 10px;
+  /* border-image-repeat: stretch round; */
+  border-image-source: url("../images/shipslog.svg");
+  border-style: solid;
+  justify-self: center;
+  break-inside: avoid;
+  margin-left: 3px;
+}
+
+.shipsLogTime {
+  color: hsl(175, 91%, 22%);
+  font-weight: bold;
+  margin: -12px 0px 51px 58px;
+}
+
+:root {
+  --spacing-s: clamp(0.875rem, 0.8533rem + 0.1087vw, 0.9375rem);
+  --spacing-m: clamp(1.6875rem, 1.6223rem + 0.3261vw, 1.875rem);
+  --spacing-l: clamp(2.25rem, 2.163rem + 0.4348vw, 2.5rem);
+
+  --font-size-s: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
+  --font-size-l: clamp(1.35rem, 1.2761rem + 0.3696vw, 1.5625rem);
+}
+
+.exampleBlockCenter {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  // color: #53432c;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 106 95 200 53 fill;
+  border-image-width: 114px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/example-border-image.svg");
+  border-style: solid;
+  break-inside: avoid;
+  justify-self: center;
+}
+.exampleBlockCenter2 {
+  margin-block-end: var(--spacing-l);
+  margin-inline: var(--spacing-m);
+  padding: 20px 20px;
+  box-sizing: border-box;
+  // color: #53432c;
+  color: hsl(175, 91%, 22%);
+  border-image-slice: 22 30 91 9 fill;
+  border-image-width: 114px 50px 157px 50px;
+  border-image-repeat: stretch round;
+  border-image-source: url("../images/example-border-image.svg");
+  border-style: solid;
+  break-inside: avoid;
+  justify-self: center;
+}
+.evstable {
+  width: 90%;
+  border-style: double;
+  // border-color: #e92d2d;
+  margin-left: auto;
+  margin-right: auto;
+  // border: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-left: none;
+  border-right: none;
+  color: #000;
+}
+
+.evstable tr:nth-child(even) {
+  background-color: #e6ebe8;
+}
+
+.evstable tr:nth-child(odd) {
+  background-color: #aeb3b0;
+  // background-color: transparent;
+}
+.evstrhead {
+  text-align: center;
+  font-weight: bold;
+}
+
+.evscol1 {
+  width: 16%;
+}
+.evscol2 {
+  width: 3%;
+}
+.evscol3 {
+  width: 80%;
+}
+.evscol4 {
+  width: 25%;
+}
+.evscol5 {
+  width: 60%;
+}
+.evscol6 {
+  width: 90%;
+}
+.evscol7 {
+  width: 20%;
+}
+.evscol8 {
+  width: 65%;
+}
+.evscol9 {
+  width: 12%;
+}
+.evscol10 {
+  width: 50%;
+}
+.evblockquoteCenter {
+  color: hsl(175, 91%, 22%);
+  padding: 10px;
+  break-inside: avoid;
+  justify-self: center;
+  border-top: 10px solid hsl(175, 91%, 22%);
+  border-bottom: 2px solid hsl(175, 91%, 22%);
+  border-left: 2px solid hsl(175, 91%, 22%);
+  border-right: 2px solid hsl(175, 91%, 22%);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+}
+.evblockquoteLeft {
+  color: hsl(175, 91%, 22%);
+  padding: 10px;
+  break-inside: avoid;
+  justify-self: left;
+  border-top: 10px solid hsl(175, 91%, 22%);
+  border-bottom: 2px solid hsl(175, 91%, 22%);
+  border-left: 2px solid hsl(175, 91%, 22%);
+  border-right: 2px solid hsl(175, 91%, 22%);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+}
+.evblockquoteRight {
+  color: hsl(175, 91%, 22%);
+  padding: 10px;
+  break-inside: avoid;
+  justify-self: right;
+  border-top: 10px solid hsl(175, 91%, 22%);
+  border-bottom: 2px solid hsl(175, 91%, 22%);
+  border-left: 2px solid hsl(175, 91%, 22%);
+  border-right: 2px solid hsl(175, 91%, 22%);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+}
+
+.evexamplebox {
+  justify-self: center;
+  position: relative;
+  color: hsl(175, 91%, 22%);
+  background-color: #f8f7f2;
+  border-bottom: 2px solid hsl(175, 91%, 22%);
+  border-left: 2px solid hsl(175, 91%, 22%);
+  border-right: 2px solid hsl(175, 91%, 22%);
+  border-bottom-right-radius: 20px;
 }

@@ -1,8 +1,8 @@
-@use "../utils/colors";
+@use '../utils/colors';
 
 .item-form {
 	font-family: var(--alienfont);
-	background: colors.$c-black;
+	background: var(--black);
 }
 
 .actor-header {
@@ -13,15 +13,15 @@
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	margin-bottom: 1px;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	//  color: $c-green;
 }
 
-.vehicle-header {
+header.vehicle-header {
 	overflow: hidden;
 	display: flex;
 	margin-bottom: 1px;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	//  color: $c-green;
 }
 
@@ -35,7 +35,7 @@
 	flex: 0 0 100px;
 	height: 100px;
 	margin-right: 10px;
-	width: auto;
+	width: 100%;
 	justify-self: center;
 }
 .profile-img-vehicle {
@@ -49,35 +49,33 @@
 	flex: 1;
 }
 
-h1.charname {
+span.charname {
+	display: block;
 	height: 50px;
-	padding: 0px;
-	margin: 0 5px 5px 5px;
 	border-bottom: 0;
 	border: 1px solid var(--aliengreen);
-
+	align-content: center;
 	input {
-		width: 100%;
-		height: 100%;
-		margin: 0;
-		color: inherit;
-		border: 1px solid var(--aliengreen);
+		font-family: var(--alienfont);
+		font-size: 2.1em;
+		color: var(--aliengreen);
+		height: 50px;
 	}
 }
 
 .sheet-body,
 .tab {
-	background-color: colors.$c-black;
+	background-color: var(--black);
 }
 
 .sheet-body .editor {
 	height: 100%; //  Do not change this or notes will stop working
-	background-color: colors.$c-black;
+	background-color: var(--black);
 }
 
 .tox {
 	.tox-editor-container {
-		background: colors.$c-white;
+		background: var(--white);
 	}
 
 	.tox-edit-area {
@@ -86,8 +84,8 @@ h1.charname {
 }
 .maxboxsize {
 	max-width: 40px;
-	color: inherit;
-	background-color: colors.$c-black;
+	color: var(--aliengreen);
+	background-color: var(--black);
 	height: 20px;
 	padding: 0;
 	margin: 1px;
@@ -96,8 +94,8 @@ h1.charname {
 }
 .healboxsize {
 	max-width: 80px;
-	color: inherit;
-	background-color: colors.$c-black;
+	color: var(--aliengreen);
+	background-color: var(--black);
 	height: 20px;
 	padding: 0;
 	margin: 1px;
@@ -106,17 +104,17 @@ h1.charname {
 }
 .cashboxsize {
 	max-width: 150px;
-	color: inherit;
+	color: var(--aliengreen);
 	justify-items: center;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	text-align: center;
 	border: 1px solid var(--aliengreen);
 }
 
 .textbox {
-	color: inherit;
+	color: var(--aliengreen);
 	// justify-items: center;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	padding: 5px;
 	margin: 5px 5px 5px 5px;
 	border: 1px solid var(--aliengreen);
@@ -124,9 +122,9 @@ h1.charname {
 	// width: 180px;
 }
 .textbox1 {
-	color: inherit;
+	color: var(--aliengreen);
 	justify-items: center;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	width: 230px;
 	padding: 0;
 	margin-top: 1px;
@@ -134,9 +132,9 @@ h1.charname {
 	border: 1px solid var(--aliengreen);
 }
 .textbox2 {
-	color: inherit;
+	color: var(--aliengreen);
 	justify-items: center;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	width: 400px;
 	padding: 0;
 	margin-top: 1px;
@@ -144,19 +142,19 @@ h1.charname {
 	border: 1px solid var(--aliengreen);
 }
 .textbox3 {
-	color: inherit;
+	color: var(--aliengreen);
 	// justify-items: center;
-	background-color: colors.$c-black;
+	background-color: var(--black);
 	padding: 5px;
 	margin: 5px 5px 5px 5px;
 	width: 180px;
 	border: 1px solid var(--aliengreen);
 }
 .textbox4 {
-	color: inherit;
+	color: var(--aliengreen);
 	justify-items: center;
-	background-color: colors.$c-black;
-	width: 450px;
+	background-color: var(--black);
+	width: 385px;
 	padding: 0;
 	margin-top: 1px;
 	margin-bottom: 1px;
@@ -165,21 +163,26 @@ h1.charname {
 
 textarea {
 	resize: none;
-	padding: 2;
-	// color: $c-green;
-	color: inherit;
+	padding: 2px;
+	color: var(--aliengreen);
 	border: 1px solid var(--aliengreen);
 	font-family: var(--alienfont);
-	// font-size: medium;
+	width: -webkit-fill-available;
 	font-size: var(--fontsize);
+}
+.textarea5 {
+	color:black;
+	background-color: transparent;
+	text-align: center; 
+	font-family: OCR-A;
 }
 
 form .sheet-content .click-stat-level {
 	height: 18px;
 	padding: 8px;
-	background: colors.$c-black;
+	background: var(--black);
 	border-radius: 2px;
-	box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.502);
+	box-shadow: inset 0 0 0 1px var(--black);
 	font-family: 'Roboto', system, -apple-system, sans-serif;
 	font-size: 10px;
 	font-weight: 700;
@@ -229,19 +232,19 @@ form .sheet-content .click-stat-level {
 
 .planetboxsize {
 	max-width: 40px;
-	color: colors.$c-black;
+	color: black;
 	height: 20px;
 	padding: 0;
 	margin: 1px;
 	text-align: center;
 	border: 1px solid var(--aliengreen);
+	background-color: transparent;
 }
 
 .colony-planet1 {
 	max-width: 190px;
 	margin: -5px 0px 0px -3px;
 	height: max-content;
-	color: var(--color-text-dark-primary);
 	border-radius: 0px;
 	border: 1px solid var(--aliengreen);
 }
@@ -249,7 +252,38 @@ form .sheet-content .click-stat-level {
 	max-width: 250px;
 	// margin: -10px 0px 0px -14px;
 	height: max-content;
-	color: var(--color-text-dark-primary);
 	border-radius: 0px;
-	/* border: 1px solid var(--aliengreen); */
+}
+
+h1.charname {
+	height: 50px;
+	padding: 0px;
+	margin: 0 5px 5px 5px;
+	border-bottom: 0;
+	border: 1px solid var(--aliengreen);
+	color: var(--aliengreen);
+	font-family: var(--alienfont);
+	font-size: 2.1em;
+
+	input {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		color: inherit;
+		border: 1px solid var(--aliengreen);
+	}
+}
+.status-control {
+	border: 1px solid var(--aliengreen);
+	margin-left: 5px;
+	color: var(--aliengreen);
+	font-size: 1.2em;
+	font-family: var(--alienfont);
+	&.active {
+		outline-width: 2px;
+		border-width: 0;
+		background-color: red;
+		font-weight: bold;
+		color: var(--alienitemselect);
+	}
 }

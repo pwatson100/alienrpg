@@ -1,4 +1,4 @@
-import { moduleKey, adventurePackName, adventurePack, moduleTitle } from './init.js';
+import { adventurePack, adventurePackName, moduleKey, moduleTitle } from "./init.mjs"
 
 export default async function updateModule() {
 	/**
@@ -21,103 +21,98 @@ export default async function updateModule() {
 	 */
 
 	const updateAssets = [
-		{ assetType: 'macros', assetName: 'Alien - Roll on selected Creature table V10', action: 'update' },
-		{ assetType: 'macros', assetName: 'Alien - Roll on selected Mother table V10', action: 'update' },
-	];
+	]
 
-	const updateNotes = `<ul>
-    <li>Corrected error in the macros:</li>
-    <li>Alien - Roll on selected Creature table V10</li>
-    <li>Alien - Roll on selected Mother table V10</li>
-    </ul>`;
+	const updateNotes = ``
 
 	// If there are no actual asset updates quit.
 	if (!updateAssets.length) {
-		logger.info('No asset updates required');
+		logger.info("No asset updates required")
 
-		await game.settings.set(moduleKey, 'migrationVersion', game.system.version);
-		return;
+		await game.settings.set(moduleKey, "migrationVersion", game.system.version)
+		return
 	}
 
-	const pack = game.packs.get(adventurePack);
-	const adventureId = pack.index.find((a) => a.name === adventurePackName)?._id;
-	const tPack = await pack.getDocument(adventureId);
-	const aPack = tPack.toObject();
+	const pack = game.packs.get(adventurePack)
+	const adventureId = pack.index.find((a) => a.name === adventurePackName)?._id
+	const tPack = await pack.getDocument(adventureId)
+	const aPack = tPack.toObject()
 
-	await getUpdateIDs(aPack, updateAssets);
-	await ModuleUpdate(aPack, updateAssets);
+	await getUpdateIDs(aPack, updateAssets)
+	await ModuleUpdate(aPack, updateAssets)
 
-	await allDone(moduleTitle, updateNotes);
+	await allDone(moduleTitle, updateNotes)
 }
 
 async function getUpdateIDs(aPack, updateAssets) {
-	for (let key in updateAssets) {
-		if (updateAssets.hasOwnProperty(key)) {
-			if (updateAssets[key].action === 'update') {
-				const tempID = await game[updateAssets[key].assetType].getName(updateAssets[key].assetName).id;
-				const tempClass = await game[updateAssets[key].assetType].getName(updateAssets[key].assetName).documentName;
-				Object.assign(updateAssets[key], { assetID: tempID, assetClass: tempClass });
+	for (const key in updateAssets) {
+		if (Object.hasOwn(updateAssets, key)) {
+			if (updateAssets[key].action === "update") {
+				const tempID = await game[updateAssets[key].assetType].getName(updateAssets[key].assetName).id
+				const tempClass = await game[updateAssets[key].assetType].getName(updateAssets[key].assetName).documentName
+				Object.assign(updateAssets[key], { assetID: tempID, assetClass: tempClass })
 			} else {
-				Object.assign(updateAssets[key], { assetClass: 'new' });
+				Object.assign(updateAssets[key], { assetClass: "new" })
 			}
 		}
 	}
-	return updateAssets;
+	return updateAssets
 }
 
 async function ModuleUpdate(aPack, updateAssets) {
-	const toUpdate = {};
-	const toCreate = {};
-	let created = 0;
-	let updated = 0;
+	const toUpdate = {}
+	const toCreate = {}
+	let created = 0
+	let updated = 0
 
 	for (const [field, cls] of Object.entries(Adventure.contentFields)) {
-		const newUpdate = [];
-		const newAdd = [];
+		const newUpdate = []
+		const newAdd = []
 		for (const { assetType, assetName, action, assetID, assetClass } of updateAssets) {
-			if (assetClass === cls.documentName || assetClass === 'new') {
+			if (assetClass === cls.documentName || assetClass === "new") {
 				switch (action) {
-					case 'delete':
+					case "delete":
 						try {
-							const isThere = game[assetType].getName(assetName);
+							const isThere = game[assetType].getName(assetName)
 							if (isThere) {
-								console.log('It Exists');
-								await isThere.delete({ deleteSubfolders: true, deleteContents: true });
+								console.log("It Exists")
+								await isThere.delete({ deleteSubfolders: true, deleteContents: true })
 							}
 						} catch (error) {
-							console.warn(`${assetName} already deleted`);
+							console.warn(`${assetName} already deleted`)
 						}
-						break;
-					case 'add':
+						break
+					case "add":
 						if (!game[assetType].getName(assetName)) {
-							const [c] = aPack[field].partition((d) => d.name != assetName);
+							const [c] = aPack[field].partition((d) => d.name != assetName)
 							if (c.length) {
-								newAdd.push(c[0]);
+								newAdd.push(c[0])
 							}
 						} else {
-							console.warn(`${assetName} ${assetType} Exists so no overwrite.  Delete first!`);
+							console.warn(`${assetName} ${assetType} Exists so no overwrite.  Delete first!`)
 							// Uncomment the next line if you want a distructive add.
 							// await assetName.delete({ deleteSubfolders: true, deleteContents: true });
 						}
 
-						break;
-					case 'update':
-						const [u] = aPack[field].partition((d) => d._id != assetID);
+						break
+					case "update": {
+						const [u] = aPack[field].partition((d) => d._id != assetID)
 						if (u.length) {
-							newUpdate.push(u[0]);
+							newUpdate.push(u[0])
 						}
-						break;
+						break
+					}
 					default:
-						break;
+						break
 				}
 			}
 		}
 		// Now create the update entries for that asset class.
 		if (newAdd.length) {
-			toCreate[cls.documentName] = newAdd;
+			toCreate[cls.documentName] = newAdd
 		}
 		if (newUpdate.length) {
-			toUpdate[cls.documentName] = newUpdate;
+			toUpdate[cls.documentName] = newUpdate
 		}
 	}
 
@@ -126,9 +121,9 @@ async function ModuleUpdate(aPack, updateAssets) {
 	//
 	if (toUpdate) {
 		for (const [documentName, updateData] of Object.entries(toUpdate)) {
-			const cls = getDocumentClass(documentName);
-			const u = await cls.updateDocuments(updateData, { diff: false, recursive: false, noHook: true });
-			updated++;
+			const cls = getDocumentClass(documentName)
+			const u = await cls.updateDocuments(updateData, { diff: false, recursive: false, noHook: true })
+			updated++
 		}
 	}
 
@@ -138,30 +133,30 @@ async function ModuleUpdate(aPack, updateAssets) {
 
 	if (toCreate) {
 		for (const [documentName, createData] of Object.entries(toCreate)) {
-			const cls = getDocumentClass(documentName);
-			const c = await cls.createDocuments(createData, { keepId: true, keepEmbeddedId: true, renderSheet: false });
-			created++;
+			const cls = getDocumentClass(documentName)
+			const c = await cls.createDocuments(createData, { keepId: true, keepEmbeddedId: true, renderSheet: false })
+			created++
 		}
 	}
-	logger.info(`${moduleKey} Updated ${updated} Asset, Created ${created} Asset`);
+	logger.info(`${moduleKey} Updated ${updated} Asset, Created ${created} Asset`)
 }
 
 async function allDone(moduleTitle, updateNotes) {
-	await game.settings.set(moduleKey, 'migrationVersion', game.system.version);
+	await game.settings.set(moduleKey, "migrationVersion", game.system.version)
 	Dialog.prompt({
 		title: `${moduleTitle} Update`,
 		content: `<p>The update has completed and the following have been updated:</p> <br> ${updateNotes}`,
-		label: 'Okay!',
+		label: "Okay!",
 		callback: () => {
-			console.log('All Done');
+			console.log("All Done")
 		},
-	});
+	})
 	logger.info(
-		'Imported ',
-		game.settings.get(moduleKey, 'imported'),
-		'Version ',
+		"Imported ",
+		game.settings.get(moduleKey, "imported"),
+		"Version ",
 		game.system.version,
-		'Migration ',
-		game.settings.get(moduleKey, 'migrationVersion')
-	);
+		"Migration ",
+		game.settings.get(moduleKey, "migrationVersion"),
+	)
 }

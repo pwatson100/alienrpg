@@ -1,651 +1,652 @@
-@use '../utils/colors';
+@use "../utils/colors";
 
-.alienrpg ul ol {
-	margin-left: 3px;
+ul ol {
+  margin-left: 3px;
+}
+li {
+  font-weight: normal;
 }
 
-.alienrpg #context-menu {
-	// width: 100%;
-	width: auto;
-	height: max-content;
-	min-width: 156px;
-	max-width: 360px;
-	position: absolute;
-	left: -998%;
-	top: -50%;
-	background: var(--black);
-	border: 1px solid var(--aliengreen);
-	border-radius: 5px;
-	color: var(--aliengreen);
-	text-align: left;
-	font-size: smaller;
-	z-index: 1;
-}
-.alienrpg #context-menu li.context-item {
-	line-height: 16px;
-	padding: 0px;
+.crit-box {
+  border: 2px double var(--aliengreen);
+  height: 100px;
 }
 
-.alienrpg .window-content {
-	background: hsl(0deg, 0%, 0%);
-	border: var(--aliengreen) 1px solid;
+// #context-menu {
+// 	// width: 100%;
+// 	width: auto;
+// 	height: max-content;
+// 	min-width: 156px;
+// 	max-width: 360px;
+// 	position: absolute;
+// 	left: -998%;
+// 	top: -50%;
+// 	background: colors.$c-black;
+// 	border: 1px solid var(--aliengreen);
+// 	border-radius: 5px;
+// 	color: var(--aliengreen);
+// 	text-align: left;
+// 	font-size: smaller;
+// 	z-index: 1;
+// }
+// #context-menu li.context-item {
+// 	line-height: 16px;
+// 	padding: 0px;
+// }
+
+// .ALIENRPG.window-content {
+// 	/* background: hsl(0, 0%, 0%); */
+// 	border: var(--aliengreen) 1px solid;
+// }
+
+// form,
+.ALIENRPG.application {
+  font-family: var(--alienfont);
+  color: var(--aliengreen);
+  font-size: var(--fontsize);
+  background: colors.$c-black;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  // padding: 2px;
+  overflow-y: scroll;
+  overflow-x: auto;
+  border: var(--aliengreen) solid 0.25px;
 }
 
-.alienrpg form {
-	font-family: var(--alienfont);
-	color: var(--aliengreen);
-	font-size: var(--fontsize);
-	background: var(--black);
-	flex-direction: column;
-	flex-wrap: nowrap;
-	padding: 2px;
-	overflow-y: scroll;
-	overflow-x: auto;
-	border: var(--aliengreen) 3px;
+.sheet.journal-entry:not(.minimized, .minimizing, .maximizing) {
+  border: var(--aliengreen) solid 0.25px;
 }
 
 .journal-sheet {
-	form {
-		background: var(--journalback) top left;
-		background-size: cover;
-		border: 1px solid var(--aliengreen);
-		border-radius: 1px;
-		color: var(--alientextjournal);
-	}
-	select {
-		font-family: var(--alienfont);
-		color: inherit;
-		background: var(--black);
-		border: var(--aliengreen) 3px;
-		border: 1px solid hsl(53, 4%, 46%);
-		border-radius: 3px;
-		padding: 0 3px;
-		text-overflow: ellipsis;
-		font-size: 16px;
-	}
-	input {
-		font-family: var(--alienfont);
-		color: inherit;
-		background: var(--black) k;
-		border: 1px solid var(--aliengreen);
-	}
-	button {
-		color: inherit;
-		background: hsl(0, 0%, 0%);
-		border: var(--aliengreen) solid 1px;
-		width: 100%;
-		margin: 0 1px;
-		border-radius: 3px;
-		font-size: 14px;
-		line-height: 28px;
-	}
+  form {
+    background: var(--journalback) top left;
+    background-size: cover;
+    border: 1px solid var(--aliengreen);
+    border-radius: 1px;
+    color: var(--alientextjournal);
+  }
+  select {
+    font-family: var(--alienfont);
+    color: var(--aliengreen);
+    background: colors.$c-black;
+    border: var(--aliengreen) 3px;
+    border: 1px solid hsl(53, 4%, 46%);
+    border-radius: 3px;
+    padding: 0 3px;
+    text-overflow: ellipsis;
+    font-size: 16px;
+  }
+  input {
+    font-family: var(--alienfont);
+    color: var(--aliengreen);
+    background: colors.$c-black;
+    border: 1px solid var(--aliengreen);
+  }
+  button {
+    color: var(--aliengreen);
+    background: hsl(0, 0%, 0%);
+    border: var(--aliengreen) solid 1px;
+    width: 100%;
+    margin: 0 1px;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 28px;
+  }
 }
-// 	critbutton {
-// 		font-family: var(--alienfont);
-// 		//  color: $c-green;
-// 		color: inherit;
-
-// 		background:  var(--black);
-// 		border: var(--aliengreen) solid 1px;
-// 		// width: 100%;
-// 		margin: 0 1px;
-// 		border-radius: 3px;
-// 		font-size: 14px;
-// 		line-height: 28px;
-// 	}
-// 	.tox .tox-editor-container {
-// 		background-color:  var(--white);
-// 	}
-// }
 
 a.entity-link {
-	color: var(--white);
-	background: var(--black);
+  color: colors.$c-white;
+  background: colors.$c-black;
 }
 
-.alienrpg a.entity-link {
-	color: var(--white);
-	background: var(--black);
+a.entity-link {
+  color: colors.$c-white;
+  background: colors.$c-black;
 }
 a.content-link {
-	color: var(--white);
-	background: var(--black);
+  color: colors.$c-white;
+  background: colors.$c-black;
 }
 
-.alienrpg a.content-link {
-	color: var(--white);
-	background: var(--black);
+a.ev-content-link {
+  color: black;
+  background: hsl(175deg 53.14% 88.55%);
 }
 #chat .message {
-	border: 1px solid hsl(0deg, 8%, 34%);
-	border-radius: 1px;
+  border: 1px solid hsl(0deg, 8%, 34%);
+  border-radius: 1px;
 }
 .chat-message {
-	background-image: var(--chatbackground);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	color: inherit;
+  background-image: var(--chatbackground);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: var(--aliengreen);
 
-	.message-header .message-sender {
-		color: var(--aliengreen);
-	}
-	.message-metadata {
-		color: var(--aliengreen);
-	}
-	.flavor-text {
-		color: var(--aliengreen);
-	}
-	.table-draw .table-results .table-result {
-		color: var(--aliengreen);
-	}
+  .message-header .message-sender {
+    color: var(--aliengreen);
+  }
+  .message-metadata {
+    color: var(--aliengreen);
+  }
+  .flavor-text {
+    color: var(--aliengreen);
+  }
+  .table-draw .table-results .table-result {
+    color: var(--aliengreen);
+  }
 }
 .chat-message .table-draw .table-results .table-result .chatBG {
-	background-image: var(--chatbackground);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	color: var(--aliengreen);
+  background-image: var(--chatbackground);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: var(--aliengreen);
 
-	padding-left: 6px;
+  padding-left: 6px;
 }
 .chat-message.whisper {
-	background: hsl(0, 0%, 9%);
-	color: var(--aliengreen);
+  background: hsl(0, 0%, 9%);
+  color: var(--aliengreen);
 }
 
 .chat-message.blind {
-	background: hsl(0, 0%, 9%);
+  background: hsl(0, 0%, 9%);
 }
 
 .chat-message.emote {
-	background: hsl(0, 0%, 9%);
+  background: hsl(0, 0%, 9%);
 }
 
 .chat-message .critchat {
-	display: flex;
-	align-items: center;
-	border-bottom: 1px solid var(--color-border-light-primary);
-	padding: 3px 0;
-	color: var(--aliengreen);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-light-primary);
+  padding: 3px 0;
+  color: var(--aliengreen);
 }
 
 .chat-message .table-draw .table-description {
-	// border-top: 1px solid #b5b3a4;
-	color: var(--aliengreen);
-	//  font-size: var(--font-size-12);
-	// padding: 5px 0;}
+  // border-top: 1px solid #b5b3a4;
+  color: var(--aliengreen);
+  //  font-size: var(--font-size-12);
+  // padding: 5px 0;}
 }
 
 .dice-tooltip .roll > img {
-	width: 24px;
+  width: 24px;
 }
 
 .dice-tooltip {
-	border: 1px solid var(--aliengreen);
-	border-radius: 1px;
-	background: var(--black);
+  border: 1px solid var(--aliengreen);
+  border-radius: 1px;
+  background: colors.$c-black;
 
-	.dice-rolls {
-		color: inherit;
-		background: var(--black);
-	}
+  .dice-rolls {
+    color: var(--aliengreen);
+    background: colors.$c-black;
+  }
 
-	.part-header {
-		color: inherit;
-		background: var(--black);
-	}
+  .part-header {
+    color: var(--aliengreen);
+    background: colors.$c-black;
+  }
 }
 .dice-tooltip .dice-rolls .roll {
-	filter: none;
+  filter: none;
 }
 .dice-tooltip .dice-rolls .roll.max {
-	filter: none;
+  filter: none;
 }
 .dice-tooltip .dice-rolls .roll.min {
-	filter: none;
+  filter: none;
 }
 
 .inline-roll .dice-tooltip {
-	color: inherit;
-	background: var(--black);
-	border: 2px solid var(--aliengreen);
-	border-radius: 2px;
+  color: var(--aliengreen);
+  background: colors.$c-black;
+  border: 2px solid var(--aliengreen);
+  border-radius: 2px;
 }
 a.inline-roll {
-	background: var(--black);
-	padding: 1px 4px;
-	border: 1px solid var(--aliengreen);
-	border-radius: 2px;
-	white-space: nowrap;
-	word-break: break-all;
+  background: colors.$c-black;
+  color: var(--aliengreen);
+
+  padding: 1px 4px;
+  border: 1px solid var(--aliengreen);
+  border-radius: 2px;
+  white-space: nowrap;
+  word-break: break-all;
 }
 
 .dice-roll .dice-formula,
 .dice-roll .dice-total {
-	color: var(--aliengreen);
+  color: var(--aliengreen);
 }
 .dice-tooltip .part-header .part-formula {
-	color: inherit;
+  color: var(--aliengreen);
 }
 .part-total {
-	color: inherit;
+  color: var(--aliengreen);
 }
 
-.alienrpg h2,
+.ALIENRPG h2,
 .chat-message h2 {
-	border: 0;
-	padding: 0;
-	margin: 1px;
-	margin-left: 5px;
-	margin-block-end: 1px;
-	color: var(--aliengreen);
+  font-family: var(--alienfont);
+  font-size: 1.5em;
+  font-weight: normal;
+  color: var(--aliengreen);
+  border: 0;
+  padding: 0;
+  margin: 1px;
+  margin-left: 5px;
+  margin-block-end: 1px;
 }
-.alienrpg h3,
+.ALIENRPG h3,
 .chat-message h3 {
-	border: 0;
-	padding: 0;
-	margin: 1px;
+  font-family: var(--alienfont);
+  font-size: 1.25em;
+  font-weight: normal;
+  color: var(--aliengreen);
+  border: 0;
+  padding: 0;
+  margin: 1px;
 }
 
-.alienrpg h4,
+.ALIENRPG h4,
 .chat-message h4 {
-	border: 0;
-	padding: 0;
-	margin: 1px;
-	font-size: var(--fontsize);
-}
-
-.resource-content {
-	button {
-		flex: 0;
-		border: 0;
-		width: 30px;
-		font-size: 1.5rem;
-		padding: 0;
-		color: inherit;
-		margin: 0;
-	}
+  font-family: var(--alienfont);
+  font-weight: normal;
+  font-size: var(--fontsize);
+  color: var(--aliengreen);
+  border: 0;
+  padding: 0;
+  margin: 1px;
 }
 
 .rollable:hover,
 .rollcomputer:hover {
-	color: var(--aliengreen);
-	background-color: #000;
-	border: 0px solid var(--aliengreen);
-	font-weight: 1;
-	font-size: 120%;
-	box-shadow: 0 0 0px var(--aliengreen);
-	animation: textShadow 1s infinite;
+  color: var(--aliengreen);
+  background-color: #000;
+  border: 0px solid var(--aliengreen);
+  font-weight: 1;
+  font-size: 120%;
+  box-shadow: 0 0 0px var(--aliengreen);
+  animation: textShadow 1s infinite;
 }
 
 .far.fa-heart:hover {
-	color: red;
-	animation: textShadow 1s infinite;
+  color: red;
+  animation: textShadow 1s infinite;
 }
 
 .rollableVeh {
-	&:hover,
-	&:focus {
-		text-shadow: 0 0 20px hsl(0, 100%, 50%);
-		font-size: 1.3em;
-		font-weight: bolder;
-		cursor: pointer;
-	}
+  &:hover,
+  &:focus {
+    text-shadow: 0 0 20px hsl(0, 100%, 50%);
+    font-size: 1.3em;
+    font-weight: bolder;
+    cursor: pointer;
+  }
 }
 .creature-acid-roll {
-	&:hover,
-	&:focus {
-		text-shadow: 0 0 20px hsl(0, 100%, 50%);
-		font-size: 95%;
-		cursor: pointer;
-	}
+  &:hover,
+  &:focus {
+    text-shadow: 0 0 20px hsl(0, 100%, 50%);
+    font-size: 95%;
+    cursor: pointer;
+  }
 }
 .rollItem {
-	&:hover,
-	&:focus {
-		text-shadow: 0 0 20px hsl(0, 100%, 50%);
-		font-size: 110%;
-		font-weight: bolder;
-		cursor: pointer;
-	}
+  &:hover,
+  &:focus {
+    text-shadow: 0 0 20px hsl(0, 100%, 50%);
+    font-size: 110%;
+    font-weight: bolder;
+    cursor: pointer;
+  }
 }
 .rollVehicleWeapon {
-	&:hover,
-	&:focus {
-		text-shadow: 0 0 20px hsl(0, 100%, 50%);
-		font-size: 110%;
-		font-weight: bolder;
-		cursor: pointer;
-	}
+  &:hover,
+  &:focus {
+    text-shadow: 0 0 20px hsl(0, 100%, 50%);
+    font-size: 110%;
+    font-weight: bolder;
+    cursor: pointer;
+  }
 }
 .openItem {
-	&:hover,
-	&:focus {
-		text-shadow: 0 0 20px hsl(0, 100%, 50%);
-		font-size: 110%;
-		font-weight: bolder;
-		cursor: pointer;
-	}
+  &:hover,
+  &:focus {
+    text-shadow: 0 0 20px hsl(0, 100%, 50%);
+    font-size: 110%;
+    font-weight: bolder;
+    cursor: pointer;
+  }
 }
 .talent-btn {
-	&:hover,
-	&:focus {
-		color: hsl(103, 100%, 28%);
-		text-shadow: 0 0 20px hsl(0, 100%, 50%);
-		font-weight: bolder;
-		cursor: pointer;
-	}
+  &:hover,
+  &:focus {
+    color: hsl(103, 100%, 28%);
+    text-shadow: 0 0 20px hsl(0, 100%, 50%);
+    font-weight: bolder;
+    cursor: pointer;
+  }
 }
 
 .minus-btn .plus-btn {
-	width: 10px;
-	height: 10px;
-	line-height: 20px;
-	padding: 0;
+  width: 10px;
+  height: 10px;
+  line-height: 20px;
+  padding: 0;
 }
 
 .supply-btn {
-	font-size: 5px;
-	padding: 0;
-	font-family: var(--alienfont);
+  flex: 0;
+  border: 0;
+  width: 30px;
+  font-size: 1em;
+  padding: 0;
+  color: var(--aliengreen);
+  margin: 0;
 }
 
 .pwr-btn {
-	&:hover,
-	&:focus {
-		background-color: hsl(4, 69%, 53%);
-		font-size: 120%;
-		font-weight: bolder;
-		cursor: pointer;
-	}
+  &:hover,
+  &:focus {
+    background-color: hsl(4, 69%, 53%);
+    font-size: 120%;
+    font-weight: bolder;
+    cursor: pointer;
+  }
 }
 
 .stunt-btn {
-	width: 5px;
-	padding: 0;
-	font-family: var(--alienfont);
+  // width: 5px;
+  padding: 0;
+  font-family: var(--alienfont);
+  margin: 0px;
+  font-size: 1em;
 }
 
 .creature-attack-roll {
-	display: inline-block;
-	width: 280px;
-	height: 40px;
-	font-weight: bold;
-	font-size: 2em;
-	text-shadow: 2px 2px hsl(128, 83%, 25%);
-	border: 2px solid var(--aliengreen);
-	border-radius: 25px;
-	color: var(--aliengreen);
-	font-family: var(--alienfont);
-	line-height: inherit;
+  display: inline-block;
+  width: 280px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 1.6em;
+  text-shadow: 2px 2px hsl(128, 83%, 25%);
+  border: 2px solid var(--aliengreen);
+  border-radius: 25px;
+  color: var(--aliengreen);
+  font-family: var(--alienfont);
+  line-height: inherit;
 }
 .creature-attack-roll:hover {
-	border-radius: 10px;
-	color: hsl(0, 100%, 50%);
-	text-shadow: 2px 2px hsl(0, 92%, 26%);
+  border-radius: 10px;
+  color: hsl(0, 100%, 50%);
+  text-shadow: 2px 2px hsl(0, 92%, 26%);
 }
 .creature-attack-roll:active {
-	position: relative;
-	top: 1px;
-	border-radius: unset;
-	background-color: unset;
-	color: unset;
+  position: relative;
+  top: 1px;
+  border-radius: unset;
+  background-color: unset;
+  color: unset;
 }
 button:hover,
 button:focus {
-	box-shadow: unset;
+  box-shadow: unset;
 }
 
 .alien-Push-button {
-	display: inline-block;
-	width: 260px;
-	height: 45px;
-	background-color: var(--black);
-	font-weight: bold;
-	font-size: clamp(2rem, -4.5rem + 5vw, 3rem);
-	font-family: var(--alienfont);
-	padding-bottom: 5px;
-	border: 2px solid var(--aliengreen);
-	border-radius: 25px;
-	color: var(--aliengreen);
-	font-family: var(--alienfont);
-	line-height: inherit;
+  display: inline-block;
+  width: 260px;
+  height: 45px;
+  background-color: colors.$c-black;
+  font-weight: bold;
+  font-size: clamp(2em, -4.5em + 5vw, 3em);
+  font-family: var(--alienfont);
+  padding-bottom: 5px;
+  border: 2px solid var(--aliengreen);
+  border-radius: 25px;
+  color: var(--aliengreen);
+  font-family: var(--alienfont);
+  line-height: inherit;
 }
 .alien-Push-button:hover {
-	border-radius: 10px;
-	color: hsl(0, 100%, 50%);
+  border-radius: 10px;
+  color: hsl(0, 100%, 50%);
 }
 
 .alien-crit-button {
-	display: inline-block;
-	width: 280px;
-	height: 26px;
-	border: 2px solid var(--aliengreen);
-	border-radius: 25px;
-	color: var(--aliengreen);
-	font-weight: bold;
-	font-size: 1.2rem;
+  display: inline-block;
+  width: 280px;
+  height: 26px;
+  border: 2px solid var(--aliengreen);
+  border-radius: 25px;
+  color: var(--aliengreen);
+  font-weight: bold;
+  font-size: 1em;
 
-	font-family: var(--alienfont);
-	line-height: inherit;
+  font-family: var(--alienfont);
+  line-height: inherit;
 }
 .alien-crit-button:hover {
-	border-radius: 5px;
-	color: hsl(0, 100%, 50%);
+  border-radius: 5px;
+  color: hsl(0, 100%, 50%);
 }
 
 .alien-diceface-b0 {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	padding: 0px;
-	margin: 1px;
-	background: url(../ui/alien-dice-b0.png) no-repeat top left;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  margin: 1px;
+  background: url(../ui/alien-dice-b0.png) no-repeat top left;
 }
 .alien-diceface-b6 {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	padding: 0px;
-	margin: 1px;
-	background: url(../ui/alien-dice-b6.png) no-repeat top left;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  margin: 1px;
+  background: url(../ui/alien-dice-b6.png) no-repeat top left;
 }
 .alien-diceface-y0 {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	padding: 0px;
-	margin: 1px;
-	background: url(../ui/alien-dice-y0.png) no-repeat top left;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  margin: 1px;
+  background: url(../ui/alien-dice-y0.png) no-repeat top left;
 }
 .alien-diceface-y1 {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	padding: 0px;
-	margin: 1px;
-	background: url(../ui/alien-dice-y1.png) no-repeat top left;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  margin: 1px;
+  background: url(../ui/alien-dice-y1.png) no-repeat top left;
 }
 .alien-diceface-y6 {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	padding: 0px;
-	margin: 1px;
-	background: url(../ui/alien-dice-y6.png) no-repeat top left;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  margin: 1px;
+  background: url(../ui/alien-dice-y6.png) no-repeat top left;
 }
 
 .tooltip {
-	position: relative;
-	display: inline-block;
-	border-bottom: 1px dotted black;
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
 }
 
 .tooltip .tooltiptext {
-	visibility: hidden;
-	width: 250px;
-	background-color: var(--black);
-	text-align: center;
-	border-radius: 6px;
-	padding: 5px 0;
-	position: absolute;
-	z-index: 1;
-	top: -5px;
-	right: 105%;
-	margin-left: -60px;
-	border-style: solid;
-	border-color: var(--aliengreen);
+  visibility: hidden;
+  width: 250px;
+  background-color: colors.$c-black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 105%;
+  margin-left: -60px;
+  border-style: solid;
+  border-color: var(--aliengreen);
 }
 .tooltip .tooltiptext::after {
-	content: ' ';
-	position: absolute;
-	top: 50%;
-	left: 100%; /* To the right of the tooltip */
-	margin-top: -5px;
-	border-width: 5px;
-	border-style: solid;
-	border-color: transparent transparent transparent var(--aliengreen);
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 100%; /* To the right of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--aliengreen);
 }
 .tooltip:hover .tooltiptext {
-	visibility: visible;
+  visibility: visible;
 }
 .tooltip2 {
-	position: relative;
-	display: inline-block;
-	border-bottom: 1px dotted black;
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
 }
 
 .tooltip2 .tooltiptext2 {
-	visibility: hidden;
-	background-color: var(--black);
-	text-align: center;
-	border-radius: 6px;
-	position: absolute;
-	z-index: 1;
-	border-style: solid;
-	border-color: var(--aliengreen);
-	padding: 0px;
-	font-family: 'Times New Roman', Times, serif;
-	width: 150px;
-	top: -30px;
-	right: -160px;
-	margin-left: auto;
+  visibility: hidden;
+  background-color: colors.$c-black;
+  text-align: center;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  border-style: solid;
+  border-color: var(--aliengreen);
+  padding: 0px;
+  font-family: "Times New Roman", Times, serif;
+  width: 150px;
+  top: -30px;
+  right: -160px;
+  margin-left: auto;
 }
 .tooltip2 .tooltiptext2::after {
-	content: ' ';
-	position: absolute;
-	top: 50%;
-	left: 100%; /* To the right of the tooltip */
-	margin-top: -5px;
-	border-width: 5px;
-	border-style: solid;
-	border-color: transparent transparent transparent var(--aliengreen);
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 100%; /* To the right of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--aliengreen);
 }
 .tooltip2:hover .tooltiptext2 {
-	visibility: visible;
+  visibility: visible;
 }
 
-.alienrpg .inputtext {
-	color: inherit;
-	background-color: var(--black);
+.inputtext {
+  color: inherit;
+  background-color: colors.$c-black;
 }
 
 .box-top {
-	border-top: 3px solid var(--aliengreen);
+  border-top: 3px solid var(--aliengreen);
 }
 
 .ctooltip {
-	position: relative;
-	display: inline-block;
-	border-bottom: 1px dotted var(--black);
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted colors.$c-black;
 }
 
 /* Tooltip text */
 .ctooltip .ctooltiptext {
-	// /* Position the tooltip text - see examples below! */
-	// position: absolute;
-	// z-index: 1;
-	font-size: small;
-	visibility: hidden;
-	width: 150px;
-	background-color: var(--black);
-	color: var(--aliengreen);
-	text-align: center;
-	border-radius: 3px;
-	padding: 2px 0;
-	position: absolute;
-	z-index: 1;
-	// top: -5px;
-	// right: 105%;
-	margin-left: -150px;
-	border-style: solid;
-	border-color: var(--aliengreen);
+  // /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  visibility: hidden;
+  width: 150px;
+  background-color: colors.$c-black;
+  color: var(--aliengreen);
+  text-align: center;
+  border-radius: 3px;
+  padding: 2px 0;
+  right: 29px;
+  width: auto;
+  font-size: initial;
+  margin-left: -150px;
+  border-style: solid;
+  border-color: var(--aliengreen);
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .ctooltip:hover .ctooltiptext {
-	visibility: visible;
+  visibility: visible;
 }
 
 .ctooltip .ctooltiptext::after {
-	content: ' ';
-	position: absolute;
-	top: 50%;
-	left: 100%; /* To the right of the tooltip */
-	margin-top: -5px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: transparent transparent transparent var(--aliengreen);
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 100%; /* To the right of the tooltip */
+  margin-top: -5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--aliengreen);
 }
 
 .alienchatwhite {
-	color: var(--alienchatwhite);
+  color: var(--alienchatwhite);
 }
 
 .alienchatred {
-	color: var(--alienchatred);
-	font-weight: bolder;
-	font-size: larger;
-	-webkit-background-clip: text;
-	background-clip: text;
-	background-color: var(--alienchatredshadow);
+  color: var(--alienchatred);
+  font-weight: bolder;
+  font-size: larger;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-color: var(--alienchatredshadow);
 }
 
 .alienchatblue {
-	color: var(--alienchatblue);
+  color: var(--alienchatblue);
 }
 .alienchatlightblue {
-	color: var(--alienchatlightblue);
-	font-weight: bold;
-	font-size: larger;
+  color: var(--alienchatlightblue);
+  font-weight: bold;
+  font-size: larger;
 }
 .alienchatlightgreen {
-	color: var(--alienchatlightgreen);
+  color: var(--alienchatlightgreen);
 }
 .alienchatgoldenrod {
-	color: var(--alienchatgoldenrod);
-	font-weight: bold;
+  color: var(--alienchatgoldenrod);
+  font-weight: bold;
 }
 
 .combatbutton {
-	max-width: 200px;
-	color: var(--aliengreen);
-	border: var(--aliengreen) 1px solid;
+  max-width: 200px;
+  color: var(--aliengreen);
+  border: var(--aliengreen) 1px solid;
 }
 
 .prosemirror.editing-source textarea {
-	color: var(--white);
+  color: colors.$c-white;
 }
 
 .prosemirror menu .pm-dropdown {
-	/* color: hsl(0, 0%, 0%); */
+  /* color: hsl(0, 0%, 0%); */
 }
 
 #overlay {
-	height: 200%;
-	background-color: hsl(120deg 64% 43% / 30%); /* Black background with opacity */
-	z-index: 2;
+  height: 200%;
+  background-color: hsl(120deg 64% 43% / 30%); /* Black background with opacity */
+  z-index: 2;
 }
 
 .starving,
@@ -655,11 +656,11 @@ button:focus {
 .hypoxia,
 .heatstroke,
 .gravitydyspraxia {
-	display: flex;
+  display: flex;
 }
 .overwatch {
-	display: inline-flex;
-	margin-top: 6px;
-	margin-bottom: 8px;
-	margin-left: 7px;
+  display: inline-flex;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  margin-left: 7px;
 }

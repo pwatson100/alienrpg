@@ -1,108 +1,180 @@
 {
-	"id": "alienrpg",
-	"title": "Alien RPG",
-	"description": "The Alien RPG system for Foundry VTT!",
-	"authors": [{ "name": "Paul Watson" }],
-	"url": "https://github.com/pwatson100/alienrpg",
-	"flags": {
-		"hotReload": {
-			"extensions": ["css", "js", "html", "json"],
-			"paths": ["css/alienrpg.css", "templates", "lang"]
-		}
-	},
-	"relationships": {
-		"systems": [{ "id": "alienrpg" }]
-	},
-	"version": "3.3.4",
+  "id": "alienrpg",
+  "title": "Alien Evolved",
+  "description": "The Alien Enhanced system for FoundryVTT",
+  "authors": [{ "name": "Paul Watson" }],
+  "url": "https://github.com/pwatson100/alienrpg",
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "html", "hbs", "json"],
+      "paths": ["css", "lang", "templates"]
+    }
+  },
+  "relationships": {
+    "systems": [{ "id": "alienrpg" }]
+  },
+  "version": "4.0.0",
 
-	"compatibility": {
-		"minimum": "13",
-		"verified": "13",
-		"maximum": "13"
-	},
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13",
+    "maximum": "13"
+  },
 
-	"scripts": [],
-	"esmodules": ["module/alienrpg.js"],
-	"styles": ["css/alienrpg.css"],
-	"languages": [
-		{
-			"lang": "en",
-			"name": "English",
-			"path": "lang/en.json"
-		},
-		{
-			"lang": "fr",
-			"name": "Français",
-			"path": "lang/fr.json"
-		},
-		{
-			"lang": "cn",
-			"name": "中文",
-			"path": "lang/cn.json"
-		},
-		{
-			"lang": "zh-tw",
-			"name": "正體中文",
-			"path": "lang/zh-tw.json"
-		},
-		{
-			"lang": "de",
-			"name": "Deutsche",
-			"path": "lang/de.json"
-		},
-		{
-			"lang": "es",
-			"name": "Español",
-			"path": "lang/es.json"
-		},
-		{
-			"lang": "pt-BR",
-			"name": "Português (Brasil)",
-			"path": "lang/pt-br.json"
-		},
-		{
-			"lang": "it",
-			"name": "Italiano",
-			"path": "lang/it.json"
-		},
-		{
-			"lang": "pl",
-			"name": "Polski",
-			"path": "lang/pl.json"
-		}
-	],
-	"packs": [
-		{
-			"name": "alien-rpg-system",
-			"label": "Alien RPG System",
-			"type": "Adventure",
-			"module": "AlienRPG",
-			"system": "alienrpg"
-		}
-	],
-	"media": [
-		{
-			"type": "cover",
-			"loop": false,
-			"flags": {}
-		},
-		{
-			"type": "setup",
-			"url": "systems/alienrpg/images/egg.webp",
-			"thumbnail": "systems/alienrpg/images/egg.webp"
-		}
-	],
-	"background": "systems/alienrpg/images/egg.webp",
-	"socket": true,
-	"manifest": "https://github.com/pwatson100/alienrpg/releases/download/3.2.0/system.json",
-	"download": "https://github.com/pwatson100/alienrpg/releases/download/3.2.0/master.zip",
-	"protected": false,
-	"initiative": "1d10",
-	"bugs": "https://github.com/pwatson100/alienrpg/issues",
-	"grid": {
-		"distance": 5,
-		"units": "m"
-	},
-	"primaryTokenAttribute": "health",
-	"secondaryTokenAttribute": "stress"
+  "scripts": [],
+  "esmodules": ["module/alienrpg.mjs"],
+  "styles": ["css/alienrpg.css"],
+  "documentTypes": {
+    "ActiveEffect": {
+      "abilityModifier": {}
+    },
+    "Actor": {
+      "creature": {
+        "htmlFields": ["notes"]
+      },
+      "character": {
+        "htmlFields": ["notes"]
+      },
+      "synthetic": {
+        "htmlFields": ["notes"]
+      },
+      "vehicles": {
+        "htmlFields": ["notes"]
+      },
+      "territory": {
+        "htmlFields": ["notes"]
+      },
+      "spacecraft": {
+        "htmlFields": ["notes"]
+      },
+      "colony": {
+        "htmlFields": ["notes"]
+      },
+      "planet": {
+        "htmlFields": ["notes"]
+      }
+    },
+    "Item": {
+      "item": {
+        "htmlFields": ["notes", "comment"]
+      },
+      "weapon": {
+        "htmlFields": ["notes", "comment"]
+      },
+      "skill-stunts": {
+        "htmlFields": ["description"]
+      },
+      "talent": {
+        "htmlFields": ["comment", "notes"]
+      },
+      "critical-injury": {
+        "htmlFields": ["effects"]
+      },
+      "agenda": {
+        "htmlFields": ["comment"]
+      },
+      "armor": {
+        "htmlFields": ["comment"]
+      },
+      "specialty": {
+        "htmlFields": ["comment"]
+      },
+      "spacecraftweapons": {
+        "htmlFields": ["comment"]
+      },
+      "spacecraftmods": {
+        "htmlFields": ["comment"]
+      },
+      "spacecraft-crit": {
+        "htmlFields": ["effects"]
+      },
+      "planet-system": {
+        "htmlFields": ["comment"]
+      },
+      "colony-initiative": {
+        "htmlFields": ["comment", "notes"]
+      }
+    }
+  },
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    },
+    {
+      "lang": "cn",
+      "name": "中文",
+      "path": "lang/cn.json"
+    },
+    {
+      "lang": "zh-tw",
+      "name": "正體中文",
+      "path": "lang/zh-tw.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsche",
+      "path": "lang/de.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-br.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italiano",
+      "path": "lang/it.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/pl.json"
+    }
+  ],
+  "packs": [
+    {
+      "name": "alien-rpg-system",
+      "label": "Alien RPG System",
+      "type": "Adventure",
+      "module": "AlienRPG",
+      "system": "alienrpg"
+    }
+  ],
+  "media": [
+    {
+      "type": "cover",
+      "loop": false,
+      "flags": {}
+    },
+    {
+      "type": "setup",
+      "url": "systems/alienrpg/images/egg.webp",
+      "thumbnail": "systems/alienrpg/images/egg.webp"
+    }
+  ],
+  "background": "systems/alienrpg/images/egg.webp",
+  "socket": true,
+  "manifest": "https://github.com/pwatson100/alienrpg/releases/download/4.0.0/system.json",
+  "download": "https://github.com/pwatson100/alienrpg/releases/download/4.0.0/master.zip",
+  "protected": false,
+  "initiative": "1d10",
+  "bugs": "https://github.com/pwatson100/alienrpg/issues",
+  "grid": {
+    "distance": 2,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "stress"
 }

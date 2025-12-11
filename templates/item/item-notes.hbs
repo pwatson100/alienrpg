@@ -1,0 +1,14 @@
+{{! Notes Tab }}
+<section class='tab notes scrollable {{tab.cssClass}}' data-group='primary' data-tab='notes'>
+	<div style='border: solid 1px; padding: 5px;width: 629px;'>
+
+		{{! Editors must receive enriched text data from getData to properly handle rolls, UUID links, etc. }}
+		{{#if editable}}
+		<prose-mirror style='height: 268px; ' name='system.notes.notes' data-document-uuid='{{item.uuid}}' value='{{system.notes.notes}}' collaborate='true' toggled='true'>
+			{{{enrichedNotes}}}
+		</prose-mirror>
+		{{else}}
+		{{{enrichedNotes}}}
+		{{/if}}
+	</div>
+</section>
