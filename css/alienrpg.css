@@ -57,7 +57,7 @@
   --white: hsl(0, 0%, 100%);
   --alientextjournal: hsl(187, 52%, 80%);
   --journalback: url(../images/mother-instructions/indbackground2.png);
-  --evolvedjournalback: #f7f5f0;
+  --evolvedjournalback: hsl(0, 0%, 0%);
   --chatbackground: url(../images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
   --alienchatwhite: hsl(0, 0%, 100%);
@@ -4826,7 +4826,7 @@ combobox:focus {
   border-radius: 1px;
   background: var(--evolvedjournalback) top left;
   background-size: cover;
-  color: black;
+  color: var(--alientextjournal);
   border: none;
 }
 
@@ -4851,6 +4851,7 @@ combobox:focus {
   padding: 0px;
   font-weight: normal;
   border: none;
+  font-style: normal;
 }
 
 .sheet.journal-entry .sidebar .directory-header .header-search input {
@@ -5201,7 +5202,7 @@ combobox:focus {
 }
 
 .evbigtable tr:nth-child(odd) {
-  background-color: transparent;
+  background-color: #aeb3b0;
 }
 
 .die {
@@ -5268,7 +5269,7 @@ combobox:focus {
 }
 
 .evheading {
-  color: hsl(175, 91%, 22%);
+  color: var(--alientextjournal);
   font-weight: bold;
   font-size: 28px;
   border-bottom: 2px solid hsl(175, 91%, 22%);
@@ -5285,14 +5286,13 @@ combobox:focus {
 }
 
 .alienrpg .evchapterheading {
-  color: black;
   font-weight: 900;
   font-size: 28px;
   border-bottom: 8px solid black;
 }
 
 .evsystemheading {
-  color: black;
+  color: var(--alientextjournal);
   font-weight: 900;
   font-size: 28px;
   border-bottom: 3px solid black;
@@ -5567,12 +5567,12 @@ table td {
 }
 
 .evolvedsubheading {
-  color: black;
+  color: var(--alientextjournal);
   font-weight: bold;
 }
 
 .evolvedlinestart {
-  color: hsl(175, 91%, 22%);
+  color: hsl(175, 68%, 37%);
   font-weight: bold;
 }
 
@@ -5632,6 +5632,7 @@ ul .nostyle {
   -moz-column-break-inside: avoid;
        break-inside: avoid;
   justify-self: center;
+  background-color: white;
 }
 
 .textBlockCenter2 {
@@ -5677,7 +5678,7 @@ ul .nostyle {
   color: hsl(175, 91%, 22%);
   border-image-slice: 120 10 60 10 fill;
   border-image-width: 120px 10px 61px 10px;
-  border-image-repeat: stretch round;
+  /* border-image-repeat: stretch round; */
   border-image-source: url("../images/shipslog.svg");
   border-style: solid;
   justify-self: center;
@@ -5741,6 +5742,7 @@ ul .nostyle {
   padding-bottom: 0;
   border-left: none;
   border-right: none;
+  color: #000;
 }
 
 .evstable tr:nth-child(even) {
@@ -5748,7 +5750,7 @@ ul .nostyle {
 }
 
 .evstable tr:nth-child(odd) {
-  background-color: transparent;
+  background-color: #aeb3b0;
 }
 
 .evstrhead {
@@ -5808,6 +5810,7 @@ ul .nostyle {
   border-right: 2px solid hsl(175, 91%, 22%);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  background-color: white;
 }
 
 .evblockquoteLeft {
@@ -5822,9 +5825,10 @@ ul .nostyle {
   border-right: 2px solid hsl(175, 91%, 22%);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  background-color: white;
 }
 
-.evblockquoteRightr {
+.evblockquoteRight {
   color: hsl(175, 91%, 22%);
   padding: 10px;
   -moz-column-break-inside: avoid;
@@ -5836,6 +5840,7 @@ ul .nostyle {
   border-right: 2px solid hsl(175, 91%, 22%);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  background-color: white;
 }
 
 .evexamplebox {
@@ -5905,7 +5910,7 @@ input[type=checkbox]::before {
   --white: hsl(0, 0%, 100%);
   --alientextjournal: hsl(187, 52%, 80%);
   --journalback: url(../images/mother-instructions/indbackground2.png);
-  --evolvedjournalback: #f7f5f0;
+  --evolvedjournalback: hsl(0, 0%, 0%);
   --chatbackground: url(../images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
   --alienchatwhite: hsl(0, 0%, 100%);
@@ -6218,7 +6223,7 @@ input[type=checkbox]::before {
   --white: hsl(0, 0%, 100%);
   --alientextjournal: hsl(187, 52%, 80%);
   --journalback: url(../images/mother-instructions/indbackground2.png);
-  --evolvedjournalback: #f7f5f0;
+  --evolvedjournalback: hsl(0, 0%, 0%);
   --chatbackground: url(../images/IndBackground3.png);
   --alienchatfont: "Blinker", sans-serif;
   --alienchatwhite: hsl(0, 0%, 100%);

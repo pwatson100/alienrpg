@@ -1241,7 +1241,7 @@ export class alienrpgActor extends Actor {
 		}
 
 		const html = await foundry.applications.handlebars.renderTemplate(
-			"systems/alienrpg/templates/chat/stress-response-roll.hbs",
+			"systems/alienrpg/templates/chat/panic-response-roll.hbs",
 			htmlData,
 		)
 		const chatData = {
