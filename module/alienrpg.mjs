@@ -15,7 +15,7 @@ import * as ActiveEffect from "./data/effect/_module.mjs"
 import { alienrpgActor } from "./documents/actor.mjs"
 
 import { alienrpgItem } from "./documents/item.mjs"
-
+import { sendDevMessage } from './devmsg.js';
 import { AlienRPGBaseDie, AlienRPGStressDie } from "./helpers/alienRPGBaseDice.mjs"
 import { AlienConfig } from "./helpers/alienRPGConfig.mjs"
 import AlienRPGCTContext from "./helpers/CBTracker.mjs"
@@ -306,8 +306,8 @@ Hooks.once("ready", async () => {
 	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createDocMacro(data, slot))
 
-	// sendDevMessage()
-	// showReleaseNotes()
+	sendDevMessage()
+	showReleaseNotes()
 
 	// Determine whether a system migration is required and feasible
 	// const currentVersion = game.settings.get("alienrpg", "systemMigrationVersion")
@@ -356,6 +356,7 @@ Hooks.once("ready", async () => {
 			turnMarker: { src: "systems/alienrpg/images/paused-alien.png" },
 		})
 	}
+	// addSlowAndFastActions();
 })
 
 Hooks.on("renderGamePause", (_app, html, options) => {
@@ -607,8 +608,8 @@ function rollItemMacro(itemUuid) {
 		// Trigger the item roll
 		item.roll()
 	})
-
-	async function showReleaseNotes() {
+}
+	 async function showReleaseNotes() {
 		if (game.user.isGM) {
 			try {
 				const newVer = game.system.version
@@ -668,4 +669,3 @@ function rollItemMacro(itemUuid) {
 			} // end of try
 		} // end of if(isgm)
 	}
-}
