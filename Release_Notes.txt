@@ -633,6 +633,6 @@ Included a "Critical Injuries template for people who want to create their own.
 CSS fixes
 
  Version 4.0.2
- Fixed path capitalisation of weapon dialog boxesWhen in Evolved mode 
+ Fixed path capitalisation of weapon dialog boxes when in Evolved mode 
  Inventory shows Ammo rather than Rounds
  Clicking on the Stress Response or Panic response title will now perform the relevant roll.  
