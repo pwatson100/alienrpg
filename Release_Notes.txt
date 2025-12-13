@@ -636,3 +636,6 @@ CSS fixes
  Fixed path capitalisation of weapon dialog boxes when in Evolved mode 
  Inventory shows Ammo rather than Rounds
  Clicking on the Stress Response or Panic response title will now perform the relevant roll.  
+
+ Version 4.0.3
+Added consumables rolls to the Inventory tab for actor Evolved sheets. 
