@@ -169,12 +169,32 @@
 				<input type='text' class='textbox' name='system.general.relTwo.value' value='{{system.general.relTwo.value}}' rows='1' data-dtype='String' />
 			</div>
 		</div>
+		<div class='Item5'>
+			<div class='evolved-grid-Consumables'>
+				<h3 class='Heading resource-label' style="align-self: center; font-weight:bold">{{localize 'ALIENRPG.Consumables'}}</h3>
+				<h3 class='Air1 resource-label'>{{localize 'ALIENRPG.Air'}}</h3>
+				<input type='text' class='Air2 maxboxsize' name='system.consumables.air.value' value='{{system.consumables.air.value}}' data-dtype='Number' disabled />
+				<button type='button' class='supply-btn Air3' data-action='SupplyBtn' data-spbutt='Air'>
+					<i class='fas fa-parachute-box' title='{{localize "ALIENRPG.Supply"}}'></i>
+				</button>
+				<h3 class='Food1 resource-label'>{{localize 'ALIENRPG.Food'}}</h3>
+				<input type='text' class='Food2 maxboxsize' name='system.consumables.food.value' value='{{system.consumables.food.value}}' data-dtype='Number' disabled />
+				<button type='button' class='supply-btn Food3' data-action='SupplyBtn' data-spbutt='Food'>
+					<i class='fas fa-parachute-box' title='{{localize "ALIENRPG.Supply"}}'></i>
+				</button>
+				<h3 class='Water1 resource-label'>{{localize 'ALIENRPG.Water'}}</h3>
+				<input type='text' class='Water2 maxboxsize' name='system.consumables.water.value' value='{{system.consumables.water.value}}' data-dtype='Number' disabled />
+				<button type='button' class='supply-btn Water3' data-action='SupplyBtn' data-spbutt='Water'>
+					<i class='fas fa-parachute-box' title='{{localize "ALIENRPG.Supply"}}'></i>
+				</button>
+			</div>
+		</div>
 		<div class='Item8'>
 			<div class='grid-crit'>
-				<label class='speciality-label crit1' style='font-weight: bold'>{{localize 'ALIENRPG.CriticalInjuries'}}</label>
+				<h3 class='speciality-label crit1' style='align-self: center; font-weight: bold'>{{localize 'ALIENRPG.CriticalInjuries'}}</h3>
 				<button type='button' class='alien-crit-button rollCrit crit2' data-action='RollCrit'>{{localize 'ALIENRPG.RollCrit'}}</button>
 			</div>
-			<div class='crit-box' style='min-height: 90px; height:auto'>
+			<div class='crit-box' style='min-height: 40px; height:auto'>
 				<ol class='items-list'>
 					{{#each critInj as |item iid|}}
 					<li class='item critical-inj-wide' data-item-id='{{item.id}}'>
