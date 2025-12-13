@@ -33,7 +33,7 @@
 
 		<div class='Item3' style='height: 300px;'>
 			<div>
-				<h3 class='resource-label' style='font-weight: bold'>{{localize 'ALIENRPG.StressResponses'}}</h3>
+				<h3 class='resource-label rollablesmall' style='font-weight: bold' data-action='RollResolve' data-roll='{{system.header.resolve.value}}' data-mod='{{system.header.resolve.mod}}' title='{{localize "ALIENRPG.RollStress"}}'>{{localize 'ALIENRPG.StressResponses'}}</h3>
 				<br>
 				{{#each statuses as |status id|}}
 				{{#if (eq status.resp 'stress')}}
@@ -77,7 +77,7 @@
 			</div>
 		</div>
 		<div class='Item7' style='height: 300px;'>
-			<h3 class=' resource-label' style='font-weight: bold'>{{localize 'ALIENRPG.PanicResponses'}}</h3>
+			<h3 class=' resource-label rollablesmall' style='font-weight: bold' data-action='RollStress' title='{{localize "ALIENRPG.RollPanic"}}' data-panicroll='{{system.header.stress.value}}' data-mod='{{system.header.stress.mod}}'>{{localize 'ALIENRPG.PanicResponses'}}</h3>
 			<br>
 			{{#each statuses as |status id|}}
 			{{#if (eq status.resp 'panic')}}

@@ -624,3 +624,15 @@ Included a "Critical Injuries template for people who want to create their own.
  Version 3.3.6
  Fixed phantom pencil icons being added to the spaceship Inventory when an item was added.
  Fixed Item sheet Items not displaying the comments bot at the correct size.  Thank you to netoelix for the fix. 
+
+
+ Version 4.0.0
+ Alien Evolved release
+
+ Version 4.0.1
+CSS fixes
+
+ Version 4.0.2
+ Fixed path capitalisation of weapon dialog boxesWhen in Evolved mode 
+ Inventory shows Ammo rather than Rounds
+ Clicking on the Stress Response or Panic response title will now perform the relevant roll.  
