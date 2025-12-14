@@ -593,28 +593,28 @@
   "TYPES": {
     "Actor": {
       "character": "Character",
-      "colony": "Colony",
       "creature": "Creature",
-      "planet": "Planet",
-      "spacecraft": "Spacecraft",
       "synthetic": "Synthetic",
-      "territory": "Territory",
-      "vehicles": "Vehicles"
+      "vehicles": "Vehicles",
+      "colony": "Colony",
+      "spacecraft": "Spacecraft",
+      "planet": "Planet",
+      "territory": "Territory"
     },
     "Item": {
-      "agenda": "Agenda",
-      "armor": "Armor",
-      "colony-initiative": "Colony Initiative",
-      "critical-injury": "Critical Injury",
       "item": "Item",
-      "planet-system": "Planet/System",
-      "skill-stunts": "Skill Stunts",
-      "spacecraft-crit": "Spaceship Crit",
-      "spacecraftmods": "Spaceship Modules/Upgrades",
-      "spacecraftweapons": "Spaceship Weapons",
-      "specialty": "Career/Specialty",
+      "weapon": "Weapon",
+      "armor": "Armor",
       "talent": "Talent",
-      "weapon": "Weapon"
+      "specialty": "Career/Specialty",
+      "spacecraftweapons": "Spaceship Weapons",
+      "spacecraftmods": "Spaceship Modules/Upgrades",
+      "agenda": "Agenda",
+      "colony-initiative": "Colony Initiative",
+      "planet-system": "Planet/System",
+      "spacecraft-crit": "Spaceship Crit",
+      "critical-injury": "Critical Injury",
+      "skill-stunts": "Skill Stunts"
     }
   }
 }

@@ -16,7 +16,11 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.3",
 		"@foundryvtt/foundryvtt-cli": "^3.0.2",
+		"add": "^2.0.6",
+		"eslint": "^8.57.1",
 		"js-yaml": "^4.1.0",
+		"prettier": "^3.7.4",
+		"prettier-eslint": "^16.4.2",
 		"sass": "^1.93.3"
 	}
 }

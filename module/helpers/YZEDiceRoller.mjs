@@ -54,14 +54,7 @@ export class yze {
 		// let niceDice = '';
 		let myActor = ""
 		let dataset = ""
-
-		// try {
-		// 	niceDice = true;
-		// 	game.settings.get('dice-so-nice', 'settings').enabled;
-		// } catch {
-		// 	niceDice = false;
-		// }
-		let spud = false
+	  let spud = false
 
 		// *******************************************************
 		//  Initialise the chat message
@@ -78,7 +71,6 @@ export class yze {
 		// Set up text for a roll or push
 		// *******************************************************
 		let rType = ""
-		// if (reRoll && (hostile === true) === 'character') {
 		if (
 			(reRoll &&
 				actortype === "character" &&
@@ -92,7 +84,7 @@ export class yze {
 				label !== game.i18n.localize("ALIENRPG.AbilityWit")) ||
 			reRoll === "mPush"
 		) {
-			// if ((reRoll && actortype === 'character' && label!=='Armor' && label!=='Radiation') || reRoll === 'mPush') {
+
 			rType = game.i18n.localize("ALIENRPG.Push")
 		} else {
 			if (label === game.i18n.localize("ALIENRPG.RadiationReduced")) {
@@ -106,12 +98,12 @@ export class yze {
 		// Save the successes from the last roll
 		// *******************************************************
 		const oldRoll = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six
-		// game.alienrpg.rollArr.multiPush += game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six;
+
 
 		// *******************************************************
 		// Clear the global dice array
 		// *******************************************************
-		// game.alienrpg.rollArr = { r1Dice: 0, r1One: 0, r1Six: 0, r2Dice: 0, r2One: 0, r2Six: 0, tLabel: '' };
+
 		game.alienrpg.rollArr.r1Dice = 0
 		game.alienrpg.rollArr.r1One = 0
 		game.alienrpg.rollArr.r1Six = 0
@@ -124,9 +116,6 @@ export class yze {
 		// *******************************************************
 		// Setup the constants for the 3D dice roll V2 method
 		// *******************************************************
-		// const data = {
-		// 	formula: "",
-		// 	results: [],
 		// }
 		if (!r1Dice && !r2Dice) {
 			return ui.notifications.warn(game.i18n.localize("ALIENRPG.NoAttribute"))
@@ -143,7 +132,7 @@ export class yze {
 				if (mr.terms[2]) {
 					console.log("\n Stress:", mr.terms[2].results)
 				}
-				buildChat(mr, r1Dice, game.i18n.localize("ALIENRPG.Base"))
+				await buildChat(mr, r1Dice, game.i18n.localize("ALIENRPG.Base"))
 			}
 		} else {
 			if (r1Dice < 0) {
@@ -167,7 +156,6 @@ export class yze {
 					r2Dice = 6
 					com = `${r2Dice}` + "ds"
 				} else {
-					// console.log('yze -> yzeRoll -> hostile', hostile);
 					com = `${roll2}`
 				}
 			} else {
@@ -176,13 +164,11 @@ export class yze {
 			}
 			mr = await new Roll(`${com}`).evaluate()
 
-			// mr = new Roll(`${com}`).evaluate({ async: false });
-			// await mr.evaluate({ async: true });
 			console.log("Player: ", game.user.name, "\n Base: ", mr.terms[0].results)
 			if (mr.terms[2]) {
 				console.log("\n Stress:", mr.terms[2].results)
 			}
-			buildChat(mr, r1Dice, "Stress")
+			await buildChat(mr, r1Dice, "Stress")
 
 			// *******************************************************
 			// Set reroll
@@ -203,7 +189,8 @@ export class yze {
 				label !== game.i18n.localize("ALIENRPG.RadiationReduced")
 			) {
 				logger.warn("! Supply ", "r2One ", game.alienrpg.rollArr.r2One, "Label", label, "reRoll", reRoll, "spud", spud)
-				// if (game.alienrpg.rollArr.r2One >= 1 && label!==game.i18n.localize('ALIENRPG.RadiationReduced')) {
+
+				
 				chatMessage +=
 					'<div class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">' +
 					game.i18n.localize("ALIENRPG.rollStress") +
@@ -276,7 +263,7 @@ export class yze {
 							game.i18n.localize("ALIENRPG.healthDamage") +
 							"</span>"
 						)
-						// return sTotal + ' ' + game.i18n.localize('ALIENRPG.healthDamage');
+
 					}
 					return sTotal + " " + game.i18n.localize("ALIENRPG.healthDamage")
 				}
@@ -350,7 +337,8 @@ export class yze {
 		// *******************************************************
 		//  If it's a Push roll and display the total for both rolls.
 		// *******************************************************
-		// if (reRoll === 'push' || (reRoll === 'mPush' && actortype === 'character' && label!=='Armor')) {
+
+
 		if (
 			reRoll === "push" ||
 			(reRoll === "mPush" && actortype === "character" && label !== game.i18n.localize("ALIENRPG.Armor"))
@@ -367,7 +355,7 @@ export class yze {
 				) +
 				" </div>"
 			game.alienrpg.rollArr.multiPush = oldRoll
-			// console.log('spud');
+
 		}
 		if (spud) {
 			chatMessage +=
@@ -381,8 +369,6 @@ export class yze {
 					oldRoll + game.alienrpg.rollArr.multiPush + game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six,
 				) +
 				" </div>"
-			// game.alienrpg.rollArr.multiPush = oldRoll;
-			// console.log('spud');
 		}
 
 		// *******************************************************
@@ -397,7 +383,8 @@ export class yze {
 					" " +
 					`</span> <input class="multiPush" name="multiPush" type="checkbox" {{checked false}} /> `
 			}
-			// chatMessage += `<button class="alien-Push-button" title="PUSH Roll?" style="color: #adff2f; font-weight: bold; font-size: xxx-large">` + game.i18n.localize('ALIENRPG.Push') + `</button>`;
+
+			
 			chatMessage +=
 				`<button class="alien-Push-button" title="PUSH Roll?">` + game.i18n.localize("ALIENRPG.Push") + "</button>"
 			chatMessage += `<span class="dmgBtn-container" style="position:absolute; right:0; bottom:1px;"></span>`
@@ -431,9 +418,12 @@ export class yze {
 		// *******************************************************
 		// Function to build chat and dice for DsN V3
 		// *******************************************************
-		function buildChat(mr, numDie, dType) {
+		async function buildChat(mr, numDie, dType) {
+					const ammoLabel = game.i18n.localize("ALIENRPG.Rounds") + " " + game.i18n.localize("ALIENRPG.Supply")
+
 			const numbers = []
 			const numbers2 = []
+			const numbers3 = []
 			let R6 = 0
 			let R1 = 0
 			let RB6 = 0
@@ -453,8 +443,8 @@ export class yze {
 				game.alienrpg.rollArr.r1Dice = numDie
 				game.alienrpg.rollArr.r1Six = R6.length
 				game.alienrpg.rollArr.r1One = R1.length
-				let numOf6s = R6.length // added by Steph
-				const numOf1s = R1.length // added by Steph
+				let numOf6s = R6.length 
+				const numOf1s = R1.length 
 				chatMessage +=
 					'<div <span class="alienchatlightgreen" style="font-size:larger">' +
 					col1 +
@@ -469,7 +459,6 @@ export class yze {
 					"</span>"
 				chatMessage += `${R6.length}`
 				chatMessage += "<div>"
-				// added by Steph (for loop, and moved div close)
 				for (let _d = 0; _d < numDie; _d++) {
 					if (numOf6s > 0) {
 						chatMessage += "<span class='alien-diceface-b6'></span>"
@@ -490,8 +479,8 @@ export class yze {
 					game.alienrpg.rollArr.r1Dice = mr.terms[0].number
 					game.alienrpg.rollArr.r1Six = RB6.length
 					game.alienrpg.rollArr.r1One = RB1.length
-					let numOfB6s = RB6.length // added by Steph
-					const numOfB1s = RB1.length // added by Steph
+					let numOfB6s = RB6.length 
+					const numOfB1s = RB1.length 
 					// Base Dice
 					chatMessage +=
 						'<div <span class="alienchatlightgreen" style="font-size:larger"> ' +
@@ -507,7 +496,6 @@ export class yze {
 						"</span>"
 					chatMessage += `${RB6.length}`
 					chatMessage += "<div>"
-					// added by Steph (for loop, and moved div close)
 					for (let _d = 0; _d < mr.terms[0].number; _d++) {
 						if (numOfB6s > 0) {
 							chatMessage += "<span class='alien-diceface-b6'></span>"
@@ -544,8 +532,8 @@ export class yze {
 				game.alienrpg.rollArr.r2Six = RY6.length
 				game.alienrpg.rollArr.r2One = RY1.length
 
-				const numOfY6s = RY6.length // added by Steph
-				const numOfY1s = RY1.length // added by Steph
+				const numOfY6s = RY6.length
+				const numOfY1s = RY1.length 
 
 				// Yellow Dice
 				chatMessage +=
@@ -564,7 +552,7 @@ export class yze {
 					"</span>"
 				chatMessage += `${RY6.length}`
 				chatMessage += "<div>"
-				// added by Steph (for loops, and moved div close)
+
 				for (let _d = 0; _d < numOfY6s; _d++) {
 					chatMessage += "<span class='alien-diceface-y6'></span>"
 				}
@@ -576,6 +564,50 @@ export class yze {
 					chatMessage += "<span class='alien-diceface-y0'></span>"
 				}
 				chatMessage += "</div>"
+
+
+
+			}
+			if (moddata && moddata.weapontype === "1") {
+						let myActor = await game.actors.get(actorid)
+						const weapon = await myActor.items.get(moddata.itemId)
+						const supplyModifier = 0
+						const aveAmmo = (weapon.system.attributes.rounds.value + supplyModifier) + 'ds'
+						let ammoRoll = await  new Roll(`${aveAmmo}`).evaluate()
+						for (let index = 0; index < ammoRoll.terms[0].results.length; index++) {
+							const spanner = flattenObj(ammoRoll.terms[0].results[index])
+							numbers3.push(spanner.result)
+						}
+						let ammoTerms = ammoRoll.terms[0].number
+						let ammoOnes = numbers3.filter(myFunOne)
+						let ammoSixes = numbers2.filter(myFunSix)
+										if (moddata.conserveammo === "true" && ammoOnes.length > 0) {
+											chatMessage +=
+											`<div><span style="font-weight: bold; font-size: larger">` +
+											game.i18n.localize("ALIENRPG.ammoConcerved") +
+											"</span></div>"
+							} else {
+						chatMessage +=
+							'<span class="alienchatlightgreen" style="font-size:larger">' +
+								game.i18n.localize("ALIENRPG.ammo") + " " + game.i18n.localize("ALIENRPG.Supply") + 	"</span>" 
+						chatMessage += "<div>"
+
+						for (let _d = 0; _d < ammoSixes.length; _d++) {
+							chatMessage += "<span class='alien-diceface-y6'></span>"
+						}
+						for (let _d = 0; _d < ammoOnes.length; _d++) {
+							chatMessage += "<span class='alien-diceface-y1'></span>"
+						}
+										const _theRest = ammoTerms - (ammoSixes.length + ammoOnes.length)
+						for (let _d = 0; _d < _theRest; _d++) {
+							chatMessage += "<span class='alien-diceface-y0'></span>"
+						}
+						chatMessage += "</div>"
+				if (ammoOnes.length > 0) {
+					await weapon.update({
+						"system.attributes.rounds.value": weapon.system.attributes.rounds.value - (ammoOnes.length)	})
+				}
+				}
 			}
 			function myFunSix(value, index, array) {
 				return value === 6

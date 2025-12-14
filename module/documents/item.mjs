@@ -294,17 +294,17 @@ export class alienrpgItem extends Item {
 									"",
 									dataset,
 								)
-							}
-							game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six
-							console.log(game.alienrpg.rollArr.sCount)
-							if (dataset.conserveammo === "true" && game.alienrpg.rollArr.sCount > 1) {
-								const chatMessage =
-									`<div class="chatBG" + ${actorid} "><span  style="font-weight: bold; font-size: larger">` +
-									game.i18n.localize("ALIENRPG.ammoConcerved") +
-									"</span></div>"
-								await this.actor.createChatMessage(chatMessage, actorid)
-							} else {
-								await this.rollAmmo(itemid, dataset)
+								// game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six
+								// console.log(game.alienrpg.rollArr.sCount)
+								// if (dataset.conserveammo === "true" && game.alienrpg.rollArr.sCount > 1) {
+								// 	const chatMessage =
+								// 		`<div class="chatBG" + ${actorid} "><span  style="font-weight: bold; font-size: larger">` +
+								// 		game.i18n.localize("ALIENRPG.ammoConcerved") +
+								// 		"</span></div>"
+								// 	await this.actor.createChatMessage(chatMessage, actorid)
+								// } else {
+								// 	await this.rollAmmo(itemid, dataset)
+								// }
 							}
 						} else {
 							r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier

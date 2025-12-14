@@ -309,7 +309,7 @@ export class alienrpgActor extends Actor {
 
 				if (!response || response === "cancel") return "cancelled"
 				if (response) {
-					if (!response.rollStress.checked) {
+					if (!response.rollStress) {
 						r2Data = 0
 						reRoll = true
 					}
