@@ -639,3 +639,7 @@ CSS fixes
 
  Version 4.0.3
 Added consumables rolls to the Inventory tab for actor Evolved sheets. 
+
+Version 4.0.4
+Fixed issue with pushing weapon rolls as it was not pushing the weapon but the ammo roll (What an idiot!!!)
+Fixed weapon ammo calculation to not count the weight of the first round which as per RAW is included in the weapon weight 
