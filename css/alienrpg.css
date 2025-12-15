@@ -2402,7 +2402,7 @@ button:focus {
 .critical-inj-wide {
   display: grid;
   grid-template-areas: "crit1w crit2w crit3w crit4w";
-  grid-template-columns: 24px 155px 505px 20px;
+  grid-template-columns: 24px 196px 505px 20px;
   align-items: center;
 }
 
