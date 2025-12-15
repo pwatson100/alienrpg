@@ -182,6 +182,7 @@
     "ENSOKEN": "Ensure player token is selected.",
     "EnterMod": "Please enter your modifier",
     "Entertainer": "Entertainer",
+    "EVCriticalInjuries": "EV - Critical Injuries",
     "Evolved": "Use Alien Evolved Rules and Sheets",
     "EvolvedHint": "Switches from Alien Classic sheets and rules to Alien Evolved sheets and rules.",
     "Exhausted": "Exhausted",
@@ -465,6 +466,7 @@
       "Territory": "Territory Sheet",
       "Vehicle": "Vehicle Sheet"
     },
+    "Shift": "Shift",
     "SHIP-ARMOR": "ARMOR",
     "ShipCombat": "Ship Combat",
     "ShipConButtons": "Left Click to add. Right click to remove. Damage is based on the Hull value.  Dots wil only populate to that value.",
@@ -593,28 +595,28 @@
   "TYPES": {
     "Actor": {
       "character": "Character",
-      "creature": "Creature",
-      "synthetic": "Synthetic",
-      "vehicles": "Vehicles",
       "colony": "Colony",
-      "spacecraft": "Spacecraft",
+      "creature": "Creature",
       "planet": "Planet",
-      "territory": "Territory"
+      "spacecraft": "Spacecraft",
+      "synthetic": "Synthetic",
+      "territory": "Territory",
+      "vehicles": "Vehicles"
     },
     "Item": {
-      "item": "Item",
-      "weapon": "Weapon",
-      "armor": "Armor",
-      "talent": "Talent",
-      "specialty": "Career/Specialty",
-      "spacecraftweapons": "Spaceship Weapons",
-      "spacecraftmods": "Spaceship Modules/Upgrades",
       "agenda": "Agenda",
+      "armor": "Armor",
       "colony-initiative": "Colony Initiative",
-      "planet-system": "Planet/System",
-      "spacecraft-crit": "Spaceship Crit",
       "critical-injury": "Critical Injury",
-      "skill-stunts": "Skill Stunts"
+      "item": "Item",
+      "planet-system": "Planet/System",
+      "skill-stunts": "Skill Stunts",
+      "spacecraft-crit": "Spaceship Crit",
+      "spacecraftmods": "Spaceship Modules/Upgrades",
+      "spacecraftweapons": "Spaceship Weapons",
+      "specialty": "Career/Specialty",
+      "talent": "Talent",
+      "weapon": "Weapon"
     }
   }
 }
