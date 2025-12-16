@@ -646,3 +646,9 @@ Fixed weapon ammo calculation to not count the weight of the first round which a
 
 Version 4.0.5
 Updated crit handling to accomodate new Evolved table.
+
+Version 4.0.6
+Corrected bug with radiation rolls (thanks to @Takara)
+When in Evolved mode, Reducing radiation no longer rolls for permanant radiation 
+Firing a weapon at "Engaged" range now uses Close Combat skill rather then Ranged Combat (thanks to @Takara)
+Fix an issue where Stress responses were being removed if the PC already had them even though the +1 stress was being added.
