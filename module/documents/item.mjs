@@ -269,8 +269,18 @@ export class alienrpgItem extends Item {
 								if (Number(dataset.shootrangeMod) - itemData.attributes.minrange.value < 0) {
 									shootrangeMod = Number(dataset.shootrangeMod) - itemData.attributes.minrange.value
 								}
-
-								r1Data =
+								if (shootrangeMod === -1) {
+									r1Data =
+									actorData.skills.closeCbt.mod +
+									itemData.attributes.bonus.value +
+									Number(dataset.modifier) +
+									Number(dataset.targetCoverMod) +
+									Number(dataset.sizeMod) +
+									carefullaimMod +
+									aimforweakspotMod +
+									Number(shootrangeMod)
+									} else {
+									r1Data =
 									actorData.skills.rangedCbt.mod +
 									itemData.attributes.bonus.value +
 									Number(dataset.modifier) +
@@ -279,6 +289,7 @@ export class alienrpgItem extends Item {
 									carefullaimMod +
 									aimforweakspotMod +
 									Number(shootrangeMod)
+								}
 								r2Data = r2Data + Number(dataset.stressMod)
 								myReturn = await yze.yzeRoll(
 									hostile,
@@ -294,17 +305,6 @@ export class alienrpgItem extends Item {
 									"",
 									dataset,
 								)
-								// game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six
-								// console.log(game.alienrpg.rollArr.sCount)
-								// if (dataset.conserveammo === "true" && game.alienrpg.rollArr.sCount > 1) {
-								// 	const chatMessage =
-								// 		`<div class="chatBG" + ${actorid} "><span  style="font-weight: bold; font-size: larger">` +
-								// 		game.i18n.localize("ALIENRPG.ammoConcerved") +
-								// 		"</span></div>"
-								// 	await this.actor.createChatMessage(chatMessage, actorid)
-								// } else {
-								// 	await this.rollAmmo(itemid, dataset)
-								// }
 							}
 						} else {
 							r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier

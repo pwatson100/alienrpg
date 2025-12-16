@@ -885,7 +885,6 @@ export class alienrpgActor extends Actor {
 		const resolveMod = Number(dataset?.resolveMod ?? 0)
 		const table = game.tables.getName("Stress Response Table")
 		let status = ""
-		const existing = ""
 		let effectid = ""
 		if (!table) {
 			return ui.notifications.error(game.i18n.localize("ALIENRPG.NoResolveTable"))
@@ -910,13 +909,13 @@ export class alienrpgActor extends Actor {
 			case 1:
 				{
 					effectid = "jumpy"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
 						altDescription = game.i18n.localize("ALIENRPG.YouAlreadyHaveThis")
 					} else {
-						if (existing === (await this.hasCondition("deflated"))) {
+						if (await this.hasCondition("deflated")) {
 							altDescription = game.i18n.localize("ALIENRPG.CantGetJumpy")
 						} else {
 							status = effectid
@@ -927,7 +926,7 @@ export class alienrpgActor extends Actor {
 			case 2:
 				{
 					effectid = "tunnelvision"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
@@ -940,7 +939,7 @@ export class alienrpgActor extends Actor {
 			case 3:
 				{
 					effectid = "aggravated"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
@@ -953,7 +952,7 @@ export class alienrpgActor extends Actor {
 			case 4:
 				{
 					effectid = "shakes"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
@@ -966,7 +965,7 @@ export class alienrpgActor extends Actor {
 			case 5:
 				{
 					effectid = "frantic"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
@@ -979,13 +978,13 @@ export class alienrpgActor extends Actor {
 			case 6:
 				{
 					effectid = "deflated"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
 						altDescription = game.i18n.localize("ALIENRPG.YouAlreadyHaveThis")
 					} else {
-						if (existing === (await this.hasCondition("jumpy"))) {
+						if (await this.hasCondition("jumpy")) {
 							await this.toggleStatusEffect("jumpy")
 						}
 						status = effectid
@@ -1520,6 +1519,7 @@ export class alienrpgActor extends Actor {
 		const blind = false
 		const r2Data = 1
 		const radMax = actor.getRollData().general.radiation.max
+						if (!game.settings.get("alienrpg", "evolved")) {
 		await yze.yzeRoll(
 			effectiveActorType,
 			blind,
@@ -1531,8 +1531,7 @@ export class alienrpgActor extends Actor {
 			game.i18n.localize("ALIENRPG.Yellow"),
 			actorId,
 		)
-
-		if (game.ALIENRPG.rollArr.r2One === 1) {
+		if (game.alienrpg.rollArr.r2One === 1) {
 			await actor.update({
 				"system.general.radiation.permanent": rad.permanent + 1,
 				"system.RADfill": actor.system.RADfill + 1,
@@ -1541,8 +1540,19 @@ export class alienrpgActor extends Actor {
 			})
 		} else {
 			await actor.update({ ["system.general.radiation.value"]: rad.value - 1 })
-		}
+		} 
 	}
+		else 
+			{
+						await actor.update({ ["system.general.radiation.value"]: rad.value - 1 })
+								ChatMessage.create({
+			speaker: { actor: actor.id },
+			content: game.i18n.localize("ALIENRPG.RadiationReduced"),
+			type: CONST.CHAT_MESSAGE_STYLES.OTHER,
+		})
+}			
+	}
+
 	async _onOverwatchToggle(event) {
 		const key = $(event.currentTarget).parents(".condition").attr("data-key")
 		if (key === "overwatch") {

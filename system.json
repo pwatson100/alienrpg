@@ -13,7 +13,7 @@
   "relationships": {
     "systems": [{ "id": "alienrpg" }]
   },
-  "version": "4.0.0",
+  "version": "4.0.5",
 
   "compatibility": {
     "minimum": "13",
