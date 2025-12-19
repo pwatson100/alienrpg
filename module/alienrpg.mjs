@@ -270,7 +270,7 @@ Hooks.once("init", () => {
 		"frozen",
 		"blind",
 		"bleeding",
-		"burning",
+		// "burning",
 		"keepingcool",
 		// "spooked",
 		// "twitchy",

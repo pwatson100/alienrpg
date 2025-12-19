@@ -652,3 +652,10 @@ Corrected bug with radiation rolls (thanks to @Takara)
 When in Evolved mode, Reducing radiation no longer rolls for permanant radiation 
 Firing a weapon at "Engaged" range now uses Close Combat skill rather then Ranged Combat (thanks to @Takara)
 Fix an issue where Stress responses were being removed if the PC already had them even though the +1 stress was being added.
+
+Version 4.0.7
+Allow negative values on Vehicle sheet.
+Allow hull values higher than 10 on the Vehicle sheet. 
+Fixed issue with Notes tab on the Items sheet. 
+Fixed issue with Notes tab on the Items sheet. 
+Evolved - now use the same Stunt for all Skills (as per RAW)

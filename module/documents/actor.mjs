@@ -2214,9 +2214,11 @@ export class alienrpgActor extends Actor {
 		const effect = await AlienRPGActiveEffect.fromStatusEffect(statusId)
 		if (overlay) effect.updateSource({ "flags.core.overlay": true })
 		if (effectEnd) effect.updateSource({ "system.end.type": effectEnd })
-		if (status.tableNumber > this.system.general.panic.lastRoll) {
-			await this.update({ "system.general.panic.lastRoll": status.tableNumber })
-		}
+			if (this.type === "character") {
+				if (status.tableNumber > this.system.general.panic.lastRoll) {
+					await this.update({ "system.general.panic.lastRoll": status.tableNumber })
+				}
+			} 
 		return AlienRPGActiveEffect.create(effect, { parent: this, keepId: true })
 	}
 	/* ------------------------------------------- */
