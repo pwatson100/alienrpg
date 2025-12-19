@@ -23,7 +23,6 @@ export default class alienrpgVehicle extends alienrpgActorBase {
 					value: new fields.NumberField({
 						...requiredInteger,
 						initial: 0,
-						min: 0,
 					}),
 					label: new fields.StringField({ required: true, blank: true }),
 				})
@@ -41,7 +40,6 @@ export default class alienrpgVehicle extends alienrpgActorBase {
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
 				}),
 				label: new fields.StringField({ required: true, initial: "Ranged Combat" }),
 			}),
@@ -58,7 +56,6 @@ export default class alienrpgVehicle extends alienrpgActorBase {
 					...requiredInteger,
 					initial: 0,
 					min: 0,
-					max: 10,
 				}),
 				label: new fields.StringField({ required: true, initial: "Ranged Combat" }),
 			}),
@@ -66,9 +63,8 @@ export default class alienrpgVehicle extends alienrpgActorBase {
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
 				}),
-				max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 10 }),
+				max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0}),
 
 				label: new fields.StringField({ required: true, initial: "Ranged Combat" }),
 			}),
@@ -92,7 +88,6 @@ export default class alienrpgVehicle extends alienrpgActorBase {
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
 				}),
 				label: new fields.StringField({ required: true, initial: "Ranged Combat" }),
 			}),
@@ -108,7 +103,6 @@ export default class alienrpgVehicle extends alienrpgActorBase {
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
 				}),
 				label: new fields.StringField({ required: true, initial: "Ranged Combat" }),
 				ability: new fields.StringField({ required: true, initial: "agl" }),
@@ -118,7 +112,6 @@ export default class alienrpgVehicle extends alienrpgActorBase {
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
 				}),
 				label: new fields.StringField({ required: true, initial: "Piloting" }),
 				ability: new fields.StringField({ required: true, initial: "agl" }),

@@ -144,6 +144,7 @@
     "EnterMod": "Veuillez saisir votre modificateur",
     "Entertainer": "Artiste",
     "EVCriticalInjuries": null,
+    "EvolvedStunts": "<ol>For every extra success you roll, choose one stunt applicable to the situation:<li>You inflict one more point of damage. You can choose this stunt multiple times, if you roll several 6's.</li><li>You show off.</li><li>You do it quickly.</li><li>You do it quietly.</li><li>You achieve some unexpected additional effect.</li></ol>",
     "Exhausted": "Epuisé",
     "Extreme": "Extrême",
     "FastAction": "Action rapide",

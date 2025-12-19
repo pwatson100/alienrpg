@@ -53,7 +53,9 @@ export default class alienrpgPlanetSystem extends alienrpgItemBase {
 			}),
 		})
 		schema.misc = new fields.SchemaField({
-			description: new fields.HTMLField(),
+				description: new fields.SchemaField({
+				value: new fields.HTMLField(),
+			}),
 		})
 
 		return schema

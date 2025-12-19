@@ -1124,6 +1124,8 @@ console.log(item.header.type.value, item.attributes.rounds.value)
 		const langTemp = "ALIENRPG." + [newLangStr]
 		temp3 = game.i18n.localize(langTemp)
 
+
+				if (!game.settings.get("alienrpg", "evolved")) {
 		try {
 			item = game.items.getName(dataset.pmbut)
 			str = item.name
@@ -1141,6 +1143,12 @@ console.log(item.header.type.value, item.attributes.rounds.value)
 				chatData = "<h2>No Stunts Entered</h2>"
 			}
 		}
+
+	} else {
+				chatData = game.i18n.localize("ALIENRPG.EvolvedStunts")
+
+	}
+
 		// Toggle summary
 		if (li2.classList.contains("expanded")) {
 			li2.innerHTML = ""
@@ -1565,7 +1573,6 @@ console.log(item.header.type.value, item.attributes.rounds.value)
 	/**
 	 * Creates or deletes a configured status effect.
 	 *
-	 * @this DrawSteelActorSheet
 	 * @param {PointerEvent} event   The originating click event.
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action].
 	 * @private
@@ -1579,7 +1586,6 @@ console.log(item.header.type.value, item.attributes.rounds.value)
 	/**
 	 * Toggles an active effect from disabled to enabled.
 	 *
-	 * @this DrawSteelActorSheet
 	 * @param {PointerEvent} event   The originating click event.
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action].
 	 * @private
