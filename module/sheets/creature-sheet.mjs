@@ -1,4 +1,5 @@
 /** biome-ignore-all lint/complexity/noThisInStatic: <explanation> */
+import AlienRPGActiveEffect from "../documents/active-effect.mjs"
 import { logger } from "../helpers/logger.mjs"
 import { alienrpgrTableGet } from "../helpers/rollTableData.mjs"
 import { yze } from "../helpers/YZEDiceRoller.mjs"
