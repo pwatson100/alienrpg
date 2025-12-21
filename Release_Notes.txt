@@ -662,3 +662,8 @@ Evolved - now use the same Stunt for all Skills (as per RAW)
 
 Version 4.0.8
 Fixed bug where Creatures sheets would not open (Root cause: Idiot developer not adding an include file!)
+
+Version 4.0.9
+Fixed Major and Minor Component Damage wolls not working.  
+Fixed the the Ranged attack not including the -2 modifier when "Engaged". 
+

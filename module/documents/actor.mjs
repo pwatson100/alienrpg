@@ -1102,11 +1102,16 @@ export class alienrpgActor extends Actor {
 		let rollTotal = roll.total
 
 		if (rollTotal === oldPanic) {
+			console.log("you already have condition: ", rollTotal)
 			rollTotal++
 		} else if (rollTotal < oldPanic) {
 			rollTotal = roll.total + oldPanic
 		}
-		customResults = await table.getResultsForRoll(rollTotal)
+		if (rollTotal > 12) {
+			console.log("Can't go heigher than 12")
+			rollTotal = 12
+		}
+			customResults = await table.getResultsForRoll(rollTotal)
 
 		altDescription = customResults[0].description
 		switch (rollTotal) {
