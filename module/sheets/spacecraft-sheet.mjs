@@ -516,19 +516,19 @@ export default class alienrpgSpacecraftSheet extends api.HandlebarsApplicationMi
 		event.stopPropagation() // Don't trigger other events
 		if (event.detail > 1) return // Ignore repeated clicks
 		const dataset = target.dataset
-		if (!game.settings.get("alienrpg", "evolved")) {
+		// if (!game.settings.get("alienrpg", "evolved")) {
 			if (event.button === 2) {
 				await this.actor.rollCritMan(this.actor, this.actor.type, dataset)
 			} else {
 				await this.actor.rollCrit(this.actor, this.actor.type, dataset)
 			}
-		} else {
-			if (event.button === 2) {
-				await this.actor.rollStressMod(this.actor, dataset)
-			} else {
-				await this.actor.rollStress(this.actor, dataset)
-			}
-		}
+		// } else {
+			// if (event.button === 2) {
+				// await this.actor.rollStressMod(this.actor, dataset)
+			// } else {
+				// await this.actor.rollStress(this.actor, dataset)
+			// }
+		// }
 		return
 	}
 	static async _onRollMinorCD(event, target) {
@@ -536,19 +536,19 @@ export default class alienrpgSpacecraftSheet extends api.HandlebarsApplicationMi
 		event.stopPropagation() // Don't trigger other events
 		if (event.detail > 1) return // Ignore repeated clicks
 		const dataset = target.dataset
-		if (!game.settings.get("alienrpg", "evolved")) {
+		// if (!game.settings.get("alienrpg", "evolved")) {
 			if (event.button === 2) {
 				await this.actor.rollCritMan(this.actor, this.actor.type, dataset)
 			} else {
 				await this.actor.rollCrit(this.actor, this.actor.type, dataset)
 			}
-		} else {
-			if (event.button === 2) {
-				await this.actor.rollStressMod(this.actor, dataset)
-			} else {
-				await this.actor.rollStress(this.actor, dataset)
-			}
-		}
+		// } else {
+			// if (event.button === 2) {
+				// await this.actor.rollStressMod(this.actor, dataset)
+			// } else {
+				// await this.actor.rollStress(this.actor, dataset)
+			// }
+		// }
 		return
 	}
 
