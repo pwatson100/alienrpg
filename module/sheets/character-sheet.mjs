@@ -418,25 +418,44 @@ export default class alienrpgCharacterSheet extends api.HandlebarsApplicationMix
 					break
 
 				case "weapon":
-					if (item.header.active !== "fLocker") {
-						let ammoweight = 0.25
-						if (
-							i.system.attributes.class.value == "RPG" ||
-							i.name.includes(" RPG ") ||
-							i.name.startsWith("RPG") ||
-							i.name.endsWith("RPG")
-						) {
-							ammoweight = 0.5
-						}
-						i.system.attributes.weight.value = i.system.attributes.weight.value || 0
-						i.totalWeight =
-							(i.system.attributes.weight.value + i.system.attributes.rounds.value * ammoweight) *
-							i.system.attributes.quantity.value
-						totalWeight += i.totalWeight
-					}
-					inventory[i.type].items.push(i)
+				{		
+				if (item.header.active !== "fLocker") {
+					let ammoweight = 0.25
+									if (item.header.type.value === '1') {
+console.log(item.header.type.value, item.attributes.rounds.value)
+									if (item.attributes.rounds.value > '1') {
 
+									if (
+										i.system.attributes.class.value === "RPG" ||
+										i.name.includes(" RPG ") ||
+										i.name.startsWith("RPG") ||
+										i.name.endsWith("RPG")
+									) {
+										ammoweight = 0.5
+									}
+									i.system.attributes.weight.value = i.system.attributes.weight.value || 0
+									i.totalWeight =
+										(i.system.attributes.weight.value + (i.system.attributes.rounds.value -1) * ammoweight) * i.system.attributes.quantity.value
+									totalWeight += i.totalWeight
+								} else {
+											i.system.attributes.weight.value = i.system.attributes.weight.value || 0
+											i.totalWeight =
+												(i.system.attributes.weight.value) * i.system.attributes.quantity.value
+											totalWeight += i.totalWeight
+										
+										}
+
+								} else {
+											i.system.attributes.weight.value = i.system.attributes.weight.value || 0
+											i.totalWeight =
+												(i.system.attributes.weight.value) * i.system.attributes.quantity.value
+											totalWeight += i.totalWeight
+										
+										}
+						}
+					inventory[i.type].items.push(i)
 					break
+				}
 
 				default:
 					// Its just an item
@@ -1105,6 +1124,8 @@ export default class alienrpgCharacterSheet extends api.HandlebarsApplicationMix
 		const langTemp = "ALIENRPG." + [newLangStr]
 		temp3 = game.i18n.localize(langTemp)
 
+
+				if (!game.settings.get("alienrpg", "evolved")) {
 		try {
 			item = game.items.getName(dataset.pmbut)
 			str = item.name
@@ -1122,6 +1143,12 @@ export default class alienrpgCharacterSheet extends api.HandlebarsApplicationMix
 				chatData = "<h2>No Stunts Entered</h2>"
 			}
 		}
+
+	} else {
+				chatData = game.i18n.localize("ALIENRPG.EvolvedStunts")
+
+	}
+
 		// Toggle summary
 		if (li2.classList.contains("expanded")) {
 			li2.innerHTML = ""
@@ -1546,7 +1573,6 @@ export default class alienrpgCharacterSheet extends api.HandlebarsApplicationMix
 	/**
 	 * Creates or deletes a configured status effect.
 	 *
-	 * @this DrawSteelActorSheet
 	 * @param {PointerEvent} event   The originating click event.
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action].
 	 * @private
@@ -1560,7 +1586,6 @@ export default class alienrpgCharacterSheet extends api.HandlebarsApplicationMix
 	/**
 	 * Toggles an active effect from disabled to enabled.
 	 *
-	 * @this DrawSteelActorSheet
 	 * @param {PointerEvent} event   The originating click event.
 	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action].
 	 * @private

@@ -4,18 +4,11 @@
 
 		{{! Editors must receive enriched text data from getData to properly handle rolls, UUID links, etc. }}
 		{{#if editable}}
-			<prose-mirror
-				style='height: 268px; '
-				name='system.misc.description.value'
-				data-document-uuid='{{item.uuid}}'
-				value='{{system.misc.description.value}}'
-				collaborate='true'
-				toggled='true'
-			>
-				{{{enrichedDescription}}}
-			</prose-mirror>
-		{{else}}
+		<prose-mirror style='height: 268px; ' name='system.misc.description.value' data-document-uuid='{{item.uuid}}' value='{{system.misc.description.value}}' collaborate='true' toggled='true'>
 			{{{enrichedDescription}}}
+		</prose-mirror>
+		{{else}}
+		{{{enrichedDescription}}}
 		{{/if}}
 	</div>
 </section>

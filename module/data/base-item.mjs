@@ -5,9 +5,10 @@ export default class alienrpgItemBase extends foundry.abstract.TypeDataModel {
 		const fields = foundry.data.fields
 		const requiredInteger = { required: true, nullable: false, integer: true }
 		const schema = {}
-		schema.notes = new fields.SchemaField({
-			notes: new fields.HTMLField(),
-		})
+		// schema.notes = new fields.SchemaField({
+		// 	notes: new fields.HTMLField(),
+		// })
+		schema.notes = new fields.HTMLField()
 
 		schema.modifiers = new fields.SchemaField({
 			attributes: new fields.SchemaField(

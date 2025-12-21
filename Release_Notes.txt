@@ -624,3 +624,41 @@ Included a "Critical Injuries template for people who want to create their own.
  Version 3.3.6
  Fixed phantom pencil icons being added to the spaceship Inventory when an item was added.
  Fixed Item sheet Items not displaying the comments bot at the correct size.  Thank you to netoelix for the fix. 
+
+
+ Version 4.0.0
+ Alien Evolved release
+
+ Version 4.0.1
+CSS fixes
+
+ Version 4.0.2
+ Fixed path capitalisation of weapon dialog boxes when in Evolved mode 
+ Inventory shows Ammo rather than Rounds
+ Clicking on the Stress Response or Panic response title will now perform the relevant roll.  
+
+ Version 4.0.3
+Added consumables rolls to the Inventory tab for actor Evolved sheets. 
+
+Version 4.0.4
+Fixed issue with pushing weapon rolls as it was not pushing the weapon but the ammo roll (What an idiot!!!)
+Fixed weapon ammo calculation to not count the weight of the first round which as per RAW is included in the weapon weight 
+
+Version 4.0.5
+Updated crit handling to accomodate new Evolved table.
+
+Version 4.0.6
+Corrected bug with radiation rolls (thanks to @Takara)
+When in Evolved mode, Reducing radiation no longer rolls for permanant radiation 
+Firing a weapon at "Engaged" range now uses Close Combat skill rather then Ranged Combat (thanks to @Takara)
+Fix an issue where Stress responses were being removed if the PC already had them even though the +1 stress was being added.
+
+Version 4.0.7
+Allow negative values on Vehicle sheet.
+Allow hull values higher than 10 on the Vehicle sheet. 
+Fixed issue with Notes tab on the Items sheet. 
+Fixed issue with Notes tab on the Items sheet. 
+Evolved - now use the same Stunt for all Skills (as per RAW)
+
+Version 4.0.8
+Fixed bug where Creatures sheets would not open (Root cause: Idiot developer not adding an include file!)

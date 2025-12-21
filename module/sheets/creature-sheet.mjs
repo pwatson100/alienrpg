@@ -1,4 +1,5 @@
 /** biome-ignore-all lint/complexity/noThisInStatic: <explanation> */
+import AlienRPGActiveEffect from "../documents/active-effect.mjs"
 import { logger } from "../helpers/logger.mjs"
 import { alienrpgrTableGet } from "../helpers/rollTableData.mjs"
 import { yze } from "../helpers/YZEDiceRoller.mjs"
@@ -120,8 +121,12 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 			isGM: game.user.isGM,
 		}
 
+		context.statuses = await this._prepareStatusEffects()
+		context.effects = await this._prepareActiveEffectCategories()
+
 		context.rTables = alienrpgrTableGet.rTableget()
 		context.cTables = alienrpgrTableGet.cTableget()
+
 		this._prepareCreatureItems(context) // Return data to the sheet
 
 		return context
@@ -208,6 +213,98 @@ export default class alienrpgCreatureSheet extends api.HandlebarsApplicationMixi
 		}, {})
 	}
 
+
+		/**
+		 * Prepare the data structure for status effects and whether they are active.
+		 * @protected
+		 */
+		async _prepareStatusEffects() {
+			/** @type {Record<string, StatusInfo>} */
+			const statusInfo = {}
+			for (const status of CONFIG.statusEffects) {
+				// Only display if it would show in the token HUD *and* it has an assigned _id
+				if (!status._id || !AlienRPGActiveEffect.validHud(status, this.actor)) continue
+				statusInfo[status.id] = {
+					_id: status._id,
+					name: status.name,
+					img: status.img,
+					disabled: false,
+					active: "",
+					resp: status.resp,
+					tableNumber: status.tableNumber,
+				}
+	
+				if (status.rule) {
+					const page = await fromUuid(status.rule)
+					statusInfo[status.id].tooltip = await enrichHTML(page.text.content, {
+						relativeTo: this.actor,
+					})
+				}
+			}
+	
+			// If the actor has the status and it's not from the canonical statusEffect
+			// Then we want to force more individual control rather than allow toggleStatusEffect
+			for (const effect of this.actor.allApplicableEffects()) {
+				for (const id of effect.statuses) {
+					if (!(id in statusInfo)) continue
+					statusInfo[id].active = "active"
+					if (!Object.values(statusInfo).some((s) => s._id === effect._id)) statusInfo[id].disabled = true
+				}
+			}
+	
+			return statusInfo
+		}
+			async _prepareActiveEffectCategories() {
+		/** @type {Record<string, ActiveEffectCategory>} */
+		const categories = {
+			temporary: {
+				type: "temporary",
+				label: game.i18n.localize("ALIENRPG.ActiveEffect.Temporary"),
+				effects: [],
+			},
+			passive: {
+				type: "passive",
+				label: game.i18n.localize("ALIENRPG.ActiveEffect.Passive"),
+				effects: [],
+			},
+			inactive: {
+				type: "inactive",
+				label: game.i18n.localize("ALIENRPG.ActiveEffect.Inactive"),
+				effects: [],
+			},
+		}
+
+		// Iterate over active effects, classifying them into categories
+		const applicableEffects = [...this.actor.allApplicableEffects()].sort((a, b) => a.sort - b.sort)
+		for (const e of applicableEffects) {
+			const effectContext = {
+				id: e.id,
+				uuid: e.uuid,
+				name: e.name,
+				img: e.img,
+				parent: e.parent,
+				sourceName: e.sourceName,
+				duration: e.duration,
+				disabled: e.disabled,
+				expanded: false,
+			}
+
+			if (this._expandedDocumentDescriptions.has(e.id)) {
+				effectContext.expanded = true
+				effectContext.enrichedDescription = await e.system.toEmbed({})
+			}
+
+			if (!e.active) categories.inactive.effects.push(effectContext)
+			else if (e.isTemporary) categories.temporary.effects.push(effectContext)
+			else categories.passive.effects.push(effectContext)
+		}
+
+		// Sort each category
+		for (const c of Object.values(categories)) {
+			c.effects.sort((a, b) => (a.sort || 0) - (b.sort || 0))
+		}
+		return categories
+	}
 	/**
 	 * Organize and classify Items for Actor sheets.
 	 *

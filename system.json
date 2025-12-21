@@ -13,7 +13,7 @@
   "relationships": {
     "systems": [{ "id": "alienrpg" }]
   },
-  "version": "4.0.0",
+  "version": "4.0.5",
 
   "compatibility": {
     "minimum": "13",
@@ -29,10 +29,10 @@
       "abilityModifier": {}
     },
     "Actor": {
-      "creature": {
+      "character": {
         "htmlFields": ["notes"]
       },
-      "character": {
+      "creature": {
         "htmlFields": ["notes"]
       },
       "synthetic": {
@@ -41,16 +41,16 @@
       "vehicles": {
         "htmlFields": ["notes"]
       },
-      "territory": {
+      "colony": {
         "htmlFields": ["notes"]
       },
       "spacecraft": {
         "htmlFields": ["notes"]
       },
-      "colony": {
+      "planet": {
         "htmlFields": ["notes"]
       },
-      "planet": {
+      "territory": {
         "htmlFields": ["notes"]
       }
     },
@@ -61,20 +61,11 @@
       "weapon": {
         "htmlFields": ["notes", "comment"]
       },
-      "skill-stunts": {
-        "htmlFields": ["description"]
+      "armor": {
+        "htmlFields": ["comment"]
       },
       "talent": {
         "htmlFields": ["comment", "notes"]
-      },
-      "critical-injury": {
-        "htmlFields": ["effects"]
-      },
-      "agenda": {
-        "htmlFields": ["comment"]
-      },
-      "armor": {
-        "htmlFields": ["comment"]
       },
       "specialty": {
         "htmlFields": ["comment"]
@@ -85,14 +76,23 @@
       "spacecraftmods": {
         "htmlFields": ["comment"]
       },
-      "spacecraft-crit": {
-        "htmlFields": ["effects"]
-      },
-      "planet-system": {
+      "agenda": {
         "htmlFields": ["comment"]
       },
       "colony-initiative": {
         "htmlFields": ["comment", "notes"]
+      },
+      "planet-system": {
+        "htmlFields": ["comment"]
+      },
+      "spacecraft-crit": {
+        "htmlFields": ["effects"]
+      },
+      "critical-injury": {
+        "htmlFields": ["effects"]
+      },
+      "skill-stunts": {
+        "htmlFields": ["description"]
       }
     }
   },

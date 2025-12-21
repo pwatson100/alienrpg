@@ -321,6 +321,16 @@ a.inline-roll {
   animation: textShadow 1s infinite;
 }
 
+.rollablesmall:hover {
+  color: var(--aliengreen);
+  background-color: #000;
+  border: 0px solid var(--aliengreen);
+  font-weight: 1;
+  color: red;
+  box-shadow: 0 0 0px var(--aliengreen);
+  animation: textShadow 1s infinite;
+}
+
 .far.fa-heart:hover {
   color: red;
   animation: textShadow 1s infinite;
@@ -1434,7 +1444,7 @@ button:focus {
 
 .grid-genPage-enh {
   display: grid;
-  grid-template-areas: "Item1 Item1 Item2 Item2" "Item3 Item7 Item4 Item4" "Item6 Item6 Item4 Item4" "Item6 Item6 Item4 Item4" "Item8 Item8 Item8 Item8";
+  grid-template-areas: "Item1 Item1 Item2 Item2" "Item3 Item7 Item4 Item4" "Item6 Item6 Item4 Item4" "Item6 Item6 Item4 Item4" "Item5 Item5 Item5 Item5" "Item8 Item8 Item8 Item8";
   grid-template-columns: 206px 194px 200px 200px;
 }
 
@@ -1801,6 +1811,12 @@ button:focus {
   display: grid;
   grid-template-areas: "Heading Heading Heading" "Air1 Air2 Air3" "Food1 Food2 Food3" "Water1 Water2 Water3" "Power1 Power2 Power3";
   grid-template-columns: 119px 49px 34px;
+}
+
+.evolved-grid-Consumables {
+  display: grid;
+  grid-template-areas: "Heading Air1 Air2 Air3 Food1 Food2 Food3 Water1 Water2 Water3";
+  grid-template-columns: 190px 80px 49px 34px 80px 49px 34px 80px 49px 34px;
 }
 
 .Heading {
@@ -2386,7 +2402,7 @@ button:focus {
 .critical-inj-wide {
   display: grid;
   grid-template-areas: "crit1w crit2w crit3w crit4w";
-  grid-template-columns: 24px 155px 505px 20px;
+  grid-template-columns: 24px 196px 505px 20px;
   align-items: center;
 }
 
@@ -6865,6 +6881,15 @@ input[type=checkbox]::before {
   border: 0px solid var(--aliengreen);
   font-weight: 1;
   font-size: 130%;
+  box-shadow: 0 0 0px var(--aliengreen);
+  animation: textShadow 1s infinite;
+}
+.alienrpg .rollablesmall:hover {
+  color: var(--aliengreen);
+  background-color: #000;
+  border: 0px solid var(--aliengreen);
+  font-weight: 1;
+  color: red;
   box-shadow: 0 0 0px var(--aliengreen);
   animation: textShadow 1s infinite;
 }

@@ -309,7 +309,7 @@ export class alienrpgActor extends Actor {
 
 				if (!response || response === "cancel") return "cancelled"
 				if (response) {
-					if (!response.rollStress.checked) {
+					if (!response.rollStress) {
 						r2Data = 0
 						reRoll = true
 					}
@@ -885,7 +885,6 @@ export class alienrpgActor extends Actor {
 		const resolveMod = Number(dataset?.resolveMod ?? 0)
 		const table = game.tables.getName("Stress Response Table")
 		let status = ""
-		const existing = ""
 		let effectid = ""
 		if (!table) {
 			return ui.notifications.error(game.i18n.localize("ALIENRPG.NoResolveTable"))
@@ -910,13 +909,13 @@ export class alienrpgActor extends Actor {
 			case 1:
 				{
 					effectid = "jumpy"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
 						altDescription = game.i18n.localize("ALIENRPG.YouAlreadyHaveThis")
 					} else {
-						if (existing === (await this.hasCondition("deflated"))) {
+						if (await this.hasCondition("deflated")) {
 							altDescription = game.i18n.localize("ALIENRPG.CantGetJumpy")
 						} else {
 							status = effectid
@@ -927,7 +926,7 @@ export class alienrpgActor extends Actor {
 			case 2:
 				{
 					effectid = "tunnelvision"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
@@ -940,7 +939,7 @@ export class alienrpgActor extends Actor {
 			case 3:
 				{
 					effectid = "aggravated"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
@@ -953,7 +952,7 @@ export class alienrpgActor extends Actor {
 			case 4:
 				{
 					effectid = "shakes"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
@@ -966,7 +965,7 @@ export class alienrpgActor extends Actor {
 			case 5:
 				{
 					effectid = "frantic"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
@@ -979,13 +978,13 @@ export class alienrpgActor extends Actor {
 			case 6:
 				{
 					effectid = "deflated"
-					if (existing === (await this.hasCondition(effectid))) {
+					if (await this.hasCondition(effectid)) {
 						await actor.update({
 							"system.header.stress.value": actor.system.header.stress.value + 1,
 						})
 						altDescription = game.i18n.localize("ALIENRPG.YouAlreadyHaveThis")
 					} else {
-						if (existing === (await this.hasCondition("jumpy"))) {
+						if (await this.hasCondition("jumpy")) {
 							await this.toggleStatusEffect("jumpy")
 						}
 						status = effectid
@@ -1520,6 +1519,7 @@ export class alienrpgActor extends Actor {
 		const blind = false
 		const r2Data = 1
 		const radMax = actor.getRollData().general.radiation.max
+						if (!game.settings.get("alienrpg", "evolved")) {
 		await yze.yzeRoll(
 			effectiveActorType,
 			blind,
@@ -1531,8 +1531,7 @@ export class alienrpgActor extends Actor {
 			game.i18n.localize("ALIENRPG.Yellow"),
 			actorId,
 		)
-
-		if (game.ALIENRPG.rollArr.r2One === 1) {
+		if (game.alienrpg.rollArr.r2One === 1) {
 			await actor.update({
 				"system.general.radiation.permanent": rad.permanent + 1,
 				"system.RADfill": actor.system.RADfill + 1,
@@ -1541,8 +1540,19 @@ export class alienrpgActor extends Actor {
 			})
 		} else {
 			await actor.update({ ["system.general.radiation.value"]: rad.value - 1 })
-		}
+		} 
 	}
+		else 
+			{
+						await actor.update({ ["system.general.radiation.value"]: rad.value - 1 })
+								ChatMessage.create({
+			speaker: { actor: actor.id },
+			content: game.i18n.localize("ALIENRPG.RadiationReduced"),
+			type: CONST.CHAT_MESSAGE_STYLES.OTHER,
+		})
+}			
+	}
+
 	async _onOverwatchToggle(event) {
 		const key = $(event.currentTarget).parents(".condition").attr("data-key")
 		if (key === "overwatch") {
@@ -1622,19 +1632,33 @@ export class alienrpgActor extends Actor {
 		let manipulation = 0
 		let closecombat = 0
 		let stamina = 0
+		let comtech = 0
+		let command = 0
 		switch (type) {
 			case "character":
-				atable =
+{			
+							if (game.settings.get("alienrpg", "evolved")) {
+			atable =
+					game.tables.getName(game.i18n.localize("ALIENRPG.EVCriticalInjuries")) ||
+					game.tables.getName("EV - Critical Injuries")
+						} else {
+			atable =
 					game.tables.getName(game.i18n.localize("ALIENRPG.CriticalInjuries")) ||
 					game.tables.getName("Critical Injuries") ||
 					game.tables.getName("Critical injuries")
-				if (atable === null || atable === undefined) {
-					ui.notifications.warn(game.i18n.localize("ALIENRPG.NoCharCrit"))
-					return
 				}
+			}
+			if (atable === null || atable === undefined) {
+				ui.notifications.warn(game.i18n.localize("ALIENRPG.NoCharCrit"))
+				return
+			}							
+						break
+				case "synthetic":
+// {		
+// 			if (game.settings.get("alienrpg", "evolved")) {
 
-				break
-			case "synthetic":
+
+// } else {
 				atable =
 					game.tables.getName("Critical Injuries on Synthetics") ||
 					game.tables.getName("critical injuries on synthetics")
@@ -1642,6 +1666,8 @@ export class alienrpgActor extends Actor {
 					ui.notifications.warn(game.i18n.localize("ALIENRPG.NoSynCrit"))
 					return
 				}
+			// }
+		// }
 				break
 			case "creature":
 				atable = game.tables.getName(dataset.atttype)
@@ -1690,10 +1716,14 @@ export class alienrpgActor extends Actor {
 					let speanex = testArray[7]
 					if (testArray[9] !== game.i18n.localize("ALIENRPG.Permanent")) {
 						if (testArray[9].length > 0) {
+						if (testArray[9]=== 'Shift') {
+							testArray[9] = game.i18n.localize("ALIENRPG.Shift")
+						} else {
 							rollheal = testArray[9].match(/^\[\[([0-9]d[0-9]+)]/)[1]
 							newHealTime = testArray[9].match(/^\[\[([0-9]d[0-9]+)\]\] ?(.*)/)[2]
 							testArray[9] = (await new Roll(`${rollheal}`).evaluate()).result + " " + newHealTime
 							// testArray[9] = (await new Roll(`${rollheal}`).evaluate().result) + ' ' + newHealTime;
+						}
 						} else {
 							testArray[9] = game.i18n.localize("ALIENRPG.None")
 						}
@@ -1739,7 +1769,64 @@ export class alienrpgActor extends Actor {
 							healTime = 0
 							break
 					}
+							if (game.settings.get("alienrpg", "evolved")) {
+					switch (test1.roll._total) {
+						case 15:
+							rangedcombat = -1
+							observation = -1
+							break
+						case 16:
+							observation = -1
+							comtech = -1
+							break
+						case 21:
+							observation = -2
+							break
+						case 24:
+							manipulation = -2
+							break
+						case 31:
+							observation = -1
+							manipulation = -1
+							break
+						case 32:
+							mobility = -2
+							closecombat = -2
+							break
+						case 33:
+							rangedcombat = -2
+							observation = -2
+							break
+						case 34:
+							manipulation = -2
+							command = -2
+							break
+						case 42:
+							manipulation = -2
+							break
+						case 44:
+							mobility = -2
+							closecombat = -2
+							break
+						case 51:
+							observation = -2
+							comtech = -2
+							break
+						case 61:
+							stamina = -1
+							break
+						case 62:
+							stamina = -2
+							break
+						case 62:
+							stamina = -3
+							break
 
+						default:
+							break
+					}
+							} else
+								{
 					switch (test1.roll._total) {
 						case 14:
 							mobility = -2
@@ -1786,6 +1873,7 @@ export class alienrpgActor extends Actor {
 						default:
 							break
 					}
+				}
 					//
 					// Now create the item on the sheet
 					//
@@ -1804,6 +1892,8 @@ export class alienrpgActor extends Actor {
 						"system.modifiers.skills.manipulation.value": manipulation,
 						"system.modifiers.skills.closeCbt.value": closecombat,
 						"system.modifiers.skills.stamina.value": stamina,
+						"system.modifiers.skills.comtech.value": comtech,
+						"system.modifiers.skills.command.value": command,
 					}
 
 					await this.createEmbeddedDocuments("Item", [rollData])
@@ -2124,9 +2214,11 @@ export class alienrpgActor extends Actor {
 		const effect = await AlienRPGActiveEffect.fromStatusEffect(statusId)
 		if (overlay) effect.updateSource({ "flags.core.overlay": true })
 		if (effectEnd) effect.updateSource({ "system.end.type": effectEnd })
-		if (status.tableNumber > this.system.general.panic.lastRoll) {
-			await this.update({ "system.general.panic.lastRoll": status.tableNumber })
-		}
+			if (this.type === "character") {
+				if (status.tableNumber > this.system.general.panic.lastRoll) {
+					await this.update({ "system.general.panic.lastRoll": status.tableNumber })
+				}
+			} 
 		return AlienRPGActiveEffect.create(effect, { parent: this, keepId: true })
 	}
 	/* ------------------------------------------- */

@@ -3,18 +3,11 @@
 	<div style='border: solid 1px; padding: 5px;width: 629px;'>
 		{{! Editors must receive enriched text data from getData to properly handle rolls, UUID links, etc. }}
 		{{#if editable}}
-			<prose-mirror
-				style='height: 283px;'
-				name='system.attributes.comment.value'
-				data-document-uuid='{{item.uuid}}'
-				value='{{system.attributes.comment.value}}'
-				collaborate='true'
-				toggled='true'
-			>
-				{{{enrichedComment}}}
-			</prose-mirror>
-		{{else}}
+		<prose-mirror style='height: 283px;' name='system.general.comment.value' data-document-uuid='{{item.uuid}}' value='{{system.general.comment.value}}' collaborate='true' toggled='true'>
 			{{{enrichedComment}}}
+		</prose-mirror>
+		{{else}}
+		{{{enrichedComment}}}
 		{{/if}}
 	</div>
 </section>

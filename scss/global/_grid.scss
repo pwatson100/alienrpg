@@ -75,6 +75,7 @@
     "Item3 Item7 Item4 Item4"
     "Item6 Item6 Item4 Item4"
     "Item6 Item6 Item4 Item4"
+    "Item5 Item5 Item5 Item5"
     "Item8 Item8 Item8 Item8";
   grid-template-columns: 206px 194px 200px 200px;
 }
@@ -498,6 +499,14 @@
     "Power1 Power2 Power3";
 
   grid-template-columns: 119px 49px 34px;
+}
+.evolved-grid-Consumables {
+  display: grid;
+  grid-template-areas:
+    // "Heading Heading Heading Heading Heading Heading Heading Heading Heading"
+    "Heading Air1 Air2 Air3 Food1 Food2 Food3 Water1 Water2 Water3";
+
+  grid-template-columns: 190px 80px 49px 34px 80px 49px 34px 80px 49px 34px;
 }
 
 .Heading {
@@ -1023,7 +1032,7 @@
 .critical-inj-wide {
   display: grid;
   grid-template-areas: "crit1w crit2w crit3w crit4w";
-  grid-template-columns: 24px 155px 505px 20px;
+  grid-template-columns: 24px 196px 505px 20px;
   align-items: center;
 }
 

@@ -87,7 +87,7 @@ export class alienrpgItem extends Item {
 			// Check that is a character or a synth pretending to be a character.
 			if (this.actor.type === "character" || actorData.header.synthstress) {
 				content = await foundry.applications.handlebars.renderTemplate(
-					"systems/ALIENRPG/templates/dialog/roll-all-dialog.hbs",
+					"systems/alienrpg/templates/dialog/roll-all-dialog.hbs",
 					{ config, actorData, dataset },
 				)
 
@@ -151,7 +151,7 @@ export class alienrpgItem extends Item {
 			} else {
 				// Its not got stress so don't display the stress mod box
 				content = await foundry.applications.handlebars.renderTemplate(
-					"systems/ALIENRPG/templates/dialog/roll-base-dialog.hbs",
+					"systems/alienrpg/templates/dialog/roll-base-dialog.hbs",
 					config,
 					actorData,
 					dataset,
@@ -231,7 +231,7 @@ export class alienrpgItem extends Item {
 								dataset.fullauto = true
 							}
 							content = await foundry.applications.handlebars.renderTemplate(
-								"systems/ALIENRPG/templates/dialog/roll-ranged-weapon-dialog.hbs",
+								"systems/alienrpg/templates/dialog/roll-ranged-weapon-dialog.hbs",
 								{ config, actorData, dataset },
 							)
 							response = await foundry.applications.api.DialogV2.wait({
@@ -269,8 +269,18 @@ export class alienrpgItem extends Item {
 								if (Number(dataset.shootrangeMod) - itemData.attributes.minrange.value < 0) {
 									shootrangeMod = Number(dataset.shootrangeMod) - itemData.attributes.minrange.value
 								}
-
-								r1Data =
+								if (shootrangeMod === -1) {
+									r1Data =
+									actorData.skills.closeCbt.mod +
+									itemData.attributes.bonus.value +
+									Number(dataset.modifier) +
+									Number(dataset.targetCoverMod) +
+									Number(dataset.sizeMod) +
+									carefullaimMod +
+									aimforweakspotMod +
+									Number(shootrangeMod)
+									} else {
+									r1Data =
 									actorData.skills.rangedCbt.mod +
 									itemData.attributes.bonus.value +
 									Number(dataset.modifier) +
@@ -279,6 +289,7 @@ export class alienrpgItem extends Item {
 									carefullaimMod +
 									aimforweakspotMod +
 									Number(shootrangeMod)
+								}
 								r2Data = r2Data + Number(dataset.stressMod)
 								myReturn = await yze.yzeRoll(
 									hostile,
@@ -294,17 +305,6 @@ export class alienrpgItem extends Item {
 									"",
 									dataset,
 								)
-							}
-							game.alienrpg.rollArr.sCount = game.alienrpg.rollArr.r1Six + game.alienrpg.rollArr.r2Six
-							console.log(game.alienrpg.rollArr.sCount)
-							if (dataset.conserveammo === "true" && game.alienrpg.rollArr.sCount > 1) {
-								const chatMessage =
-									`<div class="chatBG" + ${actorid} "><span  style="font-weight: bold; font-size: larger">` +
-									game.i18n.localize("ALIENRPG.ammoConcerved") +
-									"</span></div>"
-								await this.actor.createChatMessage(chatMessage, actorid)
-							} else {
-								await this.rollAmmo(itemid, dataset)
 							}
 						} else {
 							r1Data = actorData.skills.rangedCbt.mod + itemData.attributes.bonus.value + modifier
@@ -371,7 +371,7 @@ export class alienrpgItem extends Item {
 									return ui.notifications.warn(game.i18n.localize("alienrpg.noCrewAssigned"))
 								}
 								content = await foundry.applications.handlebars.renderTemplate(
-									"systems/ALIENRPG/templates/dialog/roll-vehicle-weapon.hbs",
+									"systems/alienrpg/templates/dialog/roll-vehicle-weapon.hbs",
 									{ config, actorData, dataset, options },
 								)
 
@@ -460,7 +460,7 @@ export class alienrpgItem extends Item {
 									return ui.notifications.warn(game.i18n.localize("alienrpg.noCrewAssigned"))
 								}
 								content = await foundry.applications.handlebars.renderTemplate(
-									"systems/ALIENRPG/templates/dialog/roll-vehicle-weapon.hbs",
+									"systems/alienrpg/templates/dialog/roll-vehicle-weapon.hbs",
 									{ config, actorData, dataset, options },
 								)
 
@@ -702,7 +702,7 @@ export class alienrpgItem extends Item {
 		const title = `${game.i18n.localize("ALIENRPG.DialTitle1")} ${dataset.label} ${game.i18n.localize("ALIENRPG.DialTitle2")}`
 
 		const content = await foundry.applications.handlebars.renderTemplate(
-			"systems/ALIENRPG/templates/dialog/roll-base-dialog.hbs",
+			"systems/alienrpg/templates/dialog/roll-base-dialog.hbs",
 			{ item, dataset },
 		)
 
