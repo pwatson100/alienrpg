@@ -266,8 +266,14 @@ export class alienrpgItem extends Item {
 								if (response.aimforweakspot) {
 									aimforweakspotMod = -2
 								}
+								// Is the target at a greater range?  If so Say Out Of Range
+								if (Number(itemData.attributes.range.value - dataset.shootrangeMod) < 0) {
+										return ui.notifications.warn(game.i18n.localize("ALIENRPG.OutofRange"))
+
+								}
+								// Is Target < min range.  If so -2 for each range level.
 								if (Number(dataset.shootrangeMod) - itemData.attributes.minrange.value < 0) {
-									shootrangeMod = Number(dataset.shootrangeMod) - itemData.attributes.minrange.value
+									shootrangeMod = 2 * (Number(dataset.shootrangeMod) - itemData.attributes.minrange.value)
 								}
 								if (shootrangeMod === -1) {
 									r1Data =
@@ -290,6 +296,7 @@ export class alienrpgItem extends Item {
 									aimforweakspotMod +
 									Number(shootrangeMod)
 								}
+								console.log("r1Data", r1Data)
 								r2Data = r2Data + Number(dataset.stressMod)
 								myReturn = await yze.yzeRoll(
 									hostile,
