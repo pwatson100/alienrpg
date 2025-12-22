@@ -39,7 +39,7 @@
     "AcidAttack": "Säure-Attacke",
     "AcidBlood": "Diese Kreatur hat kein säurehaltiges Blut",
     "Action": "Aktion",
-    "ActionFailed": "Aktion ist aufgrund des Panikwurfs fehlgeschlagen",
+    "ActionFailed": "Aktion ist fehlgeschlagen wegen Panik ",
     "Active": "Aktiv",
     "Actor": {
       "Tabs": {
@@ -588,7 +588,7 @@
     "Yellow": "Gelb",
     "Yes": "Yes",
     "YouAlreadyHaveThis": "Du hast bereits diesen Zustand, daher erhöht sich dein Stress um + 1.",
-    "YouAreAtPanic": "Du gerätst in Panik!",
+    "YouAreAtPanic": "Du gerätst in Panik! ",
     "youHave": "Du hast ",
     "YourPanicLevel": "Deine Panikstufe steigt auf ",
     "youTake": "Du erhälst "
