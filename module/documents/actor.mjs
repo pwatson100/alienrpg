@@ -880,6 +880,8 @@ export class alienrpgActor extends Actor {
 		const config = CONFIG.ALIENRPG
 		let htmlData = ""
 		let aStress = 0
+	const oldStress = actor.getRollData().general.stressresponse.value
+
 		const resolve = actor.getRollData().header.resolve.value
 		const modifier = Number(dataset?.mod ?? 0) + Number(dataset?.modifier ?? 0)
 		const resolveMod = Number(dataset?.resolveMod ?? 0)
@@ -898,14 +900,30 @@ export class alienrpgActor extends Actor {
 		} else {
 			aStress = actor.getRollData().header.stress.value
 		}
-		const roll = await new Roll(`(1d6 + ${aStress})-${resolveModifier}`).evaluate()
-		const customResults = await table.roll({ roll })
-		let altDescription = customResults.results[0].description
+		const  roll = await new Roll(`(1d6)`).evaluate()
+		let rollTotal = roll.total + (aStress - resolveModifier)
 		console.warn(
-			`Rolling Resolve, ${roll}, Resolve Value ${actor.system.header.resolve.value}, Roll ${customResults.roll.total}`,
+			`Rolling Resolve, ${roll}, Dice Value, ${roll.total}, Resolve Value ${aStress}, Current level ${oldStress}, Total Roll ${rollTotal}`,
 		)
+		if (rollTotal <= oldStress) {
+			console.log("you already have condition =>: ", rollTotal, "existing level: ", oldStress)
+			rollTotal = oldStress + 1
+		}
+				if (rollTotal < 0) {
+			console.log("Can't go Lower than 0")
+			rollTotal = 0
+		} else {
+			if (rollTotal >= 7 || oldStress >= 7) {
+				console.log("Can't go heigher than 7")
+				rollTotal = 7
+			}
+		}
+		const customResults = await table.getResultsForRoll(rollTotal)
+		let altDescription = customResults[0].description
 
-		switch (customResults.roll.total) {
+		switch (rollTotal) {
+			case 0:
+				break
 			case 1:
 				{
 					effectid = "jumpy"
@@ -991,28 +1009,44 @@ export class alienrpgActor extends Actor {
 					}
 				}
 				break
-			default:
+			case 7:
 				{
-					const addPanic = actor.getRollData().general.addpanic.value
-					await actor.update({
-						"system.header.stress.value": actor.system.header.stress.value + addPanic,
-					})
+					effectid = "messup"
+					if (await this.hasCondition(effectid)) {
+						await actor.update({
+							"system.header.stress.value": actor.system.header.stress.value + 1,
+						})
+						altDescription = game.i18n.localize("ALIENRPG.YouAlreadyHaveThis")
+					} else {
+						status = effectid 
+					}
 				}
+				break
+			default:
+				// {
+				// 	const addPanic = actor.getRollData().general.addpanic.value
+				// 	await actor.update({
+				// 		"system.header.stress.value": actor.system.header.stress.value + addPanic,
+				// 	})
+				// }
 				break
 		}
 
 		if (status) {
 			await this.toggleStatusEffect(status)
-		}
+			await actor.update({
+			"system.general.stressresponse.value": rollTotal,
+		})	
+	}
 
 		htmlData = {
 			actorname: actor.name,
-			img: customResults.results[0].img,
-			name: customResults.results[0].name,
+			img: customResults[0].img,
+			name: customResults[0].name,
 			description: altDescription,
 			resolve: resolve,
 			modifier: resolveModifier,
-			result: customResults.roll.total,
+			result: rollTotal,
 		}
 
 		const html = await foundry.applications.handlebars.renderTemplate(
@@ -1095,23 +1129,31 @@ export class alienrpgActor extends Actor {
 		} else {
 			aStress = actor.getRollData().header.stress.value + Number(stressMod)
 		}
-		roll = await new Roll(`(1d6 + ${aStress})-${resolve}`).evaluate()
+		// roll = await new Roll(`(1d6) + (${aStress}-${resolve})`).evaluate()
+		roll = await new Roll(`(1d6)`).evaluate()
+		let rollTotal = roll.total + (aStress - resolve)
+		
 		console.warn(
-			`Rolling Stress, ${roll}, Stress Value ${actor.system.header.stress.value}, Resolve Value ${resolve}, Roll ${roll.total}, oldPanic ${oldPanic}`,
+			`Rolling Stress, ${roll}, Dice Value, ${roll.total},  Stress Value ${actor.system.header.stress.value}, Resolve Value ${resolve}, Current level ${oldPanic}, Total Roll ${rollTotal}`,
 		)
-		let rollTotal = roll.total
 
-		if (rollTotal === oldPanic) {
-			console.log("you already have condition: ", rollTotal)
-			rollTotal++
-		} else if (rollTotal < oldPanic) {
-			rollTotal = roll.total + oldPanic
-		}
-		if (rollTotal > 12) {
+		if (rollTotal < 0) {
+			console.log("Can't go Lower than 0")
+			rollTotal = 0
+		} else {
+	if (rollTotal >= 12 || oldPanic >= 12) {
 			console.log("Can't go heigher than 12")
 			rollTotal = 12
 		}
-			customResults = await table.getResultsForRoll(rollTotal)
+	}
+
+		if (rollTotal <= oldPanic) {
+			console.log("you already have condition =>: ", rollTotal, "existing level: ", oldPanic)
+			rollTotal = oldPanic + 1
+		} 
+
+
+		customResults = await table.getResultsForRoll(rollTotal)
 
 		altDescription = customResults[0].description
 		switch (rollTotal) {
@@ -1197,6 +1239,9 @@ export class alienrpgActor extends Actor {
 					effectid = "scream"
 					if (await this.hasCondition(effectid)) {
 					} else {
+						await actor.update({
+								"system.header.stress.value": actor.system.header.stress.value - 1,
+							})
 						status = effectid
 					}
 				}
@@ -1232,7 +1277,10 @@ export class alienrpgActor extends Actor {
 
 		if (status) {
 			await this.toggleStatusEffect(status)
-		}
+			await actor.update({
+			"system.general.panic.lastRoll": rollTotal,
+		})
+	}
 
 		htmlData = {
 			actorname: actor.name,
@@ -1257,9 +1305,6 @@ export class alienrpgActor extends Actor {
 			other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
 			sound: CONFIG.sounds.dice,
 		}
-		await actor.update({
-			"system.general.panic.lastRoll": rollTotal,
-		})
 
 		ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"))
 		return ChatMessage.create(chatData)
@@ -1591,7 +1636,7 @@ export class alienrpgActor extends Actor {
 		if (actor.system.general.panic.lastRoll > 0) {
 			await actor.update({
 				"system.general.panic.value": 0,
-				"system.general.panic.lastRoll": 0,
+				"system.general.panic.lastRoll": -1,
 			})
 		}
 		await actor.removeCondition("panicked")
@@ -2208,8 +2253,12 @@ export class alienrpgActor extends Actor {
 			}
 			hitList.sort().reverse()
 			await this.update({ "system.general.panic.lastRoll": hitList[0] })
-			if (!hitList) {
-				await this.update({ "system.general.panic.lastRoll": 0 })
+			if (hitList.length === 0) {
+				if (status.resp === 'panic'){
+				await this.update({ "system.general.panic.lastRoll": -1 })
+				} else {
+					await this.update({ "system.general.stressresponse.value": -1 })
+				}
 			}
 			return false
 		}
@@ -2220,9 +2269,18 @@ export class alienrpgActor extends Actor {
 		if (overlay) effect.updateSource({ "flags.core.overlay": true })
 		if (effectEnd) effect.updateSource({ "system.end.type": effectEnd })
 			if (this.type === "character") {
+
+				if (status.resp === 'panic'){
 				if (status.tableNumber > this.system.general.panic.lastRoll) {
 					await this.update({ "system.general.panic.lastRoll": status.tableNumber })
 				}
+			} else {
+								if (status.tableNumber > this.system.general.stressresponse.value) {
+					await this.update({ "system.general.stressresponse.value": status.tableNumber })
+				}
+			}
+
+				
 			} 
 		return AlienRPGActiveEffect.create(effect, { parent: this, keepId: true })
 	}

@@ -40,28 +40,21 @@
 				<div style='display: flex'>
 					<h3 class='condition resource-label' style='font-size: 1.1em;' data-status-id='{{id}}' data-tooltip-html='{{status.tooltip}}' data-action='toggleStatus' title='{{localize "ALIENRPG.ConButtons"}}'>
 						<a>
-							{{#if (eq status.name 'ALIENRPG.keepingguard')}}
-							{{#if status.active}}
-							<i class='far fa-check-square'></i>
-							{{else}}
-							<i class='far fa-square'></i>
-							{{/if}}
-							{{else}}
+							{{#if (ne status.name 'ALIENRPG.keepingguard')}}
 							{{#if status.active}}
 							<i class='far fa-dot-circle'></i>
 							{{else}}
 							<i class='far fa-circle'></i>
 							{{/if}}
-							{{/if}}
 						</a>
 						{{localize status.name}}
+						{{/if}}
 					</h3>
 				</div>
 				{{/if}}
 				{{/each}}
 			</div>
-			<div>
-				<br>
+			<div style="margin-top: 10px;">
 				<h3 style='text-align: center; font-weight: bold' class='resource-label'>{{localize 'ALIENRPG.Radiation'}}</h3>
 				<div class='newdots click-stat-level-con' data-action='RadPointClick' data-label='{{localize "ALIENRPG.Radiation"}}' data-roll='{{system.general.radiation.value}}'>
 					{{#times system.RADcurrent}}
@@ -74,6 +67,25 @@
 					<i class='far fa-dot-circle' style='color: red'></i>
 					{{/times}}
 				</div>
+			</div>
+			<div style="margin-top: 20px; border-top: solid 2px hsl(84, 100%, 59%);">
+				<br>
+				{{#each statuses as |status id|}}
+				{{#if (eq status.name 'ALIENRPG.keepingguard')}}
+				<div style='display: flex;'>
+					<h3 class='condition resource-label' style='font-size: 1.1em;' data-status-id='{{id}}' data-tooltip-html='{{status.tooltip}}' data-action='toggleStatus' title='{{localize "ALIENRPG.ConButtons"}}'>
+						<a>
+							{{#if status.active}}
+							<i class='far fa-check-square'></i>
+							{{else}}
+							<i class='far fa-square'></i>
+							{{/if}}
+						</a>
+						{{localize status.name}}
+					</h3>
+				</div>
+				{{/if}}
+				{{/each}}
 			</div>
 		</div>
 		<div class='Item7' style='height: 300px;'>
