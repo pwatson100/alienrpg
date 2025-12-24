@@ -168,7 +168,7 @@
       "Rollontable": "Roll on table {tablename}",
       "Modifier": "Modifier",
       "Tooltip-Rollontable": "shift+click to add modifier",
-      "howManyDice": "How Many Trouble dice?",
+      "howManyDice": "How Many dice?",
       "Tooltip-ManualRoll": "shift+click for Manual Roll"
     },
     "Dice": "Dice: ",
