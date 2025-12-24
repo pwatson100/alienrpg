@@ -13,7 +13,7 @@ export function enrichTextEditors() {
 		elem.className = "draw-from-table"
 		elem.setAttribute(
 			"data-tooltip",
-			`Draw from ${tableName}. <br> ${game.i18n.localize("TALESOFTHEOLDWEST.dialog.Tooltip-Rollontable")}`,
+			`Draw from ${tableName}. <br> ${game.i18n.localize("ALIENRPG.dialog.Tooltip-Rollontable")}`,
 		)
 		elem.setAttribute("data-uuid", uuid)
 		if (roll) {
@@ -31,7 +31,7 @@ export function enrichTextEditors() {
 		elem.className = "draw-from-table"
 		elem.setAttribute(
 			"data-tooltip",
-			`Draw from ${tableName}. <br> ${game.i18n.localize("TALESOFTHEOLDWEST.dialog.Tooltip-Rollontable")}`,
+			`Draw from ${tableName}. <br> ${game.i18n.localize("ALIENRPG.dialog.Tooltip-Rollontable")}`,
 		)
 		elem.setAttribute("data-uuid", uuid)
 		if (roll) {
@@ -115,23 +115,23 @@ export function enrichTextEditors() {
 		}
 		// This needs to be something other than CTRL as it conflicts with RMB on macs.
 		if (event.shiftKey) {
-			const dialog_content = `<p>${game.i18n.format("TALESOFTHEOLDWEST.dialog.Rollontable", {
+			const dialog_content = `<p>${game.i18n.format("ALIENRPG.dialog.Rollontable", {
 				tablename: table.name,
 			})}</p>
             <form>
                 <div class="form-group">
-                    <label>${game.i18n.localize("TALESOFTHEOLDWEST.dialog.Modifier")}</label>
+                    <label>${game.i18n.localize("ALIENRPG.dialog.Modifier")}</label>
                     <input type="text" id="modifier" name="modifier" value="0" autofocus="autofocus" />
                 </div>
             </form>`
 			const x = new Dialog({
-				title: game.i18n.format("TALESOFTHEOLDWEST.dialog.Rollontable", {
+				title: game.i18n.format("ALIENRPG.dialog.Rollontable", {
 					tablename: table.name,
 				}),
 				content: dialog_content,
 				buttons: {
 					Ok: {
-						label: game.i18n.localize("TALESOFTHEOLDWEST.dialog.ok"),
+						label: game.i18n.localize("ALIENRPG.dialog.ok"),
 						callback: async (html) => {
 							let modifier = Number.parseInt(html[0].querySelector("input[name='modifier'").value)
 							if (isNaN(modifier)) {
@@ -140,7 +140,7 @@ export function enrichTextEditors() {
 							await myF(uuid, modifier)
 						},
 					},
-					Cancel: { label: game.i18n.localize("TALESOFTHEOLDWEST.dialog.cancel") },
+					Cancel: { label: game.i18n.localize("ALIENRPG.dialog.cancel") },
 				},
 			})
 			x.options.width = 200
