@@ -215,6 +215,12 @@ ALIENRPG.conditions = {
 		tableNumber: 6,
 		img: "systems/alienrpg/images/icons/deflated.webp",
 	},
+	messup: {
+		name: "ALIENRPG.messup",
+		resp: "stress",
+		tableNumber: 7,
+		img: "systems/alienrpg/images/icons/messup.webp",
+	},
 	fatigued: {
 		name: "ALIENRPG.fatigued",
 		resp: "",

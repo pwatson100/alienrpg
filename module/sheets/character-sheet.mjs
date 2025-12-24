@@ -422,7 +422,7 @@ export default class alienrpgCharacterSheet extends api.HandlebarsApplicationMix
 				if (item.header.active !== "fLocker") {
 					let ammoweight = 0.25
 									if (item.header.type.value === '1') {
-console.log(item.header.type.value, item.attributes.rounds.value)
+// console.log(item.header.type.value, item.attributes.rounds.value)
 									if (item.attributes.rounds.value > '1') {
 
 									if (

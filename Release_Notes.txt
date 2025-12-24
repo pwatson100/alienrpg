@@ -667,3 +667,8 @@ Version 4.0.9
 Fixed Major and Minor Component Damage wolls not working.  
 Fixed the the Ranged attack not including the -2 modifier when "Engaged". 
 
+Version 4.0.10
+Reworked Stress and Panic Response mechanics.
+New German translations with thanks to Gumbald
+Evolved character sheet adjustments
+
