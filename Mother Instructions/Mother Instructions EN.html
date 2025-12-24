@@ -19,9 +19,16 @@
       As with all things time is an issue so these instructions do not currently cover all the changes I have made to support the Evolved system. I will be
       updating in the future.
     </p>
+    <h1 class="heading">NOTE:</h1>
+    <p>
+      <strong>
+        By default the system will run in Alien "Classic" mode. To switch to "evolved" mode go to Configure Settings>Alien Evolved> Use Alien Evolved Rules and
+        Sheets and hit the checkbox.
+      </strong>
+    </p>
 
-    <h1 class="heading">Change history for latest version Version 4.0.0, 4.0.1, 4.0.2, 4.0.3 & 4.0.4</h1>
-    <p>SYSTEM</p>
+    <h1 class="heading">Change history for latest version Version 4.0.5 to 4.0.10</h1>
+    <p>EVOLVED SYSTEM</p>
     <ul>
       <li>New Actor, Item sheets to support Alien Evolved</li>
       <li>
@@ -42,18 +49,39 @@
       <li>Moved from template.json data structure to data models</li>
       <li>Upgraded all sheets to Foundry App V2</li>
     </ul>
-    <p>Version 4.0.1 - CSS changes</p>
-    <p>Version 4.0.2</p>
+    <p>Version 4.0.10</p>
     <ul>
-      <li>Fixed path capitalisation of weapon dialog boxesWhen in Evolved mode</li>
-      <li>Inventory shows Ammo rather than Rounds</li>
-      <li>Clicking on the Stress Response or Panic response title will now perform the relevant roll.</li>
+      <li>Reworked Stress and Panic Response mechanics.</li>
+      <li>New German translations with thanks to Gumbald</li>
+      <li>Evolved character sheet adjustments</li>
     </ul>
-    <p>Version 4.0.3 - Added the Consumables to the Evolved character sheet (I forgot to add!)</p>
-    <p>Version 4.0.4</p>
+    <p>Version 4.0.9</p>
     <ul>
-      <li>Fixed issue with pushing weapon rolls as it was not pushing the weapon but the ammo roll (What an idiot!!!)</li>
-      <li>Fixed weapon ammo calculation to not count the weight of the first round which as per RAW is included in the weapon weight</li>
+      <li>Fixed Major and Minor Component Damage rolls not working.</li>
+      <li>Fixed the the Ranged attack not including the -2 modifier when "Engaged".</li>
+    </ul>
+    <p>Version 4.0.8</p>
+    <ul>
+      <li>Fixed bug where Creatures sheets would not open (Root cause: Idiot developer not adding an include file!)</li>
+    </ul>
+    <p>Version 4.0.7</p>
+    <ul>
+      <li>Allow negative values on Vehicle sheet.</li>
+      <li>Allow hull values higher than 10 on the Vehicle sheet.</li>
+      <li>Fixed issue with Notes tab on the Items sheet.</li>
+      <li>Fixed issue with Notes tab on the Items sheet.</li>
+      <li>Evolved - now use the same Stunt for all Skills (as per RAW)</li>
+    </ul>
+    <p>Version 4.0.6</p>
+    <ul>
+      <li>Corrected bug with radiation rolls (thanks to @Takara)</li>
+      <li>When in Evolved mode, Reducing radiation no longer rolls for permanant radiation</li>
+      <li>Firing a weapon at "Engaged" range now uses Close Combat skill rather then Ranged Combat (thanks to @Takara)</li>
+      <li>Fix an issue where Stress responses were being removed if the PC already had them even though the +1 stress was being added.</li>
+    </ul>
+    <p>Version 4.0.5</p>
+    <ul>
+      <li>Updated crit handling to accomodate new Evolved table.</li>
     </ul>
     <p>
       Should you wish to populate the system with game content for your own use please purchase the rules from Free League Publishing:
@@ -1296,6 +1324,19 @@
           <li>Xp on Character and Synthetic sheets now collapses to Campaign/Story vew like the CRT UI sheet.</li>
         </ul>
       </li>
+    </ul>
+    <h2 class="heading2">Version 4.0.1 - CSS changes</h2>
+    <h2 class="heading2">Version 4.0.2</h2>
+    <ul>
+      <li>Fixed path capitalisation of weapon dialog boxesWhen in Evolved mode</li>
+      <li>Inventory shows Ammo rather than Rounds</li>
+      <li>Clicking on the Stress Response or Panic response title will now perform the relevant roll.</li>
+    </ul>
+    <h2 class="heading2">Version 4.0.3 - Added the Consumables to the Evolved character sheet (I forgot to add!)</h2>
+    <h2 class="heading2">Version 4.0.4</h2>
+    <ul>
+      <li>Fixed issue with pushing weapon rolls as it was not pushing the weapon but the ammo roll (What an idiot!!!)</li>
+      <li>Fixed weapon ammo calculation to not count the weight of the first round which as per RAW is included in the weapon weight</li>
     </ul>
   </div>
 </div>
