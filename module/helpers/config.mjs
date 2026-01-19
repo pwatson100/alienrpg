@@ -404,12 +404,20 @@ ALIENRPG.weapon_range_list = {
 	4: { id: 4, label: "ALIENRPG.Long" },
 	5: { id: 5, label: "ALIENRPG.Extreme" },
 }
+
 ALIENRPG.vehicle_weapon_range_list = {
 	1: { id: 1, label: "ALIENRPG.Contact", value: "2" },
 	2: { id: 2, label: "ALIENRPG.Short", value: "1" },
 	3: { id: 3, label: "ALIENRPG.Medium", value: "0" },
 	4: { id: 4, label: "ALIENRPG.Long", value: "-1" },
 	5: { id: 5, label: "ALIENRPG.Extreme", value: "-2" },
+}
+ALIENRPG.evolved_vehicle_weapon_range_list = {
+	1: { id: 1, label: "ALIENRPG.Contact"},
+	2: { id: 2, label: "ALIENRPG.Short"},
+	3: { id: 3, label: "ALIENRPG.Medium"},
+	4: { id: 4, label: "ALIENRPG.Long"},
+	5: { id: 5, label: "ALIENRPG.Extreme"},
 }
 
 ALIENRPG.target_cover = {

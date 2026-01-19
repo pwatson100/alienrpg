@@ -105,9 +105,9 @@ export default class alienrpgSpacecraft extends alienrpgActorBase {
 				value: new fields.StringField({ required: true, blank: true }),
 			}),
 		})
-		schema.notes = new fields.SchemaField({
-			notes: new fields.StringField({ required: true, blank: true }),
-		})
+		// schema.notes = new fields.SchemaField({
+		// 	notes: new fields.StringField({ required: true, blank: true }),
+		// })
 
 		schema.crew = new fields.SchemaField({
 			occupants: new fields.ArrayField(

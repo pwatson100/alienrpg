@@ -29,7 +29,6 @@ export default class alienrpgCreature extends alienrpgActorBase {
 						...requiredInteger,
 						initial: 0,
 						min: 0,
-						max: 5,
 					}),
 					// mod: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
 					// max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),

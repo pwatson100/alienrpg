@@ -672,3 +672,9 @@ Reworked Stress and Panic Response mechanics.
 New German translations with thanks to Gumbald
 Evolved character sheet adjustments
 
+Version 4.0.11
+Corrected issue with Notes field on Spacecraft sheet
+Fixed issue with Colony Initiatives not allowing negative modifiers. 
+Corrected crew calculations on the Vehicle and Spacecraft sheets.
+Corrected error with Vehicle Weapon Range modifiers. 
+Removed cap (5) on creature attributes.

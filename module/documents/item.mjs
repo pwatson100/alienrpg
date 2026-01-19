@@ -375,7 +375,7 @@ export class alienrpgItem extends Item {
 									}
 								}
 								if (fCrew.length === 0) {
-									return ui.notifications.warn(game.i18n.localize("alienrpg.noCrewAssigned"))
+									return ui.notifications.warn(game.i18n.localize("ALIENRPG.noCrewAssigned"))
 								}
 								content = await foundry.applications.handlebars.renderTemplate(
 									"systems/alienrpg/templates/dialog/roll-vehicle-weapon.hbs",
@@ -407,15 +407,26 @@ export class alienrpgItem extends Item {
 									stressMod = Number(response.stressMod)
 									const aStressVal = Number(game.actors.get(tactorid).system.header?.stress?.value || 0)
 									let rangeMod = Number(response.rangeMod)
-									if (Number.isNaN(rangeMod)) rangeMod = 0
+									// if (Number.isNaN(rangeMod)) rangeMod = 0
+
+								// Is the target at a greater range?  If so Say Out Of Range
+								if (Number(itemData.attributes.range.value - rangeMod) < 0) {
+										return ui.notifications.warn(game.i18n.localize("ALIENRPG.OutofRange"))
+
+								}
+								// Is Target < min range.  If so -2 for each range level.
+								if (Number(rangeMod) - itemData.attributes.minrange.value < 0) {
+									rangeMod = 2 * (Number(rangeMod) - itemData.attributes.minrange.value)
+								} else {
+									rangeMod = 0
+								}
 
 									const r1Data = Number(
+										game.actors.get(tactorid).system.skills.rangedCbt.mod +
 										itemData.attributes.bonus.value +
 											modifier +
-											rangeMod +
-											game.actors.get(tactorid).system.skills.rangedCbt.mod,
+											rangeMod
 									)
-									// let r2Data = parseInt(aStressVal + aStressMod + stressMod);
 									const r2Data = Number(aStressVal + stressMod)
 									label += ` (${this.actor.name}) `
 									// label += ` (${fCrew[shooter].firerName}) `;
@@ -464,7 +475,7 @@ export class alienrpgItem extends Item {
 									}
 								}
 								if (fCrew.length === 0) {
-									return ui.notifications.warn(game.i18n.localize("alienrpg.noCrewAssigned"))
+									return ui.notifications.warn(game.i18n.localize("ALIENRPG.noCrewAssigned"))
 								}
 								content = await foundry.applications.handlebars.renderTemplate(
 									"systems/alienrpg/templates/dialog/roll-vehicle-weapon.hbs",
