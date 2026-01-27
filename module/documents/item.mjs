@@ -275,7 +275,8 @@ export class alienrpgItem extends Item {
 								if (Number(dataset.shootrangeMod) - itemData.attributes.minrange.value < 0) {
 									shootrangeMod = 2 * (Number(dataset.shootrangeMod) - itemData.attributes.minrange.value)
 								}
-								if (shootrangeMod === -1) {
+								if (dataset.shootrangeMod === '1') {
+									console.log(`Using Close Combat, ${actorData.skills.closeCbt.mod}`)
 									r1Data =
 									actorData.skills.closeCbt.mod +
 									itemData.attributes.bonus.value +
@@ -286,6 +287,7 @@ export class alienrpgItem extends Item {
 									aimforweakspotMod +
 									Number(shootrangeMod)
 									} else {
+									console.log(`Using Ranged Combat, ${actorData.skills.rangedCbt.mod}`)
 									r1Data =
 									actorData.skills.rangedCbt.mod +
 									itemData.attributes.bonus.value +
