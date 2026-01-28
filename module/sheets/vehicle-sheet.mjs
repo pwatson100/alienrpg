@@ -389,13 +389,13 @@ export default class alienrpgVehicleSheet extends api.HandlebarsApplicationMixin
 			return ui.notifications.info("Vehicle inceptions are not allowed!")
 		if (crew.type !== "character" && crew.type !== "synthetic") return
 		if (actorData.type === "vehicles") {
-			if ((actorData.system.crew.passengerQty -1) >= actorData.system.attributes.passengers.value) {
+			if (actorData.system.crew.passengerQty >= (actorData.system.attributes.passengers.value +1)) {
 				return ui.notifications.warn(game.i18n.localize("ALIENRPG.fullCrew"))
 			}
 			return await actorData.addVehicleOccupant(actorId)
 		}
 		if (actorData.type === "spacecraft") {
-			if (actorData.system.crew.passengerQty >= actorData.system.attributes.crew.value) {
+			if (actorData.system.crew.passengerQty >= (actorData.system.attributes.passengers.value + actorData.system.attributes.crew.value ) + 1) {
 				return ui.notifications.warn(game.i18n.localize("ALIENRPG.fullCrew"))
 			}
 			return await actorData.addVehicleOccupant(actorId)

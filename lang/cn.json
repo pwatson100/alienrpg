@@ -99,6 +99,7 @@
     "Dam": "伤害",
     "Damage": "伤害",
     "DAMAGE": "损害",
+    "DANGERLEVEL": "Enter Danger Level",
     "DataStorage": "数据储存装置",
     "Days": "天",
     "debug.hint": "将扩展调试信息打印到控制台。",

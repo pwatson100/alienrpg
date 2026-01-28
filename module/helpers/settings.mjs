@@ -16,7 +16,7 @@ export default function () {
 		hint: "ALIENRPG.EvolvedHint",
 		scope: "world",
 		type: Boolean,
-		default: false,
+		default: true,
 		config: true,
 		restricted: true,
 		onChange: () => {

@@ -18,42 +18,42 @@ export default class alienrpgColonyInitiative extends alienrpgItemBase {
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
+					// min: 0,
 				}),
 			}),
 			potential: new fields.SchemaField({
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
+					// min: 0,
 				}),
 			}),
 			productivity: new fields.SchemaField({
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
+					// min: 0,
 				}),
 			}),
 			maintenance: new fields.SchemaField({
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
+					// min: 0,
 				}),
 			}),
 			science: new fields.SchemaField({
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
+					// min: 0,
 				}),
 			}),
 			spirit: new fields.SchemaField({
 				value: new fields.NumberField({
 					...requiredInteger,
 					initial: 0,
-					min: 0,
+					// min: 0,
 				}),
 			}),
 		})
