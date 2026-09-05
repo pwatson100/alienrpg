@@ -219,7 +219,8 @@ export class alienrpgActor extends Actor {
       switch (actor.type) {
         case "character":
           reRoll = false;
-          r2Data = actor.getRollData().header.stress.value + Number(actor.getRollData().header.stress.mod || 0) + Number(stressMod);
+          // r2Data = actor.getRollData().header.stress.value + Number(actor.getRollData().header.stress.mod || 0) + Number(stressMod);
+          r2Data = actor.getRollData().header.stress.value + Number(stressMod);
           break;
         case "synthetic":
           if (actor.system.header.synthstress) {

@@ -279,7 +279,8 @@ Hooks.once("init", () => {
   // for (const [id, value] of Object.entries(DS_CONST.staminaEffects)) {
   // 	CONFIG.statusEffects.push({ id, _id: id.padEnd(16, '0'), ...value });
   // }
-  CONFIG.statusEffects.push(...ALIENRPG.StatusEffects.slowAndFastActions);
+  // CONFIG.statusEffects.push(...ALIENRPG.StatusEffects.slowAndFastActions);
+  CONFIG.statusEffects.push(...ALIENRPG.StatusEffects.critEffects);
 
   /* -------------------------------------------- */
   /*  Handlebars Helpers                          */

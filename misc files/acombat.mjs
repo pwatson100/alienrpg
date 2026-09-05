@@ -23,43 +23,8 @@ export default class AlienRPGCombat extends foundry.documents.Combat {
     const currentId = this.id;
     const draw = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false };
     let drawn = 0;
-    if (game.combat) {
-      if (game.combat.combatants.contents.length > 0) {
-        game.combat.combatants.contents.forEach((inIt) => {
-          if (inIt.initiative) {
-            draw[inIt.initiative] = inIt.id;
-            drawn++;
-          }
-        });
-      }
-    }
-
     const updates = [];
     const messages = [];
-    let free = 0;
-    Object.entries(draw).forEach(([key, value]) => {
-      console.log(`${key} ${value}`);
-      if (!value) {
-        free++;
-      }
-    });
-    for (const [i, id] of ids.entries()) {
-      // Get Combatant data
-      if (drawn <= 10 && free > 0) {
-        const combatant = this.combatants.get(id);
-        if (!combatant?.isOwner) return results;
-
-        const cf = formula || combatant._getInitiativeFormula();
-        let broll = await this.getInit(combatant, cf, updates);
-        while (draw[broll.total]) {
-          broll = await this.getInit(combatant, cf, updates);
-        }
-
-        draw[broll.total] = combatant.id;
-        drawn++;
-        free--;
-        updates.push({ _id: id, initiative: broll.total });
-
         if (!game.settings.get("alienrpg", "alienrpgHideInitChat")) {
           let cardPath = `<div style="text-align: center;"><img width="125" height="175" src="systems/alienrpg/images/cards/card-${broll.total}.png"></div>`;
           // Determine the roll mode
@@ -87,6 +52,63 @@ export default class AlienRPGCombat extends foundry.documents.Combat {
               } catch (error) {}
             }
           }
+          
+if (game.combat) {
+  const existingInitiative = game.combat.combatants.contents;
+for (let [key, value] of Object.entries(ExistingInitiative)) {
+  if (value.initiative) {
+    draw[value.initiative] = true
+  } else {
+          if (drawn < 10) {
+            let combatant = value.actorId;
+        if (!combatant?.isOwner) return results;
+        const cf = formula || combatant._getInitiativeFormula();
+        let broll = await this.getInit(combatant, cf, updates);
+        draw[broll.total] = true;
+        updates.push({ _id: id, initiative: broll.total });
+
+          } 
+          else 
+            {}
+  }
+
+    // console.log(value.actorId, value.initiative);
+}
+
+} else {
+  
+}
+
+
+
+
+    // Iterate over Combatants, performing an initiative roll for each
+    if (this.combatants.contents > 0) {
+      this.combatants.contents.forEach((inIt) => {
+        if (inIt.initiative) {
+          draw[inIt.initiative] = true;
+          drawn++;
+        }
+      });
+    }
+
+    for (const [i, id] of ids.entries()) {
+      // Get Combatant data
+      if (drawn < 10) {
+        const combatant = this.combatants.get(id);
+        if (!combatant?.isOwner) return results;
+
+        const cf = formula || combatant._getInitiativeFormula();
+        let broll = await this.getInit(combatant, cf, updates);
+        while (draw[broll.total]) {
+          broll = await this.getInit(combatant, cf, updates);
+        }
+
+        draw[broll.total] = true;
+        drawn++;
+        updates.push({ _id: id, initiative: broll.total });
+
+
 
           if (!combatant.token.hidden || !combatant.hidden) {
             // Construct chat message data

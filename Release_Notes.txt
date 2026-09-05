@@ -697,3 +697,9 @@ Hardened now added =1 to max strength.
 Active weapons can now be dropped on to the macro bar and fired from there.
 When in Evolved mode weapon ranges now show "Adjacent" rather than "Close".
 Cleaned up old Foundry V1 dialog box. 
+
+Version 4.1.14
+Corrected issue with Nerves of Steel reducing the niumber of panic dice rolled rather than -2 from panic roll. 
+Corrected issue with Initiative where re-rolls caused duplicates.
+Removed Fast and Slow Actions from the HUD to prevent issues with YZE Combat Engine.
+ 
