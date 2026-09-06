@@ -537,29 +537,30 @@ ALIENRPG.colony_policy_list = {
   3: { id: 3, label: "ALIENRPG.Projects" },
 };
 
-ALIENRPG.STATUS_EFFECTS = {
-  FAST_ACTION: "fastAction",
-  SLOW_ACTION: "slowAction",
-};
+// ALIENRPG.STATUS_EFFECTS = {
+//   FAST_ACTION: "fastAction",
+//   SLOW_ACTION: "slowAction",
+// };
 
 ALIENRPG.StatusEffects = {
-  slowAndFastActions: [
-    {
-      id: ALIENRPG.STATUS_EFFECTS.FAST_ACTION,
-      name: "ALIENRPG.FastAction",
-      label: "ALIENRPG.FastAction",
-      img: "systems/alienrpg/images/icons/fast-action.webp",
-      // icon: "systems/alienrpg/images/icons/fast-action.webp",
-      statuses: ["fastAction"],
-    },
-    {
-      id: ALIENRPG.STATUS_EFFECTS.SLOW_ACTION,
-      name: "ALIENRPG.SlowAction",
-      label: "ALIENRPG.SlowAction",
-      img: "systems/alienrpg/images/icons/slow-action.webp",
-      // icon: "systems/alienrpg/images/icons/slow-action.webp",
-      statuses: ["slowAction"],
-    },
+  // slowAndFastActions: [
+  critEffects: [
+    // {
+    //   id: ALIENRPG.STATUS_EFFECTS.FAST_ACTION,
+    //   name: "ALIENRPG.FastAction",
+    //   label: "ALIENRPG.FastAction",
+    //   img: "systems/alienrpg/images/icons/fast-action.webp",
+    //   // icon: "systems/alienrpg/images/icons/fast-action.webp",
+    //   statuses: ["fastAction"],
+    // },
+    // {
+    //   id: ALIENRPG.STATUS_EFFECTS.SLOW_ACTION,
+    //   name: "ALIENRPG.SlowAction",
+    //   label: "ALIENRPG.SlowAction",
+    //   img: "systems/alienrpg/images/icons/slow-action.webp",
+    //   // icon: "systems/alienrpg/images/icons/slow-action.webp",
+    //   statuses: ["slowAction"],
+    // },
     {
       id: "shipminor",
       name: "ALIENRPG.MINOR-COMPONENT-DAMAGE",

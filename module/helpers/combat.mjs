@@ -23,20 +23,29 @@ export default class AlienRPGCombat extends foundry.documents.Combat {
     const currentId = this.id;
     const draw = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false };
     let drawn = 0;
-    // Iterate over Combatants, performing an initiative roll for each
-    if (this.combatants.contents > 0) {
-      this.combatants.contents.forEach((inIt) => {
-        if (inIt.initiative) {
-          draw[inIt.initiative] = true;
-          drawn++;
-        }
-      });
+    if (game.combat) {
+      if (game.combat.combatants.contents.length > 0) {
+        game.combat.combatants.contents.forEach((inIt) => {
+          if (inIt.initiative) {
+            draw[inIt.initiative] = inIt.id;
+            drawn++;
+          }
+        });
+      }
     }
+
     const updates = [];
     const messages = [];
+    let free = 0;
+    Object.entries(draw).forEach(([key, value]) => {
+      console.log(`${key} ${value}`);
+      if (!value) {
+        free++;
+      }
+    });
     for (const [i, id] of ids.entries()) {
       // Get Combatant data
-      if (drawn < 10) {
+      if (drawn <= 10 && free > 0) {
         const combatant = this.combatants.get(id);
         if (!combatant?.isOwner) return results;
 
@@ -46,8 +55,9 @@ export default class AlienRPGCombat extends foundry.documents.Combat {
           broll = await this.getInit(combatant, cf, updates);
         }
 
-        draw[broll.total] = true;
+        draw[broll.total] = combatant.id;
         drawn++;
+        free--;
         updates.push({ _id: id, initiative: broll.total });
 
         if (!game.settings.get("alienrpg", "alienrpgHideInitChat")) {
