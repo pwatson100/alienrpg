@@ -1545,6 +1545,7 @@ export class alienrpgActor extends Actor {
       }
     } else {
       await actor.update({ ["system.general.radiation.value"]: rad.value - 1 });
+      ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
       ChatMessage.create({
         speaker: { actor: actor.id },
         content: game.i18n.localize("ALIENRPG.RadiationReduced"),
@@ -1585,6 +1586,7 @@ export class alienrpgActor extends Actor {
       });
     }
     await actor.removeCondition("panicked");
+    ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
     ChatMessage.create({
       speaker: { actor: actor.id },
       content: "Panic is over",
@@ -2509,6 +2511,7 @@ export class alienrpgActor extends Actor {
     chatMessage += "<h2>" + game.i18n.localize("ALIENRPG.AttackRoll") + "</h2>";
     chatMessage += `<h4><i>${table.name}</i></h4>`;
     chatMessage += `${customResults.results[0].description}`;
+    ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
     const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({
@@ -2601,6 +2604,8 @@ export class alienrpgActor extends Actor {
       let chatMessage = "";
       chatMessage += "<h2>" + game.i18n.localize("ALIENRPG.AcidAttack") + "</h2>";
       chatMessage += "<h4><i>" + game.i18n.localize("ALIENRPG.AcidBlood") + "</i></h4>";
+      ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
+
       const chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({
