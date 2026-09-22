@@ -361,14 +361,16 @@ export class yze {
       sound: CONFIG.sounds.dice,
       flags: { tactorid },
     };
-    if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
-      chatData.whisper = ChatMessage.getWhisperRecipients("GM");
-    } else if (chatData.rollMode === "selfroll") {
-      chatData.whisper = [game.user];
-    } else if (blind) {
-      chatData.whisper = ChatMessage.getWhisperRecipients("GM");
-      chatData.blind = true;
-    }
+    // if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
+    //   chatData.whisper = ChatMessage.getWhisperRecipients("GM");
+    // } else if (chatData.rollMode === "selfroll") {
+    //   chatData.whisper = [game.user];
+    // } else if (blind) {
+    //   chatData.whisper = ChatMessage.getWhisperRecipients("GM");
+    //   chatData.blind = true;
+    // }
+    ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
+
     await ChatMessage.create(chatData);
     return;
     // *******************************************************
@@ -497,6 +499,8 @@ export class yze {
         const weapon = await myActor.items.get(moddata.itemId);
         let supplyModifier = 0;
 
+        aveAmmo = weapon.system.attributes.rounds.value + supplyModifier + "ds";
+
         for (let [skey, Attrib] of Object.entries(myActor.items.contents)) {
           if (Attrib.type === "talent" && Attrib.name === "Precise Shooter") {
             supplyModifier = -2;
@@ -505,9 +509,9 @@ export class yze {
             } else {
               aveAmmo = weapon.system.attributes.rounds.value + supplyModifier + "ds";
             }
-          } else {
-            aveAmmo = weapon.system.attributes.rounds.value + supplyModifier + "ds";
           }
+          // else {
+          // }
         }
         let ammoRoll = await new Roll(`${aveAmmo}`).evaluate();
         for (let index = 0; index < ammoRoll.terms[0].results.length; index++) {

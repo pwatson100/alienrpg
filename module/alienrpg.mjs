@@ -552,17 +552,39 @@ function rollItemMacro(itemUuid) {
     type: "Item",
     uuid: itemUuid,
   };
-  // Load the item from the uuid.
-  Item.fromDropData(dropData).then((item) => {
-    // Determine if the item loaded and if it's an owned item.
-    if (!item || !item.parent) {
-      const itemName = item?.name ?? itemUuid;
-      return ui.notifications.warn(`Could not find item ${itemName}. You may need to delete and recreate this macro.`);
-    }
-
-    // Trigger the item roll
-    item.roll();
-  });
+  let dataset = "";
+  let actorID =
+    // Load the item from the uuid.
+    Item.fromDropData(dropData).then((item) => {
+      // Determine if the item loaded and if it's an owned item.
+      if (!item || !item.parent) {
+        const itemName = item?.name ?? itemUuid;
+        return ui.notifications.warn(`Could not find item ${itemName}. You may need to delete and recreate this macro.`);
+      }
+      const stripActor = itemUuid.split(/[.]/gi);
+      const actorID = stripActor[1];
+      const targetActor = game.actors.get(actorID);
+      dataset = {
+        action: "RollItem",
+        item: item.name,
+        itemId: item.id,
+        mod: "",
+        roll: "",
+      };
+      if (item.type === "weapon" || item.type === "spacecraftweapons") {
+        // Trigger the item roll
+        if (item.system.header.type.value === "1" && item.system.attributes.rounds.value <= 0) {
+          const chatMessage =
+            `<div class="chatBG" + ${actorID} "><span class="warnblink alienchatred"; style="font-weight: bold; font-size: larger">` +
+            game.i18n.localize("ALIENRPG.noAmmo") +
+            "</span></div>";
+          targetActor.createChatMessage(chatMessage, actorID);
+        } else {
+          // Trigger the item roll
+          item.roll(false, dataset);
+        }
+      }
+    });
 }
 
 async function showReleaseNotes() {

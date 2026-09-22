@@ -703,3 +703,8 @@ Classic Only - Corrected issue with Nerves of Steel reducing the number of stres
 Corrected issue with Initiative where re-rolls caused duplicates.
 Removed Fast and Slow Actions from the HUD to prevent issues with YZE Combat Engine.
 Evolved Only - "Precise Shooter" Talent now rolls 2 fewer ammo dice to a minimum of one.
+
+Version 4.1.15
+SYSTEM: Corrected error where message visability was being ignored.
+EVOLVED: Weapon macros now work correctly.
+EVOLVED: Corrected issue with Precise Shooter talent rolling ammo.

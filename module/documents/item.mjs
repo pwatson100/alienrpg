@@ -244,11 +244,11 @@ export class alienrpgItem extends Item {
               if (!response || response === "cancel") return "cancelled";
 
               if (response) {
-                dataset.weapontype = itemData.header.type.value;
+                dataset.weapontype = this.system.header.type.value;
                 dataset.conserveammo = response.conserveammo;
                 dataset.modifier = Number(response.modifier);
                 dataset.stressMod = Number(response.stressMod);
-                dataset.shootrangeMod = Number(response.rangeChoice);
+                dataset.shootrangeMod = response.rangeChoice;
                 dataset.sizeMod = Number(response.sizeChoice);
                 dataset.targetCoverMod = Number(response.targetCover);
                 dataset.firingFullAuto = response.firingFullAuto;
@@ -262,10 +262,12 @@ export class alienrpgItem extends Item {
                 if (Number(itemData.attributes.range.value - dataset.shootrangeMod) < 0) {
                   return ui.notifications.warn(game.i18n.localize("ALIENRPG.OutofRange"));
                 }
+                let minRange = Number(dataset.shootrangeMod);
                 // Is Target < min range.  If so -2 for each range level.
                 if (Number(dataset.shootrangeMod) - itemData.attributes.minrange.value < 0) {
-                  shootrangeMod = 2 * (Number(dataset.shootrangeMod) - itemData.attributes.minrange.value);
+                  shootrangeMod = 2 * (minRange - itemData.attributes.minrange.value);
                 }
+
                 if (dataset.shootrangeMod === "1") {
                   console.log(`Using Close Combat, ${actorData.skills.closeCbt.mod}`);
                   r1Data =

@@ -780,19 +780,6 @@ export default class alienrpgCharacterSheet extends api.HandlebarsApplicationMix
         }
       }
     }
-    // } else {
-    //   if (event.button === 2) {
-    //     if (item.type === "weapon") {
-    //       // Trigger the item roll
-    //       return item.roll(true, dataset);
-    //     }
-    //   } else {
-    //     if (item.type === "weapon" || item.type === "spacecraftweapons") {
-    //       // Trigger the item roll
-    //       return item.roll(false, dataset);
-    //     }
-    //   }
-    // }
   }
 
   static async _onClickXPStatLevel(event) {
