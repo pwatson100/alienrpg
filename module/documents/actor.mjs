@@ -753,6 +753,8 @@ export class alienrpgActor extends Actor {
       rolls: customResults.roll,
       sound: CONFIG.sounds.dice,
     };
+    ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
+
     if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
       chatData.whisper = ChatMessage.getWhisperRecipients("GM");
     } else if (chatData.rollMode === "selfroll") {
@@ -1545,7 +1547,6 @@ export class alienrpgActor extends Actor {
       }
     } else {
       await actor.update({ ["system.general.radiation.value"]: rad.value - 1 });
-      ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
       ChatMessage.create({
         speaker: { actor: actor.id },
         content: game.i18n.localize("ALIENRPG.RadiationReduced"),
@@ -2511,7 +2512,6 @@ export class alienrpgActor extends Actor {
     chatMessage += "<h2>" + game.i18n.localize("ALIENRPG.AttackRoll") + "</h2>";
     chatMessage += `<h4><i>${table.name}</i></h4>`;
     chatMessage += `${customResults.results[0].description}`;
-    ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
     const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({
@@ -2522,6 +2522,7 @@ export class alienrpgActor extends Actor {
       content: chatMessage,
       sound: CONFIG.sounds.dice,
     };
+    ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
     if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
       chatData.whisper = ChatMessage.getWhisperRecipients("GM");
     } else if (chatData.rollMode === "selfroll") {
@@ -2619,6 +2620,8 @@ export class alienrpgActor extends Actor {
       } else if (chatData.rollMode === "selfroll") {
         chatData.whisper = [game.user];
       }
+      ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
+
       ChatMessage.create(chatData);
     }
   }

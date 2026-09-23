@@ -484,7 +484,7 @@ export default class alienrpgSpacecraftSheet extends api.HandlebarsApplicationMi
       content: html,
       other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
       sound: CONFIG.sounds.lock,
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      // type: CONST.CHAT_MESSAGE_TYPES.OTHER,
     };
 
     ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
