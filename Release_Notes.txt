@@ -706,5 +706,11 @@ Evolved Only - "Precise Shooter" Talent now rolls 2 fewer ammo dice to a minimum
 
 Version 4.1.15
 SYSTEM: Corrected error where message visability was being ignored.
+SYSTEM: French language update with thanks to albatardo
 EVOLVED: Weapon macros now work correctly.
 EVOLVED: Corrected issue with Precise Shooter talent rolling ammo.
+
+Version 4.1.16
+SYSTEM: Fixed bug with creature attack rolls.
+
+
