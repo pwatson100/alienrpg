@@ -350,6 +350,8 @@ export class yze {
     // *******************************************************
     // For FVTT v0.7.x and DsN V3 set the appropriate chat config
     // *******************************************************
+    // let mode = await game.settings.get("core", "rollMode");
+
     const chatData = {
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({
@@ -361,15 +363,19 @@ export class yze {
       sound: CONFIG.sounds.dice,
       flags: { tactorid },
     };
-    // if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
-    //   chatData.whisper = ChatMessage.getWhisperRecipients("GM");
-    // } else if (chatData.rollMode === "selfroll") {
-    //   chatData.whisper = [game.user];
-    // } else if (blind) {
-    //   chatData.whisper = ChatMessage.getWhisperRecipients("GM");
-    //   chatData.blind = true;
-    // }
-    ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
+    if (game.release.generation < 14) {
+      if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
+        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
+      } else if (chatData.rollMode === "selfroll") {
+        chatData.whisper = [game.user];
+      } else if (blind) {
+        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
+        chatData.blind = true;
+      }
+    }
+    if (game.release.generation >= 14) {
+      ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
+    }
 
     await ChatMessage.create(chatData);
     return;

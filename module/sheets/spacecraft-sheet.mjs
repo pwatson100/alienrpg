@@ -484,10 +484,21 @@ export default class alienrpgSpacecraftSheet extends api.HandlebarsApplicationMi
       content: html,
       other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
       sound: CONFIG.sounds.lock,
-      // type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      rollMode: game.settings.get("core", "rollMode"),
     };
-
-    ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
+    if (game.release.generation < 14) {
+      if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
+        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
+      } else if (chatData.rollMode === "selfroll") {
+        chatData.whisper = [game.user];
+      } else if (blind) {
+        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
+        chatData.blind = true;
+      }
+    }
+    if (game.release.generation >= 14) {
+      ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
+    }
     return ChatMessage.create(chatData);
   }
 

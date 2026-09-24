@@ -705,7 +705,7 @@ Removed Fast and Slow Actions from the HUD to prevent issues with YZE Combat Eng
 Evolved Only - "Precise Shooter" Talent now rolls 2 fewer ammo dice to a minimum of one.
 
 Version 4.1.15
-SYSTEM: Corrected error where message visability was being ignored.
+SYSTEM: Corrected error where message visibility was being ignored.
 SYSTEM: French language update with thanks to albatardo
 EVOLVED: Weapon macros now work correctly.
 EVOLVED: Corrected issue with Precise Shooter talent rolling ammo.
@@ -713,4 +713,5 @@ EVOLVED: Corrected issue with Precise Shooter talent rolling ammo.
 Version 4.1.16
 SYSTEM: Fixed bug with creature attack rolls.
 
-
+Version 4.1.17
+SYSTEM: Fixed dice rolls and message visibility for people running Foundry V13.
