@@ -25,9 +25,6 @@ import { yze } from "./helpers/YZEDiceRoller.mjs";
 // Import sheet classes.
 import * as ActorSheets from "./sheets/_module.mjs";
 
-const collections = foundry.documents.collections;
-const sheets = foundry.appv1.sheets;
-
 const includeRgx = /\/systems\/ALIENRPG\/module\//;
 CONFIG.compatibility.includePatterns.push(includeRgx);
 
@@ -69,7 +66,7 @@ const SUB_MODULES = {
 // Add key classes to the global scope so they can be more easily used
 // by downstream developers
 
-Hooks.once("init", () => {
+Hooks.once("init", function () {
   console.warn("Initializing Alien RPG");
   game.alienrpg = {
     alienrpgActor,
@@ -157,6 +154,9 @@ Hooks.once("init", () => {
   // if the transfer property on the Active Effect is true.
   // CONFIG.ActiveEffect.legacyTransferral = false
 
+  const collections = foundry.documents.collections;
+  const sheets = foundry.appv1.sheets;
+
   // Register sheet application classes
   collections.Actors.unregisterSheet("core", sheets.ActorSheet);
   collections.Actors.registerSheet("alienrpg", ActorSheets.alienrpgColonySheet, {
@@ -210,7 +210,7 @@ Hooks.once("init", () => {
     types: [
       "item",
       "weapon",
-      "stunts",
+      "skill-stunts",
       "talent",
       "critical-injury",
       "agenda",
@@ -225,8 +225,8 @@ Hooks.once("init", () => {
     makeDefault: true,
     label: "ALIENRPG.SheetLabels.Item",
   });
-  DocumentSheetConfig.unregisterSheet(ActiveEffect, "core", foundry.applications.sheets.ActiveEffectConfig);
-  DocumentSheetConfig.registerSheet(ActiveEffect, "alienrpg", ActorSheets.AlienRPGActiveEffectConfig, {
+  DocumentSheetConfig.unregisterSheet(foundry.documents.ActiveEffect, "core", foundry.applications.sheets.ActiveEffectConfig);
+  DocumentSheetConfig.registerSheet(foundry.documents.ActiveEffect, "alienrpg", ActorSheets.AlienRPGActiveEffectConfig, {
     makeDefault: true,
     label: "ALIENRPG.SHEET.Labels.ActiveEffect",
   });
