@@ -1,13 +1,13 @@
 {
     "ACTOR": {
-        "TypeCharacter": "Player Character",
-        "TypeColony": "Colony Sheet",
-        "TypeCreature": "Creature",
-        "TypePlanet": "Colony Planet",
-        "TypeSpacecraft": "Space Ship",
-        "TypeSynthetic": "Synthetic",
-        "TypeTerritory": "Territory",
-        "TypeVehicles": "Vehicle"
+        "TypeCharacter": "Personaje Jugador",
+        "TypeColony": "Hoja de colonia",
+        "TypeCreature": "Criatura",
+        "TypePlanet": "Planeta colonial",
+        "TypeSpacecraft": "Nave espacial",
+        "TypeSynthetic": "Sintético",
+        "TypeTerritory": "Territorio",
+        "TypeVehicles": "Vehículo"
     },
     "ALIENRPG": {
         "AbbreviationKg": "kg",
