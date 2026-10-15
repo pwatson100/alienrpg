@@ -719,3 +719,7 @@ SYSTEM: Fixed dice rolls and message visibility for people running Foundry V13.
 Version 4.1.18
 SYSTEM: Fixed issue with init hook caused by FVTT V14.369.
 SYSTEM: Added updated Spanish transaltaions with thanks to vechocho (Victor E. Chocho)
+
+Version 4.1.19
+SYSTEM: Fixed issue with blind rolls under FVTT V13.
+SYSTEM: Updated Spanish transaltaions with thanks to vechocho (Victor E. Chocho)

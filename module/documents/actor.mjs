@@ -1843,6 +1843,8 @@ export class alienrpgActor extends Actor {
     let stamina = 0;
     let comtech = 0;
     let command = 0;
+    let blind = false;
+
     switch (type) {
       case "character":
         {
@@ -2365,6 +2367,7 @@ export class alienrpgActor extends Actor {
   }
   async createChatMessage(message, actorID) {
     const config = CONFIG.ALIENRPG;
+    let blind = false;
     const chatData = {
       user: game.user.id,
       speaker: {
@@ -2551,6 +2554,7 @@ export class alienrpgActor extends Actor {
     let chatMessage = "";
     let customResults = "";
     let roll = "";
+    let blind = false;
     const targetTable = dataset.atttype;
     if (targetTable === "None") {
       logger.warn(game.i18n.localize("ALIENRPG.NoCharCrit"));
@@ -2631,6 +2635,8 @@ export class alienrpgActor extends Actor {
     let r2Data = 0;
     const reRoll = true;
     const hostile = "creature";
+    let blind = false;
+
     if (dataset.dataset.roll !== 0) {
       if (dataset.dataset.spbutt === "armor" && r1Data < 1) {
         return;
