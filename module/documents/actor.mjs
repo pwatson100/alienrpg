@@ -857,6 +857,8 @@ export class alienrpgActor extends Actor {
     let status = "";
     let effectid = "";
     let resolveModifier = 0;
+    let blind = false;
+
     if (!table) {
       return ui.notifications.error(game.i18n.localize("ALIENRPG.NoResolveTable"));
     }

@@ -723,3 +723,6 @@ SYSTEM: Added updated Spanish transaltaions with thanks to vechocho (Victor E. C
 Version 4.1.19
 SYSTEM: Fixed issue with blind rolls under FVTT V13.
 SYSTEM: Updated Spanish transaltaions with thanks to vechocho (Victor E. Chocho)
+
+Version 4.1.20
+SYSTEM: Fixed another issue with blind rolls under FVTT V13.
