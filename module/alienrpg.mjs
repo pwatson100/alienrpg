@@ -479,7 +479,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
         }
 
         hostile = actor.type;
-        let blind = false;
+        let blind = game.settings.get("core", "rollMode") === "blindroll";
 
         if (actor.prototypeToken.disposition === -1) {
           blind = true;

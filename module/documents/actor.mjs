@@ -192,7 +192,7 @@ export class alienrpgActor extends Actor {
     let actorId = actor.id;
     let effectiveActorType = actor.type;
     const attrib = dataset.attr;
-    const blind = false;
+    const blind = game.settings.get("core", "rollMode") === "blindroll";
     game.alienrpg.rollArr.sCount = 4;
     game.alienrpg.rollArr.multiPush = 0;
     const modifier = Number(dataset?.mod ?? 0) + Number(dataset?.modifier ?? 0);
@@ -546,7 +546,7 @@ export class alienrpgActor extends Actor {
   async rollPanic(actor, dataset) {
     const config = CONFIG.ALIENRPG;
     const actorId = actor.id;
-    let blind = false;
+    const blind = game.settings.get("core", "rollMode") === "blindroll";
     let oldPanic = 0;
     const modifier = Number(dataset?.mod ?? 0) + Number(dataset?.modifier ?? 0);
     const stressMod = Number(dataset?.stressMod ?? 0);
@@ -672,30 +672,6 @@ export class alienrpgActor extends Actor {
       whispertarget.push(game.user._id);
     }
 
-    blind = false;
-    if (rollMode === "blindroll") {
-      blind = true;
-      if (!game.user.isGM) {
-        function SelfMessage(content, sound) {
-          const selftarget = [];
-          selftarget.push(game.user._id);
-
-          ChatMessage.create({
-            speaker: { actor: actorId },
-            content,
-            whisper: selftarget,
-            rollMode: game.settings.get("core", "rollMode"),
-            sound,
-            blind: false,
-          });
-        }
-
-        SelfMessage(
-          '<h2 class="alienchatred">' + game.i18n.localize("ALIENRPG.PanicCondition") + addSign(aStress).toString() + " ???</h2>",
-          CONFIG.sounds.dice,
-        );
-      }
-    }
     switch (pCheck) {
       case 7:
       case 9:
@@ -753,6 +729,7 @@ export class alienrpgActor extends Actor {
       whisper: whispertarget,
       rolls: customResults.roll,
       sound: CONFIG.sounds.dice,
+      blind: blind
     };
 
     if (game.release.generation < 14) {
@@ -760,9 +737,6 @@ export class alienrpgActor extends Actor {
         chatData.whisper = ChatMessage.getWhisperRecipients("GM");
       } else if (chatData.rollMode === "selfroll") {
         chatData.whisper = [game.user];
-      } else if (blind) {
-        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
-        chatData.blind = true;
       }
     }
     if (game.release.generation >= 14) {
@@ -857,7 +831,7 @@ export class alienrpgActor extends Actor {
     let status = "";
     let effectid = "";
     let resolveModifier = 0;
-    let blind = false;
+    let blind = game.settings.get("core", "rollMode") === "blindroll";
 
     if (!table) {
       return ui.notifications.error(game.i18n.localize("ALIENRPG.NoResolveTable"));
@@ -1031,19 +1005,18 @@ export class alienrpgActor extends Actor {
       speaker: {
         actor: actor.id,
       },
+      rolls: [roll],
       rollMode: game.settings.get("core", "rollMode"),
       content: html,
       other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
       sound: CONFIG.sounds.dice,
+      blind: blind,
     };
     if (game.release.generation < 14) {
       if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
         chatData.whisper = ChatMessage.getWhisperRecipients("GM");
       } else if (chatData.rollMode === "selfroll") {
         chatData.whisper = [game.user];
-      } else if (blind) {
-        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
-        chatData.blind = true;
       }
     }
     if (game.release.generation >= 14) {
@@ -1282,20 +1255,19 @@ export class alienrpgActor extends Actor {
       speaker: {
         actor: actor.id,
       },
+      rolls: [roll],
       rollMode: game.settings.get("core", "rollMode"),
       content: html,
       other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
       sound: CONFIG.sounds.dice,
+      blind: game.settings.get("core", "rollMode") === "blindroll",
     };
     if (game.release.generation < 14) {
       if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
         chatData.whisper = ChatMessage.getWhisperRecipients("GM");
       } else if (chatData.rollMode === "selfroll") {
         chatData.whisper = [game.user];
-      } else if (blind) {
-        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
-        chatData.blind = true;
-      }
+      } 
     }
     if (game.release.generation >= 14) {
       ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
@@ -1663,7 +1635,7 @@ export class alienrpgActor extends Actor {
 
     const reRoll = true;
     // let hostile = actor.system.type;
-    let blind = false;
+    let blind = game.settings.get("core", "rollMode") === "blindroll";
     if (actor.token?.disposition === -1) {
       blind = true;
     }
@@ -1821,6 +1793,7 @@ export class alienrpgActor extends Actor {
   }
   async rollCrit(actor, type, dataset, manCrit) {
     const config = CONFIG.ALIENRPG;
+    const blind = game.settings.get("core", "rollMode") === "blindroll";
     let atable = "";
     let healTime = 0;
     let cFatal = false;
@@ -1845,7 +1818,6 @@ export class alienrpgActor extends Actor {
     let stamina = 0;
     let comtech = 0;
     let command = 0;
-    let blind = false;
 
     switch (type) {
       case "character":
@@ -2221,7 +2193,9 @@ export class alienrpgActor extends Actor {
       content: html,
       other: game.users.contents.filter((u) => u.isGM).map((u) => u.id),
       sound: CONFIG.sounds.dice,
+      rolls: [test1.roll],
       rollMode: game.settings.get("core", "rollMode"),
+      blind: blind,
     };
 
     switch (type) {
@@ -2254,10 +2228,7 @@ export class alienrpgActor extends Actor {
         chatData.whisper = ChatMessage.getWhisperRecipients("GM");
       } else if (chatData.rollMode === "selfroll") {
         chatData.whisper = [game.user];
-      } else if (blind) {
-        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
-        chatData.blind = true;
-      }
+      } 
     }
     if (game.release.generation >= 14) {
       ChatMessage.applyMode(chatData, game.settings.get("core", "rollMode"));
@@ -2369,7 +2340,7 @@ export class alienrpgActor extends Actor {
   }
   async createChatMessage(message, actorID) {
     const config = CONFIG.ALIENRPG;
-    let blind = false;
+    let blind = game.settings.get("core", "rollMode") === "blindroll";
     const chatData = {
       user: game.user.id,
       speaker: {
@@ -2381,7 +2352,7 @@ export class alienrpgActor extends Actor {
       sound: CONFIG.sounds.lock,
     };
     if (game.release.generation < 14) {
-      if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
+      if (chatData.rollMode === "gmroll") {
         chatData.whisper = ChatMessage.getWhisperRecipients("GM");
       } else if (chatData.rollMode === "selfroll") {
         chatData.whisper = [game.user];
@@ -2556,7 +2527,7 @@ export class alienrpgActor extends Actor {
     let chatMessage = "";
     let customResults = "";
     let roll = "";
-    let blind = false;
+    let blind = game.settings.get("core", "rollMode") === "blindroll";
     const targetTable = dataset.atttype;
     if (targetTable === "None") {
       logger.warn(game.i18n.localize("ALIENRPG.NoCharCrit"));
@@ -2637,7 +2608,7 @@ export class alienrpgActor extends Actor {
     let r2Data = 0;
     const reRoll = true;
     const hostile = "creature";
-    let blind = false;
+    let blind = game.settings.get("core", "rollMode") === "blindroll";
 
     if (dataset.dataset.roll !== 0) {
       if (dataset.dataset.spbutt === "armor" && r1Data < 1) {

@@ -9,7 +9,7 @@
   let label = 'for ' + actor.name;
   let actorid = actor.id;
   let reRoll = false;
-  let blind = false;
+  let blind = game.settings.get("core", "rollMode") === "blindroll";
 
   let template = `
         <form>
