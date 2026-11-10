@@ -1511,7 +1511,7 @@ export default class alienrpgSpacecraftSheet extends api.HandlebarsApplicationMi
 
       const reRoll = true;
       // let hostile = this.actor.system.type;
-      let blind = false;
+      let blind = game.settings.get("core", "rollMode") === "blindroll";
       if (this.actor.token?.disposition === -1) {
         blind = true;
       }

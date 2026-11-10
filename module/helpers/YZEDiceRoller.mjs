@@ -362,15 +362,13 @@ export class yze {
       content: chatMessage,
       sound: CONFIG.sounds.dice,
       flags: { tactorid },
+      blind: blind,
     };
     if (game.release.generation < 14) {
       if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
         chatData.whisper = ChatMessage.getWhisperRecipients("GM");
       } else if (chatData.rollMode === "selfroll") {
         chatData.whisper = [game.user];
-      } else if (blind) {
-        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
-        chatData.blind = true;
       }
     }
     if (game.release.generation >= 14) {
